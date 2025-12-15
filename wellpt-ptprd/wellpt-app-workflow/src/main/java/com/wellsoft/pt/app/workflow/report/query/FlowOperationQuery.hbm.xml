@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="getInefficientCountQuery">
+        <![CDATA[
+            select * from (
+                select  t1.uuid     as uuid
+                from wf_flow_instance t1
+                        <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                        </if>
+                where 1 = 1 and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t1.uuid)
+                    <if !(limitActionCodes??)>
+                        and exists (
+                           select 1 from wf_task_operation t3
+                           where t3.flow_inst_uuid = t1.uuid and t3.action_code in(:actionCodes)
+                        )
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            )
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listFlowInefficientCountQuery">
+        <![CDATA[
+            select * from (
+                select  count(t1.uuid) as count,
+                        t1.name  as name,
+                        t1.id    as id
+                from wf_flow_instance t1
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                    </if>
+                where 1 = 1 and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t1.uuid)
+                    <if !(limitActionCodes??)>
+                        and exists (
+                           select 1 from wf_task_operation t3
+                           where t3.flow_inst_uuid = t1.uuid and t3.action_code in(:actionCodes)
+                        )
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                group by t1.name, t1.id
+            ) t
+            where 1 = 1
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                <else>
+                    order by t.count desc
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listFlowInefficientPercentQuery">
+        <![CDATA[
+            select * from (
+                select  t1.name                 as name,
+                        t1.id                   as id,
+                        t1.total_count          as total_count,
+                        t2.inefficient_count    as inefficient_count,
+                        t2.inefficient_count / t1.total_count * 100 as inefficient_percent
+                from (
+                    select  count(t1.uuid) as total_count,
+                            t1.name  as name,
+                            t1.id    as id
+                    from wf_flow_instance t1
+                        <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                        </if>
+                    where 1 = 1 and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t1.uuid)
+                        <if isNotBlank(flowInstWhereSql)>
+                            and ${flowInstWhereSql}
+                        </if>
+                    group by t1.name, t1.id
+                ) t1 left join (
+                    select  count(distinct t1.uuid) as inefficient_count,
+                            t1.name  as name,
+                            t1.id    as id
+                    from wf_flow_instance t1
+                        <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                        </if>
+                        left join wf_task_operation t3 on t1.uuid = t3.flow_inst_uuid
+                    where t3.action_code in(:actionCodes)
+                        <if isNotBlank(flowInstWhereSql)>
+                            and ${flowInstWhereSql}
+                        </if>
+                    group by t1.name, t1.id
+                ) t2 on t1.id = t2.id
+                where t1.total_count > 0 and t2.inefficient_count > 0
+                order by inefficient_percent desc, total_count desc
+            ) t
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listFlowInefficientTaskCountQuery">
+        <![CDATA[
+            select *
+            from (
+                select  t3.task_name        as task_name,
+                        t3.task_id          as task_id,
+                        count(t3.task_id)   as count
+                from wf_task_operation t3
+                    left join wf_flow_instance t1 on t1.uuid = t3.flow_inst_uuid
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                    </if>
+                where 1 = 1
+                    <if isNotBlank(flowDefId)>
+                        and t1.id = :flowDefId
+                    </if>
+                    <if limitActionCodes?? && (limitActionCodes?size > 0)>
+                        and t3.action_code in(:limitActionCodes)
+                    <elseif actionCodes?? && (actionCodes?size > 0)>
+                        and t3.action_code in(:actionCodes)
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                group by t3.task_name, t3.task_id
+            ) t
+            where t.count > 0
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listFlowInefficientDetailQuery">
+        <![CDATA[
+            select *
+            from (
+                select  t3.uuid             as uuid,
+                        t1.title            as title,
+                        t1.name             as name,
+                        t1.id               as id,
+                        t1.start_time       as start_time,
+                        t4.user_name        as start_user_name,
+                        t3.action           as action_name,
+                        t3.task_name        as task_name,
+                        t3.task_id          as task_id,
+                        t6.name             as target_task_name,
+                        t3.assignee_name    as operator_name,
+                        t3.opinion_text     as opinion_text,
+                        t3.create_time      as operate_time
+                from wf_task_operation t3
+                    left join wf_flow_instance t1 on t1.uuid = t3.flow_inst_uuid
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                    </if>
+                    left join user_info t4 on t1.start_user_id = t4.user_id
+                    left join wf_task_activity t5 on t3.task_inst_uuid = t5.pre_task_inst_uuid
+                        and t3.assignee = t5.creator and t3.action_code in(1, 2, 34, 3, 27, 4, 5, 6, 16)
+                    left join wf_task_instance t6 on t5.task_inst_uuid = t6.uuid
+                where 1 = 1
+                    <if limitActionCodes?? && (limitActionCodes?size > 0)>
+                        and t3.action_code in(:limitActionCodes)
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                </if>
+	    ]]>
+    </sql-query>
+
+</hibernate-mapping>

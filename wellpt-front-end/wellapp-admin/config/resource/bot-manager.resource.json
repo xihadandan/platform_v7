@@ -1,0 +1,28 @@
+{
+  "js": {
+    "AppBotRuleConfigListDevelopment": {
+      "path": "bot-mgr/AppBotRuleConfigListDevelopment",
+      "name": "平台应用_单据转换管理_单据转换规则列表二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment",
+        "iexportData_V61"
+      ]
+    },
+    "AppBotRuleConfWidgetDevelopment": {
+      "path": "bot-mgr/AppBotRuleConfWidgetDevelopment",
+      "name": "平台应用_单据转换管理_单据转换规则编辑二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "wSelect2",
+        "ace_binder",
+        "global",
+        "system-admin",
+        "bootstrapTable",
+        "bootstrapTable_editable",
+        "layer"
+      ]
+    }
+  }
+}

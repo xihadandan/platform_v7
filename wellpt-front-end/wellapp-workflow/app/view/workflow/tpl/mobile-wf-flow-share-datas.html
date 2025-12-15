@@ -1,0 +1,35 @@
+<span style="display: none" id="mobile-wf-flow-share-datas" businessType="${businessType}" businessRole="${businessRole}"
+      dataSource="${dataSource}" >
+</span>
+
+{@each shareDatas as shareData,index}
+<div class="wf-share-data">
+
+    <ul class="mui-table-view mui-table-view-striped mui-table-view-condensed table-view-content">
+        {@each shareData.shareItems as shareItem,itemIndex}
+        <li class="mui-table-view-cell mui-transitioning" share-data-index="${parseInt(index)}"
+            data-index="${parseInt(itemIndex)}">
+            <div class="mui-slider-handle">
+                <div class="mui-checkbox">
+                    <input name="itemCheckbox" type="checkbox" data-index="${parseInt(itemIndex)}"
+                           class="input-check-item">
+                </div>
+                <div class="mui-table workitem-view-cell" style="border-top:0">
+                    <div class="mui-table-cell">
+                        <i class="mui-navigate-right" style="width:92%;position: absolute;right: -20px;top: 40px;"></i>
+                        <h4 class="mui-ellipsis" style="margin-right: 70px;">${parseInt(itemIndex) +
+                            1}、${shareItem.columnObject.todoName}</h4>
+                        <!--            <span class="mui-h5" style="width: 70px;top: 16px;right: 0;position: absolute;">{rightTop}</span>-->
+                        <div class="mui-clearfix mui-h5"><span>当前环节(办理人)</span>&nbsp;&nbsp;
+                            <!--<span>{leftCenter2}</span>-->
+                            <span style="float: right;">${shareItem.columnObject.currentTaskName}(${shareItem.columnObject.currentTodoUserName}{@if shareItem.columnObject.currentTodoUserName==''}无{@/if})</span>
+                        </div>
+                        <!--            <div class="mui-clearfix mui-h5"><span>{leftBottom}</span></div>-->
+                    </div>
+                </div>
+            </div>
+        </li>
+        {@/each}
+    </ul>
+</div>
+{@/each}

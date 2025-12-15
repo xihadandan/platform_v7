@@ -1,0 +1,39 @@
+{
+  "uni-datetime-picker": {
+    "selectMonth": "Select year and month",
+    "selectDate": "Select Date",
+    "selectTime": "Select Time",
+    "selectDateTime": "Select Date and Time",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "startTime": "Start Time",
+    "endTime": "End Time",
+    "ok": "OK",
+    "clear": "Clear",
+    "cancel": "Cancel",
+    "year": "Year",
+    "month": "Month",
+    "day": "Day",
+    "hour": "Hour",
+    "minute": "Minute",
+    "second": "Second"
+  },
+  "uni-calender": {
+    "SUN": "Sun",
+    "MON": "Mon",
+    "TUE": "Tue",
+    "WED": "Wed",
+    "THU": "Thu",
+    "FRI": "Fri",
+    "SAT": "Sat",
+    "confirm": "Confirm"
+  },
+  "uni-w-picker": {
+    "year": "yr",
+    "month": "mo",
+    "day": "d",
+    "hour": "h",
+    "minute": "min",
+    "second": "s"
+  }
+}

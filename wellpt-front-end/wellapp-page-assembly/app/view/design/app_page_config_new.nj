@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=10">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta http-equiv="Cache-Control" content="no-store">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="google" value="notranslate">
+    <title>Well自定义页面</title>
+    {% for css in cssOrderd %}
+      <link href="{{css.path}}" rel="stylesheet">
+    {% endfor %}
+    <link rel="stylesheet" href="{{helper.staticPrefix()}}/css/design/app_page_config_new.css">
+    <link rel="stylesheet" href="{{helper.staticPrefix()}}/css/design/app_widget_configurer.css">
+    <link rel="stylesheet" href="/static/js/pt/theme/default/default.css">
+    <link rel="stylesheet" href="/static/css/animate/3.5.2/animate.css">
+  </head>
+  <!--[if lt IE 9]> <script src="{{helper.staticPrefix()}}/js/html5shiv-3.7.3/dist/html5shiv.min.js"></script> <script src="{{helper.staticPrefix()}}/js/respond/respond.min.js"></script> <![endif]-->
+  <body class="web-app-container">
+    <input type="hidden" name="systemUnitId" id="systemUnitId" value="{{systemUnitId}}">
+    <input type="hidden" name="pi_uuid" id="pi_uuid" value="{{ piUuid }}">
+    <input type="hidden" name="page_uuid" id="page_uuid" value="{{ pageUuid }}">
+    <input type="hidden" name="sys_id" id="sys_id" value="{{sysId}}"/>
+    <div class="new-page-designer" id="newPageDesigner" v-cloak="v-cloak">
+      <div class="designer-header clear">
+        <div class="work-flow-title fl">Well自定义页面——{{ title }}</div>
+        <div class="work-flow-btns fr well-form-fontsize0">
+          <div id="workFlowSave" class="well-btn w-btn-primary" @click="save">
+            <i class="iconfont icon-pt-ptkj-baocun"></i>
+            <span>保存</span>
+          </div>
+          <div id="workFlowSaveNew" class="well-btn w-btn-primary" @click="saveNew">
+            <i class="iconfont icon-pt-ptkj-baocun"></i>
+            <span>保存新版本</span>
+          </div>
+          <div id="workFlowExport" class="well-btn w-btn-primary w-line-btn" @click="preview">
+            <span>预览</span>
+          </div>
+          <div id="workFlowHelp" class="well-btn w-btn-primary w-line-btn" @click="view_ref_resource">
+            <span>查看引用资源</span>
+          </div>
+          <div id="workFlowHelp" class="well-btn w-btn-primary w-line-btn" @click="change_json_viewer_mode">
+            <span v-if="json_viewer_mode">关闭JSON查看器</span>
+            <span v-else="v-else">开启JSON查看器</span>
+          </div>
+          <div id="workFlowHelp" class="well-btn w-btn-primary w-line-btn">
+            <span>帮助</span>
+          </div>
+        </div>
+      </div>
+      <div class="designer-body">
+        <div id="designerLeft" class="designer-left-sidebar">
+          <div class="left-sidebar">
+            <div class="left-sidebar-item" data-type="layout" @mouseenter="mouseenter" @mouseleave="mouseleave" :class="curSidebarType === 'layout' ? 'active' : ''" @click="chooseSidebarType('layout')">布局</div>
+            <div class="left-sidebar-item" data-type="component" @mouseenter="mouseenter" @mouseleave="mouseleave" :class="curSidebarType === 'component' ? 'active' : ''" @click="chooseSidebarType('component')">组件</div>
+          </div>
+          <div class="left-sidebar-popup" data-type="layout" :class="curSidebarType === 'layout' ? 'animated slideInLeft' : 'hide'" @mouseenter="mouseenter" @mouseleave="mouseleave">
+            <div class="pin-btn" @click="changeLeftPopupFixed">
+              <i class="iconfont icon-ptkj-quxiaodingzhu" v-if="leftPopupFixed"></i>
+              <i class="iconfont icon-ptkj-dingzhu" v-else="v-else"></i>
+            </div>
+            <div class="search-widget">
+              <input placeholer="搜索布局">
+              <div class="search">
+                <i class="iconfont icon-ptkj-sousuochaxun"></i>
+              </div>
+            </div>
+            <div class="widget-category" :class="expandItems.indexOf('layout') > -1 ? 'expand' : ''">
+              <div class="tit" @click="changeExpandStatus('layout')">
+                <span>布局</span>
+                <div class="arrow">
+                  <i class="iconfont icon-ptkj-shixinjiantou-xia"></i>
+                </div>
+              </div>
+
+              <transition v-on:enter="expand" v-on:leave="collapse">
+                <div class="widget-category-content" v-show="expandItems.indexOf('layout') > -1">
+                  <div class="sub-tit">栅格布局</div>
+                  <draggable tag="ul" class="widget-list clear" :list="sidebarInfo.layout.grid.list" v-bind="{group:{ name:'widget', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}" @end="handleMoveEnd" @start="handleMoveStart" :move="handleMove">
+                    <li v-for="(item,index) in sidebarInfo.layout.grid.list" :key="item.id">
+                      <i class="iconfont icon-ptkj-zhagebuju"></i>
+                      <span>${item.name}</span>
+                    </li>
+                  </draggable>
+                  <div class="sub-tit ">特定布局</div>
+                  <draggable tag="ul" class="widget-list clear" :list="sidebarInfo.layout.specific.list" v-bind="{group:{ name:'widget', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}" @end="handleMoveEnd" @start="handleMoveStart" :move="handleMove">
+                    <li v-for="(item,index) in sidebarInfo.layout.specific.list" :key="item.id">
+                      <i class="iconfont icon-ptkj-xianxingyeqian"></i>
+                      <span>${item.name}</span>
+                    </li>
+                  </draggable>
+                </div>
+              </transition>
+            </div>
+          </div>
+          <div class="left-sidebar-popup" data-type="component" :class="curSidebarType === 'component' ? 'animated slideInLeft' : 'hide'" @mouseenter="mouseenter" @mouseleave="mouseleave">
+            <div class="pin-btn" @click="changeLeftPopupFixed">
+              <i class="iconfont icon-ptkj-quxiaodingzhu" v-if="leftPopupFixed"></i>
+              <i class="iconfont icon-ptkj-dingzhu" v-else="v-else"></i>
+            </div>
+            <div class="search-widget">
+              <input placeholer="搜索组件">
+              <div class="search">
+                <i class="iconfont icon-ptkj-sousuochaxun"></i>
+              </div>
+            </div>
+            <div class="widget-category" :class="expandItems.indexOf('techComponent') > -1 ? 'expand' : ''">
+              <div class="tit" @click="changeExpandStatus('techComponent')">
+                <span>技术中台组件</span>
+                <div class="arrow">
+                  <i class="iconfont icon-ptkj-shixinjiantou-xia"></i>
+                </div>
+              </div>
+              <transition v-on:enter="expand" v-on:leave="collapse">
+                <div class="widget-category-content" v-show="expandItems.indexOf('techComponent') > -1">
+                  <div class="sub-tit">元组件</div>
+                  <draggable tag="ul" class="widget-list clear" :list="sidebarInfo.component.techComponent.unit.list" v-bind="{group:{ name:'widget', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}" @end="handleMoveEnd" @start="handleMoveStart" :move="handleMove">
+                    <li v-for="(item,index) in sidebarInfo.component.techComponent.unit.list" :key="item.id">
+                      <i class="iconfont icon-ptkj-zujian"></i>
+                      <span>${item.name}</span>
+                    </li>
+                  </draggable>
+
+                  <div class="sub-tit ">报表组件</div>
+                  <draggable tag="ul" class="widget-list clear" :list="sidebarInfo.component.techComponent.report.list" v-bind="{group:{ name:'widget', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}" @end="handleMoveEnd" @start="handleMoveStart" :move="handleMove">
+                    <li v-for="(item,index) in sidebarInfo.component.techComponent.report.list" :key="item.id">
+                      <i class="iconfont icon-ptkj-baobiaozujian"></i>
+                      <span>${item.name}</span>
+                    </li>
+                  </draggable>
+                </div>
+              </transition>
+            </div>
+            <div class="widget-category" :class="expandItems.indexOf('businessComponent') > -1 ? 'expand' : ''">
+              <div class="tit" @click="changeExpandStatus('businessComponent')">
+                <span>业务中台组件</span>
+                <div class="arrow">
+                  <i class="iconfont icon-ptkj-shixinjiantou-xia"></i>
+                </div>
+              </div>
+            </div>
+            <div class="widget-category" :class="expandItems.indexOf('dataComponent') > -1 ? 'expand' : ''">
+              <div class="tit" @click="changeExpandStatus('dataComponent')">
+                <span>数据中台组件</span>
+                <div class="arrow">
+                  <i class="iconfont icon-ptkj-shixinjiantou-xia"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="designer-main-wrap">
+          <div class="toolbar">
+            <div class="toobar-item">
+              <i class="iconfont icon-oa-chexiao"></i>
+              <span>撤销</span>
+            </div>
+            <div class="toobar-item right-border">
+              <i class="iconfont icon-oa-zhuanban"></i>
+              <span>重做</span>
+            </div>
+            <div class="toobar-item">
+              <i class="iconfont icon-ptkj-xianshizhagefuzhuxian"></i>
+              {# <i class="iconfont icon-ptkj-yincangzhagefuzhuxian"></i> #}
+              <span>栅格辅助线</span>
+            </div>
+          </div>
+          <draggable v-model="designerAreaData.items" v-bind="{group:'widget', handle: '.move-widget', chosenClass: 'select-widget', ghostClass: 'ghost',animation: 200}" @end="handleMoveEnd" @add="handleWidgetAdd($event,designerAreaData.items)">
+            <transition-group name="fade" tag="div" class="designer-area" ref="designerArea">
+              <designer-area-component :json_viewer_mode="json_viewer_mode" :class="{'widget-over': curOverWidgetKey === item.id,'select-widget': selectWidget.id === item.id}" v-for="(item,index) in designerAreaData.items" :component="item" :key="item.id"></designer-area-component>
+            </transition-group>
+          </draggable>
+          <div class="empty" v-if="!designerAreaData.items.length">
+            <img src="/static/workflow/images/empty_draw.png">
+            <p>
+              <i class="iconfont icon-ptkj-zhixiang"></i>
+              <span>请拖动布局和组件开始设计</span>
+            </p>
+          </div>
+        </div>
+        <div class="right-view-mode"></div>
+        <div class="designer-right-sidebar">
+          <div class="style-wrap right-sidebar-item">
+            <div class="tit">样式</div>
+            <div class="style-content">
+              <div v-if="selectWidget.title">
+                <div class="widget-base">
+                  <div class="widget-name">
+                    <p v-show="!editWidgetNameStatus" @click="editWidgetTitle">${selectWidget.title}</p>
+                    <input v-show="editWidgetNameStatus" ref="widgetName" class="form-control" v-model.trim="selectWidget.title" @blur="editWidgetNameStatus = false">
+                  </div>
+                  <div class="widget-width mb10">
+                    <span class="numUnit-label">宽度</span>
+                    <div class="numUnit">
+                      <input type="number" class="form-control" v-model.number="selectWidget.style.width" @keydown="channelInputLimitIncludeDot">
+                      <div class="unit">${selectWidget.style.widthUnit}</div>
+                    </div>
+                  </div>
+                  <div class="widget-height">
+                    <span class="numUnit-label">高度</span>
+                    <div class="numUnit">
+                      <input v-if="selectWidget.style.fixedHeight && !selectWidget.style.autoSetByContent" type="number" class="form-control" v-model.number="selectWidget.style.height" @keydown="channelInputLimitIncludeDot">
+                      <input v-else="v-else" type="number" class="form-control" :disabled="true">
+                      <div class="unit">${selectWidget.style.heightUnit}</div>
+                    </div>
+                    <div class="other-config" :class="{'dashed': selectWidget.style.fixedHeight}">
+                      <div class="well-form-group other-config-item half">
+                        <input type="checkbox" id="fixedWidth" class="form-control" v-model="selectWidget.style.fixedHeight">
+                        <label for="fixedWidth">固定高度</label>
+                      </div>
+                      <div class="well-form-group other-config-item half ml20" v-show="selectWidget.style.fixedHeight">
+                        <input type="checkbox" id="autoSetByContent" class="form-control" v-model="selectWidget.style.autoSetByContent">
+                        <label for="autoSetByContent">按内容自动适应</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="widget-units">
+                  <div class="widget-unit-item" v-for="(item,index) in selectWidget.style.units">
+                    <div class="widget-unit-item-name">
+                      <span>${item.name}</span>
+                      <div class="expand-btn" :class="item.expand ? 'expand' : ''" @click="changeUnitExpand(item)">
+                        <i class="iconfont icon-ptkj-xianmiaojiantou-xia"></i>
+                      </div>
+                    </div>
+                    <transition v-on:enter="expand" v-on:leave="collapse">
+                      <div class="widget-unit-item-info" v-show="item.expand">
+                        <div class="widget-unit-item-width" style="margin: 0 4px 15px">
+                          <span class="numUnit-label">宽度</span>
+                          <div class="numUnit">
+                            <input type="number" class="form-control" v-model.number="item.width" @keydown="channelInputLimit">
+                            <div class="unit">${selectWidget.style.widthUnit}</div>
+                          </div>
+                          <div class="other-config">
+                            <div class="well-form-group other-config-item">
+                              <input type="checkbox" disabled="disabled" :id="'fixedWidth_' + index" class="form-control" v-model="item.fixedWidth">
+                              <label :for="'fixedWidth_' + index">固定宽度</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="widget-unit-item-margin mb5" :style="{paddingBottom: item.useMargin ? '10px' : '5px'}">
+                          <div class="unit-item-set" :class="item.useMargin ? 'mb10' : ''">
+                            <div class="well-form-group other-config-item sm">
+                              <input type="checkbox" :id="'useMargin_' + index" class="form-control" v-model="item.useMargin">
+                              <label :for="'useMargin_' + index">外边距（单位：px）</label>
+                            </div>
+                            <div class="well-btn well-btn-sm w-btn-primary w-noLine-btn inline-block" v-show="item.useMargin" @click="resetMargin(item)">
+                              <i class="iconfont icon-ptkj-huanyuanhuifu"></i>
+                              <span>恢复默认</span>
+                            </div>
+                            <div class="switch-wrap" :class="item.margin.isSame ? 'active' : ''" v-show="item.useMargin" @click="changeMarginSame(item)">
+                              <span class="switch-text switch-open" v-show="item.margin.isSame">等距</span>
+                              <span class="switch-radio"></span>
+                              <span class="switch-text switch-close" v-show="!item.margin.isSame">等距</span>
+                            </div>
+                          </div>
+                          <div class="unit-item-set" v-show="item.useMargin" v-if="item.margin.isSame">
+                            <div>
+                              <div class="numCount">
+                                <input type="number" min="0" class="form-control" v-model.number="item.margin.sameValue" @blur="directionBlur(item.margin)" @focus="directionFocus(item.margin)" @keydown="channelInputLimitIncludeDot">
+                                <div class="count">
+                                  <div class="count-item" @click="plus(item.margin,'sameValue')">
+                                    <i class="iconfont icon-ptkj-xianmiaojiantou-shang"></i>
+                                  </div>
+                                  <div class="count-item" @click="minus(item.margin,'sameValue')">
+                                    <i class="iconfont icon-ptkj-xianmiaojiantou-xia"></i>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="unit-item-set" v-show="item.useMargin" v-else="v-else">
+                            <div v-for="(direction,index) in item.margin.direction" :key="index">
+                              <span class="numCount-label">${direction.name}</span>
+                              <div class="numCount">
+                                <input type="number" min="0" class="form-control" v-model.number="direction.value" @blur="directionBlur($event,direction)" @focus="directionFocus(direction)" @keydown="channelInputLimitIncludeDot">
+                                <div class="count">
+                                  <div class="count-item" @click="plus($event,direction)">
+                                    <i class="iconfont icon-ptkj-xianmiaojiantou-shang"></i>
+                                  </div>
+                                  <div class="count-item" :class="direction.value > 0 ? '' : 'disabled'" @click="minus($event,direction)">
+                                    <i class="iconfont icon-ptkj-xianmiaojiantou-xia"></i>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="widget-unit-item-padding" :style="{paddingBottom: item.usePadding ? '10px' : '5px'}">
+                          <div class="unit-item-set" :class="item.usePadding ? 'mb10' : ''">
+                            <div class="well-form-group other-config-item sm">
+                              <input type="checkbox" :id="'usePadding_' + index" class="form-control" v-model="item.usePadding">
+                              <label :for="'usePadding_' + index">内边距（单位：px）</label>
+                            </div>
+                            <div class="well-btn well-btn-sm w-btn-primary w-noLine-btn inline-block" v-show="item.usePadding" @click="resetPadding(item)">
+                              <i class="iconfont icon-ptkj-huanyuanhuifu"></i>
+                              <span>恢复默认</span>
+                            </div>
+                            <div class="switch-wrap" :class="item.padding.isSame ? 'active' : ''" v-show="item.usePadding" @click="changePaddingSame(item)">
+                              <span class="switch-text switch-open" v-show="item.padding.isSame">等距</span>
+                              <span class="switch-radio"></span>
+                              <span class="switch-text switch-close" v-show="!item.padding.isSame">等距</span>
+                            </div>
+                          </div>
+                          <div class="unit-item-set" v-show="item.usePadding" v-if="item.padding.isSame">
+                            <div>
+                              <div class="numCount">
+                                <input type="number" min="0" class="form-control" v-model.number="item.padding.sameValue" @blur="directionBlur(item.padding)" @focus="directionFocus(item.padding)" @keydown="channelInputLimitIncludeDot">
+                                <div class="count">
+                                  <div class="count-item" @click="plus(item.padding,'sameValue')">
+                                    <i class="iconfont icon-ptkj-xianmiaojiantou-shang"></i>
+                                  </div>
+                                  <div class="count-item" @click="minus(item.padding,'sameValue')">
+                                    <i class="iconfont icon-ptkj-xianmiaojiantou-xia"></i>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="unit-item-set" v-show="item.usePadding" v-else="v-else">
+                            <div v-for="(direction,index) in item.padding.direction" :key="index">
+                              <span class="numCount-label">${direction.name}</span>
+                              <div class="numCount">
+                                <input type="number" min="0" class="form-control" v-model.number="direction.value" @blur="directionBlur($event,direction)" @focus="directionFocus(direction)" @keydown="channelInputLimitIncludeDot">
+                                <div class="count">
+                                  <div class="count-item" @click="plus($event,direction)">
+                                    <i class="iconfont icon-ptkj-xianmiaojiantou-shang"></i>
+                                  </div>
+                                  <div class="count-item" :class="direction.value > 0 ? '' : 'disabled'" @click="minus($event,direction)">
+                                    <i class="iconfont icon-ptkj-xianmiaojiantou-xia"></i>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </transition>
+                  </div>
+                </div>
+              </div>
+              <div class="empty" v-show="!selectWidget.title">可在此设置布局或组件的样式</div>
+            </div>
+          </div>
+          <div class="tree-wrap right-sidebar-item">
+            <div class="tit">组件树</div>
+            <ul class="widget-tree">
+              <tree-node :node-data="designerAreaData" :cur-tree-node="curTreeNode" :edit-tree-node="curEditTreeNode"></tree-node>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="designer-footer"></div>
+      <div id="jsonview_template" style="display: none;">
+        <div class="row row-jsonview">
+          <div class="col-sm-12">
+            <button class="btn btn-collapse">折叠</button>
+            <button class="btn btn-expand">展开</button>
+            <button class="btn btn-toggle">切换</button>
+            <button class="btn btn-toggle-level1">切换一级</button>
+            <button class="btn btn-toggle-level2">切换两级</button>
+            <button class="btn btn-toggle-level3">切换三级</button>
+            <div class="jsonview"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/requirejs/require.js"></script>
+  <script>
+
+    window.ctx = "";
+    var WebApp = window.WebApp || {};
+    window.backendUrl = '{{helper.backendUrl()}}';
+    window.staticPrefix = '{{helper.staticPrefix()}}';
+    requirejs.onError = function (error) {
+      throw error;
+    }
+    requirejs.config({{ requirejsConfigJson | safe }});
+
+    WebApp.environment = {};
+
+    WebApp.environment = {
+      "app_version": "7.0"
+    };
+    WebApp.newAllComponentMapJson = {{ newAllComponentMapJson | safe }};
+    WebApp.currentUserAppData = {{ userAppDataJson | safe }};
+    WebApp.containerDefaults = {{ containerDefaultOptionsJson | safe }};
+    WebApp.widgetDefaults = {{ componentDefaultOptionsJson | safe }};
+    WebApp.configJsModules = WebApp.configJsModules || {};
+    WebApp.containerJsModule = '{{containerJsModule}}';
+    WebApp.environment = {};
+    //WebApp.componentDevJs={};  组件配置关联选择的二开脚本汇总，在页面定义保存时候自动注册到后端生成功能类
+    // WebApp.pageDefinition = WebApp.pageDefiniton = {{ pageDefinitonJson }} || {};
+    // WebApp.requestInfo = {{ requestInfo }} || {};
+
+    require({{ javascriptsJson | safe }}, function () {
+      appContext.init(WebApp.currentUserAppData);
+      requirejs(['js/design/app_page_config_new'], function (appPageDesigner) {
+        appPageDesigner.pageDesignVue.sidebarInfo = WebApp.newAllComponentMapJson;
+      });
+    });
+  </script>
+</html>

@@ -1,0 +1,14 @@
+{
+  "WidgetLayout": {
+    "home": "Home",
+    "more": "More",
+    "expand": "Expand",
+    "collapse": "Collapse",
+    "closeLeftTabs": "Close left tabs",
+    "closeRightTabs": "Close right tabs",
+    "refresh": "Refresh",
+    "close": "Close tab",
+    "closeOtherTabs": "Close other tabs",
+    "closeAllTabs": "Close all tabs"
+  }
+}

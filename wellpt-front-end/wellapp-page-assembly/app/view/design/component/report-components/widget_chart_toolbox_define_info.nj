@@ -1,0 +1,225 @@
+<!-- 图标工具栏定义信息 -->
+
+<div role="tabpanel" class="tab-pane" id="widget_chart_toolbox_info">
+  <div class="form-group">
+    <label for="show" class="col-sm-2 control-label">是否显示工具栏</label>
+    <div class="col-sm-10 checkbox-inline">
+      <input
+        type="checkbox"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="show"
+        id="showToolbox"
+        value="false"
+      />
+      <label for="showToolbox"></label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="toolbox_orient" class="col-sm-2 control-label"
+      >工具栏布局朝向</label
+    >
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="orient"
+        id="toolbox_orient"
+      />
+    </div>
+    <label for="showTitle" class="col-sm-2 control-label"
+      >鼠标Hover显示工具标题</label
+    >
+    <div class="col-sm-4 checkbox-inline">
+      <input
+        type="checkbox"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="showTitle"
+        id="showTitle"
+      />
+      <label for="showTitle"></label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="itemSize" class="col-sm-2 control-label">工具栏图标大小</label>
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="itemSize"
+        id="itemSize"
+      />
+    </div>
+    <label for="itemGap" class="col-sm-2 control-label">工具栏图标间隙</label>
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="itemGap"
+        id="itemGap"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="left" class="col-sm-2 control-label">工具栏左偏移量</label>
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="left"
+        id="left"
+      />
+    </div>
+    <label for="top" class="col-sm-2 control-label">工具栏上偏移量</label>
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="top"
+        id="top"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="right" class="col-sm-2 control-label">工具栏右偏移量</label>
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="right"
+        id="right"
+      />
+    </div>
+    <label for="bottom" class="col-sm-2 control-label">工具栏底部偏移量</label>
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="bottom"
+        id="bottom"
+      />
+    </div>
+  </div>
+
+  <fieldset>
+    <legend>保存为图片工具定义</legend>
+    <div class="form-group">
+      <label for="feature_saveAsImage_show" class="col-sm-2 control-label"
+        >是否显示保存图片</label
+      >
+      <div class="col-sm-4 checkbox-inline">
+        <input
+          type="checkbox"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="feature_saveAsImage_show"
+          id="feature_saveAsImage_show"
+          value="false"
+        />
+        <label for="feature_saveAsImage_show"></label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="feature_saveAsImage_type" class="col-sm-2 control-label"
+        >保存图片格式</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="hidden"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="feature_saveAsImage_type"
+          id="feature_saveAsImage_type"
+        />
+      </div>
+      <label for="feature_saveAsImage_name" class="col-sm-2 control-label"
+        >保存图片名称</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="feature_saveAsImage_name"
+          id="feature_saveAsImage_name"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="feature_saveAsImage_title" class="col-sm-2 control-label"
+        >图片工具标题</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="feature_saveAsImage_title"
+          id="feature_saveAsImage_title"
+        />
+      </div>
+      <label for="feature_saveAsImage_icon" class="col-sm-2 control-label"
+        >图片工具图标</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="feature_saveAsImage_icon"
+          id="feature_saveAsImage_icon"
+        />
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset style="display: none" id="switch_chart">
+    <legend>图表类型切换工具定义</legend>
+    <div class="form-group">
+      <label for="feature_magicType_show" class="col-sm-2 control-label"
+        >是否显示图表类型切换</label
+      >
+      <div class="col-sm-4 checkbox-inline">
+        <input
+          type="checkbox"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="feature_magicType_show"
+          id="feature_magicType_show"
+          value="false"
+        />
+        <label for="feature_magicType_show"></label>
+      </div>
+    </div>
+
+    {# 只有以下类型图表才能互相切换 #}
+    <div class="form-group">
+      <label for="feature_magicType_type" class="col-sm-2 control-label"
+        >支持图表类型切换</label
+      >
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="feature_magicType_type"
+          id="feature_magicType_type"
+        />
+      </div>
+    </div>
+  </fieldset>
+</div>

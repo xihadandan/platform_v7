@@ -1,0 +1,4 @@
+-- 抄送人过多，字段长度不够，进行扩充
+ALTER TABLE WF_TASK_OPERATION
+MODIFY COLUMN COPY_USER_ID  varchar(4000);
+

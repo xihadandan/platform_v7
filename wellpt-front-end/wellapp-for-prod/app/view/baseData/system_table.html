@@ -1,0 +1,74 @@
+<form action="" id="system_table_form" style="margin-top: 15px;" class="form-widget">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#table-tabs-1" aria-controls="table-tabs-1" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+        </li>
+        <li role="presentation">
+            <a href="#table-tabs-2" aria-controls="table-tabs-2" role="tab" data-toggle="tab" aria-expanded="true">列名</a>
+        </li>
+        <li role="presentation" id="main_secondary_table_relationship">
+            <a href="#table-tabs-3" aria-controls="table-tabs-3" role="tab" data-toggle="tab" aria-expanded="true">主从表关系</a>
+        </li>
+    </ul>
+    <input type="hidden" id="uuid" name="uuid" />
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="table-tabs-1" style="padding-top: 10px;">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label for="chineseName" class="well-form-label control-label required">中文名</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="chineseName" name="chineseName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tableName" class="well-form-label control-label required">表名</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="tableName" name="tableName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullEntityName" class="well-form-label control-label required">完全限定名(类名)</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" name="fullEntityName" id="fullEntityName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="code" class="well-form-label control-label">编号</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="code" name="code">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="moduleName" class="well-form-label control-label">所属模块</label>
+                    <div class="well-form-control">
+                        <input type="hidden" class="form-control" id="moduleName" name="moduleName">
+                        <input type="text" class="form-control" id="moduleId" name="moduleId">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="remark" class="well-form-label control-label">备注</label>
+                    <div class="well-form-control">
+                        <textarea type="text" class="form-control" id="remark" name="remark"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="table-tabs-2" style="padding-top: 10px;">
+            <table id="child_systemtable_list" class="system-table-list"></table>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="table-tabs-3" style="padding-top: 10px;">
+            <div class="btn-group">
+                <button id="relationship_btn_add" type="button" class="well-btn w-btn-primary">新 增</button>
+                <button id="relationship_btn_del" type="button" class="well-btn w-btn-danger">删除</button>
+            </div>
+            <table id="main_secondary_table_relationship_list" class="system-table-list"></table>
+        </div>
+        <div class="row" style="margin-top:30px;">
+            <div class="col-sm-12 text-center">
+                <button type="button" class="well-btn w-btn-primary" id="sys_table_btn_save">保存</button>
+            </div>
+        </div>
+    </div>
+</form>

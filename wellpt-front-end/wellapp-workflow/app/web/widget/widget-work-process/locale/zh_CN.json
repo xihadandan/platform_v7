@@ -1,0 +1,40 @@
+{
+  "WidgetWorkProcess": {
+    "arrived": "到达",
+    "skipTask": "环节跳过",
+    "Me": "我",
+    "decisionMaker": "决策人员",
+    "toDoUser": "待办人员",
+    "attachment": "附件",
+    "downloadAll": "全部下载",
+    "preview": "预览",
+    "download": "下载",
+    "viewMore": "查看更多",
+    "collapse": "收起",
+    "noOpinionText": "未填写办理意见",
+    "more": "更多",
+    "doing": "办理中",
+    "endTask": "结束",
+    "approveAuto": "自动审批",
+    "autoJumpRepeatTask": "重复自动跳过",
+    "gotoTaskFromText": "将流程从",
+    "gotoTaskToText": "跳转至",
+    "handoverToText": "移交至",
+    "toText": "至",
+    "To": "给",
+    "copyToMeanwhile": "同时抄送",
+    "Target": "对象",
+    "extraApproveExtraTask": "补审补办",
+    "process": {
+      "current": "当前",
+      "my": "我的",
+      "ascSort": "升序",
+      "descSort": "降序",
+      "standardTimeProcess": "标准时间轴",
+      "simpleTimeProcess": "简约时间轴",
+      "tableProcess": "表格"
+    },
+    "pleaseHurryUp": "请抓紧办理!",
+    "completed": "已办结"
+  }
+}

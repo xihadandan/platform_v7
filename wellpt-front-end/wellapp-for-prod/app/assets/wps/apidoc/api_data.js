@@ -1,0 +1,536 @@
+define({ "api": [
+  {
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "varname1",
+            "description": "<p>No type.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "varname2",
+            "description": "<p>With type.</p>"
+          }
+        ]
+      }
+    },
+    "type": "",
+    "url": "",
+    "version": "0.0.0",
+    "filename": "./apidoc/main.js",
+    "group": "C__Users_DELL_Desktop_wpsProtocolCheck_apidoc_main_js",
+    "groupTitle": "C__Users_DELL_Desktop_wpsProtocolCheck_apidoc_main_js",
+    "name": ""
+  },
+  {
+    "type": "",
+    "url": "_wps.fillTemplate(params)",
+    "title": "填充模板",
+    "version": "3.1.0",
+    "name": "fillTemplate",
+    "description": "<P>说明：dataFromWeb 和 dataFromServer 都传的话，dataFromServer中数据会覆盖dataFromWeb中的数据。填充模板的逻辑也是先打开文档，再根据数据源，匹配书签一一插入数据。 填充的数据格式：name: 书签的名称 ， text：填充的内容， type: 填充内容的格式，（link : 从链接获取内容，比如说直接下载文档，text 或者不填都为文本，pic: 图片地址,table：填充表格数据）",
+    "examples": [
+      {
+        "title": "填充模板",
+        "content": "_wps.openDoc({\n     \"docId\": docId, //文档ID\n     \"fileName\": \"http://dev.wpseco.cn/wps-oa/template/getFileData/98\",\n     \"uploadPath\": uploadPath + docId, //保存文档接口\n }, [\n         {\n             \"fillTemplate\": {\n                 \"dataFromWeb\": [{\"name\": \"FirstTitle\", \"text\": \"web\"}, {\n                     \"name\": \"TopTitle1\",\n                     \"text\": \"军参谋-web\"\n                 }, {\"name\": \"TopTitle2\", \"text\": \"通信-web\"}, {\n                     \"name\": \"ContentTitle\",\n                     \"text\": \"空军内部使用办文助手-web\"\n                 }, {\"name\": \"Company\", \"text\": \"空军参谋部-web\"}, {\n                     \"name\": \"Contactor\",\n                     \"text\": \"李四-web\"\n                 }, {\"name\": \"Telephone\", \"text\": \"26874\"}, {\n                     \"name\": \"Content\",\n                     \"text\": fileName,\n                     \"type\": \"link\"\n                 }, {\"name\": \"table_index\",\n                     \"text\": [\"zhangsan\", \"18\", \"nan\", \"lis\", \"19\", \"nan\", \"wangwu\", \"20\", \"nan\", \"zhaoliu\", \"21\", \"nv\", \"sunqi\", \"22\", \"nv\"],\n                     \"type\": \"table\"\n                 }], \n                 // \"dataFromServer\": \"http://dev.wpseco.cn/wps-oa/document/getData\"   //后台获取数据的接口,\n             } \n         }\n     ])\n }",
+        "type": "js"
+      }
+    ],
+    "group": "doc",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": false,
+            "field": "fillTemplate",
+            "description": "<p>填充模板传递的数据</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.dataFromWeb",
+            "description": "<p>从web页面传递的数据</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.dataFromServer",
+            "description": "<p>从服务器获取的数据</p>"
+          }
+        ]
+      }
+    },
+    "filename": "./wps.js",
+    "groupTitle": "文档相关"
+  },
+  {
+    "type": "",
+    "url": "_wps.insertRedHeadDocFromWeb(params,templateURL,replaceBookMark)",
+    "title": "套红头",
+    "version": "3.1.0",
+    "name": "insertRedHeadDocFromWeb",
+    "description": "<p>1.从WPS的OA助手菜单上点击【套红头】，在弹出的红头列表对话框中选择一个指定的红头模板，点击【选择模板】按钮，就会将红头文件插入到当前文档的顶部 &lt;br?&gt; 2.从OA系统界面点击【套红头】，其中，红头模板通过参数templateURL传入，模板中的书签通过参数replaceBookMark传入，若模板中存在对应书签，则会将当前文档的正文插入到书签所在位置；若不存在对应书签，则会弹出提示信息 (支持多次点击套后按钮，和重复套红头)</p>",
+    "examples": [
+      {
+        "title": "套红头",
+        "content": "_wps.insertRedHeadDocFromWeb({\n    \"docId\": fileId, //文档ID\n    \"uploadPath\": url + dispatch.getPath(\"file/upload?id=\" + fileId), //保存文档接口\n    \"fileName\": url + dispatch.getPath(\"file/download/\" + fileId), //根据文档id获取服务器文档接口\n    \"buttonGroups\": \"btnInsertRedHeader\",\n},url + dispatch.getPath(\"file/download/\" + templateId),\"Content\");//红头模板中填充正文的位置书签名",
+        "type": "js"
+      }
+    ],
+    "group": "doc",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": false,
+            "field": "params",
+            "description": "<p>请求的JSON，具体参数说明看下面数据</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.docId",
+            "description": "<p>文档ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.uploadPath",
+            "description": "<p>文档保存路径(必传)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.fileName",
+            "description": "<p>文档下载路径(必传)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.buttonGroups",
+            "description": "<p>自定义按钮组 （可不传，不传显示所有按钮）</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "templateURL",
+            "description": "<p>红头文件的获取路径</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "replaceBookMark",
+            "description": "<p>正文你换的书签名</p>"
+          }
+        ]
+      }
+    },
+    "filename": "./wps.js",
+    "groupTitle": "文档相关"
+  },
+  {
+    "deprecated": {
+      "content": "新的直接使用OpenDoc()"
+    },
+    "type": "",
+    "url": "_wps.newDoc(params)",
+    "title": "新建文档",
+    "version": "3.1.0",
+    "name": "newDoc",
+    "description": "<p>新建文档，直接调用newDoc即可，传参参考下面说明</p>",
+    "examples": [
+      {
+        "title": "新建文档",
+        "content": "_wps.newDoc({\n    \"uploadPath\": \"http://dev.wpseco.cn/file/uploadFromWps\", //保存文档接口\n    \"strBookmarkDataPath\": strBookmarkDataPath,//书签列表接口\n    \"templatePath\": templatePath,//正文模板列表接口\n    \"buttonGroups\": \"btnSaveAsFile,btnImportDoc,btnPageSetup,btnInsertDate,btnSelectBookmark,btnImportTemplate\"\n})",
+        "type": "js"
+      }
+    ],
+    "group": "doc",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": false,
+            "field": "params",
+            "description": "<p>请求的JSON，具体参数说明看下面数据</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.uploadPath",
+            "description": "<p>文档保存路径(必传)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.strBookmarkDataPath",
+            "description": "<p>书签列表 (可不传，可以在OA助手config.js中配置)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.templatePath",
+            "description": "<p>模板列表 (可不传，可以在OA助手config.js中配置)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.buttonGroups",
+            "description": "<p>自定义按钮组 （可不传，不传显示所有按钮）</p>"
+          }
+        ]
+      }
+    },
+    "filename": "./wps.js",
+    "groupTitle": "文档相关"
+  },
+  {
+    "type": "",
+    "url": "_wps.onlineEditDoc(params)",
+    "title": "在线编辑文档（文档不落地）",
+    "version": "3.1.0",
+    "name": "onlineEditDoc",
+    "description": "<p>从OA系统打开一个指定文档进行编辑时，采用文档不落地的方式打开文档，可以保证文档的安全性，并且不会在本地留有文件的缓存数据</p>",
+    "examples": [
+      {
+        "title": "文档不落地",
+        "content": "_wps.onlineEditDoc({\n     \"docId\": docId, //文档ID\n     \"uploadPath\": url + this.getPath(\"file/upload?id=\" + docId), //保存文档接口\n     \"fileName\": url + this.getPath(\"file/download/\" + docId), //根据文档id获取服务器文档接口\n     \"strBookmarkDataPath\": url + this.getPath(\"bookmark/getAllBookmark\"),//书签列表接口\n     \"templatePath\": url + this.getPath(\"template/paging\"),//正文模板列表接口\n     \"buttonGroups\": \"btnSaveAsFile,btnImportDoc,btnPageSetup,btnInsertDate,btnSelectBookmark,btnImportTemplate\",\n     \"userName\": '王五'//用户名\n })",
+        "type": "js"
+      }
+    ],
+    "group": "doc",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": false,
+            "field": "params",
+            "description": "<p>请求的JSON，具体参数说明看下面数据</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.docId",
+            "description": "<p>文档ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.uploadPath",
+            "description": "<p>文档保存路径(必传)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.fileName",
+            "description": "<p>文档下载路径(必传)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.strBookmarkDataPath",
+            "description": "<p>书签列表 (可不传，可以在OA助手config.js中配置)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.templatePath",
+            "description": "<p>模板列表 (可不传，可以在OA助手config.js中配置)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.buttonGroups",
+            "description": "<p>自定义按钮组 （可不传，不传显示所有按钮）</p>"
+          }
+        ]
+      }
+    },
+    "filename": "./wps.js",
+    "groupTitle": "文档相关"
+  },
+  {
+    "type": "",
+    "url": "_wps.openDoc(params)",
+    "title": "打开指定文档",
+    "version": "3.1.0",
+    "name": "openDoc",
+    "description": "<p>打开指定文档，可以通过参数控制打开文档格式，格式转换保存，禁止复制粘贴等，参照下面实例，也可一起配合调用。</p>",
+    "examples": [
+      {
+        "title": "新建文档",
+        "content": "_wps.openDoc({\n    \"docId\": \"文档ID\",\n    \"uploadPath\": \"保存文档接口\",\n  //\"fileName\": \"不传fileName即为新建空文档\",\n});",
+        "type": "js"
+      },
+      {
+        "title": "打文指定文档",
+        "content": "_wps.openDoc({\n    \"docId\": \"文档ID\",\n    \"uploadPath\": \"保存文档接口\",\n    \"fileName\": \"获取服务器文档接口\",\n});",
+        "type": "js"
+      },
+      {
+        "title": "保护模式打开",
+        "content": "_wps.openDoc({\n    \"docId\": \"文档ID\",\n    \"uploadPath\": \"保存文档接口\",\n    \"fileName\": \"获取服务器文档接口\",\n    \"openType\": {       //文档打开方式 ，不传正常打开\n        \"protectType\": 3, //文档保护类型，-1：不启用保护模式，0：只允许对现有内容进行修订，1：只允许添加批注，2：只允许修改窗体域，3：只读\n        \"password\": \"123456\"\n    }\n});",
+        "type": "js"
+      },
+      {
+        "title": "控制痕迹打开",
+        "content": "_wps.openDoc({\n    \"docId\": \"文档ID\",\n    \"uploadPath\": \"保存文档接口\",\n    \"fileName\": \"获取服务器文档接口\",\n    \"userName\": \"用于更改显示修改人的用户名\",\n    \"revisionCtrl\":{  //痕迹控制 ，不传正常打开\n        \"bOpenRevision\":true, //true(打开)false(关闭)修订\n        \"bShowRevision\":true  //true(显示)/false(关闭)痕迹\n    }\n});",
+        "type": "js"
+      },
+      {
+        "title": "保存文档转为pdf、UOT、UOF等",
+        "content": "_wps.openDoc({\n    \"docId\": \"文档ID\",\n    \"uploadPath\": \"保存文档接口\",\n    \"fileName\": \"获取服务器文档接口\",\n    \"suffix\": \".pdf|.uot\" //可传多个，用“|”分割，保存时会按照所传的值转成对应的格式文档并上传\n});",
+        "type": "js"
+      }
+    ],
+    "group": "doc",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": false,
+            "field": "params",
+            "description": "<p>请求的JSON，具体参数说明看下面数据</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "params.docId",
+            "description": "<p>文档ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "params.uploadPath",
+            "description": "<p>保存文档接口</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "params.fileName",
+            "description": "<p>获取服务器文档接口（不传即为新建空文档）</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "params.suffix",
+            "description": "<p>&quot;.pdf|.uot&quot;，可传多个，用“|”分割，保存时会按照所传的值转成对应的格式文档并上传</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "params.userName",
+            "description": "<p>用于更改显示修改人的用户名</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.strBookmarkDataPath",
+            "description": "<p>书签列表 (可不传，可以在OA助手config.js中配置)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.templatePath",
+            "description": "<p>模板列表 (可不传，可以在OA助手config.js中配置)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.buttonGroups",
+            "description": "<p>自定义按钮组 （可不传，不传显示所有按钮）</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "params.revisionCtrl",
+            "description": "<p>痕迹控制 ，不传正常打开</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "params.revisionCtrl.bOpenRevision",
+            "description": "<p>true(打开)false(关闭)修订</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "params.revisionCtrl.bShowRevision",
+            "description": "<p>true(显示)/false(关闭)痕迹</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "params.openType",
+            "description": "<p>文档打开方式 ，不传正常打开</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "params.openType.protectType",
+            "description": "<p>文档保护类型，-1：不启用保护模式，0：只允许对现有内容进行修订，1：只允许添加批注，2：只允许修改窗体域，3：只读</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "params.openType.password",
+            "description": "<p>密码</p>"
+          }
+        ]
+      }
+    },
+    "filename": "./wps.js",
+    "groupTitle": "文档相关"
+  },
+  {
+    "type": "",
+    "url": "_wps.openET(params)",
+    "title": "打开表格文档",
+    "version": "2.0.0",
+    "name": "openET",
+    "description": "<p>打开表格类文档</p>",
+    "examples": [
+      {
+        "title": "新建文档",
+        "content": "_wps.openET({\n     \"uploadPath\":\"http://dev.wpseco.cn/wps-oa/document/saveFile?docId=4257\",\n     \"fileName\":\"http://dev.wpseco.cn/wps-oa/document/getFileData/4257\",\n     \"buttonGroups\": \"btnSaveAsFile,btnImportDoc,btnPageSetup,btnInsertDate,btnSelectBookmark,btnImportTemplate\",\n })",
+        "type": "js"
+      }
+    ],
+    "group": "et",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": false,
+            "field": "params",
+            "description": "<p>请求的JSON，具体参数说明看下面数据</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.uploadPath",
+            "description": "<p>文档保存路径(必传)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.fileName",
+            "description": "<p>获取服务器文档接口</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.buttonGroups",
+            "description": "<p>自定义按钮组 （可不传，不传显示所有按钮）</p>"
+          }
+        ]
+      }
+    },
+    "filename": "./wps.js",
+    "groupTitle": "表格相关"
+  },
+  {
+    "type": "",
+    "url": "_wps.openWpp(params)",
+    "title": "打开PPT文档",
+    "version": "2.0.0",
+    "name": "openWpp",
+    "description": "<p>打开PPT文档</p>",
+    "examples": [
+      {
+        "title": "新建文档",
+        "content": "_wps.openWpp({\n     \"uploadPath\":\"http://dev.wpseco.cn/wps-oa/document/saveFile?docId=4257\",\n     \"fileName\":\"http://dev.wpseco.cn/wps-oa/document/getFileData/4257\",\n     \"buttonGroups\": \"btnSaveAsFile,btnImportDoc,btnPageSetup,btnInsertDate,btnSelectBookmark,btnImportTemplate\",\n })",
+        "type": "js"
+      }
+    ],
+    "group": "ppt",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": false,
+            "field": "params",
+            "description": "<p>请求的JSON，具体参数说明看下面数据</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.uploadPath",
+            "description": "<p>文档保存路径(必传)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.fileName",
+            "description": "<p>获取服务器文档接口</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "params.buttonGroups",
+            "description": "<p>自定义按钮组 （可不传，不传显示所有按钮）</p>"
+          }
+        ]
+      }
+    },
+    "filename": "./wps.js",
+    "groupTitle": "PPT相关"
+  }
+] });

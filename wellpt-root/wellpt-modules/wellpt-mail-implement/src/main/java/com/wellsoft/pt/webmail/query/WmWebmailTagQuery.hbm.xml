@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="deleteEmailRelaTag">
+        <![CDATA[
+		 delete from WmMailRelaTagEntity
+		 where 1=1
+		 <if emailUuids??>
+		 	and mailUuid in (:emailUuids)
+		 </if>
+		 <if tagUuid??>
+		 	and tagUuid=:tagUuid
+		 </if>
+	]]>
+    </sql-query>
+
+    <sql-query name="deleteEmailRelaTagBySQL">
+        <![CDATA[
+		 delete from wm_mail_rela_tag
+		 where 1=1
+		 <if emailUuids??>
+		 	and mail_uuid in (:emailUuids)
+		 </if>
+		 <if tagUuid??>
+		 	and tag_uuid=:tagUuid
+		 </if>
+	]]>
+    </sql-query>
+
+</hibernate-mapping>

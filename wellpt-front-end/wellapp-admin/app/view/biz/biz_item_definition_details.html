@@ -1,0 +1,158 @@
+<div class="container-fluid">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#basic_info" aria-controls="basic_info" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="basic_info" style="padding-top: 10px">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label for="name" class="col-sm-3 control-label required">名称</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="name" name="name" />
+            <input type="hidden" id="uuid" name="uuid" />
+            <input type="hidden" id="type" name="type" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id" class="col-sm-3 control-label">ID</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="id" name="id" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="code" class="col-sm-3 control-label">编号</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="code" name="code" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="businessId" class="col-sm-3 control-label">所属业务</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="businessName" name="businessName" />
+            <input type="hidden" class="form-control" id="businessId" name="businessId" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="formId" class="col-sm-3 control-label">使用定义单</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="formId" name="formId" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="itemNameField" class="col-sm-3 control-label">事项名称字段</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="itemNameField" name="itemNameField" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="itemCodeField" class="col-sm-3 control-label">事项编码字段</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="itemCodeField" name="itemCodeField" />
+          </div>
+        </div>
+        <div class="item item-20 item-30">
+          <div class="form-group">
+            <label for="includeItemSubformId" class="col-sm-3 control-label">包含事项从表</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="includeItemSubformId" name="includeItemSubformId" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="includeItemNameField" class="col-sm-3 control-label">包含事项名称字段</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="includeItemNameField" name="includeItemNameField" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="includeItemCodeField" class="col-sm-3 control-label">包含事项编码字段</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="includeItemCodeField" name="includeItemCodeField" />
+            </div>
+          </div>
+        </div>
+        <div class="item item-30">
+          <div class="form-group">
+            <label for="frontItemCodeField" class="col-sm-3 control-label">前置事项编码</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="frontItemCodeField" name="frontItemCodeField" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mutexItemSubformId" class="col-sm-3 control-label">互斥事项从表</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="mutexItemSubformId" name="mutexItemSubformId" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mutexItemCodeField" class="col-sm-3 control-label">互斥事项编码字段</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="mutexItemCodeField" name="mutexItemCodeField" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="relateItemSubformId" class="col-sm-3 control-label">关联事项从表</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="relateItemSubformId" name="relateItemSubformId" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="relateItemCodeField" class="col-sm-3 control-label">关联事项编码字段</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="relateItemCodeField" name="relateItemCodeField" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="timeLimitSubformId" class="col-sm-3 control-label">时限从表</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="timeLimitSubformId" name="timeLimitSubformId" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="timeLimitField" class="col-sm-3 control-label">时限字段</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="timeLimitField" name="timeLimitField" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="materialSubformId" class="col-sm-3 control-label">材料从表</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="materialSubformId" name="materialSubformId" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="materialNameField" class="col-sm-3 control-label">材料名称字段</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="materialNameField" name="materialNameField" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="materialCodeField" class="col-sm-3 control-label">材料编码字段</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="materialCodeField" name="materialCodeField" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="materialRequiredField" class="col-sm-3 control-label">材料是否必填字段</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="materialRequiredField" name="materialRequiredField" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="remark" class="col-sm-3 control-label">备注</label>
+          <div class="col-sm-9">
+            <textarea id="remark" name="remark" rows="3" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12 text-center">
+            <button type="button" class="btn btn-primary" id="btn_biz_item_definition_save">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

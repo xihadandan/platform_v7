@@ -1,0 +1,63 @@
+<div class="item-situation-config-condition" style="min-height: 350px">
+  <div class="form-horizontal">
+    <div class="form-group">
+      <label for="type_3" class="col-sm-2 control-label">条件类型</label>
+      <div class="col-sm-10">
+        <input type="radio" class="form-control" id="type_3" name="type" value="3" checked />
+        <label class="radio-inline" for="type_3">通过表单字段值比较</label>
+        <input type="radio" class="form-control" id="type_9" name="type" value="9" />
+        <label class="radio-inline" for="type_9">逻辑条件</label>
+      </div>
+    </div>
+    <div class="form-group condition-type condition-type-3">
+      <div class="row">
+        <div class="col-sm-1">
+          <select name="leftBracket">
+            <option></option>
+            <option value="(">(</option>
+          </select>
+        </div>
+        <div class="col-sm-3">
+          <input id="condition_formUuid" name="formUuid" type="hidden" />
+          <input id="condition_formName" name="formName" type="text" />
+        </div>
+        <div class="col-sm-2">
+          <input id="condition_fieldName" name="fieldName" type="text" />
+        </div>
+        <div class="col-sm-2">
+          <input id="condition_operator" name="operator" type="hidden" />
+          <input id="condition_operatorName" name="operatorName" type="text" />
+        </div>
+        <div class="col-sm-3">
+          <input name="value" text="text" style="width: 190px" />
+        </div>
+        <div class="col-sm-1">
+          <select name="rightBracket">
+            <option></option>
+            <option value=")">)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group condition-type condition-type-9">
+      <label for="code" class="col-sm-2 control-label">与前一个逻辑条件的关系</label>
+      <div class="col-sm-10">
+        <select name="connector">
+          <option value="&">并且</option>
+          <option value="|">或者</option>
+        </select>
+      </div>
+    </div>
+    <div class="btn-group" style="margin-left: 15px">
+      <button name="btn_add" class="btn btn-default">添加</button>
+      <button name="btn_update" class="btn btn-default">更新</button>
+      <button name="btn_delete" class="btn btn-default">删除</button>
+    </div>
+    <div class="form-group">
+      <label for="code" class="col-sm-0 control-label"></label>
+      <div class="col-sm-12">
+        <select multiple name="condition" style="height: 150px; overflow: auto"></select>
+      </div>
+    </div>
+  </div>
+</div>

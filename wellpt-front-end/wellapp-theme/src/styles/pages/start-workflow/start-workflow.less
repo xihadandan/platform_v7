@@ -1,0 +1,378 @@
+/** 发起流程弹框 */
+
+// 发起流程弹窗
+.new-work-flow-content {
+  margin: -15px;
+
+  // 发起流程弹窗 - 顶部搜索行
+  .new-wf-header {
+    padding: 20px 20px 10px;
+    background: @component-background;
+    box-shadow: 0 2px 0 0 rgba(239, 241, 245, 1);
+
+    .search-wrap {
+      position: relative;
+      width: 320px;
+
+      .search-icon {
+        z-index: 1;
+        position: absolute;
+        top: 0;
+        right: 10px;
+        line-height: 34px;
+        color: @text-color-primary;
+
+        i {
+          font-size: @font-size-xl;
+        }
+      }
+
+      .clear-icon {
+        z-index: 1;
+        display: none;
+        position: absolute;
+        top: 7px;
+        right: 35px;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        color: @text-color-light;
+        text-align: center;
+        background: #f0f0f0;
+        border-radius: 50%;
+
+        &:hover {
+          color: @text-color-primary;
+        }
+
+        i {
+          font-size: @font-size-base;
+        }
+      }
+    }
+  }
+
+  // 发起流程弹窗 - 流程列表
+  .wf-data-content {
+    position: relative;
+
+    // 发起流程弹窗 - 流程列表 - 卡片视图/列表视图切换按钮
+    .wf-change-mode {
+      .absolute(0 10px false false);
+      .square(40px);
+
+      z-index: 3;
+      display: none;
+      line-height: 40px;
+      text-align: center;
+      cursor: pointer;
+      font-size: @font-size-lg;
+      color: @text-color-light;
+
+      &:hover {
+        color: @text-color-primary;
+      }
+    }
+
+    // 发起流程弹窗 - 流程列表 - 导航页签
+    .wf-data-tab {
+      z-index: 2;
+      position: relative;
+      margin-top: 2px;
+      padding: 0 10px;
+      border-bottom: none;
+      background: @component-background;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
+
+      .tab-noborder {
+        margin: 0 10px;
+
+        > a {
+          height: 40px;
+          padding: 0 10px;
+          line-height: 40px;
+        }
+      }
+    }
+
+    // 发起流程弹窗 - 流程列表 - 流程列表区域
+    .tab-content {
+      height: 376px;
+      padding: 0 15px;
+      overflow: auto;
+
+      .tab-pane {
+        margin-top: 20px;
+      }
+
+      // 发起流程弹窗 - 流程项
+      .wf-item {
+        .text-overflow();
+        .size(250px, 34px);
+
+        position: relative;
+        line-height: 34px;
+        padding: 0 22px;
+        font-size: @font-size-base;
+        color: mix(@primary-color, rgba(0, 0, 0, 1), 45%);
+        background: @primary-1;
+        border-radius: @border-radius-base;
+        cursor: pointer;
+
+        // 发起流程弹窗 - 流程列表 - 流程项前面的小圆点
+        &::before {
+          .absolute(15px false false 10px);
+          .square(6px);
+
+          content: '';
+          border-radius: 50%;
+          background: rgba(90, 0, 5, 0.3);
+        }
+
+        &:hover {
+          color: @text-color-primary;
+          background: @primary-3;
+
+          &::before {
+            background: @text-color-primary;
+          }
+        }
+      }
+
+      // 发起流程弹窗 - 流程列表 - 流程分类
+      .wf-category-wrap {
+        position: relative;
+
+        .wf-category {
+          padding: 0 15px 10px;
+          background: @component-background;
+          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
+          border-radius: @border-radius-base;
+
+          // 发起流程弹窗 - 流程列表 - 流程分类标题行
+          .category-tit {
+            position: relative;
+            height: 38px;
+            padding: 0 20px 0 0;
+            line-height: 38px;
+            font-size: @font-size-base;
+            font-weight: bold;
+            color: @text-color-dark;
+
+            .tit-icon {
+              .size(30px 38px);
+
+              float: left;
+              line-height: 38px;
+              text-align: center;
+            }
+
+            .category-name {
+              float: left;
+            }
+
+            .category-total {
+              float: left;
+              color: @text-color-light;
+            }
+
+            .drag-icon {
+              .absolute(0 0 false false);
+
+              width: 38px;
+              line-height: 38px;
+              text-align: right;
+              cursor: move;
+              font-size: @font-size-lg;
+              color: @text-color-light;
+
+              &:hover {
+                color: @text-color-primary;
+              }
+            }
+          }
+
+          .wf-item {
+            float: left;
+            margin: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  // 发起流程弹窗 - 卡片拖拽样式
+  .grid-item {
+    display: block;
+    position: absolute;
+    width: 100px;
+    z-index: 1;
+
+    &.muuri-item-dragging {
+      z-index: 3;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    &.muuri-item-releasing {
+      z-index: 2;
+    }
+
+    &.muuri-item-hidden {
+      z-index: 0;
+    }
+
+    &.muuri-item-positioning {
+      z-index: 2;
+    }
+
+    &.muuri-item-placeholder {
+      z-index: 2;
+      margin: 0;
+      opacity: 0.5;
+      border: 2px dashed @border-color-primary;
+    }
+  }
+
+  .matchText {
+    color: @danger-color !important;
+  }
+
+  .item-content {
+    .square(100%);
+    position: relative;
+  }
+}
+
+// 最近使用页签 -  样式覆盖
+.new-work-flow-content .wf-data-content .wf-history-list .wf-item {
+  float: left;
+  margin: 5px;
+  width: calc((100% - 30px) / 3);
+}
+
+// 卡片视图 -  样式覆盖
+.new-work-flow-content .wf-data-content .wf-category-block .wf-category {
+  width: calc((100% - 30px) / 3);
+  margin: 5px;
+
+  .category-tit .category-name {
+    .text-overflow();
+
+    max-width: 125px;
+  }
+
+  .wf-item {
+    width: 100%;
+  }
+}
+
+// 列表视图 -  样式覆盖
+.new-work-flow-content .wf-data-content .wf-category-list .wf-category {
+  width: 100%;
+  margin-bottom: 12px;
+
+  .wf-item {
+    width: calc((100% - 30px) / 3);
+  }
+}
+
+/** TODO: 下方样式可能为弃用样式 */
+.search-bar {
+  padding: 0 15px;
+}
+
+.event-contents {
+  overflow: hidden;
+  height: 390px;
+  margin: 20px 15px;
+  border: @border-default-lighter;
+
+  .nav-container {
+    height: 42px;
+    overflow: hidden;
+    position: relative;
+    background: @background-light;
+
+    .dropdown-icon {
+      .absolute(0 0 false false);
+
+      z-index: 100;
+      width: 30px;
+      height: 41px;
+      text-align: center;
+      padding: 5px;
+      font-size: @font-size-lg;
+      background: @background-light;
+      cursor: pointer;
+
+      &:hover {
+        background: @gray-6;
+      }
+    }
+  }
+
+  .nav-tabs {
+    position: relative;
+    height: 42px;
+    transition: all @animation-duration-slow;
+    border-bottom: @border-default-dark;
+
+    li {
+      width: 135px;
+      text-align: center;
+
+      > a {
+        .text-overflow();
+
+        border-radius: 0;
+        max-width: 130px;
+        color: @text-color-dark;
+
+        &:hover {
+          background: @gray-6;
+        }
+
+        &:focus {
+          background: @background-light;
+          border-bottom: @border-default-dark;
+        }
+      }
+
+      &.active > a {
+        border-radius: 0;
+        border: @border-default-transparent;
+        color: @text-color-dark;
+
+        &:hover,
+        &:focus {
+          background-color: @component-background;
+          border: @border-default-transparent;
+        }
+      }
+    }
+  }
+
+  .list-group {
+    transition: all @animation-duration-slow;
+    height: 345px;
+    overflow-y: auto;
+    margin-bottom: 0;
+    padding: 20px;
+
+    .list-group-item {
+      .text-overflow();
+      display: inline-block;
+      width: 33%;
+      line-height: 35px;
+      border-radius: 0;
+      color: @text-color-dark;
+      border: 0;
+      padding: 0 15px;
+      background: url('@{image-url-prefix}/dian-lan.@{theme-color}.jpg') 0px center no-repeat;
+
+      &:hover {
+        background-color: @background-light;
+      }
+    }
+  }
+}

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!-- 供给jqgrid分页使用 -->
+
+
+    <sql-query name="queryUserAccountListForPage">
+        <![CDATA[
+			select a.*, e.sex, e.english_name, e.employee_number, e.mobile_phone, i.job_ids, i.dept_ids 
+			from multi_org_user_account a
+			left join multi_org_user_info e on a.id = e.user_id
+			left join multi_org_user_work_info i on a.id = i.user_id
+			where 1 = 1
+			<if isNotBlank( jobSql )>
+				and ( ${jobSql} )
+			</if>
+			<if isNotBlank( name )>
+				and ( 
+					a.user_name like '%${name}%'  ESCAPE '\' or
+					a.login_name like '%${name}%'  ESCAPE '\' or
+					e.english_name like '%${name}%'  ESCAPE '\'
+				)  
+			</if>
+			<if isNotBlank( type )>
+				and ( 
+					a.type = :type 
+				)  
+			</if>
+			<if isNotBlank( systemUnitId )>
+				and ( 
+					a.system_unit_id = :systemUnitId 
+				)  
+			</if>
+			<if isNotBlank(orderBy)>
+				order by ${orderBy}
+			</if>
+			
+	]]>
+    </sql-query>
+
+    <sql-query name="queryUserIdsLikeName">
+        <![CDATA[
+			select a.id 
+			from multi_org_user_account a
+			left join multi_org_user_info e on a.id = e.user_id
+			where 1 = 1
+			<if isNotBlank( name )>
+				and ( 
+					a.user_name like '%${name}%' or
+					a.login_name like '%${name}%'  or
+					e.english_name like '%${name}%'
+				)  
+			</if>
+			ORDER BY a.CODE asc
+	]]>
+    </sql-query>
+
+    <sql-query name="queryUserDtoListByIds">
+        <![CDATA[
+			select a.*, e.sex, e.english_name, e.employee_number, e.mobile_phone 
+			from multi_org_user_account a
+			left join multi_org_user_info e on a.id = e.user_id
+			where 1 = 1 and a.id in( :userIds )
+			ORDER BY a.CODE asc
+	]]>
+    </sql-query>
+    <sql-query name="initPwdCreateTime">
+        <![CDATA[
+			UPDATE MULTI_ORG_USER_ACCOUNT mo
+            SET mo.PWD_CREATE_TIME = sysdate
+            where  mo.PWD_CREATE_TIME IS  NULL
+	]]>
+    </sql-query>
+
+    <sql-query name="getAllAccountPwdCreateTime">
+        <![CDATA[
+        SELECT
+            MO.PWD_CREATE_TIME,
+            MO.uuid,
+            MO."ID",
+			MO.USER_NAME
+        FROM
+            MULTI_ORG_USER_ACCOUNT MO
+	]]>
+    </sql-query>
+
+    <sql-query name="getUnlockAccounts">
+        <![CDATA[
+        SELECT
+            MO.*
+        FROM
+            MULTI_ORG_USER_ACCOUNT MO
+        WHERE
+            mo.PWD_ERROR_LOCK = 1
+        AND mo.LAST_UN_LOCKED_TIME < SYSDATE
+	]]>
+    </sql-query>
+    <sql-query name="getCoerceUnlockAccounts">
+        <![CDATA[
+        SELECT
+            MO.*
+        FROM
+            MULTI_ORG_USER_ACCOUNT MO
+        WHERE
+            mo.PWD_ERROR_LOCK = 1
+	]]>
+    </sql-query>
+
+
+    <sql-query name="getUserAccountListByloginNames">
+        <![CDATA[
+        SELECT
+            MO.*
+        FROM
+            MULTI_ORG_USER_ACCOUNT MO
+        WHERE
+            mo.LOGIN_NAME IN (:loginNames)
+	]]>
+    </sql-query>
+
+    <sql-query name="getAllAccountByUserName">
+        <![CDATA[
+       select a.*
+        from MULTI_ORG_USER_ACCOUNT a,
+             MULTI_ORG_USER_INFO    t
+       WHERE a.id = t.user_id and a.is_forbidden = 0
+            and (a.login_name_lower_case = LOWER(:userName)
+            <if accountZhEnable == 1 >
+                or LOWER(login_name_zh) = LOWER(:userName)
+            </if>
+            <if tellEnable == 1 >
+                or LOWER(mobile_phone) = LOWER(:userName)
+            </if>
+            <if identifierCodeEnable == 1 >
+                or LOWER(ID_NUMBER) = LOWER(:userName)
+            </if>
+            <if nameEnEnable == 1 >
+                or LOWER(English_Name) = LOWER(:userName)
+            </if>
+            <if emailEnable == 1 >
+                or LOWER(main_email) = LOWER(:userName)
+            </if>
+            <if empCodeEnable == 1 >
+                or LOWER(EMPLOYEE_NUMBER) = LOWER(:userName)
+            </if>
+            )
+	]]>
+    </sql-query>
+
+    <sql-query name="getMultiOrgUserAccountListByUserNameKey">
+        <![CDATA[
+        SELECT
+            MO.*
+        FROM
+            MULTI_ORG_USER_ACCOUNT MO
+        WHERE
+            USER_NAME LIKE '%${userNameKey}%'
+        AND SYSTEM_UNIT_ID = :userUnitId
+        AND IS_FORBIDDEN=0
+        AND IS_EXPIRED=0
+        AND IS_LOCKED=0
+        ORDER BY MO.CODE asc
+	]]>
+    </sql-query>
+
+</hibernate-mapping>

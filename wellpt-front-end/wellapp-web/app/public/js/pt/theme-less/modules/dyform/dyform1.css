@@ -1,0 +1,765 @@
+@charset 'utf-8';
+/*color variables*/
+/*hover color variables*/
+/*disabled color variables*/
+/*text color variables*/
+/*font size variables*/
+.dyform.dyform-stribe .field:nth-child(2n) {
+  background: #f7f7f7;
+}
+.dyform {
+  font: 12px/1.5 Microsoft YaHei;
+  width: auto;
+  background: #fff;
+}
+.dyform h1 {
+  text-align: center;
+}
+.dyform table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+.dyform table td.label-td {
+  width: 10%;
+  min-width: 120px;
+  padding: 15px;
+  background: #f1f1f1;
+  text-align: center;
+}
+/*通讯录表单头像上传*/
+.dyform table td.photo-fileup {
+  text-align: center;
+}
+.dyform table td.photo-fileup .attach-listSMALL_PHOTO_UUID {
+  display: none;
+}
+/*通讯录表单头像上传*/
+.dyform table td.label-td label {
+  font-weight: normal;
+}
+.dyform table td {
+  padding: 5px;
+  border: 1px solid #eee;
+}
+.dyform table td input[type='text'] {
+  resize: none !important;
+}
+.dyform table td .value {
+  display: none;
+}
+.dyform input[type='radio'],
+.dyform input[type='checkbox'] {
+  margin-right: 5px;
+  width: auto;
+}
+.dyform input[type='radio'] {
+  padding: 0;
+  width: 20px;
+  margin: -3px 0 0;
+}
+.dyform input,
+.dyform select {
+  width: 100%;
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+.dyform .subtab {
+  width: 100%;
+}
+.dyform .Wdate {
+  height: 35px;
+  width: 100%;
+  background-position: 99%;
+}
+.dyform .WdateFmtErr {
+  font-weight: bold;
+  color: red;
+}
+.dyform select {
+  color: #404040;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  width: 100%;
+  border-radius: 3px;
+  padding: 3px 4px;
+  height: 35px;
+}
+.dyform select.form-control {
+  padding: 4px 6px;
+}
+.dyform select[multiple],
+.dyform .dyform select.form-control[multiple] {
+  height: auto;
+}
+.dyform select.input-sm {
+  border-radius: 3px;
+  padding: 2px 3px;
+}
+.dyform select.input-lg {
+  border-radius: 3px;
+  padding: 6px 8px;
+}
+.dyform .form-control:focus,
+.dyform select:focus {
+  color: #404040;
+  border-color: #069dd5;
+  outline: none;
+}
+.dyform textarea.form-control {
+  padding: 5px 9px;
+}
+.dyform .select2-container .select2-choice,
+.dyform .select2-container-multi .select2-choices {
+  height: 35px;
+  line-height: 35px;
+  border-radius: 3px;
+  background-image: none;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  outline: none;
+}
+.dyform .select2-container .select2-choice .select2-arrow,
+.dyform .select2-container-multi .select2-choices .select2-arrow {
+  border: 0;
+  background-image: none;
+  background: #fff;
+}
+.dyform .select2-container-active .select2-choice,
+.dyform .select2-container-active .select2-choices {
+  border: 1px solid #069dd5;
+}
+.dyform label.label {
+  white-space: normal;
+}
+.dyform label {
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #404040;
+  display: inline-block;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+.dyform .title {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  position: relative;
+  height: 29px;
+  background: #069dd5;
+  color: #fff;
+  border-bottom: 1px solid;
+  border-color: #069dd5;
+}
+.dyform .title:before,
+.dyform .title:after {
+  content: '';
+  display: table;
+  line-height: 0;
+  clear: both;
+}
+.dyform .title.fixed {
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}
+.dyform .editableClass input {
+  margin: 0;
+  width: auto;
+}
+.dyform .editableClass label {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  line-height: 35px;
+  position: relative;
+  font-size: 14px;
+  margin: 0 15px;
+  cursor: pointer;
+}
+.dyform .editableClass label:before {
+  font-size: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.dyform .editableClass input[type='radio'],
+.dyform .editableClass input[type='checkbox'] {
+  position: absolute;
+  margin: 5px 0 0 12px;
+  opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+}
+.dyform .editableClass input[type='radio'] + label:before {
+  content: '\f10c';
+  color: #069dd5;
+}
+.dyform .editableClass input[type='radio'] + label.radiolabel:before {
+  content: '\f192';
+  color: #069dd5;
+}
+.dyform .editableClass input[type='radio']:checked + label:before {
+  content: '\f192';
+  color: #069dd5;
+}
+.dyform .editableClass input[type='checkbox'] + label:before {
+  content: '\f096';
+  color: #069dd5;
+}
+.dyform .editableClass input[type='checkbox']:checked + label:before {
+  content: '\f14a';
+  color: #069dd5;
+}
+.dyform .editableClass input[type='checkbox'] + label.checkboxlabel:before {
+  content: '\f14a';
+  color: #069dd5;
+}
+.dyform .editableClass textarea {
+  height: 80px;
+}
+.dyform .fileupload-ico {
+  width: 100%;
+  color: #fff;
+  border-left-width: 2px;
+  border: 1px solid #069dd5;
+  padding: 5px 11px;
+  background: #069dd5;
+}
+.dyform .fileupload-ico .left-counter {
+  color: #f3f3f3;
+}
+.dyform .fileupload-ico div > a {
+  padding: 0 11px;
+  position: relative;
+  color: #fff;
+  width: 100%;
+  line-height: 17px;
+  text-decoration: none;
+}
+.dyform .fileupload-ico div a:not(:last-child) {
+  border-right: 1px solid #fff;
+}
+.dyform .fileupload-ico div > a:hover {
+  color: #f9622a;
+}
+.dyform .fileupload-ico div input {
+  width: auto;
+  display: inline-block;
+  margin-right: 9px;
+  border: 0;
+  display: none;
+}
+.dyform .fileupload-ico .newContent,
+.dyform .fileupload-ico .imposeContent {
+  border: 0;
+  border-top: 1px solid #fff;
+  background: #069dd5;
+  color: #fff;
+  left: 0;
+  top: 32px;
+  text-align: center;
+  padding: 5px;
+}
+.dyform .fileupload-ico .newContent:hover,
+.dyform .fileupload-ico .imposeContent:hover {
+  background: #057aa6;
+}
+.dyform .tab-design {
+  border: 1px dotted red;
+  padding: 10px;
+}
+.dyform .subtab-design {
+  border: 1px dotted green;
+  padding: 10px;
+}
+.dyform .attach-list {
+  border: 1px solid #069dd5;
+  margin-top: 0px;
+}
+.dyform .attach-list li {
+  padding: 5px 0;
+  list-style: none outside none;
+  border: 0.5px solid #069dd5;
+  margin-left: 0;
+}
+.dyform .attach-list li input[type='checkbox'] {
+  width: auto;
+  margin-right: 9px;
+  border: 0;
+  display: none;
+}
+.dyform .attach-list li img {
+  vertical-align: middle;
+  width: 23px;
+}
+.dyform .attach-list li:hover {
+  background: #c8e9f5;
+}
+.dyform .attach-list li.icoItem {
+  float: left;
+  width: 90px;
+  padding: 20px 0;
+  text-align: center;
+  cursor: pointer;
+}
+.dyform .attach-list li.icoItem img {
+  width: 48px;
+}
+.dyform .attach-list li.icoItem > span {
+  width: 90px;
+  display: block;
+  /* overflow:hidden;
+                white-space:nowrap;
+                text-overflow:ellipsis; */
+}
+.dyform .attach-list .autocut {
+  width: 120px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -icab-text-overflow: ellipsis;
+  -khtml-text-overflow: ellipsis;
+  -moz-text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+}
+.dyform .attach-list li.icoItem.bar {
+  border-bottom: 0;
+  border-right: 1px solid #fff;
+}
+.dyform .attach-list .bar {
+  background: #47c9fa;
+  border-bottom: 1px solid #fff;
+}
+.dyform .attach-list a {
+  text-decoration: none;
+  color: #404040;
+}
+.dyform .attach-list a img {
+  width: 64px;
+  height: 64px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+.dyform .attach-list span {
+  line-height: 18px;
+  text-align: center;
+}
+.dyform .fileUpdateload {
+  overflow-x: hidden;
+  width: 100%;
+  color: #fff;
+  border-left-width: 2px;
+  border: 1px solid #069dd5;
+  padding: 5px 11px;
+  background: #069dd5;
+}
+.dyform .fileUpdateload input[type='checkbox'] {
+  width: auto;
+  margin-right: 9px;
+  border: 0;
+  display: none;
+}
+.dyform .fileUpdateload .left-counter {
+  color: #f3f3f3;
+}
+.dyform .fileUpdateload span a {
+  padding: 0 10px;
+  color: #fff;
+  text-decoration: none;
+}
+.dyform .fileUpdateload span a:not(:last-child) {
+  border-right: 1px solid #fff;
+}
+.dyform .fileUpdateload span a:hover {
+  color: #f9622a;
+}
+.dyform #upload_div {
+  padding-top: 5px;
+  height: 42px;
+}
+.dyform #upload_div .add_icon {
+  margin-left: 4px;
+}
+.dyform #upload_div .btn.btn-success {
+  margin-left: 4px;
+  padding: 2px 14px;
+  color: #fff;
+  height: 35px;
+  line-height: 30px;
+  font-size: 14px;
+}
+.dyform #upload_div .btn.btn-success span {
+  color: #fff;
+}
+.dyform #upload_div .file_icon {
+  margin-top: 4px;
+  margin-right: 5px;
+  background: none;
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.dyform #upload_div .file_icon:before {
+  content: '\f0c6';
+  color: #fff;
+}
+.dyform .file-list li {
+  background: #eee;
+  border-bottom: 1px solid #ccc;
+}
+.dyform .files_div .filename {
+  line-height: 35px;
+  font-size: 14px;
+  padding: 0 15px;
+}
+.dyform .files_div ._delete_input {
+  width: auto;
+}
+.dyform .downloadAll a {
+  text-decoration: none;
+}
+.dyform .downloadAll a:hover {
+  color: #f9622a;
+}
+.dyform .attach-listoa_file {
+  margin-bottom: 0;
+}
+.dyform .attach-listoa_file input {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.dyform .Validform_checktip span.error {
+  background: none repeat scroll 0 0 #b94a48;
+  border-radius: 3px;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 1em;
+  padding: 4px 8px;
+  z-index: 50;
+  position: relative;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
+  width: 200px;
+  display: block;
+}
+.dyform .Validform_checktip span.error:after {
+  border-bottom: 6px solid #b94a48;
+  border-left: 6px solid rgba(0, 0, 0, 0);
+  border-right: 6px solid rgba(0, 0, 0, 0);
+  content: '';
+  display: block;
+  left: 7px;
+  position: absolute;
+  top: -6px;
+}
+.dyform .ui-widget-overlay {
+  background: #aaaaaa url(../../../jqueryui/css/base/images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+.ui-jqgrid {
+  margin: 7.5px auto;
+}
+.ui-jqgrid .ui-jqgrid-view {
+  border-color: #069dd5;
+}
+.ui-jqgrid .ui-jqgrid-title {
+  line-height: 30px;
+  font-weight: normal;
+  font-family: '微软雅黑';
+  float: none;
+}
+.ui-jqgrid .ui-jqgrid-titlebar {
+  background: #069dd5;
+  border-color: #069dd5;
+  height: 40px;
+  font-size: 14px;
+}
+.ui-jqgrid .ui-jqgrid-titlebar .subform-title {
+  color: #fff;
+}
+.ui-jqgrid .ui-jqgrid-titlebar .ui-wbtn-group {
+  float: right;
+}
+.ui-jqgrid .ui-jqgrid-titlebar span > button {
+  font-family: '微软雅黑';
+  font-weight: normal;
+  background: #fff;
+  border: 0;
+  color: #007aa7;
+  font-size: 14px;
+  height: 30px;
+  margin-left: 4px;
+  padding: 0 20px;
+  -moz-border-radius: 3px;
+  /* Gecko browsers */
+  -webkit-border-radius: 3px;
+  /* Webkit browsers */
+  border-radius: 3px;
+}
+.ui-jqgrid .ui-jqgrid-hdiv {
+  border-bottom: 0;
+  overflow-x: hidden;
+}
+.ui-jqgrid .ui-jqgrid-htable {
+  margin: 0;
+}
+.ui-jqgrid .ui-jqgrid-htable th {
+  font-size: 14px;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.ui-jqgrid .ui-jqgrid-htable th div {
+  overflow: hidden;
+  height: auto;
+}
+.ui-jqgrid .ui-jqgrid-htable th.ui-th-column {
+  overflow: hidden;
+  text-align: center;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-top: 0px none;
+  border-bottom: 0px none;
+}
+.ui-jqgrid .ui-jqgrid-htable th.ui-th-column th div {
+  color: #404040;
+  font-weight: normal;
+  background: #f9f9f9;
+  padding: 0 3px;
+}
+.ui-jqgrid .ui-jqgrid-htable tr.jqgrow td {
+  font-weight: normal;
+  overflow: hidden;
+  border-color: #ccc;
+  height: 22px;
+  padding: 8px 2px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  word-break: break-all;
+}
+.ui-jqgrid .ui-jqgrid-btable {
+  -webkit-user-select: text;
+  width: 100%;
+  margin-top: 0px;
+  border-collapse: collapse;
+}
+.ui-jqgrid .ui-jqgrid-btable tr.jqgrow td {
+  font-weight: normal;
+  overflow: visible;
+  border-color: #ccc;
+  height: 22px;
+  padding: 8px 2px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  word-break: break-all;
+}
+.ui-jqgrid .ui-jqgrid-btable td {
+  height: 0px;
+  padding: 0 2px;
+  border-right: 1px solid #ccc;
+}
+.ui-jqgrid .ui-jqgrid-btable .value {
+  -webkit-user-select: text;
+}
+.ui-jqgrid .ui-jqgrid-bdiv {
+  position: relative;
+  margin: 0em;
+  padding: 0;
+  overflow: visible;
+  text-align: left;
+  min-height: 50px;
+}
+.ui-jqgrid .ui-jqgrid-bdiv .value {
+  display: block;
+}
+.ui-jqgrid .fileupload-ico td {
+  cursor: pointer;
+  border-top: #f3f4f8 1px solid;
+  border-right: #f3f4f8 1px solid;
+  border-bottom: #f3f4f8 1px solid;
+  border-left: #f3f4f8 1px solid;
+  text-align: center;
+}
+.ui-jqgrid .ToolBtn {
+  cursor: pointer;
+  border-top: #e1e1e1 1px solid;
+  border-right: #e1e1e1 1px solid;
+  border-bottom: #e1e1e1 1px solid;
+  padding-bottom: -2px;
+  padding-top: 2px;
+  padding-left: 6px;
+  border-left: #e1e1e1 1px solid;
+  line-height: 12pt;
+  padding-right: 6px;
+  background-color: #e1e1e1;
+}
+.ui-jqgrid .ToolBtnOutset {
+  cursor: pointer;
+  border-top: #ffffff 1px solid;
+  border-right: #777777 1px solid;
+  border-bottom: #777777 1px solid;
+  border-left: #ffffff 1px solid;
+  background-color: #e1e1e1;
+}
+.ui-jqgrid .labelclass {
+  -webkit-user-select: text;
+}
+.ui-jqgrid .select2-drop {
+  margin-top: -21px;
+}
+#openDiv {
+  background-image: url('../../../theme/default/images/open-close.png');
+  background-position: 0 -1px;
+  display: block;
+  float: left;
+  height: 20px;
+  margin: 5px;
+  width: 20px;
+  cursor: pointer;
+}
+#notOpenDiv {
+  background-image: url('../../../theme/default/images/open-close.png');
+  background-position: 0 18px;
+  display: block;
+  float: left;
+  height: 20px;
+  margin: 5px;
+  width: 20px;
+  cursor: pointer;
+}
+#bubble_tooltip {
+  width: 180px;
+  position: absolute;
+  top: 100px;
+  right: 3px;
+  display: none;
+  background-color: white;
+  border: 1px solid #0f599c;
+}
+#bubble_tooltip .bubble_top {
+  background-repeat: no-repeat;
+  height: 22px;
+  text-align: left;
+  font-weight: bold;
+  color: red;
+  border-bottom: 1px solid #0f599c;
+  background: url('../../../images/icon.png') repeat-x scroll 0 -53px transparent;
+  color: #fff;
+  padding-left: 20px;
+}
+#bubble_tooltip .bubble_middle {
+  background-repeat: repeat-y;
+  background-position: bottom left;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-bottom: 7px;
+}
+#bubble_tooltip .bubble_middle span {
+  position: relative;
+  top: -8px;
+  font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;
+  font-size: 11px;
+}
+#bubble_tooltip .bubble_bottom {
+  background-repeat: no-repeat;
+  height: 5px;
+  position: relative;
+  top: -6px;
+}
+#bubble_tooltip_content {
+  list-style: outside none none;
+  margin-left: 0;
+  margin-bottom: 2px;
+  margin-top: 4px;
+  padding-left: 20px;
+}
+#bubble_tooltip_content a:hover {
+  cursor: pointer;
+}
+.template-wrapper.bg {
+  padding: 10px;
+  background-image: url('../../images/bg.png');
+  background-color: #eee;
+  position: relative;
+  cursor: pointer;
+}
+.template-wrapper .inner-box {
+  background: #fff;
+  cursor: text;
+}
+.template-wrapper .inner-box.filter {
+  background: #fff;
+  cursor: text;
+  -webkit-filter: contrast(90%) brightness(80%); /* Chrome, Safari, Opera */
+  filter: contrast(90%) brightness(80%);
+  opacity: 0.6;
+}
+
+/*时间控件*/
+
+.datepick-wrapper {
+  z-index: 100;
+  display: none;
+}
+/* .table-condensed {
+	width:200px;
+}
+.table-condensed thead{
+	display:none;
+} */
+.datepick-wrapper input {
+  display: inline-block;
+  width: 100px;
+}
+
+/*************公共样式***********************/
+.input-search {
+  background: url('../images/v1_input_icon.png') no-repeat scroll 100% 5px #ffffff;
+}
+
+.input-date {
+  background: url('../../../images/v1_input_icon.png') no-repeat scroll 100% -38px #ffffff;
+}
+
+.input-time {
+  background: url('../../../../theme/images/v1_input_icon.png') no-repeat scroll 100% -77px #ffffff;
+}
+
+.input-solo {
+  background: url('../../../../theme/images/v1_input_icon.png') no-repeat scroll 100% -118px #ffffff;
+}
+
+.input-people {
+  background: url('../../../../theme/images/v1_input_icon.png') no-repeat scroll 100% -157px #ffffff;
+}
+
+.input-car {
+  background: url('../../../../theme/images/v1_input_icon.png') no-repeat scroll 100% -197px #ffffff;
+}
+
+.input-meet {
+  background: url('../../../../theme/images/v1_input_icon.png') no-repeat scroll 100% -277px #ffffff;
+}
+
+.input-tier {
+  background: url('../../../../theme/images/v1_input_icon.png') no-repeat scroll 100% -316px #ffffff;
+}
+
+.input-list {
+  background: url('../../../../theme/images/v1_input_icon.png') no-repeat scroll 100% -355px #ffffff;
+}
+
+.input-waiting {
+  background: url('../../../../theme/images/waiting.gif') no-repeat scroll 100%;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+}
+.select2-container.editableClass .select2-choice > .select2-chosen {
+  width: auto;
+}

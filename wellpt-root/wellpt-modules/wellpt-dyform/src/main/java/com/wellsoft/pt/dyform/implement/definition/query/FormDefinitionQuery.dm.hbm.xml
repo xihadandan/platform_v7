@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <sql-query name="queryDatabaseCharacter">
+        <![CDATA[
+            SELECT (
+                CASE SF_GET_UNICODE_FLAG WHEN 1 THEN 'UTF-8'
+                WHEN 0 THEN 'GB18030'
+                ELSE 'EUC-KR'
+                END
+            ) as "value"
+
+        ]]>
+    </sql-query>
+
+
+</hibernate-mapping>

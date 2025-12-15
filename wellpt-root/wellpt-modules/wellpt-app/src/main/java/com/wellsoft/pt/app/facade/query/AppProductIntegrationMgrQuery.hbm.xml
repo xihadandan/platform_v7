@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="piCountModuleWidthId">
+        <![CDATA[
+		-- 查询同一系统下集成模块大于1的数据
+		select t.data_id
+		  from app_product_integration t
+		 where t.app_system_uuid = :appSystemUuid
+		   and t.data_type = 2
+		 group by t.data_id
+		having count(t.data_id) > 1
+	]]>
+    </sql-query>
+
+    <sql-query name="piCountByPath">
+        <![CDATA[
+		-- 查询同一系统下集成路径大于1的数据
+		select t.data_id
+		  from app_product_integration t
+		 where t.app_system_uuid = :appSystemUuid
+		 group by t.data_id, t.data_path
+		having count(t.data_path) > 1
+	]]>
+    </sql-query>
+</hibernate-mapping>

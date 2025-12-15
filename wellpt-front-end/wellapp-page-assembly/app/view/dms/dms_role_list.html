@@ -1,0 +1,47 @@
+<form action="" id="dms_role_form" class="form-widget">
+    <input type="hidden" id="uuid" name="uuid" />
+    <input type="hidden" id="recVer" name="recVer" />
+    <div class="well-form form-horizontal">
+        <div class="form-group">
+            <label for="name" class="well-form-label control-label required">名称</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="id" class="well-form-label control-label required">ID</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="id" name="id">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="code" class="well-form-label control-label required">编号</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="code" name="code">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="category" class="well-form-label control-label">归属应用</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" name="category" id="category">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">操作权限</label>
+            <div class="well-form-control" id="actions">
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="remark" class="well-form-label control-label">备注</label>
+            <div class="well-form-control">
+                <textarea type="text" class="form-control" id="remark" name="remark"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:30px;">
+        <div class="col-sm-12 text-center">
+            <button type="button" class="well-btn w-btn-primary" id="role_btn_save">保存</button>
+        </div>
+    </div>
+</form>

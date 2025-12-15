@@ -1,0 +1,65 @@
+<form action="" id="holiday_management_form" style="margin-top: 15px">
+  <input type="hidden" id="uuid" name="uuid" />
+  <input type="hidden" id="recVer" name="recVer" />
+  <div class="well-form form-horizontal">
+    <div class="form-group">
+      <label for="name" class="well-form-label control-label required">名称：</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="name" name="name" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="id" class="well-form-label control-label required">ID：</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" name="id" id="id" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="well-form-label control-label">历法类型：</label>
+      <div class="well-form-control">
+        <input type="radio" name="calendarType" id="calendarType1" value="1" checked="checked" />
+        <label for="calendarType1">阳历</label>
+        <input type="radio" name="calendarType" id="calendarType2" value="2" />
+        <label for="calendarType2">阴历</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="well-form-label control-label required">日期：</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" name="holidayDateName" id="holidayDateName" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="well-form-label control-label"></label>
+      <div class="well-form-control">
+        <ul class="tag-group"></ul>
+        <span class="add-tags">
+          <i class="iconfont icon-ptkj-jiahao"></i>
+          <div class="more-tags-box">
+            <ul class="more-tags-data">
+              <li class="option-select-all">
+                <i class="iconfont icon-ptkj-duoxuan-weixuan"></i>
+                全选
+              </li>
+            </ul>
+            <div class="tag-operate">
+              <button class="tag-operate-btn tag-operate-sure" type="button">确定</button>
+              <button class="tag-operate-btn tag-operate-close" type="button">取消</button>
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="" class="well-form-label control-label">节假日介绍：</label>
+      <div class="well-form-control">
+        <textarea id="remark" class="" name="remark" type="simple"></textarea>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px">
+      <div class="col-sm-12 text-center">
+        <button type="button" class="well-btn w-btn-primary" id="btn_save_holiday_management">保存</button>
+      </div>
+    </div>
+  </div>
+</form>

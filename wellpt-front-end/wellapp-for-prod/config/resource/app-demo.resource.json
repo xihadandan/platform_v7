@@ -1,0 +1,83 @@
+{
+  "js": {
+    "CdMyMaterialFileSourceDevelopment": {
+      "path": "demo/CdMyMaterialFileSourceDevelopment",
+      "name": "附件来源_我的材料",
+      "dependencies": ["FileSourceDevelopment"]
+    },
+    "DemoFileSourceDevelopment": {
+      "path": "demo/DemoFileSourceDevelopment",
+      "name": "附件来源_demo示例",
+      "dependencies": ["FileSourceDevelopment"]
+    },
+    "DemoFileSecDevBtnJs": {
+      "path": "demo/DemoFileSecDevBtnJs",
+      "name": "附件二开按钮JS事件_demo示例"
+    },
+    "FjkjDyformDevelopment": {
+      "path": "demo/FjkjDyformDevelopment",
+      "name": "平台表单二开示例-从表附件二开",
+      "dependencies": ["DyformDevelopment"]
+    },
+    "GuideNavBarDevelopmentFunBuildingHint": {
+      "path": "demo/GuideNavBarDevelopmentFunBuildingHint",
+      "name": "新手指南导航条组件二开_功能完善中提示",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "GuideNavBarDevelopment": {
+      "path": "demo/GuideNavBarDevelopment",
+      "name": "新手指南导航条组件二开",
+      "dependencies": ["HeaderWidgetDevelopment"]
+    },
+    "StudentDmsDyformViewDevelopment": {
+      "path": "demo/StudentDmsDyformViewDevelopment",
+      "name": "平台二开示例--数据管理--学生表单页面二开",
+      "dependencies": ["DmsDyformDocumentView"]
+    },
+    "DyformAccessoryDemo": {
+      "path": "demo/DyformAccessoryDemo",
+      "name": "平台二开示例--表单二开--配件二开示例",
+      "dependencies": ["DyformDevelopment"]
+    },
+    "StudentDyformDevelopment": {
+      "path": "demo/StudentDyformDevelopment",
+      "name": "平台二开示例--表单二开--学生表单二开",
+      "dependencies": ["DyformDevelopment"]
+    },
+    "StudentDmsDyformAction": {
+      "path": "demo/StudentDmsDyformAction",
+      "name": "平台二开示例--数据管理--应用示例--学生操作",
+      "dependencies": ["DmsDyformActionBase"]
+    },
+    "DemoWellFileUpload": {
+      "path": "demo/DemoWellFileUpload",
+      "name": "平台二开示例--附件示例--1--requirejs.config",
+      "dependencies": ["HtmlWidgetDevelopment"]
+    },
+    "DemoWellFileUpload2": {
+      "path": "demo/DemoWellFileUpload2",
+      "name": "平台二开示例--附件示例--2--appContext.require",
+      "dependencies": ["HtmlWidgetDevelopment"]
+    },
+    "DemoWellFileUpload3": {
+      "path": "demo/DemoWellFileUpload3",
+      "name": "平台二开示例--附件示例--3--formBuilder",
+      "dependencies": ["HtmlWidgetDevelopment"]
+    },
+    "DemoStudentDmsDyformViewDevelopment": {
+      "path": "demo/DemoStudentDmsDyformViewDevelopment",
+      "name": "平台二开示例--培训demo--数据管理--学生表单页面二开",
+      "dependencies": ["DmsDyformDocumentView"]
+    },
+    "StudentDyformDevelopment": {
+      "path": "demo/DemoStudentDyformDevelopment",
+      "name": "平台二开示例--培训demo--表单二开--学生表单二开",
+      "dependencies": ["DyformDevelopment"]
+    },
+    "DemoStudentListListViewWidgetDevelopment": {
+      "path": "/demo/DemoStudentListListViewWidgetDevelopment",
+      "name": "平台二开示例--培训demo--视图列表基础--学生列表视图组件二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    }
+  }
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="appWidgetDefinitionSelect2Query">
+        <![CDATA[
+		select t.uuid as uuid, t.id as id, t.title as title, t.wtype as wtype
+			from AppWidgetDefinition t
+				where 1 = 1 and t.id not in(:excludeIds)
+					<if isBlank(includeWidgetRef)>
+						and t.refWidgetDefUuid is null
+					</if>
+					<if isNotBlank(appPageUuid)>
+						and t.appPageUuid = :appPageUuid
+					</if>
+					<if isNotBlank(wtype)>
+						and t.wtype = :wtype
+					</if>
+					<if isNotBlank(title) || isNotBlank(id)>
+						and (1 = 2
+							<if isNotBlank(title)>
+								or lower(t.title) like '%${title?lower_case}%'
+							</if>
+							<if isNotBlank(id)>
+								or lower(t.id) like '%${id?lower_case}%'
+							</if>
+						)
+					</if>
+		order by title asc
+	]]>
+    </sql-query>
+
+    <sql-query name="appWidgetDefinitionSelect2UuidsQuery">
+        <![CDATA[
+		select t.uuid as uuid, t.id as id, t.title as title, t.wtype as wtype
+			from AppWidgetDefinition t
+				where 1 = 1
+					<if isNotBlank(wtype)>
+						and t.wtype = :wtype
+					</if>
+					and t.uuid in (:appWidgetDefUuids)
+		order by title asc
+	]]>
+    </sql-query>
+</hibernate-mapping>

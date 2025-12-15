@@ -1,0 +1,61 @@
+@progress-prefix-cls: ~'@{ant-prefix}-progress';
+
+body{
+  --w-progress-text-color: var(--w-text-color-dark);
+  --w-progress-text-success-color: var(--w-success-color);
+  --w-progress-text-exception-color: var(--w-danger-color);
+  --w-progress-text-size: var(--w-font-size-base);
+  --w-progress-text-weight: var(--w-font-weight-regular);
+  --w-progress-bg-color: var(--w-primary-color); // 百分比颜色
+}
+
+.@{progress-prefix-cls} {
+  &-bg {
+    background-color: var(--w-progress-bg-color);
+  }
+  &-line{
+    font-size: var(--w-progress-text-size);
+  }
+  &-text{
+    color: var(--w-progress-text-color);
+    font-size: var(--w-progress-text-size);
+    font-weight: var(--w-progress-text-weight);
+    >i,.anticon{
+      font-size: var(--w-progress-text-size);
+    }
+  }
+
+  &-circle {
+    .@{progress-prefix-cls}-text{
+      color: var(--w-progress-text-color);
+      font-size: var(--w-progress-text-size);
+      font-weight: var(--w-progress-text-weight);
+    }
+    &.ant-progress-status-success {
+      .ant-progress-text{
+        color: var(--w-progress-text-success-color);
+      }
+    } 
+    &.ant-progress-status-exception {
+      .ant-progress-text{
+        color: var(--w-progress-text-exception-color);
+      }
+    }
+  } 
+  &-status-success {
+    .ant-progress-text{
+      color: var(--w-progress-text-success-color);
+    }
+  } 
+  &-status-exception {
+    .ant-progress-text{
+      color: var(--w-progress-text-exception-color);
+    }
+  }
+  &-show-info{
+    .ant-progress-outer{
+      margin-right: e('calc(-3em - 8px)');
+      padding-right: e('calc(3em + 8px)');
+    }
+  } 
+}

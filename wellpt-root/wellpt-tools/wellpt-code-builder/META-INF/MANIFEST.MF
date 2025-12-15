@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: freemarker-2.3.19.jar mysql-connector-java-5.1.46.jar ojdb
+ c6-11.2.0.4.0.jar
+Main-Class: Main
+

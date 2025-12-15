@@ -1,0 +1,1 @@
+update multi_org_user_account set id='U0000000000' where LOGIN_NAME='admin';

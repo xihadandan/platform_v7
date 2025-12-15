@@ -1,0 +1,30 @@
+<div id="${dlgId}" style="height: 400px;" class="ui-wBootstrapTable">
+	<table class="table table-hover table-bordered">
+		<tbody>
+			<tr>
+				<td style="min-width: 5em;width: 16%;">导入文件 <font color="red">*</font></td>
+				<td><input id="btn_${fileUploadId}" type="button" name="btnUpload" class="btn btn-default"  value="选择文件"/> <input id="${fileUploadId}_value" type="hidden" />
+					<input id="${fileUploadId}" type="file" name="upload" style="height: 300px;"/>
+					<div class="uploaded-file-info text-success" style="display: inline-block">
+ 					</div>
+				</td>
+			</tr>
+			{@if importTemplate}
+			<tr>
+				<td>模版下载</td>
+				<td style="vertical-align: middle;">
+					<i class="icon iconfont icon-ptkj-excel" style="color:#207245"></i>
+					<a href="${ctx}/repository/file/mongo/download?fileID=${importTemplate}" style="cursor:pointer;">${importTemplate_fileNames}</a></td>
+			</tr>
+			{@/if}
+			<tr>
+				<td>导入结果</td>
+				<td><div id ="${dlgId}_import_result" style="display: inline-block"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><div id="${dlgId}_table_result_container"></div></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

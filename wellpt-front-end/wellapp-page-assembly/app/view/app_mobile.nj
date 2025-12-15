@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title>{{ title }}</title>
+        {% for c in css %}
+        <link href="{{c.path}}" rel="stylesheet">
+        {% endfor %}
+    </head>
+    <body class="">
+        <!--<script>
+            ;(function () {
+            var src = '//cdn.jsdelivr.net/npm/eruda'
+            document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>')
+            document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>')
+            })()
+        </script>-->
+        {{ html | safe }}
+
+    </body>
+    <script type="text/javascript" src="{{helper.staticPrefix()}}/js/requirejs/require.min.js"></script> 
+    <script>
+        window.staticPrefix = '{{helper.staticPrefix()}}';
+        window.ctx = "";
+        window.backendUrl= '{{helper.backendUrl()}}';
+        var WebApp = window.WebApp || {};
+
+        requirejs.onError = function (error) {
+            throw error;
+        }
+        var requirejsConfig = {{ requirejsConfigJSON | safe }};
+        requirejs.config(requirejsConfig);
+
+        WebApp.environment = {"app_version": "7.0","isMobileApp":true,"windowModel":3};
+        WebApp.currentUserAppData= {{ userAppDataJson | safe }}
+        WebApp.pageDefinition = WebApp.pageDefiniton = {{ definitionJson | safe}};
+        WebApp.configJsModules = Object.assign({},requirejsConfig.paths);
+        WebApp.errorRequireModules = WebApp.errorRequireModules || [];
+        WebApp.requestInfo =  {{ requestInfoJson | safe}};
+        WebApp.jsTemplates = {};
+
+        require(["jquery"],function($){
+            require( {{ javascriptsJson | safe }}, function () {
+                appContext.init(WebApp.currentUserAppData);
+                require(["mobile/mui/js/app/app"]);
+            });
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        var userAgent = navigator.userAgent;
+        if (userAgent && userAgent.indexOf("Qing") > -1) {
+            document.body.classList.add("pt-qing");
+        } else if (userAgent && (userAgent.indexOf("Wx") > -1 || userAgent.indexOf("wechat") > -1)) {
+            document.body.classList.add("pt-wx");
+        } else if (userAgent && (userAgent.indexOf("Wx") > -1 || userAgent.indexOf("wechat") > -1)) {
+            document.body.classList.add("pt-dingtalk");
+        }
+    </script>
+    
+
+
+</html>

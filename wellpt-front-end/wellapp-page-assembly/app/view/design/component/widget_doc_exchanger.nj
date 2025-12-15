@@ -1,0 +1,310 @@
+{# 文档交换器组件定义页面 #}
+<div id="widget_data_management_viewer">
+  <form id="widget_data_management_viewer_form" class="form-horizontal">
+    <div id="widget_data_management_viewer_tabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#widget_doc_exchanger_tabs_base_info">基础信息</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_doc_exchanger_tabs_doc_define">交换设置</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_doc_exchanger_tabs_action_info">文档处理</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_doc_exchanger_tabs_visualization_info">可视化</a>
+        </li>
+        <li role="presentation" id="data_mark_define_tabLi">
+          <a href="#widget_data_management_viewer_tabs_mark_info">数据标记</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_data_management_viewer_tabs_label_info">标签设置</a>
+        </li>
+      </ul>
+      <div class="tab-content" style="height: 500px">
+        {# 基础信息 区块 #}
+        <div role="tabpanel" class="tab-pane active" id="widget_doc_exchanger_tabs_base_info">
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">名称</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" name="name" id="name"/>
+            </div>
+          </div>
+          <div class="form-group hide">
+            <label for="categoryCode" class="col-sm-2 control-label">分类</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="categoryName" id="categoryName"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="categoryCode" name="categoryCode"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="code" class="col-sm-2 control-label">编号</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="code" id="code"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="code" name="code"/>
+            </div>
+          </div>
+        </div>
+        {# 交换设置 区块 #}
+        <div role="tabpanel" class="tab-pane" id="widget_doc_exchanger_tabs_doc_define">
+          <div class="form-group">
+            <label for="dataType" class="col-sm-2 control-label required">交换业务</label>
+            <div class="col-sm-10">
+              <div class="col-sm-9" style="padding:0 10px 0 0;">
+                <input type="text" class="form-control w-configurer-option" height="34px" id="configUuid" name="configUuid"/>
+              </div>
+              <button type="button" class="well-btn w-btn-primary w-line-btn exchangeBusinessManagement">
+                <i class="iconfont icon-ptkj-chakanbiaodanxiangqing"></i>交换业务管理</button>
+            </div>
+          </div>
+          {# <div class="form-group">
+            <label for="dataType" class="col-sm-2 control-label">类型</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" id="dataType" name="dataType"/>
+            </div>
+          </div>
+
+          <div class="form-group data-type data-type-DYFORM">
+            <label for="formName" class="col-sm-2 control-label">动态表单</label>
+            <div class="col-sm-10">
+              <input type="text" class="w-configurer-option" name="formName" id="formName"/>
+              <input type="hidden" class="form-control w-configurer-option" height="34px" id="formUuid" name="formUuid"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="auditFlow" class="col-sm-2 control-label">审批流程</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="auditFlow" name="auditFlow" value="true" />
+                <label for="auditFlow">启用流程审批</label>
+              </label>
+            </div>
+          </div>
+          <div class="form-group flow-div">
+            <label for="flowName" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+              <input type="text" class="w-configurer-option" name="flowName" id="flowName"/>
+              <input type="hidden" class="form-control w-configurer-option" height="34px" id="flowUuid" name="flowUuid"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="encrypt" class="col-sm-2 control-label">文档密级</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="encrypt" name="encrypt" value="true" />
+                <label for="encrypt">启用文档密级</label>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="urge" class="col-sm-2 control-label">文档缓急程度</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="urge" name="urge" value="true" />
+                <label for="urge">启用文档缓急程度</label>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="sign" class="col-sm-2 control-label">签收</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="sign" name="sign" value="true" />
+                <label for="sign">是否需要签收</label>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="feedback" class="col-sm-2 control-label">反馈</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="feedback" name="feedback" value="true" />
+                <label for="feedback">是否需要反馈</label>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="sms" class="col-sm-2 control-label">可选提醒方式(仅发送)</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="sms" name="notifyTypes" value="SMS" />
+                <label for="sms">短信</label>
+              </label>
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="email" name="notifyTypes" value="MAIL" />
+                <label for="email">邮件</label>
+              </label>
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="onlineMsg" name="notifyTypes" value="IM" />
+                <label for="onlineMsg">在线消息</label>
+              </label>
+            </div>
+          </div> #}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="widget_doc_exchanger_tabs_action_info">
+          <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">文档标题
+              <div class="read-tooltip">
+                <i class="iconfont icon-ptkj-tishishuoming"></i>
+                <div class="read-tooltip-content">
+                  标题支持freemarker模板表达式，可访问parameter、actionId、document变量<br>
+                  1、变量parameter代表操作的url请求参数，通过${parameter.参数名}访问参数值；<br>
+                  2、变量actionId代表当前执行操作的ID；<br>
+                  3、变量document代表当前文档，通过${document.field_name}访问文档字段值。<br>
+                </div>
+              </div>
+            </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" id="title" name="title"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="form-control w-configurer-option" height="34px" id="jsModuleName" name="jsModuleName"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="jsModule" name="jsModule"/>
+              <label class="text-info">注:JS模块脚本继承DmsDocExchangeDocumentView.js</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="div_button_info_toolbar" class="col-sm-2 control-label">文档操作</label>
+            <div class="col-sm-10">
+              <div id="div_button_info_toolbar" class="btn-group btn_button_info">
+                <button id="btn_add_button" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  新增
+                </button>
+                <button id="btn_delete_button" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  删除
+                </button>
+                <button id="btn_row_up_button" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                  上移
+                </button>
+                <button id="btn_row_down_button" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                  下移
+                </button>
+              </div>
+              <table id="table_button_info" class="button_info"></table>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="widget_doc_exchanger_tabs_visualization_info">
+          <div class="form-group">
+            <label for="dataViewType" class="col-sm-2 control-label">数据展示</label>
+            <div class="col-sm-10 checkbox-inline">
+              <input type="checkbox" class="w-configurer-option" name="dataViewName" id="dataViewName" value="bootstrapTableDataView">
+              <label for="dataViewName">BootstrapTable视图展示</label>
+              {# <input type="hidden" class="w-configurer-option" name="dataViewName" id="dataViewName"/> #}
+              <input type="hidden" class="form-control w-configurer-option" id="dataViewType" name="dataViewType"/>
+            </div>
+          </div>
+          <div class="form-group dataView bootstrapTableDataView tagTreeWithBootstrapTableDataView unitTreeWithBootstrapTableDataView leftSidebarWithBootstrapTableDataView">
+            <label for="listViewId" class="col-sm-2 control-label">视图</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="listViewName" id="listViewName"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="listViewId" name="listViewId"/>
+            </div>
+          </div>
+
+          <div class="form-group bootstrapTableDataViewColumns" style="display: none">
+            <label for="docExchangeUuidColumnTitle" class="col-sm-2 control-label">文档交换UUID</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="form-control w-configurer-option" height="34px" id="docExchangeUuidColumn" name="docExchangeUuidColumn"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="docExchangeUuidColumnTitle" name="docExchangeUuidColumnTitle"/>
+              <label class="text-info">注:选择数据展示组件中列定义是文档交换记录表主键的列</label>
+            </div>
+          </div>
+
+          {#
+          <div class="form-group">
+            <label for="docExcUuidColumn" class="col-sm-2 control-label">关联文档交换主键字段</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="form-control w-configurer-option" height="34px" id="docExcUuidColumn" name="docExcUuidColumn" />
+              <input
+                type="text"
+                class="form-control w-configurer-option"
+                height="34px"
+                id="docExcUuidColumnName"
+                name="docExcUuidColumnName"
+              />
+            </div>
+          </div>
+          #}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="widget_data_management_viewer_tabs_mark_info">
+          <div id="div_status_mark_toolbar" class="btn-group btn_button_info">
+            <button id="btn_add_status_mark" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              新增
+            </button>
+            <button id="btn_delete_status_mark" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              删除
+            </button>
+            <button id="btn_row_up_status_mark" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+              上移
+            </button>
+            <button id="btn_row_down_status_mark" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+              下移
+            </button>
+          </div>
+          <table id="table_status_mark_info" class="definition_info" data-height="400"></table>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="widget_data_management_viewer_tabs_label_info">
+          <div class="form-group">
+            <label for="enableLabel" class="col-sm-2 control-label">标签</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option enableDataMark" type="checkbox" id="enableLabel" name="enableLabel" value="true"/>
+                <label for="enableLabel">启用标签功能</label>
+              </label>
+            </div>
+          </div>
+          <div class="form-group enableLabel" style="display: none">
+            <label for="labelModuleId" class="col-sm-2 control-label required">归属模块ID</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" readonly="readonly" id="labelModuleId" name="labelModuleId"/>
+              <label class="text-info">注:标签来源将按照归属模块ID加载表DMS_DATA_LABEL</label>
+            </div>
+          </div>
+          <div class="form-group enableLabel" style="display: none">
+            <label for="columnNameForShowLabel" class="col-sm-2 control-label required">展示列</label>
+            <div class="col-sm-10">
+              <input type="text" class="w-configurer-option" name="columnNameForShowLabel" id="columnNameForShowLabel"/>
+              <input type="hidden" class="form-control w-configurer-option" height="34px" id="columnIndexForShowLabel" name="columnIndexForShowLabel"/>
+              <label class="text-info">注:标签的显示位置，来源列定义的非隐藏列</label>
+            </div>
+          </div>
+
+          <div class="form-group enableLabel" style="display: none">
+            <label for="labelBtnName" class="col-sm-2 control-label required">标签按钮</label>
+            <div class="col-sm-10">
+              <input type="text" class="w-configurer-option renderMarkBtn" name="labelBtnName" id="labelBtnName"/>
+              <input type="hidden" class="form-control w-configurer-option" height="34px" id="labelBtnCode" name="labelBtnCode"/>
+              <label class="text-info">注:加载标签按钮，来源按钮定义的按钮</label>
+            </div>
+          </div>
+          <div class="form-group enableLabel" style="display: none">
+            <label for="lableRelaEntity" class="col-sm-2 control-label required">标签数据关系实体</label>
+            <div class="col-sm-10">
+              <input type="text" class="w-configurer-option" name="lableRelaEntity" id="lableRelaEntity"/>
+              <input type="hidden" class="form-control w-configurer-option" height="34px" id="lableRelaEntityName" name="lableRelaEntityName"/>
+              <label class="text-info">注:标记后的数据与标签的关系存储实体类，自定义关系存储实体类必须继承DataLabelRelaEntity</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

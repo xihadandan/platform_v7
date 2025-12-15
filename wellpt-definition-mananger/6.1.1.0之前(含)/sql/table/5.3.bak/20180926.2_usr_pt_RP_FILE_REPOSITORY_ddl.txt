@@ -1,0 +1,50 @@
+-- Create table
+create table RP_FILE_REPOSITORY
+(
+  uuid        VARCHAR2(64) primary key ,
+  create_time TIMESTAMP(6),
+  creator     VARCHAR2(64),
+  modifier    VARCHAR2(64),
+  file_id     VARCHAR2(64),
+  file_name   VARCHAR2(120 CHAR) not null,
+  modify_time TIMESTAMP(6),
+  rec_ver     NUMBER(10),
+  content     CLOB
+)
+tablespace OA_DATA
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the table 
+comment on table RP_FILE_REPOSITORY
+  is 'ureport报表存储';
+-- Add comments to the columns 
+comment on column RP_FILE_REPOSITORY.file_id
+  is 'mogondb文件id';
+comment on column RP_FILE_REPOSITORY.file_name
+  is '报表文件名';
+comment on column RP_FILE_REPOSITORY.content
+  is '报表内容';
+-- Create/Recreate primary, unique and foreign key constraints 
+
+alter table RP_FILE_REPOSITORY
+  add unique (FILE_NAME)
+  using index 
+  tablespace OA_DATA
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );

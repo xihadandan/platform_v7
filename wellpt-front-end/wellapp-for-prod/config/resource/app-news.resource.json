@@ -1,0 +1,11 @@
+{
+  "js": {
+    "AppNewsDmsFileManagerDyformDocumentViewDevelopment": {
+      "path": "news/AppNewsDmsFileManagerDyformDocumentViewDevelopment",
+      "name": "平台应用_新闻_文件库表单二开",
+      "dependencies": [
+        "DmsFileManagerDyformDocumentView"
+      ]
+    }
+  }
+}

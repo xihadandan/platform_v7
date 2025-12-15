@@ -1,0 +1,1 @@
+create index FOLDER_UUID_IDX on DMS_FILE (FOLDER_UUID);

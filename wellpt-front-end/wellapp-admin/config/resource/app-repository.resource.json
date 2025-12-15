@@ -1,0 +1,46 @@
+{
+    "js": {
+        "js-ofd-api": {
+            "path": "/repository-mgr/ofd/ofd-api",
+            "name": "平台应用_OFD_API",
+            "dependencies": [
+                "constant",
+                "commons",
+                "server",
+                "suwell-ofdReader"
+            ]
+        },
+        "js-checkwps": {
+            "path": "/repository-mgr/wps/checkwps",
+            "name": "平台应用_JS_CHECKWPS",
+            "dependencies": [
+                "jquery"
+            ]
+        },
+        "js-launchwps": {
+            "path": "/repository-mgr/wps/launchwps",
+            "name": "平台应用_JS_LAUNCHWPS",
+            "dependencies": [
+                "js-checkwps"
+            ]
+        },
+
+        "js-wps": {
+            "path": "/repository-mgr/wps/wps",
+            "name": "平台应用_JS_WPS",
+            "dependencies": [
+                "js-base64",
+                "js-launchwps"
+            ]
+        },
+        "js-base64": {
+            "path": "/repository-mgr/wps/base64",
+            "name": "平台应用_JS_BASE64"
+        },
+        "suwell-ofdReader": {
+            "path": "/repository-mgr/ofd/suwell_ofdReader",
+            "name": "平台应用_SUWELL-OFDREADER"
+        }
+    },
+    "css": {}
+}

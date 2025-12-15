@@ -1,0 +1,108 @@
+{
+    "bookmark": [
+        {
+            "type": "gotofield",
+            "docfield": "办公室审签"
+        },
+        {
+            "type": "insertDocField",
+            "docfield": "标题",
+            "value": "测试文件套红",
+            "attrs": {
+                "fontFamily": "仿宋_GB2312",
+                "fontSize": "12",
+                "maxRow": 1,
+                "maxRowLength": 29,
+                "lastrow": true
+            }
+        },
+        {
+            "type": "gotofield",
+            "docfield": "处审核"
+        },
+        {
+            "type": "insertText",
+            "value": "戴纲 2018-11-21  "
+        },
+        {
+            "type": "insertDocField",
+            "docfield": "电话",
+            "value": "13522115420"
+        },
+        {
+            "type": "insertDocField",
+            "docfield": "主办单位",
+            "value": "办公室信息档案处  信息档案处"
+        },
+        {
+            "type": "gotofield",
+            "docfield": "附件名称"
+        },
+        {
+            "type": "insertDocField",
+            "docfield": "公开范围",
+            "value": "不公开"
+        },
+        {
+            "type": "gotofield",
+            "docfield": "核稿"
+        },
+        {
+            "type": "insertDocField",
+            "docfield": "缓急",
+            "value": "普通"
+        },
+        {
+            "type": "gotofield",
+            "docfield": "领导审核"
+        },
+        {
+            "type": "insertText",
+            "value": "张柱 2018-11-21  "
+        },
+        {
+            "type": "insertDocField",
+            "docfield": "拟稿",
+            "value": "史丛"
+        },
+        {
+            "type": "insertDocField",
+            "docfield": "年度",
+            "value": "〔2018〕"
+        },
+        {
+            "type": "gotofield",
+            "docfield": "签发"
+        },
+        {
+            "type": "insertDocField",
+            "docfield": "文件类型",
+            "value": "中气发"
+        },
+        {
+            "type": "gotofield",
+            "docfield": "局内会签"
+        },
+        {
+            "type": "insertDocField",
+            "docfield": "主送单位",
+            "value": "人事司、法规司,天津市气象局、北京市气象局",
+            "attrs": {
+                "fontFamily": "仿宋_GB2312",
+                "fontSize": "12",
+                "maxRow": 1,
+                "maxRowLength": 29,
+                "lastrow": true
+            }
+        }
+    ],
+    "downLoadFile": "http://localhost:8082/ezweb/action?PublicOfficeAction=2&mnr=1372567488347545",
+    "attrs": {
+        "fileName": "中国气象局发文稿纸（新）.doc",
+        "canSaveAs": null,
+        "readOnly": "false",
+        "title": "中国气象局综合办公系统",
+        "userName": "康为",
+        "funcType": "4"
+    }
+}

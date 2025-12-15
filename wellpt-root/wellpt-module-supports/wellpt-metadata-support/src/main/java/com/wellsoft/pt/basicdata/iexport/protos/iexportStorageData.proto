@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_package = "com.wellsoft.pt.basicdata.iexport.protos";
+option java_outer_classname = "IexportStorageDataProto";
+message IexportStorageDataCollection {
+	message IexportStorageData {
+		string uuid = 1;
+		string name = 2;
+		string type = 3;
+		string parentUuid = 4;
+		int32 recVer = 5;
+		bytes rowData = 6;
+		bool priority=7;
+		bytes data=8;
+		bytes record=9;
+	}
+	repeated IexportStorageData iexportDatas= 1;
+}
+	
+
+

@@ -1,0 +1,31 @@
+{
+
+  "description": "浏览器办公助手",
+  "manifest_version": 2,
+  "name": "WellOffice-WebExtensions",
+  "version": "1.0",
+  "homepage_url": "http://www.well-soft.com",
+  "icons": {
+    "48": "icons/page-48.png"
+  },
+  "permissions": [
+    "downloads",
+    "downloads.open",
+    "downloads.download"
+  ],
+  "web_accessible_resources": ["inject-scripts/page-script.js"],
+  "content_scripts": [{
+	  "matches": ["<all_urls>"],
+	  "js": ["webextension-polyfill-0.6.0/dist/browser-polyfill.js","jquery-1.12.4/jquery-1.12.4.js","content-scripts/content-script.js"]
+  	}
+  ],
+  "browser_action": {
+    "browser_style": true,
+    "default_icon": "icons/page-32.png",
+    "default_title": "WellOffice WebExtensions",
+    "default_popup": "popup/latest_download.html"
+  },
+  "background": {
+        "scripts": ["webextension-polyfill-0.6.0/dist/browser-polyfill.js","jquery-1.12.4/jquery-1.12.4.js","background_scripts/background-script.js"]
+    }
+}

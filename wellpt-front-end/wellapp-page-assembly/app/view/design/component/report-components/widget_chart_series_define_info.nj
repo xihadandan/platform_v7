@@ -1,0 +1,186 @@
+<!-- 图表的系列列表定义 -->
+
+<div role="tabpanel" class="tab-pane" id="widget_chart_series_info">
+  <div class="form-group">
+    <div id="div_series_info_toolbar" class="btn-group btn_series_info">
+      <button id="btn_add_series" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+      </button>
+      <button id="btn_delete_series" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+      </button>
+      <button id="btn_row_up_series" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span >上移
+      </button>
+      <button id="btn_row_down_series" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span >下移
+      </button>
+    </div>
+    <table id="table_series_info" class="definition_info" data-height="430"></table>
+  </div>
+
+  <!-- 系列定义详情页面 -->
+  <div id="series_define_detail" style="display: none">
+    <div type="series_line">
+      <div class="form-group">
+        <label for="coordinateSystem" class="col-sm-2 control-label">坐标系类型</label >
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="coordinateSystem" id="coordinateSystem"/>
+        </div>
+        <label for="smooth" class="col-sm-2 control-label">是否平滑曲线显示</label >
+        <div class="col-sm-4 checkbox-inline">
+          <input type="checkbox" class="form-control w-configurer-option" height="34px" name="smooth" id="smooth"/>
+          <label for="smooth"></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="seriesLayoutBy" class="col-sm-2 control-label">系列排布来源</label >
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="seriesLayoutBy" id="seriesLayoutBy"/>
+        </div>
+
+        <label for="step" class="col-sm-2 control-label">阶梯线图拐点</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="step" id="step"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="xAxisIndex" class="col-sm-2 control-label">使用的x轴</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="xAxisIndex" id="xAxisIndex"/>
+        </div>
+
+        <label for="yAxisIndex" class="col-sm-2 control-label">使用的y轴</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="yAxisIndex" id="yAxisIndex"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="stack" class="col-sm-2 control-label">数据堆叠值</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="stack" id="stack"/>
+        </div>
+      </div>
+
+      {% include "./widget_chart_series_data_info.nj" %}
+      <!-- <%@ include file="widget_chart_series_data_info.jsp" %> -->
+
+      {% include "./widget_chart_series_common_info.nj" %}
+      <!-- <%@ include file="widget_chart_series_common_info.jsp" %> -->
+
+      <fieldset>
+        <legend>区域填充样式</legend>
+        <div class="form-group">
+          <label for="areaStyle_color" class="col-sm-2 control-label">填充颜色</label >
+          <div class="col-sm-4">
+            <input type="text" class="form-control w-configurer-option" height="34px" name="areaStyle_color" id="areaStyle_color"/>
+          </div>
+
+          <label for="areaStyle_origin" class="col-sm-2 control-label">填充起始位置</label >
+          <div class="col-sm-4">
+            <input type="text" class="form-control w-configurer-option" height="34px" name="areaStyle_origin" id="areaStyle_origin"/>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div type="series_bar">
+      <div class="form-group">
+        <label for="barGap" class="col-sm-2 control-label">不同系列的柱间距离</label >
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="barGap" id="barGap"/>
+        </div>
+
+        <label for="barCategoryGap" class="col-sm-2 control-label">同系列的柱间距离</label >
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="barCategoryGap" id="barCategoryGap"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="large" class="col-sm-2 control-label">是否开启大数据量优化</label >
+        <div class="col-sm-4 checkbox-inline">
+          <input type="checkbox" class="form-control w-configurer-option" height="34px" name="large" id="large"/>
+          <label for="large"></label>
+        </div>
+
+        <label for="largeThreshold" class="col-sm-2 control-label">绘制优化的阈值</label >
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="largeThreshold" id="largeThreshold"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="xAxisIndex" class="col-sm-2 control-label">使用的x轴</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="xAxisIndex" id="xAxisIndex"/>
+        </div>
+
+        <label for="yAxisIndex" class="col-sm-2 control-label">使用的y轴</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="yAxisIndex" id="yAxisIndex"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="stack" class="col-sm-2 control-label">数据堆叠值</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="stack" id="stack"/>
+        </div>
+
+        <label for="barWidth" class="col-sm-2 control-label">柱条宽度</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="barWidth" id="barWidth" placeholder="默认自适应，可选数字或者百分数，例如：40或者60%"/>
+        </div>
+      </div>
+
+      {% include "./widget_chart_series_data_info.nj" %}
+      <!-- <%@ include file="widget_chart_series_data_info.jsp" %> -->
+
+      {% include "./widget_chart_series_common_info.nj" %}
+      <!-- <%@ include file="widget_chart_series_common_info.jsp" %> -->
+    </div>
+
+    <!--饼图定义-->
+    <div type="series_pie">
+      <div class="form-group">
+        <label for="radius-in" class="col-sm-2 control-label">饼图半径</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="radius-in" id="radius-in" style="width: 100px; display: inline-block"/>
+          <input type="text" class="form-control w-configurer-option" height="34px" name="radius-out" id="radius-out" style="width: 100px; display: inline-block"/>
+        </div>
+        <label for="center-position-x" class="col-sm-2 control-label">饼图中心坐标</label >
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option w-chart-option" height="34px" name="center-position-x" id="center-position-x" placeholder="横坐标" style="width: 100px; display: inline-block"/>
+          <input type="text" class="form-control w-configurer-option w-chart-option" height="34px" name="center-position-y" id="center-position-y" placeholder="纵坐标" style="width: 100px; display: inline-block"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="roseType" class="col-sm-2 control-label">南丁格尔图区分模式</label >
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="roseType" id="roseType"/>
+        </div>
+        <label for="seriesLayoutBy" class="col-sm-2 control-label">系列排布来源</label >
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="seriesLayoutBy" id="seriesLayoutBy"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="roseType" class="col-sm-2 control-label">起始角度</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control w-configurer-option" height="34px" name="startAngle" id="startAngle"/>
+        </div>
+      </div>
+
+      {% include "./widget_chart_series_data_info.nj" %}
+      <!-- <%@ include file="widget_chart_series_data_info.jsp" %> -->
+
+      {% include "./widget_chart_series_common_info.nj" %}
+      <!-- <%@ include file="widget_chart_series_common_info.jsp" %> -->
+    </div>
+  </div>
+</div>

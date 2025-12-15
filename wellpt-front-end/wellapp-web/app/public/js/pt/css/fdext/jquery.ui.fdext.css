@@ -1,0 +1,6 @@
+table.fdext td.Label {
+	width : 65px;
+}
+table.fdext td input, select, textarea{
+	width : 100%;
+}

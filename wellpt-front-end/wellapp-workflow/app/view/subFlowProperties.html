@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+
+    {% for file in themeFiles %}
+    <link href="{{file}}" rel="stylesheet" />
+    {% endfor %}
+  </head>
+  <body style="background: #fff">
+    <div class="fixed-tabs">
+      <ul class="nav nav-tabs tab-style-btns" role="tablist">
+        <li class="active">
+          <a href="#subFlowTab" data-toggle="tab" aria-expanded="true">子流程</a>
+        </li>
+        <li class="">
+          <a href="#subFlowInfo" data-toggle="tab">办理信息</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="tab-content" style="height: 40px; padding: 60px 10px 10px">
+      <form id="subflowForm" class="workflow-popup well-workflow-form" name="subflowForm">
+        <div class="tab-pane subtab active" name="subFlowTab" id="subFlowTab">
+          <div class="form-group">
+            <label class="sub-label">
+              <span class="required"></span>
+              <span>名称</span>
+            </label>
+            <input id="name" name="name" type="text" class="form-control" placeholder="请输入" />
+          </div>
+          <div class="form-group">
+            <label class="sub-label">
+              <span class="required"></span>
+              <span>ID</span>
+            </label>
+            <input id="id" name="id" type="text" class="form-control" placeholder="请输入" />
+          </div>
+          <div class="form-group">
+            <label class="sub-label">
+              <span>业务组织</span>
+            </label>
+            <input id="businessType" name="businessType" type="text" class="form-control" />
+            <input id="businessTypeName" name="businessTypeName" type="hidden" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label class="sub-label">
+              <span>业务角色</span>
+            </label>
+            <input id="businessRole" name="businessRole" type="text" class="form-control" />
+            <input id="businessRoleName" name="businessRoleName" type="hidden" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label class="sub-label">
+              <span>子流程</span>
+            </label>
+            <ul id="DNewFlows" class="work-flow-settings"></ul>
+            <div id="addDNewFlows" class="well-btn w-btn-primary well-btn-sm w-noLine-btn">
+              <i class="iconfont icon-ptkj-jiahao"></i>
+              <span>添加子流程</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="sub-label">
+              <span>前置关系</span>
+            </label>
+            <ul id="DRelations" class="work-flow-settings"></ul>
+            <div id="addDRelations" class="well-btn w-btn-primary well-btn-sm w-noLine-btn">
+              <i class="iconfont icon-ptkj-jiahao"></i>
+              <span>添加前置关系</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="sub-label">
+              <span>跟进人员</span>
+            </label>
+            <div class="org-select-container org-style3 org-select-placeholder" id="DsubTaskMonitors">
+              <input type="hidden" id="DsubTaskMonitor1" />
+              <input type="hidden" id="subTaskMonitor1" />
+              <input type="hidden" id="subTaskMonitor2" />
+              <input type="hidden" id="subTaskMonitor4" />
+              <input type="hidden" id="subTaskMonitor8" />
+              <ul class="org-select"></ul>
+              <i class="icon iconfont icon-ptkj-zuzhixuanze"></i>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="sub-label">
+              <span>跟踪汇总环节</span>
+            </label>
+            <input class="form-control" id="traceTask" name="traceTask" />
+          </div>
+          <div class="form-group">
+            <label class="sub-label">
+              <span>子流程查看主流程设置</span>
+              <div class="w-tooltip" style="vertical-align: text-top">
+                <i class="iconfont icon-ptkj-tishishuoming"></i>
+                <div class="w-tooltip-content show-top">设置子流程对主流程详情的查阅权限</div>
+              </div>
+            </label>
+            <div>
+              <input type="radio" class="form-control" name="childLookParent" id="childLookParent1" value="0" />
+              <label for="childLookParent1">默认不可查看主流程</label>
+              <input type="radio" class="form-control" name="childLookParent" id="childLookParent2" value="1" />
+              <label for="childLookParent2">默认可查看主流程</label>
+              <input type="checkbox" class="form-control" name="parentSetChild" id="parentSetChild" value="1" />
+              <label for="parentSetChild">允许主流程更改查看权限</label>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane subtab" name="subFlowInfo" id="subFlowInfo">
+          <div class="well-workflow-form">
+            <div class="form-group">
+              <label>
+                <span>办理进度</span>
+              </label>
+              <div class="sub-label">显示位置</div>
+              <input type="text" name="undertakeSituationPlaceHolder" id="undertakeSituationPlaceHolder" />
+              <input type="checkbox" class="form-control" name="expandList" id="expandList" value="1" checked="checked" />
+              <label for="expandList">列表默认展开</label>
+              <div class="sub-label mt10">列表标题表达式</div>
+              <div class="clear">
+                <div id="setUundertakeSituationTitleExpression" class="fl well-btn w-btn-primary well-btn-sm w-noLine-btn" title="设置">
+                  <i class="iconfont icon-ptkj-shezhi"></i>
+                  <span>设置</span>
+                </div>
+              </div>
+              <div class="showCustomTitle_expression btn-container">
+                <div id="undertakeSituationTitleExpression"></div>
+              </div>
+              <div class="sub-label mt10">按钮配置</div>
+              <div class="control">
+                <div id="btnSettingTable">
+                  <div class="btn-group btn_set_info" id="div_set_toolbar">
+                    <div id="btn_add_set" class="well-btn w-btn-primary w-noLine-btn well-btn-sm mr0">
+                      <i class="iconfont icon-ptkj-jiahao"></i>
+                      <span>增加</span>
+                    </div>
+                    <div id="btn_delete_set" class="well-btn w-btn-primary w-noLine-btn well-btn-sm mr0">
+                      <i class="iconfont icon-ptkj-shanchu"></i>
+                      <span>删除</span>
+                    </div>
+                    <div id="btn_row_up_set" class="well-btn w-btn-primary w-noLine-btn well-btn-sm mr0">
+                      <i class="iconfont icon-ptkj-shangyi"></i>
+                      <span>上移</span>
+                    </div>
+                    <div id="btn_row_down_set" class="well-btn w-btn-primary w-noLine-btn well-btn-sm mr0">
+                      <i class="iconfont icon-ptkj-xiayi"></i>
+                      <span>下移</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="sub-label mt10">列配置</div>
+              <div class="control">
+                <div id="columnSettingTable">
+                  <div class="btn-group btn_column_info" id="div_column_toolbar">
+                    <div id="btn_add_column" class="well-btn w-btn-primary w-noLine-btn well-btn-sm mr0">
+                      <i class="iconfont icon-ptkj-jiahao"></i>
+                      <span>增加</span>
+                    </div>
+                    <div id="btn_edit_column" class="well-btn w-btn-primary w-noLine-btn well-btn-sm mr0">
+                      <i class="iconfont icon-ptkj-bianji"></i>
+                      <span>编辑</span>
+                    </div>
+                    <div id="btn_delete_column" class="well-btn w-btn-primary w-noLine-btn well-btn-sm mr0">
+                      <i class="iconfont icon-ptkj-shanchu"></i>
+                      <span>删除</span>
+                    </div>
+                    <div id="btn_row_up_column" class="well-btn w-btn-primary w-noLine-btn well-btn-sm mr0">
+                      <i class="iconfont icon-ptkj-shangyi"></i>
+                      <span>上移</span>
+                    </div>
+                    <div id="btn_row_down_column" class="well-btn w-btn-primary w-noLine-btn well-btn-sm mr0">
+                      <i class="iconfont icon-ptkj-xiayi"></i>
+                      <span>下移</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>
+                <span>排序配置</span>
+              </label>
+              <div>
+                <input type="radio" class="form-control" name="sortRule" id="sortRule1" value="default" checked="checked" />
+                <label for="sortRule1">默认排序</label>
+                <input type="radio" class="form-control" name="sortRule" id="sortRule2" value="custom" />
+                <label for="sortRule2">自定义排序</label>
+              </div>
+              <div class="sort-config sort-config-default" style="font-size: 12px; color: #999">
+                先按子流程的配置顺序，再按子流程的办理状态未办结、已办结排序
+              </div>
+              <div class="control sort-config sort-config-custom" style="display: none">
+                <div id="sortSettingTable">
+                  <div class="btn-group btn_sort_info" id="div_sort_toolbar">
+                    <div id="btn_add_sort" class="well-btn w-btn-primary w-noLine-btn well-btn-sm mr0">
+                      <i class="iconfont icon-ptkj-jiahao"></i>
+                      <span>增加</span>
+                    </div>
+                    <div id="btn_delete_sort" class="well-btn w-btn-primary w-noLine-btn well-btn-sm mr0">
+                      <i class="iconfont icon-ptkj-shanchu"></i>
+                      <span>删除</span>
+                    </div>
+                    <div id="btn_row_up_sort" class="well-btn w-btn-primary w-noLine-btn well-btn-sm mr0">
+                      <i class="iconfont icon-ptkj-shangyi"></i>
+                      <span>上移</span>
+                    </div>
+                    <div id="btn_row_down_sort" class="well-btn w-btn-primary w-noLine-btn well-btn-sm mr0">
+                      <i class="iconfont icon-ptkj-xiayi"></i>
+                      <span>下移</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>
+                <span>信息分发</span>
+              </label>
+              <div class="sub-label">显示位置</div>
+              <input type="text" name="infoDistributionPlaceHolder" id="infoDistributionPlaceHolder" />
+              <div class="sub-label mt10">列表标题表达式</div>
+              <div class="clear">
+                <div id="setInfoDistributionTitleExpression" class="fl well-btn w-btn-primary well-btn-sm w-noLine-btn" title="设置">
+                  <i class="iconfont icon-ptkj-shezhi"></i>
+                  <span>设置</span>
+                </div>
+              </div>
+              <div class="showCustomTitle_expression btn-container">
+                <div id="infoDistributionTitleExpression"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>
+                <span>操作记录</span>
+              </label>
+              <div class="sub-label">显示位置</div>
+              <input type="text" name="operationRecordPlaceHolder" id="operationRecordPlaceHolder" />
+              <div class="sub-label mt10">列表标题表达式</div>
+              <div class="clear">
+                <div id="setOperationRecordTitleExpression" class="fl well-btn w-btn-primary well-btn-sm w-noLine-btn" title="设置">
+                  <i class="iconfont icon-ptkj-shezhi"></i>
+                  <span>设置</span>
+                </div>
+              </div>
+              <div class="showCustomTitle_expression btn-container">
+                <div id="operationRecordTitleExpression"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="/static/js/requirejs/2.3.2/require.min.js"></script>
+    <script
+      type="text/javascript"
+      src="/jsexplainer/requirejsConfigScript.js?ids=jquery,bootstrap,global,select2,wellSelect,wSelect2,wComboTree,wCommonComboTree,formBuilder,jqueryWorkflow,workflowCommon,x2js,wellEasyTable,subflowProperties"
+    ></script>
+    <script src="/static/workflow/js/designer/JSConstant.js?v={{helper.resVer()}}"></script>
+    <script>
+      var ctx = '';
+      require(['js/requirejs/domReady'], function (domReady) {
+        domReady(function () {
+          require([
+            'jquery',
+            'bootstrap',
+            'global',
+            'select2',
+            'wellSelect',
+            'wSelect2',
+            'formBuilder',
+            'wCommonComboTree',
+            'wComboTree',
+            'jqueryWorkflow',
+            'workflowCommon',
+            'x2js',
+            'wellEasyTable',
+            'subflowProperties'
+          ], function () {
+            var timer = setInterval(function () {
+              if (parent.goWorkFlow.flowXML) {
+                clearInterval(timer);
+                if (!$.fn.bootstrapTable) {
+                  $.fn.bootstrapTable = top.$.fn.bootstrapTable;
+                }
+                setSubFlowProperty();
+              }
+            }, 100);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

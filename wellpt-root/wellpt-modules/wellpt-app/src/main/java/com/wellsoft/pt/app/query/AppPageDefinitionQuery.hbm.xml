@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="appPageDefinitionQuery">
+        <![CDATA[
+		select t.uuid    as uuid,
+		       t.title   as title,
+		       t.name    as name,
+		       t.id      as id,
+		       t.version as version,
+		       t.code    as code
+		  from AppPageDefinition t
+		 where 1 = 1 and t.wtype is not null and t.userId is null and t.uuid not in(:excludeUuids)
+			<if isNotBlank(title)>
+				and (t.name like '%${title}%' or t.title like '%${title}%')
+			</if>
+			and (
+			    (exists(select pi.uuid from AppProductIntegration pi where pi.appPageUuid = t.uuid) or t.appPiUuid is not null)
+			    or t.appPiUuid is null
+			)
+			order by t.version asc, t.code asc
+	]]>
+    </sql-query>
+
+    <sql-query name="getAllAvailableAppPageInfoByUserIdAndAppPiUuid">
+        <![CDATA[
+		select uuid           as uuid,
+		       title          as title,
+		       name           as name,
+		       id             as id,
+		       version        as version,
+		       user_id        as user_id,
+		       shared         as shared,
+		       is_default     as is_default,
+		       app_pi_uuid    as app_pi_uuid
+		  from (select t1.*
+		          from app_page_definition t1
+		         where t1.app_pi_uuid = :appPiUuid
+		           and t1.user_id is null
+		         order by t1.is_default desc, t1.code asc, t1.create_time asc)
+		union all
+		select uuid                   as uuid,
+		       title                  as title,
+		       name                   as name,
+		       id                     as id,
+		       version                as version,
+		       user_id                as user_id,
+		       shared                 as shared,
+		       is_default             as is_default,
+		       current_app_pi_uuid    as app_pi_uuid
+		  from (select    t1.*,
+		                  t2.app_pi_uuid as current_app_pi_uuid
+		          from app_page_definition t1
+		         inner join app_page_definition_ref t2
+		            on t2.ref_uuid = t1.uuid
+		         where t2.app_pi_uuid = :appPiUuid
+		           and t1.user_id is null
+		         order by t1.is_default desc, t1.code asc, t1.create_time asc)
+		union all
+		select uuid           as uuid,
+		       title          as title,
+		       name           as name,
+		       id             as id,
+		       version        as version,
+		       user_id        as user_id,
+		       shared         as shared,
+		       is_default     as is_default,
+		       app_pi_uuid    as app_pi_uuid
+		  from (select t1.*
+		          from app_page_definition t1
+		         where t1.app_pi_uuid = :appPiUuid
+		           and t1.user_id = :userId
+		         order by t1.is_default desc, t1.code asc, t1.create_time asc)
+	]]>
+    </sql-query>
+
+
+    <sql-query name="queryProdVersionPages">
+        <![CDATA[
+		select
+		    id,uuid,name,wtype,version,app_id,is_pc ,is_default ,designable, layout_fixed,remark,theme,title
+		  from app_page_definition a
+		  where exists (
+		    select 1 from app_prod_version v ,app_prod_rela_page r
+		    where v.uuid = r.prod_version_uuid and r.page_uuid = a.uuid
+		    <if isNotBlank(prodVersionUuid)>
+		    and v.uuid=:prodVersionUuid
+		    </if>
+		  )
+
+	]]>
+    </sql-query>
+
+    <!--查询最新版本的页面列表-->
+    <sql-query name="queryLatestVerPageByAppIds">
+        <![CDATA[
+		SELECT A.ID,
+               A.UUID,
+               A.NAME,
+               A.WTYPE,
+               A.VERSION,
+               A.APP_ID,
+               A.IS_PC,
+               A.IS_DEFAULT,
+               A.DESIGNABLE,
+               A.LAYOUT_FIXED,
+               A.IS_ANONYMOUS,
+               A.REMARK,
+               A.THEME
+          FROM APP_PAGE_DEFINITION A , (
+                                         SELECT MAX(V.VERSION) MAX_VERSION ,V.ID FROM APP_PAGE_DEFINITION V
+                                         WHERE V.APP_ID IN :appIds
+                                         GROUP BY V.ID
+                                      ) X
+          WHERE A.ID = X.ID AND A.VERSION = X.MAX_VERSION
+                 AND APP_ID IN :appIds
+ 	]]>
+    </sql-query>
+
+    <!--查询最新版本的页面列表-->
+    <sql-query name="queryLatestVerPageBySystem">
+        <![CDATA[
+		SELECT A.ID,
+               A.UUID,
+               A.NAME,
+               A.WTYPE,
+               A.VERSION,
+               A.APP_ID,
+               A.IS_PC,
+               A.IS_DEFAULT,
+               A.DESIGNABLE,
+               A.LAYOUT_FIXED,
+               A.IS_ANONYMOUS,
+               A.REMARK,
+               A.THEME
+          FROM APP_PAGE_DEFINITION A , (
+                                         SELECT MAX(V.VERSION) MAX_VERSION ,V.ID FROM APP_PAGE_DEFINITION V
+                                         WHERE V.APP_ID IN (
+                                            SELECT PM.MODULE_ID FROM APP_PROD_MODULE PM
+                                                        LEFT JOIN APP_SYSTEM_INFO SI ON PM.PROD_VERSION_UUID = SI.PROD_VERSION_UUID
+                                                        WHERE SI.SYSTEM = :system
+                                         )
+                                         GROUP BY V.ID
+                                      ) X
+          WHERE A.ID = X.ID AND A.VERSION = X.MAX_VERSION
+                 AND APP_ID IN (
+                    SELECT PM.MODULE_ID FROM APP_PROD_MODULE PM
+                                LEFT JOIN APP_SYSTEM_INFO SI ON PM.PROD_VERSION_UUID = SI.PROD_VERSION_UUID
+                                WHERE SI.SYSTEM = :system
+                 )
+ 	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

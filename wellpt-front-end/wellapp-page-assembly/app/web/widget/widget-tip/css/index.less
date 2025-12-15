@@ -1,0 +1,56 @@
+.widget-tip {
+  padding: 8px 12px 8px 34px;
+  &.tag-icon {
+    padding-left: 60px;
+  }
+
+  &.alert {
+    margin-bottom: 8px;
+    min-height: 36px;
+  }
+  &.ant-alert-warning {
+    background-color: var(--w-warning-color-1);
+    border: 1px solid var(--w-warning-color);
+    .ant-alert-icon {
+      color: var(--w-warning-color);
+    }
+  }
+  &.ant-alert-info {
+    background-color: var(--w-primary-color-1);
+    border: 1px solid var(--w-primary-color);
+    .ant-alert-icon {
+      color: var(--w-primary-color);
+    }
+  }
+  &.ant-alert-error {
+    background-color: var(--w-danger-color-1);
+    border: 1px solid var(--w-danger-color);
+    .ant-alert-icon {
+      color: var(--w-danger-color);
+    }
+  }
+  &.ant-alert-success {
+    background-color: var(--w-success-color-1);
+    border: 1px solid var(--w-success-color);
+    .ant-alert-icon {
+      color: var(--w-success-color);
+    }
+  }
+  &.ant-alert-banner {
+    border: 0;
+  }
+  .ant-alert-message {
+    color: var(--w-text-color-dark);
+  }
+  .ant-alert-icon {
+    position: absolute;
+    top: 14.5px;
+    left: 12px;
+    &:has(.ant-tag) {
+      top: 12.5px;
+    }
+  }
+  &.ant-alert-no-icon {
+    padding: 8px 12px;
+  }
+}

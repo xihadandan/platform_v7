@@ -1,0 +1,78 @@
+@select-prefix-cls: ~'ant-select';
+
+.w-select-check-all {
+  padding: 4px var(--w-select-item-lr-padding) 4px 12px;
+  cursor: pointer;
+}
+.w-select-dropdown {
+  &.ant-select-dropdown--multiple {
+    .ant-select-dropdown-menu-item {
+      padding-left: 36px;
+      padding-right: var(--w-select-item-lr-padding);
+      --w-select-item-color-icon: var(--w-checkbox-border-color);
+
+      .ant-select-selected-icon {
+        color: var(--w-select-item-color-icon);
+        left: 12px;
+        font-weight: var(--w-font-weight-regular);
+        font-size: var(--w-checkbox-size);
+        text-shadow: none;
+      }
+
+      &:has(.edit-dict-operation-select-more-icon) {
+        .ant-select-selected-icon {
+          margin-right: 28px;
+        }
+      }
+
+      &.ant-select-dropdown-menu-item-selected {
+        --w-select-item-bg-selected: var(--w-select-item-bg);
+        --w-select-item-color-selected: var(--w-select-item-text-color);
+
+        .@{select-prefix-cls}-selected-icon {
+          --w-select-item-color-icon: var(--w-checkbox-color);
+
+          &::before {
+            content: '\e8de'; //pticon iconfont icon-ptkj-duoxuan-yixuan
+          }
+        }
+
+        &:hover {
+          &:not(.ant-select-dropdown-menu-item-disabled) {
+            .@{select-prefix-cls}-selected-icon {
+              --w-select-item-color-icon: var(--w-checkbox-color);
+            }
+          }
+        }
+
+        &.ant-select-dropdown-menu-item-disabled {
+          .@{select-prefix-cls}-selected-icon {
+            --w-select-item-color-icon: var(--w-checkbox-disabled-color);
+            color: var(--w-select-item-color-icon);
+          }
+        }
+      }
+
+      &:hover {
+        &:not(.ant-select-dropdown-menu-item-selected) {
+          .@{select-prefix-cls}-selected-icon {
+            --w-select-item-color-icon: var(--w-checkbox-color);
+            color: var(--w-select-item-color-icon);
+          }
+        }
+      }
+    }
+  }
+}
+
+.w-select-group {
+  display: flex;
+  align-items: center;
+  .w-select-group-addon {
+    min-width: 30px;
+    padding: 0 11px;
+  }
+  > .ant-select {
+    flex: 1;
+  }
+}

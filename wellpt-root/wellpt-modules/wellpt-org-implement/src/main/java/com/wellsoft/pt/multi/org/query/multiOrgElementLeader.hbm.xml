@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!-- 删除组织节点， 需要删除对应的领导关系 -->
+    <sql-query name="deleteAllLeaderByEleId">
+        <![CDATA[
+		delete from multi_org_element_leader
+		where
+		( ele_id =:eleId and ele_org_version_id = :versionId )
+		or
+		( target_obj_id =:eleId and target_obj_org_version_id = :versionId )
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

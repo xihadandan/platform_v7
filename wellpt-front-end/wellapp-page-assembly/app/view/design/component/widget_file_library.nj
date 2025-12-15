@@ -1,0 +1,270 @@
+
+<div id="widget_file_library">
+  <form id="widget_file_library_form" class="form-horizontal">
+    <div id="widget_bootstrap_table_tabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#widget_file_library_tabs_base_info">基础信息</a></li>
+        <li role="presentation"><a href="#widget_file_library_tabs_column_info">列定义</a></li>
+        <li role="presentation"><a href="#widget_file_library_tabs_field_info">弹窗字段定义</a></li>
+        <li role="presentation"><a href="#widget_file_library_tabs_role_info">权限字段定义</a></li>
+        <li role="presentation"><a href="#widget_file_library_tabs_button_info">按钮定义</a></li>
+        <li role="presentation"><a href="#widget_file_library_tabs_tree_info">树形</a></li>
+      </ul>
+
+      <div class="tab-content" style="height: 500px">
+        <div role="tabpanel" class="tab-pane active" id="widget_file_library_tabs_base_info">
+          <div class="form-group">
+              <label for="name" class="col-sm-2 control-label required">标题</label>
+              <div class="col-sm-10">
+                  <input type="text" class="form-control w-configurer-option" name="name" id="name">
+              </div>
+          </div>
+          <div class="form-group hide">
+              <label for="categoryCode" class="col-sm-2 control-label required">分类</label>
+              <div class="col-sm-10">
+                  <input type="hidden" class="w-configurer-option" name="categoryName" id="categoryName"/>
+                  <input type="text" class="form-control w-configurer-option" height="34px" id="categoryCode" name="categoryCode"/>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="dataStoreId" class="col-sm-2 control-label required">数据仓库</label>
+              <div class="col-sm-10">
+                  <input type="hidden" class="w-configurer-option" name="dataStoreName" id="dataStoreName"/>
+                  <input type="text" class="form-control w-configurer-option" height="34px" id="dataStoreId" name="dataStoreId"/>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="resetConfigurationOnDataStoreChange" class="col-sm-2 control-label"></label>
+              <div class="col-sm-10">
+                  <label class="checkbox-inline">
+                      <input type="checkbox" id="resetConfigurationOnDataStoreChange" name="resetConfigurationOnDataStoreChange" checked="checked" /><label for="resetConfigurationOnDataStoreChange">数据仓库变更时重置列定义、查询定义、默认排序等配置(该配置非组件定义配置项)</label>
+                  </label>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+              <div class="col-sm-10">
+                  <input type="text" class="form-control w-configurer-option" height="34px" name="jsModule" id="jsModule">
+                  <input type="hidden" class="form-control w-configurer-option" height="34px" name="jsModuleName" id="jsModuleName">
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="defaultCondition" class="col-sm-2 control-label">默认查询条件</label>
+              <div class="col-sm-10">
+                  <textarea rows="3" class="form-control w-configurer-option " name="defaultCondition" id="defaultCondition"></textarea>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="width" class="col-sm-2 control-label">宽度</label>
+              <div class="col-sm-10">
+                  <input type="text" class="form-control w-configurer-option" height="34px" name="width" id="width">
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="height" class="col-sm-2 control-label">高度</label>
+              <div class="col-sm-10">
+                  <input type="text" class="form-control w-configurer-option " height="34px" name="height" id="height">
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="showTitle" class="col-sm-2 control-label">显示标题</label>
+              <div class="col-sm-10 checkbox-inline">
+                  <input type="checkbox" id="showTitle" name="showTitle" class="w-configurer-option"/><label for="showTitle">显示</label>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="formatNoMatchText" class="col-sm-2 control-label">查无数据提示语</label>
+              <div class="col-sm-10 ">
+                  <input type="text" class="form-control w-configurer-option" name="formatNoMatchText" id="formatNoMatchText" placeholder="没有找到匹配的记录">
+              </div>
+          </div>
+          {% include "./widget_base_info.nj" %}
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="widget_file_library_tabs_column_info">
+            <div id="div_column_toolbar" class="btn-group btn_column_info">
+              <button id="btn_add_column" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+              </button>
+              <button id="btn_delete_column" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+              </button>
+              <button id="btn_row_up_column" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+              </button>
+              <button id="btn_row_down_column" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+              </button>
+            </div>
+            <table id="table_column_info" class="definition_info" data-height="430"></table>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="widget_file_library_tabs_field_info">
+          <div class="title" style="margin-bottom: 10px;">字段选择和标题修改：</div>
+          <div id="widget_fields_list"></div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="widget_file_library_tabs_role_info">
+          <div class="custom-role-content">
+            <div id="div_role_toolbar" class="btn-group btn_column_info">
+              <button id="btn_add_role" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+              </button>
+              <button id="btn_delete_role" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+              </button>
+            </div>
+            <table id="table_role_info" class="definition_info" data-height="430"></table>
+          </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="widget_file_library_tabs_button_info">
+          <div id="div_button_info_toolbar" class="btn-group btn_button_info">
+            <button id="btn_add_button" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+            <button id="btn_delete_button" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+            </button>
+            <button id="btn_row_up_button" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+            </button>
+            <button id="btn_row_down_button" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+            </button>
+          </div>
+          <table id="table_button_info" class="definition_info " data-height="400"></table>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="widget_file_library_tabs_tree_info">
+          <div class="form-group">
+            <label for="enableTreegrid" class="col-sm-2 control-label">树形列表</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="enableTreegrid" name="enableTreegrid" value="true"><label for="enableTreegrid">启用树形列表</label>
+              </label>
+            </div>
+          </div>
+          <div class="form-group div_treegrid_definition">
+            <label for="allPageDataTreeFormate" class="col-sm-2 control-label">树形数据</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="allPageDataTreeFormate" name="allPageDataTreeFormate" value="true"><label for="allPageDataTreeFormate">全部页的数据</label>
+              </label>
+              </br>
+              <label class="text-info">注:默认只对当前页的数据进行树形结构化</label>
+            </div>
+          </div>
+          <div class="form-group div_treegrid_definition">
+            <label for="treeView" class="col-sm-2 control-label">默认视图</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="treeView" name="treeView" value="true"><label for="treeView">默认树形列表视图(与默认卡片列表视图互斥)</label>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group div_treegrid_definition">
+            <label for="treeCascadeCheck" class="col-sm-2 control-label">级联勾选</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="treeCascadeCheck" name="treeCascadeCheck" value="true"><label for="treeCascadeCheck">级联全选/反选子节点</label>
+              </label>
+              </br>
+            </div>
+          </div>
+
+          <div class="form-group div_treegrid_definition">
+            <label class="col-sm-2 control-label">默认树形态</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" id="initTreeShowStyle" name="initTreeShowStyle" value="COLLAPSE_ALL"/>
+            </div>
+          </div>
+
+          <div class="form-group div_treegrid_definition">
+            <label class="col-sm-2 control-label">是否显示树形切换按钮</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="showFolderBtn" name="showFolderBtn" value="true"><label for="showFolderBtn">显示</label>
+              </label>
+            </div>
+          </div>
+          <div class="form-group div_treegrid_definition">
+            <label for="collapseIcon" class="col-sm-2 control-label">折叠图标</label>
+            <div class="col-sm-10">
+              <input type="hidden" name="collapseIcon" id="collapseIcon" class="form-control w-configurer-option treeIconClass" value="glyphicon glyphicon-chevron-right"/>
+              <span class="iconfont icon-ptkj-shixinjiantou-you" aria-hidden="true"></span>
+              <button type="button" class="btn btn-primary iconSelectBtn">选择图标</button>
+            </div>
+          </div>
+
+          <div class="form-group div_treegrid_definition">
+            <label for="expandIcon" class="col-sm-2 control-label">展开图标</label>
+            <div class="col-sm-10">
+              <input type="hidden" name="expandIcon" id="expandIcon" class="form-control w-configurer-option treeIconClass" value="glyphicon glyphicon-chevron-down"/>
+              <span class="iconfont icon-ptkj-shixinjiantou-xia" aria-hidden="true"></span>
+              <button type="button" class="btn btn-primary iconSelectBtn">选择图标</button>
+            </div>
+          </div>
+
+          <div class="form-group div_treegrid_definition">
+              <label for="allPageDataTreeFormate" class="col-sm-2 control-label">树构造方式</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option" height="34px" id="treeBuildType" name="treeBuildType"/>
+              </div>
+          </div>
+
+          <div class="treeBuildType treegrid_multiField">
+            <!-- 该配置暂时无用 -->
+            <div class="form-group  XXXXXXXXXX_div_treegrid_definition" style="display: none;">
+              <label for="treeNodeDisplayField" class="col-sm-2 control-label required">节点显示字段</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option" height="34px" id="treeNodeDisplayField" name="treeNodeDisplayField"/>
+                <label class="text-info">注:树节点值的展示字段</label>
+              </div>
+            </div>
+
+            <div class="form-group  div_treegrid_definition">
+              <label for="treeNodeDisplayField" class="col-sm-2 control-label required">末级行数据树形</label>
+              <div class="col-sm-10">
+                <label class="checkbox-inline">
+                  <input class="w-configurer-option" type="checkbox" id="lastLevelDataParentTree" name="lastLevelDataParentTree" value="true"><label for="lastLevelDataParentTree">末级行数据按父级字段构造</label>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="treeBuildType treegrid_parentField">
+            <div class="form-group  div_treegrid_definition">
+              <label for="parentIdField" class="col-sm-2 control-label required">节点父字段</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option" height="34px" id="parentIdField" name="parentIdField"/>
+                <label class="text-info">注:节点主键字段在“列定义”->“是否主键”定义</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="treeBuildType treegrid_multiField">
+            <div class="div_treegrid_definition ">
+              <div id="div_tree_node_toolbar" class="btn-group btn_tree_node_info">
+                <button id="btn_add_tree_node" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                </button>
+                <button id="btn_delete_tree_node" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                </button>
+                <button id="btn_row_up_tree_node" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+                </button>
+                <button id="btn_row_down_tree_node" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+                </button>
+              </div>
+              <table id="table_tree_node_info" class="definition_info" data-height="450"></table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

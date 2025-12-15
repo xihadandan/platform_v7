@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="listFlowCategoryQuery">
+        <![CDATA[
+		select t1.uuid           as uuid,
+		       t1.create_time    as create_time,
+		       t1.name           as name,
+		       t1.code           as code,
+		       t1.icon        	 as icon,
+		       t1.icon_color  	 as icon_color,
+		       t1.remark         as remark,
+		       t1.system_unit_id as system_unit_id
+		  from wf_def_category t1
+		 where 1 = 1
+			<if isNotBlank(uuid) || isNotBlank(uuids) || isNotBlank(name) || isNotBlank(systemUnitId) || isNotBlank(systemUnitIds) || isNotBlank(systemId) >
+				<if isNotBlank(uuid)>
+					and t1.uuid = :uuid
+				</if>
+				<if isNotBlank(uuids)>
+					and t1.uuid in(:uuids)
+				</if>
+				<if isNotBlank(name)>
+					and t1.name = :name
+				</if>
+				<if isNotBlank(systemUnitId)>
+					and (t1.system_unit_id = :systemUnitId or t1.system_unit_id is null)
+				</if>
+				<if isNotBlank(systemId)>
+					and (t1.system = :systemId)
+				</if>
+				<if isNotBlank(systemUnitIds)>
+					and (t1.system_unit_id in(:systemUnitIds) or t1.system_unit_id is null)
+				</if>
+			</if>
+			<if isNotBlank(likeQuery)>
+				and ( 1 = 2
+				<if isNotBlank(nameLike)>
+					or t1.name like '%${nameLike}%'
+				</if>
+				)
+			</if>
+			<if isNotBlank(orderBy)>
+				order by ${orderBy}
+			</if>
+			<if isBlank(orderBy)>
+				order by t1.code asc
+			</if>
+	]]>
+    </sql-query>
+
+</hibernate-mapping>

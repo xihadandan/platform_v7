@@ -1,0 +1,32 @@
+{
+  "description": "WellOffice WebExtensions",
+  "license": "Apache License v2.0",
+  "name": "WellOffice-WebExtensions",
+  "version": "1.0.0",
+  "repository": {
+    "type": "svn",
+    "url": ""
+  },
+  "devDependencies": {
+    "dateformat": "*",
+    "del": "*",
+    "fancy-log": "*",
+    "gulp": "3.9.1",
+    "gulp-concat": "*",
+    "gulp-csslint": "*",
+    "gulp-eslint": "*",
+    "gulp-filter-java-properties": "*",
+    "gulp-footer": "*",
+    "gulp-imagemin": "4.1.0",
+    "gulp-load-plugins": "*",
+    "gulp-plumber": "*",
+    "gulp-rename": "*",
+    "gulp-replace": "*",
+    "gulp-zip": "*",
+    "lazypipe": "*",
+    "merge-stream": "*",
+    "require-dir": "*",
+    "run-sequence": "*",
+    "web-ext": "*"
+  }
+}

@@ -1,0 +1,201 @@
+/** 目录树: 用于文件树管理组件和DMS */
+
+.folder-tree-container {
+  .ztree {
+    margin-top: 0 !important;
+    padding: 0;
+
+    .ztree-row {
+      padding: 0 5px;
+    }
+
+    .level1 .ztree-row {
+      padding-left: 28px;
+    }
+
+    .level2 .ztree-row {
+      padding-left: 48px;
+    }
+
+    .level3 .ztree-row {
+      padding-left: 68px;
+    }
+
+    .level4 .ztree-row {
+      padding-left: 88px;
+    }
+  }
+}
+
+.folder-tree.ztree li ul {
+  margin: 0;
+  padding: 0;
+}
+
+.folder-tree.ztree li {
+  line-height: 30px;
+  position: relative;
+
+  a {
+    .text-truncate();
+
+    height: 30px;
+    padding: 0;
+    width: calc(100% - 26px);
+    min-width: 80px;
+
+  }
+
+  span {
+    font-size: @font-size-base;
+
+    &.button {
+      margin-top: -7px;
+      background: none;
+      margin-right: 0;
+      width: 0;
+
+      &.center_close:before,
+      &.bottom_close:before,
+      &.root_close:before,
+      &.roots_close:before {
+        .absolute(50% false false 5px);
+
+        content: '\e905';
+        font-size: 14px;
+        color: @text-color-light;
+        font-family: iconfont;
+      }
+
+      &.bottom_open:before,
+      &.center_open:before,
+      &.root_open:before,
+      &.roots_open:before {
+        .absolute(50% false false 5px);
+
+        font-family: iconfont;
+        content: '\e90f';
+        font-size: 14px;
+        color: @text-color-light;
+      }
+
+      // &.switch {
+      //   visibility: hidden;
+      // }
+    }
+  }
+
+  &.curSelectedNode {
+    color: @text-color-dark;
+    opacity: 1;
+    border: 0;
+    height: 30px;
+
+    span {
+      font-weight: normal;
+      font-size: 120%;
+    }
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.folder-tree.ztree.showIcon li a span.button.switch {
+  visibility: hidden;
+}
+
+.folder-tree.ztree li.level1 span.button:before {
+  left: 28px;
+}
+
+.folder-tree.ztree li.level2 span.button:before {
+  left: 48px;
+}
+
+.folder-tree.ztree li.level3 span.button:before {
+  left: 68px;
+}
+
+.folder-tree.ztree li.level4 span.button:before {
+  left: 88px;
+}
+
+.folder-tree.ztree li span.button.noline_open {
+  background-position: 0 0;
+}
+
+.folder-tree.ztree li span.button.noline_close {
+  background-position: -18px 0;
+}
+
+.folder-tree.ztree li span.button.noline_open.level0 {
+  background-position: 0 -18px;
+}
+
+.folder-tree.ztree li span.button.noline_close.level0 {
+  background-position: -18px -18px;
+}
+
+.folder-tree.ztree .ztree-row .node_name {
+  padding-left: 22px;
+  position: relative;
+  color: @text-color-dark;
+  font-size: @font-size-base;
+}
+
+.folder-tree.ztree .ztree-row .node_name:before {
+  .absolute(3px false false 0);
+
+  content: '\e91c';
+  font-size: @font-size-base;
+  line-height: 1;
+  color: @folder-color;
+  font-family: iconfont;
+}
+
+.folder-tree.ztree .ztree-row .ico_open+.node_name:before {
+  content: '\e91b';
+}
+
+.folder-tree.ztree li span.button.roots_close,
+.folder-tree.ztree li span.button.root_close,
+.folder-tree.ztree li span.button.center_close,
+.folder-tree.ztree li span.button.bottom_close,
+.folder-tree.ztree li span.button.noline_close {
+  margin-right: 0;
+}
+
+.folder-tree.ztree.showIcon li a span.button.switch {
+  visibility: visible;
+}
+
+span.folder-color:before {
+  color: @folder-color;
+}
+
+span.excel-color:before {
+  color: @excel-color;
+}
+
+span.word-color:before {
+  color: @word-color;
+}
+
+span.ppt-color:before {
+  color: @ppt-color;
+}
+
+span.pdf-color:before {
+  color: @pdf-color;
+}
+
+span.other-color:before {
+  color: @other-files-color;
+}

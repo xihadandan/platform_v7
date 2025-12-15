@@ -1,0 +1,2277 @@
+package com.wellsoft.pt.integration.service.impl;
+
+import static com.wellsoft.pt.integration.support.ExchangeDataResultTransformer.INSTANCE;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Clob;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.annotation.PostConstruct;
+
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.wellsoft.pt.common.enums.Separator;
+import com.wellsoft.pt.core.resource.Config;
+import com.wellsoft.pt.core.service.impl.BaseServiceImpl;
+import com.wellsoft.pt.integration.bean.FtpDataBean;
+import com.wellsoft.pt.integration.entity.SysProperties;
+import com.wellsoft.pt.integration.facade.ExchangedataApiFacade;
+import com.wellsoft.pt.integration.ftp.CommonFtp;
+import com.wellsoft.pt.integration.security.ExchangeConfig;
+import com.wellsoft.pt.integration.service.ExchangeDataSynService;
+import com.wellsoft.pt.integration.service.SynDataStaticsService;
+import com.wellsoft.pt.repository.entity.mongo.file.MongoFileEntity;
+import com.wellsoft.pt.repository.service.MongoFileService;
+
+/**
+ * 
+ * Description: 如何描述该类
+ *  
+ * @author ruanhg
+ * @date 2014-12-8
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2014-12-8.1	ruanhg		2014-12-8		Create
+ * </pre>
+ *
+ */
+@Service
+@Transactional
+public class ExchangeDataSynServiceImpl extends BaseServiceImpl implements ExchangeDataSynService {
+
+	@Autowired
+	private MongoFileService mongoFileService;
+
+	@Autowired
+	private ExchangedataApiFacade exchangedataApiFacade;
+
+	@Autowired
+	private SynDataStaticsService statics;
+
+	protected int interval = 30;
+	protected int dataNum = 50;
+	protected int clearInterval = 300;
+	protected String feedInQuery;
+	protected String feedOutQuery;
+
+	protected String dataInQuery;
+	protected String dataOutQuery;
+	//	protected String tableDataInsertSql;
+	//	protected String columnDataInsertSql;
+	//	protected String columnClobInsertSql;
+	protected FtpDataBean outFtpDataBean = new FtpDataBean();
+	protected FtpDataBean inFtpDataBean = new FtpDataBean();
+	protected int direction = 0;//1内/2外
+
+	@PostConstruct
+	protected void init() {
+		Map<String, SysProperties> sysPropertiess = exchangedataApiFacade.getAllSysProperties("SYSPROPERTIES");
+
+		// 同步中间隔时间再同步(S)
+		if (sysPropertiess.get("syn_fail_agin_interval").getProValue() != null) {
+			interval = Integer.parseInt(sysPropertiess.get("syn_fail_agin_interval").getProValue());
+		}
+		// 每个同步周期同步条数
+		if (sysPropertiess.get("syn_zq_data_num").getProValue() != null) {
+			dataNum = Integer.parseInt(sysPropertiess.get("syn_zq_data_num").getProValue());
+		}
+		// 清理间隔时间(S)
+		if (sysPropertiess.get("syn_clear_table_interval").getProValue() != null) {
+			clearInterval = Integer.parseInt(sysPropertiess.get("syn_clear_table_interval").getProValue());
+		}
+		String xt_wl = sysPropertiess.get("xt_wl").getProValue();//内网/外网  in/out
+
+		/***********************获取同步的信息****************************/
+		// 流出
+		int out_ftp_post = 21;
+		String out_ftp_host = "";
+		String out_ftp_user_name = "";
+		String out_ftp_pass_word = "";
+		// 流入
+		int in_ftp_post = 21;
+		String in_ftp_host = "";
+		String in_ftp_user_name = "";
+		String in_ftp_pass_word = "";
+		if (xt_wl.equals("in")) {// 当前是内网
+			direction = 1;
+			// 内网流出
+			out_ftp_host = sysPropertiess.get("qzj_ftp_nw_out_host").getProValue();
+			out_ftp_user_name = sysPropertiess.get("qzj_ftp_nw_out_username").getProValue();
+			out_ftp_pass_word = sysPropertiess.get("qzj_ftp_nw_out_password").getProValue();
+			out_ftp_post = Integer.parseInt(sysPropertiess.get("qzj_ftp_nw_out_post").getProValue());
+			// 内网流入
+			in_ftp_host = sysPropertiess.get("qzj_ftp_nw_in_host").getProValue();
+			in_ftp_user_name = sysPropertiess.get("qzj_ftp_nw_in_username").getProValue();
+			in_ftp_pass_word = sysPropertiess.get("qzj_ftp_nw_in_password").getProValue();
+			in_ftp_post = Integer.parseInt(sysPropertiess.get("qzj_ftp_nw_in_post").getProValue());
+		} else if (xt_wl.equals("out")) {// 当前是外网
+			direction = 2;
+			// 外网流出
+			out_ftp_host = sysPropertiess.get("qzj_ftp_ww_out_host").getProValue();
+			out_ftp_user_name = sysPropertiess.get("qzj_ftp_ww_out_username").getProValue();
+			out_ftp_pass_word = sysPropertiess.get("qzj_ftp_ww_out_password").getProValue();
+			out_ftp_post = Integer.parseInt(sysPropertiess.get("qzj_ftp_ww_out_post").getProValue());
+			// 外网流入
+			in_ftp_host = sysPropertiess.get("qzj_ftp_ww_in_host").getProValue();
+			in_ftp_user_name = sysPropertiess.get("qzj_ftp_ww_in_username").getProValue();
+			in_ftp_pass_word = sysPropertiess.get("qzj_ftp_ww_in_password").getProValue();
+			in_ftp_post = Integer.parseInt(sysPropertiess.get("qzj_ftp_ww_in_post").getProValue());
+
+		}
+		// 反馈数据提取
+		feedInQuery = "select list.* from (select * from tig_table_data d where (d.status=6 or d.status=7) and d.direction = "
+				+ (direction == 1 ? 2 : 1)
+				+ " order by d.status asc,d.order_id asc) list where rownum<="
+				+ (dataNum * 5);
+		// 反馈数据提取
+		feedOutQuery = "select list.* from (select * from tig_table_data o where o.syn_time is null and (o.status=6 or o.status=7) and o.direction = "
+				+ direction + " order by o.status asc,o.order_id asc) list where rownum<=" + (dataNum * 5);
+		// 流入队列
+		dataInQuery = "select count(1) from tig_table_data t where t.status = 2 and t.direction = "
+				+ (direction == 1 ? 2 : 1);
+		// 流出队列
+		dataOutQuery = "select count(1) from tig_table_data t where t.status = 1 and t.direction = " + direction;
+
+		outFtpDataBean.setFtp_host(out_ftp_host);
+		outFtpDataBean.setFtp_pass_word(out_ftp_pass_word);
+		outFtpDataBean.setFtp_post(out_ftp_post);
+		outFtpDataBean.setFtp_user_name(out_ftp_user_name);
+
+		inFtpDataBean.setFtp_host(in_ftp_host);
+		inFtpDataBean.setFtp_pass_word(in_ftp_pass_word);
+		inFtpDataBean.setFtp_post(in_ftp_post);
+		inFtpDataBean.setFtp_user_name(in_ftp_user_name);
+	}
+
+	@Override
+	public void synOutData(Map<String, SysProperties> sysPropertiess, String params) throws Exception {
+		synOutData(sysPropertiess, params, false);
+	}
+
+	@Override
+	public void synOutData(Map<String, SysProperties> sysPropertiessDeprecated, String params, boolean withClob)
+			throws Exception {
+		/**
+		 * 数据同步到前置机
+		 * 1、提取系统数据
+		 * 2、变更数据到前置机
+		 * 3、修改系统数据状态
+		 */
+		try {
+			Map<String, File> fileMap = new HashMap<String, File>();
+			Date synTime = new Date();// 同步时间
+			/***********************1、提取系统数据 先提取表数据再提取字段数据****************************/
+			List<String> dataUuids = new ArrayList<String>(); // 本次更新的UUID集合
+			List<String> delDataUuids = new ArrayList<String>(); // 本次免同步的UUID集合
+			List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
+			List<Map<String, Object>> columDataList = new ArrayList<Map<String, Object>>();
+			List<Map<String, Object>> CLOBList = new ArrayList<Map<String, Object>>();
+			//?long ri_token = 0;
+			Session session2 = this.dao.openSession();
+			try {
+				//?ri_token = statics.startTimer(SynDataLog.READ_IN);
+				if (withClob == true) {
+					// 流出Clob提取
+					StringBuilder sqlB = new StringBuilder();
+					sqlB.append("select list.* from (select * from tig_column_clob t where (t.data_status=1 or (t.data_status=2");
+					sqlB.append(" and t.syn_time < cast((sysdate - ").append(interval).append("/86400) as TIMESTAMP)");
+					sqlB.append(")) and t.direction=").append(direction);
+					sqlB.append(") list where rownum<=").append(dataNum);
+					CLOBList = session2.createSQLQuery(sqlB.toString()).setResultTransformer(INSTANCE).list();
+					if (CLOBList.isEmpty()) {
+						return;
+					}
+				} else {
+					// 提取同步数据
+					StringBuilder sqlB = new StringBuilder();
+					// 一天秒：86400 = 24*60*60 : or o.status=3 FIXME 失败的数据不重发
+					sqlB.append("select list.* from (select * from tig_table_data o where (o.status=1 or (o.status=2 ");
+					sqlB.append(" and o.syn_time < cast((sysdate - ").append(interval).append("/86400) as TIMESTAMP)");
+					sqlB.append(")) and o.direction = ").append(direction);
+					if (StringUtils.isNotBlank(params)) {
+						sqlB.append(params);
+					}
+					sqlB.append(" order by o.status asc,o.order_id asc) list where rownum<=").append(dataNum);
+					dataList = session2.createSQLQuery(sqlB.toString()).setResultTransformer(INSTANCE).list();
+					if (dataList.isEmpty()) {
+						return;
+					}
+					//提取字段数据
+					//?long ria_token = 0;
+					try {
+						//?ria_token = statics.startTimer(SynDataLog.READ_IN + SynDataLog.SUB_ALL);
+						for (Map<String, Object> dataItem : dataList) {
+							String uuid = (String) dataItem.get("uuid");
+							dataUuids.add(uuid);
+							//当REPO_FILE插入时，删除更新不做处理，mongo里更新即是插入及删除，删除由mongo的垃圾回收来处理
+							String tableName = (String) dataItem.get("stable_name");
+							if (tableName != null && tableName.toUpperCase().equals(ExchangeConfig.FILETABLE)
+									&& dataItem.get("action").toString().equals("1")) {
+								String suuid = dataItem.get("suuid").toString();
+								fileMap.put(suuid, this.exportFileZip(suuid));
+							}
+						}
+						String updateColumnNum = "update tig_table_data o set o.cloum_num = (select count(1) from tig_column_data t where t.tig_owner_uuid = o.uuid) where o.uuid in (:uuids)";
+						session2.createSQLQuery(updateColumnNum).setParameterList("uuids", dataUuids).executeUpdate();
+						String datOutQuery = "select t.* from tig_table_data t where t.uuid in (:uuids)";
+						Query datQuery = session2.createSQLQuery(datOutQuery).setParameterList("uuids", dataUuids);
+						dataList = datQuery.setResultTransformer(INSTANCE).list();// 取到更新后的数据
+						String colOutQuery = "select t.* from tig_column_data t where t.tig_owner_uuid in (:uuids)";
+						Query colQuery = session2.createSQLQuery(colOutQuery).setParameterList("uuids", dataUuids);
+						columDataList = colQuery.setResultTransformer(INSTANCE).list();
+					} finally {
+						//?statics.stopTimer(ria_token, null);
+					}
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session2.close();
+				//?statics.stopTimer(ri_token, null);
+			}
+
+			/****************************3、变更数据到前置机 先插入字段数据再插入表数据*****************************/
+			//?long wo_token = 0;
+			Session session3 = this.getDao(ExchangeConfig.NEWAPASOUT).openSession();
+			try {
+				//字段表插入
+				//?wo_token = statics.startTimer(SynDataLog.WRITE_OUT);
+				//?long wod_token = 0;
+				try {
+					//?wod_token = statics.startTimer(SynDataLog.WRITE_OUT + SynDataLog.SUB_DATA);
+					for (Map<String, Object> dataItem : columDataList) {
+						String tig_owner_uuid = dataItem.get("tig_owner_uuid").toString();
+						String tig_column_name = dataItem.get("tig_column_name").toString();
+						String querySql2 = "select count(1) as count_ from tig_column_data o where o.tig_owner_uuid=:tig_owner_uuid and o.tig_column_name=:tig_column_name";
+						Query sqlQuery = session3.createSQLQuery(querySql2);
+						sqlQuery.setString("tig_owner_uuid", tig_owner_uuid);
+						sqlQuery.setString("tig_column_name", tig_column_name);
+						boolean notExist = ((Number) sqlQuery.uniqueResult()).intValue() <= 0;
+						if (notExist) {
+							String insertSql = "insert into tig_column_data "
+									+ "(,tig_owner_uuid,tig_column_name,tig_data_type,data_time,data_float,data_number,data_clob,data_char,data_date,data_varchar_2) "
+									+ "values "
+									+ "(,:tig_owner_uuid,:tig_column_name,:tig_data_type,:data_time,:data_float,:data_number,:data_clob,:data_char,:data_date,:data_varchar_2) ";
+							for (String columKey : dataItem.keySet()) {
+								if (dataItem.get(columKey) == null) {
+									insertSql = insertSql.replace("," + columKey, "").replace(",:" + columKey, "");
+								}
+							}
+							insertSql = insertSql.replace("(,", "(");
+							SQLQuery sqlquery = session3.createSQLQuery(insertSql);
+							sqlquery.setString("tig_owner_uuid", (String) dataItem.get("tig_owner_uuid"));
+							sqlquery.setString("tig_column_name", (String) dataItem.get("tig_column_name"));
+							sqlquery.setString("tig_data_type", (String) dataItem.get("tig_data_type"));
+							Object obj = null;
+							if ((obj = dataItem.get("data_time")) != null) {
+								sqlquery.setTimestamp("data_time", (Date) obj);
+							}
+							if ((obj = dataItem.get("data_float")) != null) {
+								sqlquery.setFloat("data_float", ((Number) obj).floatValue());
+							}
+							if ((obj = dataItem.get("data_number")) != null) {
+								sqlquery.setDouble("data_number", ((Number) obj).doubleValue());
+							}
+							if ((obj = dataItem.get("data_clob")) != null) {
+								sqlquery.setText("data_clob", (String) obj);
+							}
+							if ((obj = dataItem.get("data_char")) != null) {
+								sqlquery.setString("data_char", (String) obj);
+							}
+							if ((obj = dataItem.get("data_date")) != null) {
+								sqlquery.setDate("data_date", (Date) obj);
+							}
+							if ((obj = dataItem.get("data_varchar_2")) != null) {
+								sqlquery.setString("data_varchar_2", (String) obj);
+							}
+							sqlquery.executeUpdate();
+						} else {
+							// 触发假更新
+							String updateSql = "update tig_column_data t set t.tig_data_type=t.tig_data_type where t.tig_owner_uuid=:tig_owner_uuid and t.tig_column_name=:tig_column_name";
+							SQLQuery sqlquery = session3.createSQLQuery(updateSql);
+							sqlquery.setString("tig_owner_uuid", tig_owner_uuid);
+							sqlquery.setString("tig_column_name", tig_column_name);
+							sqlquery.executeUpdate();
+						}
+					}
+				} finally {
+					//?statics.stopTimer(wod_token, null);
+				}
+
+				//?long woc_token = 0;
+				try {
+					//?woc_token = statics.startTimer(SynDataLog.WRITE_OUT + SynDataLog.SUB_CLOB);
+					//大字段插入
+					for (Map<String, Object> dataItem : CLOBList) {
+						String tig_owner_uuid = dataItem.get("tig_owner_uuid").toString();
+						String tig_column_name = dataItem.get("tig_column_name").toString();
+						String querySql2 = "select count(1) as count_ from tig_column_clob o where o.tig_owner_uuid=:tig_owner_uuid and o.tig_column_name=:tig_column_name";
+						Query query = session3.createSQLQuery(querySql2);
+						query.setString("tig_owner_uuid", tig_owner_uuid);
+						query.setString("tig_column_name", tig_column_name);
+						boolean notExist = ((Number) query.uniqueResult()).intValue() <= 0;
+						if (notExist) {
+							String insertSql = "insert into tig_column_clob "
+									+ "(,tig_owner_uuid,tig_column_name,data_uuid,composite_key,data_clob,data_status,direction,stable_name,syn_time,create_time) "
+									+ "values "
+									+ "(,:tig_owner_uuid,:tig_column_name,:data_uuid,:composite_key,:data_clob,:data_status,:direction,:stable_name,:syn_time,:create_time) ";
+							for (String columKey : dataItem.keySet()) {
+								if (dataItem.get(columKey) == null && !columKey.equals("syn_time")) {
+									insertSql = insertSql.replace("," + columKey, "").replace(",:" + columKey, "");
+								}
+							}
+							insertSql = insertSql.replace("(,", "(");
+							SQLQuery sqlquery = session3.createSQLQuery(insertSql);
+							sqlquery.setString("tig_owner_uuid", (String) dataItem.get("tig_owner_uuid"));
+							sqlquery.setString("tig_column_name", (String) dataItem.get("tig_column_name"));
+							sqlquery.setString("data_uuid", (String) dataItem.get("data_uuid"));
+							Object obj = null;
+							if ((obj = dataItem.get("composite_key")) != null) {
+								sqlquery.setString("composite_key", (String) obj);
+							}
+							if ((obj = dataItem.get("data_clob")) != null) {
+								sqlquery.setText("data_clob", IOUtils.toString(((Clob) obj).getCharacterStream()));
+							}
+							if ((obj = dataItem.get("data_char")) != null) {
+								sqlquery.setString("data_char", (String) obj);
+							}
+							if ((obj = dataItem.get("direction")) != null) {
+								sqlquery.setInteger("direction", ((Number) obj).intValue());
+							}
+							if ((obj = dataItem.get("stable_name")) != null) {
+								sqlquery.setString("stable_name", (String) obj);
+							}
+							if ((obj = dataItem.get("create_time")) != null) {
+								sqlquery.setTimestamp("create_time", (Date) obj);
+							}
+							sqlquery.setInteger("data_status", 2);
+							sqlquery.setTimestamp("syn_time", synTime);
+							sqlquery.executeUpdate();
+						} else {
+							String updateSql = "update tig_column_clob t set t.syn_time=:syn_time,t.data_status=2 where t.tig_owner_uuid=:tig_owner_uuid and t.tig_column_name=:tig_column_name";
+							SQLQuery sqlquery = session3.createSQLQuery(updateSql);
+							sqlquery.setString("tig_owner_uuid", tig_owner_uuid);
+							sqlquery.setString("tig_column_name", tig_column_name);
+							sqlquery.setTimestamp("syn_time", synTime);
+							sqlquery.executeUpdate();
+						}
+					}
+				} finally {
+					//?statics.stopTimer(woc_token, null);
+				}
+
+				//插入数据
+				//?long wol_token = 0;
+				try {
+					//?wol_token = statics.startTimer(SynDataLog.WRITE_OUT + SynDataLog.SUB_LIST);
+					for (Map<String, Object> dataItem : dataList) {
+						String stable_name = (String) dataItem.get("stable_name");
+						String uuid = (String) dataItem.get("uuid");
+						Object action_obj, cloum_num_obj;
+						int action = 0, cloum_num = 0;
+						if ((action_obj = dataItem.get("action")) != null
+								&& (cloum_num_obj = dataItem.get("cloum_num")) != null) {
+							// TODO 应该在程序上控制更新与插入的字段数为0的同步数据生成,目前表REPO_FOLDER存在这种情况
+							action = ((Number) action_obj).intValue();
+							cloum_num = ((Number) cloum_num_obj).intValue();
+							if ((action == 2 || action == 1) && cloum_num == 0/*更新与插入的字段数为0*/) {
+								delDataUuids.add(uuid);
+								continue;
+							}
+						}
+						/******比较数据是否已经处理过*********/
+						String querySql2 = "select count(1) as count_ from tig_table_data o where o.uuid=:uuid";//查询是否存在数据
+						Query query = session3.createSQLQuery(querySql2);
+						boolean notExist = ((Number) query.setString("uuid", uuid).uniqueResult()).intValue() <= 0;
+						if (notExist) {
+							//文件夹 先上传附件到ftp再插入数据
+							if (stable_name != null && stable_name.toUpperCase().equals(ExchangeConfig.FILETABLE)
+									&& action == 1) {
+								String suuid = (String) dataItem.get("suuid");
+								File zipFile = fileMap.get(suuid);
+								if (zipFile != null) {
+									uploadFileToFtp(suuid, zipFile, outFtpDataBean);
+								}
+							}
+							//插入数据
+							String insertSql = "insert into tig_table_data "
+									+ "(,uuid,create_time,order_id,action,feedback,direction,remark,stable_name,status,suuid,syn_time,composite_key,cloum_num) "
+									+ "values "
+									+ "(,:uuid,:create_time,:order_id,:action,:feedback,:direction,:remark,:stable_name,:status,:suuid,:syn_time,:composite_key,:cloum_num)";
+							for (String dataKey : dataItem.keySet()) {
+								if (dataItem.get(dataKey) == null && !dataKey.equals("syn_time")) {
+									insertSql = insertSql.replace("," + dataKey, "").replace(",:" + dataKey, "");
+								}
+							}
+							insertSql = insertSql.replace("(,", "(");
+							SQLQuery sqlquery = session3.createSQLQuery(insertSql);
+							sqlquery.setString("uuid", (String) dataItem.get("uuid"));
+							sqlquery.setTimestamp("create_time", (Date) dataItem.get("create_time"));
+							Object obj = null;
+							if ((obj = dataItem.get("order_id")) != null) {
+								sqlquery.setInteger("order_id", ((Number) obj).intValue());
+							}
+							if ((obj = dataItem.get("action")) != null) {
+								sqlquery.setInteger("action", ((Number) obj).intValue());
+							}
+							if ((obj = dataItem.get("feedback")) != null) {
+								sqlquery.setString("feedback", (String) obj);
+							}
+							if ((obj = dataItem.get("direction")) != null) {
+								sqlquery.setInteger("direction", ((Number) obj).intValue());
+							}
+							if ((obj = dataItem.get("remark")) != null) {
+								sqlquery.setString("remark", (String) obj);
+							}
+							if ((obj = dataItem.get("stable_name")) != null) {
+								sqlquery.setString("stable_name", (String) obj);
+							}
+							if ((obj = dataItem.get("suuid")) != null) {
+								sqlquery.setString("suuid", (String) obj);
+							}
+							if ((obj = dataItem.get("composite_key")) != null) {
+								sqlquery.setString("composite_key", (String) obj);
+							}
+							if ((obj = dataItem.get("cloum_num")) != null) {
+								sqlquery.setInteger("cloum_num", ((Number) obj).intValue());
+							}
+							sqlquery.setInteger("status", 2);// 同步中
+							sqlquery.setTimestamp("syn_time", synTime);
+							sqlquery.executeUpdate();
+						} else {//用于同步过的数据，未完成握手，更新光闸中的数据状态为同步中
+							String updateSql = "update tig_table_data t set t.syn_time=:syn_time,t.status = 2 where t.uuid=:uuid";
+							SQLQuery sqlquery = session3.createSQLQuery(updateSql);
+							sqlquery.setString("uuid", (String) dataItem.get("uuid"));
+							sqlquery.setTimestamp("syn_time", synTime);
+							sqlquery.executeUpdate();
+						}
+					}
+				} finally {
+					//?statics.stopTimer(wol_token, null);
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session3.close();
+				//?statics.stopTimer(wo_token, null);
+			}
+
+			/****************************4、修改系统数据状态*****************************/
+			Session session4 = this.dao.openSession();
+			//?long is_token = 0;
+			try {
+				//?is_token = statics.startTimer(SynDataLog.IN_STATE);
+				if (!delDataUuids.isEmpty()) {
+					SQLQuery sqlquery = session4.createSQLQuery("delete from tig_table_data where uuid in (:uuids)");
+					sqlquery.setParameterList("uuids", delDataUuids);
+					sqlquery.executeUpdate();
+					logger.warn("deleted no need syn [" + delDataUuids.size() + "] datas:"
+							+ StringUtils.join(delDataUuids, Separator.COMMA.getValue()));
+				}
+				if (!dataUuids.isEmpty()) {
+					SQLQuery sqlquery = session4
+							.createSQLQuery("update tig_table_data o set o.syn_time=:syn_time,o.status=2 where o.uuid in (:uuids)");
+					sqlquery.setTimestamp("syn_time", synTime); // 修改同步时间,防止短时间内多次同步
+					sqlquery.setParameterList("uuids", dataUuids);
+					sqlquery.executeUpdate();
+				}
+				for (Map<String, Object> dataItem : CLOBList) {//更新同步时间 
+					String tig_owner_uuid = dataItem.get("tig_owner_uuid").toString();
+					String tig_column_name = dataItem.get("tig_column_name").toString();
+					String updateSql = "update tig_column_clob o set o.syn_time=:syn_time,o.data_status=2 where o.data_status = 1 and o.tig_owner_uuid=:tig_owner_uuid and o.tig_column_name=:tig_column_name";
+					SQLQuery sqlquery = session4.createSQLQuery(updateSql);
+					sqlquery.setString("tig_owner_uuid", tig_owner_uuid);
+					sqlquery.setString("tig_column_name", tig_column_name);
+					sqlquery.setTimestamp("syn_time", synTime);// 修改同步时间,防止短时间内多次同步
+					sqlquery.executeUpdate();
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session4.close();
+				//?statics.stopTimer(is_token, null);
+			}
+		} catch (Exception e) {
+			logger.error("**********************synOutData " + e.getMessage(), e);
+			throw e;
+		}
+	}
+
+	@Override
+	public void synOutDataFeedback(Map<String, SysProperties> sysPropertiess) throws Exception {
+		/**
+		 * 数据同步到前置机
+		 * 1、提取系统数据
+		 * 2、变更数据到前置机
+		 * 3、修改系统数据状态
+		 */
+		try {
+			Date synTime = new Date();//同步时间
+			/***********************2、提取系统数据 先提取表数据再提取字段数据****************************/
+			List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
+			List<String> dataUuids = new ArrayList<String>();
+			Session session2 = this.dao.openSession();
+			//?long ir_token = 0;
+			try {
+				//?ir_token = statics.startTimer(SynDataLog.IN_READ);
+				//提取反馈数据
+				Query query = session2.createSQLQuery(feedOutQuery);
+				dataList = query.setResultTransformer(INSTANCE).list();
+				if (dataList.size() == 0) {
+					return;
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session2.close();
+				//?statics.stopTimer(ir_token, null);
+			}
+
+			/****************************3、变更数据到前置机 先插入字段数据再插入表数据*****************************/
+			Session session3 = this.getDao(ExchangeConfig.NEWAPASOUT).openSession();
+			//?long ow_token = 0;
+			try {
+				//?ow_token = statics.startTimer(SynDataLog.OUT_WRITE);
+				//插入数据
+				for (Map<String, Object> dataItem : dataList) {
+					String uuid = (String) dataItem.get("uuid");
+					dataUuids.add(uuid);
+					/******比较数据是否已经处理过*********/
+					String querySql2 = "select count(1) as count_ from tig_table_data o where o.uuid=:uuid";//查询是否存在数据
+					Query query = session3.createSQLQuery(querySql2).setString("uuid", uuid);
+					boolean notExist = ((Number) query.uniqueResult()).intValue() <= 0;
+					if (notExist) {
+						//插入数据
+						String insertSql = "insert into tig_table_data "
+								+ "(,uuid,create_time,order_id,action,feedback,direction,remark,stable_name,status,suuid,syn_time,composite_key,cloum_num) "
+								+ "values "
+								+ "(,:uuid,:create_time,:order_id,:action,:feedback,:direction,:remark,:stable_name,:status,:suuid,:syn_time,:composite_key,:cloum_num)";
+						for (String dataKey : dataItem.keySet()) {
+							if (dataItem.get(dataKey) == null && !dataKey.equals("syn_time")) {
+								insertSql = insertSql.replace("," + dataKey, "").replace(",:" + dataKey, "");
+							}
+						}
+						insertSql = insertSql.replace("(,", "(");
+						SQLQuery sqlquery = session3.createSQLQuery(insertSql);
+						sqlquery.setString("uuid", (String) dataItem.get("uuid"));
+						sqlquery.setTimestamp("create_time", (Date) dataItem.get("create_time"));
+						Object obj = null;
+						if ((obj = dataItem.get("order_id")) != null) {
+							sqlquery.setInteger("order_id", ((Number) obj).intValue());
+						}
+						if ((obj = dataItem.get("action")) != null) {
+							sqlquery.setInteger("action", ((Number) obj).intValue());
+						}
+						if ((obj = dataItem.get("feedback")) != null) {
+							sqlquery.setString("feedback", (String) obj);
+						}
+						if ((obj = dataItem.get("direction")) != null) {
+							sqlquery.setInteger("direction", ((Number) obj).intValue());
+						}
+						if ((obj = dataItem.get("remark")) != null) {
+							sqlquery.setString("remark", (String) obj);
+						}
+						if ((obj = dataItem.get("stable_name")) != null) {
+							sqlquery.setString("stable_name", (String) obj);
+						}
+						if ((obj = dataItem.get("status")) != null) {
+							sqlquery.setInteger("status", ((Number) obj).intValue());//反馈状态
+						}
+						if ((obj = dataItem.get("suuid")) != null) {
+							sqlquery.setString("suuid", (String) obj);
+						}
+						if ((obj = dataItem.get("syn_time")) != null) {
+							sqlquery.setTimestamp("syn_time", (Date) obj);
+						} else {
+							sqlquery.setTimestamp("syn_time", synTime);
+						}
+						if ((obj = dataItem.get("composite_key")) != null) {
+							sqlquery.setString("composite_key", (String) obj);
+						}
+						if ((obj = dataItem.get("cloum_num")) != null) {
+							sqlquery.setInteger("cloum_num", ((Number) obj).intValue());
+						}
+						sqlquery.executeUpdate();
+					} else {//用于同步过的数据，未完成握手，更新光闸中的数据状态
+						String updateSql = "update tig_table_data t set t.status=:status,t.feedback=:feedback,t.cloum_num=:cloum_num where t.uuid=:uuid";
+						SQLQuery sqlquery = session3.createSQLQuery(updateSql);
+						sqlquery.setString("uuid", uuid);
+						sqlquery.setString("feedback", (String) dataItem.get("feedback"));
+						Object obj = dataItem.get("status");
+						sqlquery.setInteger("status", obj == null ? 6 : ((Number) obj).intValue());// 不可能为空
+						obj = dataItem.get("cloum_num");
+						sqlquery.setInteger("cloum_num", obj == null ? 0 : ((Number) obj).intValue());// 大字段反馈默认为成功
+						sqlquery.executeUpdate();
+					}
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session3.close();
+				//?statics.stopTimer(ow_token, null);
+			}
+			/****************************4、修改系统数据同步时间*****************************/
+			Session session4 = this.dao.openSession();
+			try {
+				if (!dataUuids.isEmpty()) {
+					String updataFeedDate = "update tig_table_data o set o.syn_time=:syn_time where o.uuid in (:uuids)";
+					SQLQuery sqlquery = session4.createSQLQuery(updataFeedDate);
+					sqlquery.setTimestamp("syn_time", synTime);
+					sqlquery.setParameterList("uuids", dataUuids);
+					sqlquery.executeUpdate();
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session4.close();
+			}
+		} catch (Exception e) {
+			logger.error("**********************synOutDataFeedback " + e.getMessage(), e);
+			throw e;
+		}
+	}
+
+	@Override
+	public int synInData(Map<String, SysProperties> sysPropertiess, String params) throws Exception {
+		return synInData(sysPropertiess, params, false);
+	}
+
+	@Override
+	public int synInData(Map<String, SysProperties> sysPropertiessDeprecated, String params, boolean withClob)
+			throws Exception {
+		/**
+		 * 提取前置机的数据
+		 * 1、提取前置机数据(同步中，同步成功/同步失败(握手))
+		 * 2、修改流入前置机状态（避免多少提取）
+		 * 3、修改流出前置机状态（清理数据使用）
+		 */
+		Integer result = null;
+		try {
+			Date synTime = new Date();//同步时间
+			// Map<String, File> fileMap = new HashMap<String, File>(); // 文件在还原时再下载
+			/***********************2、提取前置机数据(同步中，同步成功/同步失败(握手))****************************/
+			List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
+			List<String> dataUuids = new ArrayList<String>(); // 本次更新的UUID集合
+			List<Map<String, Object>> columDataList = new ArrayList<Map<String, Object>>();
+			List<Map<String, Object>> CLOBList = new ArrayList<Map<String, Object>>();
+			Session session2 = this.getDao(ExchangeConfig.NEWAPASIN).openSession();
+			//?long ro_token = 0;
+			try {
+				//?ro_token = statics.startTimer(SynDataLog.READ_OUT);
+				if (withClob == true) /*大字段单独处理*/{
+					//提取大字段
+					StringBuilder sqlB = new StringBuilder(
+							"select list.* from (select * from tig_column_clob t where t.data_status=2 and t.direction = ");
+					sqlB.append(direction == 1 ? 2 : 1).append(") list where rownum<=").append(dataNum);
+					CLOBList = session2.createSQLQuery(sqlB.toString()).setResultTransformer(INSTANCE).list();
+					if ((result = CLOBList.size()) == 0) {
+						return result;
+					}
+				} else {
+					// first with as cte1
+					StringBuilder sqlB = new StringBuilder(
+							"with cte1 as (select oo.tig_owner_uuid,count(1) as ctn from tig_column_data oo group by oo.tig_owner_uuid)");
+					// append second with as cte2
+					sqlB.append(",cte2 as (select o.* from tig_table_data o where o.status = 2 and o.direction = ");
+					sqlB.append(direction == 1 ? 2 : 1);
+					if (StringUtils.isBlank(params) == false) {//带约束
+						sqlB.append(params);
+					}
+					sqlB.append(") select b.* from cte2 b left join cte1 a on a.tig_owner_uuid = b.uuid where a.ctn = b.cloum_num or b.action = 3 order by b.order_id asc");
+					//提取同步中及反馈的数据
+					Query query = session2.createSQLQuery(sqlB.toString()).setMaxResults(dataNum);
+					dataList = query.setResultTransformer(INSTANCE).list();
+					if ((result = dataList.size()) == 0) {
+						return result;
+					}
+					for (Map<String, Object> dataItem : dataList) {
+						String uuid = (String) dataItem.get("uuid");
+						dataUuids.add(uuid);
+					}
+					//业务字段表
+					String subQuerySql = "select * from tig_column_data t where t.tig_owner_uuid in (:uuids)";
+					Query query2 = session2.createSQLQuery(subQuerySql);
+					query2.setResultTransformer(INSTANCE);
+					columDataList = query2.setParameterList("uuids", dataUuids).list();
+				}
+
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session2.close();
+				//?statics.stopTimer(ro_token, null);
+			}
+
+			/***********************3、变更数据到系统*****************************/
+			Session session3 = this.dao.openSession();
+			//?long wi_token = 0;
+			try {
+				//?wi_token = statics.startTimer(SynDataLog.WRITE_IN);
+				//字段表插入
+				try {
+					for (Map<String, Object> dataItem : columDataList) {
+						String tig_owner_uuid = (String) dataItem.get("tig_owner_uuid");
+						String tig_column_name = (String) dataItem.get("tig_column_name");
+						String querySql2 = "select count(1) as count_ from tig_column_data o where o.tig_owner_uuid=:tig_owner_uuid and o.tig_column_name=:tig_column_name";
+						Query query = session3.createSQLQuery(querySql2);
+						query.setString("tig_owner_uuid", tig_owner_uuid);
+						query.setString("tig_column_name", tig_column_name);
+						boolean notExist = ((Number) query.uniqueResult()).intValue() <= 0;
+						if (notExist) {
+							String insertSql = "insert into tig_column_data "
+									+ "(,tig_owner_uuid,tig_column_name,tig_data_type,data_time,data_float,data_number,data_clob,data_char,data_date,data_varchar_2) "
+									+ "values "
+									+ "(,:tig_owner_uuid,:tig_column_name,:tig_data_type,:data_time,:data_float,:data_number,:data_clob,:data_char,:data_date,:data_varchar_2) ";
+							for (String columKey : dataItem.keySet()) {
+								if (dataItem.get(columKey) == null) {
+									insertSql = insertSql.replace("," + columKey, "").replace(",:" + columKey, "");
+								}
+							}
+							insertSql = insertSql.replace("(,", "(");
+							SQLQuery sqlquery = session3.createSQLQuery(insertSql);
+							sqlquery.setString("tig_owner_uuid", (String) dataItem.get("tig_owner_uuid"));
+							sqlquery.setString("tig_column_name", (String) dataItem.get("tig_column_name"));
+							sqlquery.setString("tig_data_type", (String) dataItem.get("tig_data_type"));
+							Object obj = null;
+							if ((obj = dataItem.get("data_time")) != null) {
+								sqlquery.setTimestamp("data_time", (Date) obj);
+							}
+							if ((obj = dataItem.get("data_float")) != null) {
+								sqlquery.setFloat("data_float", ((Number) obj).floatValue());
+							}
+							if ((obj = dataItem.get("data_number")) != null) {
+								sqlquery.setDouble("data_number", ((Number) obj).doubleValue());
+							}
+							if ((obj = dataItem.get("data_clob")) != null) {
+								sqlquery.setText("data_clob", (String) obj);
+							}
+							if ((obj = dataItem.get("data_char")) != null) {
+								sqlquery.setString("data_char", (String) obj);
+							}
+							if ((obj = dataItem.get("data_date")) != null) {
+								sqlquery.setDate("data_date", (Date) obj);
+							}
+							if ((obj = dataItem.get("data_varchar_2")) != null) {
+								sqlquery.setString("data_varchar_2", (String) obj);
+							}
+							sqlquery.executeUpdate();
+						}
+					}
+				} finally {
+					//?statics.stopTimer(wi_token, null);
+				}
+				//?long wic_token = 0;
+				try {
+					//?wic_token = statics.startTimer(SynDataLog.WRITE_IN + SynDataLog.SUB_CLOB);
+					// 大字段的处理
+					for (Map<String, Object> dataItem : CLOBList) {
+						String tig_owner_uuid = (String) dataItem.get("tig_owner_uuid");
+						String tig_column_name = (String) dataItem.get("tig_column_name");
+						String clobQuSql = "select count(1) as count_ from tig_column_clob t where t.tig_owner_uuid=:tig_owner_uuid and t.tig_column_name=:tig_column_name";
+						Query query = session3.createSQLQuery(clobQuSql);
+						query.setString("tig_owner_uuid", tig_owner_uuid);
+						query.setString("tig_column_name", tig_column_name);
+						int zcount = ((Number) query.uniqueResult()).intValue();
+						if (zcount == 0) {
+							//还原成功再插入数据，大字段由于光闸传输慢的问题，独立处理只有数据还原成功后，成功更新同步大字段后再插入大字段同步记录
+							String insertSql = "insert into tig_column_clob "
+									+ "(,tig_owner_uuid,tig_column_name,data_uuid,composite_key,data_clob,data_status,direction,stable_name,backup_time,syn_time,create_time) "
+									+ "values "
+									+ "(,:tig_owner_uuid,:tig_column_name,:data_uuid,:composite_key,:data_clob,:data_status,:direction,:stable_name,:backup_time,:syn_time,:create_time) ";
+							for (String columKey : dataItem.keySet()) {
+								if (dataItem.get(columKey) == null && !columKey.equals("backup_time")) {
+									insertSql = insertSql.replace("," + columKey, "").replace(",:" + columKey, "");
+								}
+							}
+							//操作大字段同步记录
+							insertSql = insertSql.replace("(,", "(");
+							SQLQuery sqlquery = session3.createSQLQuery(insertSql);
+							sqlquery.setString("tig_owner_uuid", (String) dataItem.get("tig_owner_uuid"));
+							sqlquery.setString("tig_column_name", (String) dataItem.get("tig_column_name"));
+							sqlquery.setString("data_uuid", (String) dataItem.get("data_uuid"));
+							sqlquery.setString("stable_name", (String) dataItem.get("stable_name"));
+							sqlquery.setTimestamp("create_time", (Date) dataItem.get("create_time"));
+							Object obj = null;
+							if ((obj = dataItem.get("composite_key")) != null) {
+								sqlquery.setString("composite_key", (String) obj);
+							}
+							if ((obj = dataItem.get("data_clob")) != null) {
+								sqlquery.setText("data_clob", IOUtils.toString(((Clob) obj).getCharacterStream()));
+							}
+							if ((obj = dataItem.get("data_char")) != null) {
+								sqlquery.setString("data_char", (String) obj);
+							}
+							if ((obj = dataItem.get("data_status")) != null) {
+								sqlquery.setInteger("data_status", ((Number) obj).intValue());
+							}
+							if ((obj = dataItem.get("direction")) != null) {
+								sqlquery.setInteger("direction", ((Number) obj).intValue());
+							}
+							sqlquery.setTimestamp("syn_time", synTime);//(Date) obj// 记录从关闸取下来的时间
+							sqlquery.setTimestamp("backup_time", null);// synTime
+							sqlquery.executeUpdate();
+						} else {//已处理过的数据，可能失败或关闸截断重传的数据，清空反馈数据的同步时间，使其再同步（更新成功才落地，此时一定成功过）
+							Query query2 = session3
+									.createSQLQuery("select count(1) from tig_table_data t where t.suuid=:tig_owner_uuid and t.feedback=:tig_column_name and t.status = 4");
+							query2.setString("tig_owner_uuid", tig_owner_uuid);
+							query2.setString("tig_column_name", tig_column_name);
+							int fcount = ((Number) query2.uniqueResult()).intValue();
+							if (fcount == 0) {// 不成功，重置状态使其再还原
+								SQLQuery sqlquery = session3
+										.createSQLQuery("update tig_column_clob l set data_status = 2 where l.tig_owner_uuid=:tig_owner_uuid and l.tig_column_name=:tig_column_name");// ,backup_time=:backup_time
+								sqlquery.setString("tig_owner_uuid", tig_owner_uuid);
+								sqlquery.setString("tig_column_name", tig_column_name);
+								// sqlquery.setTimestamp("backup_time", synTime);
+								sqlquery.executeUpdate();
+							} else { // 已经成功还原过,触发反馈数据
+								SQLQuery sqlquery = session3
+										.createSQLQuery("update tig_table_data t set t.syn_time=null where t.suuid=:tig_owner_uuid and t.feedback=:tig_column_name and t.status = 4");
+								sqlquery.setString("tig_owner_uuid", tig_owner_uuid);
+								sqlquery.setString("tig_column_name", tig_column_name);
+								sqlquery.setTimestamp("syn_time", synTime);
+								sqlquery.executeUpdate();
+							}
+						}
+					}
+				} finally {
+					//?statics.stopTimer(wic_token, null);
+				}
+				// 插入数据
+				//?long wil_token = 0;
+				try {
+					//?wil_token = statics.startTimer(SynDataLog.WRITE_IN + SynDataLog.SUB_LIST);
+					for (Map<String, Object> dataItem : dataList) {
+						String uuid = (String) dataItem.get("uuid");
+						/******比较数据是否已经处理过*********/
+						String querySql2 = "select count(1) as count_ from tig_table_data o where o.uuid=:uuid";//查询是否存在数据
+						Query query = session3.createSQLQuery(querySql2).setString("uuid", uuid);
+						boolean notExist = ((Number) query.uniqueResult()).intValue() <= 0;
+						if (notExist) {
+							//插入数据
+							String insertSql = "insert into tig_table_data "
+									+ "(,uuid,create_time,order_id,action,feedback,direction,remark,stable_name,status,suuid,syn_time,composite_key,cloum_num,backup_time) "
+									+ "values "
+									+ "(,:uuid,:create_time,:order_id,:action,:feedback,:direction,:remark,:stable_name,:status,:suuid,:syn_time,:composite_key,:cloum_num,:backup_time)";
+							for (String dataKey : dataItem.keySet()) {
+								if (dataItem.get(dataKey) == null && !dataKey.equals("backup_time")) {
+									insertSql = insertSql.replace("," + dataKey, "").replace(",:" + dataKey, "");
+								}
+							}
+							insertSql = insertSql.replace("(,", "(");
+							SQLQuery sqlquery = session3.createSQLQuery(insertSql);
+							sqlquery.setString("uuid", (String) dataItem.get("uuid"));
+							sqlquery.setString("suuid", (String) dataItem.get("suuid"));
+							sqlquery.setString("stable_name", (String) dataItem.get("stable_name"));
+							sqlquery.setTimestamp("create_time", (Date) dataItem.get("create_time"));
+							Object obj = null;
+							if ((obj = dataItem.get("order_id")) != null) {
+								sqlquery.setInteger("order_id", ((Number) obj).intValue());
+							}
+							if ((obj = dataItem.get("action")) != null) {
+								sqlquery.setInteger("action", ((Number) obj).intValue());
+							}
+							if ((obj = dataItem.get("feedback")) != null) {
+								sqlquery.setString("feedback", (String) obj);
+							}
+							if ((obj = dataItem.get("direction")) != null) {
+								sqlquery.setInteger("direction", ((Number) obj).intValue());
+							}
+							if ((obj = dataItem.get("remark")) != null) {
+								sqlquery.setString("remark", (String) obj);
+							}
+							if ((obj = dataItem.get("status")) != null) {
+								sqlquery.setInteger("status", ((Number) obj).intValue());
+							}
+							if ((obj = dataItem.get("composite_key")) != null) {
+								sqlquery.setString("composite_key", (String) obj);
+							}
+							if ((obj = dataItem.get("cloum_num")) != null) {
+								sqlquery.setInteger("cloum_num", ((Number) obj).intValue());
+							}
+							sqlquery.setTimestamp("syn_time", synTime);// (Date) obj// 记录从关闸取下来的时间
+							sqlquery.setTimestamp("backup_time", null);//
+							sqlquery.executeUpdate();
+						} else {//已处理过的数据，可能失败或关闸截断重传的数据，清空反馈数据的同步时间，使其再同步
+							//判断是否还原成功
+							Query query2 = session3
+									.createSQLQuery("select count(1) as count_ from tig_table_data t where t.suuid=:suuid and t.status=6 and t.feedback = '4'");
+							int fcount = ((Number) query2.setString("suuid", uuid).uniqueResult()).intValue();
+							if (fcount == 0) {// 不成功或还未还原，重新还原
+								Query query3 = session3
+										.createSQLQuery("update tig_table_data t set t.status=2 where t.uuid=:uuid");
+								query3.setString("uuid", uuid).executeUpdate();
+							} else { // 已经成功还原过,触发反馈数据
+								Query query3 = session3
+										.createSQLQuery("update tig_table_data t set t.syn_time=null where t.suuid=:suuid and t.status=6 and t.feedback = '4'");
+								query3.setString("suuid", uuid).executeUpdate();
+							}
+						}
+					}
+				} finally {
+					//?statics.stopTimer(wil_token, null);
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session3.close();
+			}
+			/***********************4、修改流入前置机状态（避免多次提取）*****************************/
+			Session session4 = this.getDao(ExchangeConfig.NEWAPASIN).openSession();
+			//?long os_token = 0;
+			try {
+				//?os_token = statics.startTimer(SynDataLog.OUT_STATE);
+				//流出为2时更新状态为还原状态
+				if (!dataUuids.isEmpty()) {
+					Query query = session4
+							.createSQLQuery("update tig_table_data l set l.status=4 where l.uuid in (:uuids)");
+					query.setParameterList("uuids", dataUuids).executeUpdate();
+				}
+				for (Map<String, Object> dataItem : CLOBList) {//更新同步时间 
+					String tig_owner_uuid = (String) dataItem.get("tig_owner_uuid");
+					String tig_column_name = (String) dataItem.get("tig_column_name");
+					Query query = session4
+							.createSQLQuery("update tig_column_clob o set o.data_status=4 where o.tig_owner_uuid=:tig_owner_uuid and o.tig_column_name=:tig_column_name");
+					query.setString("tig_owner_uuid", tig_owner_uuid).setString("tig_column_name", tig_column_name);
+					query.executeUpdate();
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session4.close();
+				//?statics.stopTimer(os_token, null);
+			}
+		} catch (Exception e) {
+			logger.error("**********************synInData " + e.getMessage(), e);
+			throw e;
+		}
+		return result;
+	}
+
+	@Override
+	public void synBackData(Map<String, SysProperties> sysPropertiessDeprecated, String params) throws Exception {
+		synBackData(sysPropertiessDeprecated, params, false);
+	}
+
+	@Override
+	public void synBackData(Map<String, SysProperties> sysPropertiessDeprecated, String params, boolean withClob)
+			throws Exception {
+		/**
+		 * 提取前置机的数据
+		 * 1、提取前置机数据(同步中，同步成功/同步失败(握手))
+		 * 2、修改流入前置机状态（避免多少提取）
+		 * 3、修改流出前置机状态（清理数据使用）
+		 */
+		try {
+			Date synTime = new Date();//同步时间
+			/***********************1、提取同步数据(同步中，同步成功/同步失败(握手))****************************/
+			List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
+			List<String> dataUuids = new ArrayList<String>(); // 本次更新的UUID集合
+			List<Map<String, Object>> CLOBList = new ArrayList<Map<String, Object>>();
+			Session session2 = dao.openSession();
+			try {
+				if (withClob == true) /*大字段单独处理*/{
+					//提取大字段
+					StringBuilder sqlB = new StringBuilder(
+							"select list.* from (select * from tig_column_clob t where (t.data_status=2 ");
+					// 在1/2个重发周期内interval尝试还原32次,即8小时为一个重发周期,在4个小时内尝试32次,7.5分钟还原一次
+					sqlB.append(" or (t.data_status=5 and t.backup_time < cast((sysdate - ")
+							.append(interval / (2 * 32)).append("/86400) as TIMESTAMP))");
+					sqlB.append(") and t.direction = ").append(direction == 1 ? 2 : 1);
+					sqlB.append(") list where rownum<=").append(dataNum);
+					CLOBList = session2.createSQLQuery(sqlB.toString()).setResultTransformer(INSTANCE).list();
+					if (CLOBList.size() == 0) {
+						return;
+					}
+				} else {
+					// attention：字段完整性由流入synInData方法保障
+					StringBuilder sqlB = new StringBuilder(
+							"select list.* from (select * from tig_table_data o where (o.status=2 ");
+					// 在1/2个重发周期内interval尝试还原32次,即8小时为一个重发周期,在4个小时内尝试32次,7.5分钟还原一次
+					sqlB.append(" or (o.status=5 and o.backup_time < cast((sysdate - ").append(interval / (2 * 32))
+							.append("/86400) as TIMESTAMP))");
+					sqlB.append(") and o.direction = ").append(direction == 1 ? 2 : 1);
+					if (StringUtils.isBlank(params) == false) {//带约束
+						sqlB.append(params);
+					}
+					sqlB.append(" order by o.order_id asc) list where rownum<=").append(dataNum);
+					//提取同步中及反馈的数据
+					dataList = session2.createSQLQuery(sqlB.toString()).setResultTransformer(INSTANCE).list();
+					if (dataList.size() == 0) {
+						return;
+					}
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session2.close();
+			}
+
+			/***********************2、变更数据到系统*****************************/
+			Session session3 = this.dao.openSession();
+			// 字段表插入
+			try {
+				// 插入数据
+				for (Map<String, Object> dataItem : dataList) {
+					String uuid = (String) dataItem.get("uuid");
+					dataUuids.add(uuid);
+					/*
+					Query fkquery = session3.createSQLQuery("select count(1) from tig_table_data t where t.suuid=:uuid and t.status = 6");
+					fkquery.setString("uuid", uuid);
+					boolean firstCover = ((Number) fkquery.uniqueResult()).intValue() <= 0; // 查看是否已经还原过,且还原失败等待主数据
+					 */
+					// 业务字段表
+					String subQuerySql = "select t.* from tig_column_data t where t.tig_owner_uuid = :uuid";
+					Query query = session3.createSQLQuery(subQuerySql);
+					query.setResultTransformer(INSTANCE);
+					List<Map<String, Object>> columDataFormat = query.setString("uuid", uuid).list();
+					Integer feedback = null;
+					try {
+						// 4还原成功、3还原失败、5在1/2个重发周期内interval尝试还原32次,即8小时为一个重发周期,在4个小时内尝试32次,7.5分钟还原一次
+						feedback = backData(session3, dataItem, columDataFormat) ? 4 : 5;// 还原数据
+					} catch (Exception e) {
+						feedback = 3;
+					}
+					Object backupTime = dataItem.get("syn_time");
+					if (feedback == 5 && backupTime != null
+							&& ((Date) backupTime).getTime() + (interval / 2) * 1000 < System.currentTimeMillis()) {
+						// 尝试还原超时,超过时间((Date) backupTime).getTime() + (interval / 2) * 1000 算超时
+						feedback = 3;
+					}
+					// 更新结果
+					Query query2 = session3
+							.createSQLQuery("update tig_table_data set status=:feedback,backup_time=:backup_time where uuid=:uuid");
+					query2.setString("uuid", uuid);
+					query2.setInteger("feedback", feedback);
+					query2.setTimestamp("backup_time", synTime);
+					query2.executeUpdate();
+					if (dataItem.get("backup_time") == null) {
+						// 插入反馈数据
+						SQLQuery fksqlquery = session3.createSQLQuery("insert into tig_table_data "
+								+ "(uuid,status,suuid,feedback,direction,order_id,create_time) values "
+								+ "(sys_guid(),6,:uuid,:feedback," + direction + ",syn_order_id.NEXTVAL,:create_time)");
+						fksqlquery.setString("uuid", uuid);
+						fksqlquery.setTimestamp("create_time", synTime);
+						fksqlquery.setString("feedback", feedback.toString());
+						fksqlquery.executeUpdate();
+					} else {
+						Query fkSqlInsert = session3
+								.createSQLQuery("update tig_table_data t set t.feedback = :feedback,t.syn_time = null where t.suuid=:suuid and t.status = 6");
+						fkSqlInsert.setString("feedback", feedback.toString());// feedback作为反馈状态
+						fkSqlInsert.setString("suuid", uuid);
+						fkSqlInsert.executeUpdate();
+					}
+				}
+				// 大字段的处理
+				for (Map<String, Object> dataItem : CLOBList) {
+					String tig_owner_uuid = (String) dataItem.get("tig_owner_uuid");
+					String tig_column_name = (String) dataItem.get("tig_column_name");
+					/*
+					Query fkquery = session3.createSQLQuery("select count(1) from tig_table_data t where t.suuid=:tig_owner_uuid and t.feedback=:tig_column_name");
+					fkquery.setString("tig_owner_uuid", tig_owner_uuid);
+					fkquery.setString("tig_column_name", tig_column_name);
+					boolean firstCover = ((Number) fkquery.uniqueResult()).intValue() <= 0; // 查看是否已经还原过,且还原失败等待主数据
+					 */
+					Integer feedstatus = null;
+					try {
+						// 4还原成功、3还原失败、5在1/2个重发周期内interval尝试还原32次,即8小时为一个重发周期,在4个小时内尝试32次,7.5分钟还原一次
+						feedstatus = backDataCLOB(session3, dataItem) ? 4 : 5;
+					} catch (Exception e) {
+						feedstatus = 3;
+					}
+					Object backupTime = dataItem.get("syn_time");
+					if (feedstatus == 5 && backupTime != null
+							&& ((Date) backupTime).getTime() + (interval / 2) * 1000 < System.currentTimeMillis()) {
+						// 尝试还原超时,超过时间((Date) backupTime).getTime() + (interval / 2) * 1000 算超时
+						feedstatus = 3;
+					}
+					// 更新结果
+					Query query2 = session3
+							.createSQLQuery("update tig_column_clob l set l.data_status = :data_status,l.backup_time = :backup_time where l.tig_owner_uuid=:tig_owner_uuid and l.tig_column_name=:tig_column_name");
+					// query2.setTimestamp("syn_time", synTime);// attention:还原端的syn_time会多次写，用于记录最后一次还原时间
+					query2.setTimestamp("backup_time", synTime);
+					query2.setInteger("data_status", feedstatus);
+					query2.setString("tig_owner_uuid", tig_owner_uuid);
+					query2.setString("tig_column_name", tig_column_name);
+					query2.executeUpdate();
+					if (dataItem.get("backup_time") == null) {
+						// 插入反馈数据
+						SQLQuery fkSqlInsert = session3.createSQLQuery("insert into tig_table_data "
+								+ "(uuid,status,suuid,feedback,direction,order_id,cloum_num,create_time) values "
+								+ "(sys_guid(),7,:uuid,:feedback," + direction
+								+ ",syn_order_id.NEXTVAL,:cloum_num,:create_time)");
+						fkSqlInsert.setString("uuid", tig_owner_uuid);
+						fkSqlInsert.setInteger("cloum_num", feedstatus);// cloum_num作为反馈状态
+						fkSqlInsert.setTimestamp("create_time", synTime);
+						fkSqlInsert.setString("feedback", tig_column_name);
+						fkSqlInsert.executeUpdate();
+					} else {
+						Query fkSqlInsert = session3
+								.createSQLQuery("update tig_table_data t set t.cloum_num = :cloum_num,t.syn_time = null where suuid=:tig_owner_uuid and t.feedback=:tig_column_name");
+						fkSqlInsert.setInteger("cloum_num", feedstatus);// cloum_num作为反馈状态
+						fkSqlInsert.setString("tig_owner_uuid", tig_owner_uuid);
+						fkSqlInsert.setString("tig_column_name", tig_column_name);
+						fkSqlInsert.executeUpdate();
+					}
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session3.close();
+			}
+		} catch (Exception e) {
+			logger.error("**********************synInData " + e.getMessage(), e);
+			throw e;
+		}
+	}
+
+	@Override
+	public void synInDataFeedback(Map<String, SysProperties> sysPropertiess) throws Exception {
+		/**
+		 * 提取前置机的数据
+		 * 1、提取前置机数据(同步中，同步成功/同步失败(握手))
+		 * 2、变更数据到系统,还原数据
+		 * 3、修改流入前置机状态（避免多少提取）
+		 * 4、修改流出前置机状态（清理数据使用）
+		 */
+		try {
+			/***********************2、提取前置机数据(同步中，同步成功/同步失败(握手))****************************/
+			List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
+			List<String> dataUuids = new ArrayList<String>();
+			Date synDate = new Date();
+
+			Session session2 = this.getDao(ExchangeConfig.NEWAPASIN).openSession();
+			//?long or_token = 0;
+			try {
+				//?or_token = statics.startTimer(SynDataLog.OUT_READ);
+				//提取同步中及反馈的数据
+				Query query = session2.createSQLQuery(feedInQuery);
+				dataList = query.setResultTransformer(INSTANCE).list();
+				if (dataList.size() == 0) {
+					return;
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session2.close();
+				//?statics.stopTimer(or_token, null);
+			}
+
+			/***********************3、变更数据到系统*****************************/
+			Map<String, String> stupStatus = new HashMap<String, String>();
+			Session session3 = this.dao.openSession();
+			//?long iw_token = 0;
+			try {
+				//?iw_token = statics.startTimer(SynDataLog.IN_WRITE);
+				//插入数据
+				for (Map<String, Object> dataItem : dataList) {
+					String uuid = (String) dataItem.get("uuid");
+					String suuid = (String) dataItem.get("suuid");
+					String feedback = (String) dataItem.get("feedback");
+					dataUuids.add(uuid);
+					Object obj = dataItem.get("status");
+					int status = obj == null ? 0 : ((Number) obj).intValue();
+					/******比较数据是否已经处理过*********/
+					String querySql2 = "select count(1) as count_ from tig_table_data o where o.uuid=:uuid";//查询是否存在数据
+					Query query = session3.createSQLQuery(querySql2).setString("uuid", uuid);
+					boolean notExist = ((Number) query.uniqueResult()).intValue() <= 0;
+					if (notExist) {
+						//插入数据
+						String insertSql = "insert into tig_table_data "
+								+ "(,uuid,create_time,order_id,action,feedback,direction,remark,stable_name,status,suuid,syn_time,composite_key,cloum_num) "
+								+ "values "
+								+ "(,:uuid,:create_time,:order_id,:action,:feedback,:direction,:remark,:stable_name,:status,:suuid,:syn_time,:composite_key,:cloum_num)";
+						for (String dataKey : dataItem.keySet()) {
+							if (dataItem.get(dataKey) == null) {
+								insertSql = insertSql.replace("," + dataKey, "").replace(",:" + dataKey, "");
+							}
+						}
+						insertSql = insertSql.replace("(,", "(");
+						SQLQuery sqlquery = session3.createSQLQuery(insertSql);
+						sqlquery.setString("uuid", (String) dataItem.get("uuid"));
+						sqlquery.setTimestamp("create_time", (Date) dataItem.get("create_time"));
+						if ((obj = dataItem.get("order_id")) != null) {
+							sqlquery.setInteger("order_id", ((Number) obj).intValue());
+						}
+						if ((obj = dataItem.get("action")) != null) {
+							sqlquery.setInteger("action", ((Number) obj).intValue());
+						}
+						if ((obj = dataItem.get("feedback")) != null) {
+							sqlquery.setString("feedback", (String) obj);
+						}
+						if ((obj = dataItem.get("direction")) != null) {
+							sqlquery.setInteger("direction", ((Number) obj).intValue());
+						}
+						if ((obj = dataItem.get("remark")) != null) {
+							sqlquery.setString("remark", (String) obj);
+						}
+						if ((obj = dataItem.get("stable_name")) != null) {
+							sqlquery.setString("stable_name", (String) obj);
+						}
+						if ((obj = dataItem.get("status")) != null) {
+							sqlquery.setInteger("status", status);
+						}
+						if ((obj = dataItem.get("suuid")) != null) {
+							sqlquery.setString("suuid", (String) obj);
+						}
+						if ((obj = dataItem.get("syn_time")) != null) {
+							sqlquery.setTimestamp("syn_time", (Date) dataItem.get("syn_time"));
+						}
+						if ((obj = dataItem.get("composite_key")) != null) {
+							sqlquery.setString("composite_key", (String) obj);
+						}
+						if ((obj = dataItem.get("cloum_num")) != null) {
+							sqlquery.setInteger("cloum_num", ((Number) obj).intValue());
+						}
+						sqlquery.executeUpdate();
+						SQLQuery upSqlquery = null;
+						if (status == 7) {// 解析大字段反馈的数据
+							upSqlquery = session3
+									.createSQLQuery("update tig_column_clob l set l.data_status=:data_status,l.backup_time=:backup_time,l.feedback_time=:feedback_time where l.tig_owner_uuid=:suuid and l.tig_column_name=:feedback");
+							obj = dataItem.get("cloum_num"); // cloum_num大字段反馈状态
+							upSqlquery.setInteger("data_status", obj == null ? 3 : ((Number) obj).intValue()); // 默认3标识失败
+							upSqlquery.setString("feedback", feedback);
+						} else {// 解析反馈的数据
+							upSqlquery = session3
+									.createSQLQuery("update tig_table_data l set l.status=:feedback,l.backup_time=:backup_time,l.feedback_time=:feedback_time where l.uuid=:suuid");
+							upSqlquery.setInteger("feedback", Integer.parseInt(feedback));
+
+						}
+						upSqlquery.setString("suuid", suuid);
+						upSqlquery.setTimestamp("feedback_time", synDate);
+						upSqlquery.setTimestamp("backup_time", (Date) dataItem.get("create_time"));
+						upSqlquery.executeUpdate();
+						stupStatus.put(uuid + "_suuid", suuid);
+						stupStatus.put(uuid + "_feedback", feedback);
+					} else {//已处理过的数据，可能失败或关闸截断重传的数据，清空反馈数据的同步时间，使其再同步
+						//6.7时反馈数据解析成功过，需修改流入前置机的状态，修改流出前置机说明数据的状态
+						SQLQuery upSqlquery = null;
+						if (status == 7) {
+							upSqlquery = session3
+									.createSQLQuery("update tig_column_clob l set l.data_status=:data_status where l.tig_owner_uuid=:suuid and l.tig_column_name=:feedback");
+							obj = dataItem.get("cloum_num");// cloum_num大字段反馈状态
+							upSqlquery.setInteger("data_status", obj == null ? 3 : ((Number) obj).intValue());
+							upSqlquery.setString("feedback", feedback);
+						} else {
+							upSqlquery = session3
+									.createSQLQuery("update tig_table_data l set l.status=:feedback where l.uuid=:suuid");
+							upSqlquery.setInteger("feedback", Integer.parseInt(feedback));
+						}
+						upSqlquery.setString("suuid", suuid);
+						upSqlquery.executeUpdate();
+						stupStatus.put(uuid + "_suuid", suuid);
+						stupStatus.put(uuid + "_feedback", feedback);
+					}
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session3.close();
+				//?statics.stopTimer(iw_token, null);
+			}
+			/***********************4、修改流入前置机状态（避免多次提取）*****************************/
+			Session session4 = this.getDao(ExchangeConfig.NEWAPASIN).openSession();
+			//?long ow_token = 0;
+			try {
+				//?ow_token = statics.startTimer(SynDataLog.OUT_WRITE);
+				//关闸流出为6、7时更新状态为4
+				if (!dataUuids.isEmpty()) {
+					session4.createSQLQuery("update tig_table_data d set d.status=4 where d.uuid in (:uuids)")
+							.setParameterList("uuids", dataUuids).executeUpdate();
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session4.close();
+				//?statics.stopTimer(ow_token, null);
+			}
+
+			/***********************5、修改流出前置机状态（清理数据使用）*****************************/
+			/* // 更新也会同步,反馈数据不再做更新,保持关闸队列干净,清理逻辑一并修改
+			Session session5 = this.getDao(ExchangeConfig.NEWAPASOUT).openSession();
+			//?long fc_token = 0;
+			try {
+				//?fc_token = statics.startTimer(SynDataLog.FEED_CLEAN);
+				for (Map<String, Object> dataItem : dataList) {
+					String uuid = (String) dataItem.get("uuid");
+					Object obj = dataItem.get("status");
+					int status = obj == null ? 0 : ((Number) obj).intValue();
+					Query updateQuery = null;
+					if (status == 7) {//修改前置机,同步状态
+						updateQuery = session5
+								.createSQLQuery("update tig_column_clob l set l.data_status=4 where l.tig_owner_uuid=:suuid and l.tig_column_name=:feedback");
+						updateQuery.setString("feedback", stupStatus.get(uuid + "_feedback"));
+					} else {
+						updateQuery = session5
+								.createSQLQuery("update tig_table_data l set l.status=:feedback where l.uuid=:suuid");
+						updateQuery.setInteger("feedback", 4);// Integer.parseInt(stupStatus.get(uuid + "_feedback"))
+					}
+					updateQuery.setString("suuid", stupStatus.get(uuid + "_suuid"));
+					updateQuery.executeUpdate();
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session5.close();
+				//?statics.stopTimer(fc_token, null);
+			}
+			*/
+		} catch (Exception e) {
+			logger.error("**********************synInDataFeedback " + e.getMessage(), e);
+			throw e;
+		}
+	}
+
+	/**
+	 * 
+	 * 还原数据:backData
+	 * 
+	 * @param dataItem
+	 * @param columDataFormat
+	 * @param ftpDataBean
+	 * @return
+	 * @throws Exception 
+	 */
+	public boolean backDataDeprecated(Session session, Map<String, Object> dataItem,
+			List<Map<String, Object>> columDataFormat) throws Exception {
+		String uuid = (String) dataItem.get("uuid");
+		int action = ((Number) dataItem.get("action")).intValue();
+		String suuid = (String) dataItem.get("suuid");
+		String tableName = (String) dataItem.get("stable_name");
+		try {
+			if (action == 3) {//删除
+				String backDelSql = "";
+				String compositeKey = (String) dataItem.get("composite_key");
+				if (StringUtils.isNotBlank(compositeKey)) {//联合主键（多对多关系表）
+					String[] compositeKeyArr = compositeKey.split(";");
+					String[] compositeValueArr = suuid.split(";");
+					String where = compositeKeyArr[0] + "='" + compositeValueArr[0] + "'";
+					for (int i = 1; i < compositeKeyArr.length; i++) {
+						where += " and " + compositeKeyArr[i] + "='" + compositeValueArr[i] + "'";
+					}
+					backDelSql = "delete " + tableName + " where " + where;
+				} else {
+					backDelSql = "delete " + tableName + " where uuid = '" + suuid + "'";
+				}
+				session.createSQLQuery(backDelSql).executeUpdate();
+				// 删除还原数据为删除时触发器生成的记录,删除没有触发条件
+				String delTigData = "delete tig_table_data d where d.action=3 and d.suuid=:suuid and d.stable_name=:stable_name and d.direction=:direction";
+				Query delTigQuery = session.createSQLQuery(delTigData);
+				delTigQuery.setInteger("direction", direction).setString("stable_name", tableName);
+				delTigQuery.setString("suuid", suuid).executeUpdate();
+			} else {//更新插入
+				//处理字段数据
+				if (columDataFormat != null && !columDataFormat.isEmpty()) {
+					String columns = "";
+					String insertColumn = "";
+					String updateColumn = "";
+					Map<String, Object> values = new HashMap<String, Object>();
+					Map<String, String> types = new HashMap<String, String>();
+					for (Map<String, Object> columMap : columDataFormat) {
+						String columnName = (String) columMap.get("tig_column_name");
+						String columnType = (String) columMap.get("tig_data_type");
+						// 命中率高的放在前面
+						if (columnType.equals("VARCHAR2")) {
+							columns += "," + columnName;
+							insertColumn += ",:" + columnName;
+							updateColumn += "," + columnName + "=:" + columnName;
+							values.put(columnName, columMap.get("data_varchar_2"));
+							types.put(columnName, "VARCHAR2");
+						} else if (columnType.equals("TIMESTAMP(6)") && columMap.get("data_time") != null) {
+							columns += "," + columnName;
+							insertColumn += ",:" + columnName;
+							updateColumn += "," + columnName + "=:" + columnName;
+							values.put(columnName, columMap.get("data_time"));
+							types.put(columnName, "TIMESTAMP(6)");
+						} else if (columnType.equals("NUMBER") && columMap.get("data_number") != null) {
+							columns += "," + columnName;
+							insertColumn += ",:" + columnName;
+							updateColumn += "," + columnName + "=:" + columnName;
+							values.put(columnName, columMap.get("data_number"));
+							types.put(columnName, "NUMBER");
+						} else if (columnType.equals("FLOAT") && columMap.get("data_float") != null) {
+							columns += "," + columnName;
+							insertColumn += ",:" + columnName;
+							updateColumn += "," + columnName + "=:" + columnName;
+							values.put(columnName, columMap.get("data_float"));
+							types.put(columnName, "FLOAT");
+						} else if (columnType.equals("CLOB") && columMap.get("data_clob") != null) {
+							columns += "," + columnName;
+							insertColumn += ",:" + columnName;
+							updateColumn += "," + columnName + "=:" + columnName;
+							values.put(columnName, columMap.get("data_clob"));
+							types.put(columnName, "CLOB");
+						} else if (columnType.equals("CHAR") && columMap.get("data_char") != null) {
+							columns += "," + columnName;
+							insertColumn += ",:" + columnName;
+							updateColumn += "," + columnName + "=:" + columnName;
+							values.put(columnName, columMap.get("data_char"));
+							types.put(columnName, "CHAR");
+						} else if (columnType.equals("DATE") && columMap.get("data_date") != null) {
+							columns += "," + columnName;
+							insertColumn += ",:" + columnName;
+							updateColumn += "," + columnName + "=:" + columnName;
+							values.put(columnName, columMap.get("data_date"));
+							types.put(columnName, "DATE");
+						}
+					}
+					columns = columns.replaceFirst(",", "");
+					insertColumn = insertColumn.replaceFirst(",", "");
+					updateColumn = updateColumn.replaceFirst(",", "");
+					if (!columns.contains(ExchangeConfig.ISSYNBACKFIELD)) {
+						if (StringUtils.isBlank(columns)) {
+							columns += ExchangeConfig.ISSYNBACKFIELD;
+						} else {
+							columns += "," + ExchangeConfig.ISSYNBACKFIELD;
+						}
+						if (StringUtils.isBlank(insertColumn)) {
+							insertColumn += ":" + ExchangeConfig.ISSYNBACKFIELD;
+						} else {
+							insertColumn += ",:" + ExchangeConfig.ISSYNBACKFIELD;
+						}
+						if (StringUtils.isBlank(updateColumn)) {
+							updateColumn += ExchangeConfig.ISSYNBACKFIELD + "=:" + ExchangeConfig.ISSYNBACKFIELD;
+						} else {
+							updateColumn += "," + ExchangeConfig.ISSYNBACKFIELD + "=:" + ExchangeConfig.ISSYNBACKFIELD;
+						}
+					}
+					types.put(ExchangeConfig.ISSYNBACKFIELD, "VARCHAR2");
+					values.put(ExchangeConfig.ISSYNBACKFIELD, UUID.randomUUID().toString());
+					//插入更新数据
+					//查看数据是否存在
+					String compositeKey = (String) dataItem.get("composite_key");
+					String where = "";
+					if (StringUtils.isNotBlank(compositeKey)) {//联合主键（多对多关系表）
+						String[] compositeKeyArr = compositeKey.split(";");
+						String[] compositeValueArr = suuid.split(";");
+						where = compositeKeyArr[0] + "='" + compositeValueArr[0] + "'";
+						for (int i = 1; i < compositeKeyArr.length; i++) {
+							where += " and " + compositeKeyArr[i] + "='" + compositeValueArr[i] + "'";
+						}
+					} else {
+						where = " uuid = '" + suuid + "'";
+					}
+
+					String sqlStr = "select count(1) as count_ from " + tableName + " where " + where;
+					Query cQuery = session.createSQLQuery(sqlStr);
+					int count_ = ((Number) cQuery.uniqueResult()).intValue();
+					String sql = "";
+					if (action == 1 && count_ == 0) {//插入,存在数据时不做处理
+						sql = "insert into " + tableName + "(" + columns + ") values (" + insertColumn + ")";
+						//还原附件
+						if (tableName.toUpperCase().equals(ExchangeConfig.FILETABLE)) {
+							// 当REPO_FILE插入时,根据suuid下载附件
+							File zipFile = this.downFileFromFtp(suuid, inFtpDataBean);// 下载附件
+							this.importFileZip(zipFile, values);
+						}
+					} else {//更新
+						sql = "update " + tableName + " set " + updateColumn + " where " + where;
+					}
+					SQLQuery dataSqlquery = session.createSQLQuery(sql);
+					for (String key : values.keySet()) {
+						Object obj = values.get(key);
+						// 命中率高的放在前面
+						if (types.get(key).equals("VARCHAR2")) {
+							dataSqlquery.setString(key, (String) obj);
+						} else if (types.get(key).equals("TIMESTAMP(6)")) {
+							dataSqlquery.setTimestamp(key, (Date) obj);
+						} else if (types.get(key).equals("NUMBER")) {
+							dataSqlquery.setDouble(key, ((Number) obj).doubleValue());
+						} else if (types.get(key).equals("FLOAT")) {
+							dataSqlquery.setFloat(key, ((Number) obj).floatValue());
+						} else if (types.get(key).equals("CLOB")) {
+							dataSqlquery.setString(key, (String) obj);
+						} else if (types.get(key).equals("CHAR")) {
+							dataSqlquery.setString(key, (String) obj);
+						} else if (types.get(key).equals("DATE")) {
+							dataSqlquery.setTimestamp(key, (Date) obj);
+						}
+					}
+					dataSqlquery.executeUpdate();
+				}
+			}
+		} catch (Exception e) {
+			logger.error("**********************backData " + uuid + " " + e.getMessage(), e);
+			throw e;
+		}
+		return true;
+	}
+
+	/**
+	 * 还原数据:backDataPlaceHolder
+	 * 
+	 * @param session
+	 * @param dataItem
+	 * @param columDataFormat
+	 * @throws Exception
+	 */
+	public boolean backData(Session session, Map<String, Object> dataItem, List<Map<String, Object>> columDataFormat)
+			throws Exception {
+		String uuid = (String) dataItem.get("uuid");
+		int action = ((Number) dataItem.get("action")).intValue();
+		String suuid = (String) dataItem.get("suuid");
+		String tableName = (String) dataItem.get("stable_name");
+		try {
+			if (action == 3) {//删除
+				String backDelSql = "";
+				String compositeKey = (String) dataItem.get("composite_key");
+				if (StringUtils.isNotBlank(compositeKey)) {//联合主键（多对多关系表）
+					String[] compositeKeyArr = compositeKey.split(";");
+					String[] compositeValueArr = suuid.split(";");
+					String where = compositeKeyArr[0] + "='" + compositeValueArr[0] + "'";
+					for (int i = 1; i < compositeKeyArr.length; i++) {
+						where += " and " + compositeKeyArr[i] + "='" + compositeValueArr[i] + "'";
+					}
+					backDelSql = "delete " + tableName + " where " + where;
+				} else {
+					backDelSql = "delete " + tableName + " where uuid = '" + suuid + "'";
+				}
+				session.createSQLQuery(backDelSql).executeUpdate();
+				// 删除还原数据为删除时触发器生成的记录,删除没有触发条件
+				String delTigData = "delete tig_table_data d where d.action=3 and d.suuid=:suuid and d.stable_name=:stable_name and d.direction=:direction";
+				Query delTigQuery = session.createSQLQuery(delTigData);
+				delTigQuery.setInteger("direction", direction).setString("stable_name", tableName);
+				delTigQuery.setString("suuid", suuid).executeUpdate();
+			} else {//更新插入
+				//处理字段数据
+				if (columDataFormat != null && !columDataFormat.isEmpty()) {
+					String columns = "";
+					String insertColumn = "";
+					String updateColumn = "";
+					List<Object> values = new ArrayList<Object>();
+					List<String> types = new ArrayList<String>();
+					for (Map<String, Object> columMap : columDataFormat) {
+						String columnName = (String) columMap.get("tig_column_name");
+						String columnType = (String) columMap.get("tig_data_type");
+						// 命中率高的放在前面
+						if (columnName.equals(ExchangeConfig.ISSYNBACKFIELD)) {
+							// attention:字段名都是大写
+							columns += "," + columnName;
+							insertColumn += ",?";
+							updateColumn += "," + columnName + "=?";
+							values.add(UUID.randomUUID().toString());
+							types.add("VARCHAR2");
+						} else if (columnType.equals("VARCHAR2")) {
+							columns += "," + columnName;
+							insertColumn += ",?";
+							updateColumn += "," + columnName + "=?";
+							values.add(columMap.get("data_varchar_2"));
+							types.add("VARCHAR2");
+						} else if (columnType.equals("TIMESTAMP(6)") && columMap.get("data_time") != null) {
+							columns += "," + columnName;
+							insertColumn += ",?";
+							updateColumn += "," + columnName + "=?";
+							values.add(columMap.get("data_time"));
+							types.add("TIMESTAMP(6)");
+						} else if (columnType.equals("NUMBER") && columMap.get("data_number") != null) {
+							columns += "," + columnName;
+							insertColumn += ",?";
+							updateColumn += "," + columnName + "=?";
+							values.add(columMap.get("data_number"));
+							types.add("NUMBER");
+						} else if (columnType.equals("FLOAT") && columMap.get("data_float") != null) {
+							columns += "," + columnName;
+							insertColumn += ",?";
+							updateColumn += "," + columnName + "=?";
+							values.add(columMap.get("data_float"));
+							types.add("FLOAT");
+						} else if (columnType.equals("CLOB") && columMap.get("data_clob") != null) {
+							columns += "," + columnName;
+							insertColumn += ",?";
+							updateColumn += "," + columnName + "=?";
+							values.add(columMap.get("data_clob"));
+							types.add("CLOB");
+						} else if (columnType.equals("CHAR") && columMap.get("data_char") != null) {
+							columns += "," + columnName;
+							insertColumn += ",?";
+							updateColumn += "," + columnName + "=?";
+							values.add(columMap.get("data_char"));
+							types.add("CHAR");
+						} else if (columnType.equals("DATE") && columMap.get("data_date") != null) {
+							columns += "," + columnName;
+							insertColumn += ",?";
+							updateColumn += "," + columnName + "=?";
+							values.add(columMap.get("data_date"));
+							types.add("DATE");
+						}
+					}
+					columns = columns.replaceFirst(",", "");
+					insertColumn = insertColumn.replaceFirst(",", "");
+					updateColumn = updateColumn.replaceFirst(",", "");
+					if (!columns.contains(ExchangeConfig.ISSYNBACKFIELD)) {
+						if (StringUtils.isBlank(columns)) {
+							columns += ExchangeConfig.ISSYNBACKFIELD;
+						} else {
+							columns += "," + ExchangeConfig.ISSYNBACKFIELD;
+						}
+						if (StringUtils.isBlank(insertColumn)) {
+							insertColumn += "?";
+						} else {
+							insertColumn += ",?";
+						}
+						if (StringUtils.isBlank(updateColumn)) {
+							updateColumn += ExchangeConfig.ISSYNBACKFIELD + "=?";
+						} else {
+							updateColumn += "," + ExchangeConfig.ISSYNBACKFIELD + "=?";
+						}
+						values.add(UUID.randomUUID().toString());
+						types.add("VARCHAR2");
+					}
+					//插入更新数据
+					//查看数据是否存在
+					String compositeKey = (String) dataItem.get("composite_key");
+					String where = "";
+					if (StringUtils.isNotBlank(compositeKey)) {//联合主键（多对多关系表）
+						String[] compositeKeyArr = compositeKey.split(";");
+						String[] compositeValueArr = suuid.split(";");
+						where = compositeKeyArr[0] + "='" + compositeValueArr[0] + "'";
+						for (int i = 1; i < compositeKeyArr.length; i++) {
+							where += " and " + compositeKeyArr[i] + "='" + compositeValueArr[i] + "'";
+						}
+					} else {
+						where = " uuid = '" + suuid + "'";
+					}
+
+					String sqlStr = "select count(1) as count_ from " + tableName + " where " + where;
+					Query cQuery = session.createSQLQuery(sqlStr);
+					int count_ = ((Number) cQuery.uniqueResult()).intValue();
+					String sql = "";
+					if (action == 1 && count_ <= 0) {//插入,存在数据时不做处理
+						sql = "insert into " + tableName + "(" + columns + ") values (" + insertColumn + ")";
+						//还原附件
+						if (tableName.toUpperCase().equals(ExchangeConfig.FILETABLE)) {
+							// 当REPO_FILE插入时,根据suuid下载附件
+							Map<String, Object> fileValues = new HashMap<String, Object>();
+							for (Map<String, Object> columMap : columDataFormat) {
+								if (((String) columMap.get("tig_data_type")).equals("VARCHAR2")) {
+									Object objVal = columMap.get("data_varchar_2");
+									fileValues.put((String) columMap.get("tig_column_name"), objVal);
+								}
+							}
+							File zipFile = this.downFileFromFtp(suuid, inFtpDataBean);// 下载附件
+							this.importFileZip(zipFile, fileValues);
+						}
+					} else if ((action == 2 && count_ <= 0)) {
+						return false;
+						// throw new RuntimeException("更新UUID：" + uuid + "数据失败,需要更新的数据还未到达:" + suuid);
+					} else {// 默认更新
+						sql = "update " + tableName + " set " + updateColumn + " where " + where;
+					}
+					SQLQuery dataSqlquery = session.createSQLQuery(sql);
+					for (int i = 0; i < types.size(); i++) {
+						String type = types.get(i);
+						Object obj = values.get(i);
+						// 命中率高的放在前面
+						if (type.equals("VARCHAR2")) {
+							dataSqlquery.setString(i, (String) obj);
+						} else if (type.equals("TIMESTAMP(6)")) {
+							dataSqlquery.setTimestamp(i, (Date) obj);
+						} else if (type.equals("NUMBER")) {
+							dataSqlquery.setDouble(i, ((Number) obj).doubleValue());
+						} else if (type.equals("FLOAT")) {
+							dataSqlquery.setFloat(i, ((Number) obj).floatValue());
+						} else if (type.equals("CLOB")) {
+							dataSqlquery.setString(i, (String) obj);
+						} else if (type.equals("CHAR")) {
+							dataSqlquery.setString(i, (String) obj);
+						} else if (type.equals("DATE")) {
+							dataSqlquery.setTimestamp(i, (Date) obj);
+						}
+					}
+					dataSqlquery.executeUpdate();
+				}
+			}
+		} catch (Exception e) {
+			logger.error("**********************backData " + uuid + " " + e.getMessage(), e);
+			throw e;
+		}
+		return true;
+	}
+
+	/**
+	 * 
+	 * 还原数据
+	 * 
+	 * @param dataItem
+	 * @param columDataFormat
+	 * @param ftpDataBean
+	 * @return
+	 * @throws Exception 
+	 */
+	public boolean backDataCLOBDeprecated(Session session, Map<String, Object> dataItem) throws Exception {
+		String tig_owner_uuid = (String) dataItem.get("tig_owner_uuid");
+		String tig_column_name = (String) dataItem.get("tig_column_name");
+		String tableName = (String) dataItem.get("stable_name");
+		String dataUuid = (String) dataItem.get("data_uuid");
+		String compositeKey = (String) dataItem.get("composite_key");
+		try {
+			String where = "";
+			if (StringUtils.isNotBlank(compositeKey)) {//联合主键（多对多关系表）
+				String[] compositeKeyArr = compositeKey.split(";");
+				String[] compositeValueArr = dataUuid.split(";");
+				where = compositeKeyArr[0] + "='" + compositeValueArr[0] + "'";
+				for (int i = 1; i < compositeKeyArr.length; i++) {
+					where += " and " + compositeKeyArr[i] + "='" + compositeValueArr[i] + "'";
+				}
+			} else {
+				where = " uuid = '" + dataUuid + "'";
+			}
+			String querySql = "select count(1) as count_ from " + tableName + " where " + where;
+			Query cQuery = session.createSQLQuery(querySql);
+			int count_ = ((Number) cQuery.uniqueResult()).intValue();
+			if (count_ == 0) {
+				return false;// 主表记录还没到达
+			}
+			String columnName = (String) dataItem.get("tig_column_name");
+			String dataVal = "";
+			if (dataItem.get("data_clob") != null) {
+				Clob clob = (Clob) dataItem.get("data_clob");
+				dataVal = IOUtils.toString(clob.getCharacterStream());
+			}
+			String sql = "update " + tableName + " set " + columnName + "=:" + columnName + ","
+					+ ExchangeConfig.ISSYNBACKFIELD + "=:" + ExchangeConfig.ISSYNBACKFIELD + " where " + where;
+			SQLQuery dataSqlquery = session.createSQLQuery(sql);
+			dataSqlquery.setText(columnName, dataVal);
+			dataSqlquery.setString(ExchangeConfig.ISSYNBACKFIELD, UUID.randomUUID().toString());
+			dataSqlquery.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			logger.error(
+					"**********************backData " + tig_owner_uuid + " " + tig_column_name + " " + e.getMessage(),
+					e);
+			throw e;
+		}
+	}
+
+	/**
+	 * 
+	 * 还原数据:placeHolder
+	 * 
+	 * @param dataItem
+	 * @param columDataFormat
+	 * @param ftpDataBean
+	 * @return
+	 * @throws Exception 
+	 */
+	public boolean backDataCLOB(Session session, Map<String, Object> dataItem) throws Exception {
+		String tig_owner_uuid = (String) dataItem.get("tig_owner_uuid");
+		String tig_column_name = (String) dataItem.get("tig_column_name");
+		String tableName = (String) dataItem.get("stable_name");
+		String dataUuid = (String) dataItem.get("data_uuid");
+		String compositeKey = (String) dataItem.get("composite_key");
+		try {
+			String where = "";
+			if (StringUtils.isNotBlank(compositeKey)) {//联合主键（多对多关系表）
+				String[] compositeKeyArr = compositeKey.split(";");
+				String[] compositeValueArr = dataUuid.split(";");
+				where = compositeKeyArr[0] + "='" + compositeValueArr[0] + "'";
+				for (int i = 1; i < compositeKeyArr.length; i++) {
+					where += " and " + compositeKeyArr[i] + "='" + compositeValueArr[i] + "'";
+				}
+			} else {
+				where = " uuid = '" + dataUuid + "'";
+			}
+			String querySql = "select count(1) as count_ from " + tableName + " where " + where;
+			Query cQuery = session.createSQLQuery(querySql);
+			int count_ = ((Number) cQuery.uniqueResult()).intValue();
+			if (count_ == 0) {
+				return false;// 主表记录还没到达
+			}
+			String columnName = (String) dataItem.get("tig_column_name");
+			String dataVal = "";
+			if (dataItem.get("data_clob") != null) {
+				Clob clob = (Clob) dataItem.get("data_clob");
+				dataVal = IOUtils.toString(clob.getCharacterStream());
+			}
+			String sql = "update " + tableName + " set " + columnName + "=?," + ExchangeConfig.ISSYNBACKFIELD
+					+ "=? where " + where;
+			SQLQuery dataSqlquery = session.createSQLQuery(sql);
+			dataSqlquery.setText(0, dataVal);
+			dataSqlquery.setString(1, UUID.randomUUID().toString());
+			dataSqlquery.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			logger.error(
+					"**********************backData " + tig_owner_uuid + " " + tig_column_name + " " + e.getMessage(),
+					e);
+			throw e;
+		}
+	}
+
+	/**
+	 * 
+	 * 清理附件
+	 * 
+	 * (non-Javadoc)
+	 * @see com.wellsoft.pt.integration.service.ExchangeDataSynService#clearSynFtp(java.util.Map)
+	 */
+	@Override
+	public void clearSynFile(Map<String, SysProperties> sysPropertiess) throws Exception {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 备份交换成功的数据，同时清理数据
+	 */
+	@Override
+	public void clearSynDataAllInOne(Map<String, SysProperties> sysPropertiess) throws Exception {
+		List<String> dataUuids = new ArrayList<String>();
+		List<Map<String, Object>> dataList1 = new ArrayList<Map<String, Object>>();
+		try {
+			/*********************删除平台数据********************************/
+			Session defauleSession = this.dao.openSession();
+			try {
+				// 查询要删除的数据
+				StringBuilder sqlB = new StringBuilder(
+						"select list.* from (select o.* from tig_table_data o where (o.status=4 or o.status=6 or o.status=7)");
+				sqlB.append(" and o.create_time < cast((sysdate - ").append(clearInterval)
+						.append("/86400) as TIMESTAMP)");// 平台数据保留长3倍关闸数据的时间,平台保留1.5天
+				sqlB.append(") list where rownum<=").append(dataNum * 20);
+				Query query = defauleSession.createSQLQuery(sqlB.toString());
+				List<Map<String, Object>> dataList = query.setResultTransformer(INSTANCE).list();
+				for (int i = 0; i < dataList.size(); i++) {
+					Map<String, Object> dataItem = dataList.get(i);
+					String uuid = (String) dataItem.get("uuid");
+					String tableName = (String) dataItem.get("stable_name"); // 附件反馈成功
+					if (tableName != null && tableName.toUpperCase().equals(ExchangeConfig.FILETABLE)) {
+						String suuid = (String) dataItem.get("suuid");
+						delFileFromFtp(suuid, outFtpDataBean);// 清理流出
+					}
+					dataUuids.add(uuid);
+				}
+
+				// 清理数据
+				if (!dataUuids.isEmpty()) {
+					String delSubSql = "delete tig_column_data t where t.tig_owner_uuid in (:uuids)";
+					defauleSession.createSQLQuery(delSubSql).setParameterList("uuids", dataUuids).executeUpdate();
+
+					String delSql = "delete tig_table_data t where t.uuid in (:uuids)";
+					defauleSession.createSQLQuery(delSql).setParameterList("uuids", dataUuids).executeUpdate();
+				}
+
+				// 大字段表的处理
+				StringBuilder sqlC = new StringBuilder(
+						"select list.* from (select * from tig_column_clob t where t.data_status=4 ");
+				sqlC.append(" and t.create_time < cast((sysdate - ").append(clearInterval * 3)
+						.append("/86400) as TIMESTAMP)");
+				sqlC.append(") list where rownum<=").append(dataNum * 10);
+				dataList1 = defauleSession.createSQLQuery(sqlC.toString()).setResultTransformer(INSTANCE).list();
+				for (int i = 0; i < dataList1.size(); i++) {
+					Map<String, Object> dataItem1 = dataList1.get(i);
+					String tig_owner_uuid = (String) dataItem1.get("tig_owner_uuid");
+					String tig_column_name = (String) dataItem1.get("tig_column_name");
+					String delClobSql = "delete tig_column_clob t where t.tig_owner_uuid=:tig_owner_uuid and t.tig_column_name=:tig_column_name";
+					Query cquery = defauleSession.createSQLQuery(delClobSql);
+					cquery.setString("tig_owner_uuid", tig_owner_uuid);
+					cquery.setString("tig_column_name", tig_column_name);
+					cquery.executeUpdate();
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				defauleSession.close();
+			}
+		} catch (Exception e) {
+			logger.error("**********************clearSynTablePT:", e);
+			throw e;
+		}
+		try {
+			/*********************删除前置机数据,关闸与平台数据保持一直*******************************/
+			Session session = this.getDao(ExchangeConfig.NEWAPASOUT).openSession();
+			try {
+				// 清理数据
+				if (!dataUuids.isEmpty()) {
+					String delSubSql = "delete tig_column_data t where t.tig_owner_uuid in (:uuids)";
+					session.createSQLQuery(delSubSql).setParameterList("uuids", dataUuids).executeUpdate();
+
+					String delSql = "delete tig_table_data t where t.uuid in (:uuids)";
+					session.createSQLQuery(delSql).setParameterList("uuids", dataUuids).executeUpdate();
+				}
+
+				// 大字段表的处理
+				for (int i = 0; i < dataList1.size(); i++) {
+					Map<String, Object> dataItem1 = dataList1.get(i);
+					String tig_owner_uuid = (String) dataItem1.get("tig_owner_uuid");
+					String tig_column_name = (String) dataItem1.get("tig_column_name");
+					String delClobSql = "delete tig_column_clob t where t.tig_owner_uuid=:tig_owner_uuid and t.tig_column_name=:tig_column_name";
+					Query cuery = session.createSQLQuery(delClobSql);
+					cuery.setString("tig_owner_uuid", tig_owner_uuid);
+					cuery.setString("tig_column_name", tig_column_name);
+					cuery.executeUpdate();
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session.close();
+			}
+		} catch (Exception e) {
+			logger.error("**********************clearSynTableQZJ :", e);
+			throw e;
+		}
+	}
+
+	/**
+	 * 备份交换成功的数据，同时清理数据
+	 */
+	@Override
+	public void clearSynDataPt(Map<String, SysProperties> sysPropertiess) throws Exception {
+		try {
+			/*********************归档数据********************************/
+			Session defauleSession = this.dao.openSession();
+			List<String> dataUuids = new ArrayList<String>();
+			try {
+				StringBuilder sqlB = new StringBuilder(
+						"select list.* from (select o.* from tig_table_data o where (o.status=4 or o.status=6 or o.status=7)");
+				sqlB.append(" and o.create_time < cast((sysdate - ").append(clearInterval * 3)
+						.append("/86400) as TIMESTAMP)");// 平台数据保留长3倍关闸数据的时间,平台保留1.5天
+				sqlB.append(") list where rownum<=").append(dataNum * 20);
+				Query query = defauleSession.createSQLQuery(sqlB.toString());
+				List<Map<String, Object>> dataList = query.setResultTransformer(INSTANCE).list();
+
+				for (int i = 0; i < dataList.size(); i++) {
+					Map<String, Object> dataItem = dataList.get(i);
+					String uuid = (String) dataItem.get("uuid");
+					String tableName = (String) dataItem.get("stable_name"); // 附件反馈成功
+					if (tableName != null && tableName.toUpperCase().equals(ExchangeConfig.FILETABLE)) {
+						String suuid = (String) dataItem.get("suuid");
+						delFileFromFtp(suuid, outFtpDataBean);// 清理流出
+					}
+					dataUuids.add(uuid);
+					// 删除数据
+					//String delSubSql = "delete tig_column_data t where t.tig_owner_uuid=:uuid";
+					//defauleSession.createSQLQuery(delSubSql).setString("uuid", uuid).executeUpdate();
+
+					//String delSql = "delete tig_table_data t where t.uuid =:uuid";
+					//defauleSession.createSQLQuery(delSql).setString("uuid", uuid).executeUpdate();
+				}
+				if (!dataUuids.isEmpty()) {
+					String delSubSql = "delete tig_column_data t where t.tig_owner_uuid in (:uuids)";
+					defauleSession.createSQLQuery(delSubSql).setParameterList("uuids", dataUuids).executeUpdate();
+
+					String delSql = "delete tig_table_data t where t.uuid in (:uuids)";
+					defauleSession.createSQLQuery(delSql).setParameterList("uuids", dataUuids).executeUpdate();
+				}
+
+				//大字段表的处理
+				StringBuilder sqlC = new StringBuilder(
+						"select list.* from (select * from tig_column_clob t where t.data_status=4 ");
+				sqlC.append(" and t.create_time < cast((sysdate - ").append(clearInterval * 3)
+						.append("/86400) as TIMESTAMP)");
+				sqlC.append(") list where rownum<=").append(dataNum * 10);
+				List<Map<String, Object>> dataList1 = defauleSession.createSQLQuery(sqlC.toString())
+						.setResultTransformer(INSTANCE).list();
+				for (int i = 0; i < dataList1.size(); i++) {
+					Map<String, Object> dataItem1 = dataList1.get(i);
+					String tig_owner_uuid = (String) dataItem1.get("tig_owner_uuid");
+					String tig_column_name = (String) dataItem1.get("tig_column_name");
+					String delClobSql = "delete tig_column_clob t where t.tig_owner_uuid=:tig_owner_uuid and t.tig_column_name=:tig_column_name";
+					Query cquery = defauleSession.createSQLQuery(delClobSql);
+					cquery.setString("tig_owner_uuid", tig_owner_uuid);
+					cquery.setString("tig_column_name", tig_column_name);
+					cquery.executeUpdate();
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				defauleSession.close();
+			}
+		} catch (Exception e) {
+			logger.error("**********************clearSynTable " + e.getMessage(), e);
+			throw e;
+		}
+	}
+
+	/**
+	 * 清理前置机
+	 */
+	@Override
+	public void clearSynDataQzj(Map<String, SysProperties> sysPropertiess) throws Exception {
+		try {
+			/*********************删除前置机数据*******************************/
+			Session session = this.getDao(ExchangeConfig.NEWAPASOUT).openSession();
+			List<String> dataUuids = new ArrayList<String>();
+			try {
+				StringBuilder sqlB = new StringBuilder(
+						"select list.* from (select o.uuid from tig_table_data o where (o.status=4 or o.status=6 or o.status=7)");
+				sqlB.append(" and o.create_time < cast((sysdate - ").append(clearInterval)
+						.append("/86400) as TIMESTAMP)");
+				sqlB.append(") list where rownum<=").append(dataNum * 10);
+				Query query = session.createSQLQuery(sqlB.toString());
+				List<Map<String, Object>> dataList = query.setResultTransformer(INSTANCE).list();
+				for (int i = 0; i < dataList.size(); i++) {
+					Map<String, Object> dataItem = dataList.get(i);
+					String uuid = (String) dataItem.get("uuid");
+
+					dataUuids.add(uuid);
+					//删除流出前置机数据
+					//String delSubSql = "delete tig_column_data t where t.tig_owner_uuid = :tig_owner_uuid";
+					//session.createSQLQuery(delSubSql).setString("tig_owner_uuid", uuid).executeUpdate();
+
+					//String delSql = "delete tig_table_data t where t.uuid = :uuid";
+					//session.createSQLQuery(delSql).setString("uuid", uuid).executeUpdate();
+				}
+
+				if (!dataUuids.isEmpty()) {
+					String delSubSql = "delete tig_column_data t where t.tig_owner_uuid in (:uuids)";
+					session.createSQLQuery(delSubSql).setParameterList("uuids", dataUuids).executeUpdate();
+
+					String delSql = "delete tig_table_data t where t.uuid in (:uuids)";
+					session.createSQLQuery(delSql).setParameterList("uuids", dataUuids).executeUpdate();
+				}
+
+				//大字段表的处理
+				StringBuilder sqlC = new StringBuilder(
+						"select list.* from (select * from tig_column_clob t where t.data_status=4 ");
+				sqlC.append(" and t.create_time < cast((sysdate - ").append(clearInterval)
+						.append("/86400) as TIMESTAMP)");
+				sqlC.append(") list where rownum<=").append(dataNum * 5);
+				Query query2 = session.createSQLQuery(sqlC.toString());
+				List<Map<String, Object>> dataList1 = query2.setResultTransformer(INSTANCE).list();
+				for (int i = 0; i < dataList1.size(); i++) {
+					Map<String, Object> dataItem1 = dataList1.get(i);
+					String tig_owner_uuid = (String) dataItem1.get("tig_owner_uuid");
+					String tig_column_name = (String) dataItem1.get("tig_column_name");
+					String delClobSql = "delete tig_column_clob t where t.tig_owner_uuid=:tig_owner_uuid and t.tig_column_name=:tig_column_name";
+					Query cuery = session.createSQLQuery(delClobSql);
+					cuery.setString("tig_owner_uuid", tig_owner_uuid);
+					cuery.setString("tig_column_name", tig_column_name);
+					cuery.executeUpdate();
+				}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				session.close();
+			}
+		} catch (Exception e) {
+			logger.error("**********************clearSynTable " + e.getMessage(), e);
+			throw e;
+		}
+	}
+
+	public File exportFileZip(String suuid) throws Exception {
+		MongoFileEntity mongoFileEntity = mongoFileService.getFile(suuid);
+		if (mongoFileEntity == null) {
+			return null;
+		}
+		File destFolder = new File(Config.APP_DATA_DIR + File.separator + "mongofilesyn" + File.separator + "export"
+				+ File.separator);
+		destFolder.mkdirs();
+		FileOutputStream fos = null;
+		InputStream is = null;
+		File file = new File(destFolder, suuid + ".zip");
+		try {
+			is = mongoFileEntity.getInputstream();
+			file.createNewFile();
+			fos = new FileOutputStream(file);
+			IOUtils.copyLarge(is, fos);
+		} catch (IOException e) {
+			throw e;
+		} finally {
+			IOUtils.closeQuietly(fos);
+			IOUtils.closeQuietly(is);
+		}
+		return file;
+	}
+
+	public void importFileZip(File zipFile, Map<String, Object> values) throws Exception {
+		if (zipFile != null) {
+			InputStream inputStream = null;
+			try {
+				inputStream = new FileInputStream(zipFile);
+				String fileID = values.get("PHYSICAL_FILE_ID") == null ? "" : values.get("PHYSICAL_FILE_ID").toString();
+				String fileName = values.get("FILE_NAME") == null ? "" : values.get("FILE_NAME").toString();
+				String contentType = values.get("CONTENT_TYPE") == null ? "" : values.get("CONTENT_TYPE").toString();
+				mongoFileService.savePhysicalFile(fileID, fileName, contentType, inputStream);
+			} catch (IOException e) {
+				throw e;
+			} finally {
+				IOUtils.closeQuietly(inputStream);
+			}
+		}
+	}
+
+	public void deleteFile(String type) {
+		File dir = null;
+		if (type.equals("export")) {
+			dir = new File(Config.APP_DATA_DIR + File.separator + "mongofilesyn" + File.separator + "export"
+					+ File.separator);
+		} else if (type.equals("import")) {
+			dir = new File(Config.APP_DATA_DIR + File.separator + "mongofilesyn" + File.separator + "import"
+					+ File.separator);
+		}
+		if (dir.isDirectory()) {
+			File[] files = dir.listFiles();
+			for (File file : files) {
+				file.delete();
+			}
+		}
+	}
+
+	public void uploadFileToFtp(String suuid, File zipFile, FtpDataBean ftpDataBean) throws Exception {
+		//附件的处理
+		if (zipFile != null) {
+			CommonFtp myFtp = new CommonFtp(ftpDataBean.getFtp_host(), ftpDataBean.getFtp_post(),
+					ftpDataBean.getFtp_user_name(), ftpDataBean.getFtp_pass_word());
+			try {
+				if (!myFtp.isConnected()) {
+					myFtp.connect();
+				}
+				//文件名改成操作记录uuid
+				String fileName = suuid + ".zip";
+				myFtp.deleteFile("\\", fileName);
+				myFtp.uploadFile(zipFile, "\\");//上传
+				myFtp.rename("\\", fileName + ".oa");//上传完成后修改文件名,去掉.oa后缀，保证同步成功（只有.zip与.rar支持同步）
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				myFtp.disconnect();
+			}
+		}
+	}
+
+	public File downFileFromFtp(String suuid, FtpDataBean ftpDataBean) throws Exception {
+		CommonFtp myFtp = new CommonFtp(ftpDataBean.getFtp_host(), ftpDataBean.getFtp_post(),
+				ftpDataBean.getFtp_user_name(), ftpDataBean.getFtp_pass_word());
+		File downFile = null;
+		try {
+			if (!myFtp.isConnected()) {
+				myFtp.connect();
+			}
+			String zuuid = suuid + ".zip";
+			downFile = myFtp.downFile("\\", zuuid);
+			if (downFile != null) {
+				myFtp.deleteFile("\\", zuuid);
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			myFtp.disconnect();
+		}
+		return downFile;
+	}
+
+	public boolean delFileFromFtp(String suuid, FtpDataBean ftpDataBean) throws Exception {
+		boolean del = false;
+		if (StringUtils.isNotBlank(suuid)) {
+			CommonFtp myFtp = new CommonFtp(ftpDataBean.getFtp_host(), ftpDataBean.getFtp_post(),
+					ftpDataBean.getFtp_user_name(), ftpDataBean.getFtp_pass_word());
+			try {
+				if (!myFtp.isConnected()) {
+					myFtp.connect();
+				}
+				//判断附件是否存在
+				del = myFtp.deleteFile("\\unimas_back\\", suuid + ".zip");// 删除unimas_back目录的备份文件,TODO soft coding unimas_back
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				myFtp.disconnect();
+			}
+		}
+		return del;
+	}
+
+	public boolean isSeries(List<Map<String, Object>> dataList, String cloumName) {
+		int seriesVal = 0;
+		for (Map<String, Object> obj : dataList) {
+			Integer val = Integer.parseInt(obj.get(cloumName).toString());
+			if (seriesVal == 0) {
+				seriesVal = val;
+			} else {
+				if (seriesVal <= val) {
+					logger.error("****************数据不连号,还原中断，等待同步：order_id=" + val);
+					return false;
+				}
+				seriesVal++;
+			}
+		}
+		return true;
+	}
+
+	public static void main(String[] args) {
+		Integer fff = 4;
+		System.out.println(fff.toString());
+
+		//---------------------------------
+		int direction = 2;
+		StringBuffer param = new StringBuffer(" and o.stable_name not in (");
+		param.append(ExchangeDataSynService.PARAM_MSG).append(",");
+		param.append(ExchangeDataSynService.PARAM_ACL).append(",");
+		param.append(ExchangeDataSynService.PARAM_REPO).append(",");
+		param.append(ExchangeDataSynService.PARAM_FLOW).append(") ");
+		String params = param.toString();
+
+		// first with as cte1
+		StringBuilder sqlB = new StringBuilder(
+				"with cte1 as (select oo.tig_owner_uuid,count(1) as ctn from tig_column_data oo group by oo.tig_owner_uuid)");
+		// append second with as cte2
+		sqlB.append(",cte2 as (select o.* from tig_table_data o where o.status = 2 and o.direction = ");
+		sqlB.append(direction == 1 ? 2 : 1);
+		if (StringUtils.isBlank(params) == false) {//带约束
+			sqlB.append(params);
+		}
+		sqlB.append(") select b.* from cte2 b left join cte1 a on a.tig_owner_uuid = b.uuid where a.ctn = b.cloum_num or b.action = 3 order by b.status asc,b.order_id asc");
+		System.out.println(sqlB);
+
+	}
+
+	/**
+	 * @return the outFtpDataBean
+	 */
+	public FtpDataBean getOutFtpDataBean() {
+		return outFtpDataBean;
+	}
+
+	/**
+	 * @return the inFtpDataBean
+	 */
+	public FtpDataBean getInFtpDataBean() {
+		return inFtpDataBean;
+	}
+
+	/**
+	 * @return the dataNum
+	 */
+	public int getDataNum() {
+		return dataNum;
+	}
+
+	/**
+	 * @return the direction
+	 */
+	public int getDirection() {
+		return direction;
+	}
+
+	/**
+	 * @return the dataInQuery
+	 */
+	public String getDataInQuery() {
+		return dataInQuery;
+	}
+
+	/**
+	 * @return the dataOutQuery
+	 */
+	public String getDataOutQuery() {
+		return dataOutQuery;
+	}
+
+}

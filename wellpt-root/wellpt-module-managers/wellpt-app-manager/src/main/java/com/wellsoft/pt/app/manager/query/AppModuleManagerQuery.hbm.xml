@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="appModuleManagerQuery">
+        <![CDATA[
+        select t1.uuid             as uuid,
+		       t1.create_time      as create_time,
+		       t1.creator          as creator,
+		       t1.modifier         as modifier,
+		       t1.modify_time      as modify_time,
+		       t1.rec_ver          as rec_ver,
+		       t1.name             as name,
+		       t1.id               as id,
+		       t1.code             as code,
+		       t1.title            as title,
+		       t1.parent_uuid      as parent_uuid,
+		       t1.js_module        as js_module,
+		       t1.enabled          as enabled,
+		       t1.remark           as remark,
+		       t1.system_unit_id   as system_unit_id,
+		       t2.uuid             as app_pi_uuid,
+		       t2.parent_uuid      as parent_app_pi_uuid,
+		       t2.app_product_uuid as app_product_uuid,
+		       t2.app_system_uuid  as app_system_uuid
+		  from app_module t1
+		  left join app_product_integration t2
+		    on t1.uuid = t2.data_uuid
+		   and t2.data_type = 2
+		 where  1 = 1
+		  <if isNotBlank(keyword)>
+            and (t1.name like '%${keyword}%'
+                or t1.id like '%${keyword}%'
+                or t1.code like '%${keyword}%')
+          </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+		  <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+    ]]>
+    </sql-query>
+
+    <sql-query name="appModuleManagerSelect2Query">
+        <![CDATA[
+        select t2.uuid as id, t1.name as name
+			   from app_module t1
+			   inner join app_product_integration t2
+			     on t1.uuid = t2.data_uuid
+			    and t2.data_type = 2
+			  where 1 = 1
+			        <if isNotBlank(appPiUuid)>
+		                and t2.parent_uuid =
+		                    (select t3.parent_uuid
+		                       from app_product_integration t3
+		                      where t3.uuid = :appPiUuid)
+			        </if>
+                    <if isNotBlank(systemUnitId)>
+                        and t1.system_unit_id = :systemUnitId
+                    </if>
+                    <if isNotBlank(name) || isNotBlank(code) || isNotBlank(id)>
+                        and (1 = 2
+                            <if isNotBlank(name)>
+                                or lower(t1.name) like '%${name?lower_case}%'
+                            </if>
+                            <if isNotBlank(code)>
+                                or lower(t1.code) like '%${code?lower_case}%'
+                            </if>
+                            <if isNotBlank(id)>
+                                or lower(t1.id) like '%${id?lower_case}%'
+                            </if>
+                        )
+                    </if>
+        order by t1.code asc, t1.name
+    ]]>
+    </sql-query>
+
+    <sql-query name="appModuleManagerSelect2IdsQuery">
+        <![CDATA[
+        select t2.uuid as id, t1.name as name
+               from app_module t1
+               left join app_product_integration t2
+                 on t1.uuid = t2.data_uuid
+                and t2.data_type = 2
+                where t1.id in (:appModuleIds)
+        order by t1.code asc, t1.name
+    ]]>
+    </sql-query>
+</hibernate-mapping>

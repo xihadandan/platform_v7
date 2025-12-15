@@ -1,0 +1,565 @@
+.upload_div {
+  background: none repeat scroll 0 0 transparent;
+  padding-top: 5px;
+  display: inline-block;
+}
+
+.upload_div > span.tip,
+.ui-image-container > span.tip {
+  color: #999999;
+  margin-left: 20px;
+  font-size: 12px;
+}
+
+.upload_div .fileinput-button2 {
+  position: relative;
+}
+
+.file-list .circle {
+  width: 20px;
+  display: inline-block;
+  height: 20px;
+  /*margin:20px;*/
+  position: relative;
+  background: #ccc;
+  border-radius: 50%;
+  top: 2px;
+  /*margin-left: 9px;*/
+}
+.file-list .pie_left,
+.file-list .pie_right {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.file-list .left,
+.file-list .right {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  background: #488cee;
+  /*transform:rotate(-180px);*/
+  width: 100%;
+  height: 100%;
+  transform: rotate(-180deg);
+}
+.file-list .pie_left,
+.file-list .left {
+  clip: rect(auto, 10px, auto, auto);
+  /*clip:rect(0,100px,auto,0);*/
+}
+.file-list .pie_right,
+.file-list .right {
+  clip: rect(0, auto, auto, 10px);
+}
+.file-list .mask {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 50%;
+  background: #fff;
+  text-align: center;
+}
+
+/*.file-list .mask .check {*/
+/*    font-size: 14px;*/
+/*    position: relative;*/
+/*    left: -1px;*/
+/*    top: -1px;*/
+/*}*/
+/*.file-list .mask .check::after {*/
+/*    content: "\2713";*/
+/*}*/
+
+.file-list .mask .fail {
+  font-size: 14px;
+  position: relative;
+  top: -1px;
+}
+
+#upload_div .file_source_css {
+  cursor: pointer;
+  height: 28px;
+  left: 0;
+  top: 0;
+  margin: 0;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  filter: alpha(opacity=0);
+}
+
+#upload_div .fileupload_css {
+  z-index: -1;
+  cursor: pointer;
+  height: 100%;
+  left: 0px;
+  bottom: 0px;
+  margin: 0px;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  filter: alpha(opacity=0);
+}
+
+.upload_div span {
+}
+
+.files_div {
+  /*     min-width:200px; */
+  line-height: normal;
+  display: inline-block;
+  clear: both;
+  background: none repeat scroll 0 0 #dddddd;
+  text-decoration: none;
+  width: calc(98%);
+  position: relative;
+}
+
+.progress-div {
+  float: left;
+  height: 10px;
+  margin: 10px 0 0 10px;
+  width: 10%;
+}
+.files_div p {
+  display: inline-block;
+  font-size: 12px;
+  margin: 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: #666666;
+}
+.files_div span {
+  cursor: pointer;
+}
+
+.files_div .file_icon {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+  margin-right: 5px;
+}
+
+.files_div .upload_progress .tran_md5 {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('tran_md5_process.gif') no-repeat center;
+}
+
+#files .delete_input,
+.files .delete_input {
+  cursor: pointer;
+  border: 1px none;
+  width: 42px;
+  font-size: 12px;
+  margin-left: 0px;
+  background: none repeat scroll 0 0 transparent;
+  color: #4b9ad2;
+}
+
+#progress .bar-div {
+  background: none repeat scroll 0 0 #87b5e7;
+  height: 11px;
+}
+
+.upload_div .btn-primary {
+  position: relative;
+}
+
+#files .delete_input:hover {
+  color: #ff7200;
+}
+
+#upload_div .file_icon {
+  background: url('../theme/images/v1_icon4.png') no-repeat scroll -63px 4px transparent;
+  width: 10px;
+  height: 20px;
+  display: block;
+  float: left;
+  margin-right: 10px;
+}
+
+/*#files .file_icon {*/
+/*background:url("../theme/images/v1_icon4.png") no-repeat scroll -63px 4px transparent;*/
+/*width:10px;*/
+/*height:20px;*/
+/*display: block;*/
+/*float: left;*/
+/*}*/
+
+#upload_div .add_icon {
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.downloadAll {
+  display: block;
+}
+
+.downloadallbtn {
+  cursor: pointer;
+}
+
+.clear-both {
+  clear: both;
+}
+.dyform .file-list li:hover {
+  background: rgba(72, 139, 237, 0.15);
+}
+
+.file-list .sec_dev_btn {
+  height: 26px;
+  line-height: 26px;
+  display: inline;
+  margin: 0 0 0 4px;
+  padding: 3px 11px;
+}
+
+.file-list .btn_span {
+  width: auto;
+  height: 26px;
+  color: #488cee;
+  border: 1px solid #488cee;
+  border-radius: 10%;
+  padding: 0 10px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.file-list .icon {
+  line-height: 26px;
+  margin-right: 5px;
+  /*color: #999999;*/
+  font-size: 14px;
+  cursor: pointer;
+}
+
+._delete_input,
+.download_input,
+button.filename {
+  cursor: pointer;
+  border: 1px none;
+  width: 42px;
+  font-size: 12px;
+  margin-left: 0px;
+  background: none repeat scroll 0 0 transparent;
+  color: #4b9ad2;
+  margin-top: 0px;
+}
+
+.tip-file {
+  max-width: 400px;
+}
+
+.tip-file .tip-filename {
+}
+
+.tip-file .tip-s {
+  color: #999999;
+  margin-right: 20px;
+  font-size: 12px;
+}
+
+.dyform .fileUpdateload .file_icon {
+  margin: 10px 8px 0px 12px;
+  background: none;
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dyform .fileUpdateload .file_icon:before {
+  content: '\f0c6';
+  color: #488cee;
+}
+
+.fileContainer .c-group {
+  display: none;
+  float: right;
+  line-height: 28px;
+}
+
+.fileContainer .c-group > button,
+.fileContainer .c-group > .dropdown-menu button,
+.tip-file .c-group > button {
+  font-size: 14px;
+  height: 24px;
+  padding: 2px 10px;
+  margin-right: 6px;
+  background: white;
+  color: #488cee;
+}
+
+.fileContainer .c-group > .dropdown-menu button {
+  width: 100%;
+  text-align: left;
+}
+
+.fileContainer .c-group > button:hover,
+.tip-file .c-group > button:hover {
+  border: 1px solid #488cee;
+}
+
+.fileContainer .c-group > .dropdown-menu > li:hover {
+  background: #e4eefc;
+}
+
+.fileContainer .c-group > .dropdown-menu > li:hover > button {
+  background: none;
+  color: #cccccc;
+}
+
+.dyform .ui-table .fileContainer {
+  padding: 0px;
+}
+.fileContainer .c-group .dropdown-menu button {
+  color: #488cee;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+}
+.fileContainer .c-group .dropdown-menu button:hover {
+  background: rgba(72, 140, 238, 0.15);
+}
+.ui-list .icoItem .c-group {
+  float: none;
+  margin-left: 20px;
+}
+
+.ui-table .fileContainer .c-group {
+  display: inline-block !important;
+}
+
+.file-table-header {
+  display: none;
+  position: relative;
+  background: #fafafa;
+}
+
+.dyform .ui-table .file-table-header {
+  display: table;
+  width: 100%;
+}
+.file-nodata {
+  padding: 32px 0;
+  text-align: center;
+}
+.file-nodata img {
+  width: 80px;
+  height: 64px;
+  display: inline-block;
+}
+.file-nodata span {
+  color: #ccc;
+  font-size: 14px;
+  margin-left: 10px;
+}
+.file-table-header span {
+  color: black;
+  display: table-cell;
+  vertical-align: middle;
+  padding: 3px 0px 3px 15px;
+  border-left: 1px solid rgba(221, 221, 221, 1);
+  border-bottom: 1px solid rgba(221, 221, 221, 1);
+}
+
+.file-table-header .td1 {
+  width: 40%;
+}
+
+.file-table-header .td2 {
+  width: 8%;
+}
+
+.file-table-header .td3 {
+  width: 12%;
+}
+
+.file-table-header .td4 {
+  width: 10%;
+}
+
+.file-table-header .td5 {
+  width: 30%;
+}
+
+.ui-table .icoItem .fileSize {
+  width: 8%;
+  display: inline-block;
+}
+.ui-table .icoItem .fileSize:before {
+  left: 40%;
+}
+.ui-table .icoItem .fileCreatetime:before {
+  left: 48%;
+}
+.ui-table .icoItem .user-name:before {
+  left: 60%;
+}
+
+.ui-table .icoItem .fileCreatetime {
+  display: inline-block;
+  width: 12%;
+}
+
+.ui-table .icoItem .user-name {
+  width: 10%;
+  display: inline-block;
+}
+
+.ui-table .icoItem .c-group {
+  width: 30%;
+  padding-left: 10px;
+  border-left: 1px solid rgb(221, 221, 221);
+  display: inline-block;
+  white-space: normal;
+  vertical-align: middle;
+  float: none;
+}
+
+.ui-image .fileContainer .c-group {
+  display: none !important;
+}
+
+.ui-image .fileContainer .icoItem .file-inline-info {
+  display: none;
+}
+
+.ui-image .fileContainer .icoItem .fileName {
+  height: 16px;
+  line-height: 16px;
+  display: block;
+  position: absolute;
+  top: 62px;
+  width: 100%;
+  text-align: center;
+  padding: 0px 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ui-image .fileContainer .icoItem .fileSize {
+  display: block;
+  height: 14px;
+  line-height: 14px;
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  text-align: center;
+  margin: 0px;
+}
+
+button.filename {
+}
+
+.ui-image-container {
+}
+
+.ui-image-container > ul {
+  display: inline-block;
+}
+
+.ui-image-container li[filename] {
+  display: inline-block;
+  position: relative;
+  border-radius: 4px;
+  padding: 5px;
+  border: 1px solid rgba(221, 221, 221, 1);
+}
+
+.ui-image-container li[filename] button[type='button'] {
+  display: none;
+  position: absolute;
+  color: white;
+  top: 50%;
+  z-index: 10;
+  margin-top: -18px;
+}
+
+.ui-image-container li.active img {
+  /* 	background-color: black; */
+  /* 	opacity: 0.4; */
+}
+
+.ui-image-container li.active button[type='button'] {
+  display: inline-block;
+  color: white;
+}
+
+.ui-image-container li[filename] button[type='button'].filename {
+  left: 12px;
+  font-size: 16px;
+}
+.ui-image-container li[filename] button[type='button'].download_input {
+  left: 50%;
+  margin-left: -21px;
+}
+.ui-image-container li[filename] button[type='button']._delete_input {
+  right: 12px;
+}
+.ui-image-container li[filename] .img-preview {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 110px;
+  height: 110px;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+  display: none;
+}
+.ui-image-container li.active div.img-preview {
+  display: block;
+}
+.ui-image-container > ul > li.btn-image-uploader {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+  padding: 5px;
+  border-radius: 4px;
+  background: rgba(250, 250, 250, 1);
+  border: 1px dashed rgba(221, 221, 221, 1);
+}
+
+.ui-image-container > ul > li.btn-image-uploader:hover {
+  border-color: rgba(72, 140, 238, 1);
+}
+
+.ui-image-container li.btn-image-uploader .fileinput-button2 {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  background: rgba(250, 250, 250, 1);
+}
+
+.ui-image-container #upload_div .btn-primary {
+  background: rgba(250, 250, 250, 1);
+  border-color: #488cee;
+  color: #488cee;
+  border-width: 0px;
+}
+
+.ui-image-container li.btn-image-uploader .fileinput-button2:hover {
+  background: rgba(250, 250, 250, 1);
+  border-color: #488cee;
+  color: #488cee;
+}
+
+.ui-image-container li.btn-image-uploader .fileinput-button2 > .icon-ptkj-jiahao {
+  margin-top: 24%;
+  font-size: 24px;
+}

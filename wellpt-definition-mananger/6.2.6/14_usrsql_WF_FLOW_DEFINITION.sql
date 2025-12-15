@@ -1,0 +1,1 @@
+Alter   Table    WF_FLOW_DEFINITION    Add    AUTO_UPDATE_TITLE   NUMBER(1);

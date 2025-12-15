@@ -1,0 +1,1 @@
+alter table app_product_integration alter column is_protected set default 1;

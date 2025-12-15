@@ -1,0 +1,31 @@
+<div class="wf-distribute-info">
+    {@each distributeInfos as distributeData,batchIndex}
+
+    <ul class="mui-table-view mui-table-view-striped mui-table-view-condensed table-view-content">
+
+        {@each distributeData.distributeInfos as distributeInfo,index}
+        <li class="mui-table-view-cell mui-transitioning" distribute-info-index="${parseInt(batchIndex)}"
+            data-index="${parseInt(index)}">
+            <div class="mui-slider-handle">
+                <!--<div class="mui-checkbox">
+                    <input name="itemCheckbox" type="checkbox" data-index="${parseInt(itemIndex)}" class="input-check-item">
+                </div>-->
+                <div class="mui-table workitem-view-cell" style="border-top:0">
+                    <div class="mui-table-cell">
+                        <i class="mui-navigate-right" style="width:92%;position: absolute;right: -20px;top: 40px;"></i>
+                        <h4 class="mui-ellipsis" style="margin-right: 114px;">${parseInt(index) +
+                            1}、${distributeInfo.distributorName}</h4>
+                        <span class="mui-h5" style="width: 114px;top: 16px;right: 0;position: absolute;">${distributeInfo.createTime}</span>
+                        <div class="mui-clearfix mui-h5"><span>${distributeInfo.content}</span>&nbsp;&nbsp;
+                            <!--<span>{leftCenter2}</span>-->
+                            <!--                            <span style="float: right;">${taskOperation.userName}</span>-->
+                        </div>
+                        <!--                        <div class="mui-clearfix mui-h5"><span>${taskOperation.opinionText}</span></div>-->
+                    </div>
+                </div>
+            </div>
+        </li>
+        {@/each}
+    </ul>
+    {@/each}
+</div>

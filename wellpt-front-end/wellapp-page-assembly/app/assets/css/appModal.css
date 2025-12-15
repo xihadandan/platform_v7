@@ -1,0 +1,925 @@
+.modal.ui-front {
+  z-index: 1051;
+}
+.modal-backdrop {
+  z-index: 999999998;
+}
+.bootbox .modal-dialog.modal-lg .modal-header,
+.bootbox .modal-dialog.modal-md .modal-header,
+.bootbox .modal-dialog.modal-sm .modal-header {
+  padding: 0px 15px;
+  background: #488cee;
+}
+.bootbox .modal-warning,
+.bootbox .modal-error,
+.bootbox .modal-success,
+.bootbox .modal-info,
+.bootbox .modal-alert {
+  width: 380px;
+}
+.bootbox .modal-confirm,
+.bootbox .modal-progress {
+  width: 445px;
+}
+.bootbox .modal-default {
+  min-width: 499px;
+}
+.modal.in .modal-dialog {
+  -webkit-transform: initial;
+  -ms-transform: initial;
+  -o-transform: initial;
+  transform: initial;
+}
+.modal.fade .modal-dialog {
+  -webkit-transition: initial;
+  -o-transition: initial;
+  transition: initial;
+  -webkit-transform: initial;
+  -ms-transform: initial;
+  -o-transform: initial;
+  transform: initial;
+}
+.bootbox .modal-default:not(.modal-lg) .bootbox-body {
+  width: 100%;
+  min-height: 106px;
+  max-height: 400px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+.bootbox .modal-default.modal-lg .bootbox-body {
+  overflow-y: auto;
+  height: 100%;
+}
+.bootbox .modal-warning .modal-body,
+.bootbox .modal-error .modal-body,
+.bootbox .modal-success .modal-body,
+.bootbox .modal-info .modal-body,
+.bootbox .modal-alert .modal-body {
+  min-height: 160px;
+}
+.bootbox .modal-confirm .modal-body,
+.bootbox .modal-default .modal-body,
+.bootbox .modal-progress .modal-body {
+  min-height: 136px;
+}
+.bootbox .modal-warning .modal-body i,
+.bootbox .modal-error .modal-body i,
+.bootbox .modal-success .modal-body i,
+.bootbox .modal-info .modal-body i,
+.bootbox .modal-confirm .modal-body i {
+  font-size: 30px;
+  vertical-align: middle;
+  line-height: 1;
+}
+.bootbox .modal-warning .modal-body i {
+  color: #d99d00;
+}
+.bootbox .modal-error .modal-body i {
+  color: #e33033;
+}
+.bootbox .modal-success .modal-body i {
+  color: #4bb633;
+}
+.bootbox .modal-info .modal-body i {
+  color: #488cee;
+}
+.bootbox .modal-dialog .modal-header {
+  padding: 0 15px;
+}
+.bootbox .modal-dialog .modal-header .modal-title {
+  line-height: 40px;
+  padding: 0;
+  font-size: 16px;
+  color: #fff;
+  margin-top: 0;
+}
+.bootbox .modal-dialog .modal-header .close {
+  text-shadow: none;
+  opacity: 1;
+  color: #fff;
+}
+.bootbox .modal-dialog .modal-header .close i {
+  font-size: 12px;
+  font-weight: normal;
+}
+.bootbox .modal-dialog .modal-header .close i.icon-ptkj-dacha {
+  color: rgba(255, 255, 255, 0.65);
+}
+.bootbox .modal-dialog .modal-header .close i.icon-ptkj-dacha:hover {
+  color: rgba(255, 255, 255, 1);
+}
+.bootbox .modal-dialog .modal-header .close i.icon-ptkj-tuichuquanping {
+  font-size: 16px;
+}
+.bootbox.default-bg .modal-dialog .modal-header .close:hover i {
+  color: #488cee;
+}
+.bootbox .modal-dialog .modal-body {
+  padding: 15px;
+  position: relative;
+  background: #fff;
+  box-sizing: border-box;
+}
+.bootbox .modal-dialog .bootbox-body-tips,
+.bootbox .modal-dialog .bootbox-body-tips-msg,
+.bootbox .modal-dialog .bootbox-body-tips-time {
+  display: block;
+  text-align: center;
+}
+
+.bootbox .modal-dialog .bootbox-body-tips-msg {
+  margin-top: 15px;
+  color: #666;
+  word-break: break-all;
+  line-height: 20px;
+}
+.bootbox .modal-dialog .bootbox-body-tips-time {
+  margin-top: 10px;
+  color: #999;
+}
+.bootbox .modal-dialog .bootbox-body-overflow {
+  position: initial;
+  transform: translateY(0);
+  width: 100%;
+}
+.bootbox .modal-dialog .bootbox-body-msg-overflow {
+  overflow: hidden;
+  height: 300px;
+}
+.bootbox .modal-dialog .show-more-msg {
+  display: none;
+  color: #488cee;
+  cursor: pointer;
+  line-height: 24px;
+}
+.pt-modal.pt-modal-progress .pt-modal-body {
+  padding: 30px 150px;
+  min-height: 136px;
+  text-align: center;
+}
+.bootbox .modal-dialog .bootbox-body-progress i {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  vertical-align: middle;
+  background: url('../../pt/images/loading1.gif') no-repeat;
+  background-size: 100% 100%;
+}
+.bootbox .modal-dialog .bootbox-body-progress span {
+  margin-left: 19px;
+  color: #999;
+  font-size: 14px;
+  vertical-align: middle;
+  display: inline-block;
+  word-break: break-all;
+  max-width: 200px;
+  text-align: left;
+}
+.bootbox .modal-dialog .modal-content {
+  /* background: initial; */
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 0;
+  margin: 30px auto;
+  border: none;
+}
+.bootbox .modal-dialog .modal-footer {
+  border-top: 1px solid #ddd;
+  padding: 15px 15px;
+  background: #fff;
+}
+.bootbox .modal-dialog .modal-footer button {
+  padding: 10px 20px;
+  line-height: 1;
+  border-radius: 4px;
+  height: 34px;
+}
+.bootbox .modal-dialog .modal-footer button.btn-primary {
+  background: #488cee;
+  border-color: #488cee;
+}
+.bootbox .modal-dialog .modal-footer button.btn-line {
+  background: #fff;
+  color: #488cee;
+  border-color: rgba(72, 140, 238, 0.3);
+}
+.bootbox .modal-dialog .modal-footer button.btn-line:hover {
+  border-color: #488cee;
+}
+.bootbox .modal-dialog .modal-footer button.btn-default {
+  background: #fff;
+  color: #666666;
+  border: 1px solid #dddddd;
+}
+.bootbox .modal-dialog .modal-ignore {
+  float: left;
+  color: #999;
+  font-size: 0;
+  cursor: pointer;
+}
+.bootbox .modal-dialog .modal-ignore i {
+  line-height: 34px;
+  font-size: 14px;
+}
+.bootbox .modal-dialog .modal-ignore span {
+  line-height: 34px;
+  font-size: 14px;
+  margin-left: 10px;
+}
+.bootbox .modal-dialog #div_calendar_view_form {
+  max-height: initial;
+  overflow-y: initial;
+  overflow-x: initial;
+}
+.modal-open {
+  overflow: hidden;
+}
+.modal,
+.modal.ui-front {
+  z-index: 999999999;
+}
+.modal-bottom-right {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}
+.widget-box-overlay {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 999999999999;
+  background: rgba(0, 0, 0, 0.5);
+}
+.widget-box-overlay .loading-overlay {
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+}
+.widget-box-overlay .loading-overlay-gif {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+.widget-box-overlay .loading-text {
+  text-align: center;
+  color: #accfff;
+  font-weight: bold;
+}
+.pt-tips {
+  width: 0;
+  font-size: 0;
+  padding: 16px;
+  border-radius: 4px;
+  border: 1px solid #fff;
+  box-sizing: border-box;
+  line-height: 1;
+  position: fixed;
+  top: -100px;
+  z-index: 999999990;
+  color: #333;
+  background: #fff;
+  opacity: 0;
+}
+.pt-tips.success {
+  color: #4bb633;
+  background: #f6fbf5;
+  border-color: #e4f4e1;
+}
+.pt-tips.info {
+  color: #488cee;
+  background: #f6f9fe;
+  border-color: #e4eefc;
+}
+.pt-tips.warning {
+  color: #eaa900;
+  background: #fdfaf2;
+  border-color: #f9f0d9;
+}
+.pt-tips.error {
+  color: #e33033;
+  background: #fef4f5;
+  border-color: #fbe0e1;
+}
+.pt-tips .icon-pre {
+  font-size: 18px;
+}
+.pt-tips .icon-del {
+  font-size: 10px;
+  color: #999;
+  line-height: 18px;
+}
+.pt-tips .pt-tips-msg {
+  margin-left: 10px;
+  font-size: 14px;
+}
+.pt-toast {
+  display: inline-block;
+  padding: 24px 50px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 10px;
+  font-size: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999999999;
+}
+.pt-toast i {
+  font-size: 24px;
+  margin-right: 20px;
+  vertical-align: middle;
+  line-height: 1;
+}
+.pt-toast .pt-toast-msg {
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 400;
+  vertical-align: middle;
+}
+.bootbox.primary-bg .modal-dialog .modal-header {
+  background: #488cee;
+}
+
+.bootbox.default-bg .modal-dialog .modal-header {
+  background: #f6f6f6;
+}
+
+.bootbox.default-bg .modal-dialog .modal-header .modal-title {
+  color: #333;
+}
+
+.bootbox .modal-dialog .modal-header .modal-title,
+.bootbox .modal-dialog .modal-header .close {
+  color: #fff;
+}
+
+.bootbox.default-bg .modal-dialog .modal-header .close {
+  color: #999999;
+}
+
+.bootbox .modal-dialog.modal-lg .modal-header,
+.bootbox .modal-dialog.modal-md .modal-header,
+.bootbox .modal-dialog.modal-sm .modal-header {
+  padding: 0px 15px;
+  border-bottom: none;
+}
+
+.bootbox .modal-warning,
+.bootbox .modal-error,
+.bootbox .modal-success,
+.bootbox .modal-info {
+  width: 380px;
+}
+
+.bootbox .modal-warning .message-content,
+.bootbox .modal-error .message-content,
+.bootbox .modal-success .message-content,
+.bootbox .modal-info .message-content,
+.bootbox .modal-confirm .message-content {
+  display: table-cell;
+  width: 100%;
+  height: 110px;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.bootbox .modal-warning .modal-body,
+.bootbox .modal-error .modal-body,
+.bootbox .modal-success .modal-body,
+.bootbox .modal-info .modal-body,
+.bootbox .modal-confirm .modal-body {
+  min-height: 140px;
+  word-break: break-all;
+}
+
+.bootbox .modal-warning .modal-body .col-xs-3,
+.bootbox .modal-error .modal-body .col-xs-3,
+.bootbox .modal-success .modal-body .col-xs-3,
+.bootbox .modal-info .modal-body .col-xs-3,
+.bootbox .modal-confirm .modal-body .col-xs-3 {
+  text-align: center;
+}
+
+.bootbox .modal-warning .modal-body i,
+.bootbox .modal-error .modal-body i,
+.bootbox .modal-success .modal-body i,
+.bootbox .modal-info .modal-body i,
+.bootbox .modal-confirm .modal-body i {
+  font-size: 30px;
+  vertical-align: middle;
+}
+
+.bootbox .modal-warning .modal-body i {
+  color: #d99d00;
+}
+
+.bootbox .modal-error .modal-body i {
+  color: #e33033;
+}
+
+.bootbox .modal-success .modal-body i {
+  color: #4bb633;
+}
+
+.bootbox .modal-info .modal-body i {
+  color: #488cee;
+}
+
+.bootbox .modal-dialog .modal-header {
+  padding: 0 15px;
+  /*border-top-left-radius: 3px;*/
+  /*border-top-right-radius: 3px;*/
+}
+
+.bootbox .modal-dialog .modal-header .modal-title {
+  line-height: 40px;
+  padding: 0;
+  font-size: 16px;
+}
+
+.bootbox .modal-dialog .modal-header .close {
+  text-shadow: none;
+  opacity: 1;
+  margin-top: 0;
+}
+
+.bootbox .modal-dialog .modal-header .close:hover {
+  color: #fff;
+}
+
+.bootbox .modal-dialog .modal-body {
+  padding: 15px;
+}
+
+.bootbox .modal-dialog .bootbox-body-tips,
+.bootbox .modal-dialog .bootbox-body-tips i,
+.bootbox .modal-dialog .bootbox-body-tips-msg,
+.bootbox .modal-dialog .bootbox-body-tips-time {
+  display: block;
+  text-align: center;
+  line-height: 1;
+}
+.bootbox .modal-dialog .bootbox-body-tips.bootbox-body-tips-alert,
+.bootbox .modal-confirm .bootbox-body-confirm,
+.bootbox .modal-progress .bootbox-body-progress {
+  -o-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  width: calc(100% - 50px);
+}
+.bootbox .modal-progress .bootbox-body-progress {
+  text-align: center;
+}
+.bootbox .modal-confirm .bootbox-body {
+  text-align: center;
+}
+.bootbox .modal-dialog .bootbox-body-tips.bootbox-body-tips-alert .bootbox-body-tips-msg {
+  margin-top: 0;
+}
+.bootbox .modal-dialog .bootbox-body-tips-msg {
+  margin-top: 15px;
+  color: #666;
+  line-height: 20px;
+}
+
+.bootbox .modal-dialog .bootbox-body-tips-time {
+  margin-top: 10px;
+  color: #999;
+}
+
+.bootbox .modal-dialog .modal-footer {
+  border-top: 1px solid #ddd;
+  padding: 15px 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bootbox .modal-dialog .modal-footer button {
+  border-radius: 4px;
+  padding: 10px 20px;
+  line-height: 1;
+}
+
+.bootbox .modal-dialog .modal-footer button.btn-primary:hover {
+  color: #fff;
+  background: #397bd9;
+  border-color: #397bd9;
+}
+
+.bootbox .modal-dialog .modal-footer button.btn-primary,
+.bootbox .modal-dialog .modal-footer button.w-btn-primary {
+  order: -100;
+}
+.bootbox .modal-dialog .modal-footer button.btn-primary.btn-minor,
+.bootbox .modal-dialog .modal-footer button.w-btn-primary.w-btn-minor {
+  order: -50;
+}
+
+.bootbox .modal-dialog .modal-footer button.btn-line {
+  background: #fff;
+  color: #488cee;
+  border-color: rgba(72, 140, 238, 0.3);
+}
+
+.bootbox .modal-dialog .modal-footer button.btn-line:hover {
+  border-color: #488cee;
+}
+
+.bootbox .modal-dialog .modal-footer button.btn-default {
+  margin-left: 5px;
+  background: #fff;
+  color: #666666;
+  border: 1px solid #dddddd;
+  transition: all 0.2s ease-in-out;
+}
+.bootbox .modal-dialog .modal-footer button.btn-default:hover {
+  color: #488cee;
+  border-color: #488cee;
+}
+.modal-open {
+  overflow: hidden;
+}
+
+.modal,
+.modal.ui-front {
+  z-index: 999999999;
+}
+
+.modal-bottom-right {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}
+
+.pt-tips {
+  width: 0;
+  font-size: 0;
+  padding: 16px;
+  border-radius: 4px;
+  border: 1px solid #fff;
+  box-sizing: border-box;
+  line-height: 1;
+  position: fixed;
+  top: -100px;
+  z-index: 999999990;
+  color: #333;
+  background: #fff;
+  opacity: 0;
+}
+
+.pt-tips.success {
+  color: #4bb633;
+  background: #f6fbf5;
+  border-color: #e4f4e1;
+}
+
+.pt-tips.info {
+  color: #488cee;
+  background: #f6f9fe;
+  border-color: #e4eefc;
+}
+
+.pt-tips.warning {
+  color: #eaa900;
+  background: #fdfaf2;
+  border-color: #f9f0d9;
+}
+
+.pt-tips.error {
+  color: #e33033;
+  background: #fef4f5;
+  border-color: #fbe0e1;
+}
+
+.pt-tips .icon-pre {
+  font-size: 18px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.pt-tips .icon-del {
+  font-size: 10px;
+  color: #999;
+  line-height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.pt-tips .icon-del:hover {
+  color: #666;
+}
+
+.pt-tips .pt-tips-msg {
+  margin-left: 10px;
+  font-size: 14px;
+  word-break: break-all;
+  line-height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 20px;
+  width: calc(100% - 40px);
+}
+
+.pt-toast {
+  display: inline-block;
+  padding: 24px 50px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 10px;
+  font-size: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999999999;
+}
+
+.pt-toast i {
+  font-size: 24px;
+  margin-right: 20px;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.pt-toast .pt-toast-msg {
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 400;
+  vertical-align: middle;
+}
+
+.dialog-newToast {
+  position: fixed;
+  top: 80px;
+  display: block;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 80%;
+  text-align: center;
+  z-index: 999999999;
+}
+.dialog-newToast > div:not(:last-of-type) {
+  margin-bottom: 10px;
+}
+.dialog-newToast .pt-newToast {
+  display: block;
+  position: relative;
+  line-height: 20px;
+  font-size: 14px;
+  padding: 15px;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  display: inline-block;
+}
+.dialog-newToast .pt-newToast.info {
+  background: #f9fbfe;
+  color: #488cee;
+}
+.dialog-newToast .pt-newToast.success {
+  background: #f9fdf9;
+  color: #4bb633;
+}
+.dialog-newToast .pt-newToast.error {
+  background: #fef9f9;
+  color: #e32f33;
+}
+.dialog-newToast .pt-newToast.error .pt-newToast-msg {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.dialog-newToast .pt-newToast.warning {
+  background: #fefcf7;
+  color: #e99f00;
+}
+.dialog-newToast .pt-newToast:not(:last-of-type) {
+  margin-bottom: 20px;
+}
+.dialog-newToast .pt-newToast-msg {
+  display: inline-block;
+  word-break: break-all;
+  padding: 0 28px;
+  text-align: left;
+}
+.dialog-newToast .pt-newToast .icon-pre,
+.dialog-newToast .pt-newToast .icon-del {
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  margin-top: -9px;
+  font-size: 18px;
+}
+.dialog-newToast .pt-newToast .icon-pre.success {
+  color: #3aa322;
+}
+.dialog-newToast .pt-newToast .icon-pre.info {
+  color: #488cee;
+}
+.dialog-newToast .pt-newToast .icon-pre.warning {
+  color: #e99f00;
+}
+.dialog-newToast .pt-newToast .icon-pre.error {
+  color: #e33033;
+}
+.dialog-newToast .pt-newToast .icon-del {
+  left: initial;
+  right: 15px;
+  margin-top: -5px;
+  font-size: 10px;
+  color: #999;
+  cursor: pointer;
+}
+.dialog-newToast .pt-newToast-msg .pt-tips-msg-sub {
+  color: #656565;
+  margin-left: 5px;
+}
+.bootbox.frontLoginMsgDialog {
+  left: initial;
+  top: initial;
+}
+.bootbox.frontLoginMsgDialog .modal-dialog {
+  min-width: initial;
+}
+.bootbox.frontLoginMsgDialog .modal-dialog .modal-content .modal-header,
+.bootbox .modal-dialog .modal-content .modal-header.white {
+  background: #fff;
+}
+.bootbox.frontLoginMsgDialog .modal-dialog .modal-header .modal-title,
+.bootbox .modal-dialog .modal-content .modal-header.white .modal-title {
+  color: #333;
+  font-size: 14px;
+}
+.bootbox.frontLoginMsgDialog .modal-dialog .modal-header .close i,
+.bootbox .modal-dialog .modal-content .modal-header.white .close i {
+  color: #999;
+}
+.bootbox.frontLoginMsgDialog .modal-dialog .modal-header .close:hover i,
+.bootbox .modal-dialog .modal-content .modal-header.white .close:hover i {
+  color: #488cee;
+}
+.bootbox.frontLoginMsgDialog .modal-dialog .modal-body {
+  padding: 0 15px;
+  min-height: initial;
+}
+.bootbox.frontLoginMsgDialog .modal-default .bootbox-body {
+  padding: 0;
+  min-height: initial;
+}
+.modal.layout-center {
+  display: flex !important;
+  align-items: center;
+}
+
+.simple-line-loading {
+  text-align: center;
+  width: 90px;
+  height: 53px;
+  position: absolute;
+  background: #eee0;
+  overflow: hidden;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 100;
+}
+
+.simple-line-loading > div {
+  display: block;
+  width: 70px;
+  height: 24px;
+  background: #accfff00;
+  -webkit-animation: changePosition 2s linear infinite;
+  margin-bottom: 10px;
+}
+
+.simple-line-loading > div > span {
+  background: #accfff;
+  height: 100%;
+  width: 4px;
+  margin: 0 8px 0 0;
+  border-radius: 2px;
+  background-color: #accfff;
+  display: inline-block;
+}
+
+@-webkit-keyframes changePosition {
+  0% {
+    -webkit-transform: translate(-75px);
+  }
+  50% {
+    -webkit-transform: translate(0);
+  }
+  100% {
+    -webkit-transform: translate(75px);
+  }
+}
+
+.simple-line-loading label {
+  color: #accfff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.rectangle-bounce {
+  height: 60px;
+  width: 60px;
+  z-index: 10;
+  margin: 10px auto;
+  position: relative;
+  -webkit-transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out;
+  text-align: center;
+}
+
+.rectangle-bounce div {
+  height: 100%;
+  width: 4px;
+  margin: 0 8px 0 0;
+  border-radius: 2px;
+  background-color: #accfff;
+  display: inline-block;
+  -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+  animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+.rectangle-bounce .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.rectangle-bounce .rect3 {
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+}
+
+.rectangle-bounce .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.rectangle-bounce .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+.alignCenter .modal-content .bootbox-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@-webkit-keyframes stretchdelay {
+  0%,
+  40%,
+  100% {
+    -webkit-transform: scaleY(0.4);
+    border-radius: 5px;
+  }
+
+  20% {
+    -webkit-transform: scaleY(1);
+  }
+}
+
+@keyframes stretchdelay {
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+    border-radius: 5px;
+  }
+
+  20% {
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+  }
+}

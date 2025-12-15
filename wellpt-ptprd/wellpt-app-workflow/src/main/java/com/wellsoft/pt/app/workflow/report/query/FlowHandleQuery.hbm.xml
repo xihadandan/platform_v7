@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="flowHandleCountByUserQuery">
+        <![CDATA[
+            select u.uuid as uuid,
+                   u.user_id as user_id,
+                   u.user_name as user_name,
+                   nvl(t1.participate_count, 0) as participate_count,
+                   nvl(t2.start_count, 0)       as start_count,
+                   nvl(t3.be_entrusted_count, 0)   as be_entrusted_count,
+                   nvl(t4.todo_count, 0)        as todo_count,
+                   nvl(t5.todo_read_count, 0)   as todo_read_count,
+                   nvl(t6.done_count, 0)        as done_count,
+                   nvl(t7.completed_count, 0)   as completed_count
+            from (select u.uuid, u.user_id, u.user_name
+                  from user_info u
+                  where exists(
+                                select 1
+                                from org_user ou
+                                where ou.user_id = u.user_id
+                                  and ou.org_version_uuid in (select v.uuid from org_version v where v.state = 0
+                                    <if isNotBlank(system)>
+                                        and v.system = :system
+                                    </if>
+                                  )
+                            )
+                            <if limitUserIds?? && (limitUserIds.size() > 0)>
+                                and u.user_id in (:limitUserIds)
+                            </if>
+                     ) u
+                     left join (
+                 select count(distinct t.flow_inst_uuid) as participate_count, t.user_id
+                 from (
+                    select ti.flow_inst_uuid as flow_inst_uuid, t2.user_id as user_id
+                    from wf_task_identity t1
+                             left join user_info t2 on t1.user_id = t2.user_id
+                             left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                             left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                             <if isNotBlank(flowInstWhereSql)>
+                                left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                             </if>
+                    where t1.suspension_state = 0 and t2.user_id is not null
+                        <if isNotBlank(flowInstWhereSql)>
+                            and ${flowInstWhereSql}
+                        </if>
+                    union all
+                    select t1.flow_inst_uuid as flow_inst_uuid, t2.user_id as user_id
+                    from wf_task_operation t1
+                             left join user_info t2 on t1.assignee = t2.user_id
+                             left join wf_flow_instance t3 on t1.flow_inst_uuid = t3.uuid
+                             <if isNotBlank(flowInstWhereSql)>
+                                left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                             </if>
+                    where 1 = 1
+                        <if isNotBlank(flowInstWhereSql)>
+                            and ${flowInstWhereSql}
+                        </if>
+                    union all
+                    select t3.uuid as flow_inst_uuid, t3.start_user_id as user_id
+                    from wf_flow_instance t3
+                        <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                        </if>
+                    where t3.start_user_id is not null and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t3.uuid)
+                        <if isNotBlank(flowInstWhereSql)>
+                            and ${flowInstWhereSql}
+                        </if>
+                 ) t
+                 group by t.user_id
+            ) t1 on u.user_id = t1.user_id
+                     left join (
+                select count(distinct t3.uuid) as start_count, t2.user_id
+                from wf_flow_instance t3
+                         left join user_info t2 on t3.start_user_id = t2.user_id
+                         <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                where 1 = 1 and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t3.uuid)
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                group by t2.user_id
+            ) t2 on u.user_id = t2.user_id
+                     left join (
+                select count(distinct t1.flow_inst_uuid) as be_entrusted_count, t2.user_id
+                from wf_task_delegation t1
+                         left join user_info t2 on t1.trustee = t2.user_id
+                         left join wf_flow_instance t3 on t1.flow_inst_uuid = t3.uuid
+                         <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                where t1.completion_state in ('0', '1', '2')
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                group by t2.user_id
+            ) t3 on u.user_id = t3.user_id
+                     left join (
+                select count(distinct ti.flow_inst_uuid) as todo_count, t2.user_id
+                from wf_task_identity t1
+                         left join user_info t2 on t1.user_id = t2.user_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                where t1.suspension_state = 0 and t2.user_id is not null
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                group by t2.user_id
+            ) t4 on u.user_id = t4.user_id
+                     left join (
+                select count(distinct ti.flow_inst_uuid) as todo_read_count, t2.user_id
+                from wf_task_identity t1
+                         left join user_info t2 on t1.user_id = t2.user_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                         inner join cd_read_marker t5 on t1.task_inst_uuid = t5.entity_uuid and t2.user_id = t5.user_id
+                where t1.suspension_state = 0 and t2.user_id is not null
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                group by t2.user_id
+            ) t5 on u.user_id = t5.user_id
+                     left join (
+                select count(distinct t1.flow_inst_uuid) as done_count, t2.user_id
+                from wf_task_operation t1
+                         left join user_info t2 on t1.assignee = t2.user_id
+                         left join wf_flow_instance t3 on t1.flow_inst_uuid = t3.uuid
+                         <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                where 1 = 1
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                group by t2.user_id
+            ) t6 on u.user_id = t6.user_id
+                     left join (
+                select count(distinct t1.flow_inst_uuid) as completed_count, t2.user_id
+                from wf_task_operation t1
+                         left join user_info t2
+                                   on t1.assignee = t2.user_id
+                         left join wf_flow_instance t3 on t1.flow_inst_uuid = t3.uuid
+                         <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                where t3.end_time is not null
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                group by t2.user_id
+            ) t7 on u.user_id = t7.user_id
+            order by participate_count desc
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleParticipateCountDetailByUserQuery">
+        <![CDATA[
+            select * from (
+                select count(distinct t.flow_inst_uuid) as count, t.id as id, t.name as name,
+                       t.category_uuid as category_uuid, t.category_name as category_name
+                from (
+                    select ti.flow_inst_uuid as flow_inst_uuid, t2.user_id as user_id,
+                           t3.id as id, t3.name as name, t4.category as category_uuid, t5.name as category_name
+                    from wf_task_identity t1
+                             left join user_info t2 on t1.user_id = t2.user_id
+                             left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                             left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                             left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                             left join wf_def_category t5 on t5.uuid = t4.category
+                    where t1.suspension_state = 0
+                        <if userIds?? && (userIds?size > 0)>
+                            and t2.user_id in :userIds
+                        </if>
+                        <if isNotBlank(flowInstWhereSql)>
+                            and ${flowInstWhereSql}
+                        </if>
+                    union all
+                    select t1.flow_inst_uuid as flow_inst_uuid, t2.user_id as user_id,
+                           t3.id as id, t3.name as name, t4.category as category_uuid, t5.name as category_name
+                    from wf_task_operation t1
+                             left join user_info t2 on t1.assignee = t2.user_id
+                             left join wf_flow_instance t3 on t1.flow_inst_uuid = t3.uuid
+                             left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                             left join wf_def_category t5 on t5.uuid = t4.category
+                    where 1 = 1
+                        <if userIds?? && (userIds?size > 0)>
+                            and t2.user_id in :userIds
+                        </if>
+                        <if isNotBlank(flowInstWhereSql)>
+                            and ${flowInstWhereSql}
+                        </if>
+                    union all
+                    select  t3.uuid as flow_inst_uuid, t3.start_user_id as user_id,
+                            t3.id as id, t3.name as name, t4.category as category_uuid, t5.name as category_name
+                    from wf_flow_instance t3
+                        left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                        left join wf_def_category t5 on t5.uuid = t4.category
+                    where t3.start_user_id is not null and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t3.uuid)
+                        <if userIds?? && (userIds?size > 0)>
+                            and t3.start_user_id in :userIds
+                        </if>
+                        <if isNotBlank(flowInstWhereSql)>
+                            and ${flowInstWhereSql}
+                        </if>
+                ) t where 1 = 1
+                group by t.id, t.name, t.category_uuid, t.category_name
+                order by count desc, id desc
+            ) t
+        ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleStartCountDetailByUserQuery">
+        <![CDATA[
+            select count(distinct t.flow_inst_uuid) as count, t.id as id, t.name as name,
+                   t.category_uuid as category_uuid, t.category_name as category_name
+            from (
+                select t3.uuid as flow_inst_uuid, t2.user_id as user_id, t3.name as name, t3.id as id,
+                       t4.category as category_uuid, t5.name as category_name
+                from wf_flow_instance t3
+                         left join user_info t2 on t3.start_user_id = t2.user_id
+                         left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         left join wf_def_category t5 on t5.uuid = t4.category
+                where 1 = 1 and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t3.uuid)
+                    <if userIds?? && (userIds?size > 0)>
+                        and t2.user_id in :userIds
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            group by t.id, t.name, t.category_uuid, t.category_name
+            order by count desc, id desc
+        ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleBeEntrustedCountDetailByUserQuery">
+        <![CDATA[
+            select count(distinct t.flow_inst_uuid) as count, t.id as id, t.name as name,
+                   t.category_uuid as category_uuid, t.category_name as category_name
+            from (
+                select t1.flow_inst_uuid as flow_inst_uuid, t2.user_id as user_id, t3.name as name, t3.id as id,
+                       t4.category as category_uuid, t5.name as category_name
+                from wf_task_delegation t1
+                         left join user_info t2 on t1.trustee = t2.user_id
+                         left join wf_flow_instance t3 on t1.flow_inst_uuid = t3.uuid
+                         left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         left join wf_def_category t5 on t5.uuid = t4.category
+                where t1.completion_state in ('0', '1', '2')
+                    <if userIds?? && (userIds?size > 0)>
+                        and t2.user_id in :userIds
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            group by t.id, t.name, t.category_uuid, t.category_name
+            order by count desc, id desc
+        ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleTodoCountDetailByUserQuery">
+        <![CDATA[
+            select count(distinct t.flow_inst_uuid) as count, t.id as id, t.name as name,
+                   t.category_uuid as category_uuid, t.category_name as category_name
+            from (
+                select ti.flow_inst_uuid as flow_inst_uuid, t2.user_id as user_id, t3.name as name, t3.id as id,
+                           t4.category as category_uuid, t5.name as category_name
+                from wf_task_identity t1
+                         left join user_info t2 on t1.user_id = t2.user_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         left join wf_def_category t5 on t5.uuid = t4.category
+                where t1.suspension_state = 0
+                    <if userIds?? && (userIds?size > 0)>
+                        and t2.user_id in :userIds
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            group by t.id, t.name, t.category_uuid, t.category_name
+            order by count desc, id desc
+        ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleTodoReadCountDetailByUserQuery">
+        <![CDATA[
+            select count(distinct t.flow_inst_uuid) as count, t.id as id, t.name as name,
+                   t.category_uuid as category_uuid, t.category_name as category_name
+            from (
+                select ti.flow_inst_uuid as flow_inst_uuid, t2.user_id as user_id, t3.name as name, t3.id as id,
+                           t4.category as category_uuid, t5.name as category_name
+                from wf_task_identity t1
+                         left join user_info t2 on t1.user_id = t2.user_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         left join wf_def_category t5 on t5.uuid = t4.category
+                         inner join cd_read_marker t6 on t1.task_inst_uuid = t6.entity_uuid and t2.user_id = t6.user_id
+                where t1.suspension_state = 0
+                    <if userIds?? && (userIds?size > 0)>
+                        and t2.user_id in :userIds
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            group by t.id, t.name, t.category_uuid, t.category_name
+            order by count desc, id desc
+        ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleDoneCountDetailByUserQuery">
+        <![CDATA[
+            select count(distinct t.flow_inst_uuid) as count, t.id as id, t.name as name,
+                   t.category_uuid as category_uuid, t.category_name as category_name
+            from (
+                select t1.flow_inst_uuid as flow_inst_uuid, t2.user_id as user_id, t3.name as name, t3.id as id,
+                                   t4.category as category_uuid, t5.name as category_name
+                from wf_task_operation t1
+                         left join user_info t2 on t1.assignee = t2.user_id
+                         left join wf_flow_instance t3 on t1.flow_inst_uuid = t3.uuid
+                         left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         left join wf_def_category t5 on t5.uuid = t4.category
+                where 1 = 1
+                    <if userIds?? && (userIds?size > 0)>
+                        and t2.user_id in :userIds
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            group by t.id, t.name, t.category_uuid, t.category_name
+            order by count desc, id desc
+        ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleCompletedCountDetailByUserQuery">
+        <![CDATA[
+            select count(distinct t.flow_inst_uuid) as count, t.id as id, t.name as name,
+                   t.category_uuid as category_uuid, t.category_name as category_name
+            from (
+                select t1.flow_inst_uuid as flow_inst_uuid, t2.user_id as user_id, t3.name as name, t3.id as id,
+                                       t4.category as category_uuid, t5.name as category_name
+                from wf_task_operation t1
+                         left join user_info t2 on t1.assignee = t2.user_id
+                         left join wf_flow_instance t3 on t1.flow_inst_uuid = t3.uuid
+                         left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         left join wf_def_category t5 on t5.uuid = t4.category
+                where t3.end_time is not null
+                    <if userIds?? && (userIds?size > 0)>
+                        and t2.user_id in :userIds
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            group by t.id, t.name, t.category_uuid, t.category_name
+            order by count desc, id desc
+        ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleCountByDeptQuery">
+        <![CDATA[
+            select d.id   as dept_id,
+                   d.name as dept_name,
+                   0 as participate_count,
+                   0       as start_count,
+                   0   as be_entrusted_count,
+                   0        as todo_count,
+                   0   as todo_read_count,
+                   0        as done_count,
+                   0   as completed_count
+            from (select distinct d.id, d.name
+                      from org_element d
+                      where d.type <> 'job'
+                        and d.org_version_uuid in (
+                          select v.uuid
+                          from org_version v
+                          where v.state = 0
+                          <if isNotBlank(system)>
+                            and v.system = :system
+                          </if>
+                      )
+                      <if limitDeptIds?? && (limitDeptIds?size > 0)>
+                        and d.id in (:limitDeptIds)
+                      </if>
+                      <if deptLevel == 'top'>
+                        and d.parent_uuid is null
+                      </if>
+                      <if deptLevel == 'leaf'>
+                        and not exists (
+                            select 1
+                            from org_element e
+                            where e.type <> 'job'
+                              and e.parent_uuid = d.uuid
+                        )
+                      </if>
+                  union all
+                     select distinct d.id as id, d.name as name
+                     from biz_org_element d
+                     where 1 = 1 and d.biz_org_uuid in (
+                        select b.uuid from biz_org_organization b
+                         where b.enable = 1
+                         <if isNotBlank(system)>
+                            and b.system = :system
+                         </if>
+                     )
+                     <if limitDeptIds?? && (limitDeptIds?size > 0)>
+                        and d.id in (:limitDeptIds)
+                      </if>
+                      <if deptLevel == 'top'>
+                        and d.parent_uuid is null
+                      </if>
+                      <if deptLevel == 'leaf'>
+                        and not exists (
+                            select 1
+                            from biz_org_element e
+                            where e.parent_uuid = d.uuid
+                        )
+                      </if>
+                  ) d
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleParticipateCountByDeptQuery">
+        <![CDATA[
+            select count(distinct t.flow_inst_uuid) as count, t.dept_id
+            from (
+                select ti.flow_inst_uuid as flow_inst_uuid, t2.dept_id as dept_id
+                from wf_task_identity t1
+                         left join (${deptQuerySql}) t2 on t1.user_id = t2.user_id or t1.user_id = t2.dept_id or t1.user_id = t2.dept_role_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                where t1.suspension_state = 0 and t2.user_id is not null
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+
+                union all
+
+                select t1.flow_inst_uuid as flow_inst_uuid, t2.dept_id as dept_id
+                from wf_task_operation t1
+                         left join (${deptQuerySql}) t2 on t1.assignee = t2.user_id
+                         left join wf_flow_instance t3 on t1.flow_inst_uuid = t3.uuid
+                         <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                where 1 = 1
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+
+                union all
+
+                select t3.uuid as flow_inst_uuid, t2.dept_id as dept_id
+                from wf_flow_instance t3
+                    left join (${deptQuerySql}) t2 on t3.start_user_id = t2.user_id
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                    </if>
+                where t3.start_user_id is not null
+                    and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t3.uuid)
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t where t.dept_id is not null and t.dept_id in (
+                select d.id
+                      from org_element d
+                      where d.type <> 'job'
+                        and d.org_version_uuid in (
+                          select v.uuid
+                          from org_version v
+                          where v.state = 0
+                          <if isNotBlank(system)>
+                            and v.system = :system
+                          </if>
+                      )
+                      <if limitDeptIds?? && (limitDeptIds?size > 0)>
+                        and d.id in (:limitDeptIds)
+                      <elseif deptIds?? && (deptIds?size > 0)>
+                        and d.id in (:deptIds)
+                      </if>
+                      <if deptLevel == 'top'>
+                        and d.parent_uuid is null
+                      </if>
+                      <if deptLevel == 'leaf'>
+                        and not exists (
+                            select 1
+                            from org_element e
+                            where e.type <> 'job'
+                              and e.parent_uuid = d.uuid
+                        )
+                      </if>
+                  union all
+                     select d.id as id
+                     from biz_org_element d
+                     where 1 = 1 and d.biz_org_uuid in (
+                        select b.uuid from biz_org_organization b
+                         where b.enable = 1
+                         <if isNotBlank(system)>
+                            and b.system = :system
+                         </if>
+                     )
+                     <if limitDeptIds?? && (limitDeptIds?size > 0)>
+                        and d.id in (:limitDeptIds)
+                      </if>
+                      <if deptLevel == 'top'>
+                        and d.parent_uuid is null
+                      </if>
+                      <if deptLevel == 'leaf'>
+                        and not exists (
+                            select 1
+                            from biz_org_element e
+                            where e.parent_uuid = d.uuid
+                        )
+                      </if>
+            )
+            group by t.dept_id
+            order by count desc
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleStartCountByDeptQuery">
+        <![CDATA[
+            select count(distinct t3.uuid) as count, t2.dept_id
+            from wf_flow_instance t3
+                     left join (${deptQuerySql}) t2 on t3.start_user_id = t2.user_id
+                     <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                     </if>
+            where t2.dept_id is not null
+                and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t3.uuid)
+                <if isNotBlank(flowInstWhereSql)>
+                    and ${flowInstWhereSql}
+                </if>
+            group by t2.dept_id
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleBeEntrustedCountByDeptQuery">
+        <![CDATA[
+            select count(distinct t1.flow_inst_uuid) as count, t2.dept_id
+            from wf_task_delegation t1
+                     left join (${deptQuerySql}) t2 on t1.trustee = t2.user_id
+                     left join wf_flow_instance t3 on t1.flow_inst_uuid = t3.uuid
+                     <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                     </if>
+            where t1.completion_state in ('0', '1', '2') and t2.dept_id is not null
+                <if isNotBlank(flowInstWhereSql)>
+                    and ${flowInstWhereSql}
+                </if>
+            group by t2.dept_id
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleTodoCountByDeptQuery">
+        <![CDATA[
+            select count(distinct ti.flow_inst_uuid) as count, t2.dept_id
+            from wf_task_identity t1
+                     left join (${deptQuerySql}) t2 on t1.user_id = t2.user_id or t1.user_id = t2.dept_id or t1.user_id = t2.dept_role_id
+                     left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                     left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                     <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                     </if>
+            where t1.suspension_state = 0 and t2.user_id is not null and t2.dept_id is not null
+                <if isNotBlank(flowInstWhereSql)>
+                    and ${flowInstWhereSql}
+                </if>
+            group by t2.dept_id
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleTodoReadCountByDeptQuery">
+        <![CDATA[
+            select count(distinct ti.flow_inst_uuid) as count, t2.dept_id
+            from wf_task_identity t1
+                     left join (${deptQuerySql}) t2 on t1.user_id = t2.user_id or t1.user_id = t2.dept_id or t1.user_id = t2.dept_role_id
+                     left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                     left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                     <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                     </if>
+                     inner join cd_read_marker t5 on t1.task_inst_uuid = t5.entity_uuid and t2.user_id = t5.user_id
+            where t1.suspension_state = 0 and t2.user_id is not null and t2.dept_id is not null
+                <if isNotBlank(flowInstWhereSql)>
+                    and ${flowInstWhereSql}
+                </if>
+            group by t2.dept_id
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleDoneCountByDeptQuery">
+        <![CDATA[
+            select count(distinct t1.flow_inst_uuid) as count, t2.dept_id
+            from wf_task_operation t1
+                     left join (${deptQuerySql}) t2 on t1.assignee = t2.user_id
+                     left join wf_flow_instance t3 on t1.flow_inst_uuid = t3.uuid
+                     <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                     </if>
+            where t2.dept_id is not null
+                <if isNotBlank(flowInstWhereSql)>
+                    and ${flowInstWhereSql}
+                </if>
+            group by t2.dept_id
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleCompletedCountByDeptQuery">
+        <![CDATA[
+            select count(distinct t1.flow_inst_uuid) as count, t2.dept_id
+            from wf_task_operation t1
+                     left join (${deptQuerySql}) t2 on t1.assignee = t2.user_id
+                     left join wf_flow_instance t3 on t1.flow_inst_uuid = t3.uuid
+                     <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                     </if>
+            where t3.end_time is not null and t2.dept_id is not null
+                <if isNotBlank(flowInstWhereSql)>
+                    and ${flowInstWhereSql}
+                </if>
+            group by t2.dept_id
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleParticipateCountDetailByDeptQuery">
+        <![CDATA[
+            select count(distinct t.flow_inst_uuid) as count, t.id as id, t.name as name,
+                   t.category_uuid as category_uuid, t.category_name as category_name
+            from (
+                select ti.flow_inst_uuid as flow_inst_uuid, t2.dept_id as dept_id,
+                       t3.id as id, t3.name as name, t4.category as category_uuid, t5.name as category_name
+                from wf_task_identity t1
+                         left join (${deptQuerySql}) t2 on t1.user_id = t2.user_id or t1.user_id = t2.dept_id or t1.user_id = t2.dept_role_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         left join wf_def_category t5 on t5.uuid = t4.category
+                where t1.suspension_state = 0 and t2.user_id is not null
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+
+                union all
+
+                select t1.flow_inst_uuid as flow_inst_uuid, t2.dept_id as dept_id,
+                       t3.id as id, t3.name as name, t4.category as category_uuid, t5.name as category_name
+                from wf_task_operation t1
+                         left join (${deptQuerySql}) t2 on t1.assignee = t2.user_id
+                         left join wf_flow_instance t3 on t1.flow_inst_uuid = t3.uuid
+                         left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         left join wf_def_category t5 on t5.uuid = t4.category
+                where 1 = 1
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+
+                union all
+
+                select t3.uuid as flow_inst_uuid, t2.dept_id as dept_id,
+                       t3.id as id, t3.name as name, t4.category as category_uuid, t5.name as category_name
+                from wf_flow_instance t3
+                    left join (${deptQuerySql}) t2 on t3.start_user_id = t2.user_id
+                    left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                    left join wf_def_category t5 on t5.uuid = t4.category
+                where t3.start_user_id is not null
+                    and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t3.uuid)
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t where t.dept_id is not null
+            group by t.id, t.name, t.category_uuid, t.category_name
+            order by count desc, id desc
+        ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleStartCountDetailByDeptQuery">
+        <![CDATA[
+            select count(distinct t.flow_inst_uuid) as count, t.id as id, t.name as name,
+                   t.category_uuid as category_uuid, t.category_name as category_name
+            from (
+                select t3.uuid as flow_inst_uuid, t2.dept_id as dept_id, t3.name as name, t3.id as id,
+                       t4.category as category_uuid, t5.name as category_name
+                from wf_flow_instance t3
+                         left join (${deptQuerySql}) t2 on t3.start_user_id = t2.user_id
+                         left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         left join wf_def_category t5 on t5.uuid = t4.category
+                where t2.dept_id is not null
+                    and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t3.uuid)
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            group by t.id, t.name, t.category_uuid, t.category_name
+            order by count desc, id desc
+        ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleBeEntrustedCountDetailByDeptQuery">
+        <![CDATA[
+            select count(distinct t.flow_inst_uuid) as count, t.id as id, t.name as name,
+                   t.category_uuid as category_uuid, t.category_name as category_name
+            from (
+                select t1.flow_inst_uuid as flow_inst_uuid, t2.dept_id as dept_id, t3.name as name, t3.id as id,
+                       t4.category as category_uuid, t5.name as category_name
+                from wf_task_delegation t1
+                         left join (${deptQuerySql}) t2 on t1.trustee = t2.user_id
+                         left join wf_flow_instance t3 on t1.flow_inst_uuid = t3.uuid
+                         left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         left join wf_def_category t5 on t5.uuid = t4.category
+                where t1.completion_state in ('0', '1', '2') and t2.dept_id is not null
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            group by t.id, t.name, t.category_uuid, t.category_name
+            order by count desc, id desc
+        ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleTodoCountDetailByDeptQuery">
+        <![CDATA[
+            select count(distinct t.flow_inst_uuid) as count, t.id as id, t.name as name,
+                   t.category_uuid as category_uuid, t.category_name as category_name
+            from (
+                select ti.flow_inst_uuid as flow_inst_uuid, t2.dept_id as dept_id, t3.name as name, t3.id as id,
+                           t4.category as category_uuid, t5.name as category_name
+                from wf_task_identity t1
+                         left join (${deptQuerySql}) t2 on t1.user_id = t2.user_id or t1.user_id = t2.dept_id or t1.user_id = t2.dept_role_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         left join wf_def_category t5 on t5.uuid = t4.category
+                where t1.suspension_state = 0 and t2.user_id is not null and t2.dept_id is not null
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            group by t.id, t.name, t.category_uuid, t.category_name
+            order by count desc, id desc
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleTodoReadCountDetailByDeptQuery">
+        <![CDATA[
+            select count(distinct t.flow_inst_uuid) as count, t.id as id, t.name as name,
+                   t.category_uuid as category_uuid, t.category_name as category_name
+            from (
+                select ti.flow_inst_uuid as flow_inst_uuid, t2.dept_id as dept_id, t3.name as name, t3.id as id,
+                               t4.category as category_uuid, t5.name as category_name
+                from wf_task_identity t1
+                         left join (${deptQuerySql}) t2 on t1.user_id = t2.user_id or t1.user_id = t2.dept_id or t1.user_id = t2.dept_role_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         left join wf_def_category t5 on t5.uuid = t4.category
+                         inner join cd_read_marker t6 on t1.task_inst_uuid = t6.entity_uuid and t2.user_id = t6.user_id
+                where t1.suspension_state = 0 and t2.user_id is not null and t2.dept_id is not null
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            group by t.id, t.name, t.category_uuid, t.category_name
+            order by count desc, id desc
+        ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleDoneCountDetailByDeptQuery">
+        <![CDATA[
+            select count(distinct t.flow_inst_uuid) as count, t.id as id, t.name as name,
+                   t.category_uuid as category_uuid, t.category_name as category_name
+            from (
+                select t1.flow_inst_uuid as flow_inst_uuid, t2.dept_id as dept_id, t3.name as name, t3.id as id,
+                                   t4.category as category_uuid, t5.name as category_name
+                from wf_task_operation t1
+                         left join (${deptQuerySql}) t2 on t1.assignee = t2.user_id
+                         left join wf_flow_instance t3 on t1.flow_inst_uuid = t3.uuid
+                         left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         left join wf_def_category t5 on t5.uuid = t4.category
+                where t2.dept_id is not null
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            group by t.id, t.name, t.category_uuid, t.category_name
+            order by count desc, id desc
+        ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleCompletedCountDetailByDeptQuery">
+        <![CDATA[
+            select count(distinct t.flow_inst_uuid) as count, t.id as id, t.name as name,
+                   t.category_uuid as category_uuid, t.category_name as category_name
+            from (
+                select t1.flow_inst_uuid as flow_inst_uuid, t2.dept_id as dept_id, t3.name as name, t3.id as id,
+                                       t4.category as category_uuid, t5.name as category_name
+                from wf_task_operation t1
+                         left join (${deptQuerySql}) t2 on t1.assignee = t2.user_id
+                         left join wf_flow_instance t3 on t1.flow_inst_uuid = t3.uuid
+                         left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         left join wf_def_category t5 on t5.uuid = t4.category
+                where t3.end_time is not null and t2.dept_id is not null
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            group by t.id, t.name, t.category_uuid, t.category_name
+            order by count desc, id desc
+        ]]>
+    </sql-query>
+
+</hibernate-mapping>

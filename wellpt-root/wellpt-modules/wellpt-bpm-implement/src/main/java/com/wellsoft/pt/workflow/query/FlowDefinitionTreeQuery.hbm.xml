@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="flowDefinitionTreeQuery">
+        <![CDATA[
+		select flow_def.uuid as uuid,
+			flow_def.name as name,
+			flow_def.id as id,
+			flow_def.version as version,
+			flow_def.enabled as enabled,
+			flow_def.form_name as formName,
+			flow_category.name as category,
+			flow_def.remark as remark
+		from wf_flow_definition flow_def left join wf_def_category flow_category
+		on flow_def.category = flow_category.uuid
+		where flow_def.uuid != :parentUuid and flow_def.id = :id
+		<if isNotBlank(name) || isNotBlank(id) || isNotBlank(formName) || isNotBlank(category)>
+			and (1 = 2
+				<if isNotBlank(name)>
+					or flow_def.name like '%${name}%'
+				</if>
+				<if isNotBlank(id)>
+					or flow_def.id like '%${id}%'
+				</if>
+				<if isNotBlank(formName)>
+					or flow_def.form_name like '%${formName}%'
+				</if>
+				<if isNotBlank(category)>
+					or flow_category.name like '%${category}%'
+				</if>
+			)
+
+		</if>
+		<if isNotBlank(enabled)>
+					and flow_def.enabled = :enabled
+		</if>
+		<if isNotBlank(categoryUuid)>
+			and flow_def.category = :categoryUuid
+		</if>
+		order by flow_def.version desc,  flow_def.code, flow_def.name
+	]]>
+    </sql-query>
+
+    <sql-query name="flowDefinitionSelect2Query">
+        <![CDATA[
+		select distinct flow_def.name as name,
+			flow_def.id as id,
+			flow_def.code as code
+		from FlowDefinition flow_def
+		where flow_def.enabled = 1
+		<if isNotBlank(name) || isNotBlank(id)>
+			and (1 = 2
+				<if isNotBlank(name)>
+					or flow_def.name like '%${name}%'
+				</if>
+				<if isNotBlank(id)>
+					or flow_def.id like '%${id}%'
+				</if>
+			)
+		</if>
+		<if isNotBlank(systemId)>
+		    and (
+		        exists (
+                    select pm.moduleId from AppProdModuleEntity pm, AppSystemInfoEntity si
+                        where pm.prodVersionUuid = si.prodVersionUuid
+                        and flow_def.moduleId = pm.moduleId and si.system = :systemId
+                )
+                or flow_def.system = :systemId
+		    )
+		</if>
+		order by flow_def.code, flow_def.name
+	]]>
+    </sql-query>
+
+    <sql-query name="flowDefinitionSelect2IdsQuery">
+        <![CDATA[
+		select distinct flow_def.name as name,
+			flow_def.id as id,
+			flow_def.code as code
+		from FlowDefinition flow_def
+		where flow_def.id in (:flowDefIds)
+	]]>
+    </sql-query>
+</hibernate-mapping>

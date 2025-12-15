@@ -1,0 +1,8 @@
+# add files you wish to ignore here
+
+# compiled output
+*.min.css
+*.min.js
+
+# dependencies
+/node_modules

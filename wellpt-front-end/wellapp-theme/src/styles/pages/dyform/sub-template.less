@@ -1,0 +1,21 @@
+/** 子表单 */
+
+.template-wrapper.bg {
+  padding: @padding-xs;
+  background-image: url('@{image-url-prefix}/bg.png');
+  background-color: @component-background;
+  position: relative;
+  cursor: pointer;
+
+  .inner-box {
+    background-color: @component-background;
+    cursor: text;
+
+    &.filter {
+      background-color: @component-background;
+      cursor: text;
+      filter: contrast(90%) brightness(80%);
+      opacity: 0.6;
+    }
+  }
+}

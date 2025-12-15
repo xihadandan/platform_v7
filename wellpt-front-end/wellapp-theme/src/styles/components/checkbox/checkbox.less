@@ -1,0 +1,48 @@
+/** 复选框样式  **/
+input[type='checkbox'] {
+  display: none;
+
+  + label {
+    cursor: pointer;
+    vertical-align: baseline;
+    margin-bottom: 0;
+    margin-right: 8px;
+    float: initial;
+    font-size: @font-size-base;
+    color: @text-color;
+    font-family: iconfont !important;
+    font-weight: normal;
+
+    &::before {
+      margin-right: 4px;
+      content: '\e8f2';
+      color: @text-color;
+    }
+  }
+
+  &:checked + label::before {
+    content: '\e8de';
+    color: @text-color-primary;
+  }
+
+  &:disabled + label::before {
+    color: @disabled-text-color;
+    cursor: not-allowed;
+  }
+}
+
+// 表格td 内嵌套复选框
+td > input[type='checkbox'] {
+  top: 0;
+}
+
+// 图标附件 (图标视图)
+.ui-image input[type='checkbox'].w-checkbox + label {
+  position: absolute;
+  top: 2px;
+}
+
+// 图标附件 (表格视视图)
+.ui-table input[type='checkbox'].w-checkbox + label {
+  top: 5px;
+}

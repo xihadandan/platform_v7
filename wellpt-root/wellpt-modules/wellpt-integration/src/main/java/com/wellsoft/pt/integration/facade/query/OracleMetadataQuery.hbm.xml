@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="getTabColsInfo">
+        <![CDATA[
+		/* 根据表名查询表的列信息 */
+		select t1.table_name  as table_name,
+		       t1.column_name as column_name,
+		       t1.data_type   as data_type
+		  from user_tab_columns t1
+		 where t1.TABLE_NAME = :tableName
+	]]>
+    </sql-query>
+
+    <sql-query name="getTableTigInfo">
+        <![CDATA[
+		/* 根据表名查询表的列信息 */
+		select t.TABLE_NAME    as table_name,
+		       tt.TRIGGER_NAME as trigger_name,
+		       tt.STATUS       as status
+		  from user_tables t
+		  left join user_triggers tt
+		    on t.TABLE_NAME = tt.TABLE_NAME
+		 where 1 = 1
+		 <if isNotBlank(tableName)>
+		 	and t.TABLE_NAME like '%' || upper(:tableName) || '%' /* 表名 */
+		 </if>
+		 order by t.TABLE_NAME
+	]]>
+    </sql-query>
+
+
+    <sql-query name="listTableTigInfo">
+        <![CDATA[
+ 		select t.TABLE_NAME    as table_name,
+		       tt.TRIGGER_NAME as trigger_name,
+		       tt.STATUS       as status
+		  from user_tables t
+		  left join user_triggers tt
+		    on t.TABLE_NAME = tt.TABLE_NAME
+		 where 1 = 1
+		 <if isNotBlank(tableName)>
+		 	and t.TABLE_NAME like '%' || upper(:tableName) || '%'
+		 </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+        	<if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+	]]>
+    </sql-query>
+
+    <sql-query name="getPkInfo">
+        <![CDATA[
+		/* 根据表名查询表的主键信息 */
+		select t1.OWNER           as owner,
+		       t1.CONSTRAINT_NAME as constraint_name,
+		       t1.TABLE_NAME      as table_name,
+		       t1.COLUMN_NAME     as column_name,
+		       t1.POSITION        as position
+		  from user_cons_columns t1, user_constraints t2
+		 where t1.OWNER = :owner
+		   and t1.TABLE_NAME = :tableName
+		   and t1.CONSTRAINT_NAME = t2.CONSTRAINT_NAME
+		   and t2.CONSTRAINT_TYPE = 'P'
+		 order by t1.POSITION asc
+	]]>
+    </sql-query>
+    <sql-query name="containTypeId">
+        <![CDATA[
+		/* 查询单位ID和类型是否存在 */
+		select t.name
+		  from is_exchange_system t
+		 where t.unit_id = :UNITID
+		    and (REGEXP_LIKE(type_id1,:SPGCTYPE) or REGEXP_LIKE(type_id,:SPGCTYPE))
+
+	]]>
+    </sql-query>
+    <sql-query name="checkSpgcTypeId">
+        <![CDATA[
+		select t.*
+ 		 from is_exchange_system t
+ 		where t.unit_id = :UNITID
+   		and (t.type_id like '%' || :SPGCTYPE || '%' or t.type_id1 like '%' || :SPGCTYPE || '%' )
+
+	]]>
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,50 @@
+{@each shareDatas as shareData,index}
+<div class="wf-share-data">
+    <div class="share-data-header">
+		<span class="title"> {@if index == 0 && shareData.isOver != true}<input type="checkbox" name="checkAll"
+                                                                                class="mui-hidden"/>{@/if} <label
+                for="checkAll" class="title-text">承办情况{@if shareDatas.length > 1}
+				${shareDatas.length - index} {@/if}</label>
+		</span> {@if index == 0 && shareData.isOver != true}
+        <button type="button" name="btn-edit" class="operate btn mui-btn-link btn-edit mui-pull-right">
+            編輯</a> {@/if}
+    </div>
+    <ul class="mui-table-view">
+        {@each shareData.shareItems as shareItem,itemIndex}
+        <li class="mui-table-view-cell ">
+            <a class="mui-h4 mui-ellipsis mui-navigate-right">
+                ${parseInt(itemIndex) + 1}.{@if shareItem.resultFiles && shareItem.resultFiles.length > 0}<i
+                    class="mui-icon mui-icon-paperclip"></i> {@/if}${shareItem.todoName}
+            </a>
+            <h5 class="mui-clearfix">
+                <span class="mui-pull-left">当前环节[${shareItem.currentTaskName}]</span> {@if
+                shareItem.currentTodoUserName} <span
+                    class="mui-pull-right">办理人[${shareItem.currentTodoUserName}]</span> {@/if}
+            </h5>
+            <h6 class="mui-clearfix">
+                <span class="mui-h5 mui-pull-left">${shareItem.dueTimeFormatString}</span>
+            </h6>
+        </li>
+        {@/each}
+    </ul>
+</div>
+{@/each}
+
+<style type="text/css">
+    .share-data-header {
+        background-color: #efeff4;
+        border-left: 7px solid #f7c028;
+        border-radius: 0px 2px 0 0;
+        display: block;
+        min-height: 44px;
+        padding: 4px 7px;
+    }
+
+    .share-data-header .title {
+        line-height: 2.5;
+    }
+
+    .wf-share-data .mui-table-view .mui-icon {
+        font-size: 14px;
+    }
+</style>

@@ -1,0 +1,37 @@
+@dropdown-prefix-cls: ~'@{ant-prefix}-dropdown';
+@dropdown-menu-prefix-cls: ~'@{dropdown-prefix-cls}-menu';
+
+.@{dropdown-prefix-cls} {
+  .@{dropdown-menu-prefix-cls} {
+    &-light {
+      .@{dropdown-menu-prefix-cls} {
+
+        &-item,
+        &-submenu-title {
+          &:hover {
+            background-color: var(--w-primary-color-1);
+          }
+        }
+      }
+    }
+
+    &-item,
+    &-submenu-title {
+      color: var(--w-text-color-dark);
+
+      &:hover {
+        background-color: var(--w-primary-color-1);
+      }
+    }
+
+    &-item-selected,
+    &-submenu-title-selected {
+
+      &,
+      &>a {
+        color: var(--w-primary-color);
+        background-color: var(--w-primary-color-1);
+      }
+    }
+  }
+}

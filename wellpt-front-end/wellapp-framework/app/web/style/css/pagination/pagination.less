@@ -1,0 +1,247 @@
+@pagination-prefix-cls: ~'@{ant-prefix}-pagination';
+
+body {
+  --w-pagination-text-color: var(--w-text-color-dark);
+  --w-pagination-text-size: var(--w-font-size-base);
+  --w-pagination-text-weight: var(--w-font-weight-regular);
+  --w-pagination-total-text-color: var(--w-text-color-light);
+
+  --w-pagination-icon-size: var(--w-font-size-base);
+
+  --w-pagination-item-text-size: var(--w-font-size-base);
+  --w-pagination-item-text-weight: var(--w-font-weight-regular);
+  --w-pagination-item-border-color: var(--w-border-color-base);
+  --w-pagination-item-border-style: var(--w-border-style-base);
+  --w-pagination-item-border-width: var(--w-border-width-base);
+  --w-pagination-item-border-radius: var(--w-border-radius-2);
+  --w-pagination-item-background: var(--w-fill-color-base);
+
+  --w-pagination-item-text-size-focus: var(--w-font-size-base);
+  --w-pagination-item-text-weight-focus: var(--w-font-weight-regular);
+  --w-pagination-item-border-color-focus: var(--w-border-color-base);
+  --w-pagination-item-border-style-focus: var(--w-border-style-base);
+  --w-pagination-item-border-width-focus: var(--w-border-width-base);
+  --w-pagination-item-border-radius-focus: var(--w-border-radius-2);
+  --w-pagination-item-background-focus: var(--w-primary-color-1);
+
+  --w-pagination-item-text-size-hover: var(--w-font-size-base);
+  --w-pagination-item-text-weight-hover: var(--w-font-weight-regular);
+  --w-pagination-item-text-color-hover: var(--w-primary-color);
+  --w-pagination-item-border-color-hover: var(--w-primary-color);
+  --w-pagination-item-border-style-hover: var(--w-border-style-base);
+  --w-pagination-item-border-width-hover: var(--w-border-width-base);
+  --w-pagination-item-border-radius-hover: var(--w-border-radius-2);
+  --w-pagination-item-background-hover: var(--w-primary-color-1);
+
+  --w-pagination-item-text-size-active: var(--w-font-size-base);
+  --w-pagination-item-text-weight-active: var(--w-font-weight-regular);
+  --w-pagination-item-text-color-active: var(--w-text-color-inverse);
+  --w-pagination-item-border-color-active: var(--w-primary-color);
+  --w-pagination-item-border-style-active: var(--w-border-style-base);
+  --w-pagination-item-border-width-active: var(--w-border-width-base);
+  --w-pagination-item-border-radius-active: var(--w-border-radius-2);
+  --w-pagination-item-background-active: var(--w-primary-color);
+
+  --w-pagination-item-link-text-size: var(--w-font-size-base);
+  --w-pagination-item-link-text-color: var(--w-pagination-text-color);
+  --w-pagination-item-link-text-weight: var(--w-font-weight-regular);
+  --w-pagination-item-link-border-color: var(--w-border-color-light);
+  --w-pagination-item-link-border-style: var(--w-border-style-base);
+  --w-pagination-item-link-border-width: var(--w-border-width-base);
+  --w-pagination-item-link-border-radius: var(--w-border-radius-2);
+  --w-pagination-item-link-background: var(--w-fill-color-base);
+
+  --w-pagination-item-link-text-size-focus: var(--w-font-size-base);
+  --w-pagination-item-link-text-weight-focus: var(--w-font-weight-regular);
+  --w-pagination-item-link-border-color-focus: var(--w-primary-color);
+  --w-pagination-item-link-border-style-focus: var(--w-border-style-base);
+  --w-pagination-item-link-border-width-focus: var(--w-border-width-base);
+  --w-pagination-item-link-border-radius-focus: var(--w-border-radius-2);
+  --w-pagination-item-link-background-focus: var(--w-fill-color-base);
+
+  --w-pagination-item-link-text-size-hover: var(--w-font-size-base);
+  --w-pagination-item-link-text-weight-hover: var(--w-font-weight-regular);
+  --w-pagination-item-link-text-color-hover: var(--w-primary-color);
+  --w-pagination-item-link-border-color-hover: var(--w-primary-color);
+  --w-pagination-item-link-border-style-hover: var(--w-border-style-base);
+  --w-pagination-item-link-border-width-hover: var(--w-border-width-base);
+  --w-pagination-item-link-border-radius-hover: var(--w-border-radius-2);
+  --w-pagination-item-link-background-hover: var(--w-primary-color-1);
+
+  --w-pagination-item-link-text-size-active: var(--w-font-size-base);
+  --w-pagination-item-link-text-weight-active: var(--w-font-weight-regular);
+  --w-pagination-item-link-text-color-active: var(--w-text-color-inverse);
+  --w-pagination-item-link-border-color-active: var(--w-primary-color);
+  --w-pagination-item-link-border-style-active: var(--w-border-style-base);
+  --w-pagination-item-link-border-width-active: var(--w-border-width-base);
+  --w-pagination-item-link-border-radius-active: var(--w-border-radius-2);
+  --w-pagination-item-link-background-active: var(--w-primary-color);
+
+  --w-pagination-jumper-input-border-color-hover: var(--w-primary-color);
+
+}
+
+.@{pagination-prefix-cls} {
+  color: var(--w-pagination-text-color);
+  font-size: var(--w-pagination-text-size);
+  font-weight: var(--w-pagination-text-weight);
+
+  &-total-text {
+    color: var(--w-pagination-total-text-color);
+  }
+
+  &-item {
+    border: var(--w-pagination-item-border-width) var(--w-pagination-item-border-style) var(--w-pagination-item-border-color);
+    border-radius: var(--w-pagination-item-border-radius);
+    background-color: var(--w-pagination-item-background);
+    font-size: var(--w-pagination-item-text-size);
+    font-weight: var(--w-pagination-item-text-weight);
+
+    &:hover {
+      font-size: var(--w-pagination-item-text-size-hover);
+      font-weight: var(--w-pagination-item-text-weight-hover);
+      border: var(--w-pagination-item-border-width-hover) var(--w-pagination-item-border-style-hover) var(--w-pagination-item-border-color-hover);
+      border-radius: var(--w-pagination-item-border-radius-hover);
+      background-color: var(--w-pagination-item-background-hover);
+
+      a {
+        color: var(--w-pagination-item-text-color-hover);
+      }
+    }
+
+    &:focus {
+      font-size: var(--w-pagination-item-text-size-focus);
+      font-weight: var(--w-pagination-item-text-weight-focus);
+      border: var(--w-pagination-item-border-width-focus) var(--w-pagination-item-border-style-focus) var(--w-pagination-item-border-color-focus);
+      border-radius: var(--w-pagination-item-border-radius-focus);
+      background-color: var(--w-pagination-item-background-focus);
+
+      a {
+        color: var(--w-pagination-item-text-color-focus);
+      }
+    }
+
+    a {
+      color: var(--w-pagination-text-color);
+
+      &:hover {
+        color: var(--w-pagination-item-text-color-hover);
+      }
+
+      &:active {
+        color: var(--w-pagination-item-text-color-hover);
+      }
+    }
+
+    &-active,
+    &-active:focus,
+    &-active:hover {
+      font-size: var(--w-pagination-item-text-size-active);
+      font-weight: var(--w-pagination-item-text-weight-active);
+      border: var(--w-pagination-item-border-width-active) var(--w-pagination-item-border-style-active) var(--w-pagination-item-border-color-active);
+      border-radius: var(--w-pagination-item-border-radius-active);
+      background-color: var(--w-pagination-item-background-active);
+
+      a {
+        color: var(--w-pagination-item-text-color-active);
+        text-shadow: var(--w-pagination-item-background-active);
+      }
+    }
+  }
+
+  &-prev,
+  &-next {
+    &:not(.@{pagination-prefix-cls}-disabled) {
+      .@{pagination-prefix-cls}-item {
+        &-link {
+          color: var(--w-pagination-item-link-text-color);
+          border: var(--w-pagination-item-link-border-width) var(--w-pagination-item-link-border-style) var(--w-pagination-item-link-border-color);
+          border-radius: var(--w-pagination-item-link-border-radius);
+          background-color: var(--w-pagination-item-link-background);
+          font-size: var(--w-pagination-item-link-text-size);
+          font-weight: var(--w-pagination-item-link-text-weight);
+        }
+      }
+
+      &:focus {
+        .@{pagination-prefix-cls}-item {
+          &-link {
+            color: var(--w-pagination-item-link-text-color-focus);
+            font-size: var(--w-pagination-item-link-text-size-focus);
+            font-weight: var(--w-pagination-item-link-text-weight-focus);
+            border: var(--w-pagination-item-link-border-width-focus) var(--w-pagination-item-link-border-style-focus) var(--w-pagination-item-link-border-color-focus);
+            border-radius: var(--w-pagination-item-link-border-radius-focus);
+            background-color: var(--w-pagination-item-link-background-focus);
+          }
+        }
+      }
+
+      &:hover {
+        .@{pagination-prefix-cls}-item {
+          &-link {
+            color: var(--w-pagination-item-link-text-color-hover);
+            font-size: var(--w-pagination-item-link-text-size-hover);
+            font-weight: var(--w-pagination-item-link-text-weight-hover);
+            border: var(--w-pagination-item-link-border-width-hover) var(--w-pagination-item-link-border-style-hover) var(--w-pagination-item-link-border-color-hover);
+            border-radius: var(--w-pagination-item-link-border-radius-hover);
+            background-color: var(--w-pagination-item-link-background-hover);
+          }
+        }
+      }
+    }
+
+  }
+
+  &-jump-next,
+  &-jump-prev {
+
+    .@{pagination-prefix-cls}-item-link {
+      .@{pagination-prefix-cls}-item-container {
+        height: 32px;
+        color: var(--w-pagination-item-link-text-color);
+        border: var(--w-pagination-item-link-border-width) var(--w-pagination-item-link-border-style) var(--w-pagination-item-link-border-color);
+        border-radius: var(--w-pagination-item-link-border-radius);
+        background-color: var(--w-pagination-item-link-background);
+        font-size: var(--w-pagination-item-link-text-size);
+        font-weight: var(--w-pagination-item-link-text-weight);
+
+        .@{pagination-prefix-cls}-item-ellipsis {
+          color: var(--w-pagination-item-link-text-color);
+          font-size: var(--w-pagination-item-link-text-size);
+          transform: scale(0.7);
+        }
+
+        &:hover {
+          background-color: var(--w-pagination-item-link-background-hover);
+        }
+      }
+    }
+  }
+
+  &-options-quick-jumper {
+    input {
+
+      &:focus,
+      &:hover {
+        border-color: var(--w-pagination-jumper-input-border-color-hover);
+        box-shadow: 0 0 0 2px color-mix(in srgb, var(--w-pagination-jumper-input-border-color-hover) 20%, white);
+      }
+    }
+  }
+
+
+  .@{pagination-prefix-cls}-disabled {
+
+    &,
+    &:hover,
+    &:focus {
+
+      a,
+      .@{pagination-prefix-cls}-item-link {
+        color: var(--w-text-color-lighter);
+        border-color: var(--w-pagination-item-border-color);
+        background-color: var(--w-fill-color-light);
+      }
+    }
+  }
+}

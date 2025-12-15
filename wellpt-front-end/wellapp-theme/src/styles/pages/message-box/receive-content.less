@@ -1,0 +1,326 @@
+/** 消息列表 */
+.modal-body .bootbox-close-wrap {
+  position: absolute;
+  width: calc(100% - 60px);
+  right: 0;
+  background: @background-light;
+  z-index: 100;
+  height: 30px;
+}
+
+.wellpt-msg-wrapper {
+  margin-bottom: 0;
+
+  .panel-body {
+    .panel-tab-header {
+      padding: 0;
+      float: left;
+      margin-left: -1px;
+      margin-top: -1px;
+      background: @primary-color;
+      width: 60px;
+
+      .panel-nav-tabs-container {
+        min-width: initial;
+
+        .nav-tabs {
+          background: @primary-color;
+          display: block;
+
+          .panel-tab {
+            padding: 30px 0 0 0;
+            margin-bottom: 10px;
+            float: none;
+            margin-right: 0;
+            text-align: center;
+            line-height: 1;
+            display: block;
+
+            a {
+              display: inline-block;
+              padding: 0 @padding-3xs;
+              line-height: 1;
+              font-size: @font-size-sm;
+              margin-right: 0;
+              background: transparent;
+              color: rgba(255, 255, 255, 0.5);
+
+              &:hover,
+              &:focus {
+                color: @text-color-inverse;
+              }
+
+              i {
+                display: block;
+                font-size: @font-size-2xl;
+                margin-bottom: 10px;
+              }
+            }
+
+            &.active a {
+              color: @text-color-inverse;
+
+              &::after {
+                content: none;
+              }
+            }
+          }
+        }
+      }
+
+    }
+
+    .tab-content {
+      padding: 0;
+    }
+
+    .pt-message-outbox .web-app-container.container-fluid {
+      background: @component-background;
+    }
+
+    .modal-body .bootbox-close-wrap {
+      position: absolute;
+      width: calc(100% - 60px);
+      right: 0;
+      background: @background-light;
+      z-index: 100;
+      height: 30px;
+
+      /* 全部消息弹窗 */
+      button.close {
+        top: 9px !important;
+
+        i {
+          font-size: @font-size-sm;
+        }
+      }
+    }
+  }
+
+  .panel-tab-content {
+    padding: 0 0 0 60px !important;
+  }
+}
+
+.msg-receive-content {
+  &.ui-wPanel {
+    margin-top: 30px;
+    margin-bottom: 0;
+  }
+
+  .ui-wHtml {
+    float: left;
+    width: 231px;
+    overflow: hidden;
+
+    +.ui-wPanel {
+      width: calc(100% - 231px);
+      float: left;
+
+      .panel-body {
+        padding: 0;
+      }
+    }
+  }
+}
+
+.msg-receive-content .msg-category-list {
+  margin-top: 0;
+  width: 220px;
+  height: 100%;
+  overflow-y: auto;
+
+  .msg-category-item {
+    padding: 10px 10px 10px 15px;
+  }
+}
+
+.msg-receive-content.ui-wPanel {
+  .panel-heading {
+    background: @component-background;
+  }
+
+  .panel-body {
+    padding: 0 15px;
+  }
+}
+
+.msg-receive-content .panel-body .panel-tab-header {
+  border: none;
+  border-bottom: @border-default-light;
+  background: @component-background;
+}
+
+.msg-receive-content .panel-body .panel-tab-header .nav-tabs>li a {
+  background: @component-background;
+}
+
+.msg-receive-content .ui-wBootstrapTable .fixed-table-container .fixed-table-body table {
+  padding: 0;
+  margin-top: -10px;
+  border-collapse: separate !important;
+  border-spacing: 0 15px;
+}
+
+.msg-receive-content .ui-wBootstrapTable .fixed-table-container.onlySelectItem .fixed-table-body table tbody>tr>td {
+  &.underPadding {
+    border-color: @border-color-base;
+    position: relative;
+
+    &:before {
+      .absolute(0 false false 0);
+      .square(100%);
+
+      display: block;
+      content: '';
+      z-index: 10;
+    }
+
+    &:after {
+      .square(36px);
+      .absolute(-10px false false -3px);
+
+      font-family: iconfont;
+      font-size: 36px;
+
+      content: '\e9c2';
+      color: @border-color-base;
+    }
+
+    &.checked {
+      border: @border-default-primary;
+
+      &:after {
+        color: @text-color-primary;
+        left: -3px;
+      }
+    }
+  }
+
+  .underline-btn {
+    opacity: 0.5;
+  }
+}
+
+.msg-receive-content .ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody>tr:hover {
+  background: transparent;
+}
+
+.modal-footer li span.well-btn,
+.msg-receive-content span.well-btn {
+  margin-right: 0;
+  display: block;
+
+  &:hover {
+    background: fade(@primary-color, 15%);
+  }
+}
+
+.modal-footer .dropdown-menu,
+.msg-receive-content .fixed-table-body table tbody tr:last-of-type .dropdown-menu {
+  bottom: 100%;
+  top: initial;
+}
+
+.msg-receive-content .ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody>tr>td.underPadding {
+  border-color: @border-color-base;
+  border-width: @border-width-base;
+  border-style: @border-style-base;
+
+  &:hover {
+    border-color: @border-color-primary;
+    box-shadow: @shadow-active-default;
+    background: transparent;
+  }
+
+  .table-msg-title {
+    color: @text-color-dark;
+    font-size: @font-size-lg;
+    line-height: 1;
+    margin-bottom: 10px;
+    overflow: visible;
+
+    span {
+      color: @text-color-light;
+      font-size: @font-size-base;
+      float: right;
+      vertical-align: middle;
+      line-height: 1;
+      padding: 0;
+
+      &.table-msg-name {
+        margin-right: 20px;
+        color: @text-color;
+      }
+
+      &.table-msg-cate {
+        color: @text-color-inverse;
+        font-size: 13px;
+        margin-right: 7px;
+        padding: 0 5px;
+        border-radius: 4px;
+        float: none;
+        height: 22px;
+        line-height: 22px;
+        display: inline-block;
+        margin-top: -3px;
+      }
+    }
+  }
+
+  .table-msg-content {
+    color: @text-color;
+    font-size: @font-size-base;
+    line-height: 20px;
+    margin-bottom: 10px;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    word-break: break-all;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  a.msg-relatedUrl {
+    float: right;
+    line-height: 40px;
+  }
+}
+
+// 分页详情
+.msg-receive-content {
+  .fixed-table-pagination {
+    .pagination-detail {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 120px;
+        height: 1px;
+        background-color: @gray-5;
+      }
+
+      .pagination-info {
+        margin: 0 5px;
+      }
+
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 120px;
+        height: 1px;
+        background-color: @gray-5;
+      }
+    }
+  }
+}

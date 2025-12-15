@@ -1,0 +1,72 @@
+{
+  "WidgetTable": {
+    "selectAll": "全选",
+    "noData": "暂无数据",
+    "notFoundData": "查无数据",
+    "column": {
+      "serialNumber": "序号",
+      "operation": "操作"
+    },
+    "switchToCardView": "切换为卡片视图",
+    "switchToTableView": "切换为表格视图",
+    "loadMore": "加载更多",
+    "selectExportColumn": "选择导出列",
+    "clickOrDragToUpload": "点击或者拖拽文件到此区域上传",
+    "importModal": {
+      "downloadImportTemplate": "下载模板",
+      "uploadFinished": "已上传",
+      "importResultText": "导入结果",
+      "importSuccessText": "成功",
+      "importFailText": "失败",
+      "importModalTitle": "数据导入",
+      "importModalOkText": "导入",
+      "importErrorTitle": "导入错误",
+      "importErrorContent": "导入文件解析异常, 该文件已被加密或格式内容有误, 请检查后再导入"
+    },
+    "exportModal": {
+      "pleaseSelectExportRow": "请选择导出行",
+      "exportingTip": "数据正在导出",
+      "exportFileTitleHead": "导出数据"
+    },
+
+    "message": {
+      "totalPageContent": "共{totalPages}页/{total}条记录",
+      "totalCountContent": "共{total}条记录",
+      "uploadFileFormatError": "只允许上传 xls 或者 xlsx 文件格式",
+      "errorWorkflowIdExplain": "请确认数据的流程配置正确性"
+    },
+    "search": {
+      "keywordPlaceholder": "关键字",
+      "searchAllOption": "全部",
+      "searchButtonText": "查询",
+      "more": "更多",
+      "resetButtonText": "重置",
+      "collapse": "收起"
+    },
+    "customTable": {
+      "sort": "拖动排序",
+      "title": "自定义表格",
+      "freezeTableLabel": "冻结表格",
+      "freezeBeforeLabel": "前",
+      "freezeAfterLabel": "后",
+      "columnLabel": "列",
+      "tip1": "设置表格的冻结列, 冻结的列不受表格左右拖动影响",
+      "tip2": "冻结列为0时表示不冻结",
+      "tip3": "开启冻结列, 默认冻结操作列",
+      "tip4": "冻结后n列时, n不包含操作列",
+      "tip5": "冻结前n列时, n不包含序号列",
+      "tip6": "表头分组内的列顺序, 以表头分组配置顺序排列",
+      "tip7": "分组显示的列中排最前面的列位置为分组插入位置",
+      "fixedColumnLabel": "固定列",
+      "cancelButtonText": "取消",
+      "resetButtonText": "恢复默认",
+      "okButtonText": "确定",
+      "nameColumn": "名称",
+      "savingTip": "保存中",
+      "saveServerError": "自定义表格数据服务异常"
+    },
+    "pleaseSelectRecord": "请选择行",
+    "time": "时间",
+    "size": "大小"
+  }
+}

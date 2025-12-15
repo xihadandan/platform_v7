@@ -1,0 +1,129 @@
+/*hover color variables*/
+/*disabled color variables*/
+.ui-wHeader .ui-wHeader-mainNavbar {
+  position: relative;
+  min-height: 70px;
+  margin-bottom: 0;
+  border: 0;
+  border-radius: 0;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .ui-wHeader-baseInfo > .ui-wHeader-logo {
+  padding: 15px 5px;
+  margin-left: 15px;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .navbar-nav {
+  margin: 0;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .navbar-nav > li {
+  width: 95px;
+  height: 70px;
+  text-align: center;
+  display: inline-block;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .navbar-nav > li .badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 2px 5px;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border-radius: 10px;
+  position: absolute;
+  top: 10px;
+  left: 53px;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .navbar-nav > li > a {
+  padding: 11px;
+  word-break: keep-all;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .navbar-nav > li > a:focus,
+.ui-wHeader .ui-wHeader-mainNavbar .navbar-nav > li > a:hover {
+  background: none;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .navbar-nav > li .glyphicon:before {
+  margin-right: 0px;
+  font-size: 22px;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .navbar-nav > li .ui-wIcon {
+  display: block;
+  margin: 3px auto;
+  width: 25px;
+  font-size: 22px;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .wHeaderNavMoreUL .nav-menu-item a {
+  line-height: 30px;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .wHeaderNavMoreUL .nav-menu-item a > span {
+  display: inline-block;
+  font-size: 16px;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .wHeaderNavMoreUL .nav-menu-item a > span:before {
+  font-size: 16px;
+}
+.ui-wHeader .ui-wHeader-subNavbar {
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 0;
+  border: 0;
+  border-radius: 0;
+}
+.ui-wHeader .ui-wHeader-subNavbar .navbar-nav {
+  margin: 0;
+}
+.ui-wHeader .ui-wHeader-subNavbar .ui-wHeader-subNav {
+  margin-left: 62px;
+  border-bottom: 0;
+  float: left;
+}
+.ui-wHeader .ui-wHeader-subNavbar .ui-wHeader-subNav > li > a {
+  padding: 0 20px;
+  line-height: 50px;
+  border: 0;
+  border-radius: 0;
+  font-size: 15px;
+}
+.ui-wHeader .ui-wHeader-subNavbar .ui-wHeader-subNav > li > a span {
+  margin-right: 4px;
+  top: 2px;
+}
+.ui-wHeader .ui-wHeader-subNavbar .navbar-right > li {
+  display: inline-block;
+}
+.ui-wHeader .ui-wHeader-subNavbar .navbar-right > li a {
+  line-height: 50px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.ui-wHeader .ui-wHeader-subNavbar .navbar-right > li a span {
+  margin-right: 2px;
+}
+.ui-wHeader .ui-wHeader-shortcut {
+  z-index: 999;
+  position: fixed;
+  top: 149px;
+  right: 15px;
+  width: 1em;
+}
+.ui-wHeader .ui-wHeader-shortcut > li {
+  margin: 0;
+  padding: 7px;
+  float: left;
+  font-size: 15px;
+  line-height: 1;
+  text-align: left;
+  position: relative;
+  border: 0;
+  margin-bottom: 1px ;
+}
+.ui-wHeader .ui-wHeader-shortcut > li a {
+  text-decoration: none;
+}
+.ui-wHeader .ui-wHeader-shortcut > li.glyphicon-home {
+  margin-bottom: 2px ;
+}
+.ui-wHeader .ui-wHeader-shortcut > li.glyphicon-plus {
+  background: #a7a8aa;
+}

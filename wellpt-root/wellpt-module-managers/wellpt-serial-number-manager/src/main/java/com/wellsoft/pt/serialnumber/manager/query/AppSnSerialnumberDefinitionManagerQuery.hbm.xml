@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!--模块流水号查询-->
+    <sql-query name="appModuleSnSerialNumberDefinitionManagerQuery">
+        <![CDATA[
+         select t1.uuid as uuid,
+               t1.create_time as create_time,
+               t1.creator as creator,
+               t1.modifier as modifier,
+               t1.modify_time as modify_time,
+               t1.rec_ver as rec_ver,
+               t1.name as name,
+               t1.id as id,
+               t1.code as code,
+               t1.remark as remark,
+               t1.system_unit_id as system_unit_id,
+               t1.module_id as module_id
+          from sn_serial_number_definition t1
+         where 1=1
+            <if categoryUuid??>
+                and t1.category_uuid=:categoryUuid
+            </if>
+            <if moduleId??>
+                and t1.module_id=:moduleId
+            </if>
+            <if systemIds?? && (systemIds?size > 0) && isNotBlank(tenantId)>
+                and (
+                    exists (
+                        select pm.module_id from app_prod_module pm
+                            left join app_system_info si on pm.prod_version_uuid = si.prod_version_uuid
+                            where t1.module_id = pm.module_id and si.system in (:systemIds) and si.tenant = :tenantId
+                    )
+                    or t1.system in (:systemIds)
+                )
+            <elseif systemIds?? && (systemIds?size > 0)>
+                and t1.system in (:systemIds)
+            <elseif isNotBlank(tenantId)>
+                and t1.tenant = :tenantId
+            </if>
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            </if>
+    ]]>
+    </sql-query>
+
+    <sql-query name="appModuleSnSerialNumberMaintainManagerQuery">
+        <![CDATA[
+        select t1.uuid as uuid,
+               t1.create_time as create_time,
+               t1.creator as creator,
+               t1.modifier as modifier,
+               t1.modify_time as modify_time,
+               t1.rec_ver as rec_ver,
+               t1.system_unit_id as system_unit_id,
+               t1.serial_number_def_uuid as serial_number_def_uuid,
+               t1.initial_value as initial_value,
+               t1.pointer as pointer,
+               t1.pointer_reset_type as pointer_reset_type,
+               t1.pointer_reset_rule as pointer_reset_rule,
+               t1.pointer_reset_rule_value as pointer_reset_rule_value
+          from sn_serial_number_maintain t1
+         where 1=1
+            <if isNotBlank(serialNumberDefUuid)>
+                and t1.serial_number_def_uuid = :serialNumberDefUuid
+            </if>
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            </if>
+    ]]>
+    </sql-query>
+
+    <sql-query name="appModuleSnSerialNumberRecordManagerQuery">
+        <![CDATA[
+            select
+                t1.uuid as uuid,
+                t1 .create_time as create_time,
+                t1.creator as creator,
+                t1.modifier as modifier,
+                t1.modify_time as modify_time,
+                t1.rec_ver as rec_ver,
+                t1.system_unit_id as system_unit_id,
+                t1.prefix as prefix,
+                t1.pointer as pointer,
+                t1.suffix as suffix,
+                t1.serial_no as serial_no,
+                t2.pointer_reset_type as pointer_reset_type,
+                t2.pointer_reset_rule as pointer_reset_rule,
+                t2.pointer_reset_rule_value as pointer_reset_rule_value,
+                t3.object_name as object_name,
+                t3.field_name as field_name
+            from
+                sn_serial_number_record t1
+            left join sn_serial_number_maintain t2 on
+                t1.maintain_uuid = t2.uuid
+            left join
+            sn_serial_number_relation t3 on
+                t1.relation_uuid = t3.uuid
+            where
+                1 = 1
+            <if isNotBlank(serialNumberDefUuid)>
+                and t2.serial_number_def_uuid = :serialNumberDefUuid
+            </if>
+            <if serialNumberDefUuids?? && (serialNumberDefUuids?size > 0)>
+                and t2.serial_number_def_uuid in(:serialNumberDefUuids)
+            </if>
+            <if maintainUuids?? && (maintainUuids?size > 0)>
+                and t1.maintain_uuid in(:maintainUuids)
+            </if>
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isBlank(orderBy)>
+                order by
+                    t2.pointer_reset_type asc,
+                    t2.pointer_reset_rule asc,
+                    t2.pointer_reset_rule_value desc,
+                    t1.pointer asc
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            </if>
+    ]]>
+    </sql-query>
+</hibernate-mapping>

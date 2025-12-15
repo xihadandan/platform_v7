@@ -1,0 +1,10 @@
+.gitignore
+package-lock.json
+yarn.lock
+node_modules
+
+# 只发布压缩版文件
+# app/assets/themes/*-dev.css
+# !app/assets/themes/*-dev.min.css
+
+# 发布相关的less文件 (平台发布Less文件仅供业务线参考， 其它情况下应该忽略less文件)

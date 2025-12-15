@@ -1,0 +1,57 @@
+{
+  "loginComponent": {
+    "logoTitle": "ผู้ช่วยสำนักงานแบบบูรณาการ",
+    "acctLogin": "เข้าสู่ระบบบัญชี",
+    "acctText": "หมายเลขบัญชี",
+    "acctInputPlaceholder": "กรุณาใส่บัญชีของคุณ",
+    "pwdInputPlaceholder": "กรุณาใส่รหัสผ่านของคุณ",
+    "rememberAcct": "จำบัญชี",
+    "rememberPwd": "จำรหัสผ่าน",
+    "forgetPwd": "ลืมรหัสผ่าน",
+    "register": "สมัครสมาชิก",
+    "login": "เข้าสู่ระบบ",
+    "pwdText": "รหัสผ่าน",
+    "phoneNo": "โทรศัพท์มือถือ",
+    "phoneNoInputPlaceholder": "กรุณากรอกหมายเลขโทรศัพท์มือถือ",
+    "verificationCode": "รหัสยืนยัน",
+    "verificationCodeInputPlaceholder": "กรุณากรอกรหัสยืนยัน",
+    "SendVerificationCode": "ส่งรหัสยืนยัน",
+    "rememberAcct&Pwd": "จำรหัสผ่านของบัญชี",
+    "loginSettings": "การตั้งค่าการเข้าสู่ระบบ",
+    "changeLoginType": "วิธีการเข้าสู่ระบบ",
+    "selectLoginType": "เลือกวิธีการเข้าสู่ระบบ",
+    "selectLanguage": "เลือกภาษา",
+    "usrPwd": "ชื่อผู้ใช้ / รหัสผ่าน เข้าสู่ระบบ",
+    "usrPhonePwd": "ชื่อผู้ใช้ / โทรศัพท์มือถือ / รหัสผ่าน เข้าสู่ระบบ",
+    "sms": "SMS CAPTCHA เข้าสู่ระบบ",
+    "unLogin": "ยังไม่ได้เข้าสู่ระบบ",
+    "loginAgain": "กรุณาเข้าสู่ระบบอีกครั้ง",
+    "logout": "ออกจากระบบ",
+    "error": {
+      "Bad credentials": "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง",
+      "captchaExpired": "รหัสยืนยันล้มเหลว",
+      "captchaError": "ข้อผิดพลาดของรหัสยืนยัน",
+      "phoneError": "หมายเลขโทรศัพท์ไม่ถูกต้อง!",
+      "durationRetry": "กรุณาลองอีกครั้งใน ${duration} วินาที",
+      "vcodeSendSuccess": "ส่งรหัสยืนยันสำเร็จแล้ว กรุณาตรวจสอบ",
+      "vcodeSendFail": "ส่งรหัสยืนยันไม่สำเร็จ",
+      "passwordunEmpty": "รหัสผ่านไม่สามารถเว้นว่างได้!",
+      "pcodeErroe": "รหัสยืนยันรูปภาพไม่ถูกต้อง!",
+      "phoneMultiple": "หมายเลขโทรศัพท์มีข้อมูลผู้ใช้หลายรายการ",
+      "phoneNoUser": "ไม่พบข้อมูลผู้ใช้ที่ตรงกับหมายเลขโทรศัพท์",
+      "systemIdUndefined": "กรุณาตั้งค่า System ID ในตั้งค่าการเข้าสู่ระบบ"
+    },
+    "setting": {
+      "address": "ที่อยู่เซิร์ฟเวอร์",
+      "port": "พอร์ตเซิร์ฟเวอร์",
+      "ssl": "เปิดใช้งาน SSL",
+      "systemId": "ไอดีระบบ"
+    },
+    "sso": {
+      "logining": "เข้าสู่ระบบเพียงครั้งเดียว",
+      "success": "เข้าสู่ระบบครั้งเดียวสำเร็จ",
+      "failed": "การเข้าสู่ระบบครั้งเดียวล้มเหลว",
+      "weixinDomainFailed": "WeCom เข้าสู่ระบบเพียงครั้งเดียวต้องใช้ชื่อโดเมนที่เชื่อถือได้"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<div class="wf-opinion" style="position: relative">
+  <div class="mui-row" style="position: relative">
+    <div class="mui-col-xs-12">
+      <!--<ul class="mui-table-view mui-row mui-text-center">-->
+      <!--{@each categories as category,index}-->
+      <!--<li class="mui-table-view-cell wf-opinion-category mui-col-xs-4" categoryUuid="${category.uuid}"><a href="#">${category.name}</a></li>-->
+      <!--{@/each}-->
+      <!--</ul>-->
+      <div class="wf-opinion-category-scroll mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+        <div class="mui-scroll">
+          {@each categories as category,index} {@if index == 0}
+          <a class="mui-control-item wf-opinion-category wf-opinion-category-first mui-active" categoryUuid="${category.uuid}">
+            ${category.name}
+          </a>
+          {@else}
+          <a class="mui-control-item wf-opinion-category" categoryUuid="${category.uuid}">${category.name}</a>
+          {@/if} {@/each}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mui-row mui-hidden wf-opinion-view" style="position: relative; min-height: 150px">
+    <div>
+      <div class="mui-scroll-wrapper wf-opinion-view-content-scroll">
+        <div class="mui-scroll">
+          <ul class="mui-table-view wf-opinion-view-content"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mui-row">
+    <div class="mui-col-xs-12">
+      <div class="mui-input-row" style="margin: 10px 10px 5px">
+        <textarea id="textarea" rows="5" placeholder="签署意见" style="margin-bottom: 0; border-radius: 4px" maxlength="1000"></textarea>
+      </div>
+    </div>
+  </div>
+</div>

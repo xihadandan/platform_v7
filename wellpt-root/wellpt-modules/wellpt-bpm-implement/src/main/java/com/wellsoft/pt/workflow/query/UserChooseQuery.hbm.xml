@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="userChooseQuery">
+        <![CDATA[
+		select user.id as id, user.userName as userName from User user where user.id in (:userIds)
+		<if isNotBlank(loginName) || isNotBlank(userName)>
+			and (1 = 2
+				<if isNotBlank(loginName)>
+					or lower(user.loginName) like '%${loginName?lower_case}%'
+				</if>
+				<if isNotBlank(userName)>
+					or lower(user.userName) like '%${userName?lower_case}%'
+				</if>
+			)
+		</if>
+	]]>
+    </sql-query>
+
+    <sql-query name="getAllUsersQuery">
+        <![CDATA[
+		select t.uuid            as uuid,
+		       t.id              as id,
+		       t.user_name       as user_name,
+		       t.department_name as department_name,
+		       t.major_job_name  as major_job_name
+		  from org_user t
+			where 1 = 1
+		<if isNotBlank(loginName) || isNotBlank(userName) || isNotBlank(departmentName) || isNotBlank(majorJobName)>
+			and (1 = 2
+				<if isNotBlank(loginName)>
+					or lower(t.login_name) like '%${loginName?lower_case}%'
+				</if>
+				<if isNotBlank(userName)>
+					or lower(t.user_name) like '%${userName?lower_case}%'
+				</if>
+				<if isNotBlank(departmentName)>
+					or lower(t.department_name) like '%${departmentName?lower_case}%'
+				</if>
+				<if isNotBlank(majorJobName)>
+					or lower(t.major_job_name) like '%${majorJobName?lower_case}%'
+				</if>
+			)
+		</if>
+		<if isNotBlank(limitUserIds)>
+			and t.id in (:limitUserIds)
+		</if>
+		 order by t.employee_number
+	]]>
+    </sql-query>
+</hibernate-mapping>

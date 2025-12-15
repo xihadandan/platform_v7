@@ -1,0 +1,63 @@
+{
+  "js": {
+    "AppSerialNumberDetailsWidgetDevelopment": {
+      "path": "/serialnumber-mgr/AppSerialNumberDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_流水号定义详情_HTML组件二开",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "AppPtMgrDetailsWidgetDevelopment",
+        "multiOrg",
+        "formBuilder",
+        "dataStoreBase",
+        "bootstrap-datetimepicker"
+      ]
+    },
+    "AppSerialNumberListViewWidgetDevelopment": {
+      "path": "/serialnumber-mgr/AppSerialNumberListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_流水号定义列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppSerialNumberRecordDataWidgetDevelopment": {
+      "path": "/serialnumber-mgr/AppSerialNumberRecordDataWidgetDevelopment",
+      "name": "平台管理_产品集成_流水号旧数据列表_记录数据_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppSerialNumberExceptionDataWidgetDevelopment": {
+      "path": "/serialnumber-mgr/AppSerialNumberExceptionDataWidgetDevelopment",
+      "name": "平台管理_产品集成_流水号旧数据列表_异常数据_视图组件二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "ztree",
+        "global",
+        "system-admin",
+        "wCommonPictureLib",
+        "minicolors",
+        "dependencyBootstrapTableModule"
+      ]
+    },
+    "AppSnSerialNumberCategoryWidgetDevelopment": {
+      "path": "/serialnumber-mgr/AppSnSerialNumberCategoryWidgetDevelopment",
+      "name": "平台应用_产品集成_流水号定义_流水号分类树_二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppSnSerialNumberDefinitionListViewWidgetDevelopment": {
+      "path": "/serialnumber-mgr/AppSnSerialNumberDefinitionListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_新版流水号定义列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppSnSerialNumberDefinitionDetailsWidgetDevelopment": {
+      "path": "/serialnumber-mgr/AppSnSerialNumberDefinitionDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_新版流水号定义详情_HTML组件二开",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "AppPtMgrDetailsWidgetDevelopment",
+        "multiOrg",
+        "formBuilder",
+        "dataStoreBase",
+        "bootstrap-datetimepicker"
+      ]
+    }
+  },
+  "css": {}
+}

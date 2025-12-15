@@ -1,0 +1,87 @@
+@import '../core/mixins/index.less';
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-lowercase,
+.lowercase {
+  text-transform: lowercase !important;
+}
+
+.text-uppercase,
+.uppercase {
+  text-transform: uppercase !important;
+}
+
+.text-capitalize,
+.capitalize {
+  text-transform: capitalize !important;
+}
+
+.text-deleted {
+  text-decoration: line-through;
+}
+
+.text-nowrap {
+  white-space: nowrap !important;
+}
+
+.text-wrap {
+  white-space: pre-wrap !important;
+}
+
+.font-weight-normal {
+  font-weight: normal;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.font-italic {
+  font-style: italic;
+}
+
+@text-xs: @font-size-sm;
+@text-sm: @font-size-base;
+@text-md: @font-size-base;
+@text-lg: @font-size-lg;
+@text-xl: @font-size-xl;
+@text-xxl: @font-size-2xl;
+
+.text-xs {
+  font-size: @text-xs !important;
+}
+
+.text-sm {
+  font-size: @text-sm !important;
+}
+
+.text-md {
+  font-size: @text-md !important;
+}
+
+.text-lg {
+  font-size: @text-lg !important;
+}
+
+.text-xl {
+  font-size: @text-xl !important;
+}
+
+.text-xxl {
+  font-size: @text-xxl !important;
+}
+
+.text-truncate {
+  .text-truncate();
+}

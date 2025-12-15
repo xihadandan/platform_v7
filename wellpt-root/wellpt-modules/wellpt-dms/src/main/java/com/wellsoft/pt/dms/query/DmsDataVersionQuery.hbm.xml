@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="getAllDmsDataVersions">
+        <![CDATA[
+		  from DmsDataVersion t1
+		 where exists (select t2.uuid
+		          from DmsDataVersion t2
+		         where t1.dataType = t2.dataType
+		           and t1.initDefUuid = t2.initDefUuid
+		           and t1.initDataUuid = t2.initDataUuid
+		           and t2.dataType = :dataType
+		           and t2.dataDefUuid = :dataDefUuid
+		           and t2.dataUuid = :dataUuid)
+		 order by t1.version asc
+	]]>
+    </sql-query>
+
+
+    <sql-query name="getLatestVersionFormData">
+        <![CDATA[
+		  select ${tableName}.*, ddv.version max_version
+		  from dyform_form_definition dfd,
+			   dms_data_version       ddv,
+			   ${tableName}
+		 where ddv.is_latest_version = 1
+		   and ddv.data_uuid = ${tableName}.uuid
+		   and ddv.data_type='dyform'
+		   and dfd.uuid=:formUuid
+		   and dfd.uuid=${tableName}.form_uuid
+		   <if isNotBlank(whereSql)>
+			and ${whereSql}
+			</if>
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

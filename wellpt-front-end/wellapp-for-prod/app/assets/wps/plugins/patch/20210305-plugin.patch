@@ -1,0 +1,39 @@
+diff --git a/wellpt-root/wellpt-web/WebContent/resources/wps/plugins/src/etoa_2.1/js/module/oastart.js b/wellpt-root/wellpt-web/WebContent/resources/wps/plugins/src/etoa_2.1/js/module/oastart.js
+index ef2007f..8be6951 100644
+--- a/wellpt-root/wellpt-web/WebContent/resources/wps/plugins/src/etoa_2.1/js/module/oastart.js
++++ b/wellpt-root/wellpt-web/WebContent/resources/wps/plugins/src/etoa_2.1/js/module/oastart.js
+@@ -98,7 +98,7 @@
+ function SaveFile(cb) {
+     // wps.ApiEvent.Cancel = true
+     var doc = wps.EtApplication().ActiveWorkbook;
+-    if(doc.Saved) return
++    // if(doc.Saved) return
+     var myDate = currentTime();
+     var username = wps.EtApplication().UserName;
+     var fileName = '' + myDate;
+diff --git a/wellpt-root/wellpt-web/WebContent/resources/wps/plugins/src/oaassist_3.1/js/module/oastart.js b/wellpt-root/wellpt-web/WebContent/resources/wps/plugins/src/oaassist_3.1/js/module/oastart.js
+index eb297f1..ffcf3ea 100644
+--- a/wellpt-root/wellpt-web/WebContent/resources/wps/plugins/src/oaassist_3.1/js/module/oastart.js
++++ b/wellpt-root/wellpt-web/WebContent/resources/wps/plugins/src/oaassist_3.1/js/module/oastart.js
+@@ -94,7 +94,7 @@
+ function SaveFile(cb) {
+     wps.ApiEvent.Cancel = true
+     var doc = wps.WpsApplication().ActiveDocument;
+-    if(doc.Saved) return
++    // if(doc.Saved) return
+     var myDate = currentTime();
+     var username = wps.WpsApplication().UserName;
+     var fileName = '' + myDate;
+diff --git a/wellpt-root/wellpt-web/WebContent/resources/wps/plugins/src/oaassist_3.1/js/monitor.js b/wellpt-root/wellpt-web/WebContent/resources/wps/plugins/src/oaassist_3.1/js/monitor.js
+index 0675189..abecb2e 100644
+--- a/wellpt-root/wellpt-web/WebContent/resources/wps/plugins/src/oaassist_3.1/js/monitor.js
++++ b/wellpt-root/wellpt-web/WebContent/resources/wps/plugins/src/oaassist_3.1/js/monitor.js
+@@ -67,7 +67,7 @@
+ 
+ //当文件保存前触发的事件
+ function OnDocumentBeforeSave(doc) {
+-    if(doc.Saved) return
++    // if(doc.Saved) return
+     var isOA = propGetFromStorage(doc.DocID,"isOA");
+     var _docId = propGetFromStorage(doc.DocID,"docId");
+     var close = propGetFromStorage(doc.DocID,"close");

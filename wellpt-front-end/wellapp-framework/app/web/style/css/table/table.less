@@ -1,0 +1,305 @@
+@table-prefix-cls: ~'@{ant-prefix}-table';
+
+body {
+  --w-table-tr-background-hover: var(--w-primary-color-1);
+  --w-table-thead-th-bg-color: var(--w-fill-color-light);
+  --w-table-thead-th-text-color: var(--w-text-color-dark);
+  --w-table-thead-td-text-color: var(--w-text-color-darker);
+  --w-table-thead-text-size: var(--w-font-size-base);
+
+  --w-table-tr-background-selected:  var(--w-primary-color-1);
+}
+
+.@{table-prefix-cls} {
+  &-thead,
+  &-tbody {
+    & > tr {
+      &.@{table-prefix-cls}-row-hover,
+      &:hover {
+        &:not(.@{table-prefix-cls}-expanded-row) {
+          &:not(.@{table-prefix-cls}-row-selected) {
+            & > td {
+              background: var(--w-table-tr-background-hover);
+            }
+          }
+        }
+        &.@{table-prefix-cls}-row-selected{
+          & > td {
+            background: var(--w-table-tr-background-hover);
+          }
+        }
+      }
+
+      &.@{table-prefix-cls}-row-selected{
+        & > td {
+          background: var(--w-table-tr-background-selected);
+        }
+      }
+    }
+  }
+
+  .ant-table-thead > tr > th {
+    .ant-table-column-sorter {
+      .ant-table-column-sorter-inner-full {
+        margin-top: e('calc(0px - var(--w-font-size-base)/2)');
+      }
+
+      .ant-table-column-sorter-inner {
+        color: var(--w-text-color-light);
+
+        .ant-table-column-sorter-down,
+        .ant-table-column-sorter-up {
+          font-size: var(--w-font-size-base);
+
+          &.on {
+            color: var(--w-text-color-dark);
+          }
+        }
+      }
+    }
+  }
+
+  &.ant-table-bordered.ant-table-fixed-header .ant-table-scroll {
+    .ant-table-header.ant-table-hide-scrollbar {
+      .ant-table-thead > tr:only-child > th:last-child {
+        border-right-color: var(--w-border-color-light);
+      }
+    }
+  }
+
+  &.ant-table-bordered.ant-table-fixed-header,
+  & {
+    .ant-table-content {
+      &:hover {
+        .ant-table-scroll,
+        .ant-table-fixed-right,
+        .ant-table-fixed-left {
+          .ant-table-body,
+          .ant-table-body-outer .ant-table-body-inner {
+            &::-webkit-scrollbar-thumb {
+              background: #cccccc;
+              /* 悬停时滑块的背景颜色 */
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // 有固定列，没有固定头部
+  &.ant-table-layout-fixed:not(.ant-table-fixed-header) {
+    .ant-table-fixed-left,
+    .ant-table-fixed-right {
+      @-moz-document url-prefix() {
+        .ant-table-body-outer .ant-table-body-inner {
+          margin-top: 0px;
+          // 因为滚动条高度为12，中和.ant-table-body-outer的margin-bottom：17px;
+        }
+
+        // .ant-table-placeholder {
+        //   margin-right: 12px;
+        // }
+      }
+    }
+  }
+
+  // 固定头部且数据为空时，表格头部有横向滚动时，要配置滚动条
+  &.ant-table-empty {
+    &.ant-table-fixed-header .ant-table-scroll {
+      > .ant-table-header {
+        @media screen {
+          margin-right: 12px !important;
+          margin-bottom: 0px !important;
+          // 因为滚动条宽度为12，表头滚动条宽度17-5=12
+          &.ant-table-hide-scrollbar {
+            scrollbar-color: unset;
+            overflow-y: hidden !important;
+            /* 自定义整个滚动条 */
+            &::-webkit-scrollbar {
+              width: 12px;
+              /* 水平滚动条的宽度 */
+              height: 12px;
+              /* 垂直滚动条的高度 */
+            }
+
+            /* 自定义滚动条轨道 */
+            &::-webkit-scrollbar-track {
+              background: #ffffff;
+              /* 设置轨道的背景颜色 */
+            }
+
+            /* 自定义滚动条轨道 */
+            &:hover::-webkit-scrollbar-track {
+              background: #ffffff;
+              /* 设置轨道的背景颜色 */
+            }
+
+            &:hover::-webkit-scrollbar-thumb {
+              background: #cccccc;
+              /* 悬停时滑块的背景颜色 */
+            }
+
+            /* 自定义滚动条的滑块（thumb） */
+            &::-webkit-scrollbar-thumb {
+              background: #ffffff;
+              border: 2px solid #ffffff;
+              border-radius: 12px;
+              /* 设置滑块的背景颜色 */
+            }
+
+            /* 当滑块悬停或活动时，可以添加更多样式 */
+            &::-webkit-scrollbar-thumb:hover {
+              background: #b3b3b3;
+              /* 设置滑块在悬停状态下的背景颜色 */
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.ant-table-bordered.ant-table-fixed-header .ant-table-scroll,
+  .ant-table-scroll,
+  .ant-table-fixed-left,
+  .ant-table-fixed-right {
+    .ant-table-header {
+      @media screen {
+        margin-right: -5px;
+        // 因为滚动条宽度为12，表头滚动条宽度17-5=12
+        background: #ffffff;
+      }
+
+      /* 自定义整个滚动条 */
+      &::-webkit-scrollbar {
+        width: 12px;
+        /* 水平滚动条的宽度 */
+        height: 17px;
+        /* 垂直滚动条的高度 */
+        background: #ffffff;
+        border: 1px solid #ffffff;
+      }
+
+      @-moz-document url-prefix() {
+        scrollbar-width: thin;
+        scrollbar-color: #cccccc transparent;
+
+        margin-right: 0px;
+        // 因为滚动条宽度为12，表头滚动条宽度17-5=12
+        margin-bottom: -8px !important;
+      }
+    }
+
+    @media screen {
+      .ant-table-body-outer .ant-table-body-inner {
+        margin-bottom: 0px;
+        // 因为滚动条高度为12，中和.ant-table-body-outer的margin-bottom：17px;
+      }
+
+      .ant-table-placeholder {
+        margin-right: 12px;
+      }
+    }
+
+    @-moz-document url-prefix() {
+      .ant-table-body-outer .ant-table-body-inner {
+        margin-top: 8px;
+        // 因为滚动条高度为12，中和.ant-table-body-outer的margin-bottom：17px;
+      }
+
+      .ant-table-placeholder {
+        margin-right: 8px;
+      }
+    }
+
+    .ant-table-body,
+    .ant-table-body-outer .ant-table-body-inner {
+      @-moz-document url-prefix() {
+        scrollbar-width: thin;
+        scrollbar-color: #cccccc transparent;
+      }
+
+      /* 自定义整个滚动条 */
+      &::-webkit-scrollbar {
+        width: 12px;
+        /* 水平滚动条的宽度 */
+        height: 12px;
+        /* 垂直滚动条的高度 */
+      }
+
+      /* 自定义滚动条轨道 */
+      &::-webkit-scrollbar-track {
+        background: #ffffff;
+        /* 设置轨道的背景颜色 */
+      }
+
+      /* 自定义滚动条轨道 */
+      &:hover::-webkit-scrollbar-track {
+        background: #ffffff;
+        /* 设置轨道的背景颜色 */
+      }
+
+      &:hover::-webkit-scrollbar-thumb {
+        background: #cccccc;
+        /* 悬停时滑块的背景颜色 */
+      }
+
+      /* 自定义滚动条的滑块（thumb） */
+      &::-webkit-scrollbar-thumb {
+        background: #ffffff;
+        border: 2px solid #ffffff;
+        border-radius: 12px;
+        /* 设置滑块的背景颜色 */
+      }
+
+      /* 当滑块悬停或活动时，可以添加更多样式 */
+      &::-webkit-scrollbar-thumb:hover {
+        background: #b3b3b3;
+        /* 设置滑块在悬停状态下的背景颜色 */
+      }
+    }
+  }
+
+  &:not(&.ant-table-bordered){
+    .ant-table-placeholder{
+      border-top: none;
+      border-bottom: none;
+      margin-top: 0px;
+    }
+  }
+}
+
+.pt-table {
+  --pt-table-td-padding: var(--w-padding-xs) var(--w-padding-md) var(--w-padding-xs) var(--w-padding-xs);
+  .@{table-prefix-cls} {
+    .ant-table-thead > tr > th {
+      background: var(--w-table-thead-th-bg-color);
+      color: var(--w-widget-table-thead-th-text-color);
+    }
+
+    .ant-table-tbody > tr > td {
+      color: var(--w-table-thead-td-text-color);
+    }
+
+    .ant-table-tbody > tr > td,
+    .ant-table-thead > tr > th {
+      font-size: var(--w-table-thead-text-size);
+      padding: var(--pt-table-td-padding);
+      border-bottom-color: var(--w-border-color-light);
+      border-right-color: var(--w-border-color-light);
+    }
+  }
+}
+
+.ant-form {
+  .pt-table {
+    .@{table-prefix-cls} {
+      .ant-table-tbody > tr > td {
+        padding: var(--w-padding-2xs) var(--w-padding-md) var(--w-padding-2xs) var(--w-padding-xs);
+      }
+
+      .ant-table-footer {
+        padding: var(--w-padding-2xs) var(--w-padding-md) var(--w-padding-2xs) var(--w-padding-xs);
+      }
+    }
+  }
+}

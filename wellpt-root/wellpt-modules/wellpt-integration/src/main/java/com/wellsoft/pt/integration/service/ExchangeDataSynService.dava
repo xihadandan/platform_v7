@@ -1,0 +1,90 @@
+package com.wellsoft.pt.integration.service;
+
+import java.util.Map;
+
+import com.wellsoft.pt.integration.bean.FtpDataBean;
+import com.wellsoft.pt.integration.entity.SysProperties;
+
+/**
+ * 
+ * Description: 如何描述该类
+ *  
+ * @author ruanhg
+ * @date 2014-12-8
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2014-12-8.1	ruanhg		2014-12-8		Create
+ * </pre>
+ *
+ */
+public interface ExchangeDataSynService {
+
+	// TODO 关联其他
+	public static final String PARAM_REPO = "'REPO_FILE'";
+
+	public static final String PARAM_MSG = "'MSG_MESSAGE_OUTBOX','MSG_MESSAGE_INBOX'";
+
+	public static final String PARAM_ACL = "'ACL_CLASS','ACL_SID','ACL_ENTRY','ACL_SID_MEMBER','ACL_OBJECT_IDENTITY'";
+
+	public static final String PARAM_FLOW = "'WF_DEF_CATEGORY','WF_DEF_OPINION_CATEGORY','WF_DEF_OPINION','WF_FLOW_SCHEMA','WF_FLOW_DEFINITION','WF_FLOW_INSTANCE','WF_TASK_INSTANCE','WF_TASK_COUNTER_SIGN','WF_TASK_IDENTITY','WF_TASK_SUB_FLOW_RELATION','WF_TASK_TIMER','WF_TASK_TIMER_LOG','WF_TASK_TIMER_USER','WF_TASK_TRANSFER'";
+
+	public static final String PARAM_OTHER = PARAM_REPO + "," + PARAM_MSG + "," + PARAM_ACL + "," + PARAM_FLOW;
+
+	public void synOutData(Map<String, SysProperties> sysPropertiess, String params) throws Exception;
+
+	public void synOutData(Map<String, SysProperties> sysPropertiess, String params, boolean withClob) throws Exception;
+
+	public int synInData(Map<String, SysProperties> sysPropertiess, String params) throws Exception;
+
+	public int synInData(Map<String, SysProperties> sysPropertiess, String params, boolean withClob) throws Exception;
+
+	public void synBackData(Map<String, SysProperties> sysPropertiessDeprecated, String params) throws Exception;
+
+	public void synBackData(Map<String, SysProperties> sysPropertiessDeprecated, String params, boolean withClob)
+			throws Exception;
+
+	public void synOutDataFeedback(Map<String, SysProperties> sysPropertiess) throws Exception;
+
+	public void synInDataFeedback(Map<String, SysProperties> sysPropertiess) throws Exception;
+
+	void clearSynDataAllInOne(Map<String, SysProperties> sysPropertiess) throws Exception;
+
+	void clearSynDataPt(Map<String, SysProperties> sysPropertiess) throws Exception;
+
+	void clearSynDataQzj(Map<String, SysProperties> sysPropertiess) throws Exception;
+
+	void clearSynFile(Map<String, SysProperties> sysPropertiess) throws Exception;
+
+	/**
+	 * @return the outFtpDataBean
+	 */
+	public FtpDataBean getOutFtpDataBean();
+
+	/**
+	 * @return the inFtpDataBean
+	 */
+	public FtpDataBean getInFtpDataBean();
+
+	/**
+	 * @return the dataNum
+	 */
+	public int getDataNum();
+
+	/**
+	 * @return the direction
+	 */
+	public int getDirection();
+
+	/**
+	 * @return the dataInQuery
+	 */
+	public String getDataInQuery();
+
+	/**
+	 * @return the dataOutQuery
+	 */
+	public String getDataOutQuery();
+}

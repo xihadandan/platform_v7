@@ -1,0 +1,26 @@
+{
+  "WidgetFormInputNumber": {
+    "messages": {
+      "doublePrecisionFloatingPointNumberDecimal": "เลขทศนิยมความแม่นยำคู่, ทศนิยมไม่เกิน {decimal} ตำแหน่ง",
+      "doublePrecisionFloatingPointNumberMaxDecimal": "เลขทศนิยมความแม่นยำคู่, ไม่เกิน 18 ตัวอักษร",
+      "floatingPointNumberDecimal": "เลขทศนิยม, ทศนิยมไม่เกิน {decimal} ตำแหน่ง",
+      "floatingPointNumberMaxDecimal": "เลขทศนิยม, ไม่เกิน 12 ตัวอักษร",
+      "integer": "จำนวนเต็ม",
+      "noInteger": "ไม่ใช่จำนวนเต็ม",
+      "intGtZero": "จำนวนเต็มบวก",
+      "intLtZero": "จำนวนเต็มลบ",
+      "longInteger": "จำนวนเต็มยาว",
+      "integerMaxDecimal": "จำนวนเต็ม, ไม่เกิน 10 ตัวอักษร",
+      "integerMax": "จำนวนเต็ม, ต้องไม่มากกว่า {max}",
+      "integerMin": "จำนวนเต็ม, ต้องไม่น้อยกว่า {min}",
+      "intGtZeroMaxDecimal": "จำนวนเต็มบวก, ไม่เกิน 9 ตัวอักษร",
+      "intLtZeroMaxDecimal": "จำนวนเต็มลบ, ไม่เกิน 10 ตัวอักษร",
+      "longIntegerMaxDecimal": "จำนวนเต็มยาว, ไม่เกิน 16 ตัวอักษร",
+      "nonSignificantNumber": "ตัวเลขไม่สำคัญ: ความแม่นยำ {precision}, ตำแหน่งทศนิยม {scale}",
+      "nonSignificantNumberPrecision": "ตัวเลขไม่สำคัญ: ความแม่นยำ {precision}",
+      "maxLength": "ต้องไม่เกินความยาวฟิลด์ {length}",
+      "minValue": "ต้องไม่น้อยกว่าค่าต่ำสุด {min}",
+      "maxValue": "ต้องไม่มากกว่าค่าสูงสุด {max}"
+    }
+  }
+}

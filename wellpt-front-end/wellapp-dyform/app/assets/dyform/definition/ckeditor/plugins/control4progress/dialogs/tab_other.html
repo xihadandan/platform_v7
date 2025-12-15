@@ -1,0 +1,46 @@
+<table>
+  <tr id="tr_range" hide="true">
+    <td class="Label">进度范围</td>
+    <td class="value">
+      <input id="progressMin" type="number" name="progressMin" style="width: 150px" placeholder="最小值" />
+      &nbsp;&nbsp;-&nbsp;&nbsp;
+      <input id="progressMax" type="number" name="progressMax" style="width: 150px" placeholder="最大值" />
+    </td>
+  </tr>
+  <tr>
+    <td class="Label">默认进度</td>
+    <td class="value">
+      <input id="defaultProgress" type="number" style="width: 150px" />
+    </td>
+  </tr>
+  <tr>
+    <td class="Label">进度单位</td>
+    <td class="value">
+      <input id="progressUnit" name="progressUnit" type="text" style="width: 150px" />
+    </td>
+  </tr>
+  <tr style="display: none">
+    <td class="Label">是否编辑</td>
+    <td class="value">
+      <input id="editProgress_1" type="radio" name="editProgress" value="0" />
+      &nbsp;
+      <label for="editProgress_1">否</label>
+      &nbsp;&nbsp;&nbsp;
+      <input id="editProgress_2" type="radio" name="editProgress" value="1" />
+      &nbsp;
+      <label for="editProgress_2">是</label>
+    </td>
+  </tr>
+  <tr class="tr_color" id="tr_color">
+    <td class="Label">自定义颜色</td>
+    <td class="value">
+      <input name="color" class="addColors" id="progressColor" type="text" style="width: 150px" />
+    </td>
+  </tr>
+  <tr>
+    <td class="Label">自定义高度</td>
+    <td class="value">
+      <input name="progressHeight" id="progressHeight" type="number" style="width: 150px" />
+    </td>
+  </tr>
+</table>

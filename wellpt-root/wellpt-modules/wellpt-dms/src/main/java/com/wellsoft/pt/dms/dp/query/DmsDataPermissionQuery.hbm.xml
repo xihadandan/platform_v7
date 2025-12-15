@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="dmsDataPermissionQuery">
+        <![CDATA[
+    	<if isNotBlank(joinProjectionSql)>
+        	select d.*, ${joinProjectionSql}
+        	from(${selectDataSetSql}) d
+        	${joinTableSql}
+        <else>
+	        ${selectDataSetSql}
+	        where 1 = 1
+	        <if isNotBlank(whereSql)>
+	         and ${whereSql}
+	        </if>
+	        <if isNotBlank(orderBy)>
+	         ${orderBy}
+	        </if>
+        </if>
+    ]]>
+    </sql-query>
+
+    <sql-query name="dmsDataPermissionLatestVersionQuery">
+        <![CDATA[
+        select d.*,
+        <if isNotBlank(joinProjectionSql)>
+        	${joinProjectionSql},
+        </if>
+        v.version as max_version
+            from(${selectDataSetSql}) d
+            <if isNotBlank(joinTableSql)>
+        		${joinTableSql}
+        	</if>
+            left join (select v_.is_latest_version as is_latest_version, v_.data_uuid as data_uuid, v_.version as version from dms_data_version v_) v on d.uuid = v.data_uuid
+        where (v.is_latest_version = :isLatestVersion or v.version is null)
+        <if isNotBlank(whereSql)>
+         and ${whereSql}
+        </if>
+        <if isNotBlank(orderBy)>
+         ${orderBy}
+        </if>
+    ]]>
+    </sql-query>
+</hibernate-mapping>

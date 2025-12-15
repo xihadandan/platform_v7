@@ -1,0 +1,175 @@
+.dyform {
+  padding: 0px !important;
+  // margin-bottom: 60px;
+  overflow-x: hidden;
+  background-color: var(--w-bg-color-mobile-bg);
+  --w-dyform-form-label-height: 36px;
+  color: var(--w-text-color-mobile);
+
+  // .is-required {
+  //   color: #dd524d;
+  //   font-weight: bold;
+  //   position: absolute;
+  //   left: 4px;
+  // }
+  .error-message-text {
+    line-height: 22px;
+    color: #dd524d;
+    font-size: 12px;
+    margin-left: 10px;
+  }
+  .label-position-top .uni-error-message {
+    margin-left: 10px;
+  }
+  .uni-forms .uni-forms-item {
+    padding: 0px 12px 12px;
+    background-color: var(--w-fill-color-base);
+    margin-bottom: 0;
+    align-items: center;
+
+    .uni-forms-item__content {
+      display: block;
+      width: 0;
+      .uni-forms-item__error {
+        position: unset;
+        padding-top: 0;
+        line-height: 20px;
+        clear: both;
+      }
+      .textonly {
+        padding: 4px 0;
+      }
+    }
+
+    &.is-direction-top {
+      .uni-forms-item__label {
+        width: 100% !important;
+        padding: 0px;
+      }
+
+      .uni-forms-item__content {
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--w-border-color-mobile);
+      }
+    }
+
+    .uni-forms-item__label.no-label {
+      width: 0px !important;
+    }
+  }
+  .uni-forms-item__box {
+    padding: 6px 0px;
+    border-bottom: 1px solid var(--w-border-color-mobile);
+  }
+  .uni-forms-item__inner {
+    padding: 0px;
+  }
+  .uni-forms-item__content {
+    display: flex;
+    align-items: center;
+    .uni-data-checklist {
+      margin: 0px !important;
+    }
+
+    // 信息记录附件
+    .opinion-files {
+      .opinion-file {
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  .uni-forms-item__content uni-label {
+    display: flex;
+    align-items: center;
+    // min-height: 36px;
+  }
+
+  .field-collapse {
+    min-height: var(--w-dyform-form-label-height);
+    margin-bottom: 15px;
+  }
+
+  .field-collapse-item-label {
+    height: var(--w-dyform-form-label-height);
+    line-height: var(--w-dyform-form-label-height);
+  }
+
+  // 表单字段
+  .dyform-field {
+    .uni-forms-item__label,
+    .field-collapse-item-label {
+      margin-left: 10px;
+    }
+
+    .is-direction-top {
+      .uni-forms-item__label {
+        width: 100% !important;
+      }
+    }
+
+    .uni-forms-item__inner {
+      padding-bottom: 11px;
+      margin-bottom: 11px;
+    }
+    .w-rich-editor {
+      margin-bottom: 11px;
+    }
+    .w-rich-editor .uni-forms-item__inner {
+      border-bottom: 0px;
+    }
+    .w-rich-editor .editor-container {
+      margin-left: 10px;
+    }
+    .is-input-border {
+      border: 0px; // 不显示边框
+    }
+
+    .w-file-upload {
+      .field-collapse {
+        min-height: 52px;
+        // border-bottom: 1px solid $uni-border-1;
+        margin-bottom: 11px;
+      }
+
+      .field-collapse-item-label {
+        height: 42px;
+        line-height: 42px;
+        padding-bottom: 10px;
+      }
+
+      .uni-collapse-item-border {
+        border: 0px;
+      }
+    }
+
+    .w-date-picker {
+      .uni-date-x--border {
+        border: 0px;
+      }
+    }
+  }
+
+  .dyform-block {
+    .w-section {
+      margin-bottom: 11px;
+    }
+  }
+
+  .w-form-job-select {
+    .job-data-select {
+      flex: 1;
+    }
+  }
+
+  .textonly {
+    color: var(--w-text-color-mobile);
+    font-size: var(--w-font-size-base);
+  }
+
+  .w-form-subform {
+    margin-top: var(--w-padding-2xs);
+    padding: 0 var(--w-padding-xs);
+    background-color: var(--w-fill-color-base);
+  }
+}

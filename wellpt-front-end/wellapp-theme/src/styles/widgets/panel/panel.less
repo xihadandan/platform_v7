@@ -1,0 +1,266 @@
+/** 面板组件 */
+body>div.ui-wPage {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+// 面板 **有内边距**
+.ui-wPanel {
+  border: 0;
+  box-shadow: none;
+
+  >.panel-body {
+    padding: 0 @padding-md;
+    background: @panel-background;
+  }
+}
+
+// 面板 **主页面容器 无内外边距**
+.ui-wPanel.container-box {
+  padding: 0;
+  margin: 0;
+  background: none;
+
+  >.panel-body {
+    background: none;
+    padding: 0;
+    height: 100%;
+  }
+}
+
+.ui-skeleton {
+  display: table;
+  width: 100%;
+}
+
+.ui-skeleton-content {
+  display: table-cell;
+  width: 100%;
+  vertical-align: top;
+}
+
+.ui-skeleton-content .ui-skeleton-paragraph {
+  padding: 0;
+}
+
+.ui-skeleton-content .ui-skeleton-paragraph>li {
+  margin-top: 16px;
+}
+
+.ui-skeleton.ui-skeleton-active .ui-skeleton-content .ui-skeleton-paragraph>li {
+  background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+  background-size: 400% 100%;
+  -webkit-animation: ui-skeleton-loading 1.4s ease infinite;
+  animation: ui-skeleton-loading 1.4s ease infinite;
+}
+
+.ui-skeleton-content .ui-skeleton-paragraph>li {
+  width: 100%;
+  height: 16px;
+  list-style: none;
+  background: #f2f2f2;
+}
+
+@-webkit-keyframes ui-skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  to {
+    background-position: 0 50%;
+  }
+}
+
+@keyframes ui-skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  to {
+    background-position: 0 50%;
+  }
+}
+
+// 面板 **无内边距**
+.ui-wPanel.no-padding {
+  background: none;
+
+  >.panel-body {
+    padding: 0;
+    background: none;
+  }
+}
+
+// 面板 - 标题行 - 右侧操作区域
+.ui-wPanel .panel-header-right {
+  .absolute(0 @padding-md false false);
+
+  line-height: 40px;
+
+  // 面板 - 标题行 - 右侧操作区域 - 更多按钮
+  .panel-view-more {
+    color: @panel-header-title-view-more-color;
+
+    a {
+      text-decoration: none;
+
+      i {
+        margin-left: @padding-3xs;
+        font-size: @panel-header-title-view-more-icon-size;
+      }
+    }
+
+    &:hover {
+      color: @panel-header-title-view-more-hover-color;
+    }
+  }
+
+  // 面板 - 标题行 - 右侧操作区域 - 搜索框
+  .search-wrapper {
+    @panel-header-search-wrapper-height: 34px;
+    .size(@panel-header-title-search-box-width, @panel-header-search-wrapper-height);
+
+    position: relative;
+    margin-top: @margin-2xs;
+    line-height: @panel-header-search-wrapper-height;
+    overflow: hidden;
+
+    // 面板 - 标题行 - 右侧操作区域 - 搜索框(展开)
+    .panel-heading-query {
+      .size(@panel-header-title-search-box-width, @panel-header-search-wrapper-height);
+
+      display: none;
+      position: relative;
+      padding-right: 60px;
+      border: @border-default-dark;
+      border-radius: @border-radius-base;
+      width: @panel-header-title-search-box-width;
+
+      // 面板 - 标题行 - 右侧操作区域 - 搜索框(展开) - 输入框
+      .form-control {
+        @panel-header-search-input-box-height: @panel-header-search-wrapper-height - @border-width-base * 2;
+        .size(100%, @panel-header-search-input-box-height);
+
+        line-height: @panel-header-search-input-box-height;
+        border: none;
+        outline: none;
+        background: transparent;
+        transition: all @animation-duration-base;
+        display: block;
+
+        &:hover {
+          box-shadow: none !important;
+        }
+      }
+
+      // 面板 - 标题行 - 右侧操作区域 - 搜索框(展开) - 清除按钮
+      .search-clear-icon {
+        @panel-header-clear-icon-height: 20px;
+
+        .square(@panel-header-clear-icon-height);
+        .absolute(@padding-3xs 35px false false);
+
+        display: none;
+        line-height: @panel-header-clear-icon-height;
+        background: @panel-header-title-view-more-icon-background;
+        color: @panel-header-title-view-more-icon-color;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 50%;
+
+        i {
+          font-size: @panel-header-title-clear-icon-size;
+          line-height: @panel-header-clear-icon-height;
+        }
+
+        &:hover {
+          color: @panel-header-title-view-more-icon-hover-color;
+          background-color: @panel-header-title-view-more-icon-hover-background;
+        }
+      }
+    }
+
+    // 面板 - 标题行 - 右侧操作区域 - 搜索框(搜索图标)
+    .panel-search-icon {
+      .absolute(0 0 false false);
+      .square(32px);
+
+      text-align: center;
+      cursor: pointer;
+
+      i {
+        font-size: @panel-header-title-search-icon-size;
+        line-height: 32px;
+        color: @panel-header-title-search-icon-color;
+      }
+    }
+
+    // 面板 - 标题行 - 右侧操作区域  - 搜索框 **焦点状态**
+    &.search-wrap-focus {
+      border-radius: @border-radius-base;
+      border: @border-default-primary;
+      box-shadow: @shadow-active-default;
+
+      .panel-heading-query .input-group {
+        box-shadow: none;
+        border: none;
+      }
+
+      .panel-search-icon {
+        top: -1px;
+        right: -1px;
+      }
+    }
+  }
+}
+
+// 面板 - 标题行
+.ui-wPanel .panel-heading {
+  position: relative;
+  padding: @padding-md;
+  height: @panel-header-height;
+  border-bottom: @border-default;
+  background: @panel-background;
+  color: @panel-header-title-color;
+
+  // 面板 - 标题行 - 左侧标题
+  .panel-title {
+    line-height: @panel-header-title-font-size;
+    font-size: @panel-header-title-font-size;
+    font-weight: @panel-header-title-font-weight;
+
+    // 面板 - 标题行 - 左侧标题 - 标题装饰线
+    .panel-icon {
+      color: @panel-header-title-icon-color;
+      padding-right: @padding-3xs;
+      vertical-align: baseline;
+    }
+  }
+
+  // 面板 - 标题行 - 数量徽标
+  .badge {
+    background: @panel-header-title-badge-background;
+    color: @panel-header-title-badge-font-color;
+    margin-left: @margin-2xs;
+  }
+}
+
+// 面板 - 内容区域
+.ui-wPanel .panel-body {
+
+  // 面板 - 内容区域 - 内容正文
+  .panel-tab-content {
+    display: none;
+    padding: 0 @padding-2xs;
+
+    &.active {
+      display: block;
+    }
+
+    .file-manager-view {
+      padding-left: 0;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+body form{
+	margin: 0;
+    padding: 0;
+}
+.form {
+    height: 1019px;
+    margin: 0 auto;
+    width: 640px;
+    background: url("../images/chat/login.jpg") repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.logindiv {
+    border: medium none;
+    height: 68px;
+    margin-left: 170px;
+    margin-top: 5px;
+    width: 390px;
+}
+
+.logindiv input{
+    height: 100%;
+    width:100%;
+    border: medium none;
+}
+
+
+.passWord.logindiv {
+    margin-top: 32px;
+}
+
+#username {
+    font-family: "Microsoft YaHei";
+    font-size: 25px;
+}
+
+.submit.logindiv {
+    margin-left: 75px;
+    margin-top: 30px;
+    width: 490px;
+}
+
+.btn-img.btn-entry {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+}

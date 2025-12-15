@@ -1,0 +1,683 @@
+@btn-prefix-cls: ~'@{ant-prefix}-btn';
+
+body {
+  --w-button-height: var(--w-height-sm);
+  --w-button-height-sm: var(--w-height-2xs);
+  --w-button-height-lg: var(--w-height-md);
+  --w-button-font-size-sm: var(--w-font-size-base);
+  --w-button-font-size-lg: var(--w-font-size-lg);
+  --w-button-font-size: var(--w-font-size-base);
+  --w-button-font-color: var(--w-text-color-dark);
+  --w-button-background: var(--w-fill-color-base);
+  --w-button-border-color: var(--w-border-color-base);
+  --w-button-border-radius: var(--w-border-radius-2);
+  --w-button-icon-size: var(--w-font-size-lg);
+
+  --w-button-padding-lr: 15px;
+  --w-button-padding-lr-lg: 15px;
+  --w-button-padding-lr-sm: 6px;
+
+  --w-button-hover-color: var(--w-primary-color-4); //color-mix(in srgb, var(--w-primary-color) 85%, white);
+  --w-button-active-color: var(--w-primary-color-7);
+
+  --w-button-font-color-hover: var(--w-button-hover-color);
+  --w-button-background-hover: var(--w-fill-color-base);
+  --w-button-border-color-hover: var(--w-button-hover-color);
+
+  --w-button-font-color-active: var(--w-primary-color);
+  --w-button-background-active: var(--w-fill-color-base);
+  --w-button-border-color-active: var(--w-primary-color);
+
+  --w-button-font-color-disabled: var(--w-text-color-lighter);
+  --w-button-background-disabled: var(--w-fill-color-light);
+  --w-button-border-color-disabled: var(--w-border-color-light);
+}
+
+.@{btn-prefix-cls} {
+  --w-button-hover-color: var(--w-primary-color-4);
+  --w-button-active-color: var(--w-primary-color-7);
+
+  --w-button-font-color-hover: var(--w-button-hover-color);
+  --w-button-background-hover: var(--w-fill-color-base);
+  --w-button-border-color-hover: var(--w-button-hover-color);
+
+  --w-button-font-color-active: var(--w-primary-color);
+  --w-button-background-active: var(--w-fill-color-base);
+  --w-button-border-color-active: var(--w-primary-color);
+
+  border-color: var(--w-button-border-color);
+  color: var(--w-button-font-color);
+  background-color: var(--w-button-background);
+  font-size: var(--w-button-font-size);
+  border-radius: var(--w-button-border-radius);
+  height: var(--w-button-height);
+  line-height: e('calc(var(--w-button-height) - 2px)');
+  padding: 0 var(--w-button-padding-lr);
+
+  .iconfont {
+    font-size: var(--w-button-icon-size);
+  }
+  >.ant-avatar{
+    margin-top: e('calc(0px - var(--w-button-height)/10)');
+    >i{
+      font-size: var(--w-button-font-size);
+    }
+  }
+
+  &-icon-only {
+    --w-button-icon-size: e('calc(var(--w-button-font-size) + 2px)');
+    font-size: var(--w-button-icon-size);
+    padding: 0;
+  }
+  &.icon-only{
+    --w-button-padding-lr: e('calc((var(--w-button-height) - var(--w-button-icon-size) - 2px)/2)');
+  }
+
+  &-sm {
+    --w-button-height: var(--w-button-height-sm);
+    --w-button-font-size: var(--w-button-font-size-sm);
+    --w-button-icon-size: var(--w-button-font-size);
+    --w-button-padding-lr: var(--w-button-padding-lr-sm);
+  }
+
+  &-lg {
+    --w-button-height: var(--w-button-height-lg);
+    --w-button-font-size: var(--w-button-font-size-lg);
+    --w-button-icon-size: var(--w-button-font-size);
+    --w-button-padding-lr: var(--w-button-padding-lr-lg);
+  }
+
+  &-circle {
+    border-radius: 50%;
+    min-width: var(--w-button-height);
+    --w-button-padding-lr: 0px;
+  }
+
+  &-round{
+    border-radius: var(--w-button-height);
+  }
+
+  & > .iconfont + span,
+  & > .anticon + span,
+  & > span + .iconfont,
+  & > span + .anticon,
+  & > .ant-iconfont + span,
+  & > .ant-avatar + span,
+  & > span + .ant-iconfont,
+  & > span + .ant-avatar{
+    margin-left: var(--w-margin-3xs);
+  }
+
+  &:hover,
+  &.theme-btn-hover {
+    border-color: var(--w-button-border-color-hover);
+    color: var(--w-button-font-color-hover);
+    background-color: var(--w-button-background-hover);
+  }
+
+  &:focus{
+    border-color: var(--w-button-border-color);
+    color: var(--w-button-font-color);
+    background-color: var(--w-button-background);
+
+  }
+  &:active,
+  &.theme-btn-active {
+    border-color: var(--w-button-border-color-active);
+    color: var(--w-button-font-color-active);
+    background-color: var(--w-button-background-active);
+  }
+
+  &-disabled,
+  &.disabled,
+  &[disabled] {
+    border-color: var(--w-button-border-color-disabled);
+    color: var(--w-button-font-color-disabled);
+    background-color: var(--w-button-background-disabled);
+
+    &.@{btn-prefix-cls}-link,
+    &.@{btn-prefix-cls}-text {
+      border-color: transparent;
+      background-color: transparent;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      border-color: var(--w-button-border-color-disabled);
+      color: var(--w-button-font-color-disabled);
+      background-color: var(--w-button-background-disabled);
+
+      &.@{btn-prefix-cls}-link,
+      &.@{btn-prefix-cls}-text {
+        border-color: transparent;
+        background-color: transparent;
+      }
+    }
+  }
+
+  &-background-ghost {
+    text-shadow: none;
+    box-shadow: none;
+    --w-button-font-color: var(--w-text-color-inverse);
+    --w-button-border-color: var(--w-color-white);
+
+    --w-button-font-color-hover: var(--w-primary-color);
+    --w-button-font-color-active: var(--w-primary-color);
+
+    --w-button-background: transparent;
+    --w-button-background-hover: var(--w-fill-color-base);
+    --w-button-background-active: rgba(255, 255, 255, 0.8);
+    --w-button-background-loading:  transparent;
+    
+    --w-button-border-color-active: var(--w-button-background-active);
+    --w-button-border-color-hover: var(--w-button-background-hover);   
+
+    background: var(--w-button-background) !important;
+
+    &:hover {
+      --w-button-background: var(--w-button-background-hover);      
+      --w-button-font-color: var(--w-button-font-color-hover);
+      --w-button-border-color: var(--w-button-border-color-hover);
+    }
+
+    &:active{
+      --w-button-background: var(--w-button-background-active);    
+      --w-button-font-color: var(--w-button-font-color-active);
+      --w-button-border-color: var(--w-button-border-color-active);
+    }
+
+    &.@{btn-prefix-cls}-loading{
+      --w-button-background: var(--w-button-background-loading);
+      &::before{
+        background: var(--w-button-background-loading);
+      }
+    }
+
+    &.@{btn-prefix-cls}-disabled,
+    &.disabled,
+    &[disabled]{
+      --w-button-font-color-disabled:var(--w-primary-color-4);
+      --w-button-font-color: var(--w-primary-color-4) !important;
+      --w-button-border-color: rgba(255,255,255,0.9) !important;
+      --w-button-background:rgba(255,255,255,0.9) !important;
+    }
+  }
+
+  &.@{btn-prefix-cls}-dangerous {
+    --w-button-hover-color: var(--w-danger-color-4);
+    --w-button-font-color: var(--w-danger-color);
+    --w-button-border-color: var(--w-danger-color);
+
+    --w-button-font-color-hover: var(--w-button-hover-color);
+    --w-button-border-color-hover: var(--w-button-hover-color);
+
+    --w-button-font-color-active: var(--w-danger-color-7);
+    --w-button-border-color-active: var(--w-danger-color-7);
+
+    &.@{btn-prefix-cls}-background-ghost {
+      --w-button-font-color: var(--w-danger-color);
+      --w-button-border-color: var(--w-danger-color);
+      --w-button-font-color-hover: var(--w-danger-color);
+      --w-button-border-color-hover: var(--w-danger-color);
+      --w-button-font-color-active: var(--w-danger-color);
+      --w-button-border-color-active: var(--w-danger-color);
+    }
+  }
+
+  &-line {
+    --w-button-border-color: var(--w-primary-color);
+    --w-button-font-color: var(--w-primary-color);
+    --w-button-background: var(--w-fill-color-base);
+
+    --w-button-font-color-hover: var(--w-primary-color);
+    --w-button-background-hover: var(--w-primary-color-2);
+    --w-button-border-color-hover: var(--w-primary-color);
+
+    --w-button-font-color-active: var(--w-primary-color);
+    --w-button-background-active: var(--w-primary-color-3);
+    --w-button-border-color-active: var(--w-primary-color);
+
+    &.@{btn-prefix-cls}-background-ghost {
+      --w-button-background: transparent;
+      --w-button-background-hover: rgba(255, 255, 255, 0.2);
+      --w-button-background-active: rgba(0, 0, 0, 0.2);
+
+      --w-button-font-color-hover: var(--w-text-color-inverse);
+      --w-button-font-color-active: var(--w-text-color-inverse);
+
+      --w-button-font-color: var(--w-text-color-inverse);
+      --w-button-border-color: var(--w-border-color-inverse);
+
+      &:hover {
+        color: var(--w-button-font-color-hover);
+        --w-button-background:var(--w-button-background-hover);
+        --w-button-border-color-hover:var(--w-border-color-inverse);
+      }
+      
+      // &:focus,
+      &:active{
+        color: var(--w-button-font-color-active);
+        --w-button-background:var(--w-button-background-active);
+        --w-button-border-color-active:var(--w-border-color-inverse);
+      }
+    }
+
+    &.@{btn-prefix-cls}-dangerous {
+      --w-button-border-color: var(--w-danger-color);
+      --w-button-font-color: var(--w-danger-color);
+      --w-button-background: var(--w-fill-color-base);
+
+      --w-button-font-color-hover: var(--w-danger-color);
+      --w-button-background-hover: var(--w-danger-color-2);
+      --w-button-border-color-hover: var(--w-danger-color);
+
+      --w-button-font-color-active: var(--w-danger-color);
+      --w-button-background-active: var(--w-danger-color-3);
+      --w-button-border-color-active: var(--w-danger-color);
+
+      &.@{btn-prefix-cls}-background-ghost {
+        --w-button-background: transparent;
+        --w-button-background-hover: rgba(255, 255, 255, 0.2);
+        --w-button-background-active: rgba(0, 0, 0, 0.2);
+
+        --w-button-font-color-hover: var(--w-danger-color);
+        --w-button-font-color-active: var(--w-danger-color);
+
+        --w-button-font-color: var(--w-danger-color);
+        --w-button-border-color: var(--w-danger-color);
+
+        &:hover {
+          color: var(--w-button-font-color-hover);
+          --w-button-background:var(--w-button-background-hover);
+          --w-button-border-color-hover:var(--w-danger-color);
+        }
+
+      
+      // &:focus,
+      &:active {
+          color: var(--w-button-font-color-active);
+          --w-button-background:var(--w-button-background-active);
+          --w-button-border-color-active:var(--w-danger-color);
+        }
+      }
+    }
+  }
+
+  &-primary {
+    --w-button-font-color: var(--w-text-color-inverse);
+    --w-button-background: var(--w-primary-color);
+    --w-button-border-color: var(--w-primary-color);
+
+    --w-button-font-color-hover: var(--w-text-color-inverse);
+    --w-button-background-hover: var(--w-button-hover-color);
+    --w-button-border-color-hover: var(--w-button-hover-color);
+
+    --w-button-font-color-active: var(--w-text-color-inverse);
+    --w-button-background-active: var(--w-button-active-color);
+    --w-button-border-color-active: var(--w-button-active-color);
+
+    &.@{btn-prefix-cls}-background-ghost {
+      --w-button-font-color: var(--w-primary-color);
+      --w-button-background: var(--w-text-color-inverse);
+
+      --w-button-background-hover: rgba(255, 255, 255, 0.8);
+      --w-button-background-active: rgba(255, 255, 255, 0.5);
+      --w-button-background-loading:  rgba(255, 255, 255, 0.5);
+     
+      --w-button-border-color: var(--w-button-background);
+      --w-button-border-color-active: var(--w-button-background-active);
+      --w-button-border-color-hover: var(--w-button-background-hover);
+
+      --w-button-font-color-hover: var(--w-primary-color);
+      --w-button-font-color-active: var(--w-primary-color); 
+
+      
+      --w-button-font-color-loading: var(--w-text-color-inverse);
+      
+      border-color: var(--w-button-border-color) !important;
+      color: var(--w-button-font-color) !important;
+
+      &:hover {
+        --w-button-border-color: var(--w-button-border-color-hover);
+        --w-button-font-color: var(--w-button-font-color-hover);
+        --w-button-background: var(--w-button-background-hover);
+      }
+      
+      // &:focus,
+      &:active {
+        --w-button-border-color: var(--w-button-border-color-active);
+        --w-button-font-color: var(--w-button-font-color-active);
+        --w-button-background: var(--w-button-background-active);
+      }
+
+      &.@{btn-prefix-cls}-loading{
+        --w-button-background: var(--w-button-background-loading);
+        --w-button-font-color:var(--w-button-font-color-loading);
+        --w-button-border-color: rgba(255,255,255,0.35);
+      }
+  
+    }
+  }
+
+  &-danger {
+    --w-button-hover-color: var(--w-danger-color-4);
+
+    --w-button-font-color: var(--w-text-color-inverse);
+    --w-button-background: var(--w-danger-color);
+    --w-button-border-color: var(--w-danger-color);
+
+    --w-button-font-color-hover: var(--w-text-color-inverse);
+    --w-button-background-hover: var(--w-button-hover-color);
+    --w-button-border-color-hover: var(--w-button-hover-color);
+
+    --w-button-font-color-active: var(--w-text-color-inverse);
+    --w-button-background-active: var(--w-danger-color-7);
+    --w-button-border-color-active: var(--w-danger-color-7);
+
+    &.@{btn-prefix-cls}-background-ghost {
+      text-shadow: none;
+      box-shadow: none;
+
+      --w-button-hover-color: var(--w-danger-color-4);
+      --w-button-active-color: var(--w-danger-color-4);
+
+      --w-button-font-color: var(--w-text-color-inverse);
+      --w-button-border-color: var(--w-danger-color);
+
+      --w-button-font-color-hover: var(--w-text-color-inverse);
+      --w-button-border-color-hover: var(--w-button-hover-color);
+
+      --w-button-font-color-active: var(--w-text-color-inverse);
+      --w-button-border-color-active: var(--w-button-active-color);
+
+      border-color: var(--w-button-border-color);
+      color: var(--w-button-font-color);
+
+      &:hover {
+        border-color: var(--w-button-border-color-hover);
+        color: var(--w-button-font-color-hover);
+      }
+      
+      &:focus{
+        border-color: var(--w-button-border-color);
+        color: var(--w-button-font-color);
+      }
+      &:active {
+        border-color: var(--w-button-border-color-active);
+        color: var(--w-button-font-color-active);
+      }
+    }
+  }
+
+  &-link {    
+    --w-button-padding-lr: var(--w-button-padding-lr-sm);
+
+    --w-button-font-color: var(--w-primary-color);
+    --w-button-background: transparent;
+    --w-button-border-color: transparent;
+
+    --w-button-font-color-hover: var(--w-button-hover-color);
+    --w-button-background-hover: transparent;
+    --w-button-border-color-hover: transparent;
+
+    --w-button-font-color-active: var(--w-primary-color);
+    --w-button-background-active: transparent;
+    --w-button-border-color-active: transparent;
+
+    &.@{btn-prefix-cls}-background-ghost {
+      --w-button-font-color: var(--w-text-color-inverse);
+      --w-button-font-color-hover: var(--w-primary-color-3);
+      --w-button-font-color-active: var(--w-primary-color-4);
+
+      &:hover {
+        color: var(--w-button-font-color-hover);
+      }
+      
+      &:focus {
+        color: var(--w-button-font-color);
+      }
+      
+      &:active {
+        color: var(--w-button-font-color-active);
+      }
+    }
+
+    &.@{btn-prefix-cls}-dangerous {
+      --w-button-hover-color: var(--w-danger-color-4);
+      --w-button-active-color: var(--w-danger-color-7);
+      --w-button-font-color: var(--w-danger-color);
+      --w-button-border-color: transparent;
+
+      --w-button-font-color-hover: var(--w-button-hover-color);
+      --w-button-border-color-hover: transparent;
+
+      --w-button-font-color-active: var(--w-button-active-color);
+      --w-button-border-color-active: transparent;
+
+      &.@{btn-prefix-cls}-background-ghost{
+        --w-button-font-color: var(--w-danger-color);
+        --w-button-font-color-hover: var(--w-danger-color-4);
+        --w-button-font-color-active: var(--w-danger-color-5);
+        color: var(--w-button-font-color);
+        &:hover {
+          color: var(--w-button-font-color-hover);
+        }
+        
+        &:focus {
+          color: var(--w-button-font-color);
+        }
+        
+        &:active {
+          color: var(--w-button-font-color-active);
+        }
+      }
+    }
+  }
+
+  &-icon {
+    --w-button-font-color: var(--w-text-color-base);
+    --w-button-background: transparent;
+    --w-button-border-color: transparent;
+
+    box-shadow: none;
+    --w-button-font-color-hover: var(--w-text-color-base);
+    --w-button-background-hover: var(--w-fill-color-light);
+    --w-button-border-color-hover: transparent;
+
+    --w-button-font-color-active: var(--w-text-color-base);
+    --w-button-background-active: var(--w-fill-color-dark);
+    --w-button-border-color-active: transparent;
+
+    &.@{btn-prefix-cls}-background-ghost {
+      --w-button-font-color: var(--w-text-color-inverse);
+      --w-button-font-color-hover: var(--w-text-color-inverse);
+      --w-button-font-color-active: var(--w-text-color-inverse);
+
+      --w-button-background-hover: rgba(255, 255, 255, 0.2);
+      --w-button-background-active: rgba(0, 0, 0, 0.2);
+
+      text-shadow: none;
+      box-shadow: none;
+      border-color: transparent !important;
+
+      &:hover {
+        color: var(--w-button-font-color-hover);
+        border-color: transparent !important;
+      }
+      
+      // &:focus,
+      &:active {
+        color: var(--w-button-font-color-active);
+        border-color: transparent !important;
+      }
+    }
+
+    &.@{btn-prefix-cls}-dangerous {
+      --w-button-font-color: var(--w-danger-color);
+      --w-button-border-color: transparent;
+      --w-button-background: transparent;
+
+      --w-button-font-color-hover: var(--w-danger-color);
+      --w-button-border-color-hover: var(--w-danger-color-2);
+      --w-button-background-hover: var(--w-danger-color-2);
+
+      --w-button-font-color-active: var(--w-danger-color);
+      --w-button-border-color-active: var(--w-danger-color-3);
+      --w-button-background-active: var(--w-danger-color-3);
+      
+      &.@{btn-prefix-cls}-background-ghost {
+        --w-button-font-color: var(--w-danger-color);
+        --w-button-font-color-hover: var(--w-danger-color);
+        --w-button-font-color-active: var(--w-danger-color);
+
+        --w-button-background-hover: rgba(255, 255, 255, 0.2);
+        --w-button-background-active: rgba(0, 0, 0, 0.2);
+
+        text-shadow: none;
+        box-shadow: none;
+        border-color: transparent !important;
+
+        &:hover {
+          color: var(--w-button-font-color-hover);
+          border-color: transparent !important;
+          --w-button-background: var(--w-button-background-hover);
+        }
+      
+      // &:focus,
+      &:active {
+          color: var(--w-button-font-color-active);
+          border-color: transparent !important;
+          --w-button-background: var(--w-button-background-active);
+        }
+      }
+    }
+  }
+
+  &-text {
+    --w-button-padding-lr: var(--w-button-padding-lr-sm);
+    
+    --w-button-font-color: var(--w-text-color-base);
+    --w-button-background: transparent;
+    --w-button-border-color: transparent;
+
+    box-shadow: none;
+    --w-button-font-color-hover: var(--w-text-color-light);
+    --w-button-background-hover: transparent;
+    --w-button-border-color-hover: transparent;
+
+    --w-button-font-color-active: var(--w-text-color-dark);
+    --w-button-background-active: transparent;
+    --w-button-border-color-active: transparent;
+
+    &.@{btn-prefix-cls}-background-ghost {
+      --w-button-font-color: var(--w-text-color-inverse);
+      --w-button-font-color-hover: var(--w-text-color-base);
+      --w-button-font-color-active: var(--w-text-color-dark);
+
+      text-shadow: none;
+      box-shadow: none;
+      border-color: transparent !important;
+
+      &:hover {
+        color: var(--w-button-font-color-hover);
+        border-color: transparent !important;
+      }
+      
+      // &:focus,
+      &:active {
+        color: var(--w-button-font-color-active);
+        border-color: transparent !important;
+      }
+    }
+
+    &.@{btn-prefix-cls}-dangerous {
+      --w-button-hover-color: var(--w-danger-color-4);
+      --w-button-active-color: var(--w-danger-color-7);
+      --w-button-font-color: var(--w-danger-color);
+      --w-button-border-color: transparent;
+      --w-button-background: transparent;
+
+      --w-button-font-color-hover: var(--w-button-hover-color);
+      --w-button-border-color-hover: transparent;
+      --w-button-background-hover: transparent;
+
+      --w-button-font-color-active: var(--w-button-active-color);
+      --w-button-border-color-active: transparent;
+      --w-button-background-active: transparent;
+
+      &.@{btn-prefix-cls}-background-ghost{
+        --w-button-active-color: var(--w-danger-color-4);
+        --w-button-hover-color: var(--w-danger-color-7);
+      }
+    }
+  }
+}
+
+// 按钮间间距
+.btn_has_space {
+  font-size: 0;
+
+  .@{btn-prefix-cls} {
+    &:not(:last-child) {
+      margin-right: var(--w-margin-xs);
+      /* 调整为所需的间距 */
+    }
+  }
+
+  // 多行按钮
+  &.btn_has_b_space {
+    margin-right: var(--w-margin-2xs);
+  }
+}
+
+// 幽灵按钮容器，悬停时，按钮也是悬停状态
+.btn-ghost-container{
+  &:hover, &.btn-hover{
+    .ant-btn-background-ghost{
+      --w-button-background: var(--w-button-background-hover);
+      --w-button-font-color: var(--w-button-font-color-hover);
+      --w-button-border-color: var(--w-button-border-color-hover);
+
+      &.@{btn-prefix-cls}-link{
+        --w-button-font-color: var(--w-primary-color);
+        color:var(--w-button-font-color);
+        &.@{btn-prefix-cls}-dangerous{
+          --w-button-font-color: var(--w-danger-color);
+        }
+      }
+      &.@{btn-prefix-cls}-danger{
+        --w-button-border-color: var(--w-button-border-color-hover);
+        --w-button-font-color: var(--w-button-font-color-hover);
+      }
+      &.@{btn-prefix-cls}-primary{
+        --w-button-border-color: var(--w-button-border-color-hover);
+        --w-button-font-color: var(--w-button-font-color-hover);
+        --w-button-background: var(--w-button-background-hover);
+      }
+      &.@{btn-prefix-cls}-icon{
+        --w-button-background: rgba(255, 255, 255, 0.2);
+        --w-button-font-color: var(--w-button-font-color-hover);
+        --w-button-border-color: transparent !important;
+      }
+      &.@{btn-prefix-cls}-line{        
+        --w-button-font-color: var(--w-text-color-inverse);
+        --w-button-background:rgba(255, 255, 255, 0.2);
+        --w-button-border-color: var(--w-border-color-inverse);
+        &.@{btn-prefix-cls}-dangerous{
+          --w-button-font-color: var(--w-danger-color);
+          --w-button-border-color: var(--w-danger-color);
+        }
+      }
+      &.@{btn-prefix-cls}-text{
+        --w-button-font-color: var(--w-text-color-base);
+      }
+    }    
+    .btn-container{
+      display: block;
+    }
+  }
+  .btn-container{
+    display: none;
+  }
+}

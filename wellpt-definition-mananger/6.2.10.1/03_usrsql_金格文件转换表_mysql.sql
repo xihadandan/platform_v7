@@ -1,0 +1,22 @@
+
+---------------------------------金格文件转换------------------------------
+drop table if exists `KING_GRID_FILE_CONVERT`;
+CREATE TABLE `KING_GRID_FILE_CONVERT`
+(
+  `UUID`             VARCHAR(255) NOT NULL COMMENT '唯一主键',
+  `REC_VER`          DECIMAL(10,2) COMMENT  '版本号',
+  `SYSTEM_UNIT_ID`   VARCHAR(255) COMMENT  '系统单位ID',
+  `CREATE_TIME`      TIMESTAMP COMMENT '创建时间',
+  `CREATOR`          VARCHAR(255) COMMENT '创建人',
+  `MODIFIER`         VARCHAR(255) COMMENT '更新人',
+  `MODIFY_TIME`      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `FILE_NAME`        VARCHAR(255) COMMENT '文件名称',
+  `CONVERT_TYPE`     VARCHAR(255) COMMENT '转换类型',
+  `SOURCE_FILE_PATH` VARCHAR(255) COMMENT '上传路径',
+  `TARGET_FILE_PATH` VARCHAR(1000) COMMENT '目标文件路径',
+  `STATUS`           INTEGER COMMENT '状态',
+  `FILE_SIZE`        DECIMAL COMMENT '文件大小',
+  `ERROR_MSG`        VARCHAR(2000) COMMENT '提示消息',
+  PRIMARY KEY (UUID)
+)COMMENT ='金格文件转换';
+

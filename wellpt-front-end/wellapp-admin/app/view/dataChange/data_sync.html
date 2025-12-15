@@ -1,0 +1,122 @@
+<form action="" id="data_form" style="margin-top: 15px;">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#sync-tabs-1" aria-controls="sync-tabs-1" role="tab" data-toggle="tab" aria-expanded="true">基本属性</a>
+        </li>
+        <li role="presentation">
+            <a href="#sync-tabs-2" aria-controls="sync-tabs-2" role="tab" data-toggle="tab" aria-expanded="true">字段定义</a>
+        </li>
+    </ul>
+    <input type="hidden" id="uuid" name="uuid" />
+    <input type="hidden" id="recVer" name="recVer" />
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="sync-tabs-1">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="well-form-label control-label">名称</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id" class="well-form-label control-label ">ID</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="id" name="id">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="code" class="well-form-label control-label">编号</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" name="code" id="code">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="type" class="well-form-label control-label">数据类型</label>
+                    <div class="well-form-control">
+                        <input type="text" id="type" name="type">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tableCnName" class="well-form-label control-label">表中文名</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="tableCnName" name="tableCnName">
+                        <input id="definitionUuid" name="definitionUuid" type="hidden">
+                    </div>
+                </div>
+                <div class="form-group tableEnNameClass" style="display: none;">
+                    <label for="tableEnName" class="well-form-label control-label">表英文名</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="tableEnName" name="tableEnName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="joinTable" class="well-form-label control-label">joinTable</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="joinTable" name="joinTable">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="whereStr" class="well-form-label control-label">关联表条件</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="whereStr" name="whereStr" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="method" class="well-form-label control-label">触发方法</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="method" name="method" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="relationTable" class="well-form-label control-label">相关关系表ID</label>
+                    <div class="well-form-control">
+                        <textarea type="text" class="form-control" id="relationTable" name="relationTable" ></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tenant" class="well-form-label control-label">同步租户</label>
+                    <div class="well-form-control">
+                        <textarea type="text" class="form-control" id="tenant" name="tenant" ></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="jobId" class="well-form-label control-label">定时任务(流出)</label>
+                    <div class="well-form-control">
+                        <input type="text" id="jobId" name="jobId"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="jobIdIn" class="well-form-label control-label">定时任务(流入)</label>
+                    <div class="well-form-control">
+                        <input type="text" id="jobIdIn" name="jobIdIn"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="jobIdIn" class="well-form-label control-label no-suffix"></label>
+                    <div class="well-form-control">
+                        <input id="isUserUse" name="isUserUse" type="checkbox"/><label for="isUserUse">用户可选</label>
+                        <input id="isEnable" name="isEnable" type="checkbox"/><label for="isEnable">启用</label>
+                        <input id="isRelationTable" name="isRelationTable" type="checkbox"/><label for="isRelationTable">关系表</label>
+                        <input id="notOut" name="notOut" type="checkbox"/><label for="notOut">禁止流出</label>
+                        <input id="notIn" name="notIn" type="checkbox"/><label for="notIn">禁止流入</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="sync-tabs-2" style="padding-top: 15px;">
+            <div class="btn-group">
+                <button id="btn_add_column" type="button" class="well-btn w-btn-primary">新增</button>
+                <button id="btn_del_column" type="button" class="well-btn w-btn-danger">删除</button>
+            </div>
+            <table id="column_list"></table>
+        </div>
+
+        <div class="row" style="margin-top:30px;">
+            <div class="col-sm-12 text-center">
+                <button type="button" class="well-btn w-btn-primary" id="sync_btn_save">保存</button>
+            </div>
+        </div>
+    </div>
+</form>
+

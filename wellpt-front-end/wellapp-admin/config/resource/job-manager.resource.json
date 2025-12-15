@@ -1,0 +1,25 @@
+{
+  "js": {
+    "AppJobListViewWidgetDevelopment": {
+      "path": "/job-mgr/AppJobListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_定时任务列表_视图组件二开",
+      "dependencies": [
+        "AppPtMgrListViewWidgetDevelopment"
+      ]
+    },
+    "AppJobDetailsWidgetDevelopment": {
+      "path": "/job-mgr/AppJobDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_定时任务详情_HTML组件二开",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "AppPtMgrDetailsWidgetDevelopment",
+        "formBuilder",
+        "dataStoreBase",
+        "bootstrap-datetimepicker",
+        "multiOrg",
+        "system-admin"
+      ]
+    }
+  },
+  "css": {}
+}

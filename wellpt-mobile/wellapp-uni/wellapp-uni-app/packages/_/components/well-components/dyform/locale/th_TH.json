@@ -1,0 +1,12 @@
+{
+  "widgetDyform": {
+    "validateFormData": "การตรวจสอบข้อมูลแบบฟอร์ม",
+    "validateTip": "คำแนะนำการตรวจสอบ",
+    "validateFailed": "การตรวจสอบข้อมูลไม่ผ่าน",
+    "required": "จำเป็น",
+    "formatError": "รูปแบบข้อมูลผิดพลาด",
+    "existData": "ข้อมูลมีอยู่แล้ว",
+    "leastNumber": "กรุณาเลือกอย่างน้อย {min} รายการ",
+    "mostNumber": "เลือกได้สูงสุด {max} รายการ"
+  }
+}

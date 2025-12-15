@@ -1,0 +1,63 @@
+<div class="user-wrapper">
+  <section>
+    <form class="input-group" id="user-form">
+      <div class="mui-hidden">
+        <input type="hidden" name="userUuid" />
+      </div>
+      <div class="mui-input-row">
+        <label>用户</label>
+        <input type="text" placeholder="用户名" class="user-name mui-input-clear" disabled />
+      </div>
+      <div class="mui-input-row">
+        <label>性别</label>
+        <div class="mui-radio mui-left" style="display: inline-block">
+          <label>男</label>
+          <input type="radio" name="sex" class="male" value="1" />
+        </div>
+        <div class="mui-radio mui-left" style="display: inline-block">
+          <label>女</label>
+          <input type="radio" name="sex" class="female" value="2" />
+        </div>
+      </div>
+      <div class="mui-input-row">
+        <label>身份证</label>
+        <input type="text" placeholder="身份证" name="idNumber" class="idCard-id mui-input-clear" />
+      </div>
+      <div class="mui-input-row">
+        <label>手机</label>
+        <input type="text" placeholder="手机号码" class="phone-num mui-input-clear" />
+      </div>
+      <div class="mui-input-row mui-hidden">
+        <label>接收短信</label>
+        <div class="mui-checkbox mui-left" style="display: inline-block">
+          <label>是</label>
+          <input name="radio1" type="checkbox" name="recevice" class="recevice-flg" />
+        </div>
+      </div>
+      <div class="mui-input-row">
+        <label>家庭电话</label>
+        <input type="text" placeholder="手机" class="phone-home mui-input-clear" />
+      </div>
+      <div class="mui-input-row">
+        <label>办公电话/分机</label>
+        <input type="text" placeholder="办公电话" class="phone-job mui-input-clear" />
+      </div>
+      <div class="mui-input-row">
+        <label>邮箱(主)</label>
+        <input type="text" placeholder="电子邮箱" class="mail mui-input-clear" />
+      </div>
+      <div class="mui-input-row mui-hidden">
+        <label>邮箱(其他)</label>
+        <input type="text" placeholder="电子邮箱" class="mail-other mui-input-clear" />
+      </div>
+    </form>
+    <div class="btns">
+      <div class="mui-button-row">
+        <button type="button" class="mui-btn mui-btn-primary mui-btn-block">确认</button>
+      </div>
+      <div class="mui-button-row">
+        <button type="button" class="mui-btn mui-btn-cancel mui-btn-block">取消</button>
+      </div>
+    </div>
+  </section>
+</div>

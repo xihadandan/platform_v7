@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <!--模块流水号查询-->
+    <sql-query name="appModuleSerialNumberManagerQuery">
+        <![CDATA[
+    select t1.uuid as uuid,
+           t1.create_time as create_time,
+           t1.creator as creator,
+           t1.modifier as modifier,
+           t1.modify_time as modify_time,
+           t1.rec_ver as rec_ver,
+           t1.name as name,
+           t1.id as id,
+           t1.code as code,
+           t1.remark as remark,
+           t1.head_part as headPart,
+           t1.key_part as keyPart,
+           t1.last_part as lastPart,
+           t1.system_unit_id as system_unit_id,
+           t1.module_id as module_id
+      from cd_serial_number t1
+     where 1=1
+        <if moduleId??>
+        and t1.module_id=:moduleId
+		 </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+        <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+
+    ]]>
+
+
+    </sql-query>
+
+    <sql-query name="appModuleSerialNumberMaintainManagerQuery">
+        <![CDATA[
+    select t1.uuid as uuid,
+           t1.create_time as create_time,
+           t1.creator as creator,
+           t1.modifier as modifier,
+           t1.modify_time as modify_time,
+           t1.rec_ver as rec_ver,
+           t1.name as name,
+           t1.id as id,
+           t1.code as code,
+           t1.head_part as headPart,
+           t1.key_part as keyPart,
+           t1.last_part as lastPart,
+           t1.pointer as pointer,
+           t1.system_unit_id as system_unit_id,
+           t1.module_id as module_id
+      from cd_serial_number_maintain t1
+     where 1=1
+        <if moduleId??>
+        and t1.module_id=:moduleId
+		 </if>
+		 <if id??>and t1.id=:id</if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+        <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+
+    ]]>
+
+
+    </sql-query>
+
+
+</hibernate-mapping>

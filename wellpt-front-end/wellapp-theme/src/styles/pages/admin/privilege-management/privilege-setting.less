@@ -1,0 +1,22 @@
+/** 权限管理 - 权限页面 */
+
+// 权限管理 - 角色页面 - 产品集成信息
+// 树形结构产品级别前面的复选框样式覆盖
+#prod_integrate_info .ztree .ztree-row span.level0 + .chk {
+  display: none;
+
+  &.checkbox_false_part + a span.button::after,
+  &.checkbox_true_full + a span.button::after,
+  &.checkbox_true_part + a span.button::after {
+    .square(10px);
+    .absolute(false false 2px false);
+
+    content: '\2713';
+    border-radius: 50%;
+    background: @text-color-primary;
+    color: @text-color-inverse;
+    overflow: hidden;
+    text-align: center;
+    line-height: 0.5;
+  }
+}

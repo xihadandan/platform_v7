@@ -1,0 +1,351 @@
+<!-- 图表的图例信息定义 -->
+
+<div role="tabpanel" class="tab-pane" id="widget_chart_legend_info">
+  <div class="form-group">
+    <label for="show" class="col-sm-2 control-label">是否显示图例</label>
+    <div class="col-sm-10 checkbox-inline">
+      <input
+        type="checkbox"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="show"
+        id="showIcon"
+        value="false"
+      />
+      <label for="showIcon"></label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="legendType" class="col-sm-2 control-label">图例类型</label>
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="type"
+        id="legendType"
+      />
+    </div>
+    <label for="selectedMode" class="col-sm-2 control-label">选择模式</label>
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="selectedMode"
+        id="selectedMode"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="left" class="col-sm-2 control-label">图例左偏移量</label>
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="left"
+        id="left"
+      />
+    </div>
+    <label for="top" class="col-sm-2 control-label">图例上偏移量</label>
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="top"
+        id="top"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="right" class="col-sm-2 control-label">图例右偏移量</label>
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="right"
+        id="right"
+      />
+    </div>
+    <label for="bottom" class="col-sm-2 control-label">图例底部偏移量</label>
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="bottom"
+        id="bottom"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="orient" class="col-sm-2 control-label"
+      >图例列表的布局朝向</label
+    >
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="orient"
+        id="orient"
+      />
+    </div>
+    <label for="align" class="col-sm-2 control-label"
+      >图例标记和文本的对齐方式</label
+    >
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="align"
+        id="align"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="padding" class="col-sm-2 control-label">图例内边距</label>
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="padding"
+        id="padding"
+      />
+    </div>
+    <label for="itemGap" class="col-sm-2 control-label"
+      >图例每项之间的间隔</label
+    >
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="itemGap"
+        id="itemGap"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="itemWidth" class="col-sm-2 control-label"
+      >图例标记的图形宽度</label
+    >
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="itemWidth"
+        id="itemWidth"
+      />
+    </div>
+    <label for="itemHeight" class="col-sm-2 control-label"
+      >图例标记的图形高度</label
+    >
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="itemHeight"
+        id="itemHeight"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="backgroundColor" class="col-sm-2 control-label"
+      >图例背景颜色</label
+    >
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="backgroundColor"
+        id="backgroundColor"
+      />
+    </div>
+    <label for="borderColor" class="col-sm-2 control-label">图例边框颜色</label>
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="borderColor"
+        id="borderColor"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="borderWidth" class="col-sm-2 control-label">图例边框宽度</label>
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="borderWidth"
+        id="borderWidth"
+      />
+    </div>
+    <label for="borderRadius" class="col-sm-2 control-label"
+      >图例边框圆角半径</label
+    >
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="borderRadius"
+        id="borderRadius"
+      />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="borderWidth" class="col-sm-2 control-label">图例图标形状</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="icon"
+        id="icon"
+        placeholder="支持：circle, rect, roundRect, triangle, diamond, pin, arrow, none"
+      />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="formatter" class="col-sm-2 control-label">图例文本格式化</label>
+    <div class="col-sm-10">
+      <textarea
+        class="form-control w-configurer-option"
+        height="34px"
+        name="formatter"
+        id="formatter"
+      ></textarea>
+    </div>
+  </div>
+
+  <fieldset>
+    <legend>图例文本样式</legend>
+    <div class="form-group">
+      <label for="textStyle_color" class="col-sm-2 control-label"
+        >图例文本颜色</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="textStyle_color"
+          id="textStyle_color"
+        />
+      </div>
+      <label for="legend_textStyle_fontStyle" class="col-sm-2 control-label"
+        >图例文本字体风格</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="textStyle_fontStyle"
+          id="legend_textStyle_fontStyle"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="textStyle_fontFamily" class="col-sm-2 control-label"
+        >图例文本字体</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="textStyle_fontFamily"
+          id="textStyle_fontFamily"
+        />
+      </div>
+      <label for="legend_textStyle_fontWeight" class="col-sm-2 control-label"
+        >图例文本字体粗细</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="textStyle_fontWeight"
+          id="legend_textStyle_fontWeight"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="textStyle_fontSize" class="col-sm-2 control-label"
+        >图例文本字体大小</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="textStyle_fontSize"
+          id="textStyle_fontSize"
+        />
+      </div>
+      <label for="textStyle_lineHeight" class="col-sm-2 control-label"
+        >图例文本行高</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="textStyle_lineHeight"
+          id="textStyle_lineHeight"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="textStyle_backgroundColor" class="col-sm-2 control-label"
+        >图例文字块背景色</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="textStyle_backgroundColor"
+          id="textStyle_backgroundColor"
+        />
+      </div>
+      <label for="textStyle_borderColor" class="col-sm-2 control-label"
+        >图例文字块边框颜色</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="textStyle_borderColor"
+          id="textStyle_borderColor"
+        />
+      </div>
+    </div>
+  </fieldset>
+</div>

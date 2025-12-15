@@ -1,0 +1,299 @@
+<form id="msg_format_form" action="" class="form-widget dyform" style="margin-top: 15px">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#msg-format-tabs-1" aria-controls="msg-format-tabs-1" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+    </li>
+    <li role="presentation">
+      <a href="#msg-format-tabs-2" aria-controls="msg-format-tabs-2" role="tab" data-toggle="tab" aria-expanded="true">在线消息</a>
+    </li>
+    <li role="presentation">
+      <a href="#msg-format-tabs-3" aria-controls="msg-format-tabs-3" role="tab" data-toggle="tab" aria-expanded="true">电子邮件</a>
+    </li>
+    <li role="presentation">
+      <a href="#msg-format-tabs-4" aria-controls="msg-format-tabs-4" role="tab" data-toggle="tab" aria-expanded="true">手机短信</a>
+    </li>
+    <li role="presentation">
+      <a href="#msg-format-tabs-5" aria-controls="msg-format-tabs-5" role="tab" data-toggle="tab" aria-expanded="true">钉钉消息</a>
+    </li>
+  </ul>
+  <div class="tab-content" style="margin-top: 20px">
+    <div role="tabpanel" class="tab-pane active clearfix" id="msg-format-tabs-1">
+      <table>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">
+            <font style="color: #f00">*</font>
+            名称
+          </td>
+          <td><input id="name" name="name" type="text" class="form-control" /></td>
+        </tr>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">
+            <font style="color: #f00">*</font>
+            ID
+          </td>
+          <td><input id="id" name="id" type="text" class="form-control" /></td>
+        </tr>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">编号</td>
+          <td><input ic="code" name="code" type="text" class="form-control" /></td>
+        </tr>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">分类</td>
+          <td>
+            <input id="classifyName" name="classifyName" type="text" class="form-control" />
+            <input id="classifyUuid" name="classifyUuid" type="hidden" class="form-control" />
+          </td>
+        </tr>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">所属模块</td>
+          <td><input id="moduleId" name="moduleId" type="text" class="form-control" /></td>
+        </tr>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">类型</td>
+          <td>
+            <input name="type" id="type_system" type="radio" value="SYSTEM" checked="checked" />
+            <label for="type_system">系统消息</label>
+            <input name="type" id="type_user" type="radio" value="USER" />
+            <label for="type_user">用户消息</label>
+          </td>
+        </tr>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">提醒方式</td>
+          <td>
+            <input name="sendWays" id="sendWay_online" type="checkbox" value="ON_LINE" checked="checked" />
+            <label for="sendWay_online">在线消息</label>
+            <input name="sendWays" id="sendWay_email" type="checkbox" value="EMAIL" />
+            <label for="sendWay_email">邮件</label>
+            <input name="sendWays" id="sendWay_sms" type="checkbox" value="SMS" />
+            <label for="sendWay_sms">手机短信</label>
+            <input name="sendWays" id="sendWay_inteface" type="checkbox" value="INTEFACE" />
+            <label for="sendWay_inteface">发送消息触发接口实现</label>
+            <input name="sendWays" id="sendWay_dingtalk" type="checkbox" value="DINGTALK" />
+            <label for="sendWay_dingtalk">钉钉对接</label>
+          </td>
+        </tr>
+        <tr class="field tr_interface" style="display: none">
+          <td class="label-td" style="width: 15%">接口实现</td>
+          <td>
+            <input id="messageIntefaceText" name="messageIntefaceText" type="text" class="form-control" />
+            <input id="messageInteface" name="messageInteface" type="hidden" class="form-control" />
+          </td>
+        </tr>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">发送时间</td>
+          <td>
+            <input name="sendTime" id="sendTime_in_time" type="radio" value="IN_TIME" checked="checked" />
+            <label for="sendTime_in_time">即时发送</label>
+            <input name="sendTime" id="sendTime_work_time" type="radio" value="WORK_TIME" />
+            <label for="sendTime_work_time">工作时间发送</label>
+            <input name="sendTime" id="sendTime_schedule_time" type="radio" value="SCHEDULE_TIME" />
+            <label for="sendTime_schedule_time">定时发送</label>
+          </td>
+        </tr>
+        <tr class="field tr_time" style="display: none">
+          <td class="label-td" style="width: 15%">定时时间</td>
+          <td>
+            <input id="scheduleTime" name="scheduleTime" type="text" style="width: 350px" />
+            <label for="scheduleTime">可以通过输入${变量}的方式指定，如${CreateTime}</label>
+          </td>
+        </tr>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">发送消息触发事件</td>
+          <td>
+            <input id="messageEventText" name="messageEventText" type="text" class="form-control" />
+            <input id="messageEvent" name="messageEvent" type="hidden" class="form-control" />
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane clearfix" id="msg-format-tabs-2" style="margin-top: 15px">
+      <table>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">标题</td>
+          <td><input id="onlineSubject" name="onlineSubject" type="text" class="form-control" /></td>
+        </tr>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">内容</td>
+          <td>
+            <textarea name="onlineBody" id="onlineBody" cols="30" rows="10" class="form-control"></textarea>
+          </td>
+        </tr>
+      </table>
+      <div class="table-title">附加链接</div>
+      <table>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">源标题</td>
+          <td><input id="relatedTitle" name="relatedTitle" type="text" class="form-control" /></td>
+        </tr>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">源地址</td>
+          <td><input id="relatedUrl" name="relatedUrl" type="text" class="form-control" /></td>
+        </tr>
+      </table>
+      <div class="table-title">回调事件</div>
+      <div class="msg-event-wrap" style="margin-bottom: 20px">
+        <div id="div_msg_event_toolbar">
+          <button type="button" id="btn_add_msg_event" class="well-btn w-btn-primary">新建</button>
+          <button type="button" id="btn_delete_msg_event" class="well-btn w-btn-primary w-line-btn">删除</button>
+          <button type="button" id="btn_row_up_msg_event" class="well-btn w-btn-primary w-line-btn">上移</button>
+          <button type="button" id="btn_row_down_msg_event" class="well-btn w-btn-primary w-line-btn">下移</button>
+        </div>
+        <table id="msgEventTable" class="msgEventTable"></table>
+      </div>
+
+      <table>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">消息提醒方式</td>
+          <td>
+            <input name="reminderType" id="countBadge" type="radio" value="1" checked="checked" />
+            <label for="countBadge">计数徽标</label>
+            <input name="reminderType" id="countBadgeDialog" type="radio" value="2" />
+            <label for="countBadgeDialog">计数徽标 + 弹窗</label>
+          </td>
+        </tr>
+        <tr class="field show-dialog" style="display: none">
+          <td class="label-td" style="width: 15%">弹窗位置</td>
+          <td>
+            <input name="popupPosition" id="popupPosition" type="text" class="form-control" />
+          </td>
+        </tr>
+        <tr class="field show-dialog" style="display: none">
+          <td class="label-td" style="width: 15%">弹窗大小</td>
+          <td>
+            <input name="popupSize" id="popupDefault" type="radio" value="1" checked="checked" />
+            <label for="popupDefault">默认</label>
+            <input name="popupSize" id="popupCustomer" type="radio" value="2" />
+            <label for="popupCustomer">自定义</label>
+            <div class="popup-customer-size" style="display: none">
+              <label for="popupWidth">宽：</label>
+              <input name="popupWidth" id="popupWidth" type="text" class="form-control" style="width: 200px; display: inline-block" />
+              <label for="popupHeight">高：</label>
+              <input name="popupHeight" id="popupHeight" type="text" class="form-control" style="width: 200px; display: inline-block" />
+            </div>
+          </td>
+        </tr>
+        <tr class="field show-dialog" style="display: none">
+          <td class="label-td" style="width: 15%">显示遮罩</td>
+          <td>
+            <input type="hidden" id="displayMask" name="displayMask" />
+            <div id="showMask" class="switch-wrap" data-value="0">
+              <span class="switch-radio"></span>
+            </div>
+          </td>
+        </tr>
+        <tr class="field show-dialog" style="display: none">
+          <td class="label-td" style="width: 15%">弹窗计时关闭</td>
+          <td>
+            <input type="hidden" id="autoTimeCloseWin" name="autoTimeCloseWin" value="1" />
+            <div id="showTimer" class="switch-wrap active" data-value="1">
+              <span class="switch-radio"></span>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane clearfix" id="msg-format-tabs-3">
+      <table>
+        <tr class="field">
+          <td class="label-td">标题</td>
+          <td><input id="emailSubject" name="emailSubject" type="text" class="form-control" /></td>
+        </tr>
+        <tr class="field">
+          <td class="label-td">内容</td>
+          <td>
+            <textarea name="emailBody" id="emailBody" cols="30" rows="10" class="form-control"></textarea>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane clearfix" id="msg-format-tabs-4">
+      <table id="group_members_list">
+        <tr class="field">
+          <td class="label-td" style="width: 15%">内容</td>
+          <td>
+            <textarea name="smsBody" id="smsBody" cols="30" rows="10" class="form-control"></textarea>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane clearfix" id="msg-format-tabs-5">
+      <table>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">
+            <font style="color: #f00">*</font>
+            消息类型
+          </td>
+          <td>
+            <input name="dtMessageType" id="msgTypeActionCard" type="radio" value="ActionCard" checked="checked" />
+            <label for="msgTypeActionCard">卡片</label>
+          </td>
+        </tr>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">
+            <font style="color: #f00">*</font>
+            跳转方式
+          </td>
+          <td>
+            <input name="dtJumpType" id="jumpTypeSingle" type="radio" value="single" />
+            <label for="jumpTypeSingle">整体跳转</label>
+            <input name="dtJumpType" id="jumpTypeMulti" type="radio" value="multi" />
+            <label for="jumpTypeMulti">独立跳转</label>
+          </td>
+        </tr>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">
+            <font style="color: #f00">*</font>
+            标题
+          </td>
+          <td><input type="text" name="dtTitle" id="dtTitle" class="form-control" /></td>
+        </tr>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">
+            <font style="color: #f00">*</font>
+            内容
+          </td>
+          <td>
+            <textarea name="dtBody" id="dtBody" cols="30" rows="10" class="form-control"></textarea>
+          </td>
+        </tr>
+        <tr class="field single-jump" style="display: none">
+          <td class="label-td" style="width: 15%">
+            <font style="color: #f00">*</font>
+            按钮排列方式
+          </td>
+          <td>
+            <input name="dtBtnOrientation" id="arrangementVertial" type="radio" value="0" checked="checked" />
+            <label for="arrangementVertial">竖直列排</label>
+            <input name="dtBtnOrientation" id="arrangementHorizontal" type="radio" value="1" />
+            <label for="arrangementHorizontal">横向列排</label>
+          </td>
+        </tr>
+      </table>
+      <div class="table-title">附加链接</div>
+      <table class="overall-jump">
+        <tr class="field">
+          <td class="label-td" style="width: 15%">源标题</td>
+          <td><input type="text" name="dtUriTitle" id="dtUriTitle" class="form-control" /></td>
+        </tr>
+        <tr class="field">
+          <td class="label-td" style="width: 15%">源地址</td>
+          <td><input type="text" name="dtUri" id="dtUri" class="form-control" /></td>
+        </tr>
+      </table>
+      <div class="single-jump" style="margin-bottom: 20px; display: none">
+        <div id="div_msg_link_toolbar">
+          <button type="button" id="btn_add_msg_link" class="well-btn w-btn-primary">新建</button>
+          <button type="button" id="btn_delete_msg_link" class="well-btn w-btn-primary w-line-btn">删除</button>
+          <button type="button" id="btn_row_up_msg_link" class="well-btn w-btn-primary w-line-btn">上移</button>
+          <button type="button" id="btn_row_down_msg_link" class="well-btn w-btn-primary w-line-btn">下移</button>
+        </div>
+        <table id="msgLinkTable" class="msgLinkTable"></table>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 30px">
+      <div class="col-sm-12 text-center">
+        <button type="button" class="well-btn w-btn-primary" id="msg_format_save">保存</button>
+      </div>
+    </div>
+  </div>
+</form>

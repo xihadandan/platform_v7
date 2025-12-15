@@ -1,0 +1,223 @@
+<!-- 作者： hongjz 时间：2018-04-23 描述： 控件属性基本信息及基本页签信息 -->
+
+<div id="attrCfgDiv" title="属性设置" style="max-height: 600px; overflow-y: auto">
+  <div>
+    <div class="dyform">
+      <div class="post-sign">
+        <div class="post-detail">
+          <div id="tabs">
+            <ul>
+              <li>
+                <a href="#basic_info">基本属性</a>
+              </li>
+              <li>
+                <a href="#other">专有属性</a>
+              </li>
+              <li id="tab_relative_role" style="display: none">
+                <a href="#relative_role">关联角色</a>
+              </li>
+              <li>
+                <a href="#check_rule">校验规则属性</a>
+              </li>
+              <li>
+                <a href="#style">样式属性</a>
+              </li>
+              <li>
+                <a href="#event_config">事件管理</a>
+              </li>
+            </ul>
+            <div id="basic_info">
+              <table style="table-layout: fixed">
+                <tr>
+                  <td class="Label required">字段编码</td>
+                  <td class="value"><input type="text" name="name" id="name" value="" class="w100" maxlength="30" /></td>
+                </tr>
+
+                <!--3 -->
+                <tr class="odd">
+                  <td class="Label required">显示名称</td>
+                  <td class="value"><input type="text" class="w100" name="displayName" id="displayName" value="" /></td>
+                </tr>
+
+                <!--1 -->
+                <tr>
+                  <td class="Label">应用于</td>
+                  <td class="value"><input type="text" class="w100" name="applyTo" id="applyTo" value="" /></td>
+                </tr>
+
+                <tr class="odd">
+                  <td class="Label">默认值</td>
+                  <td class="value">
+                    <div style="position: relative">
+                      <input type="text" value="" name="defaultValue" id="defaultValue" autocomplete="off" />
+                      <div class="hongdy" style="display: none">
+                        <ul class="hongdy_ul">
+                          <li class="noChose" type="currDate">日期时间</li>
+                          <li class="isChose" type="currDate">当前日期(2000-01-01)</li>
+                          <li class="isChose" type="currDate">当前日期(2000年1月1日)</li>
+                          <li class="isChose" type="currDate">当前日期(2000年)</li>
+                          <li class="isChose" type="currDate">当前日期(2000年1月)</li>
+                          <li class="isChose" type="currDate">当前日期(1月1日)</li>
+                          <li class="isChose" type="currDate">当前日期(星期一)</li>
+                          <li class="isChose" type="currDate">当前年份(2000)</li>
+                          <li class="isChose" type="currDate">当前时间(12:00)</li>
+                          <li class="isChose" type="currDate">当前时间(12:00:00)</li>
+                          <li class="isChose" type="currDate">当前日期时间(2000-01-01 12:00)</li>
+                          <li class="isChose" type="currDate">当前日期时间(2000-01-01 12:00:00)</li>
+                          <li class="isChose" type="currUser" name="currUser">当前用户</li>
+                          <li class="isChose" type="currUser" name="currUserId">当前用户ID</li>
+                          <li class="isChose" type="currUser" name="currUserName">当前用户姓名</li>
+                          <li class="isChose" type="currUser" name="currUserDept">当前用户部门</li>
+                          <li class="isChose" type="currUser" name="currUserDeptId">当前用户部门ID</li>
+                          <li class="isChose" type="currUser" name="currUserDeptName">当前用户部门(短名称)</li>
+                          <li class="isChose" type="currUser" name="currUserDeptPath">当前用户部门(长名称)</li>
+                          <li class="isChose" type="currUser" name="currUserJob">当前用户主职位</li>
+                          <li class="isChose" type="currUser" name="currUserJobId">当前用户主职位ID</li>
+                          <li class="isChose" type="currUser" name="currUserJobName">当前用户主职位(短名称)</li>
+                          <li class="isChose" type="currUser" name="currUserJobPath">当前用户主职位(长名称)</li>
+                          <li class="isChose" type="currUser" name="currUserBizUnit">当前用户业务单位</li>
+                          <li class="isChose" type="currUser" name="currUserBizUnitId">当前用户业务单位ID</li>
+                          <li class="isChose" type="currUser" name="currUserBizUnitName">当前用户业务单位名称</li>
+                          <li class="isChose" type="currUser" name="currUserSysUnit">当前用户系统单位</li>
+                          <li class="isChose" type="currUser" name="currUserSysUnitId">当前用户系统单位ID</li>
+                          <li class="isChose" type="currUser" name="currUserSysUnitName">当前用户系统单位名称</li>
+
+                          <!-- 等价于当前用户，所以取消掉 <li class="noChose" type="creator">创建人</li> <li class="isChose" type="creator">创建人ID</li> <li class="isChose" type="creator">创建人姓名</li> <li class="isChose" type="creator">创建人部门ID</li> <li class="isChose" type="creator">创建人部门(长名称)</li> <li class="isChose" type="creator">创建人部门(短名称)</li> <li class="isChose" type="creator">创建人主职位</li> -->
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="Label">提示语</td>
+                  <td class="value"><input type="text" value="" name="placeholder" id="placeholder" /></td>
+                </tr>
+                <tr class="odd">
+                  <td class="Label required">字段长度</td>
+                  <td class="value"><input type="text" value="" name="length" id="length" /></td>
+                </tr>
+
+                <tr>
+                  <td class="Label">值计算方式</td>
+                  <td class="value">
+                    <input type="radio" value="1" name="valueCreateMethod" id="valueCreateMethod1" checked="checked" />
+                    <label for="valueCreateMethod1">用户输入</label>
+                    <input type="radio" value="3" name="valueCreateMethod" id="valueCreateMethod2" />
+                    <label for="valueCreateMethod2">创建时计算</label>
+                    <select name="valueCreateField" id="valueCreateField" style="display: none" title="创建时取计算字段的拼音"></select>
+                    <input type="radio" value="4" name="valueCreateMethod" id="valueCreateMethod3" />
+                    <label for="valueCreateMethod3">显示时计算</label>
+                  </td>
+                </tr>
+
+                <tr class="odd">
+                  <td class="Label">
+                    控件模式
+                    <div class="w-property-help show-type-help-popup">
+                      <i class="iconfont icon-ptkj-xinxiwenxintishi"></i>
+                      <div class="w-property-help-popup">
+                        <p>可编辑：前端显示为控件，可输入内容，可获取焦点，提交数据给接口</p>
+                        <p>不可编辑：前端显示，但不可编辑，展现样式读取【控件不可编辑时的展现样式】</p>
+                        <p>隐藏：前端不显示，提交数据给接口</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="value">
+                    <div class="tr_td_div_left">
+                      <input type="radio" name="showType" value="1" checked="checked" id="showType1" />
+                      <label for="showType1">可编辑</label>
+                      <!-- <input type="radio" name="showType" value="3" /> <label>只读</label> -->
+                      <input type="radio" name="showType" value="2" id="showType2" />
+                      <label for="showType2">不可编辑</label>
+                      <!-- <input type="radio" name="showType" value="4" /> <label>禁用</label> -->
+                      <input type="radio" name="showType" value="5" id="showType3" />
+                      <label for="showType3">隐藏</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="">
+                  <td class="Label">
+                    控件不可编辑时的展现样式
+                    <div class="w-property-help show-type-help-popup">
+                      <i class="iconfont icon-ptkj-xinxiwenxintishi"></i>
+                      <div class="w-property-help-popup">
+                        <p>只读：前端显示为控件，不可输入内容，可获取焦点，提交数据给接口</p>
+                        <p>显示文本：前端显示为文本，可获取焦点，提交数据给接口</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="value">
+                    <div class="tr_td_div_left">
+                      <input type="radio" name="readStyle" value="3" id="readStyle1" />
+                      <label for="readStyle1">只读</label>
+                      <input type="radio" name="readStyle" value="2" id="readStyle2" />
+                      <label for="readStyle2">显示文本</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="tr_validateOnHidden odd">
+                  <td class="Label">
+                    控件隐藏时校验
+                    <div class="w-property-help">
+                      <i class="iconfont icon-ptkj-xinxiwenxintishi"></i>
+                      <div class="w-property-help-popup">
+                        <p>1、开启时，控件隐藏也会进行约束校验（如长度、必填校验等）</p>
+                        <p>2、控件隐藏，存在2种方式</p>
+                        <p>（1）控件本身设置为隐藏：可通过控件属性设置、二开设置等</p>
+                        <p>（2）控件所在布局设置为隐藏：可通过布局设置、二开设置等</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="value">
+                    <input type="checkbox" value="0" name="validateOnHidden" id="validateOnHidden" class="switch" />
+                    <label for="validateOnHidden"></label>
+                  </td>
+                </tr>
+                <tr class="">
+                  <td class="Label">备注</td>
+                  <td class="value"><input type="text" value="" name="note" id="note" /></td>
+                </tr>
+              </table>
+            </div>
+            <div id="relative_role"></div>
+
+            <div id="check_rule"></div>
+
+            <div id="style"></div>
+
+            <div id="other"></div>
+
+            <div id="event_config">
+              <table>
+                <thead>
+                  <tr class="odd">
+                    <td style="width: 150px">事件列表</td>
+                    <td>事件执行脚本(JAVASCRIPT)</td>
+                  </tr>
+                </thead>
+                <tr>
+                  <td class="Label" style="vertical-align: top">
+                    <span id="eventTree" class="ztree"></span>
+                  </td>
+                  <!--<td class="value" style="vertical-align: top;"> <textarea rows="20" cols="100" id="scriptContent"></textarea> </td>-->
+                  <td class="value" id="scriptContentContainer"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  table tr td.Label {
+    width: 20%;
+  }
+
+  table tr td.value,
+  table tr td.value .well-tag-list {
+    white-space: normal;
+  }
+</style>

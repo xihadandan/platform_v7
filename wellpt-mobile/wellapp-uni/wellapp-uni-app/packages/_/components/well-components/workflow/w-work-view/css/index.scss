@@ -1,0 +1,49 @@
+.work-view {
+  .uni-popup {
+    // z-index: 9999;
+  }
+}
+
+//自动提交弹框
+.wf-auto-submit-modal {
+  .auto-title {
+    font-size: var(--w-font-size-base);
+    color: var(--w-text-color-darker);
+    margin-bottom: 8px;
+  }
+  .auto-opinion-text {
+    padding: 12px;
+    border-radius: 4px;
+    background-color: var(--w-gray-color-2);
+    line-height: 20px;
+    font-size: var(--w-font-size-base);
+    color: var(--w-text-color-mobile);
+  }
+}
+.workview-popop-title {
+  padding: 14px 5rem 8px;
+  font-size: var(--w-font-size-base);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  .left {
+    position: absolute;
+    left: 10px;
+  }
+
+  .center {
+    flex: 1;
+    text-align: center;
+    font-size: var(--w-font-size-lg);
+    color: $uni-main-color;
+    font-weight: bold;
+    word-break: break-all;
+  }
+
+  .right {
+    position: absolute;
+    right: 10px;
+  }
+}

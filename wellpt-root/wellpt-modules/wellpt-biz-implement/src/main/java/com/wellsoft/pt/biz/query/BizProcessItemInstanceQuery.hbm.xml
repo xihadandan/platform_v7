@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="countItemInstanceByProcessNodeInstUuids">
+        <![CDATA[
+        select
+            t.process_node_inst_uuid as process_node_inst_uuid,
+            count(t.process_node_inst_uuid) as count
+        from
+            biz_process_item_instance t
+        where
+            t.process_node_inst_uuid in(:processNodeInstUuids)
+        group by
+            t.process_node_inst_uuid
+        ]]>
+    </sql-query>
+
+    <sql-query name="processItemInstanceDataStoreQuery">
+        <![CDATA[
+        select * from (
+           select  t1.uuid 			            as uuid,
+                   t1.create_time	            as create_time,
+                   t1.creator		            as creator,
+                   t1.modifier   	            as modifier,
+                   t1.modify_time           	as modify_time,
+                   t1.rec_ver        	        as rec_ver,
+                   t1.item_name             	as item_name,
+                   t1.item_code              	as item_code,
+                   t1.title                 	as title,
+                   t1.entity_name               as entity_name,
+                   t1.entity_id 	            as entity_id,
+                   t1.form_uuid                 as form_uuid,
+                   t1.data_uuid                 as data_uuid,
+                   t2.user_name                 as start_user_name,
+                   t1.start_time                as start_time,
+                   t1.end_time 		            as end_time,
+                   t1.state 		            as state,
+                   t1.parent_item_inst_uuid     as parent_item_inst_uuid,
+                   t1.belong_item_inst_uuid     as belong_item_inst_uuid,
+                   t1.process_node_inst_uuid    as process_node_inst_uuid,
+                   t1.process_inst_uuid         as process_inst_uuid,
+                   t1.process_def_uuid          as process_def_uuid
+              from biz_process_item_instance t1 left join user_info t2 on t1.creator = t2.user_id
+        ) t
+		 where 1 = 1
+		  <if isNotBlank(processNodeInstUuid)>
+            and t.process_node_inst_uuid = :processNodeInstUuid
+          </if>
+		  <if isNotBlank(parentItemInstUuid)>
+            and t.parent_item_inst_uuid = :parentItemInstUuid
+          </if>
+		  <if isNotBlank(belongItemInstUuid)>
+            and t.belong_item_inst_uuid = :belongItemInstUuid
+          </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+          <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+        ]]>
+    </sql-query>
+</hibernate-mapping>

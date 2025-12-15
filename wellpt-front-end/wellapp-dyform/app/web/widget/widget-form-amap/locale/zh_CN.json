@@ -1,0 +1,10 @@
+{
+  "WidgetFormAmap": {
+    "searchPlaceholder": "输入地点关键词",
+    "clear": "清除",
+    "address": "地址",
+    "noInside": "当前位置不在范围内",
+    "lng": "经度",
+    "lat": "纬度"
+  }
+}

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="dmsFileMyShareInfoQuery">
+        <![CDATA[
+		select *
+		  from (select f1.uuid 				as uuid,
+		               f1.name 				as name,
+		               'application/folder'	as content_type,
+		               0 					as file_size,
+		               '' 					as data_def_uuid,
+		               '' 					as data_uuid,
+		               f1.parent_uuid 		as folder_uuid,
+		               f1.status 			as status,
+		               f1.creator 			as creator,
+		               f1.create_time 		as create_time,
+		               f1.modifier 			as modifier,
+		               f1.modify_time 		as modify_time,
+		               si1.uuid 			as share_uuid,
+		               si1.owner_id   		as owner_id,
+		               si1.share_org_id   	as share_org_id,
+		               si1.share_org_name   as share_org_name,
+		               si1.share_time 		as share_time
+		          from dms_folder f1, dms_share_info si1
+		         where f1.uuid = si1.data_uuid
+		           and f1.status = :status
+		           and si1.data_type = :folderDataType
+		           and si1.owner_id = :ownerId
+		        union all
+		        select f1.uuid          	as uuid,
+		               f1.file_name     	as name,
+		               f1.content_type  	as content_type,
+		               f1.file_size     	as file_size,
+		               f1.data_def_uuid 	as data_def_uuid,
+		               f1.data_uuid     	as data_uuid,
+		               f1.folder_uuid       as folder_uuid,
+		               f1.status        	as status,
+		               f1.creator       	as creator,
+		               f1.create_time   	as create_time,
+		               f1.modifier      	as modifier,
+		               f1.modify_time   	as modify_time,
+		               si1.uuid         	as share_uuid,
+		               si1.owner_id   		as owner_id,
+		               si1.share_org_id   	as share_org_id,
+		               si1.share_org_name   as share_org_name,
+		               si1.share_time   	as share_time
+		          from dms_file f1, dms_share_info si1
+		         where f1.uuid = si1.data_uuid
+		           and f1.status = :status
+		           and si1.data_type = :fileDataType
+		           and si1.owner_id = :ownerId) t
+			 where 1 = 1
+		   		<if isNotBlank(whereSql)>
+		   			and ${whereSql}
+		   		</if>
+		   		<if isNotBlank(orderString)>
+		   			${orderString}
+		   		</if>
+	]]>
+    </sql-query>
+
+    <sql-query name="dmsFileMyShareInfoListFolderAndFilesQuery">
+        <![CDATA[
+		select *
+		  from (select f1.uuid 				as uuid,
+		               f1.name 				as name,
+		               'application/folder'	as content_type,
+		               0 					as file_size,
+		               '' 					as data_def_uuid,
+		               '' 					as data_uuid,
+		               f1.parent_uuid 		as folder_uuid,
+		               f1.status 			as status,
+		               f1.creator 			as creator,
+		               f1.create_time 		as create_time,
+		               f1.modifier 			as modifier,
+		               f1.modify_time 		as modify_time,
+		               si1.share_uuid 		as share_uuid,
+		               si1.owner_id 		as owner_id,
+		               si1.share_org_id 	as share_org_id,
+		               si1.share_org_name 	as share_org_name,
+		               si1.share_time 		as share_time
+		          from dms_folder f1,
+		               (select t1.uuid           as folder_uuid,
+		                       t2.uuid           as share_uuid,
+		                       t2.owner_id       as owner_id,
+		                       t2.share_org_id   as share_org_id,
+		                       t2.share_org_name as share_org_name,
+		                       t2.share_time     as share_time
+		                  from dms_folder t1, dms_share_info t2
+		                 where t1.uuid_path like '%' || t2.data_uuid || '%'
+		                   and t1.status = :status
+		                   and t2.data_type = :folderDataType
+		                   and t2.owner_id = :ownerId
+		                   and t1.uuid = :folderUuid) si1
+		         where f1.parent_uuid = si1.folder_uuid
+		           and f1.status = :status
+		        union all
+		        select f1.uuid            	as uuid,
+		               f1.file_name       	as name,
+		               f1.content_type    	as content_type,
+		               f1.file_size       	as file_size,
+		               f1.data_def_uuid   	as data_def_uuid,
+		               f1.data_uuid       	as data_uuid,
+		               f1.folder_uuid    	as folder_uuid,
+		               f1.status          	as status,
+		               f1.creator         	as creator,
+		               f1.create_time     	as create_time,
+		               f1.modifier        	as modifier,
+		               f1.modify_time     	as modify_time,
+		               si1.share_uuid     	as share_uuid,
+		               si1.owner_id       	as owner_id,
+		               si1.share_org_id   	as share_org_id,
+		               si1.share_org_name 	as share_org_name,
+		               si1.share_time     	as share_time
+		          from dms_file f1,
+		               (select t1.uuid           as folder_uuid,
+		                       t2.uuid           as share_uuid,
+		                       t2.owner_id       as owner_id,
+		                       t2.share_org_id   as share_org_id,
+		                       t2.share_org_name as share_org_name,
+		                       t2.share_time     as share_time
+		                  from dms_folder t1, dms_share_info t2
+		                 where t1.uuid_path like '%' || t2.data_uuid || '%'
+		                   and t1.status = :status
+		                   and t2.data_type = :folderDataType
+		                   and t2.owner_id = :ownerId
+		                   and t1.uuid = :folderUuid) si1
+		         where f1.folder_uuid = si1.folder_uuid
+		           and f1.status = :status) t
+			 where 1 = 1
+		   		<if isNotBlank(whereSql)>
+		   			and ${whereSql}
+		   		</if>
+		   		<if isNotBlank(orderString)>
+		   			${orderString}
+		   		</if>
+	]]>
+    </sql-query>
+
+    <sql-query name="dmsFileShareWithMeQuery">
+        <![CDATA[
+		select *
+		  from (select f1.uuid 				as uuid,
+		               f1.name 				as name,
+		               'application/folder'	as content_type,
+		               0 					as file_size,
+		               '' 					as data_def_uuid,
+		               '' 					as data_uuid,
+		               f1.parent_uuid	 	as folder_uuid,
+		               f1.status 			as status,
+		               f1.creator 			as creator,
+		               f1.create_time 		as create_time,
+		               f1.modifier 			as modifier,
+		               f1.modify_time 		as modify_time,
+		               si1.uuid 			as share_uuid,
+		               si1.owner_id   		as owner_id,
+		               si1.share_org_id   	as share_org_id,
+		               si1.share_org_name   as share_org_name,
+		               si1.share_time 		as share_time
+		          from dms_folder f1, dms_share_info si1
+		         where f1.uuid = si1.data_uuid
+		           and f1.status = :status
+		           and si1.data_type = :folderDataType
+		           and exists (${userOrgIdsTemplate} u_ where si1.share_org_id like '%' || u_.org_id || '%')
+		        union all
+		        select f1.uuid          	as uuid,
+		               f1.file_name     	as name,
+		               f1.content_type  	as content_type,
+		               f1.file_size     	as file_size,
+		               f1.data_def_uuid 	as data_def_uuid,
+		               f1.data_uuid     	as data_uuid,
+		               f1.folder_uuid       as folder_uuid,
+		               f1.status        	as status,
+		               f1.creator       	as creator,
+		               f1.create_time   	as create_time,
+		               f1.modifier      	as modifier,
+		               f1.modify_time   	as modify_time,
+		               si1.uuid         	as share_uuid,
+		               si1.owner_id   		as owner_id,
+		               si1.share_org_id   	as share_org_id,
+		               si1.share_org_name   as share_org_name,
+		               si1.share_time   	as share_time
+		          from dms_file f1, dms_share_info si1
+		         where f1.uuid = si1.data_uuid
+		           and f1.status = :status
+		           and si1.data_type = :fileDataType
+		           and exists (${userOrgIdsTemplate} u_ where si1.share_org_id like '%' || u_.org_id || '%')
+		   ) t
+			 where 1 = 1
+		   		<if isNotBlank(whereSql)>
+		   			and ${whereSql}
+		   		</if>
+		   		<if isNotBlank(orderString)>
+		   			${orderString}
+		   		</if>
+	]]>
+    </sql-query>
+
+    <sql-query name="dmsFileShareWithMeListFolderAndFilesQuery">
+        <![CDATA[
+		select *
+		  from (select f1.uuid 				as uuid,
+		               f1.name 				as name,
+		               'application/folder'	as content_type,
+		               0 					as file_size,
+		               '' 					as data_def_uuid,
+		               '' 					as data_uuid,
+		               f1.parent_uuid		as folder_uuid,
+		               f1.status 			as status,
+		               f1.creator 			as creator,
+		               f1.create_time 		as create_time,
+		               f1.modifier 			as modifier,
+		               f1.modify_time 		as modify_time,
+		               si1.share_uuid 		as share_uuid,
+		               si1.owner_id   		as owner_id,
+		               si1.share_org_id   	as share_org_id,
+		               si1.share_org_name   as share_org_name,
+		               si1.share_time 		as share_time
+		          from dms_folder f1,
+		          		(select t1.uuid           as folder_uuid,
+		                       	t2.uuid           as share_uuid,
+		                       	t2.owner_id       as owner_id,
+		                       	t2.share_org_id   as share_org_id,
+		                       	t2.share_org_name as share_org_name,
+		                       	t2.share_time     as share_time
+		                  from dms_folder t1, dms_share_info t2
+		                 where t1.uuid_path like '%' || t2.data_uuid || '%'
+		                   and t1.status = :status
+		                   and t2.data_type = :folderDataType
+		                   and exists (${userOrgIdsTemplate} u_ where t2.share_org_id like '%' || u_.org_id || '%')
+		                   and t1.uuid = :folderUuid) si1
+		         where f1.parent_uuid = si1.folder_uuid
+		           and f1.status = :status
+		        union all
+		        select f1.uuid          	as uuid,
+		               f1.file_name     	as name,
+		               f1.content_type  	as content_type,
+		               f1.file_size     	as file_size,
+		               f1.data_def_uuid 	as data_def_uuid,
+		               f1.data_uuid     	as data_uuid,
+		               f1.folder_uuid	  	as folder_uuid,
+		               f1.status        	as status,
+		               f1.creator       	as creator,
+		               f1.create_time   	as create_time,
+		               f1.modifier      	as modifier,
+		               f1.modify_time   	as modify_time,
+		               si1.share_uuid      	as share_uuid,
+		               si1.owner_id   		as owner_id,
+		               si1.share_org_id   	as share_org_id,
+		               si1.share_org_name   as share_org_name,
+		               si1.share_time   	as share_time
+		          from dms_file f1,
+		          		(select t1.uuid           as folder_uuid,
+		                       	t2.uuid           as share_uuid,
+		                       	t2.owner_id       as owner_id,
+		                       	t2.share_org_id   as share_org_id,
+		                       	t2.share_org_name as share_org_name,
+		                       	t2.share_time     as share_time
+		                  from dms_folder t1, dms_share_info t2
+		                 where t1.uuid_path like '%' || t2.data_uuid || '%'
+		                   and t1.status = :status
+		                   and t2.data_type = :folderDataType
+		                   and exists (${userOrgIdsTemplate} u_ where t2.share_org_id like '%' || u_.org_id || '%')
+		                   and t1.uuid = :folderUuid) si1
+		         where f1.folder_uuid = si1.folder_uuid
+		           and f1.status = :status
+		   ) t
+			 where 1 = 1
+		   		<if isNotBlank(whereSql)>
+		   			and ${whereSql}
+		   		</if>
+		   		<if isNotBlank(orderString)>
+		   			${orderString}
+		   		</if>
+	]]>
+    </sql-query>
+</hibernate-mapping>

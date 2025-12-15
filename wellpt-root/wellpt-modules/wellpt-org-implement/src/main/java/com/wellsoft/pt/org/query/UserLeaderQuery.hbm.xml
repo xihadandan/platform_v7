@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="getUserSuperiorLeader">
+        <![CDATA[
+		/* 3、人员-上级领导 */
+		select t1.uuid       as uuid,
+		       t1.id         as id,
+		       t1.user_name  as user_name,
+		       t1.login_name as login_name
+		  from org_user t1
+		 where exists (select 1
+		          from org_user_leader t2
+		         where t1.uuid = t2.leader_uuid
+		  			<if isNotBlank(orgId)>
+		   				and t2.org_id = :orgId
+					</if>
+		           and exists (select t3.uuid
+		                  from org_user t3
+		                 where t2.user_uuid = t3.uuid
+		                   and t3.id = :userId))
+	]]>
+    </sql-query>
+
+    <sql-query name="getJobPrincipal">
+        <![CDATA[
+		/* 4、职位-职位汇报对象 */
+		select t1.org_id as org_id
+		  from org_job_principal t1
+		 inner join org_job t2
+		    on t1.job_uuid = t2.uuid
+		 where 1 = 1
+			<if isNotBlank(orgId)>
+		   		and t2.org_id = :orgId
+			</if>
+		   and exists (select t3.uuid
+		          from org_user_job t3
+		         inner join org_user t4
+		            on t3.user_uuid = t4.uuid
+		         where t3.job_uuid = t2.uuid
+		           and t4.id = :userId)
+	]]>
+    </sql-query>
+    <sql-query name="getJobReportLeader">
+        <![CDATA[
+		/* 4、职位-职位汇报对象 */
+		select distinct uuid       as uuid,
+		                id         as id,
+		                user_name  as user_name,
+		                login_name as login_name
+		  from (select t1.uuid       as uuid,
+		               t1.id         as id,
+		               t1.user_name  as user_name,
+		               t1.login_name as login_name
+		          from org_user t1
+		          inner join org_user_job t2
+		            on t1.uuid = t2.user_uuid
+		          inner join org_job t3
+		            on t2.job_uuid = t3.uuid
+		         where t1.enabled = 1
+		           and t3.id in (:jobIds)
+		           <if isNotBlank(excludeUserId)>
+						and t1.id <> :excludeUserId
+				   </if>
+		        union all
+		        select t4.uuid       as uuid,
+		               t4.id         as id,
+		               t4.user_name  as user_name,
+		               t4.login_name as login_name
+		          from org_user t4
+		         where t4.id in (:userIds)
+		           <if isNotBlank(excludeUserId)>
+						 and t4.id <> :excludeUserId
+				   </if>
+		          )
+	]]>
+    </sql-query>
+
+    <sql-query name="getUserDepartmentByUserIdAndOrgId">
+        <![CDATA[
+		/* 获取用户所在部门 */
+		select t1.uuid        as uuid,
+			   t1.id          as id,
+		       t1.name        as name,
+		       t1.path        as path
+		  from org_department t1
+		  inner join org_department_user_job t2
+		    on t1.uuid = t2.department_uuid
+		  inner join org_user t3
+		    on t2.user_uuid = t3.uuid
+		 where t3.id = :userId
+		   	<if isNotBlank(orgId)>
+		   		and t1.org_id = :orgId
+			</if>
+	]]>
+    </sql-query>
+
+    <sql-query name="getDepartmentLeader">
+        <![CDATA[
+		/* 获取用户所在部门 */
+		select t1.uuid as uuid, t1.type as type, t1.org_id as org_id
+		  from org_dept_principal t1
+		 inner join org_department t2
+		    on t1.department_uuid = t2.uuid
+		 where t2.id = :departmentId
+		   and t1.type in (:types)
+	]]>
+    </sql-query>
+</hibernate-mapping>

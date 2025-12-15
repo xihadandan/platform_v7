@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:tns="http://localhost:8080/s-mas" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  name="SmsWebService"
+                  targetNamespace="http://localhost:8080/s-mas">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://localhost:8080/s-mas"
+                   targetNamespace="http://localhost:8080/s-mas" version="1.0">
+            <xs:complexType name="MoResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="returnMoCount" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="returnMoList" type="tns:Sms"/>
+                    <xs:element minOccurs="0" name="returnStateCode" type="xs:string"/>
+                    <xs:element minOccurs="0" name="returnStateIntro" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Sms">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="sn" type="xs:string"/>
+                    <xs:element minOccurs="0" name="smsId" type="xs:string"/>
+                    <xs:element minOccurs="0" name="spNumber" type="xs:string"/>
+                    <xs:element minOccurs="0" name="phoneNumber" type="xs:string"/>
+                    <xs:element minOccurs="0" name="content" type="xs:string"/>
+                    <xs:element minOccurs="0" name="createTime" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MtResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="returnMtCount" type="xs:string"/>
+                    <xs:element minOccurs="0" name="returnStateCode" type="xs:string"/>
+                    <xs:element minOccurs="0" name="returnStateIntro" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RptResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="returnRptCount" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="returnRptList" type="tns:Rpt"/>
+                    <xs:element minOccurs="0" name="returnStateCode" type="xs:string"/>
+                    <xs:element minOccurs="0" name="returnStateIntro" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Rpt">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="sn" type="xs:string"/>
+                    <xs:element minOccurs="0" name="smsId" type="xs:string"/>
+                    <xs:element minOccurs="0" name="phoneNumber" type="xs:string"/>
+                    <xs:element minOccurs="0" name="stateCode" type="xs:string"/>
+                    <xs:element minOccurs="0" name="stateIntro" type="xs:string"/>
+                    <xs:element minOccurs="0" name="createTime" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="sendMtResponse">
+        <wsdl:part name="mtResult" type="tns:MtResult">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="sendMt">
+        <wsdl:part name="username" type="xsd:string">
+        </wsdl:part>
+        <wsdl:part name="password" type="xsd:string">
+        </wsdl:part>
+        <wsdl:part name="phoneNumbers" type="xsd:string">
+        </wsdl:part>
+        <wsdl:part name="smsContent" type="xsd:string">
+        </wsdl:part>
+        <wsdl:part name="smsId" type="xsd:string">
+        </wsdl:part>
+        <wsdl:part name="sendTime" type="xsd:string">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="recvMoResponse">
+        <wsdl:part name="moResult" type="tns:MoResult">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="recvRptResponse">
+        <wsdl:part name="rptResult" type="tns:RptResult">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="recvRpt">
+        <wsdl:part name="username" type="xsd:string">
+        </wsdl:part>
+        <wsdl:part name="password" type="xsd:string">
+        </wsdl:part>
+        <wsdl:part name="amount" type="xsd:string">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="recvMo">
+        <wsdl:part name="username" type="xsd:string">
+        </wsdl:part>
+        <wsdl:part name="password" type="xsd:string">
+        </wsdl:part>
+        <wsdl:part name="amount" type="xsd:string">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="SmsWebService">
+        <wsdl:operation name="recvMo">
+            <wsdl:input message="tns:recvMo" name="recvMo">
+            </wsdl:input>
+            <wsdl:output message="tns:recvMoResponse" name="recvMoResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="sendMt">
+            <wsdl:input message="tns:sendMt" name="sendMt">
+            </wsdl:input>
+            <wsdl:output message="tns:sendMtResponse" name="sendMtResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="recvRpt">
+            <wsdl:input message="tns:recvRpt" name="recvRpt">
+            </wsdl:input>
+            <wsdl:output message="tns:recvRptResponse" name="recvRptResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SmsWebServiceSoapBinding" type="tns:SmsWebService">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="recvMo">
+            <soap:operation soapAction="http://localhost:8080/s-mas/recvMo" style="rpc"/>
+            <wsdl:input name="recvMo">
+                <soap:body namespace="http://localhost:8080/s-mas" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="recvMoResponse">
+                <soap:body namespace="http://localhost:8080/s-mas" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="recvRpt">
+            <soap:operation soapAction="http://localhost:8080/s-mas/recvRpt" style="rpc"/>
+            <wsdl:input name="recvRpt">
+                <soap:body namespace="http://localhost:8080/s-mas" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="recvRptResponse">
+                <soap:body namespace="http://localhost:8080/s-mas" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="sendMt">
+            <soap:operation soapAction="http://localhost:8080/s-mas/sendMt" style="rpc"/>
+            <wsdl:input name="sendMt">
+                <soap:body namespace="http://localhost:8080/s-mas" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="sendMtResponse">
+                <soap:body namespace="http://localhost:8080/s-mas" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SmsWebService">
+        <wsdl:port binding="tns:SmsWebServiceSoapBinding" name="SmsWebServicePort">
+            <soap:address location="http://10.1.2.171:8080/webservice/SmsWebService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,395 @@
+<div class="container-fluid">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#basic_di_info" aria-controls="basic_di_info" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+    </li>
+    <li role="presentation">
+      <a href="#di_source_endpoint_def" aria-controls="di_source_endpoint_def" role="tab" data-toggle="tab" aria-expanded="true">
+        数据源端点定义
+      </a>
+    </li>
+
+    <li role="presentation">
+      <a href="#di_processor_def" aria-controls="di_processor_def" role="tab" data-toggle="tab" aria-expanded="true">数据处理过程</a>
+    </li>
+
+    <li role="presentation">
+      <a href="#di_target_endpoint_def" aria-controls="di_target_endpoint_def" role="tab" data-toggle="tab" aria-expanded="true">
+        数据靶向端点定义
+      </a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="basic_di_info" style="padding-top: 10px">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label required">名称</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" id="name" name="name" />
+            <input type="hidden" id="uuid" name="uuid" />
+          </div>
+          <div class="col-sm-3">
+            <input type="checkbox" id="isEnable" name="isEnable" value="1" style="margin-top: 4px" />
+            <label for="isEnable">启用</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id" class="col-sm-2 control-label">ID</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="id" name="id" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">执行方式</label>
+          <div class="col-sm-10">
+            <label class="radio-inline">
+              <input type="radio" name="executeType" id="timeIntervalType" value="executeType_timeInterval" />
+              间隔时间
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="executeType" id="jobType" value="executeType_job" />
+              定时任务
+            </label>
+          </div>
+        </div>
+        <div class="form-group executeType executeType_timeInterval" style="display: none">
+          <label for="id" class="col-sm-2 control-label">间隔时间</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <input type="text" class="form-control" id="timeInterval" name="timeInterval" />
+              <span class="input-group-addon">秒</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group executeType executeType_job" style="display: none">
+          <label for="id" class="col-sm-2 control-label">定时任务</label>
+          <div class="col-sm-10">
+            <input type="hidden" class="form-control" id="jobUuid" name="jobUuid" />
+            <span class="help-block">
+              注意：定时任务只能是类名为
+              <var>数据交换路由执行任务</var>
+              的任务
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-3">
+            <select id="diRedeliveryTypeSelect" class="form-control" style="width: 131px">
+              <option value="redeliveryType_timeInterval">异常重试间隔</option>
+              <option value="redeliveryType_pattern">异常重试规则</option>
+            </select>
+          </div>
+          <div class="col-sm-9 redeliveryType redeliveryType_timeInterval" style="display: none">
+            <div class="col-sm-6">
+              <div class="input-group">
+                <input type="text" class="form-control" id="redeliveryInterval" name="redeliveryInterval" />
+                <span class="input-group-addon">秒</span>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="input-group">
+                <span class="input-group-addon">重试</span>
+                <input type="text" class="form-control" id="redeliveryMaximum" name="redeliveryMaximum" />
+                <span class="input-group-addon">次</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-9 redeliveryType redeliveryType_pattern" style="display: none">
+            <input type="text" class="form-control" id="redeliveryRulePattern" name="redeliveryRulePattern" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane form-horizontal" id="di_source_endpoint_def" style="padding-top: 10px">
+      <div class="form-group">
+        <label for="id" class="col-sm-2 control-label">来源类型</label>
+        <div class="col-sm-10">
+          <input type="hidden" class="form-control" id="sourceType" name="sourceType" />
+          <input type="hidden" id="sourceUuid" />
+        </div>
+      </div>
+      <div id="DIC_sourceDefinition">
+        <div style="display: none" src-type="file">
+          <div class="form-group">
+            <label for="filePath" class="col-sm-2 control-label">文件读取路径</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="filePath" name="filePath" edpp />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="successPath" class="col-sm-2 control-label">成功备份路径</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="successPath" name="successPath" edpp />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="failPath" class="col-sm-2 control-label">失败备份路径</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="failPath" name="failPath" edpp />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="filePath" class="col-sm-2 control-label">匹配文件</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="include" edpp />
+            </div>
+          </div>
+        </div>
+        <div style="display: none" src-type="ftp">
+          <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">账号</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="username" name="username" edpp />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="password" name="password" edpp />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ftpServer" class="col-sm-2 control-label">服务器地址</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="ftpServer" name="ftpServer" edpp />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="filePath" class="col-sm-2 control-label">匹配文件</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="include" edpp />
+            </div>
+          </div>
+        </div>
+
+        <div style="display: none" src-type="datastore">
+          <div class="form-group">
+            <label for="dataStoreId" class="col-sm-2 control-label">数据仓库</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="form-control" id="dataStoreId" name="dataStoreId" edpp />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="uuidColumn" class="col-sm-2 control-label">唯一值字段</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="form-control" id="uuidColumn" name="uuidColumn" edpp />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="timeColumn" class="col-sm-2 control-label">数据时间字段</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="form-control" id="timeColumn" name="timeColumn" edpp />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="limit" class="col-sm-2 control-label">一次读取行数</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="limit" name="limit" placeholder="默认100条" edpp />
+            </div>
+          </div>
+        </div>
+
+        <div style="display: none" src-type="table-data-change">
+          <div class="form-group">
+            <label for="filePath" class="col-sm-2 control-label">数据库表</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="form-control" id="tableName" name="tableName" edpp />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="filePath" class="col-sm-2 control-label">每次读取数目限制</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="limit" edpp />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="di_processor_def" style="padding-top: 10px">
+      <div id="div_processor_def_toolbar" class="btn-group btn_processor_def_info">
+        <button id="btn_add_processor_def" type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          新增
+        </button>
+        <button id="btn_delete_processor_def" type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          删除
+        </button>
+        <button id="btn_row_up_processor_def" type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+          上移
+        </button>
+        <button id="btn_row_down_processor_def" type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+          下移
+        </button>
+      </div>
+      <table id="table_processor_def_info" class="table" data-height="430"></table>
+    </div>
+
+    <div role="tabpanel" class="tab-pane form-horizontal" id="di_target_endpoint_def" style="padding-top: 10px">
+      <div class="form-group">
+        <label for="id" class="col-sm-2 control-label">类型</label>
+        <div class="col-sm-10">
+          <input type="hidden" class="form-control" id="targetType" name="targetType" />
+          <input type="hidden" id="targetUuid" />
+        </div>
+      </div>
+      <div id="DIC_targetDefinition">
+        <div style="display: none" tar-type="file">
+          <div class="form-group">
+            <label for="filePath" class="col-sm-2 control-label">文件保存路径</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="filePath" edpp />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">文件名</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" name="fileName" edpp />
+            </div>
+            <div class="col-sm-1">
+              <button
+                class="btn btn-info"
+                role="button"
+                data-toggle="collapse"
+                href="#tarFileNameHelpBlock"
+                aria-expanded="true"
+                aria-controls="tarFileNameHelpBlock"
+              >
+                帮助
+              </button>
+            </div>
+          </div>
+          <div class="col-sm-offset-2 collapse out" id="tarFileNameHelpBlock" aria-expanded="true">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>文件名支持表达式</th>
+                  <th>说明</th>
+                </tr>
+              </thead>
+              <tr>
+                <td><code>${file:onlyname}</code></td>
+                <td>引用文件名</td>
+              </tr>
+              <tr>
+                <td><code>${file:ext}</code></td>
+                <td>引用文件后缀名</td>
+              </tr>
+              <tr>
+                <td><code>${file:onlyname.noext}</code></td>
+                <td>引用文件名（排除后缀）</td>
+              </tr>
+              <tr>
+                <td><code>${date:now:yyyy年MM月dd日HH时mm分ss秒}</code></td>
+                <td>时间表达</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div style="display: none" tar-type="ftp">
+          <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">账号</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="username" edpp />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="password" edpp />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ftpServer" class="col-sm-2 control-label">服务器地址</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="ftpServer" edpp />
+            </div>
+          </div>
+        </div>
+
+        <div style="display: none" tar-type="hb-save">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">JDBC URL</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="url" edpp />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">用户名</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="username" edpp />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="password" edpp />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">hibernate属性</label>
+            <div class="col-sm-10">
+              <div id="div_hibernate_properties_toolbar" class="btn-group btn_hibernate_properties_info">
+                <button id="btn_add_hibernate_properties" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  新增
+                </button>
+                <button id="btn_delete_hibernate_properties" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  删除
+                </button>
+              </div>
+              <table id="table_hibernate_properties_info" class="table" data-height="430"></table>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">表名</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="tableName" edpp />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">动态实体类定义</label>
+            <div class="col-sm-10">
+              <div id="div_dynamic_entity_toolbar" class="btn-group btn_dynamic_entity_info">
+                <button id="btn_add_dynamic_entity" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  新增
+                </button>
+                <button id="btn_delete_dynamic_entity" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  删除
+                </button>
+              </div>
+              <table id="table_dynamic_entity_info" class="table" data-height="430"></table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">执行回调</label>
+        <div class="col-sm-8">
+          <input type="hidden" class="form-control" name="callbackClass" id="callbackClass" />
+        </div>
+        <div class="col-sm-2">
+          <input type="checkbox" id="isAsyncCallback" name="isAsyncCallback" value="1" style="margin-top: 4px" />
+          <label for="isAsyncCallback">异步</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 80px">
+      <div class="col-sm-12 text-center">
+        <button class="btn btn-primary" id="btn_save_di_config">保存</button>
+      </div>
+    </div>
+  </div>
+</div>

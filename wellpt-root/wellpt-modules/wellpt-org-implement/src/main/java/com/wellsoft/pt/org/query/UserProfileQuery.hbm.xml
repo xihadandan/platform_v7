@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="userProfileQuery">
+        <![CDATA[
+		select user.uuid as uuid,
+			user.id as user_id,
+			user.loginName as login_name,
+			user.userName as user_name,
+			user.lastLoginTime as last_login_time,
+			user.mobilePhone as mobile_phone,
+			user.officePhone as office_phone,
+			user.mainEmail as email,
+			user.fax as fax,
+			user.sex as sex,
+			user.photoUuid as photo_uuid,
+			user.issys as is_admin,
+			user.isAllowedBack as is_allowed_back,
+			department.id as department_id,
+			department.name as department_name,
+			department.path as department_path,
+			user.majorJobName as job_name
+		from User user left join user.departmentUsers departmentUser
+		left join departmentUser.department department
+		where user.id = :userId and departmentUser.isMajor = true
+	]]>
+    </sql-query>
+</hibernate-mapping>

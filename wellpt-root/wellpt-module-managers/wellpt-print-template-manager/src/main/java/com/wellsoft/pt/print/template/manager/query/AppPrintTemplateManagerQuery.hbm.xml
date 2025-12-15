@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <!--模块打印模板查询-->
+    <sql-query name="appPrintTemplateManagerQuery">
+        <![CDATA[
+    select t1.* from (
+    select t1.uuid                  as uuid,
+           t1.create_time           as create_time,
+           t1.creator               as creator,
+           t1.modifier              as modifier,
+           t1.modify_time           as modify_time,
+           t1.rec_ver               as rec_ver,
+           t1.name                  as name,
+           t1.id                    as id,
+           t1.code                  as code,
+           t1.category              as category,
+		   c.name                   as category_name,
+           t1.version               as version,
+           t1.system_unit_id        as system_unit_id,
+           t1.module_id             as module_id,
+           t7.max_version_ptpt_uuid as max_version_ptpt_uuid,
+           0                        as is_ref
+      from CD_PRINT_TEMPLATE t1
+      left join (select t5.uuid as max_version_ptpt_uuid, t5.id, t5.version
+                   from CD_PRINT_TEMPLATE t5,
+                        (select max(t4.version) as version, t4.id
+                           from CD_PRINT_TEMPLATE t4
+                          group by t4.id) t6
+                  where t5.id = t6.id
+                    and t5.version = t6.version) t7
+        on t1.id = t7.id
+       and t1.version <> t7.version
+       left join CD_PRINT_TEMPLATE_CATEGORY c on c.uuid = t1.category
+     where 1=1
+        <if categoryUuidList??>
+	       and t1.category in (:categoryUuidList)
+	    </if>
+        <if moduleId??>
+        and t1.module_id=:moduleId
+		 </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+
+    union
+
+    select t1.uuid                  as uuid,
+           t1.create_time           as create_time,
+           t1.creator               as creator,
+           t1.modifier              as modifier,
+           t1.modify_time           as modify_time,
+           t1.rec_ver               as rec_ver,
+           t1.name                  as name,
+           t1.id                    as id,
+           t1.code                  as code,
+           t1.category              as category,
+           c.name                   as category_name,
+           t1.version               as version,
+           t1.system_unit_id        as system_unit_id,
+           t1.module_id             as module_id,
+           ''                       as max_version_ptpt_uuid,
+           1 as is_ref
+      from CD_PRINT_TEMPLATE t1
+      inner join CD_PRINT_TEMPLATE_REF rr on rr.ref_uuid = t1.uuid
+      left join CD_PRINT_TEMPLATE_CATEGORY c on t1.category = c.uuid
+      where 1=1
+        <if categoryUuidList??>
+	       and t1.category in (:categoryUuidList)
+	    </if>
+        <if moduleId??>
+             and rr.module_id=:moduleId
+             and t1.module_id<>:moduleId
+         </if>
+         <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+          ) t1
+        <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+
+    ]]>
+
+
+    </sql-query>
+
+
+</hibernate-mapping>

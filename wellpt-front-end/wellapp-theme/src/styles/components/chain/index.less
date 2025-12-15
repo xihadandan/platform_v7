@@ -1,0 +1,80 @@
+/*  级联下拉框 */
+
+.chained-wrapper {
+  // 可编辑、只读
+  input[readonly]:not([disabled]) {
+    background-color: #fff !important;
+    cursor: default;
+    color: #666;
+  }
+
+  // 不可编辑
+  input[disabled] {
+    color: @disabled-text-color;
+    background: @background-light !important;
+    cursor: not-allowed;
+  }
+}
+
+.td-buttons {
+  .btn {
+    position: relative;
+    display: inline-block;
+    min-width: @btn-min-width;
+    height: @btn-height-base;
+    line-height: @btn-height-base - 2 * @btn-border-width-base;
+    padding: 0 @btn-padding;
+    margin-right: 10px;
+    margin-bottom: 0;
+    vertical-align: middle;
+    font-size: @btn-font-size;
+    font-weight: @btn-font-weight;
+    text-align: center;
+    white-space: nowrap;
+    touch-action: manipulation;
+    user-select: none;
+    border: @btn-border-width-base solid transparent;
+    border-radius: @btn-border-radius;
+    text-decoration: none !important;
+    outline: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn-sm {
+    height: @btn-sm-height;
+    padding: 0 @btn-sm-padding;
+    line-height: @btn-sm-height - 2 * @btn-border-width-base;
+    font-size: @btn-sm-font-size;
+    min-width: 55px;
+  }
+
+  .btn-primary {
+    color: @btn-primary-font-color;
+    background-color: @btn-primary-background-color;
+    border-color: @btn-primary-border-color;
+
+    &:hover {
+      color: @btn-primary-hover-font-color;
+      background-color: @btn-primary-hover-background-color;
+      border-color: @btn-primary-hover-border-color;
+    }
+  }
+
+  .btn-danger {
+    color: @btn-danger-font-color;
+    background-color: @btn-danger-background-color;
+    border-color: @btn-danger-border-color;
+
+    &:hover {
+      color: @btn-danger-hover-font-color;
+      background-color: @btn-danger-hover-background-color;
+      border-color: @btn-danger-hover-border-color;
+    }
+  }
+
+  .btn-group > .btn {
+    margin-right: 0;
+  }
+}

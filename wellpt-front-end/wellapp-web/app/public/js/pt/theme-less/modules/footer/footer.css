@@ -1,0 +1,24 @@
+.ui-wFooter {
+  position: absolute;
+  bottom: 0;
+  left: 0 ;
+  width: 100%;
+  z-index: 10;
+  height: 40px;
+  line-height: 40px;
+}
+.ui-wFooter p {
+  margin: 0;
+}
+.ui-wFooter .help-info {
+  margin: 0;
+}
+.ui-wFooter .help-info a {
+  line-height: 30px;
+}
+.ui-wFooter .help-info .glyphicon:before {
+  padding-right: 5px;
+}
+.ui-wFooter .help-info .fa {
+  text-decoration: none;
+}

@@ -1,0 +1,119 @@
+
+<style>
+    .minicolors-theme-default.minicolors,.minicolors-theme-default .minicolors-input {
+        width: 100%;
+    }
+    .minicolors-theme-default .minicolors-input {
+        height: inherit;
+    }
+    .select2-drop {
+        z-index: 999999;
+    }
+</style>
+<div id="widget_carousel" class="widget_component">
+    <form id="widget_carousel_tabs_form" class="form-horizontal">
+        <div id="widget_carousel_tabs">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#widget_carousel_base_info">基础配置</a>
+                </li>
+                <li role="presentation">
+                    <a href="#widget_carousel_item_config">轮播图配置</a>
+                </li>
+            </ul>
+            <div class="tab-content" style="height: 500px">
+                <div role="tabpanel" class="tab-pane active"
+                     id="widget_carousel_base_info">
+                    <div class="form-group">
+                        <label for="carousel_name" class="col-sm-2 control-label">名称<font color="red">*</font></label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control w-configurer-option"
+                                   name="carousel_name" id="carousel_name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="carousel_height" class="col-sm-2 control-label">组件高度<font color="red">*</font></label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control w-configurer-option"
+                                   name="carousel_height" id="carousel_height" placeholder="单位默认px">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="carousel_interval" class="col-sm-2 control-label">轮播切换间隔<br>（单位为秒）</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control w-configurer-option"
+                                   name="carousel_interval" id="carousel_interval" placeholder="默认为5秒">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+                        <div class="col-sm-10">
+                            <input type="hidden" class="form-control w-configurer-option" name="jsModuleName" id="jsModuleName"/>
+                            <input type="text" class="form-control w-configurer-option" name="jsModule" id="jsModule"/>
+                        </div>
+                    </div>
+                    {% include "./widget_base_info.nj" %}
+                </div>
+                <div role="tabpanel" class="tab-pane w-tab-pane-table" id="widget_carousel_item_config">
+                    <div class="row navDataRow">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">轮播图子项</label>
+                            <div class="col-sm-10">
+                                <div class="row widget_example">
+                                    <div class="col-md-4">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary btn-sm" id="widget_carousel_add">添加</button>
+                                            <button type="button" class="btn btn-primary btn-sm" id="widget_carousel_remove">删除</button>
+                                        </div>
+                                        <ul id="widget_carousel_tree" class="ztree"></ul>
+                                    </div>
+                                    <div class="col-md-8" id="widget_carousel_form">
+                                        <div class="form-group">
+                                            <label for="carouselTree_name" class="col-sm-3 control-label">名称</label>
+                                            <div class="col-sm-9">
+                                                <input type="hidden" class="form-control w-nav-tree-option" name="carouselTree_uuid" id="carouselTree_uuid"/>
+                                                <input type="text" class="form-control w-nav-tree-option" name="carouselTree_name" id="carouselTree_name"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="carouselTree_filePath" class="col-sm-3 control-label">轮播图</label>
+                                            <div class="col-sm-9">
+                                                <input type="hidden" class="form-control w-configurer-option" name="carouselTree_filePath" id="carouselTree_filePath">
+                                                <img src="" alt="" class="img-responsive img-thumbnail" id="carouselTree_fileImage"
+                                                    style="max-width: 400px; max-height: 50px; background-color: #ddd;">
+                                                <button type="button" class="btn btn-primary" id="carouselFileImageSelectBtn">选择图片</button>
+                                                <button type="button" class="btn btn-danger" id="carouselFileImageRemoveBtn">删除</button>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="carouselTree_caption" class="col-sm-3 control-label">描述</label>
+                                            <div class="col-sm-9">
+                                                <textarea rows="3" class="form-control w-nav-tree-option" name="carouselTree_caption" id="carouselTree_caption"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="carouselTree_eventHandler_name" class="col-sm-3 control-label">事件处理</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control w-nav-tree-option" name="carouselTree_eventHandler_name"
+                                                       id="carouselTree_eventHandler_name"/>
+                                                <input type="hidden" class="form-control w-nav-tree-option" name="carouselTree_eventHandler_id"
+                                                       id="carouselTree_eventHandler_id"/>
+                                                <input type="hidden" class="form-control w-nav-tree-option" name="carouselTree_eventHandler_path"
+                                                       id="carouselTree_eventHandler_path"/>
+                                                <input type="hidden" class="form-control w-nav-tree-option" name="carouselTree_eventHandler_type"
+                                                       id="carouselTree_eventHandler_type"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group navBtnRow">
+                                            <button type="button" class="btn btn-primary btn-sm" id="carouselTree_save">保存</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

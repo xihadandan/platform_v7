@@ -1,0 +1,132 @@
+/** 文本输入框 */
+.radio-inline input,
+.checkbox-inline input,
+.radio-inline input[type='radio'],
+.checkbox-inline input[type='radio'],
+.radio-inline input[type='checkbox'],
+.checkbox-inline input[type='checkbox'] {
+  position: relative;
+  margin-right: 5px;
+}
+
+/** 表单输入错误 */
+.form-error {
+  border-color: @warning-color;
+}
+
+label.error {
+  color: @danger-color;
+  font-size: @font-size-base;
+  font-weight: normal;
+}
+
+.form-group .select2-choice {
+  height: 34px !important;
+}
+
+.form-group .select2-container {
+  padding: 0 !important;
+}
+
+.well-form {
+  margin-top: 20px;
+  width: 100%;
+
+  .well-form-label {
+    position: relative;
+    float: left;
+    width: 28%;
+    padding-top: 10px !important;
+    margin-bottom: 0;
+    line-height: 1;
+    font-size: @font-size-base;
+    color: @text-color-dark;
+    text-align: right;
+    vertical-align: middle;
+    box-sizing: border-box;
+
+    &.required:before {
+      content: '*';
+      display: inline-block;
+      margin-right: 4px;
+      line-height: 1;
+      font-family: SimSun;
+      font-size: @font-size-base;
+      color: @danger-color;
+    }
+
+    &::after {
+      content: '' !important;
+      margin: 0 8px 0 2px;
+      position: relative;
+      top: -1px;
+      box-sizing: border-box;
+      color: @text-color-dark !important;
+    }
+
+    &.no-suffix::after {
+      content: '' !important;
+    }
+  }
+
+  .well-form-control {
+    float: left;
+    width: 54%;
+    color: @text-color;
+
+    > span {
+      line-height: 35px;
+      .ui-wIcon {
+        color: @text-color-primary;
+      }
+    }
+  }
+
+  .well-form-right {
+    float: left;
+    padding: 0 10px;
+  }
+
+  .well-tag {
+    display: inline-block;
+    margin: 5px;
+    padding: 0 10px;
+    border: @border-default-light;
+    border-radius: 4px;
+    line-height: 30px;
+    font-size: @font-size-base;
+    color: @text-color;
+
+    &:hover {
+      color: @text-color-primary;
+      border: @border-default-primary;
+      cursor: pointer;
+    }
+
+    i {
+      margin-left: 5px;
+    }
+  }
+}
+
+.well-form.well-dialog-form {
+  margin-top: 0;
+
+  &.form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .well-form-label {
+    width: 120px !important;
+  }
+
+  .well-form-control {
+    width: calc(100% - 120px) !important;
+  }
+}
+
+// 行内元素去掉默认的边距
+.well-form-fontsize0 {
+  font-size: 0;
+}

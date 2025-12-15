@@ -1,0 +1,124 @@
+@import '../../variables/variables.less';
+@import '../../mixin/mixin.less';
+/*右侧办理流程弹窗*/
+.right-sidebar.sidebar-open {
+  right: 0;
+  background-color: #fff;
+  border-left: 0px solid #e7eaec;
+  border-top: 0px solid #e7eaec;
+  overflow: hidden;
+  position: fixed;
+  top: 67px; /*107*/
+  width: 458px !important;
+  z-index: 99;
+  -moz-box-shadow: -3px 0px 8px #888; /* 老的 Firefox */
+  box-shadow: -3px 0px 8px #888;
+}
+.right-sidebar-dakai {
+  z-index: 98;
+  width: 24px;
+  height: 50px;
+  background: url(images/dakai.jpg) center left no-repeat;
+  position: fixed;
+  top: 67px;
+  right: 0px;
+}
+.right-sidebar-dakai:hover {
+  background: url(images/dakai-hover.jpg) center left no-repeat;
+}
+.right-sidebar {
+  background-color: #fff;
+  border-left: 1px solid #e7eaec;
+  border-top: 1px solid #e7eaec;
+  overflow: hidden;
+  position: fixed;
+  top: 45px;
+  width: 260px !important;
+  z-index: 99;
+  bottom: 0;
+  right: -260px;
+  display: none;
+  .nav-tabs {
+    border-bottom: none;
+    text-align: center;
+    font-size: 16px;
+    width: 220px;
+    height: 40px;
+    margin: 20px auto;
+    > li {
+      float: left;
+      width: 50%;
+      > a {
+        margin: 0 auto;
+        line-height: 40px;
+        border-radius: 0;
+        padding: 0px;
+        cursor: pointer;
+      }
+    }
+    > li.active > a {
+      margin: 0 auto;
+      line-height: 40px;
+      border-radius: 0;
+      padding: 0px;
+      cursor: pointer;
+    }
+  }
+  .liucheng-time {
+    width: 415px;
+    background: url('@{image-url-prefix}/liucheng-tagbg.@{theme-color}.jpg') center left no-repeat;
+    height: 36px;
+    line-height: 36px;
+    color: #fff;
+    padding-left: 86px;
+    margin-left: 24px;
+  }
+  .timeline-item:first-child .liucheng-time {
+    background: url('@{image-url-prefix}/liucheng1.@{theme-color}.jpg') center left no-repeat;
+  }
+  .liucheng-content {
+    width: 415px;
+    background: url('@{image-url-prefix}/liucheng-bg.@{theme-color}.jpg') center left;
+    min-height: 60px;
+    line-height: 1.8;
+    color: @fontBaseColor;
+    font-size: 14px;
+    padding: 20px 20px 0 86px;
+    margin-left: 24px;
+    .baidi {
+      background: #fff;
+      width: 344px;
+      height: 36px;
+      margin-left: -15px;
+      border-top: 20px #f5fafe solid;
+    }
+  }
+  .now {
+    .liucheng-time {
+      background: url('@{image-url-prefix}/liucheng2.@{theme-color}.jpg') center left no-repeat;
+    }
+  }
+  .liucheng-tongguo {
+    width: 415px;
+    background: url('@{image-url-prefix}/tongguo1.@{theme-color}.jpg') center left no-repeat;
+    height: 120px;
+    margin-left: 24px;
+  }
+  .liucheng-tongguo.pass {
+    width: 415px;
+    background: url('@{image-url-prefix}/tongguo2.@{theme-color}.jpg') center left no-repeat;
+  }
+  .guanbi {
+    z-index: 999;
+    width: 24px;
+    height: 50px;
+    background: url('images/guanbi.jpg') center left no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .guanbi:hover {
+    background: url(images/guanbi-hover.jpg) center left no-repeat;
+  }
+}
+/*右侧办理流程弹窗end*/

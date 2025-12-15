@@ -1,0 +1,27 @@
+// .vscode/launch.json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "debug wellapp-web",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}/wellapp-web",
+      "runtimeExecutable": "npm",
+      "windows": { "runtimeExecutable": "npm.cmd" },
+      "runtimeArgs": ["run", "debug"],
+      "console": "integratedTerminal",
+      "protocol": "auto",
+      "restart": true,
+      "port": 9229,
+      "autoAttachChildProcesses": true,
+      "env": {
+        // "H5_SERVER": "http://192.168.20.63:8080",
+        // "SERVER_DOMAIN": "http://192.168.20.63:7001",
+        // "EGG_MASTER_CLOSE_TIMEOUT": "120000",
+        // "EGG_APP_CLOSE_TIMEOUT": "120000",
+        // "EGG_AGENT_CLOSE_TIMEOUT": "120000"
+      }
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+<form action="" id="route_module_form" style="margin-top: 15px;">
+    <input type="hidden" id="uuid" name="uuid" />
+    <div class="well-form form-horizontal">
+        <div class="form-group">
+            <label class="well-form-label control-label">名称</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">ID</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="route_id" name="id">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">编号</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="code" name="code">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">源数据类型</label>
+            <div class="well-form-control">
+                <input name="fromTypeId" id="fromTypeId" name="fromTypeId"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">约束条件</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="restrain" name="restrain">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">目的方式</label>
+            <div class="well-form-control">
+                <input id="toType3" name="toType" class="toType" type="radio" value="type3" /><label for="toType3">仅由发件人指定的收件单位</label>
+                <input id="toType1" name="toType" class="toType" type="radio" value="type1" /><label for="toType1">直接选择收件单位</label>
+                <input id="toType2" name="toType" class="toType" type="radio" value="type2" /><label for="toType2">表单数据项指定收件单位</label>
+            </div>
+        </div>
+        <div class="form-group toIdClass">
+            <label class="well-form-label control-label">目的单位</label>
+            <div class="well-form-control">
+                <input id="toId" name="toId" type="hidden">
+                <input type="text" class="form-control" id="toName" name="toName">
+            </div>
+        </div>
+        <div class="form-group toFieldClass">
+            <label class="well-form-label control-label">目的对应字段</label>
+            <div class="well-form-control">
+                <input type="text" id="toField" name="toField"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label no-suffix"></label>
+            <div class="well-form-control">
+                <input id="toEmpty2" name="toEmpty" class="toEmpty" type="checkbox"/><label for="toEmpty2">允许目标单位为空</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">转换规则</label>
+            <div class="well-form-control">
+                <input type="hidden" id="transformId" name="transformId">
+                <input type="text" class="form-control" id="transformName" name="transformName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">重发次数</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="retransmissionNum" name="retransmissionNum">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">间隔秒数</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="interval" name="interval">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:30px;">
+        <div class="col-sm-12 text-center">
+            <button type="button" class="well-btn w-btn-primary" id="route_btn_save">保存</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <!--模块数据仓库查询-->
+    <sql-query name="messageQueueQuery">
+        <![CDATA[
+			select a.*
+			<if isNotBlank(isNeedAlais)>
+	            ,a.sent_time as send_time
+	         </if>
+			from (select *
+			 from ${table}
+			where 1 = 1
+			<if isNotBlank(name)>
+	            and name like '${name}'
+	         </if>
+	         <if isNotBlank(orderBy)>
+	         	${orderBy}
+	         </if>) a
+	     ]]>
+    </sql-query>
+
+
+</hibernate-mapping>

@@ -1,0 +1,80 @@
+<div id="business_book_wrap" style="margin-top: 15px">
+    <div class="pull-left" style="width:50%">
+        <div class="btn-group btn-group-top">
+            <button type="button" id="business_book_btn_unit" class="well-btn w-btn-primary">新增单位</button>
+            <button type="button" id="business_book_btn_category" class="well-btn w-btn-primary">新增分类</button>
+        </div>
+        <ul id="business_book_org_tree" class="ztree"></ul>
+    </div>
+    <div class="pull-left" style="width: 50%">
+        <form id="business_book_org_user_form">
+            <input type="hidden" id="business_book_uuid" name="uuid"/>
+            <input type="hidden" id="business_book_id" name="id"/>
+            <input type="hidden" id="business_book_parentUuid" name="parentUuid"/>
+            <input type="hidden" id="business_book_type" name="type"/>
+            <input type="hidden" id="business_book_businessCategoryUuid" name="businessCategoryUuid"/>
+
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#business_book_info" aria-controls="business_book_info" role="tab" data-toggle="tab"
+                       aria-expanded="true">基本信息</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="business_book_info" style="padding-top: 10px;">
+                    <div class="well-form form-horizontal">
+                        <div class="form-group">
+                            <label for="business_book_parentName" class="well-form-label control-label">父单位/级</label>
+                            <div class="well-form-control">
+                                <input type="text" class="form-control" id="business_book_parentName" name="parentName" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group business_book_unit">
+                            <label for="business_book_unit" class="well-form-label control-label">单位名称</label>
+                            <div class="well-form-control">
+                                <input type="hidden" class="form-control" id="business_book_unit" name="unit">
+                                <input type="hidden" class="form-control" id="business_book_unitValue" name="unitValue">
+                            </div>
+                        </div>
+                        <div class="form-group business_book_unit">
+                            <label for="business_book_deptValue" class="well-form-label control-label">部门名称</label>
+                            <div class="well-form-control">
+                                <input type="text" class="form-control" id="business_book_deptValue" name="deptValue">
+                                <input type="hidden" class="form-control" id="business_book_dept" name="dept">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="business_book_name" class="well-form-label control-label">名称</label>
+                            <div class="well-form-control">
+                                <input type="text" class="form-control" id="business_book_name" name="name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="business_book_code" class="well-form-label control-label required">编号</label>
+                            <div class="well-form-control">
+                                <input type="text" class="form-control" id="business_book_code" name="code">
+                            </div>
+                        </div>
+                        <div class="form-group" id="business_book_id_show" style="display: none;">
+                            <label class="well-form-label control-label">ID</label>
+                            <div class="well-form-control">
+                                <span name="business_book_id" style="margin-right: 2px;"></span>
+                                <i class="ui-wIcon iconfont icon-ptkj-fuzhi" id="copyid" title="复制ID"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:20px;">
+                <div class="col-sm-12 text-center">
+                    <button type="button" class="well-btn w-btn-primary" id="business_book_btn_save">保存</button>
+                    <button type="button" class="well-btn w-btn-danger" id="business_book_btn_delete">删除</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+
+</style>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=10">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="Cache-Control" content="no-store"/>
+        <meta http-equiv="Pragma" content="no-cache"/>
+        <meta http-equiv="Expires" content="0"/>
+        <meta name="google" value="notranslate">
+        <title></title>
+        {% for c in css %}
+            <link href="{{c.path}}" rel="stylesheet">
+        {% endfor %}
+    </head>
+
+    <body style="font-size: 12px; width: 250px; height: 420px;">
+        <input type="hidden" name="formUuid" id="formUuid" value="{{uuid}}"/>
+        <div id="dyform_designer_preview_parent_container" class="panel">
+            <div class="mui-content">
+                <div class="mui-scroll-wrapper">
+                    <div class="mui-scroll">
+                        <div id="dyform_designer_preview_container" class="mui-dyform"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+        <script type="text/javascript" src="{{helper.staticPrefix()}}/js/requirejs/require.min.js"></script>
+        <script>
+            window.ctx = '';
+            window.staticPrefix = '{{helper.staticPrefix()}}';
+            var WebApp = WebApp || {};
+            WebApp.environment = {};
+            WebApp.pageDefiniton = {};
+            WebApp.jsTemplates = {};
+            WebApp.currentUserAppData = {
+                "appPath": null,
+                "application": null,
+                "module": null,
+                "system": null,
+                "appFunctions": null,
+                "piUuid": null,
+                "moduleApps": null
+            };
+
+            WebApp.configJsModules={};
+            WebApp.environment = {};
+            WebApp.pageDefiniton = {};
+            WebApp.jsTemplates = {};
+            requirejs.onError = function (error) {
+                throw error;
+            }
+
+            requirejs.config({{ requirejsConfigJSON | safe }});
+
+            var userAgent = window
+                .navigator
+                .userAgent
+                .toLowerCase();
+            if (userAgent && userAgent.indexOf("chrome") > 0) {
+                require(["jquery"], function ($) {
+                    require([
+                        "jquery", "mui-DyformPreview", "mobile/mui/js/app/app"
+                    ], function ($, preview) {
+                        var formUuid = document
+                            .getElementById("formUuid")
+                            .value;
+                        preview.preview(formUuid, window.ctx);
+                    });
+                })
+            } else {
+                window.preview = function () {
+                    var container = document.querySelector("#dyform_designer_preview_container");
+                    if (container) {
+                        container.innerHTML = "<a>请使用Chrome浏览器打开</a>";
+                    }
+                }
+            }
+        </script>
+</html>

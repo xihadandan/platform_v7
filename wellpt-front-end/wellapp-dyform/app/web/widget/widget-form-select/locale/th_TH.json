@@ -1,0 +1,14 @@
+{
+  "WidgetFormSelect": {
+    "selectAll": "เลือกทั้งหมด",
+    "moveUp": "ย้ายขึ้น",
+    "moveDown": "ย้ายลง",
+    "delete": "ลบ",
+    "add": "เพิ่ม",
+    "more": "เพิ่มเติม",
+    "expand": "ขยาย",
+    "collapse": "พับเก็บ",
+    "selectedMin": "กรุณาเลือกอย่างน้อย {min} รายการ",
+    "selectedMax": "เลือกได้สูงสุด {max} รายการ"
+  }
+}

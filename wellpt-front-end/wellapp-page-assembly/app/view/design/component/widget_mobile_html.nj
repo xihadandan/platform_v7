@@ -1,0 +1,45 @@
+<div id="widget_html">
+  <form id="widget_html_form" class="form-horizontal">
+    <div id="widget_html_tabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#widget_html_tabs_base_info">基础信息</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_html_tabs_content_info">内容信息</a>
+        </li>
+      </ul>
+      <div class="tab-content" style="height: 500px">
+        <div role="tabpanel" class="tab-pane active" id="widget_html_tabs_base_info">
+          <div class="form-group">
+            <label for="text" class="col-sm-2 control-label">名称</label>
+            <div class="col-sm-10">
+              <input type="text" id="text" name="text" class="form-control w-configurer-option"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+            <div class="col-sm-10">
+              <input id="jsModule" name="jsModule" type="text" class="form-control w-configurer-option"/>
+              <input id="jsModuleName" name="jsModuleName" type="hidden" class="form-control w-configurer-option"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="twoOpenView" class="col-sm-2 control-label">二开组件名</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" name="twoOpenView" id="twoOpenView">
+            </div>
+          </div>
+          {% include "./widget_base_info.nj" %}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="widget_html_tabs_content_info">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <textarea id='wHtml_content' name='wHtml_content' cols='50' rows='10'/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

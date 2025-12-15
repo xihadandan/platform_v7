@@ -1,0 +1,81 @@
+<div id="widget_html">
+  <form id="widget_html_form" class="form-horizontal">
+    <div id="widget_html_tabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#widget_html_tabs_base_info">基础信息</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_html_tabs_content_info">轮播图片</a>
+        </li>
+      </ul>
+      <div class="tab-content" style="height: 500px">
+        <div role="tabpanel" class="tab-pane active" id="widget_html_tabs_base_info">
+          <div class="form-group">
+            <label for="text" class="col-sm-2 control-label">名称</label>
+            <div class="col-sm-10">
+              <input type="text" id="text" name="text" class="form-control w-configurer-option"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="text" class="col-sm-2 control-label">轮播图高度</label>
+            <div class="col-sm-10">
+              <input type="text" id="sliderHeight" name="sliderHeight" class="form-control w-configurer-option"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="text" class="col-sm-2 control-label">是否定时轮播</label>
+            <div class="col-sm-10 checkbox">
+              <input type="checkbox" id="isLoop" name="isLoop" class="form-control w-configurer-option"/>
+              <label for="isLoop">是</label>
+            </div>
+          </div>
+          <div class="form-group" style="display:none;" id="loop-time">
+            <label for="text" class="col-sm-2 control-label">轮播定时时间</label>
+            <div class="col-sm-10">
+              <input type="text" id="time" name="time" class="form-control w-configurer-option"/>
+            </div>
+          </div>
+          {# <div style="display:none;" id="dot_style"> #}
+          <div class="form-group">
+            <label for="dotMode" class="col-sm-2 control-label">指示点</label>
+            <div class="col-sm-10">
+              <input type="text" id="dotMode" name="dotMode" class="form-control w-configurer-option"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="dotSelColorContainer" class="col-sm-2 control-label">当前指示点颜色</label>
+            <div class="col-sm-10" id="dotSelColorContainer"></div>
+          </div>
+          <div class="form-group">
+            <label for="dotColorContainer" class="col-sm-2 control-label">指示点颜色</label>
+            <div class="col-sm-10" id="dotColorContainer"></div>
+          </div>
+          <div class="form-group">
+            <label for="dotPosition" class="col-sm-2 control-label">指示点位置</label>
+            <div class="col-sm-10 checkbox">
+              <input type="checkbox" id="dotPosition" name="dotPosition" class="form-control w-configurer-option"/>
+              <label for="dotPosition">在内容下方</label>
+            </div>
+          </div>
+          {# </div> #}
+          <div class="form-group">
+						<label for="uniJsModule" class="col-sm-2 control-label">uni-app二开组件名</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option" name="uniJsModule" id="uniJsModule">
+						</div>
+					</div>
+          {% include "./widget_base_info.nj" %}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="widget_html_tabs_content_info">
+          <div class="form-group">
+            <label for="slider-sliderItems" class="col-sm-0 control-label"></label>
+            <div class="col-sm-12">
+              <div class="slider-sliderItems"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

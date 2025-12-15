@@ -1,0 +1,561 @@
+<div id="widget_left_sidebar" class="widget_component">
+  <form id="widget_left_sidebar_form" class="form-horizontal">
+    <div id="widget_left_sidebar_tabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#widget_left_sidebar_tabs_base_info">基础信息</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_left_sidebar_tabs_nav_info">导航信息</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_left_sidebar_tabs_nav_js_event_info">导航事件</a>
+        </li>
+      </ul>
+
+      <div class="tab-content" style="height: 500px">
+        <div role="tabpanel" class="tab-pane active" id="widget_left_sidebar_tabs_base_info">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">导航可选操作</label>
+            <div class="col-sm-10 checkbox">
+              <div class="inline">
+                <input type="checkbox" class="w-configurer-option w-checkbox" value="true" name="isShowRoot" id="isShowRoot" checked="checked"/>
+                <label for="isShowRoot" >显示根节点</label>
+              </div>
+
+              <div class="inline">
+                <input type="checkbox" class="w-configurer-option w-checkbox" value="true" name="initExpend" id="initExpend"/>
+                <label for="initExpend">初始化展开</label>
+              </div>
+
+              <div class="inline">
+                <input type="checkbox" class="w-configurer-option w-checkbox" value="true" name="autoToggle" id="autoToggle"/>
+                <label for="autoToggle">自动折叠</label>
+              </div>
+
+              <div class="inline">
+                <input type="checkbox" class="w-configurer-option w-checkbox" value="true" name="isTelescopicNav" id="isTelescopicNav"/>
+                <label for="isTelescopicNav">伸缩式导航</label>
+              </div>
+
+              <div class="inline">
+                <input type="checkbox" class="w-configurer-option w-checkbox" value="true" name="thumbnailNav" id="thumbnailNav"/>
+                <label for="thumbnailNav">生成缩略导航</label>
+              </div>
+
+              <div class="inline">
+                <input type="checkbox" class="w-configurer-option w-checkbox" value="true" name="firstNavView" id="firstNavView"/>
+                <label for="firstNavView">默认展示第一项导航视图</label>
+              </div>
+
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">导航模块名称</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" name="moduleText" id="moduleText" placeholder="不填默认不显示">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="form-control w-configurer-option" name="jsModuleName" id="jsModuleName"/>
+              <input type="text" class="form-control w-configurer-option" name="jsModule" id="jsModule"/>
+            </div>
+          </div>
+          {% include "./widget_base_info.nj" %}
+        </div>
+        <div role="tabpanel" class="tab-pane w-tab-pane-table" id="widget_left_sidebar_tabs_nav_info">
+          <div class="row">
+            <div class="form-group">
+              <label for="navType" class="col-sm-2 control-label">导航类型</label>
+              <div class="col-sm-10 radio">
+                <input type="radio" class="w-configurer-option w-radio" value="1" name="navType" id="navType1" checked="checked"/>
+                <label for="navType1">系统导航</label>
+                <input type="radio" class="w-configurer-option w-radio" value="2" name="navType" id="navType2"/>
+                <label for="navType2">自定义</label>
+                <input type="radio" class="w-configurer-option w-radio" value="3" name="navType" id="navType3"/>
+                <label for="navType3">自定义接口</label>
+                <input type="radio" class="w-configurer-option w-radio" value="4" name="navType" id="navType4"/>
+                <label for="navType4">数据仓库</label>
+              </div>
+            </div>
+          </div>
+          <div class="row navResourceRow">
+            <div class="form-group">
+              <label for="navResource" class="col-sm-2 control-label">导航来源</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option" name="navResource" id="navResource"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="navInterfaceActive" class="col-sm-2 control-label">选中项</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option" name="navResourceActive" id="navResourceActive"/>
+              </div>
+            </div>
+          </div>
+          <div class="row navDataRow" style="display: none">
+            <div class="form-group">
+              <label for="navData" class="col-sm-2 control-label">导航数据</label>
+              <div class="col-sm-10">
+                <div class="row widget_example">
+                  <div class="col-md-4">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-primary btn-sm" id="widget_left_sidebar_nav_tree_add">添加同级</button>
+                      <button type="button" class="btn btn-primary btn-sm" id="widget_left_sidebar_nav_tree_add_child">添加子级
+                      </button>
+                      <button type="button" class="btn btn-primary btn-sm" id="widget_left_sidebar_nav_tree_remove">删除</button>
+                    </div>
+                    <ul id="widget_left_sidebar_nav_tree" class="ztree"></ul>
+                  </div>
+                  <div class="col-md-8" id="widget_left_sidebar_nav_tree_node_prop">
+                    <div class="form-group">
+                      <label for="navTreeName" class="col-sm-3 control-label required">名称</label>
+                      <div class="col-sm-9">
+                        <input type="hidden" class="form-control w-nav-tree-option" name="navTreeUuid" id="navTreeUuid"/>
+                        <input type="text" class="form-control w-nav-tree-option" name="navTreeName" id="navTreeName"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="navTreeIcon" class="col-sm-3 control-label">图标</label>
+                      <div class="col-sm-9 has-feedback">
+                        <input type="hidden" name="navTreeIcon" id="navTreeIcon" class="form-control w-nav-tree-option"/>
+                        <span id="navTreeIconSnap" class="" aria-hidden="true"></span>
+                        <button type="button" class="btn btn-primary" id="navTreeIconSelectBtn">选择图标</button>
+                        <button type="button" class="btn btn-danger" id="navTreeIconDelBtn">删除图标</button>
+                      </div>
+                    </div>
+                    <div class="form-group hidden">
+                      <label for="navTreeEventType" class="col-sm-3 control-label">事件类型</label>
+                      <div class="col-sm-9">
+                        <select class="form-control w-nav-tree-option" name="navTreeEventType" id="navTreeEventType">
+                          <option value=""></option>
+                          <option value="click">单击</option>
+                          <option value="mouseover">鼠标移进</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="navTreeEventHanlder" class="col-sm-3 control-label">事件处理</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control w-nav-tree-option" name="navTreeEventHanlderName" id="navTreeEventHanlderName"/>
+                        <input type="hidden" class="form-control w-nav-tree-option" name="navTreeEventHanlderId" id="navTreeEventHanlderId"/>
+                        <input type="hidden" class="form-control w-nav-tree-option" name="navTreeEventHanlderPath" id="navTreeEventHanlderPath"/>
+                        <input type="hidden" class="form-control w-nav-tree-option" name="navTreeEventHanlderType" id="navTreeEventHanlderType"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">锚点设置</label>
+                      <div class="col-sm-9 radio">
+                          <input type="radio" class="w-nav-tree-option w-radio" value="1" name="navTreeEventHashType" id="navTreeEventHashType1"/>
+                          <label for="navTreeEventHashType1">指定锚点</label>
+                          <input type="radio" class="w-nav-tree-option w-radio" value="2" name="navTreeEventHashType" id="navTreeEventHashType2"/>
+                          <label for="navTreeEventHashType2">自定义</label>
+                      </div>
+                    </div>
+                    <div class="form-group navTreeEventHashTypeRow navTreeEventHashType1">
+                      <label class="col-sm-3 control-label"></label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control w-nav-tree-option" autocomplete="off" name="navTreeEventHashTree" id="navTreeEventHashTree"/>
+                      </div>
+                    </div>
+                    <div class="form-group navTreeEventHashTypeRow navTreeEventHashType2">
+                      <label class="col-sm-3 control-label">
+                        <span class="wtooltip icon iconfont icon-ptkj-mianxingwenxintishi">
+                          <span class="wtooltiptext">锚点格式：/{组件ID}/{菜单、导航、页签等ID}</span>
+                        </span>
+                      </label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control w-nav-tree-option" name="navTreeEventHash" id="navTreeEventHash"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">事件参数</label>
+                      <div class="col-xs-9 controls event-params"></div>
+                    </div>
+                    <div class="form-group">
+                      <label for="navTreeTargetPosition" class="col-sm-3 control-label">目标位置</label>
+                      <div class="col-sm-9 radio">
+                          <input type="radio" class="w-nav-tree-option w-radio" value="_blank" name="navTreeTargetPosition" id="navTreeTargetPosition2"/>
+                          <label for="navTreeTargetPosition2">新窗口</label>
+                          <input type="radio" class="w-nav-tree-option w-radio" value="_self" name="navTreeTargetPosition" id="navTreeTargetPosition1" checked="checked"/>
+                          <label for="navTreeTargetPosition1">当前窗口</label>
+                          <input type="radio" class="w-nav-tree-option w-radio" value="_targetWidget" name="navTreeTargetPosition" id="navTreeTargetPosition3"/>
+                          <label for="navTreeTargetPosition3">当前布局窗口</label>
+                      </div>
+                    </div>
+                    <div class="form-group navTreeTargetWidgetSelectorRow navTreeTargetWidget" style="display: none">
+                      <label for="navTreeTargetWidgetSelectorType" class="col-sm-3 control-label">组件选择器</label>
+                      <div class="col-sm-9">
+                        <input type="hidden" class="w-nav-tree-option" name="navTreeTargetWidgetSelectorTypeName" id="navTreeTargetWidgetSelectorTypeName"/>
+                        <input type="text" class="form-control w-nav-tree-option" height="34px" id="navTreeTargetWidgetSelectorType" name="navTreeTargetWidgetSelectorType"/>
+                      </div>
+                    </div>
+                    <div class="form-group navTreeTargetWidgetIdRow navTreeTargetWidget" style="display: none">
+                      <label for="navTreeTargetWidgetId" class="col-sm-3 control-label">目标布局窗口</label>
+                      <div class="col-sm-9">
+                        <input type="hidden" class="w-nav-tree-option" name="navTreeTargetWidgetName" id="navTreeTargetWidgetName"/>
+                        <input type="text" class="form-control w-nav-tree-option" height="34px" id="navTreeTargetWidgetId" name="navTreeTargetWidgetId"/>
+                      </div>
+                    </div>
+                    <div class="form-group navTreeTargetWidgetCssClassRow navTreeTargetWidget" style="display: none">
+                      <label for="targetWidgetCssClass" class="col-sm-3 control-label">组件样式类</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control w-nav-tree-option" height="34px" id="navTreeTargetWidgetCssClass" name="navTreeTargetWidgetCssClass"/>
+                      </div>
+                    </div>
+                    <div class="form-group navTreeTargetWidgetRefreshRow navTreeTargetWidget" style="display: none">
+                      <label for="navTreeRefreshIfExists" class="col-sm-3 control-label"></label>
+                      <div class="col-sm-9">
+                        <label class="checkbox-inline">
+                          <input class="w-nav-tree-option w-checkbox" type="checkbox" name="navTreeRefreshIfExists" id="navTreeRefreshIfExists" value="true">
+                          <label for="navTreeRefreshIfExists">组件存在时刷新</label>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="navTreeShowBadgeCount" class="col-sm-3 control-label">徽章</label>
+                      <div class="col-sm-9">
+                        <span class="inline">
+                          <input class="w-nav-tree-option w-checkbox" type="checkbox" id="navTreeShowBadgeCount" name="navTreeShowBadgeCount" value="true">
+                          <label for="navTreeShowBadgeCount">显示数量</label>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="form-group show-badge-count">
+                      <label for="navTreeGetBadgeCountWay" class="col-sm-3 control-label">获取数量的方式</label>
+                      <div class="col-sm-9">
+                        <input type="hidden" class="w-nav-tree-option" name="navTreeGetBadgeCountWayName" id="navTreeGetBadgeCountWayName"/>
+                        <input type="text" class="form-control  w-nav-tree-option" height="34px" id="navTreeGetBadgeCountWay" name="navTreeGetBadgeCountWay" placeholder="请选择获取数量的方式"/>
+                      </div>
+                    </div>
+                    <div class="form-group show-badge-count tableWidgetCount badge-count-way" style="display: none;">
+                      <label for="navTreeGetBadgeCountListViewId" class="col-sm-3 control-label"><font color="red">*</font>统计数量的表格视图</label>
+                      <div class="col-sm-9">
+                        <input type="hidden" class="w-nav-tree-option" name="navTreeGetBadgeCountListViewName" id="navTreeGetBadgeCountListViewName"/>
+                        <input type="text" class="form-control w-nav-tree-option" height="34px" id="navTreeGetBadgeCountListViewId" name="navTreeGetBadgeCountListViewId" placeholder="请选择统计数量的表格视图"/>
+                      </div>
+                    </div>
+					<div class="form-group show-badge-count countJs badge-count-way" style="display: none;">
+                      <label for="navTreeGetBadgeCountJs" class="col-sm-3 control-label"><font color="red">*</font>选择统计数量的JS脚本</label>
+                      <div class="col-sm-9">
+                        <input type="hidden" class="w-nav-tree-option" height="34px" id="navTreeGetBadgeCountJsName" name="navTreeGetBadgeCountJsName"/>
+                        <input type="text" class="form-control w-nav-tree-option" height="34px" id="navTreeGetBadgeCountJs" name="navTreeGetBadgeCountJs" placeholder="请选择统计数量的JS脚本"/>
+                      </div>
+                    </div>
+					<div class="form-group show-badge-count countJsTable badge-count-way" js="BootstrapTableViewGetCount" style="display: none;">
+                      <label for="navTreeGetBadgeCountJsTable" class="col-sm-3 control-label"><font color="red">*</font>表格视图</label>
+                      <div class="col-sm-9">
+                        <input type="hidden" class="w-nav-tree-option" height="34px" id="navTreeGetBadgeCountJsTableName" name="navTreeGetBadgeCountJsTableName"/>
+                        <input type="text" class="form-control w-nav-tree-option" height="34px" id="navTreeGetBadgeCountJsTable" name="navTreeGetBadgeCountJsTable" placeholder="请选择JS脚本对应的表格视图"/>
+                      </div>
+                    </div>
+                    <div class="form-group show-badge-count dataStoreCount badge-count-way" style="display: none;">
+                      <label for="navTreeGetBadgeCountDataStore" class="col-sm-3 control-label"><font color="red">*</font>选择统计数量的数据仓库</label>
+                      <div class="col-sm-9">
+                        <input type="hidden" class="w-nav-tree-option" height="34px" id="navTreeGetBadgeCountDataStoreName" name="navTreeGetBadgeCountDataStoreName"/>
+                        <input type="text" class="form-control w-nav-tree-option" height="34px" id="navTreeGetBadgeCountDataStore" name="navTreeGetBadgeCountDataStore" placeholder="请选择统计数量的数据仓库"/>
+                      </div>
+                    </div>
+					<div class="form-group show-badge-count" style="display: none;">
+                      <label for="navTreeGetBadgeDigit" class="col-sm-3 control-label">徽章数值显示位数
+						  <div class="ts-tooltip">
+							<i class="iconfont icon-ptkj-tishishuoming"></i>
+							<div class="ts-tooltip-content">
+								设置徽章数值的最大显示位数。例如数值超出100时，显示99+
+							</div>
+						  </div>
+					  </label>
+                      <div class="col-sm-9 radio">
+                        <input type="radio" class="w-nav-tree-option w-radio" value="default" name="navTreeGetBadgeDigit" id="navTreeGetBadgeDigit_default" checked="checked"/>
+                        <label for="navTreeGetBadgeDigit_default">全局默认</label>
+                        <input type="radio" class="w-nav-tree-option w-radio" value="defined" name="navTreeGetBadgeDigit" id="navTreeGetBadgeDigit_defined"/>
+                        <label for="navTreeGetBadgeDigit_defined">当前组件自定义</label>
+						<div class="navTreeGetBadgeDigitTip gray-9 mt10"></div>
+                      </div>
+                    </div>
+                    <div class="form-group show-badge-count-digit" style="display: none;">
+                      <label class="col-sm-3 control-label"><input type="hidden" class="w-nav-tree-option" height="34px" id="navTreeGetBadgeDigitNumber" name="navTreeGetBadgeDigitNumber"/></label>
+                      <div class="col-sm-9">
+                        <ul class="youshangjiao-xuanzhong-ul">
+                          <li data-digit="1">
+                            <i class="iconfont icon-ptkj-youshangjiao-xuanzhong"></i>
+                            9+
+                          </li>
+                          <li data-digit="2">
+                            <i class="iconfont icon-ptkj-youshangjiao-xuanzhong"></i>
+                            99+
+                          </li>
+                          <li data-digit="3">
+                            <i class="iconfont icon-ptkj-youshangjiao-xuanzhong"></i>
+                            999+
+                          </li>
+                          <li data-digit="4">
+                            <i class="iconfont icon-ptkj-youshangjiao-xuanzhong"></i>
+                            9999+
+                          </li>
+                          <li data-digit="off">
+                            <i class="iconfont icon-ptkj-youshangjiao-xuanzhong"></i>
+                            按实际数值显示
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+					<div class="form-group show-badge-count" style="display: none;">
+                      <label for="navTreeGetBadgeZero" class="col-sm-3 control-label">徽章数值为0时</label>
+                      <div class="col-sm-9 radio">
+                        <input type="radio" class="w-nav-tree-option w-radio" value="default" name="navTreeGetBadgeZero" id="navTreeGetBadgeZero_default" checked="checked"/>
+                        <label for="navTreeGetBadgeZero_default">全局默认</label>
+                        <input type="radio" class="w-nav-tree-option w-radio" value="1" name="navTreeGetBadgeZero" id="navTreeGetBadgeZero_1"/>
+                        <label for="navTreeGetBadgeZero_1">显示徽章</label>
+                        <input type="radio" class="w-nav-tree-option w-radio" value="0" name="navTreeGetBadgeZero" id="navTreeGetBadgeZero_0"/>
+                        <label for="navTreeGetBadgeZero_0">不显示徽章</label>
+						<div class="navTreeGetBadgeZeroTip gray-9 mt10"></div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="navTreeHidden" class="col-sm-3 control-label"></label>
+                      <div class="col-sm-9">
+                        <span class="inline">
+                          <input class="w-nav-tree-option w-checkbox" type="checkbox" name="navTreeHidden" id="navTreeHidden" value="true">
+                          <label for="navTreeHidden">是否隐藏</label>
+                        </span>
+                        <span class="inline">
+                          <input class="w-nav-tree-option w-checkbox" type="checkbox" name="navTreeActive" id="navTreeActive" value="true">
+                          <label for="navTreeActive">默认选中</label>
+
+                        </span>
+                        <span class="inline">
+                          <input class="w-nav-tree-option w-checkbox" type="checkbox" name="navTreeIsParent" id="navTreeIsParent" value="true">
+                          <label for="navTreeIsParent">导航夹</label>
+
+                        </span>
+                      </div>
+                    </div>
+                    <div class="form-group navBtnRow">
+                      <button type="button" class="btn btn-primary btn-sm" id="widget_left_sidebar_nav_tree_save">保存</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row navInterfaceRow" style="display: none">
+            <div class="form-group navDataStoreRowConfig">
+              <label for="navDataStore" class="col-sm-2 control-label required">数据仓库</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option" name="navDataStore" id="navDataStore"/>
+                <input type="hidden" class="form-control w-configurer-option" name="navDataStoreId" id="navDataStoreId"/>
+              </div>
+            </div>
+            <div class="form-group navDataStoreRowConfig">
+              <label for="navUniqueColumn" class="col-sm-2 control-label required">唯一标识字段</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option navDsColumnSelect" name="navUniqueColumn" id="navUniqueColumn"/>
+              </div>
+            </div>
+            <div class="form-group navDataStoreRowConfig">
+              <label for="navParentColumn" class="col-sm-2 control-label">父级标识字段</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option navDsColumnSelect" name="navParentColumn" id="navParentColumn"/>
+              </div>
+            </div>
+            <div class="form-group navDataStoreRowConfig">
+              <label for="navDisplayColumn" class="col-sm-2 control-label required">导航文本字段</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option navDsColumnSelect" name="navDisplayColumn" id="navDisplayColumn"/>
+              </div>
+            </div>
+            <div class="form-group navDataStoreRowConfig">
+              <label for="navDisplayColumn" class="col-sm-2 control-label">默认查询条件</label>
+              <div class="col-sm-10">
+                {# <input type="text" class="form-control w-configurer-option" name="navDsDefaultCondition" id="navDsDefaultCondition"/>
+                                <span class="text-info">支持的系统变量
+                                    {# <ul>
+                                        <li><code>:currentUserName</code> ：当前用户名</li>
+                                        <li><code>:currentLoginName</code> ：当前用户登录名</li>
+                                        <li><code>:currentUserId</code> ：当前用户ID</li>
+                                        <li><code>:currentUserDepartmentId</code> ：当前用户部门ID</li>
+                                        <li><code>:currentUserDepartmentName</code> ：当前用户部门名称</li>
+                                        <li><code>:currentUserUnitId</code> ：当前用户归属单位ID</li>
+                                        <li><code>:sysdate</code> ：当前系统时间</li>
+                                    </ul>
+                                    <code>:currentUserName</code><code>:currentLoginName</code><code>:currentUserId</code>
+                                    <code>:currentUserDepartmentId</code><code>:currentUserDepartmentName</code>
+                                    <code>:currentUserUnitId</code><code>:sysdate</code>
+                                </span> #}
+                <pre style="min-height:100px" name="navDsDefaultCondition" id="navDsDefaultCondition"></pre>
+              </div>
+            </div>
+            <div class="form-group navDataStoreRowConfig">
+              <label for="navRootName" class="col-sm-2 control-label">自定义根节点名称</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option" name="navRootName" id="navRootName"/>
+              </div>
+            </div>
+
+            <div class="form-group navInterfaceRowConfig">
+              <label for="navInterface" class="col-sm-2 control-label">来源接口</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option" name="navInterface" id="navInterface"/>
+              </div>
+            </div>
+            <div class="form-group navInterfaceRowConfig">
+              <label class="col-sm-2 control-label">接口参数</label>
+              <div class="col-xs-10 controls src-server-params"></div>
+            </div>
+            <!--<div class="form-group navInterfaceRowConfig"> <label for="navInterfaceActive" class="col-sm-2 control-label">选中项</label> <div class="col-sm-10"> <input type="text" class="form-control w-configurer-option" name="navInterfaceActive" id="navInterfaceActive"/> </div> </div> <div class="form-group navInterfaceRowConfig"> <label for="table_node_info" class="col-sm-2 control-label">节点类型</label> <div class="col-sm-10"> <table id="table_node_info" data-height="400"></table> </div> </div> -->
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label">导航事件</label>
+              <div class="col-sm-10">
+                <div class="row widget_example">
+                  <div class="col-sm-10" id="widget_left_sidebar_nav_tree_node_prop">
+                    <!-- <div class="form-group"> <label for="intfNavTreeIcon" class="col-sm-3 control-label">图标</label> <div class="col-sm-9 has-feedback"> <input type="hidden" name="navTreeIcon" id="intfNavTreeIcon" class="form-control w-nav-tree-option" /> <span id="navTreeIconSnap" class="" aria-hidden="true"></span> <button type="button" class="btn btn-primary" id="navTreeIconSelectBtn">选择图标</button> </div> </div> -->
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">事件处理</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control w-configurer-option" name="eventHanlderName" id="eventHanlderName"/>
+                        <input type="hidden" class="form-control w-configurer-option" name="eventHanlderId" id="eventHanlderId"/>
+                        <input type="hidden" class="form-control w-configurer-option" name="eventHanlderPath" id="eventHanlderPath"/>
+                        <input type="hidden" class="form-control w-configurer-option" name="eventHanlderType" id="eventHanlderType"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">锚点设置</label>
+                      <div class="col-sm-9 radio">
+                        <span>
+                          <input type="radio" class="w-configurer-option w-radio" value="1" name="eventHashType" id="eventHashType1"/>
+                          <label for="eventHashType1">指定锚点</label>
+                        </span>
+                        <span>
+                          <input type="radio" class="w-configurer-option w-radio" value="2" name="eventHashType" id="eventHashType2"/>
+                          <label for="eventHashType2">自定义</label>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="form-group eventHashTypeRow eventHashType1">
+                      <label class="col-sm-3 control-label"></label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control w-configurer-option" autocomplete="off" name="eventHashTree" id="eventHashTree"/>
+                      </div>
+                    </div>
+                    <div class="form-group eventHashTypeRow eventHashType2">
+                      <label class="col-sm-3 control-label">
+                        <span class="wtooltip icon iconfont icon-ptkj-mianxingwenxintishi">
+                          <span class="wtooltiptext">锚点格式：/{组件ID}/{菜单、导航、页签等ID}</span>
+                        </span>
+                      </label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control w-configurer-option" name="eventHash" id="eventHash"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">事件参数</label>
+                      <div class="col-xs-9 controls intf-event-params"></div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="widgetViewName" class="col-sm-3 control-label">视图</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="w-configurer-option" name="widgetViewName" id="widgetViewName"/>
+                        <input type="hidden" class="form-control w-configurer-option" height="34px" id="widgetViewId" name="widgetViewId"/>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">关联视图查询</label>
+                      <div class="col-sm-9">
+                        <div class="relationship-query-info"></div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">目标位置</label>
+                      <div class="col-sm-9 radio">
+                        <span>
+                          <input type="radio" class="w-configurer-option w-radio" value="_blank" name="targetPosition" id="targetPosition2"/>
+                          <label for="targetPosition2">新窗口</label>
+                        </span>
+                        <span>
+                          <input type="radio" class="w-configurer-option w-radio" value="_self" name="targetPosition" id="targetPosition1" checked="checked"/>
+                          <label for="targetPosition1">当前窗口</label>
+
+                        </span>
+                        <span>
+                          <input type="radio" class="w-configurer-option w-radio" value="_targetWidget" name="targetPosition" id="targetPosition3"/>
+                          <label for="targetPosition3">当前布局窗口</label>
+
+                        </span>
+                      </div>
+                    </div>
+                    <div class="form-group intfNavTreeTargetWidgetSelectorRow targetWidget" style="display: none">
+                      <label for="targetWidgetSelectorType" class="col-sm-3 control-label">组件选择器</label>
+                      <div class="col-sm-9">
+                        <input type="hidden" class="w-configurer-option" name="targetWidgetSelectorTypeName" id="targetWidgetSelectorTypeName"/>
+                        <input type="text" class="form-control w-configurer-option" height="34px" id="targetWidgetSelectorType" name="targetWidgetSelectorType"/>
+                      </div>
+                    </div>
+                    <div class="form-group intfNavTreeTargetWidgetIdRow targetWidget" style="display: none">
+                      <label for="targetWidgetId" class="col-sm-3 control-label">目标布局窗口</label>
+                      <div class="col-sm-9">
+                        <input type="hidden" class="w-configurer-option" name="targetWidgetName" id="targetWidgetName"/>
+                        <input type="text" class="form-control w-configurer-option" height="34px" id="targetWidgetId" name="targetWidgetId"/>
+                      </div>
+                    </div>
+                    <div class="form-group intfNavTreeTargetWidgetCssClassRow targetWidget" style="display: none">
+                      <label for="targetWidgetCssClass" class="col-sm-3 control-label">组件样式类</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control w-configurer-option" height="34px" id="targetWidgetCssClass" name="targetWidgetCssClass"/>
+                      </div>
+                    </div>
+                    <div class="form-group intfNavTreeTargetWidgetIdRow targetWidget" style="display: none">
+                      <label for="refreshIfExists" class="col-sm-3 control-label"></label>
+                      <div class="col-sm-9">
+                        <label class="checkbox-inline">
+                          <input class="w-configurer-option w-checkbox" type="checkbox" name="refreshIfExists" id="refreshIfExists" value="true">
+                          <label for="refreshIfExists">组件存在时刷新</label>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="widget_left_sidebar_tabs_nav_js_event_info">
+
+          <div class="form-group">
+            <div class="col-sm-3">
+              <ul class="nav nav-pills nav-stacked" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#beforeRender">组件渲染前</a>
+                </li>
+                <li role="presentation">
+                  <a href="#afterRender">组件渲染后</a>
+                </li>
+
+              </ul>
+            </div>
+            <div class="tab-content">
+              <div class="tab-pane col-sm-9 active" role="tabpanel" id="beforeRender">
+                <pre style="min-height:400px" name="beforeRenderCode" id="beforeRenderCode"></pre>
+              </div>
+              <div class="tab-pane col-sm-9" role="tabpanel" id="afterRender">
+                <pre style="min-height:400px" name="afterRenderCode" id="afterRenderCode"></pre>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

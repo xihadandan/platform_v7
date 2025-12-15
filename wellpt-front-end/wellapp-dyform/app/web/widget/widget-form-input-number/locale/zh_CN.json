@@ -1,0 +1,26 @@
+{
+  "WidgetFormInputNumber": {
+    "messages": {
+      "doublePrecisionFloatingPointNumberDecimal": "双精度浮点数,小数位不超过{decimal}位",
+      "doublePrecisionFloatingPointNumberMaxDecimal": "双精度浮点数,不得超过18个字符",
+      "floatingPointNumberDecimal": "浮点数小数位不超过{decimal}位",
+      "floatingPointNumberMaxDecimal": "浮点数不得超过12个字符",
+      "integer": "整数",
+      "noInteger": "非整数",
+      "intGtZero": "正整数",
+      "intLtZero": "负整数",
+      "longInteger": "长整数",
+      "integerMaxDecimal": "整数,不得超过10个字符",
+      "integerMax": "整数，不得大于{max}",
+      "integerMin": "整数，不得小于{min}",
+      "intGtZeroMaxDecimal": "正整数,不得超过9个字符",
+      "intLtZeroMaxDecimal": "负整数,不得超过10个字符",
+      "longIntegerMaxDecimal": "长整数,不得超过16个字符",
+      "nonSignificantNumber": "非有效数字:精度位{precision},小数位{scale}",
+      "nonSignificantNumberPrecision": "非有效数字:精度位{precision}",
+      "maxLength": "不能超过字段长度{length}",
+      "minValue": "不能小于最小值{min}",
+      "maxValue": "不能大于最大值{max}"
+    }
+  }
+}

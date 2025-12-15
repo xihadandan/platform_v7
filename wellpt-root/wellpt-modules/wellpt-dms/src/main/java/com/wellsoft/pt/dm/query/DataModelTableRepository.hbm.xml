@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <sql-query name="saveTable">
+        <![CDATA[
+        insert into ${table}  (
+            <#list column as col>
+            ${col} <#sep>,
+            </#list>
+        ) values (
+            <#list column as col>
+            :${col} <#sep>,
+            </#list>
+        )
+	    ]]>
+    </sql-query>
+
+    <sql-query name="updateTableByUuid">
+        <![CDATA[
+        update  ${table}  set
+            <#list column as col>
+            ${col} = :${col} <#sep>,
+            </#list>
+            <#if nullColumn?? >,</#if>
+            <#list nullColumn as col>
+            ${col} is null <#sep>,
+            </#list>
+            where UUID = :UUID
+
+	    ]]>
+    </sql-query>
+
+    <sql-query name="deleteTableByUuid">
+        <![CDATA[
+        delete from  ${table} where
+         <#if isInOperation>
+            UUID in :UUID
+            <#else>
+            UUID = :UUID
+         </#if>
+
+	    ]]>
+    </sql-query>
+
+    <sql-query name="selectTable">
+        <![CDATA[
+        select * from ${table}
+        where 1=1
+         <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+          <if isNotBlank( orderBy )>
+			 ${orderBy}
+		 </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="checkUnique">
+        <![CDATA[
+        select 1 from ${table}
+        where 1=1
+         <#list columns as col>
+           and ${col} = :${col} <#sep>,
+           </#list>
+           <#if UUID??>
+            and UUID <> :UUID
+           </#if>
+           <#if TENANT??>
+            and TENANT <> :TENANT
+           </#if>
+	    ]]>
+    </sql-query>
+
+
+</hibernate-mapping>

@@ -1,0 +1,670 @@
+/*hover color variables*/
+/*disabled color variables*/
+/*text-overflow function start*/
+/*text-overflow function end*/
+/*background function start*/
+/*background function end*/
+/*font function start */
+/*font function end*/
+/*navbar function start*/
+/*navbar function end*/
+/*set modal svg-font color*/
+/*set modal svg-font color*/
+/*border-radius function start*/
+/*border-radius function end*/
+/*padding function start*/
+/*padding function end*/
+/*margin function start*/
+/*margin function end*/
+.ui-wHeader .navbar-danger {
+  background: #e65c20;
+}
+.ui-wHeader .navbar-primary {
+  background: #488CEE;
+}
+.ui-wHeader .navbar-info {
+  background: #59c8e4;
+}
+.ui-wHeader .navbar-warning {
+  background: #eaa429;
+}
+.ui-wHeader .navbar-success {
+  background: #5cce66;
+}
+.ui-wHeader .navbar-default {
+  background: #c2c2c2;
+}
+.ui-wHeader .navbar-inverse {
+  background: #262626;
+}
+.ui-wHeader .navbar-themeColor {
+  background: #488CEE;
+}
+.ui-wHeader.wHeader-default .navbar-nav > li > a {
+  color: #fff;
+}
+.ui-wHeader.wHeader-default .navbar-nav > li.item-0 {
+  background: #50ccf0;
+}
+.ui-wHeader.wHeader-default .navbar-nav > li.item-1 {
+  background: #fabb3d;
+}
+.ui-wHeader.wHeader-default .navbar-nav > li.item-2 {
+  background: #ab4ee0;
+}
+.ui-wHeader.wHeader-default .navbar-nav > li.item-3 {
+  background: #78cd51;
+}
+.ui-wHeader.wHeader-default .navbar-nav > li.item-4 {
+  background: #ea4c89;
+}
+.ui-wHeader.wHeader-default .navbar-nav > li.item-5 {
+  background: #00aced;
+}
+.ui-wHeader.wheader-type1 .navbar-nav > li > a {
+  color: #fff;
+}
+.ui-wHeader.wheader-type1 .navbar-nav > li > a:hover,
+.ui-wHeader.wheader-type1 .navbar-nav > li > a:focus {
+  background: none;
+}
+.ui-wHeader.wheader-type1 .navbar-nav > li > a .badge {
+  background: #e65c20;
+}
+.ui-wHeader.wheader-type1 .navbar-nav > li.active > a,
+.ui-wHeader.wheader-type1 .navbar-nav > li:hover > a {
+  background: #1c70ea;
+  color: #fff;
+}
+.ui-wHeader.wheader-type1 .navbar-danger li a,
+.ui-wHeader.wheader-type1 .navbar-primary li a,
+.ui-wHeader.wheader-type1 .navbar-info li a,
+.ui-wHeader.wheader-type1 .navbar-warning li a,
+.ui-wHeader.wheader-type1 .navbar-success li a,
+.ui-wHeader.wheader-type1 .navbar-inverse li a {
+  color: #fff;
+}
+.ui-wNavbar .navbar-danger {
+  background: #e65c20;
+}
+.ui-wNavbar .navbar-danger .nav > li > a {
+  color: #fff;
+}
+.ui-wNavbar .navbar-danger .nav > li.active > a,
+.ui-wNavbar .navbar-danger .nav > li.active > a:hover,
+.ui-wNavbar .navbar-danger .nav > li.active > a:focus,
+.ui-wNavbar .navbar-danger .nav > li.active > a:visited {
+  background: #903710;
+}
+.ui-wNavbar .navbar-danger .nav > li:hover > a,
+.ui-wNavbar .navbar-danger .nav > li:focus > a,
+.ui-wNavbar .navbar-danger .nav > li > a:focus,
+.ui-wNavbar .navbar-danger .nav li > a:hover {
+  background: #903710;
+}
+.ui-wNavbar .navbar-primary {
+  background: #488CEE;
+}
+.ui-wNavbar .navbar-primary .nav > li > a {
+  color: #fff;
+}
+.ui-wNavbar .navbar-primary .nav > li.active > a,
+.ui-wNavbar .navbar-primary .nav > li.active > a:hover,
+.ui-wNavbar .navbar-primary .nav > li.active > a:focus,
+.ui-wNavbar .navbar-primary .nav > li.active > a:visited {
+  background: #1258be;
+}
+.ui-wNavbar .navbar-primary .nav > li:hover > a,
+.ui-wNavbar .navbar-primary .nav > li:focus > a,
+.ui-wNavbar .navbar-primary .nav > li > a:focus,
+.ui-wNavbar .navbar-primary .nav li > a:hover {
+  background: #1258be;
+}
+.ui-wNavbar .navbar-info {
+  background: #59c8e4;
+}
+.ui-wNavbar .navbar-info .nav > li > a {
+  color: #fff;
+}
+.ui-wNavbar .navbar-info .nav > li.active > a,
+.ui-wNavbar .navbar-info .nav > li.active > a:hover,
+.ui-wNavbar .navbar-info .nav > li.active > a:focus,
+.ui-wNavbar .navbar-info .nav > li.active > a:visited {
+  background: #1e9ab9;
+}
+.ui-wNavbar .navbar-info .nav > li:hover > a,
+.ui-wNavbar .navbar-info .nav > li:focus > a,
+.ui-wNavbar .navbar-info .nav > li > a:focus,
+.ui-wNavbar .navbar-info .nav li > a:hover {
+  background: #1e9ab9;
+}
+.ui-wNavbar .navbar-warning {
+  background: #eaa429;
+}
+.ui-wNavbar .navbar-warning .nav > li > a {
+  color: #fff;
+}
+.ui-wNavbar .navbar-warning .nav > li.active > a,
+.ui-wNavbar .navbar-warning .nav > li.active > a:hover,
+.ui-wNavbar .navbar-warning .nav > li.active > a:focus,
+.ui-wNavbar .navbar-warning .nav > li.active > a:visited {
+  background: #9e6a0f;
+}
+.ui-wNavbar .navbar-warning .nav > li:hover > a,
+.ui-wNavbar .navbar-warning .nav > li:focus > a,
+.ui-wNavbar .navbar-warning .nav > li > a:focus,
+.ui-wNavbar .navbar-warning .nav li > a:hover {
+  background: #9e6a0f;
+}
+.ui-wNavbar .navbar-success {
+  background: #5cce66;
+}
+.ui-wNavbar .navbar-success .nav > li > a {
+  color: #fff;
+}
+.ui-wNavbar .navbar-success .nav > li.active > a,
+.ui-wNavbar .navbar-success .nav > li.active > a:hover,
+.ui-wNavbar .navbar-success .nav > li.active > a:focus,
+.ui-wNavbar .navbar-success .nav > li.active > a:visited {
+  background: #2d9737;
+}
+.ui-wNavbar .navbar-success .nav > li:hover > a,
+.ui-wNavbar .navbar-success .nav > li:focus > a,
+.ui-wNavbar .navbar-success .nav > li > a:focus,
+.ui-wNavbar .navbar-success .nav li > a:hover {
+  background: #2d9737;
+}
+.ui-wNavbar .navbar-default {
+  background: #c2c2c2;
+}
+.ui-wNavbar .navbar-default .nav > li > a {
+  color: #fff;
+}
+.ui-wNavbar .navbar-default .nav > li.active > a,
+.ui-wNavbar .navbar-default .nav > li.active > a:hover,
+.ui-wNavbar .navbar-default .nav > li.active > a:focus,
+.ui-wNavbar .navbar-default .nav > li.active > a:visited {
+  background: #8f8f8f;
+}
+.ui-wNavbar .navbar-default .nav > li:hover > a,
+.ui-wNavbar .navbar-default .nav > li:focus > a,
+.ui-wNavbar .navbar-default .nav > li > a:focus,
+.ui-wNavbar .navbar-default .nav li > a:hover {
+  background: #8f8f8f;
+}
+.ui-wNavbar .navbar-inverse {
+  background: #262626;
+}
+.ui-wNavbar .navbar-inverse .nav > li > a {
+  color: #fff;
+}
+.ui-wNavbar .navbar-inverse .nav > li.active > a,
+.ui-wNavbar .navbar-inverse .nav > li.active > a:hover,
+.ui-wNavbar .navbar-inverse .nav > li.active > a:focus,
+.ui-wNavbar .navbar-inverse .nav > li.active > a:visited {
+  background: #000000;
+}
+.ui-wNavbar .navbar-inverse .nav > li:hover > a,
+.ui-wNavbar .navbar-inverse .nav > li:focus > a,
+.ui-wNavbar .navbar-inverse .nav > li > a:focus,
+.ui-wNavbar .navbar-inverse .nav li > a:hover {
+  background: #000000;
+}
+.ui-wNavbar .navbar-themeColor {
+  background: #488CEE;
+}
+.ui-wNavbar .navbar-themeColor .nav > li > a {
+  color: #fff;
+}
+.ui-wNavbar .navbar-themeColor .nav > li.active > a,
+.ui-wNavbar .navbar-themeColor .nav > li.active > a:hover,
+.ui-wNavbar .navbar-themeColor .nav > li.active > a:focus,
+.ui-wNavbar .navbar-themeColor .nav > li.active > a:visited {
+  background: #1258be;
+}
+.ui-wNavbar .navbar-themeColor .nav > li:hover > a,
+.ui-wNavbar .navbar-themeColor .nav > li:focus > a,
+.ui-wNavbar .navbar-themeColor .nav > li > a:focus,
+.ui-wNavbar .navbar-themeColor .nav li > a:hover {
+  background: #1258be;
+}
+.ui-wPanel .panel-heading {
+  background: #488CEE;
+  color: #404040;
+}
+.ui-wPanel .panel-heading .panel-title .panel-icon:before {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: #488CEE;
+  text-align: center;
+  line-height: 25px;
+  color: #fff;
+}
+.ui-wPanel .panel-heading .badge {
+  background: #488CEE;
+  color: #fff;
+}
+.ui-wPanel .panel-heading .panel-view-more {
+  color: #404040;
+}
+.ui-wPanel .panel-heading .panel-heading-query .form-control {
+  opacity: 1;
+  border-color: #ccc;
+}
+.ui-wPanel .panel-heading .panel-heading-query .btn-default {
+  border-color: #ccc;
+  background: #488CEE;
+  color: #fff;
+}
+.ui-wPanel .panel-heading .hover .form-control {
+  background: #fff;
+  border-color: #ccc;
+}
+.ui-wPanel .panel-heading .panel-heading-query:hover .btn-default,
+.ui-wPanel .panel-heading .panel-heading-query.hover .btn-default {
+  background: #488CEE;
+  color: #fff;
+  border-color: #488CEE;
+}
+.ui-wFooter {
+  background: #F6F6F6;
+  color: #999;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+.ui-wFooter .help-info {
+  color: #999;
+}
+.ui-wFooter .help-info a {
+  color: #999;
+}
+.ui-wFooter .help-info .fa:hover {
+  color: #488CEE;
+}
+.bootbox .modal-dialog .modal-header {
+  background: #488CEE;
+}
+.bootbox .modal-dialog .modal-header .modal-title,
+.bootbox .modal-dialog .modal-header .close {
+  color: #fff;
+}
+.layui-layer .layui-layer-title {
+  background: #488CEE;
+  color: #fff;
+}
+.ui-dialog .ui-widget-header {
+  background: #488CEE;
+  color: #fff;
+  border: 1px solid #488CEE;
+}
+.ui-wLeftSidebar .metismenu {
+  background: #F6F6F6;
+}
+.ui-wLeftSidebar .metismenu .metismenuul > .nav-menu-item {
+  position: relative;
+}
+.ui-wLeftSidebar .metismenu .metismenuul > .nav-menu-item:before,
+.ui-wLeftSidebar .metismenu .metismenuul > .nav-menu-item:after {
+  content: "";
+  height: 1px;
+  width: 100%;
+  display: block;
+  position: absolute;
+  left: 0;
+}
+.ui-wLeftSidebar .metismenu .metismenuul > .nav-menu-item:before {
+  top: 0;
+  background: #fff;
+}
+.ui-wLeftSidebar .metismenu .metismenuul > .nav-menu-item:after {
+  bottom: 0;
+  background: #eee;
+}
+.ui-wLeftSidebar .metismenu .metismenuul > .nav-menu-item > a {
+  background: #F6F6F6;
+  color: #404040;
+}
+.ui-wLeftSidebar .metismenu .metismenuul > .nav-menu-item > a .badge {
+  background: #488CEE;
+  color: #fff;
+}
+.ui-wLeftSidebar .metismenu .metismenuul > .nav-menu-item > a:hover,
+.ui-wLeftSidebar .metismenu .metismenuul > .nav-menu-item > a:focus,
+.ui-wLeftSidebar .metismenu .metismenuul > .nav-menu-item > a:active {
+  color: #488CEE;
+}
+.ui-wLeftSidebar .metismenu .nav-menu-item.nav-menu-active > a {
+  color: #488CEE;
+}
+.ui-wLeftSidebar .metismenu .nav-menu-item.nav-menu-active > a .badge {
+  background: #488CEE;
+  color: #fff;
+}
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.subnav-menu-item > a,
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.thirdnav-menu-item > a {
+  color: #404040;
+}
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.subnav-menu-item:hover,
+.ui-wLeftSidebar .metismenu .collapse .nav-menu-item.subnav-menu-item:focus,
+.ui-wLeftSidebar .metismenu .collapse .nav-menu-item.subnav-menu-item:active,
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.thirdnav-menu-item:hover,
+.ui-wLeftSidebar .metismenu .collapse .nav-menu-item.thirdnav-menu-item:focus,
+.ui-wLeftSidebar .metismenu .collapse .nav-menu-item.thirdnav-menu-item:active {
+  background: #488CEE;
+}
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.subnav-menu-item:hover > a,
+.ui-wLeftSidebar .metismenu .collapse .nav-menu-item.subnav-menu-item:focus > a,
+.ui-wLeftSidebar .metismenu .collapse .nav-menu-item.subnav-menu-item:active > a,
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.thirdnav-menu-item:hover > a,
+.ui-wLeftSidebar .metismenu .collapse .nav-menu-item.thirdnav-menu-item:focus > a,
+.ui-wLeftSidebar .metismenu .collapse .nav-menu-item.thirdnav-menu-item:active > a {
+  color: #488CEE;
+}
+.ui-wLeftSidebar .metismenu .collapse > .subnav-menu-item.nav-menu-active,
+.ui-wLeftSidebar .metismenu .collapse .thirdnav-menu-item.nav-menu-active {
+  background: #488CEE;
+  color: #fff;
+}
+.ui-wLeftSidebar .metismenu .collapse > .subnav-menu-item.nav-menu-active > a,
+.ui-wLeftSidebar .metismenu .collapse .thirdnav-menu-item.nav-menu-active > a {
+  color: #fff;
+}
+.ui-wLeftSidebar .icon-nav .icon-nav-item {
+  background: #488CEE;
+}
+.ui-wLeftSidebar .icon-nav .icon-nav-item i {
+  color: #488CEE;
+}
+.ui-wLeftSidebar .icon-nav .icon-nav-item:hover,
+.ui-wLeftSidebar .icon-nav .icon-nav-item.selected {
+  background: #488CEE;
+  color: #fff;
+}
+.ui-wLeftSidebar .icon-nav .icon-nav-item:hover i,
+.ui-wLeftSidebar .icon-nav .icon-nav-item.selected i {
+  color: #fff;
+}
+.second-page .menu-sidebar {
+  background: #F6F6F6;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+.folder-tree.ztree li a.curSelectedNode {
+  background: #ffffff;
+  border: 1px solid #d4e4fb;
+  color: #404040;
+  opacity: 1;
+}
+.widget-box > .widget-header {
+  background: #FAFAFA;
+  box-shadow: 0px 1px 0px 0px #f1f2f3;
+}
+.widget-box > .widget-header > .widget-title {
+  color: #333;
+}
+.widget-box .widget-body {
+  background: #F0F2F6;
+}
+.widget-box .widget-body .nav-tabs li a {
+  color: #404040;
+}
+.widget-box .widget-body .nav-tabs li.active a {
+  color: #488CEE;
+}
+.widget-box .footer.fixed .form-control {
+  border: 1px solid #488CEE;
+}
+.widget-box .footer.fixed .row-sign-opinion-text .sign_opinion_text {
+  background: #488CEE;
+  color: #fff;
+}
+.widget-box .footer.fixed .row-sign-opinion-text .wf-opinion-recent-snapshop .list-group-item {
+  border-bottom: 1px solid #488CEE;
+}
+.widget-box .footer.fixed .wf-opinion .list-group a {
+  border-bottom: 1px #F0F2F6 solid;
+}
+.widget-box .footer.fixed .wf-opinion .list-group a:hover {
+  background: #F0F2F6;
+  color: #488CEE;
+}
+.widget-box .footer.fixed .tabs-container .nav-tabs li a:hover {
+  background: #F0F2F6;
+}
+.widget-box .footer.fixed .tabs-container .nav-tabs li.active a {
+  color: #488CEE;
+}
+.right-sidebar .nav-tabs {
+  background: #488CEE;
+  color: #fff;
+}
+.right-sidebar .nav-tabs > li > a {
+  border: 1px solid #488CEE;
+  background: #fff;
+  color: #488CEE;
+}
+.right-sidebar .nav-tabs > li > a:hover {
+  color: white;
+  border: 1px solid #1c70ea;
+  background-color: #1c70ea;
+}
+.right-sidebar .nav-tabs > li.active > a {
+  border: 1px solid #488CEE;
+  background: #488CEE;
+  color: #fff;
+}
+.ui-wBootstrapTable .fixed-table-pagination .pagination li a:focus,
+.ui-wBootstrapTable .fixed-table-pagination .pagination li a:hover {
+  background: #488CEE;
+  color: #fff;
+  border-color: #488CEE;
+}
+.ui-wBootstrapTable .fixed-table-pagination .pagination .active a,
+.ui-wBootstrapTable .fixed-table-pagination .pagination .active a:focus,
+.ui-wBootstrapTable .fixed-table-pagination .pagination .active a:hover {
+  background: #488CEE;
+  color: #fff;
+  border-color: #488CEE;
+}
+.ui-jqgrid .ui-jqgrid-titlebar {
+  background: #d6effe;
+  color: #404040;
+  border-color: #ccc;
+}
+.ui-wBootstrapTabs .nav-tabs {
+  background: #FAFAFA;
+}
+.ui-wBootstrapTabs .nav-tabs > li > a {
+  color: #404040;
+}
+.ui-wBootstrapTabs .nav-tabs > li > a:hover,
+.ui-wBootstrapTabs .nav-tabs > li > a:focus {
+  background: #fff;
+  color: #488CEE;
+  border: none;
+  border-bottom: 2px solid #488CEE;
+}
+.ui-wBootstrapTabs .nav-tabs > li > a .badge {
+  background: #e65c20;
+}
+.ui-wBootstrapTabs .nav-tabs > li.active > a {
+  background: #fff;
+  color: #488CEE;
+  border: none;
+  border-bottom: 2px solid #488CEE;
+}
+.ui-wBootstrapTabs .tab-content {
+  background: #fff;
+  padding-top: 9px;
+}
+.jquery-ui-favorite:before {
+  content: url("../../../theme/images/star-off.png");
+}
+.jquery-ui-favorite.favorite:before {
+  content: url("../../../theme/images/star-on.png");
+}
+/*formBuilder.js中构建bootstrap风格控件用到的样式开始*/
+.div-bootstraptable-formbuilder {
+  padding: 0 15px;
+}
+.label-formbuilder {
+  padding-top: 7px;
+}
+.formbuilder input[type='text'],
+.formbuilder textarea {
+  width: 100%;
+}
+.formbuilder .minicolors-theme-default.minicolors {
+  width: 100%;
+}
+.formbuilder .minicolors-theme-default .minicolors-input {
+  height: inherit;
+  width: 100%;
+  display: inline-block;
+  padding-left: 26px;
+}
+.formbuilder .input-loading {
+  padding-right: 20px;
+  background: url("images/loading2.gif") no-repeat scroll right center transparent !important;
+}
+/*formBuilder.js中构建bootstrap风格控件用到的样式结束*/
+/* 数据管理开始 */
+.dms-history-version-table td.remark {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 200px;
+}
+/* 数据管理结束 */
+/* 浏览器加载进度条开始 */
+.pace {
+  height: 2px;
+}
+.pace .pace-progress {
+  height: 2px;
+}
+.pace .pace-activity {
+  background-image: none;
+}
+/* 浏览器加载进度条结束 */
+/* 右键菜单开始  */
+.modal-open .ui-menu {
+  background-color: #ccc;
+  border: 1px solid #000;
+  z-index: 9999;
+  width: 5em;
+  padding: 0 5px;
+}
+.modal-open .ui-menu-item .ui-icon {
+  background-image: none;
+}
+.modal-open .ui-menu-item .ui-state-active {
+  background: none;
+  border: none;
+}
+/* 右键菜单结束  */
+/*物品管理弹框样式*/
+.dlg-goods-to-outbound table td input.form-control {
+  width: 100%;
+}
+.dlg-goods-to-outbound table td .help-block {
+  white-space: normal;
+}
+/*物品管理弹框样式*/
+/*日程模块*/
+.fc .fc-toolbar > * > * {
+  margin: 0;
+}
+/*日程模块*/
+/* select2开始 */
+form .select2-container {
+  padding: 0 !important;
+}
+form .select2-container .select2-choice {
+  height: 35px;
+}
+form .select2-container .select2-choice span {
+  line-height: 35px;
+}
+/* select2结束 */
+/*审批环节*/
+.choose-next-task .radio-inline.label-formbuilder {
+  display: block;
+}
+.choose-next-task .radio-inline + .radio-inline {
+  margin: 0;
+}
+/*表单皮肤部分*/
+.dyform table,
+.dyform .ui-jqgrid {
+  margin-bottom: 20px;
+}
+.dyform .title {
+  background: none;
+  border: 0;
+  position: relative;
+  padding-left: 15px;
+  color: #333;
+}
+.dyform .title:before {
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 4px;
+  height: 23px;
+  border-radius: 15px;
+  background: #488CEE;
+}
+.dyform .fileupload-ico {
+  border: 1px solid #ccc;
+  background: #d6effe;
+  color: #404040;
+}
+.dyform .fileupload-ico div > a:hover {
+  color: #74a8f2;
+}
+.dyform .newContent,
+.dyform .imposeContent {
+  background: #d6effe;
+  color: #404040;
+}
+.dyform .newContent:hover,
+.dyform .imposeContent:hover {
+  background: #1c70ea;
+}
+.dyform table td {
+  border-color: #ddd;
+}
+.dyform table td.label-td {
+  background: #f6f6f6;
+}
+.dyform table td input[type="radio"] + label:before {
+  color: #488CEE;
+}
+.dyform table td input[type="radio"] + label.radiolabel:before {
+  color: #488CEE;
+}
+.dyform table td input[type="radio"]:checked + label:before {
+  color: #488CEE;
+}
+.dyform table td input[type="radio"]:disabled + label:before {
+  color: #ccc;
+  cursor: not-allowed;
+}
+.dyform table td input[type="checkbox"] + label:before {
+  color: #488CEE;
+}
+.dyform table td input[type="checkbox"]:checked + label:before {
+  color: #488CEE;
+}
+.dyform table td input[type="checkbox"]:disabled + label:before {
+  color: #ccc;
+  cursor: not-allowed;
+}
+.dyform table td input[type="checkbox"] + label.checkboxlabel:before {
+  color: #488CEE;
+}
+.dyform .fileUpdateload {
+  background: #488CEE;
+  color: #fff;
+  border: 1px solid #488CEE;
+}

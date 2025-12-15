@@ -1,0 +1,740 @@
+@radio-prefix-cls: ~'@{ant-prefix}-radio';
+@radio-group-prefix-cls: ~'@{radio-prefix-cls}-group';
+
+body {
+  --w-radio-text-color: var(--w-text-color-dark);
+  --w-radio-text-font-size: var(--w-font-size-base);
+  --w-radio-text-font-weight: var(--w-font-weight-regular);
+  --w-radio-border-color: var(--w-border-color-darker);
+  --w-radio-font-size: var(--w-font-size-lg);
+  --w-radio-lr-padding: var(--w-padding-2xs);
+  // 悬停
+  --w-radio-text-color-hover: var(--w-text-color-dark);
+  --w-radio-text-font-size-hover: var(--w-font-size-base);
+  --w-radio-text-font-weight-hover: var(--w-font-weight-regular);
+  // 选中
+  --w-radio-text-color-checked: var(--w-text-color-dark);
+  --w-radio-text-font-size-checked: var(--w-font-size-base);
+  --w-radio-text-font-weight-checked: var(--w-font-weight-regular);
+  --w-radio-border-color-checked: var(--w-primary-color);
+  --w-radio-border-color-hover: var(--w-primary-color);
+  // 禁用
+  --w-radio-text-color-disabled: var(--w-text-color-lighter);
+  --w-radio-border-color-disabled: var(--w-border-color-light);
+  --w-radio-background-disabled: var(--w-fill-color-base);
+  --w-radio-background-disabled-checked: var(--w-fill-color-light);
+  // 错误提示样式
+  --w-radio-error-word-color: var(--w-danger-color);
+  --w-radio-error-word-font-size: var(--w-font-size-base);
+  --w-radio-error-word-font-weight: var(--w-font-weight-regular);
+  // 单选框组合
+  --w-radio-group-width-mr: var(--w-margin-2xs);
+  --w-radio-group-item-mr: var(--w-margin-lg);
+  --w-radio-group-vertical-mr: var(--w-margin-2xs);
+  --w-radio-group-vertical-mb: var(--w-margin-2xs);
+
+  // 按钮
+  --w-radio-button-border-color: var(--w-border-color-light);
+  --w-radio-button-border-style: var(--w-border-style-base);
+  --w-radio-button-border-width: var(--w-border-width-base);
+  --w-radio-button-border-radius: var(--w-border-radius-2);
+  --w-radio-button-text-size: var(--w-font-size-base);
+  --w-radio-button-text-weight: var(--w-font-weight-regular);
+  --w-radio-button-height-base: var(--w-height-sm);
+  --w-radio-button-lr-padding: var(--w-padding-sm);
+  --w-radio-button-color: var(--w-text-color-darker);
+  --w-radio-button-bg: var(--w-gray-color-1);
+
+  // 悬停
+  --w-radio-button-border-color-hover: var(--w-border-color-light);
+  --w-radio-button-border-style-hover: var(--w-border-style-base);
+  --w-radio-button-border-width-hover: var(--w-border-width-base);
+  --w-radio-button-text-color-hover: var(--w-primary-color);
+  --w-radio-button-text-size-hover: var(--w-font-size-base);
+  --w-radio-button-text-weight-hover: var(--w-font-weight-regular);
+  --w-radio-button-background-hover: var(--w-gray-color-1);
+
+  // 点击
+  --w-radio-button-border-color-active: var(--w-primary-color-7);
+  --w-radio-button-border-style-active: var(--w-border-style-base);
+  --w-radio-button-border-width-active: var(--w-border-width-base);
+  --w-radio-button-text-color-active: var(--w-primary-color-7);
+  --w-radio-button-text-size-active: var(--w-font-size-base);
+  --w-radio-button-text-weight-active: var(--w-font-weight-regular);
+  --w-radio-button-background-active: var(--w-gray-color-1);
+
+  // 选中
+  --w-radio-button-border-color-checked: var(--w-primary-color);
+  --w-radio-button-border-style-checked: var(--w-border-style-base);
+  --w-radio-button-border-width-checked: var(--w-border-width-base);
+  --w-radio-button-text-color-checked: var(--w-primary-color);
+  --w-radio-button-text-size-checked: var(--w-font-size-base);
+  --w-radio-button-text-weight-checked: var(--w-font-weight-regular);
+  --w-radio-button-background-checked: var(--w-gray-color-1);
+
+  // 禁用
+  --w-radio-button-border-color-disabled: var(--w-border-color-light);
+  --w-radio-button-text-color-disabled: var(--w-text-color-lighter);
+  --w-radio-button-background-disabled: var(--w-fill-color-light);
+
+  // 填充按钮
+  --w-radio-button-solid-border-color: var(--w-border-color-light);
+  --w-radio-button-solid-border-style: var(--w-border-style-base);
+  --w-radio-button-solid-border-width: var(--w-border-width-base);
+  --w-radio-button-solid-border-radius: var(--w-border-radius-2);
+  --w-radio-button-solid-text-size: var(--w-font-size-base);
+  --w-radio-button-solid-text-weight: var(--w-font-weight-regular);
+  --w-radio-button-solid-height-base: var(--w-height-sm);
+  --w-radio-button-solid-lr-padding: var(--w-padding-sm);
+  --w-radio-button-solid-color: var(--w-text-color-darker);
+  --w-radio-button-solid-bg: var(--w-gray-color-1);
+
+  // 悬停
+  --w-radio-button-solid-border-color-hover: var(--w-border-color-light);
+  --w-radio-button-solid-border-style-hover: var(--w-border-style-base);
+  --w-radio-button-solid-border-width-hover: var(--w-border-width-base);
+  --w-radio-button-solid-text-color-hover: var(--w-primary-color);
+  --w-radio-button-solid-text-size-hover: var(--w-font-size-darker);
+  --w-radio-button-solid-text-weight-hover: var(--w-font-weight-regular);
+  --w-radio-button-solid-background-hover: var(--w-gray-color-1);
+
+  // 点击
+  --w-radio-button-solid-border-color-active: var(--w-primary-color-7);
+  --w-radio-button-solid-border-style-active: var(--w-border-style-base);
+  --w-radio-button-solid-border-width-active: var(--w-border-width-base);
+  --w-radio-button-solid-text-color-active: var(--w-gray-color-1);
+  --w-radio-button-solid-text-size-active: var(--w-font-size-base);
+  --w-radio-button-solid-text-weight-active: var(--w-font-weight-regular);
+  --w-radio-button-solid-background-active: var(--w-primary-color-7);
+
+  // 选中
+  --w-radio-button-solid-border-color-checked: var(--w-primary-color);
+  --w-radio-button-solid-border-style-checked: var(--w-border-style-base);
+  --w-radio-button-solid-border-width-checked: var(--w-border-width-base);
+  --w-radio-button-solid-text-color-checked: var(--w-gray-color-1);
+  --w-radio-button-solid-text-size-checked: var(--w-font-size-base);
+  --w-radio-button-solid-text-weight-checked: var(--w-font-weight-regular);
+  --w-radio-button-solid-background-checked: var(--w-primary-color);
+
+  // 禁用
+  --w-radio-button-solid-border-color-disabled: var(--w-border-color-light);
+  --w-radio-button-solid-text-color-disabled: var(--w-text-color-lighter);
+  --w-radio-button-solid-background-disabled: var(--w-fill-color-light);
+
+  // 小号尺寸
+  --w-radio-button-small-height-base: var(--w-height-2xs);
+  --w-radio-button-small-lr-padding: var(--w-padding-2xs);
+  --w-radio-button-small-border-width: var(--w-border-width-base);
+  --w-radio-button-small-text-size: var(--w-font-size-sm);
+  --w-radio-button-small-text-weight: var(--w-font-weight-regular);
+  // 默认尺寸
+  --w-radio-button-default-height-base: var(--w-height-sm);
+  --w-radio-button-default-lr-padding: var(--w-padding-sm);
+  --w-radio-button-default-border-width: var(--w-border-width-base);
+  --w-radio-button-default-text-size: var(--w-font-size-base);
+  --w-radio-button-default-text-weight: var(--w-font-weight-regular);
+  // 大号尺寸
+  --w-radio-button-large-height-base: var(--w-height-md);
+  --w-radio-button-large-lr-padding: var(--w-padding-sm);
+  --w-radio-button-large-border-width: var(--w-border-width-base);
+  --w-radio-button-large-text-size: var(--w-font-size-lg);
+  --w-radio-button-large-text-weight: var(--w-font-weight-regular);
+}
+
+span.@{radio-prefix-cls} + * {
+  color: var(--w-radio-text-color);
+  font-size: var(--w-radio-text-font-size);
+  font-weight: var(--w-radio-text-font-weight);
+  padding: 0 var(--w-radio-lr-padding);
+  vertical-align: middle;
+}
+
+.@{radio-prefix-cls} {
+  vertical-align: middle;
+
+  &-inner {
+    border-color: var(--w-radio-border-color);
+    width: var(--w-radio-font-size);
+    height: var(--w-radio-font-size);
+
+    &::after {
+      width: e('calc(var(--w-radio-font-size) / 2)');
+      height: e('calc(var(--w-radio-font-size) / 2)');
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+    }
+  }
+}
+
+span.ant-radio + * {
+  &:hover {
+    color: var(--w-radio-text-color-hover);
+    font-size: var(--w-radio-text-font-size-hover);
+    font-weight: var(--w-radio-text-font-weight-hover);
+  }
+}
+
+.ant-radio {
+  &:hover {
+    .ant-radio-inner {
+      border-color: var(--w-radio-border-color-hover);
+    }
+  }
+}
+
+span.ant-radio-checked + * {
+  color: var(--w-radio-text-color-checked);
+  font-size: var(--w-radio-text-font-size-checked);
+  font-weight: var(--w-radio-text-font-weight-checked);
+}
+
+.ant-radio-checked {
+  .ant-radio-inner {
+    border-color: var(--w-radio-border-color-checked);
+
+    background-color: var(--w-radio-border-color-checked);
+    position: relative;
+
+    // 选中图标修改
+    &::before {
+      position: absolute;
+      display: table;
+      border: 2px solid #fff;
+      border-top: 0;
+      border-left: 0;
+      -webkit-transform: rotate(45deg) scale(1) translate(-50%, -50%);
+      transform: rotate(45deg) scale(1) translate(-50%, -50%);
+      opacity: 1;
+      -webkit-transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+      transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+      width: e('calc(var(--w-radio-font-size) / 14 * 5)');
+      height: e('calc(var(--w-radio-font-size) / 14 * 8)');
+      top: 50%;
+      left: 22%;
+      content: ' ';
+    }
+
+    &::after {
+      // transform: translate(-50%, -50%);
+      // background-color: var(--w-radio-border-color-checked);
+      content: none;
+    }
+  }
+
+  &::after {
+    border-color: var(--w-radio-border-color-checked);
+  }
+}
+
+.ant-radio-input:focus + .ant-radio-inner {
+  border-color: var(--w-radio-border-color-checked);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--w-radio-border-color-checked) 8%, white);
+}
+
+span.ant-radio-disabled + * {
+  color: var(--w-radio-text-color-disabled);
+}
+
+.ant-radio-disabled {
+  &.ant-radio-checked {
+    .ant-radio-inner {
+      border-color: var(--w-radio-border-color-disabled) !important;
+      background-color: var(--w-radio-background-disabled-checked);
+
+      &::before {
+        border-color: var(--w-radio-text-color-disabled);
+      }
+    }
+  }
+
+  .ant-radio-inner {
+    border-color: var(--w-radio-border-color-disabled) !important;
+    background-color: var(--w-radio-background-disabled);
+
+    // &::before {
+    //   border-color: var(--w-radio-border-color-disabled);
+    // }
+  }
+}
+
+.has-error {
+  .ant-form-explain {
+    .radio-error {
+      color: var(--w-radio-error-word-color);
+      font-size: var(--w-radio-error-word-font-size);
+      font-weight: var(--w-radio-error-word-font-weight);
+    }
+  }
+
+  &:has(.ant-radio-wrapper) {
+    .ant-form-explain {
+      color: var(--w-radio-error-word-color);
+      font-size: var(--w-radio-error-word-font-size);
+      font-weight: var(--w-radio-error-word-font-weight);
+    }
+  }
+}
+
+// .widget-form-layout .has-error {
+//   &:has(.ant-radio-wrapper) {
+//     margin-bottom: e('calc(var(--w-radio-error-word-font-size) + 4px)');
+
+//     .ant-form-explain,
+//     .ant-form-split {
+//       bottom: e('calc(-4px - var(--w-radio-error-word-font-size))');
+//     }
+//   }
+// }
+
+.ant-radio-group {
+  .ant-radio-wrapper {
+    margin-right: var(--w-radio-group-width-mr);
+  }
+}
+
+.radio-group-vertical {
+  &.ant-radio-group {
+    .ant-radio-wrapper {
+      margin-right: var(--w-radio-group-vertical-mr);
+      margin-bottom: var(--w-radio-group-vertical-mb);
+    }
+  }
+}
+
+// 线性，默认
+.@{radio-group-prefix-cls}-outline {
+  .@{radio-prefix-cls}-button-wrapper,
+  .ant-form label.@{radio-prefix-cls}-button-wrapper {
+    height: var(--w-radio-button-height-base);
+    padding: 0 var(--w-radio-button-lr-padding);
+    color: var(--w-radio-button-color);
+    line-height: e('calc(var(--w-radio-button-height-base) - var(--w-radio-button-border-width)*2)');
+    background: var(--w-radio-button-bg);
+    border: var(--w-radio-button-border-width) var(--w-radio-button-border-style) var(--w-radio-button-border-color);
+    border-left: 0;
+
+    font-size: var(--w-radio-button-text-size);
+    font-weight: var(--w-radio-button-text-weight);
+
+    & > span:not(.ant-radio-button) {
+      i {
+        font-size: var(--w-radio-button-solid-text-size);
+      }
+    }
+
+    &:first-child {
+      border-left: var(--w-radio-button-border-width) var(--w-radio-button-border-style) var(--w-radio-button-border-color);
+      border-radius: var(--w-radio-button-border-radius) 0 0 var(--w-radio-button-border-radius);
+    }
+
+    &:last-child {
+      border-radius: 0 var(--w-radio-button-border-radius) var(--w-radio-button-border-radius) 0;
+    }
+
+    &:first-child:last-child {
+      border-radius: var(--w-radio-button-border-radius);
+    }
+
+    &:not(.@{radio-prefix-cls}-button-wrapper-disabled) {
+      &:not(:first-child) {
+        &::before {
+          width: var(--w-radio-button-border-width);
+          background-color: var(--w-radio-button-border-color);
+          border-left: 0;
+        }
+      }
+
+      &:hover {
+        font-size: var(--w-radio-button-text-size-hover);
+        font-weight: var(--w-radio-button-text-weight-hover);
+        color: var(--w-radio-button-text-color-hover);
+        border: var(--w-radio-button-border-width-hover) var(--w-radio-button-border-style-hover) var(--w-radio-button-border-color-hover);
+        border-left: 0;
+
+        &:not(:first-child) {
+          &::before {
+            width: var(--w-radio-button-border-width-hover);
+            background-color: var(--w-radio-button-border-color-hover);
+          }
+        }
+
+        &:first-child {
+          border: var(--w-radio-button-border-width-hover) var(--w-radio-button-border-style-hover) var(--w-radio-button-border-color-hover);
+        }
+      }
+
+      &:active,
+      &:focus {
+        font-size: var(--w-radio-button-text-size-active);
+        font-weight: var(--w-radio-button-text-weight-active);
+        color: var(--w-radio-button-text-color-active);
+        border: var(--w-radio-button-border-width-active) var(--w-radio-button-border-style-active)
+          var(--w-radio-button-border-color-active);
+        border-left: 0;
+        // &::before {
+        //   background-color: var(--w-radio-button-border-color-active);
+        // }
+
+        &:not(:first-child) {
+          &::before {
+            width: var(--w-radio-button-border-width-active);
+            background-color: var(--w-radio-button-border-color-active);
+          }
+        }
+
+        &:first-child {
+          border: var(--w-radio-button-border-width-active) var(--w-radio-button-border-style-active)
+            var(--w-radio-button-border-color-active);
+        }
+      }
+    }
+
+    &.@{radio-prefix-cls}-button-wrapper-checked {
+      &:not(.@{radio-prefix-cls}-button-wrapper-disabled) {
+        color: var(--w-radio-button-text-color-checked);
+        background: var(--w-radio-button-background-checked);
+        border: var(--w-radio-button-border-width-checked) var(--w-radio-button-border-style-checked)
+          var(--w-radio-button-border-color-checked);
+        font-size: var(--w-radio-button-text-size-checked);
+        font-weight: var(--w-radio-button-text-weight-checked);
+        border-left: 0;
+
+        &::before {
+          background-color: var(--w-radio-button-border-color-checked);
+        }
+
+        &:first-child {
+          border-left: var(--w-radio-button-border-width-checked) var(--w-radio-button-border-style-checked)
+            var(--w-radio-button-border-color-checked);
+        }
+
+        &:hover {
+          &:first-child {
+            border-left: var(--w-radio-button-border-width-hover) var(--w-radio-button-border-style-hover)
+              var(--w-radio-button-border-color-hover);
+          }
+        }
+
+        &:not(:first-child) {
+          &::before {
+            width: var(--w-radio-button-border-width-checked);
+            background-color: var(--w-radio-button-border-color-checked);
+          }
+        }
+      }
+    }
+
+    &.@{radio-prefix-cls}-button-wrapper-disabled {
+      color: var(--w-radio-button-text-color-disabled);
+      background-color: var(--w-radio-button-background-disabled);
+      border-color: var(--w-radio-button-border-color-disabled);
+
+      &:not(:first-child) {
+        &::before {
+          width: var(--w-radio-button-border-width);
+          background-color: var(--w-radio-button-border-color-disabled);
+        }
+      }
+
+      &.@{radio-prefix-cls}-button-wrapper-checked {
+        color: var(--w-text-color-light);
+        background-color: var(--w-fill-color-dark);
+      }
+    }
+  }
+}
+
+// 填充按钮组
+.@{radio-group-prefix-cls}-solid {
+  .@{radio-prefix-cls}-button-wrapper,
+  .ant-form label.@{radio-prefix-cls}-button-wrapper {
+    height: var(--w-radio-button-solid-height-base);
+    padding: 0 var(--w-radio-button-solid-lr-padding);
+    line-height: e('calc(var(--w-radio-button-solid-height-base) - var(--w-radio-button-solid-border-width)*2)');
+    color: var(--w-radio-button-solid-color);
+    background: var(--w-radio-button-solid-bg);
+    border: var(--w-radio-button-solid-border-width) var(--w-radio-button-solid-border-style) var(--w-radio-button-solid-border-color);
+    border-left: 0;
+
+    font-size: var(--w-radio-button-solid-text-size);
+    font-weight: var(--w-radio-button-solid-text-weight);
+
+    & > span:not(.ant-radio-button) {
+      i {
+        font-size: var(--w-radio-button-solid-text-size);
+      }
+    }
+
+    &:not(:first-child) {
+      &::before {
+        width: var(--w-radio-button-solid-border-width);
+        background-color: var(--w-radio-button-solid-border-color);
+      }
+    }
+
+    &:first-child {
+      border-left: var(--w-radio-button-solid-border-width) var(--w-radio-button-solid-border-style)
+        var(--w-radio-button-solid-border-color);
+      border-radius: var(--w-radio-button-solid-border-radius) 0 0 var(--w-radio-button-solid-border-radius);
+    }
+
+    &:last-child {
+      border-radius: 0 var(--w-radio-button-solid-border-radius) var(--w-radio-button-solid-border-radius) 0;
+    }
+
+    &:first-child:last-child {
+      border-radius: var(--w-radio-button-solid-border-radius);
+    }
+
+    &:hover {
+      font-size: var(--w-radio-button-solid-text-size-hover);
+      font-weight: var(--w-radio-button-solid-text-weight-hover);
+      color: var(--w-radio-button-solid-text-color-hover);
+      background: var(--w-radio-button-solid-background-hover);
+      border: var(--w-radio-button-solid-border-width-hover) var(--w-radio-button-solid-border-color-hover)
+        var(--w-radio-button-solid-border-style-hover);
+      border-left: 0;
+
+      &:not(:first-child) {
+        &::before {
+          width: var(--w-radio-button-solid-border-width-hover);
+          background-color: var(--w-radio-button-solid-border-color-hover);
+        }
+      }
+
+      &:first-child {
+        border-left: var(--w-radio-button-solid-border-width-hover) var(--w-radio-button-solid-border-color-hover)
+          var(--w-radio-button-solid-border-style-hover);
+      }
+    }
+
+    &:active,
+    &:focus {
+      font-size: var(--w-radio-button-solid-text-size-active);
+      font-weight: var(--w-radio-button-solid-text-weight-active);
+      color: var(--w-radio-button-solid-text-color-active);
+      background: var(--w-radio-button-solid-background-active);
+      border: var(--w-radio-button-solid-border-width-active) var(--w-radio-button-solid-border-color-active)
+        var(--w-radio-button-solid-border-style-active);
+      border-left: 0;
+
+      &:not(:first-child) {
+        &::before {
+          width: var(--w-radio-button-solid-border-width-active);
+          background-color: var(--w-radio-button-solid-border-color-active);
+        }
+      }
+
+      &:first-child {
+        border-left: var(--w-radio-button-solid-border-width-active) var(--w-radio-button-solid-border-color-active)
+          var(--w-radio-button-solid-border-style-active);
+      }
+    }
+
+    &.@{radio-prefix-cls}-button-wrapper-checked {
+      &:not(.@{radio-prefix-cls}-button-wrapper-disabled) {
+        color: var(--w-radio-button-solid-text-color-checked);
+        background: var(--w-radio-button-solid-background-checked);
+        border: var(--w-radio-button-solid-border-width-checked) var(--w-radio-button-solid-border-style-checked)
+          var(--w-radio-button-solid-border-color-checked);
+        font-size: var(--w-radio-button-solid-text-size-checked);
+        font-weight: var(--w-radio-button-solid-text-weight-checked);
+        border-left: 0;
+
+        &::before {
+          background-color: var(--w-radio-button-solid-border-color-checked);
+        }
+
+        &:first-child {
+          border-left: var(--w-radio-button-solid-border-width-checked) var(--w-radio-button-solid-border-color-checked)
+            var(--w-radio-button-solid-border-style-checked);
+        }
+
+        &:not(:first-child) {
+          &::before {
+            width: var(--w-radio-button-solid-border-width-checked);
+            background-color: var(--w-radio-button-solid-border-color-checked);
+          }
+        }
+      }
+    }
+
+    &.@{radio-prefix-cls}-button-wrapper-disabled {
+      color: var(--w-radio-button-solid-text-color-disabled);
+      background-color: var(--w-radio-button-solid-background-disabled);
+      border-color: var(--w-radio-button-solid-border-color-disabled);
+
+      &:not(:first-child) {
+        &::before {
+          width: var(--w-radio-button-solid-border-width);
+          background-color: var(--w-radio-button-solid-border-color-disabled);
+        }
+      }
+
+      &.@{radio-prefix-cls}-button-wrapper-checked {
+        color: var(--w-text-color-light);
+        background-color: var(--w-fill-color-dark);
+      }
+    }
+  }
+
+  &.radio-ghost {
+    --w-radio-button-solid-color: var(--w-border-color-lighter);
+    --w-radio-button-solid-bg: transparent;
+    --w-radio-button-solid-border-color: var(--w-border-color-inverse);
+    --w-radio-button-solid-text-color-hover: var(--w-text-color-inverse);
+    --w-radio-button-solid-background-hover: transparent;
+    --w-radio-button-solid-border-color-hover: var(--w-border-color-inverse);
+    --w-radio-button-solid-text-color-active: var(--w-primary-color);
+    --w-radio-button-solid-background-active: var(--w-fill-color-base);
+    --w-radio-button-solid-border-color-active: var(--w-border-color-inverse);
+    --w-radio-button-solid-text-color-checked: var(--w-primary-color);
+    --w-radio-button-solid-background-checked: var(--w-fill-color-base);
+    --w-radio-button-solid-border-color-checked: var(--w-border-color-inverse);
+  }
+}
+
+.@{radio-group-prefix-cls}-small {
+  // 线性
+  --w-radio-button-height-base: var(--w-radio-button-small-height-base);
+  --w-radio-button-lr-padding: var(--w-radio-button-small-lr-padding);
+  // 正常
+  --w-radio-button-border-width: var(--w-radio-button-small-border-width);
+  --w-radio-button-text-size: var(--w-radio-button-small-text-size);
+  --w-radio-button-text-weight: var(--w-radio-button-small-text-weight);
+  // 悬浮
+  --w-radio-button-border-width-hover: var(--w-radio-button-small-border-width);
+  --w-radio-button-text-size-hover: var(--w-radio-button-small-text-size);
+  --w-radio-button-text-weight-hover: var(--w-radio-button-small-text-weight);
+  // 点击
+  --w-radio-button-border-width-active: var(--w-radio-button-small-border-width);
+  --w-radio-button-text-size-active: var(--w-radio-button-small-text-size);
+  --w-radio-button-text-weight-active: var(--w-radio-button-small-text-weight);
+  // 选中
+  --w-radio-button-border-width-checked: var(--w-radio-button-small-border-width);
+  --w-radio-button-text-size-checked: var(--w-radio-button-small-text-size);
+  --w-radio-button-text-weight-checked: var(--w-radio-button-small-text-weight);
+
+  // 填充
+  --w-radio-button-solid-height-base: var(--w-radio-button-small-height-base);
+  --w-radio-button-solid-lr-padding: var(--w-radio-button-small-lr-padding);
+  // 正常
+  --w-radio-button-solid-border-width: var(--w-radio-button-small-border-width);
+  --w-radio-button-solid-text-size: var(--w-radio-button-small-text-size);
+  --w-radio-button-solid-text-weight: var(--w-radio-button-small-text-weight);
+  // 悬浮
+  --w-radio-button-solid-border-width-hover: var(--w-radio-button-small-border-width);
+  --w-radio-button-solid-text-size-hover: var(--w-radio-button-small-text-size);
+  --w-radio-button-solid-text-weight-hover: var(--w-radio-button-small-text-weight);
+  // 点击
+  --w-radio-button-solid-border-width-active: var(--w-radio-button-small-border-width);
+  --w-radio-button-solid-text-size-active: var(--w-radio-button-small-text-size);
+  --w-radio-button-solid-text-weight-active: var(--w-radio-button-small-text-weight);
+  // 选中
+  --w-radio-button-solid-border-width-checked: var(--w-radio-button-small-border-width);
+  --w-radio-button-solid-text-size-checked: var(--w-radio-button-small-text-size);
+  --w-radio-button-solid-text-weight-checked: var(--w-radio-button-small-text-weight);
+}
+
+.@{radio-group-prefix-cls}-default {
+  // 线性
+  --w-radio-button-height-base: var(--w-radio-button-default-height-base);
+  --w-radio-button-lr-padding: var(--w-radio-button-default-lr-padding);
+  // 正常
+  --w-radio-button-border-width: var(--w-radio-button-default-border-width);
+  --w-radio-button-text-size: var(--w-radio-button-default-text-size);
+  --w-radio-button-text-weight: var(--w-radio-button-default-text-weight);
+  // 悬浮
+  --w-radio-button-border-width-hover: var(--w-radio-button-default-border-width);
+  --w-radio-button-text-size-hover: var(--w-radio-button-default-text-size);
+  --w-radio-button-text-weight-hover: var(--w-radio-button-default-text-weight);
+  // 点击
+  --w-radio-button-border-width-active: var(--w-radio-button-default-border-width);
+  --w-radio-button-text-size-active: var(--w-radio-button-default-text-size);
+  --w-radio-button-text-weight-active: var(--w-radio-button-default-text-weight);
+  // 选中
+  --w-radio-button-border-width-checked: var(--w-radio-button-default-border-width);
+  --w-radio-button-text-size-checked: var(--w-radio-button-default-text-size);
+  --w-radio-button-text-weight-checked: var(--w-radio-button-default-text-weight);
+
+  // 填充
+  --w-radio-button-solid-height-base: var(--w-radio-button-default-height-base);
+  --w-radio-button-solid-lr-padding: var(--w-radio-button-default-lr-padding);
+  // 正常
+  --w-radio-button-solid-border-width: var(--w-radio-button-default-border-width);
+  --w-radio-button-solid-text-size: var(--w-radio-button-default-text-size);
+  --w-radio-button-solid-text-weight: var(--w-radio-button-default-text-weight);
+  // 悬浮
+  --w-radio-button-solid-border-width-hover: var(--w-radio-button-default-border-width);
+  --w-radio-button-solid-text-size-hover: var(--w-radio-button-default-text-size);
+  --w-radio-button-solid-text-weight-hover: var(--w-radio-button-default-text-weight);
+  // 点击
+  --w-radio-button-solid-border-width-active: var(--w-radio-button-default-border-width);
+  --w-radio-button-solid-text-size-active: var(--w-radio-button-default-text-size);
+  --w-radio-button-solid-text-weight-active: var(--w-radio-button-default-text-weight);
+  // 选中
+  --w-radio-button-solid-border-width-checked: var(--w-radio-button-default-border-width);
+  --w-radio-button-solid-text-size-checked: var(--w-radio-button-default-text-size);
+  --w-radio-button-solid-text-weight-checked: var(--w-radio-button-default-text-weight);
+}
+
+.@{radio-group-prefix-cls}-large {
+  // 线性
+  --w-radio-button-height-base: var(--w-radio-button-large-height-base);
+  --w-radio-button-lr-padding: var(--w-radio-button-large-lr-padding);
+  // 正常
+  --w-radio-button-border-width: var(--w-radio-button-large-border-width);
+  --w-radio-button-text-size: var(--w-radio-button-large-text-size);
+  --w-radio-button-text-weight: var(--w-radio-button-large-text-weight);
+  // 悬浮
+  --w-radio-button-border-width-hover: var(--w-radio-button-large-border-width);
+  --w-radio-button-text-size-hover: var(--w-radio-button-large-text-size);
+  --w-radio-button-text-weight-hover: var(--w-radio-button-large-text-weight);
+  // 点击
+  --w-radio-button-border-width-active: var(--w-radio-button-large-border-width);
+  --w-radio-button-text-size-active: var(--w-radio-button-large-text-size);
+  --w-radio-button-text-weight-active: var(--w-radio-button-large-text-weight);
+  // 选中
+  --w-radio-button-border-width-checked: var(--w-radio-button-large-border-width);
+  --w-radio-button-text-size-checked: var(--w-radio-button-large-text-size);
+  --w-radio-button-text-weight-checked: var(--w-radio-button-large-text-weight);
+
+  // 填充
+  --w-radio-button-solid-height-base: var(--w-radio-button-large-height-base);
+  --w-radio-button-solid-lr-padding: var(--w-radio-button-large-lr-padding);
+  // 正常
+  --w-radio-button-solid-border-width: var(--w-radio-button-large-border-width);
+  --w-radio-button-solid-text-size: var(--w-radio-button-large-text-size);
+  --w-radio-button-solid-text-weight: var(--w-radio-button-large-text-weight);
+  // 悬浮
+  --w-radio-button-solid-border-width-hover: var(--w-radio-button-large-border-width);
+  --w-radio-button-solid-text-size-hover: var(--w-radio-button-large-text-size);
+  --w-radio-button-solid-text-weight-hover: var(--w-radio-button-large-text-weight);
+  // 点击
+  --w-radio-button-solid-border-width-active: var(--w-radio-button-large-border-width);
+  --w-radio-button-solid-text-size-active: var(--w-radio-button-large-text-size);
+  --w-radio-button-solid-text-weight-active: var(--w-radio-button-large-text-weight);
+  // 选中
+  --w-radio-button-solid-border-width-checked: var(--w-radio-button-large-border-width);
+  --w-radio-button-solid-text-size-checked: var(--w-radio-button-large-text-size);
+  --w-radio-button-solid-text-weight-checked: var(--w-radio-button-large-text-weight);
+}
+
+.radio-block {
+  display: flex;
+  flex-wrap: nowrap;
+
+  > label {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+.widget-form-radio {
+  .textonly {
+    color: var(--w-radio-text-color-checked);
+    font-size: var(--w-radio-text-font-size-checked);
+    font-weight: var(--w-radio-text-font-weight-checked);
+  }
+}

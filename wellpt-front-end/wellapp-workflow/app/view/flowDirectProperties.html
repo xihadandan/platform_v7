@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+
+    {% for file in themeFiles %}
+    <link href="{{file}}" rel="stylesheet" />
+    {% endfor %}
+  </head>
+  <body style="background: #fff">
+    <form id="directionForm">
+      <div class="fixed-tabs">
+        <ul class="nav nav-tabs tab-style-btns" role="tablist">
+          <li class="active">
+            <a href="#baseSetting" data-toggle="tab" aria-expanded="true">基本设置</a>
+          </li>
+          <li class="">
+            <a href="#branchFlow" data-toggle="tab">分支流</a>
+          </li>
+          <li class="">
+            <a href="#documentSetting" data-toggle="tab">归档设置</a>
+          </li>
+          <li class="">
+            <a href="#advancedSetting" data-toggle="tab">高级设置</a>
+          </li>
+        </ul>
+      </div>
+      <div class="tab-content" style="height: 40px; padding: 60px 10px 10px">
+        <div class="tab-pane subtab active" name="baseSetting" id="baseSetting">
+          <div class="well-workflow-form">
+            <div class="form-group">
+              <label class="sub-label">
+                <span class="required"></span>
+                <span>名称</span>
+              </label>
+              <input type="text" class="form-control" placeholder="" id="name" name="name" />
+            </div>
+            <div class="form-group">
+              <label class="sub-label">
+                <span>ID</span>
+              </label>
+              <div id="id"></div>
+            </div>
+            <div class="form-group">
+              <label class="sub-label">
+                <span>连接线</span>
+              </label>
+              <div>
+                <ul class="line-set">
+                  <li data-type="beeline">直线</li>
+                  <li data-type="curve">折线</li>
+                </ul>
+                <div data-type="arrow" class="line-direction">反向</div>
+              </div>
+            </div>
+            <div class="showConditions" style="display: none">
+              <div class="form-group">
+                <label>
+                  分支条件设置
+                  <div class="w-tooltip">
+                    <i class="iconfont icon-ptkj-tishishuoming"></i>
+                    <div class="w-tooltip-content">
+                      流程出现判断节点时，可通过设置分支条件让流程进行自动判断和流转
+                      <br />
+                      条件分支：将本流向设置为条件分支，需要配置分支条件，满足条件时才可使用本流向
+                      <br />
+                      缺省分支：将本流向设置为缺省分支，当同一判断节点下其他流向都不满足条件时，默认使用本流向
+                      <br />
+                    </div>
+                  </div>
+                </label>
+                <div class="controls">
+                  <input type="radio" name="isDefault" id="isDefault_0" value="0" checked="checked" />
+                  <label class="radio-inline" for="isDefault_0">条件分支</label>
+                  <input type="radio" name="isDefault" id="isDefault_1" value="1" />
+                  <label class="radio-inline" for="isDefault_1">缺省分支</label>
+                </div>
+              </div>
+              <div class="form-group condition-branch" id="DCondition">
+                <ul class="work-flow-other-list"></ul>
+                <div class="well-btn w-btn-primary well-btn-sm w-noLine-btn" id="addConditions">
+                  <i class="iconfont icon-ptkj-jiahao"></i>
+                  添加
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" name="isEveryCheck" id="isEveryCheck" value="1" />
+                <label class="radio-inline" for="isEveryCheck">每次提交时检查条件</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="sub-label">
+                <span>排序号</span>
+                <div class="w-tooltip">
+                  <i class="iconfont icon-ptkj-tishishuoming"></i>
+                  <div class="w-tooltip-content">当出现多个流向需要选择时，可以设置排序号以调整选项的优先次序，例如设置编号 010、020</div>
+                </div>
+              </label>
+              <input type="text" class="form-control" placeholder="" id="sortOrder" name="sortOrder" />
+            </div>
+            <div class="form-group">
+              <label class="sub-label">
+                <span>流向说明</span>
+              </label>
+              <textarea class="form-control" placeholder="" id="remark" name="remark"></textarea>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="showRemark" id="showRemark" value="1" />
+              <label class="radio-inline" for="showRemark">流程签批时显示流向说明</label>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane subtab" name="branchFlow" id="branchFlow">
+          <div class="well-workflow-form">
+            <div class="form-group">
+              <label class="sub-label">
+                <span>分支模式</span>
+              </label>
+              <div class="controls">
+                <input type="radio" name="branchMode" id="branchMode_1" value="1" checked="checked" />
+                <label class="radio-inline" for="branchMode_1">静态分支</label>
+                <input type="radio" name="branchMode" id="branchMode_2" value="2" />
+                <label class="radio-inline" for="branchMode_2">动态多分支</label>
+              </div>
+            </div>
+            <div class="poly-container form-group" style="display: none">
+              <div class="form-group">
+                <label class="sub-label">
+                  <span>分支实例</span>
+                </label>
+                <div class="controls">
+                  <input type="radio" name="branchInstanceType" id="branchInstanceType_1" value="1" checked="checked" />
+                  <label class="radio-inline" for="branchInstanceType_1">独立分支</label>
+                  <input type="radio" name="branchInstanceType" id="branchInstanceType_2" value="2" />
+                  <label class="radio-inline" for="branchInstanceType_2">主办分支</label>
+                  <input type="radio" name="branchInstanceType" id="branchInstanceType_3" value="3" />
+                  <label class="radio-inline" for="branchInstanceType_3">协办分支</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="sub-label" for="branchCreateWay">
+                  <span>来源</span>
+                </label>
+                <input type="text" id="branchCreateWay" name="branchCreateWay" />
+              </div>
+              <div class="form-group form-interface" style="display: none">
+                <label class="sub-label" for="branchInterface">
+                  <span>接口</span>
+                </label>
+                <input type="text" id="branchInterface" name="branchInterface" />
+              </div>
+              <div class="form-group from-form">
+                <div class="form-group">
+                  <label class="sub-label" for="branchCreateInstanceFormId">
+                    <span>表单</span>
+                  </label>
+                  <input type="text" id="branchCreateInstanceFormId" name="branchCreateInstanceFormId" />
+                  <input type="hidden" id="isMainFormBranchCreateWay" name="isMainFormBranchCreateWay" />
+                </div>
+                <div class="form-group">
+                  <label class="sub-label" for="branchTaskUsers">
+                    <span>字段</span>
+                  </label>
+                  <input type="text" id="branchTaskUsers" name="branchTaskUsers" />
+                </div>
+                <div class="form-group">
+                  <label class="sub-label" for="branchCreateInstanceWay">
+                    <span>创建方式</span>
+                  </label>
+                  <input type="text" id="branchCreateInstanceWay" name="branchCreateInstanceWay" />
+                </div>
+                <div class="form-group branch-create-way-batch" style="display: none">
+                  <label>
+                    <span></span>
+                  </label>
+                  <input type="checkbox" id="branchCreateInstanceBatch" name="branchCreateInstanceBatch" value="0" />
+                  <label for="branchCreateInstanceBatch">按从表行分批次生成实例</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="shareBranch" id="shareBranch" value="1" />
+              <label class="" for="shareBranch">共享分支</label>
+            </div>
+            <div class="form-group">
+              <label class="sub-label">
+                <span>聚合</span>
+              </label>
+              <div class="controls">
+                <input type="checkbox" name="isIndependentBranch" id="isIndependentBranch" value="1" />
+                <label class="" for="isIndependentBranch">该流向不参与聚合</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane subtab" name="documentSetting" id="documentSetting">
+          <div class="well-workflow-form">
+            <div class="form-group" id="archives">
+              <label for="archives">
+                归档设置
+                <div class="w-tooltip">
+                  <i class="iconfont icon-ptkj-tishishuoming"></i>
+                  <div class="w-tooltip-content">添加归档规则，将本流程的流转数据自动保存到文件库</div>
+                </div>
+              </label>
+              <ul class="work-flow-other-list"></ul>
+              <div class="well-btn w-btn-primary well-btn-sm w-noLine-btn" id="addDocumentSet">
+                <i class="iconfont icon-ptkj-jiahao"></i>
+                添加
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane subtab" name="advancedSetting" id="advancedSetting">
+          <div class="well-workflow-form">
+            <div class="form-group">
+              <label class="sub-label">
+                <span>流向作为提交按钮使用</span>
+              </label>
+              <div>
+                <input type="hidden" id="useAsButton" name="useAsButton" />
+                <div id="useBtn" class="switch-wrap">
+                  <span class="switch-radio" data-value="0"></span>
+                  <input value="1" style="display: none" class="w-search-option" name="useBtn" type="radio" />
+                  <input value="0" style="display: none" class="w-search-option" name="useBtn" type="radio" />
+                </div>
+              </div>
+            </div>
+            <div class="btn-container form-group" style="display: none">
+              <div class="form-group">
+                <label class="sub-label">
+                  <span>
+                    按钮名称
+                    <span style="color: #999">(为空时使用流向名称)</span>
+                  </span>
+                </label>
+                <input type="text" class="form-control" placeholder="" id="buttonName" name="buttonName" />
+              </div>
+              <div class="form-group">
+                <label class="sub-label">
+                  <span class="required"></span>
+                  <span>按钮排序号</span>
+                </label>
+                <input type="text" class="form-control" placeholder="" id="buttonOrder" name="buttonOrder" />
+              </div>
+              <div class="form-group">
+                <label class="sub-label">
+                  <span class="required"></span>
+                  <span>按钮样式</span>
+                </label>
+                <div id="btn_container_div" style="display: inline-block"></div>
+                <input type="hidden" name="buttonClassName" id="buttonClassName" />
+                <input type="hidden" name="btnStyle" id="btnStyle" />
+                <div id="setBtnClass" class="well-btn w-btn-primary w-noLine-btn">设置</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>其他</label>
+            </div>
+            <div class="form-group">
+              <label class="sub-label" for="listenerName">事件监听</label>
+              <input type="text" placeholder="请选择" id="listenerName" name="listenerName" class="form-control" />
+              <input type="hidden" id="listener" name="listener" />
+            </div>
+            <div class="form-group">
+              <label class="sub-label">
+                事件脚本
+                <i class=""></i>
+              </label>
+              <ul class="work-flow-settings" id="eventScripts"></ul>
+              <div id="addScripts" class="well-btn w-btn-primary well-btn-sm w-noLine-btn">
+                <i class="iconfont icon-ptkj-jiahao"></i>
+                添加
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <script src="/static/js/requirejs/2.3.2/require.min.js"></script>
+    <script
+      type="text/javascript"
+      src="/jsexplainer/requirejsConfigScript.js?ids=jquery,bootstrap,global,select2,wellSelect,wCommonDialog,wSelect2,multiOrg,formBuilder,wComboTree,jqueryWorkflow,workflowCommon,flowDirectProperties"
+    ></script>
+    <script>
+      var ctx = '';
+      require(['js/requirejs/domReady'], function (domReady) {
+        domReady(function () {
+          require([
+            'jquery',
+            'bootstrap',
+            'global',
+            'select2',
+            'wellSelect',
+            'wSelect2',
+            'multiOrg',
+            'wCommonDialog',
+            'formBuilder',
+            'wComboTree',
+            'jqueryWorkflow',
+            'workflowCommon',
+            'flowDirectProperties'
+          ], function () {
+            if (parent.goWorkFlow.currloLine) {
+              setDirectionProperty();
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

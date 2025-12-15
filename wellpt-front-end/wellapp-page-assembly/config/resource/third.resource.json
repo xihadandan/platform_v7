@@ -1,0 +1,544 @@
+{
+  "js": {
+    "webAnimations": {
+      "path": "/js/muuriDrag/web-animations.min",
+      "name": "webAnimations"
+    },
+    "muuri": {
+      "path": "/js/muuriDrag/muuri.min",
+      "name": "muuri",
+      "dependencies": ["webAnimations"]
+    },
+    "summernote-zh-CN": {
+      "path": "/js/bootstrap-wysiwyg/summernote/lang/summernote-zh-CN",
+      "name": "summernote文本编辑器-中文语言包",
+      "dependencies": ["summernote"]
+    },
+    "layDate": {
+      "path": "/js/layDate/laydate",
+      "name": "layDate日期和时间组件"
+    },
+    "jquery-validate-messages_zh_CN": {
+      "path": "/js/validate/js/messages_zh_CN",
+      "name": "jquery-validate-messages_zh_CN",
+      "dependencies": ["dependencyJQueryModule", "jquery-validate"]
+    },
+    "bootstrap-table-cardgrid": {
+      "path": "/js/bootstrap-table/1.11.0/js/extensions/cardgrid/bootstrap-table-cardgrid",
+      "name": "bootstrap-table-cardgrid",
+      "dependencies": ["bootstrapTable"]
+    },
+    "ace_ext_language_tools": {
+      "path": "/js/ace/min/ext-language_tools",
+      "name": "ace_ext_language_tools",
+      "dependencies": ["ace_code_editor"]
+    },
+    "jquery.fileupload-fp": {
+      "path": "/js/fileupload/js/jquery.fileupload-fp",
+      "name": "jquery.fileupload-fp",
+      "dependencies": ["dependencyJQueryUIModule", "jquery.fileupload"]
+    },
+    "mousewheel": {
+      "path": "/js/perfect-scrollbar/jquery.mousewheel",
+      "name": "mousewheel 滚动条插件",
+      "dependencies": ["jquery"]
+    },
+    "jquery_tag_editor": {
+      "path": "/js/jquery.tag-editor/jquery.tag-editor.min",
+      "name": "jquery_tag_editor标签编辑插件",
+      "dependencies": ["jquery_caret"]
+    },
+    "bootstrap-table-treegrid": {
+      "path": "/js/bootstrap-table/1.11.0/js/extensions/treegrid/bootstrap-table-treegrid",
+      "name": "bootstrap-table-treegrid",
+      "dependencies": ["bootstrapTable", "bootstrap-editable-extensions"]
+    },
+    "uuid": {
+      "path": "/js/fileupload/js/uuid",
+      "name": "UUID",
+      "dependencies": ["dependencyJQueryUIModule"]
+    },
+    "bootstrapTable_reorder_rows": {
+      "path": "/js/bootstrap-table/1.11.0/js/extensions/reorder-rows/bootstrap-table-reorder-rows.min",
+      "name": "bootstrapTable_reorder_rows",
+      "dependencies": ["bootstrapTable"]
+    },
+    "ckeditor": {
+      "path": "/js/ckeditor4.5.11/ckeditor",
+      "name": "ckeditor"
+    },
+    "wellBtnLib": {
+      "path": "/js/wellBtnLib/wellBtnLib",
+      "name": "well按钮库"
+    },
+    "jqGridPlugin": {
+      "path": "/js/jquery.jqGrid-4.4.3/plugins/grid.wellpt",
+      "name": "jqGrid自定义插件",
+      "dependencies": ["jqGrid"]
+    },
+    "dependencySelect2Module": {
+      "name": "dependencySelect2Module",
+      "abstract": true,
+      "dependencies": ["select2", "select2_locale_zh-cn", "wellSelect"]
+    },
+    "jqGrid": {
+      "path": "/js/jquery.jqGrid-4.4.3/js/jquery.jqGrid.min",
+      "name": "jqGrid表格",
+      "dependencies": ["jquery", "jquery-migrate"]
+    },
+    "FileSaver": {
+      "path": "/js/jqueryplugin/FileSaver",
+      "name": "FileSaver"
+    },
+    "colResizable": {
+      "path": "/js/colResizable/colResizable",
+      "name": "Table列宽拖动插件",
+      "dependencies": ["jquery"]
+    },
+    "jquery-ui-touch": {
+      "path": "/js/jqueryui/js/jquery.ui.touch-punch.min",
+      "name": "jquery-ui-touch",
+      "dependencies": ["dependencyJQueryUIModule"]
+    },
+    "jsoneditor": {
+      "path": "/js/jsoneditor/jsoneditor.min",
+      "name": "jsoneditor"
+    },
+    "jquery-validate-additional-methods": {
+      "path": "/js/validate/js/additional-methods",
+      "name": "jquery-validate-additional-methods",
+      "dependencies": ["dependencyJQueryModule", "jquery-validate", "global"]
+    },
+    "jquery-htmlClean": {
+      "path": "/js/jqueryplugin/jquery.htmlClean",
+      "name": "jquery-htmlClean",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "wickedpicker": {
+      "path": "/js/wickedpicker/js/wickedpicker.min",
+      "name": "wickedpicker",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "perfectScrollbar": {
+      "path": "/js/perfect-scrollbar/perfect-scrollbar",
+      "name": "perfectScrollbar 滚动条插件"
+    },
+    "ace_code_editor": {
+      "path": "/js/ace/min/ace",
+      "name": "ace_code_editor"
+    },
+    "dependencyJQueryValidateModule": {
+      "name": "dependencyJQueryValidateModule",
+      "abstract": true,
+      "dependencies": ["jquery", "jquery-validate", "new_validate", "jquery-validate-messages_zh_CN", "jquery-validate-additional-methods"]
+    },
+    "bootstrap-datetimepicker": {
+      "path": "/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker",
+      "name": "bootstrap-datetimepicker",
+      "dependencies": ["dependencyBootstrapModule", "moment"]
+    },
+    "ace_binder": {
+      "path": "/js/ace/ace_binder",
+      "name": "ace_binder"
+    },
+    "timers": {
+      "path": "/js/timers/jquery.timers",
+      "name": "timers计时器",
+      "dependencies": ["jquery"]
+    },
+    "ace_ext_code_his": {
+      "path": "/js/ace/min/ext-code_his",
+      "name": "ace_ext_code_his",
+      "dependencies": ["ace_code_editor", "layer"]
+    },
+    "cookie": {
+      "path": "/js/cookie/jquery.cookie",
+      "name": "cookie",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "select2_locale_zh-cn": {
+      "path": "/js/select2/select2_locale_zh-CN",
+      "name": "select2_locale_zh-cn",
+      "dependencies": ["select2"]
+    },
+    "bootstrap-editable-extensions": {
+      "path": "/js/bootstrap-editable/js/bootstrap-editable-extensions",
+      "name": "bootstrap-editable-extensions",
+      "dependencies": ["bootstrap-editable"]
+    },
+    "pace": {
+      "path": "/js/pace/pace.min",
+      "name": "浏览器加载进度条"
+    },
+    "jquery.fileupload-validate": {
+      "path": "/js/fileupload/js/jquery.fileupload-validate",
+      "name": "jquery.fileupload-validate",
+      "dependencies": ["dependencyJQueryUIModule", "jquery.fileupload-process"]
+    },
+    "jquery-chained": {
+      "path": "/js/jquery-chained-1.0.0/jquery.chained",
+      "name": "平台管理_jquery-chained级联",
+      "dependencies": ["jquery-migrate"]
+    },
+    "spark-md5": {
+      "path": "/js/spark-md5/spark-md5.min",
+      "name": "spark-md5"
+    },
+    "blob": {
+      "path": "/js/jqueryplugin/blob",
+      "name": "blob"
+    },
+    "bootstrapTable_editable": {
+      "path": "/js/bootstrap-table/1.11.0/js/extensions/editable/bootstrap-table-editable",
+      "name": "bootstrapTable_editable",
+      "dependencies": ["bootstrapTable", "bootstrap-editable", "bootstrap-editable-extensions"]
+    },
+    "well_calendar": {
+      "path": "/js/well_calendar/well_calendar",
+      "name": "well_calendar 威尔日历组件",
+      "dependencies": ["moment"]
+    },
+    "ztree-exhide": {
+      "path": "/js/ztree/3.5.24/js/jquery.ztree.exhide.min",
+      "name": "ZTree-Exhide",
+      "dependencies": ["dependencyJQueryModule", "ztree"]
+    },
+    "hoverDelay": {
+      "path": "/js/utils/jquery.hoverDelay",
+      "name": "鼠标hover事件延时",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "fullcalendar_locale-zh-cn": {
+      "path": "/js/fullcalendar/3.9.0/js/fullcalendar_locale-zh-cn",
+      "name": "fullcalendar_locale-zh-cn",
+      "dependencies": ["fullcalendar"]
+    },
+    "jquery_tablednd": {
+      "path": "/js/jqgrid/js/jquery.tablednd",
+      "name": "jquery_tablednd",
+      "dependencies": ["jquery"]
+    },
+    "minicolors": {
+      "path": "/js/minicolors/js/jquery.minicolors",
+      "name": "minicolors",
+      "dependencies": ["jquery"]
+    },
+    "bootstrap-table-fixed-columns": {
+      "path": "/js/bootstrap-table/1.11.0/js/extensions/fixed-columns/bootstrap-table-fixed-columns",
+      "name": "bootstrap-table-fixed-columns",
+      "dependencies": ["bootstrapTable"]
+    },
+    "jquery_caret": {
+      "path": "/js/jquery.tag-editor/jquery.caret.min",
+      "name": "jquery_caret"
+    },
+    "bootbox": {
+      "path": "/js/bootstrap-bootbox/4.4.0/bootbox",
+      "name": "Bootbox",
+      "dependencies": ["dependencyBootstrapModule"]
+    },
+    "tinymce": {
+      "path": "/js/tinymce/tinymce",
+      "name": "tinymce文本编辑器"
+    },
+    "fullcalendar": {
+      "path": "/js/fullcalendar/3.9.0/js/fullcalendar.min",
+      "name": "fullcalendar",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "carousel": {
+      "path": "/js/metro/carousel/carousel",
+      "name": "carousel",
+      "dependencies": ["dependencyJQueryUIModule"]
+    },
+    "layDatePro": {
+      "path": "/js/layDate/laydatePro",
+      "name": "layDate日期和时间组件扩展",
+      "dependencies": ["jquery", "layDate"]
+    },
+    "bootstrapTable": {
+      "path": "/js/bootstrap-table/1.11.0/js/bootstrap-table",
+      "name": "bootstrapTable",
+      "dependencies": ["dependencyBootstrapModule"]
+    },
+    "wellSelect": {
+      "path": "/js/jquery.wellSelect/wellSelect",
+      "name": "wellSelect 下拉框插件",
+      "dependencies": ["jquery-migrate"]
+    },
+    "layer": {
+      "path": "/js/layer/layer",
+      "name": "layer"
+    },
+    "moment": {
+      "path": "/js/moment/moment-with-locales",
+      "name": "moment"
+    },
+    "jquery.iframe-transport": {
+      "path": "/js/fileupload/js/jquery.iframe-transport",
+      "name": "jquery.iframe-transport",
+      "dependencies": ["dependencyJQueryUIModule", "jquery.fileupload"]
+    },
+    "select2": {
+      "path": "/js/select2/select2",
+      "name": "select2",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "chosen-jquery": {
+      "path": "/js/chosen/chosen.jquery.min",
+      "name": "chosen-jquery选择框",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "bootstrap-wysiwyg": {
+      "path": "/js/bootstrap-wysiwyg/wysiwyg/bootstrap-wysiwyg",
+      "name": "bootstrap-wysiwyg文本编辑器",
+      "dependencies": ["bootstrap"]
+    },
+    "jsonview": {
+      "path": "/js/jquery-jsonview/jquery.jsonview",
+      "name": "JSON查看器",
+      "dependencies": ["jquery"]
+    },
+    "jquery.fileupload-process": {
+      "path": "/js/fileupload/js/jquery.fileupload-process",
+      "name": "jquery.fileupload-process",
+      "dependencies": ["dependencyJQueryUIModule", "jquery.fileupload"]
+    },
+    "echarts": {
+      "path": "/js/echarts/echarts.common",
+      "name": "echarts"
+    },
+    "jquery.fileupload-ui": {
+      "path": "/js/fileupload/js/jquery.fileupload-ui",
+      "name": "jquery.fileupload-ui",
+      "dependencies": ["dependencyJQueryUIModule"]
+    },
+    "jquery.fileupload": {
+      "path": "/js/fileupload/js/jquery.fileupload",
+      "name": "fileupload文件上传",
+      "dependencies": ["dependencyJQueryUIModule"]
+    },
+    "timeSelect": {
+      "path": "/js/timeSelect/timeselector",
+      "name": "timeSelect",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "jquery-layout": {
+      "path": "/js/layout/jquery.layout",
+      "name": "jquery-layout",
+      "dependencies": ["dependencyBootstrapModule"]
+    },
+    "summernote": {
+      "path": "/js/bootstrap-wysiwyg/summernote/summernote.min",
+      "name": "summernote文本编辑器",
+      "dependencies": ["bootstrap"]
+    },
+    "dependencyFullCalendarModule": {
+      "name": "dependencyFullCalendarModule",
+      "abstract": true,
+      "dependencies": ["fullcalendar", "fullcalendar_locale-zh-cn", "fullcalendar-resourceview"]
+    },
+    "slimScroll": {
+      "path": "/js/utils/jquery.slimscroll.min",
+      "name": "滚动条",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "bootstrap-table-resizable": {
+      "path": "/js/bootstrap-table/1.11.0/js/extensions/resizable/bootstrap-table-resizable",
+      "name": "bootstrap-table-resizable",
+      "dependencies": ["bootstrapTable", "colResizable"]
+    },
+    "dependencyBootstrapTableModule": {
+      "name": "dependencyBootstrapTableModule",
+      "abstract": true,
+      "dependencies": [
+        "bootstrapTable",
+        "bootstrapTable_locale_zh-CN",
+        "bootstrapTable_editable",
+        "bootstrap-table-resizable",
+        "bootstrap-table-fixed-columns"
+      ]
+    },
+    "docs-min": {
+      "path": "/js/jqueryplugin/docs.min",
+      "name": "docs-min",
+      "dependencies": ["jquery", "FileSaver", "blob"]
+    },
+    "ace_ext_zoom_win": {
+      "path": "/js/ace/min/ext-zoom_win",
+      "name": "ace_ext_zoom_win",
+      "dependencies": ["ace_code_editor"]
+    },
+    "ajaxfileupload": {
+      "path": "/js/utils/ajaxfileupload",
+      "name": "ajaxFileUpload",
+      "dependencies": ["dependencyJQueryModule", "fileuploadconstant"]
+    },
+    "ace_ext_code_var_snippets": {
+      "path": "/js/ace/min/ext-code_var_snippets",
+      "name": "ace_ext_code_var_snippets",
+      "dependencies": ["ace_code_editor"]
+    },
+    "bootstrapTable_locale_zh-CN": {
+      "path": "/js/bootstrap-table/1.11.0/js/locale/bootstrap-table-zh-CN.min",
+      "name": "bootstrapTable_locale_zh-CN",
+      "dependencies": ["bootstrapTable"]
+    },
+    "fullcalendar-resourceview": {
+      "path": "/js/fullcalendar/resourceview/js/resource_view",
+      "name": "fullcalendar-resourceview",
+      "dependencies": ["dependencyJQueryModule", "lodash"]
+    },
+    "jquery-validate": {
+      "path": "/js/validate/js/jquery.validate",
+      "name": "jquery-validate",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "ztree": {
+      "path": "/js/ztree/3.5.24/js/jquery.ztree.all.fixed",
+      "name": "ZTree",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "jquery-form": {
+      "path": "/js/form/jquery.form",
+      "name": "平台管理_jquery-form表单"
+    },
+    "metisMenu": {
+      "path": "/js/metisMenu/metisMenu.min",
+      "name": "导航菜单metisMenu",
+      "dependencies": ["dependencyBootstrapModule"]
+    },
+    "dependencyZtreeModule": {
+      "name": "dependencyZtreeModule",
+      "abstract": true,
+      "dependencies": ["ztree", "ztree-exhide"]
+    },
+    "bootstrap-switch": {
+      "path": "/js/bootstrap-switch-3.3.2/dist/js/bootstrap-switch",
+      "name": "bootstrap-switch",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "bootstrap-editable": {
+      "path": "/js/bootstrap-editable/js/bootstrap-editable",
+      "name": "bootstrap-editable",
+      "dependencies": ["dependencyBootstrapModule"]
+    },
+    "jquery-ui-contextmenu": {
+      "path": "/js/jqueryui/js/jquery.ui-contextmenu",
+      "name": "jquery-ui-contextmenu",
+      "dependencies": ["dependencyJQueryUIModule"]
+    },
+    "bootstrap-table-label-mark": {
+      "path": "/js/bootstrap-table/1.11.0/js/extensions/label-mark/bootstrap-table-label-mark",
+      "name": "bootstrap-table-label-mark",
+      "dependencies": ["bootstrapTable", "minicolors"]
+    },
+    "My97DatePicker": {
+      "path": "/js/My97DatePicker/WdatePicker",
+      "name": "My97DatePicker日期时间",
+      "dependencies": ["jquery"]
+    },
+    "bootstrap-table-pagination": {
+      "path": "/js/bootstrap-table/1.11.0/js/extensions/pagination-ext/bootstrap-table-pagination",
+      "name": "bootstrap-table-pagination",
+      "dependencies": ["bootstrapTable"]
+    },
+    "pictureLib": {
+      "path": "/js/pt/js/common2/jquery.common.PictureLib",
+      "name": "pictureLib",
+      "dependencies": ["jquery", "server"]
+    },
+    "vue": {
+      "path": "/js/vue/vue",
+      "name": "vue"
+    },
+    "velocity": {
+      "path": "/js/velocity/velocity.min",
+      "name": "velocity"
+    },
+    "sortable": {
+      "path": "/js/sortable/sortable.min",
+      "name": "sortable"
+    },
+    "vuedraggable": {
+      "path": "/js/vueDraggable/vuedraggable.umd.min",
+      "name": "vuedraggable",
+      "dependencies": ["vue", "sortable"]
+    },
+    "SockJS": {
+      "path": "/js/websocket/js/sockjs",
+      "name": "SockJS",
+      "dependencies": ["jquery"]
+    },
+    "socket.io": {
+      "path": "/js/socket.io/socket.io.slim.min",
+      "name": "socket.io"
+    },
+    "stomp": {
+      "path": "/js/websocket/js/stomp",
+      "name": "stomp",
+      "dependencies": ["jquery"]
+    },
+    "wellMessage": {
+      "path": "/js/pt/js/webmessage/wellMessage",
+      "name": "wellMessage",
+      "dependencies": ["jquery", "SockJS", "stomp", "ckeditor"]
+    },
+    "ckeditor": {
+      "path": "/js/ckeditor4.5.11/ckeditor",
+      "name": "ckeditor",
+      "dependencies": []
+    },
+    "cldr": {
+      "path": "/js/cldrjs-0.5.4/dist/cldr",
+      "name": "cldr"
+    },
+    "globalize": {
+      "path": "js/globalize-1.6.0/dist/globalize",
+      "name": "globalize",
+      "dependencies": ["cldr"]
+    },
+    "globalize-number": {
+      "path": "/js/globalize-1.6.0/dist/globalize/number",
+      "name": "globalize-number",
+      "dependencies": ["globalize"]
+    },
+    "clipboard": {
+      "path": "/js/clipboard/clipboard.min",
+      "name": "clipboard"
+    },
+    "html2canvas": {
+      "path": "/js/html2canvas",
+      "name": "html2canvas",
+      "order": 109
+    },
+    "CodeMirror": {
+      "path": "/js/codemirror-5.62.0/lib/codemirror",
+      "name": "CodeMirror",
+      "dependencies": ["jquery"],
+      "order": 109
+    },
+    "Timer": {
+      "path": "/js/mergely/Timer",
+      "name": "Timer",
+      "dependencies": ["jquery"]
+    },
+    "mergely": {
+      "path": "/js/mergely/mergely",
+      "name": "mergely",
+      "dependencies": ["jquery", "Timer", "CodeMirror"]
+    }
+  },
+  "css": {
+    "AppTabs": {
+      "path": "/css/appTabs",
+      "name": "应用tab标签页插件",
+      "order": 119
+    },
+    "summernote": {
+      "path": "/js/bootstrap-wysiwyg/summernote/summernote",
+      "name": "summernote",
+      "order": 109
+    }
+  }
+}

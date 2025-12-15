@@ -1,0 +1,209 @@
+.project{
+	font-family: "Microsoft YaHei";
+}
+
+.project_name {
+    font-size: 18px;
+}
+
+.project_process {
+    margin: 20px 0 0 30px;
+}
+
+.project_process_child{
+	clear: both;
+}
+
+.project_process_stage{
+	float: left;
+	
+}
+
+.project_process_stage_name{
+	border-radius: 10px;
+	box-shadow: 2px 2px 3px #B5B5B5;
+}
+
+.project_process_matter_before{
+	float: left;
+	width: 450px;
+	margin-left: 15px;
+}
+
+.project_process_matter_before_child {
+    clear: both;
+    position: relative;
+}
+.project_process_matter_before_child.frist{
+	background:url("../../images/project_process/beforC1.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.project_process_matter_before_child{
+	background:url("../../images/project_process/beforC2.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.project_process_matter_before_child.last{
+	background:none;
+}
+.project_process_matter_before_child_line {
+	background-attachment:scroll;
+	background-color:rgba(0, 0, 0, 0);
+	background-image:url("../../images/project_process/arrow_middle.png");
+	background-position:0 0;
+	background-repeat:no-repeat;
+    float: left;
+    height: 2px;
+    width: 250px;
+    height: 60px;
+}
+
+.project_process_stage_line_top{
+	background-attachment:scroll;
+	background-color:rgba(0, 0, 0, 0);
+	background-image:url("../../images/project_process/vArrow_top.png");
+	background-position:0 0;
+	background-repeat:repeat-y;
+	height: 42px;
+	margin: auto;
+	width: 43px;
+}
+.project_process_stage_line_bottom{
+	background-attachment:scroll;
+	background-color:rgba(0, 0, 0, 0);
+	background-image:url("../../images/project_process/vArrow_bottom.png");
+	background-position:0 0;
+	background-repeat:no-repeat;
+	height: 42px;
+	margin: auto;
+	width: 43px;
+}
+
+.project_process_matter_before_child_line.frist {
+	background-attachment:scroll;
+	background-color:rgba(0, 0, 0, 0);
+	background-image:url("../../images/project_process/arrow_frist.png");
+	background-position:0 0;
+	background-repeat:no-repeat;
+}
+
+.project_process_matter_before_child_line.last {
+	background-attachment:scroll;
+	background-color:rgba(0, 0, 0, 0);
+	background-image:url("../../images/project_process/arrow_last.png");
+	background-position:0 0;
+	background-repeat:no-repeat;
+}
+
+.project_process_matter_before_child_line.one {
+	background-attachment:scroll;
+	background-color:rgba(0, 0, 0, 0);
+	background-image:url("../../images/project_process/arrow_one.png");
+	background-position:0 0;
+	background-repeat:no-repeat;
+}
+
+.project_process_matter_before_child_name{
+	border-radius: 5px;
+	float: left;
+	box-shadow: 2px 2px 3px #B5B5B5;
+	position: absolute;
+	right: 0;
+	z-index: 2;
+	padding: 0 5px;
+}
+
+.project_process_matter_after{
+	float: left;
+}
+
+.project_process_matter_after_child{
+	position: relative;	
+}
+
+.project_process_matter_after_child_name{
+	border-radius: 5px;
+	box-shadow: 2px 2px 3px #B5B5B5;
+}
+
+.project_process_matter_after_child_line {
+	background-attachment:scroll;
+	background-color:rgba(0, 0, 0, 0);
+	background-image:url("../../images/project_process/arrow1_middle.png");
+	background-position:0 0;
+	background-repeat:no-repeat;
+    position: absolute;
+    width: 470px;
+    left: -470px;
+    top: -25px;
+}
+.project_process_matter_after_child_line.last {
+	background-attachment:scroll;
+	background-color:rgba(0, 0, 0, 0);
+	background-image: url("../../images/project_process/arrow1_last.png");
+	background-position:0 0;
+	background-repeat:no-repeat;
+}
+.project_process_matter_after_child_line.only{
+	background-attachment:scroll;
+	background-color:rgba(0, 0, 0, 0);
+	background-image: url("../../images/project_process/arrow1_middle_only.png");
+	background-position:0 0;
+	background-repeat:no-repeat;
+}
+.project_process_matter_after_child_line.last.frist{
+	background-attachment:scroll;
+	background-color:rgba(0, 0, 0, 0);
+	background-image: url("../../images/project_process/arrow1_middle_only2.png");
+	background-position:0 0;
+	background-repeat:no-repeat;
+}
+.project_process_matter_after_child_line.last.frist.bAYa{
+	background-attachment:scroll;
+	background-color:rgba(0, 0, 0, 0);
+	background-image: url("../../images/project_process/arrow1_middle.png");
+	background-position:0 0;
+	background-repeat:no-repeat;
+}
+.itemName {
+    display: block;
+    font-size: 14px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    word-break: keep-all;
+    height: 100%;
+    line-height: 25px;
+}
+.itemName.index1 {
+	line-height: 50px;
+}
+.matterName {
+	color: #888888;
+    font-size: 12px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    word-break: keep-all;
+}
+.project_description{
+	border-top: 2px solid;
+    height: 30px;
+    width: 95%;
+    padding-top: 10px 
+}
+.project_description_content{
+	width: 360px;
+	float: right;
+}
+.project_description_content_text {
+    float: left;
+}
+
+.project_description_content_color{
+	width:10px;
+	height:20px;
+	margin: 0 10px;
+    float: left;
+}

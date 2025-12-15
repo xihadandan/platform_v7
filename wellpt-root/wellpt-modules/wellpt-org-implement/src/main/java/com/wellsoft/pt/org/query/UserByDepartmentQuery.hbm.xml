@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="userByDepartmentQuery">
+        <![CDATA[
+		from User user where 1 = 1
+		<if isNotBlank(loginName) || isNotBlank(userName) || isNotBlank(remark)>
+			and (1 = 2
+				<if isNotBlank(loginName)>
+					or lower(user.loginName) like '%${loginName?lower_case}%'
+				</if>
+				<if isNotBlank(userName)>
+					or lower(user.userName) like '%${loginName?lower_case}%'
+				</if>
+				<if isNotBlank(remark)>
+					or lower(user.remark) = lower(:remark)
+				</if>
+				<if isNotBlank(sex)>
+					or lower(user.sex) = lower(:sex)
+				</if>
+			)
+		</if>
+		and exists (select uuid from DepartmentUserJob department_user_job where
+			department_user_job.user.uuid = user.uuid
+			and department_user_job.department.uuid in (:departmentUuids)
+		)
+		order by ${orderBy}
+	]]>
+    </sql-query>
+</hibernate-mapping>

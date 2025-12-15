@@ -1,0 +1,23 @@
+program
+	SetOperation
+		A = LeaderOf(Unit('J0000000566,U0010000036')) ∩ (TaskHistory('T804') ∪ FormField('tdr,iofs')) ∪ Option('creator');
+	end
+end
+
+SetOperationExpression
+
+LeaderOf(Unit(J0000000566,U0010000036)) ∩ (Unit(J0000000566,U0010000036) ∪ FormField(tdr));
+
+
+S = A ∩ (B ∪ C)
+
+单词拆分
+LeaderOf(Unit(J0000000566,U0010000036)) ∩ (Unit(J0000000566,U0010000036) ∪ FormField(tdr))
+
+LeaderOf(Unit(J0000000566,U0010000036))
+∩
+(
+Unit(J0000000566,U0010000036)
+∪
+FormField(tdr)
+)

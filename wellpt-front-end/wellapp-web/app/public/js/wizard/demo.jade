@@ -1,0 +1,55 @@
+#demo.page-header
+  h2 Demonstration
+
+.row
+  .col-md-3
+    .panel.panel-info
+      .panel-heading Demonstration
+      .panel-body
+        p
+          | What you will see here is a what you get with no configuration options
+          | set during the initialization. See the available options below to learn
+          | how to configure.
+        button#demo-run.btn.btn-block.btn-success
+          i.glyphicon.glyphicon-flash
+          =" Initialize jWizard"
+  .col-md-9
+    form#wizard(method="POST")
+      fieldset
+        legend Identification
+        .form-group
+          label First Name
+          .controls
+            input.form-control(type="text", name="firstname", placeholder="John")
+        .form-group
+          label Middle Initial
+          .controls
+            input.form-control(type="text", name="middle", placeholder="A")
+        .form-group
+          label Last Name
+          .controls
+            input.form-control(type="text", name="lastname", placeholder="Smith")
+      fieldset
+        legend Contact Information
+        .form-group
+          label Phone Number
+          .controls
+            input.form-control(type="text", name="phone", placeholder="123-456-7890")
+        .form-group
+          label Email Address
+          .controls
+            input.form-control(type="email", name="email", placeholder="someone@example.com")
+      fieldset
+        legend Login
+        .form-group
+          label Username
+          .controls
+            input.form-control(type="text", name="username", placeholder="johnsmithy")
+        .form-group
+          label Password
+          .controls
+            input.form-control(type="password", name="password")
+        .form-group
+          label Confirm
+          .controls
+            input.form-control(type="password", name="confirm")

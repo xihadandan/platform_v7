@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="userQuery">
+        <![CDATA[
+		from User user where 1 = 1
+		<if isNotBlank(loginName) || isNotBlank(userName) || isNotBlank(employeeNumber) || isNotBlank(remark)|| isNotBlank(sex)>
+			and (1 = 2
+				<if isNotBlank(loginName)>
+					or lower(user.loginName) like '%${loginName?lower_case}%'
+				</if>
+				<if isNotBlank(userName)>
+					or lower(user.userName) like '%${userName?lower_case}%'
+				</if>
+				<if isNotBlank(employeeNumber)>
+					or lower(user.employeeNumber) like '%${employeeNumber?lower_case}%'
+				</if>
+				<if isNotBlank(remark)>
+					or lower(user.remark) = lower(:remark)
+				</if>
+				<if isNotBlank(sex)>
+					or lower(user.sex) = lower(:sex)
+				</if>
+			)
+		</if>
+		<if tenantId != cisTenantId>
+			and tenantId = :tenantId
+		</if>
+		order by ${orderBy}
+	]]>
+    </sql-query>
+
+    <sql-query name="queryUserWithKeyWords">
+        <![CDATA[
+		select * from org_user t where enabled=1 and (user_name like '%${keyWords}%' or login_name like '%${keyWords}%' or english_name like '%${keyWords}%')
+		union
+		select * from org_user t where exists(select 1 from cd_pinyin p where p.entity_uuid=t.uuid and p.type='User' and lower(p.pinyin) like '${keyWords}%')
+	]]>
+    </sql-query>
+</hibernate-mapping>

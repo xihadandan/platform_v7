@@ -1,0 +1,176 @@
+<form id="org_node_form" action="" class="form-widget" style="margin-top: 15px;">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#org-ver-conf-tabs-1" aria-controls="org-ver-conf-tabs-1" role="tab" data-toggle="tab"
+                aria-expanded="true">基本信息</a>
+        </li>
+        <li role="presentation">
+            <a href="#org-ver-conf-tabs-2" aria-controls="org-ver-conf-tabs-2" role="tab" data-toggle="tab"
+                aria-expanded="true">管理员信息</a>
+        </li>
+        <li role="presentation">
+            <a href="#org-ver-conf-tabs-3" aria-controls="org-ver-conf-tabs-3" role="tab" data-toggle="tab"
+                aria-expanded="true">角色信息</a>
+        </li>
+        <li role="presentation">
+            <a href="#org-ver-conf-tabs-4" aria-controls="org-ver-conf-tabs-4" role="tab" data-toggle="tab"
+                aria-expanded="true">权限结果</a>
+        </li>
+        <li role="presentation">
+            <a href="#org-ver-conf-tabs-5" aria-controls="org-ver-conf-tabs-5" role="tab" data-toggle="tab"
+                aria-expanded="true">自定义属性</a>
+        </li>
+    </ul>
+    <input type="hidden" id="uuid" name="uuid" />
+    <input type="hidden" id="otherVersion" />
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active clearfix" id="org-ver-conf-tabs-1">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label for="org_ver_conf_name" class="well-form-label control-label required">名称</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="org_ver_conf_name" name="name">
+                        <div id="div_otherSystemUnitTree" style="display: none;">
+                            <div class="btn-group btn-group-bottom" style="float: right; margin-right: 5px">
+                                <button id="otherSystemUnit_unfold_all" type="button"
+                                    class="well-btn w-btn-primary">展开</button>
+                                <button id="otherSystemUnit_fold_all" type="button"
+                                    class="well-btn w-btn-danger">收起</button>
+                            </div>
+                            <ul id="tree_otherSystemUnit" class="ztree"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="shortName" class="well-form-label control-label">简称</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="shortName" name="shortName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="type" class="well-form-label control-label required">类型</label>
+                    <div class="well-form-control">
+                        <input id="type" name="type" type="hidden">
+                        <input id="typeName" name="typeName" type="text" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="eleId" class="well-form-label control-label">ID</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="eleId" name="eleId" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group" id="tr_duty" style="display: none">
+                    <label for="dutyName" class="well-form-label control-label">归属职务</label>
+                    <div class="well-form-control">
+                        <input id="dutyName" name="dutyName" type="text" />
+                        <input id="dutyId" name="dutyId" type="hidden" />
+                    </div>
+                </div>
+                <div class="form-group" id="tr_code">
+                    <label for="code" class="well-form-label control-label required">编号</label>
+                    <div class="well-form-control">
+                        <input id="code" name="code" type="text" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="parentEleNamePath" class="well-form-label control-label required">父级节点</label>
+                    <div class="well-form-control">
+                        <input id="parentEleNamePath" name="parentEleNamePath" type="text" readonly="readonly" />
+                        <input id="parentEleIdPath" name="parentEleIdPath" type="hidden" />
+                        <div id="div_parentEleTree" style="display: none;">
+                            <div class="btn-group btn-group-bottom" style="float: right; margin-right: 5px">
+                                <button id="parentEle_unfold_all" type="button"
+                                    class="well-btn w-btn-primary">展开</button>
+                                <button id="parentEle_fold_all" type="button" class="well-btn w-btn-danger">收起</button>
+                            </div>
+                            <ul id="tree_parentEle" class="ztree"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="remark" class="well-form-label control-label">备注</label>
+                    <div class="well-form-control">
+                        <textarea id="remark" class="form-control" name="remark" type="text"></textarea>
+                    </div>
+                </div>
+                <div class="form-group" id="tr_sap">
+                    <label for="sapCode" class="well-form-label control-label">SAP编号</label>
+                    <div class="well-form-control">
+                        <input id="sapCode" class="form-control" name="sapCode" type="text" />
+                    </div>
+                </div>
+                <div class="form-group" id="tr_config" style="display: none">
+                    <label class="well-form-label control-label">配置</label>
+                    <div class="well-form-control">
+                        <input type="radio" id="autoUpgrade_1" name="autoUpgrade" value="1" checked="checked"><label
+                            for="autoUpgrade_1">自动更新到当前版本</label>
+                        <input type="radio" id="autoUpgrade_0" name="autoUpgrade" value="0"><label
+                            for="autoUpgrade_0">固定当前版本</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane clearfix" id="org-ver-conf-tabs-2" style="margin-top: 15px;">
+            <div class="well-form form-horizontal">
+                <div class="form-group" id="tr_boss">
+                    <label for="bossNames" class="well-form-label control-label">负责人</label>
+                    <div class="well-form-control">
+                        <input type="hidden" name="bossIdPaths" id="bossIdPaths">
+                        <input type="text" name="bossNames" id="bossNames" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group" id="tr_manager">
+                    <label for="managerNames" class="well-form-label control-label">管理员</label>
+                    <div class="well-form-control">
+                        <input type="hidden" name="managerIdPaths" id="managerIdPaths">
+                        <input type="text" name="managerNames" id="managerNames" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group" id="tr_branchLeader">
+                    <label for="branchLeaderNames" class="well-form-label control-label">分管领导</label>
+                    <div class="well-form-control">
+                        <input type="hidden" name="branchLeaderIdPaths" id="branchLeaderIdPaths">
+                        <input type="text" name="branchLeaderNames" id="branchLeaderNames" readonly="readonly">
+                    </div>
+                </div>
+
+                <!-- <div class="form-group" id="tr_branchDept" style="display: none">
+                    <label for="branchDeptNames" class="well-form-label control-label">分管部门</label>
+                    <div class="well-form-control">
+                        <input type="hidden" name="branchDeptIdPaths" id="branchDeptIdPaths">
+                        <input type="text" name="branchDeptNames" id="branchDeptNames" readonly="readonly">
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane clearfix" id="org-ver-conf-tabs-3">
+            <div class="row">
+                <div class="col-xs-6">
+                    <ul id="conf_role_tree" class="ztree"></ul>
+                </div>
+                <div class="col-xs-6">
+                    <h3 class="title" style="margin-top: 20px;">已选角色</h3>
+                    <select id="conf_roleUuids" name="roleUuids" multiple="multiple"
+                        style="height: 400px; width: 400px;">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane clearfix" id="org-ver-conf-tabs-4">
+            <ul id="conf_privilege_result_tree" class="ztree"></ul>
+        </div>
+        <div role="tabpanel" class="tab-pane clearfix" id="org-ver-conf-tabs-5">
+            <div class="btn-group" style="margin-top: 15px;">
+                <button id="btn_attr_add" type="button" class="well-btn w-btn-primary">新增</button>
+                <button id="btn_attr_del" type="button" class="well-btn w-btn-danger">删除</button>
+            </div>
+            <table id="org_element_attribute_list" style="width: 100%;"></table>
+        </div>
+        <div class="row" style="margin-top:30px;">
+            <div class="col-sm-12 text-center">
+                <button type="button" class="well-btn w-btn-primary" id="org_ver_conf_btn_save">保存</button>
+            </div>
+        </div>
+    </div>
+</form>

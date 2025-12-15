@@ -1,0 +1,148 @@
+@import '../../variables/variables.less';
+//头部导航组件开始
+.ui-wHeader{
+    .ui-wHeader-mainNavbar{
+        position: relative;
+        min-height: 70px;
+        margin-bottom: 0;
+        border: 0;
+        border-radius:0; 
+        .ui-wHeader-baseInfo{
+            >.ui-wHeader-logo{
+                padding: 10px 5px;
+                margin-left: 15px;
+                img{
+                    height: 50px;
+                }
+            }
+        }
+        .navbar-nav{
+            margin:0;
+            >li{
+                width:95px; 
+                height:70px; 
+                text-align:center;
+                display:inline-block;
+                .badge {
+                    display: inline-block;
+                    min-width: 10px;
+                    padding: 2px 5px;
+                    font-size: 12px;
+                    font-weight: normal;
+                    line-height: 1;
+                    text-align: center;
+                    white-space: nowrap;
+                    vertical-align: middle;
+                    border-radius: 10px; 
+/*                     position:absolute; 
+                    top:10px; 
+                    left:53px; */
+                }
+                >a{
+                    padding: 11px; 
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    word-break: keep-all;
+                    overflow: hidden;
+                }
+                >a:focus,>a:hover{
+                    background: none;
+                }
+                .glyphicon:before{
+                    margin-right: 0px;    
+                    font-size: 22px;
+                }
+                .ui-wIcon{
+                    display: block;    
+                    margin:3px auto;    
+                    width: 25px;    
+                    font-size: 22px;
+                }
+            }         
+        }
+      .wHeaderNavMoreUL{
+        .nav-menu-item{
+            a{
+                line-height:30px;
+                >span{
+                    display:inline-block;
+                    font-size:16px;
+                    &:before{
+                        font-size:16px;
+                    }
+                }
+            }
+        } 
+      } 
+    }
+    .ui-wHeader-subNavbar{
+        position: relative;
+        min-height: 50px;
+        margin-bottom: 0;
+        border: 0;
+        border-radius:0;
+        .navbar-nav{
+            margin: 0;
+        }
+        .ui-wHeader-subNav{
+            margin-left:62px;    
+            border-bottom: 0;
+            float:left;
+            >li{
+                >a{
+                    padding:0 20px;
+                    line-height:50px;
+                    border: 0;
+                    border-radius:  0; 
+                    font-size:15px;
+                    span{
+                        margin-right: 4px;
+                        top: 2px; 
+                    }
+                }
+            }
+        }
+        .navbar-right{
+            >li{
+                display:inline-block;
+                a{
+                    line-height: 50px;
+                    padding-top: 0px;
+                    padding-bottom: 0px;
+                    span{
+                        margin-right:2px;
+                    }
+                }
+            }
+        }
+    }
+    .ui-wHeader-shortcut{
+        z-index: 999;
+        position: fixed;
+        top: 149px;
+        right: 15px;
+        width: 1em;
+        >li{
+            margin: 0;
+            padding: 7px;
+            float: left;
+            font-size: 15px;
+            line-height: 1;
+            text-align: left;
+            position: relative;
+            border:0; 
+            margin-bottom:1px ; 
+            a{
+                text-decoration: none;               
+            }
+        }
+        >li.glyphicon-home{
+            margin-bottom:2px ;
+        }
+        >li.glyphicon-plus{
+            background:#a7a8aa
+        }
+    }
+   
+}
+//头部导航组件开始

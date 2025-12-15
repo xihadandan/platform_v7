@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="orderedUserIdsByJobGrade">
+        <![CDATA[
+		select	t1.id as userId,
+				t4.duty_level as grade
+		  from org_user t1
+		  left join org_user_job t2
+		    on t1.uuid = t2.user_uuid
+		  left join org_job t3
+		    on t2.job_uuid = t3.uuid
+		  left join org_duty t4
+		    on t3.duty_uuid = t4.uuid
+		 where t1.id in (:userIds)
+		   and t2.is_major = 1
+		 order by t4.duty_level desc
+	]]>
+    </sql-query>
+</hibernate-mapping>

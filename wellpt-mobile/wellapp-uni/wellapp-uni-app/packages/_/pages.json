@@ -1,0 +1,275 @@
+{
+  "subPackages": [
+    {
+      "root": "packages/_/pages",
+      "pages": [
+        {
+          "path": "app/app",
+          "style": {
+            "navigationBarTitleText": "",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "app/workflowNav",
+          "style": {
+            "navigationBarTitleText": "流程导航"
+          }
+        },
+        {
+          "path": "app/preview",
+          "style": {
+            "navigationBarTitleText": "",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "workflow/start_new_work",
+          "style": {
+            "navigationBarTitleText": "发起工作",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "workflow/work_view",
+          "style": {
+            "navigationBarTitleText": "流程单据",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "workflow/subflow_details",
+          "style": {
+            "navigationBarTitleText": "子流程详情",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "dyform/preview",
+          "style": {
+            "navigationBarTitleText": "预览",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "template/preview",
+          "style": {
+            "navigationBarTitleText": "",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "dms/dms_dyform",
+          "style": {
+            "navigationBarTitleText": "",
+            "navigationStyle": "custom"
+          }
+        },
+
+        {
+          "path": "web-view/web-view",
+          "style": {
+            "navigationBarTitleText": "查看网页"
+          }
+        },
+
+        {
+          "path": "login/login_settings",
+          "style": {
+            "navigationBarTitleText": "登录设置",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "login/login",
+          "style": {
+            "navigationBarTitleText": "登录",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pwd/pwd",
+          "style": {
+            "navigationBarTitleText": "找回密码"
+          }
+        },
+        {
+          "path": "pwd/update-password",
+          "style": {
+            "navigationBarTitleText": "修改密码"
+          }
+        },
+        {
+          "path": "theme/settings",
+          "style": {
+            "navigationBarTitleText": "主题设置"
+          }
+        },
+        {
+          "path": "user/user",
+          "style": {
+            "navigationBarTitleText": "我的"
+          }
+        },
+        {
+          "path": "user/workbench_settings",
+          "style": {
+            "navigationBarTitleText": "工作台设置"
+          }
+        },
+        {
+          "path": "about/about",
+          "style": {
+            "navigationBarTitleText": "关于应用"
+          }
+        },
+        {
+          "path": "org/unit/org_select_popup",
+          "style": {
+            "navigationStyle": "custom",
+            "backgroundColor": "#ffffff00",
+            "app-plus": {
+              "animationType": "fade-in",
+              "background": "transparent",
+              "popGesture": "none",
+              "bounce": "none",
+              "titleNView": false
+            }
+          }
+        },
+        {
+          "path": "popup/action-sheet",
+          "style": {
+            "navigationStyle": "custom",
+            "backgroundColor": "#ffffff00",
+            "backgroundColorTop": "transparent",
+            "backgroundColorBottom": "transparent",
+            "app-plus": {
+              "animationType": "fade-in",
+              "background": "transparent",
+              "popGesture": "none",
+              "bounce": "none",
+              "titleNView": false
+            }
+          }
+        },
+        {
+          "path": "popup/global-popup",
+          "style": {
+            "navigationStyle": "custom",
+            "backgroundColor": "#ffffff00",
+            "backgroundColorTop": "transparent",
+            "backgroundColorBottom": "transparent",
+            "app-plus": {
+              "animationType": "fade-in",
+              "background": "transparent",
+              "popGesture": "none",
+              "bounce": "none",
+              "titleNView": false
+            }
+          }
+        },
+        {
+          "path": "toast/toast",
+          "style": {
+            "navigationStyle": "custom",
+            "backgroundColor": "#ffffff00",
+            "backgroundColorTop": "transparent",
+            "backgroundColorBottom": "transparent",
+            "app-plus": {
+              "animationType": "fade-in",
+              "background": "transparent",
+              "popGesture": "none",
+              "bounce": "none",
+              "titleNView": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "root": "packages/_/components/well-components/dyform",
+      "pages": [
+        {
+          "path": "index",
+          "style": {
+            "navigationBarTitleText": "",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "packages/_/components/well-components/page",
+      "pages": [
+        {
+          "path": "index",
+          "style": {
+            "navigationBarTitleText": "",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "packages/_/components/well-components/workflow",
+      "pages": [
+        {
+          "path": "index",
+          "style": {
+            "navigationBarTitleText": "",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "packages/_/components/modified",
+      "pages": [
+        {
+          "path": "index",
+          "style": {
+            "navigationBarTitleText": "",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "packages/_/components/popup-components",
+      "pages": [
+        {
+          "path": "index",
+          "style": {
+            "navigationBarTitleText": "",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "packages/_/components/uni-ui",
+      "pages": [
+        {
+          "path": "index",
+          "style": {
+            "navigationBarTitleText": "",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "packages/_/components/uview-ui",
+      "pages": [
+        {
+          "path": "components/uview-ui/uview-ui",
+          "style": {
+            "navigationBarTitleText": "",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    }
+  ]
+}

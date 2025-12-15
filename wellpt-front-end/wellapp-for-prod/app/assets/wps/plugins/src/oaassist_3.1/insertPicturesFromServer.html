@@ -1,0 +1,204 @@
+<html>
+<meta charset="utf-8">
+<title>插入签章</title>
+</head>
+
+<body onload="wps.ExecFunc('getAllTemplelists()')">
+    <script type="text/javascript" src='./js/main.js'></script>
+    <script>
+        function selectTemplate() {
+            if (typeof (window.wps) == "undefined") {
+                window.wps = window;
+            }
+            var obj = document.getElementById("templates");
+            var index = obj.selectedIndex;
+            if(index==-1){//添加未选中数据时的异常处理
+                alert("请先选择数据后再进行插入！");
+                return;
+            }
+
+            var redId = obj.options[index].getAttribute("value");
+            var getPicturePath = "http://dev.wpseco.cn/wps-oa/redHead/getFileData/";
+
+            var serverPath = wps.PluginStorage.getItem("getPicturePath");
+            if (serverPath) {
+                getPicturePath = serverPath;
+            }
+            var path = getPicturePath + redId;
+
+            var params = {};
+
+            params.picPath = path;
+
+            var isOrNotVali = wps.PluginStorage.getItem("validatePath");
+            //判断是否有校验
+            if (isOrNotVali) {
+                var xmlhttp;
+                if (window.XMLHttpRequest) {//IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else {// IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                //上面的http请求对象的生成做了一个浏览器兼容性处理
+                xmlhttp.onreadystatechange = function () {
+                    //当接受到响应时回调该方法
+                    if (xmlhttp.readyState == 4 && (xmlhttp.status == 200 || xmlhttp.status == 0)) {
+                        var text = xmlhttp.responseText;//使用接口返回内容，响应内容,通过，返回字符串"auth"，不通过，返回空
+                        if (text && text.length > 0) {
+                            // var fun = OnInsertPicture;
+                            // fun(params);
+                            //ajxa的请求，如果处理中调用oa插件的功能的话，需要再次使用wps.ExecFunc
+                            wps.ExecFunc('OnInsertPicture(' + JSON.stringify(params) + ')');
+                        } else {
+                            wps.ExecFunc('alert("没有权限插入该图片")');
+                        }
+                        window.opener = null;
+                        window.open('', '_self', '');
+                        window.close();
+                    }
+                }
+                var validatePath = "http://dev.wpseco.cn/wps-oa/redHead/paging";
+
+                var valiPath = wps.PluginStorage.getItem("validatePath");
+                var userName = document.getElementById("userName");
+                var password = document.getElementById("password");
+
+                if (valiPath) {
+                    validatePath = valiPath + "?userName=" + userName.value + "password=" + password.value;
+                }
+                xmlhttp.open("POST", validatePath, true);//以POST方式请求该接口
+                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=UTF-16LE");//添加Content-type
+                xmlhttp.send();
+            } else {
+                var fun = OnInsertPicture;
+                fun(params);
+                window.opener = null;
+                window.open('', '_self', '');
+                window.close();
+            }
+
+
+        }
+        //判断是否是图片
+        function isPicture(suffix){
+            var suffixArray=['bmp','jpg','png','tif','gif','pcx','tga','exif','fpx','svg','psd','cdr','pcd','dxf','ufo','eps','ai','raw','WMF','webp'];
+            for (var f1 in suffixArray) {
+                if (suffixArray[f1].indexOf(suffix) > -1) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        function getAllTemplelists(){
+            var xmlhttp;
+            if (window.XMLHttpRequest) {//IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {// IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            //上面的http请求对象的生成做了一个浏览器兼容性处理
+            xmlhttp.onreadystatechange = function () {
+                //当接受到响应时回调该方法
+                if (xmlhttp.readyState == 4 && (xmlhttp.status == 200 || xmlhttp.status == 0)) {
+                    var text = xmlhttp.responseText;//使用接口返回内容，响应内容
+                    var resultJson = JSON.parse(text)//将json字符串转换成对象    
+                    for (var i = 0; i < resultJson.length; i++) {
+                        var element = resultJson[i]
+                        var myOption = document.createElement("option");//动态创建option标签
+                        var suffix=element.tempName.split('.')[1];
+                        if(isPicture(suffix)){
+                            myOption.value = element.tempId; //红头文档id
+                            myOption.text= element.tempName;//红头文档名称
+                            templates.add(myOption);
+                        }
+
+                    }
+                }
+            }
+            var picturesPath = "http://dev.wpseco.cn/wps-oa/redHead/paging";
+
+            var serverPath = wps.PluginStorage.getItem("picturesPath");
+            if (serverPath) {
+                picturesPath = serverPath;
+            }
+            xmlhttp.open("POST", picturesPath, true);//以POST方式请求该接口
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=UTF-16LE");//添加Content-type
+            xmlhttp.send();//发送请求参数间用&分割
+
+            if (!wps.PluginStorage.getItem("validatePath")) {
+                document.getElementById("vali").style.display = "none";
+            }
+            if (!wps.PluginStorage.getItem("searchPicturePath")) {
+                document.getElementById("search").style.display = "none";
+            }
+
+        }
+        function search() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {//IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {// IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            //上面的http请求对象的生成做了一个浏览器兼容性处理
+            xmlhttp.onreadystatechange = function () {
+                //当接受到响应时回调该方法
+                if (xmlhttp.readyState == 4 && (xmlhttp.status == 200 || xmlhttp.status == 0)) {
+                    var text = xmlhttp.responseText;//使用接口返回内容，响应内容
+                    var resultJson = JSON.parse(text)//将json字符串转换成对象
+                    templates.options.length = 0;
+                    // wps.ExecFunc('alert("没有权限插入该图片")');
+                    for (var i = 0; i < resultJson.length; i++) {
+                        var element = resultJson[i]
+                        var myOption = document.createElement("option");//动态创建option标签
+                        myOption.value = element.tempId; //红头文档id
+                        myOption.text = element.tempName;//红头文档名称
+                        templates.add(myOption);
+                    }
+                }
+            }
+            var searchPath = "http://dev.wpseco.cn/wps-oa/redHead/paging";
+            if (wps.PluginStorage.getItem("searchPicturePath")) {
+                searchPath = wps.PluginStorage.getItem("searchPicturePath");
+            }
+
+            var totalPath = searchPath + "?content=" + document.getElementById("content").value;
+
+            xmlhttp.open("get", totalPath, true);//以POST方式请求该接口
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded;charset=UTF-16LE");//添加Content-type
+            xmlhttp.send();//发送请求参数间用&分割
+        }
+
+    </script>
+    <div id="search">
+
+        <span>关键词：</span>  
+        <!-- 180  300  245   360     -->
+        <input id="content" type="text" style="width:234px">&nbsp;&nbsp;&nbsp;
+        <button type="button" onClick="wps.ExecFunc('search()')">查询</button>
+        <br/>
+        <br/>
+    </div>
+    <select id="templates" size=5 style='width:360px'>
+        <!--这里可以写死，也可以写成ajax动态拉取。-->
+        <!-- <option value="中共深圳市龙华区委文件" rep_bk="" rep_text="正文" path="http://wpspro.support.wps.cn/WebProject/redheader.jsp?redid=1" >中共深圳市龙华区委文件</option> -->
+    </select>
+    <br/>
+    <br/>
+    <div id="vali">
+        <span>用户名：</span>
+        <input id="userName" type="text">
+        <br>
+        <br/>
+        <span>密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
+        <input id="password" type="text">
+        <br/>
+        <br/>
+    </div>
+    <button type="button" onClick="wps.ExecFunc('selectTemplate()')">插入签章</button>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="unitPinyinQuery">
+        <![CDATA[
+		select tree.unit from CommonUnitTree tree
+		where 1 = 1 and (
+			lower(tree.unit.name) like '%${name?lower_case}%'
+			or exists (
+				select entityUuid from Pinyin pinyin
+				where pinyin.entityUuid = tree.unit.uuid
+				and pinyin.type = 'CommonUnit'
+				and lower(pinyin.pinyin) like '${pinyin?lower_case}%'
+			)
+		)
+		order by tree.unit.code asc
+	]]>
+    </sql-query>
+</hibernate-mapping>

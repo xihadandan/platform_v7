@@ -1,0 +1,573 @@
+/**
+  * 流程设计器 - 配置表单
+  */
+
+.well-workflow-form .tab-pane {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+.well-workflow-form .form-group {
+  >label {
+    margin-bottom: @form-group-label-margin;
+    font-size: @form-group-label-font-size;
+    color: @form-group-label-color;
+    font-weight: normal;
+  }
+
+  .sub-label {
+    margin-bottom: @form-group-label-margin;
+    font-size: @form-group-label-font-size;
+    color: @form-group-label-color;
+    font-weight: normal;
+  }
+
+  .tip-text {
+    font-size: @font-size-base;
+    color: @text-color-light;
+  }
+}
+
+.well-workflow-form,
+.well-form-group {
+
+  input[type='radio'],
+  input[type='checkbox'] {
+    display: none;
+
+    +label {
+      margin-right: 20px;
+      padding: 0;
+      line-height: 35px;
+      vertical-align: text-top;
+      font-size: @font-size-base;
+      font-family: iconfont !important;
+      font-weight: normal;
+      color: @text-color;
+      cursor: pointer;
+    }
+
+    &[disabled]+label {
+      color: @disabled-text-color;
+      cursor: not-allowed;
+    }
+  }
+
+  input[type='radio'] {
+    +label:before {
+      content: '\e8db';
+      margin-right: 5px;
+    }
+
+    &:checked+label:before {
+      content: '\e8d6';
+      color: @text-color-primary;
+    }
+  }
+
+  input[type='checkbox'] {
+    +label:before {
+      content: '\e8f2';
+      margin-right: 5px;
+    }
+
+    &:checked+label:before {
+      content: '\e8de';
+      color: @text-color-primary;
+    }
+  }
+}
+
+.well-workflow-form .th-inner input[type='checkbox']+label,
+.well-workflow-form .bs-checkbox input[type='checkbox']+label,
+.workflow-popup.form-widget .th-inner input[type='checkbox']+label {
+  margin-right: 0;
+}
+
+.well-workflow-form {
+  textarea {
+    resize: vertical;
+  }
+
+  .work-flow-more {
+    position: relative;
+    line-height: 30px;
+    text-align: center;
+    color: @text-color-primary;
+    font-size: @font-size-base;
+    cursor: pointer;
+
+    i {
+      font-size: 10px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    &:before,
+    &:after {
+      .size(calc(50% - 40px) 1px);
+      .absolute(50% false false false);
+
+      display: block;
+      content: '';
+      margin-top: -1px;
+      background: @gray-5;
+    }
+
+    &:after {
+      right: 0;
+    }
+  }
+
+  .form-right {
+    float: right;
+    position: relative;
+    font-size: 0;
+
+    .form-search-del,
+    .form-search {
+      .absolute(50% false false 153px);
+
+      font-size: @font-size-xl;
+      margin-top: -9px;
+      line-height: 1;
+      color: @text-color-primary;
+      cursor: pointer;
+    }
+
+    .form-search-del {
+      left: 130px;
+      color: @text-color-light;
+
+      &:hover {
+        color: @text-color-primary;
+      }
+    }
+
+    .form-search+div {
+      .size(180px 35px);
+
+      display: inline-block;
+      vertical-align: middle;
+
+      input {
+        display: none;
+      }
+    }
+
+    .form-set-more {
+      margin-left: 8px;
+      vertical-align: middle;
+      font-size: @font-size-lg;
+      color: @text-color-primary;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+  }
+
+  .btn-container,
+  .condition-branch,
+  .poly-container,
+  .copy-container,
+  .supervise-container,
+  .sub-container {
+    border: @border-default-dash;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border-radius: @border-radius-base;
+  }
+
+  .set-and-clear {
+    font-size: 0;
+
+    button {
+      background: transparent;
+      color: @text-color-primary;
+      font-size: @font-size-base;
+      line-height: 26px;
+      height: auto;
+      padding: 0 14px;
+      border-radius: @border-radius-base;
+      border: @border-default-transparent;
+
+      &:first-of-type {
+        float: left;
+      }
+
+      &:hover {
+        border-color: @btn-primary-noLine-active-border-color;
+      }
+
+      i {
+        margin-right: 6px;
+        font-size: @font-size-base;
+      }
+    }
+
+    .clearAll {
+      float: right;
+    }
+  }
+}
+
+.well-workflow-form .work-flow-set-tips {
+  font-size: @font-size-sm;
+  color: @text-color-light;
+  line-height: 26px;
+}
+
+.well-workflow-form .work-flow-auth-list {
+  margin-top: 10px;
+  padding: 11px 11px 5px;
+  width: 100%;
+  min-height: 76px;
+  border-radius: @border-radius-base;
+  border: @border-default-dark;
+  box-sizing: border-box;
+  // background: @background-light;
+
+  .work-flow-auth-item {
+    display: inline-block;
+    padding: 6px;
+    margin-bottom: 6px;
+    margin-right: 6px;
+    line-height: 1;
+    background: @background-light;
+    border: @border-default-dark;
+    border-radius: @border-radius-base;
+    font-size: @font-size-base;
+    color: @text-color;
+  }
+}
+
+.well-workflow-form .more-content .work-flow-auth-list .work-flow-auth-item {
+  cursor: pointer;
+}
+
+.well-workflow-form .work-flow-handler-list {
+  margin-top: 10px;
+  padding: 11px 11px 5px;
+  width: 100%;
+  min-height: 76px;
+  border-radius: @border-radius-base;
+  border: @border-default-dark;
+  box-sizing: border-box;
+
+  .work-flow-handler-title {
+    font-size: @font-size-base;
+    color: @text-color-dark;
+    margin-bottom: 10px;
+
+    &:not(:first-of-type) {
+      margin-top: 20px;
+    }
+  }
+
+  .work-flow-handler-item {
+    display: inline-block;
+    padding: 6px;
+    margin-bottom: 6px;
+    margin-right: 6px;
+    border: @border-default;
+    border-radius: @border-radius-base;
+    font-size: @font-size-base;
+    color: @text-color;
+    padding-left: 26px;
+    position: relative;
+    line-height: 20px;
+    background: @background-lighter;
+    border-color: @border-color-base;
+    word-break: break-all;
+
+    i {
+      .absolute(0 false false 6px);
+
+      margin-top: 9px;
+      line-height: 14px;
+    }
+  }
+}
+
+.well-workflow-form .work-flow-other-list {
+  margin-bottom: 20px;
+  margin-top: 10px;
+
+  .work-flow-other-item {
+    .size(100% 32px);
+
+    line-height: 32px;
+    padding-left: 7px;
+    background: @background-lighter;
+    margin-bottom: 2px;
+    border-radius: @border-radius-base;
+    font-size: 0;
+
+    +div {
+      display: inline-block;
+      line-height: 1;
+      color: @text-color-primary;
+      font-size: @font-size-base;
+      margin-bottom: 40px;
+      padding: 0 14px;
+      line-height: 26px;
+      border: @border-default-transparent;
+      border-radius: @border-radius-base;
+      cursor: pointer;
+
+      &:hover {
+        border-color: @btn-primary-noLine-active-border-color;
+      }
+
+      i {
+        margin-right: 6px;
+      }
+    }
+
+    button {
+      .square(26px);
+      background: transparent;
+      color: @text-color-primary;
+      font-size: @font-size-base;
+      padding: 0 14px;
+      line-height: 26px;
+      border: @border-default-transparent;
+      border-radius: @border-radius-base;
+      vertical-align: middle;
+      cursor: pointer;
+      padding: 0;
+
+      &:first-of-type {
+        margin-right: 8px;
+      }
+
+      &:hover {
+        border-color: @btn-primary-noLine-active-border-color;
+      }
+    }
+
+    >div {
+      .text-overflow();
+      display: inline-block;
+      width: calc(100% - 64px);
+      font-size: @font-size-base;
+      color: @text-color;
+      vertical-align: middle;
+    }
+  }
+}
+
+.form-widget .list-vertical {
+  float: left;
+  font-size: 0;
+  width: 50%;
+
+  &.rights {
+    width: 25%;
+  }
+
+  input[type='checkbox']+label {
+    display: block;
+  }
+}
+
+.form-widget .tip-text {
+  line-height: 20px;
+  font-size: @font-size-base;
+  color: @text-color;
+}
+
+.well-workflow-form .second-checkbox {
+  display: none;
+  border: @border-width-base dashed @border-color-dark;
+  border-radius: @border-radius-base;
+  padding: 10px 8px;
+  font-size: 0;
+
+  input[type='checkbox']+label {
+    line-height: 1;
+    margin-bottom: 0;
+  }
+}
+
+.form-widget .form-left-container {
+  .size(calc(50% - 10px), 476px);
+
+  float: left;
+  border: @border-default;
+  overflow: hidden;
+  font-size: 0;
+
+  .form-left-search {
+    .size(100% 50px);
+    float: left;
+    border: @border-default;
+    overflow: hidden;
+    font-size: 0;
+    position: relative;
+    padding: 7px 10px;
+    box-sizing: border-box;
+    box-shadow: 0px @border-width-base 0px 0px @border-color-base;
+
+    input {
+      padding: 0 10px;
+    }
+
+    i {
+      .absolute(50% false false false);
+
+      margin-top: -9px;
+      line-height: 1;
+      cursor: pointer;
+
+      &.search-icon {
+        right: 20px;
+        font-size: @font-size-xl;
+        color: @text-color-primary;
+      }
+
+      &.delete-icon {
+        right: 44px;
+        display: none;
+      }
+    }
+  }
+
+  .form-left-main {
+    width: 100%;
+  }
+}
+
+.form-widget .form-right-container {
+  .size(calc(50% - 10px), 476px);
+
+  float: left;
+  border: @border-default;
+  overflow: hidden;
+  font-size: 0;
+  margin-left: 16px;
+
+  .form-right-title {
+    .size(100% 50px);
+
+    position: relative;
+    padding: 14px 25px;
+    box-sizing: border-box;
+    background: @background-light;
+    color: @text-color-dark;
+    font-size: @font-size-base;
+
+    &:before {
+      .absolute(50% false false 10px);
+      .size(4px 15px);
+
+      content: '';
+      display: block;
+      margin-top: -8px;
+      background: @primary-color;
+      border-radius: @border-radius-base;
+    }
+  }
+
+  .form-right-label {
+    .size(100% 38px);
+
+    line-height: 38px;
+    position: relative;
+    padding-left: 24px;
+    font-size: @font-size-base;
+    color: @text-color-dark;
+    background: @background-lighter;
+    cursor: pointer;
+
+    i {
+      .absolute(50% 10px false false);
+
+      font-size: 10px;
+      margin-top: -3px;
+      line-height: 1;
+    }
+
+    &:before {
+      .absolute(50% false false 10px);
+      .square(6px);
+
+      content: '';
+      display: block;
+      background: @primary-color;
+      margin-top: -3px;
+      border-radius: 50%;
+    }
+  }
+
+  .form-right-field {
+    border: @border-default;
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    margin-top: 9px;
+    box-sizing: border-box;
+
+    .form-field-list {
+      .size(100% 270px);
+
+      padding: 4px 10px 10px 4px;
+      overflow: auto;
+
+      li {
+        display: inline-block;
+        padding: 6px;
+        line-height: 1;
+        font-size: @font-size-base;
+        color: @text-color;
+        background: @background-light;
+        border: @border-default-dark;
+        border-radius: @border-radius-base;
+        margin-top: 6px;
+        margin-left: 6px;
+      }
+    }
+  }
+}
+
+// 更多按钮
+.moreProperty {
+  position: relative;
+  width: 100%;
+  margin: 30px 0;
+  border-bottom: @border-default;
+
+  .text {
+    .absolute(-15px false false 50%);
+    .size(80px 30px);
+
+    margin-left: -40px;
+    line-height: 30px;
+    font-size: @font-size-base;
+    color: @text-color-primary;
+    text-align: center;
+    background: @component-background;
+    cursor: pointer;
+
+    i {
+      display: inline-block;
+      margin-left: 5px;
+      font-size: @font-size-sm;
+      transition: all @animation-duration-base ease-in-out;
+      transform: rotate(0deg);
+    }
+
+    &.open i {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.distributeConditionType-wrap {
+  display: inline-block;
+  margin-left: 15px;
+  line-height: 34px;
+  vertical-align: top;
+}

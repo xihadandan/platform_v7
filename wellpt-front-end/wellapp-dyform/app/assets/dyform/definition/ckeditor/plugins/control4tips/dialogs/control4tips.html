@@ -1,0 +1,173 @@
+<div id="customtipsdiv">
+	<div class="dyform">
+		<div class="post-sign">
+			<div class="post-detail">
+				<table>
+					<tr class="odd">
+						<td class="Label">提示ID</td>
+						<td class="value"><input  type="text" id="tipsId" value=""></td>
+					</tr>
+					<tr>
+						<td class="Label">类型</td>
+						<td class="value">
+							<input type="radio" name="tipsType" value="1" id="tipsTool" checked/>
+							<label for="tipsTool">弹出贴士</label>
+							<input type="radio" name="tipsType" value="2" id="tipsWarn" />
+							<label for="tipsWarn">固定贴士</label>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td class="Label">内容</td>
+						<td class="value">
+							<input type="text" name="content" id="tipsContent" placeholder="提示内容"/>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td class="Label">自定义宽度</td>
+						<td class="value">
+							<input type="text" name="customWidth" id="customWidth" placeholder="自定义宽度"/>
+						</td>
+					</tr>
+					<tr id="tr_pos">
+						<td class="Label">弹出方向</td>
+						<td class="value">
+							<input type="radio" name="position" value="top" id="tipsTop" checked/>
+							<label for="tipsTop">上</label>
+							<input type="radio" name="position" value="right" id="tipsRight"/>
+							<label for="tipsRight">右</label>
+							<input type="radio" name="position" value="bottom" id="tipsBottom"/>
+							<label for="tipsBottom">下</label>
+							<input type="radio" name="position" value="left" id="tipsLeft" />
+							<label for="tipsLeft">左</label>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+    var tips = {};
+    tips.$ =  function(selector){
+        return $(selector, $("#customtipsdiv"));
+    }
+
+    /**
+     * 初始化属性窗口
+     */
+    tips.initPropertyDialog = function (editor){
+        this.editor = editor;
+        this.editor.removeHintInDesigner();
+        var focusedDom = editor.focusedDom;//当前editor被双击的对象(CKEDITOR.dom.node类)
+        console.log(focusedDom)
+        if(focusedDom != null && (typeof focusedDom) != "undefined"){
+            var tipsId = focusedDom.getAttribute("id"),
+                tipsType = focusedDom.getAttribute("type"),
+                tipsContent = focusedDom.getAttribute("content"),
+                tipsPosition = focusedDom.getAttribute("position"),
+                tipsWidth = focusedDom.getAttribute("tipsWidth");
+
+            this.$("#tipsId").val(tipsId);
+            this.$("#tipsContent").val(tipsContent);
+            this.$("#customWidth").val(tipsWidth);
+            this.$("input[name='position'][value='"+tipsPosition+"']").attr("checked",true);
+            if(tipsType=='2'){
+                $("#tr_pos").hide()
+            }
+            this.$("input[name='tipsType'][value='"+tipsType+"']").attr("checked",true);
+        }
+
+    };
+
+    $("input[name='tipsType']").change(function(){
+        var tipsVal = $("input[name='tipsType']:checked").val()
+        if(tipsVal == '1'){
+            $("#tr_pos").show()
+        }else{
+            $("#tr_pos").hide()
+        }
+    })
+
+    tips.exitDialog = function(){
+        $.ControlConfigUtil.exitDialog(this.editor);
+        this.$("#tipsId").val("");
+        this.$("input[name='tipsType']").val("1");
+        this.$("#tipsContent").val("");
+        this.$("#customWidth").val("");
+        this.$("input[name='position']").val("top");
+
+    }
+
+    tips.fillCkeditor = function(){
+        var tipsId = this.$("#tipsId").val();
+        var content = $("#tipsContent").val();
+        var tipsWidth = $("#customWidth").val();
+        var position = this.$("input[name='position']:checked").val();
+        var type = this.$("input[name='tipsType']:checked").val();
+
+        if (tipsId == "" || tipsId == undefined) {
+            alert("提示id不能为空");
+            return false;
+        }
+
+        if (typeof formDefinition.tips == "undefined") {
+            formDefinition.tips = {};
+        }
+
+        var oldTipsId = this.editor.focusedDom ? this.editor.focusedDom.getAttribute("id") : "";
+
+        if (typeof formDefinition.tips == "undefined") {
+            formDefinition.tips = {};
+        } else {
+            for (var key in formDefinition.tips) {
+                if (key == oldTipsId) {
+                    continue;
+                } else {
+                    if (key == tipsId) {
+                        alert("此提示已经存在");
+                        return false;
+                    }
+                }
+            }
+        }
+
+        if(this.editor.focusedDom != null){
+            this.editor.focusedDom.setAttribute('tipsWidth',$("#customWidth").val());
+            this.editor.focusedDom.setAttribute('content',$("#tipsContent").val());
+            this.editor.focusedDom.setAttribute("position", this.$("input[name='position']:checked").val());
+            this.editor.focusedDom.setAttribute("id", this.$("#tipsId").val());
+            this.editor.focusedDom.setAttribute("type", this.$("input[name='tipsType']:checked").val());
+			if(type == "1"){
+                this.editor.focusedDom.$.className = 'tips-wrap tips-tool'
+			}else{
+                this.editor.focusedDom.$.className = 'tips-wrap tips-warn'
+			}
+        }else{
+            var html = "";
+            var tipClass = this.$("input[name='tipsType']:checked").val() == "1" ? 'tips-tool' : 'tips-warn'
+            html += "<div class='tips-wrap "+tipClass+"' id='" + tipsId + "' data-cke-editable='1' contenteditable='false' tipsWidth='"+tipsWidth+"' content='"+content+"' type='"+type+"' position='"+position+"'>" +
+                "<div class='tool-content iconfont icon-ptkj-tishishuoming'></div>"+
+                "<div class='warn-content'><div class='tips-icon iconfont icon-ptkj-xinxiwenxintishi'></div><div class='tips-content'>"+$("#tipsContent").val()+"</div></div>" +
+                "</div>";
+
+            var element = CKEDITOR.dom.element.createFromHtml(html);
+
+            this.editor.insertElement( element);
+            var nextP = element.getNext();
+            if(nextP && nextP.getName && $.trim(nextP.getName()).toLowerCase() === "p"){
+                nextP.remove();
+            }
+        }
+
+        formDefinition.tips[tipsId] = {
+            "tipsType": this.$("input[name='tipsType']:checked").val(),
+            "tipsPosition": this.$("input[name='position']:checked").val(),
+            "tipsContent": this.$("#tipsContent").val(),
+            "tipsWidth": this.$("#customWidth").val()
+        };
+
+        return true
+    }
+
+</script>

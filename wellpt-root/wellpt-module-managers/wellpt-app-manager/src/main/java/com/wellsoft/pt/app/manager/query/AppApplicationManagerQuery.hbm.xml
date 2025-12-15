@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="appApplicationManagerQuery">
+        <![CDATA[
+        select t1.uuid                 as uuid,
+		       t1.create_time          as create_time,
+		       t1.creator              as creator,
+		       t1.modifier             as modifier,
+		       t1.modify_time          as modify_time,
+		       t1.rec_ver              as rec_ver,
+		       t1.name                 as name,
+		       t1.id                   as id,
+		       t1.code                 as code,
+		       t1.title                as title,
+		       t1.js_module            as js_module,
+		       t1.enabled              as enabled,
+		       t1.configurable         as configurable,
+		       t1.type                 as type,
+		       t1.correlative_function as correlative_function,
+		       t1.remark               as remark,
+		       t1.system_unit_id       as system_unit_id,
+		       t2.uuid                 as app_pi_uuid,
+		       t2.parent_uuid          as parent_app_pi_uuid,
+		       t2.app_product_uuid     as app_product_uuid,
+		       t2.app_system_uuid      as app_system_uuid
+		  from app_application t1
+		  left join app_product_integration t2
+		    on t1.uuid = t2.data_uuid
+		   and t2.data_type = 3
+		 where  1 = 1
+		  <if isNotBlank(keyword)>
+            and (t1.name like '%${keyword}%'
+                or t1.id like '%${keyword}%'
+                or t1.code like '%${keyword}%')
+          </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+		  <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+    ]]>
+    </sql-query>
+</hibernate-mapping>

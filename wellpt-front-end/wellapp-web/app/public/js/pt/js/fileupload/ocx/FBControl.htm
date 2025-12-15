@@ -1,0 +1,323 @@
+<!--
+    Auto-generated test-site
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>	
+<title>test page for object fbcontrol</title>
+</head>
+    <script type="text/javascript">
+				function initCallback(msg){
+					alert(msg);
+				}
+        function plugin0()
+        {
+            return document.getElementById('plugin0');
+        }
+        plugin = plugin0;
+        function addEvent(obj, name, func)
+        {
+  
+            if (obj.addEventListener) {
+           		obj.removeEventListener(name, func, false); 
+                obj.addEventListener(name, func, false); 
+            } else {
+           		obj.detachEvent("on"+name, func);
+                obj.attachEvent("on"+name, func);
+            }
+        }
+        
+        function load()
+        {
+            addEvent(plugin(), 'test', function(){
+                alert("Received a test event from the plugin.")
+            });
+        }
+        function pluginLoaded() {
+            //alert("Plugin loaded!");
+            init();
+        }
+        
+        function addTestEvent()
+        {
+        	
+            addEvent(plugin(), 'echo', function(txt,count){
+                alert(txt+count);
+            });
+        }
+        
+        function testEvent()
+        {
+            plugin().testEvent();
+        }
+        
+         function testFun()
+        {
+            alert(plugin().testFun("sfasdfasdfasdfsaf--天才"));
+        }
+        
+        function pluginValid()
+        {
+            if(plugin().valid){
+                alert(plugin().echo("This plugin seems to be working!"));
+            } else {
+                alert("Plugin is not working :(");
+            }
+        }
+        
+        
+        
+        //附件接口---------------------------------------------------
+			//Excel测试
+			function openLocalFile2(){alert(plugin().openLocalFile("D:\\d.doc", 2, 1));}
+			function openLocalFile1(){alert(plugin().openLocalFile("D:\\d.doc", 1, 1));}
+			function openLocalFile0(){alert(plugin().openLocalFile("D:\\d.pdf", 0, -1));}
+			function focusLocalFile(){alert(plugin().focusLocalFile("D:\\d.doc"));}
+			function closeLocalFile1(){alert(plugin().closeLocalFile("D:\\d.doc", true));}
+			function closeLocalFile0(){alert(plugin().closeLocalFile("D:\\d.doc", false));}
+			function getLocalFileEditor(){alert(plugin().getLocalFileEditor("D:\\d.doc   "));}
+			function IsLocalFileOpen(){alert(plugin().isLocalFileOpen("D:\\d.doc"));}
+			function IsLocalFileSaved(){alert(plugin().isLocalFileSaved("D:\\d.doc"));}
+			function getLocalFileText(){alert(plugin().getLocalFileText("D:\\d.doc"));}
+			
+			function init(){
+
+				//selectLocalSavePath接口回调函数
+				addEvent(plugin(), 'testevent', function testevent1(arg){alert(arg);});
+				//插件初始化
+				alert(plugin().init("Admin","http://192.168.0.204:8081/ocxFileupload",
+														"c:\\temp\\BodyTemp\\",
+														"cookie.checked.username=checked; cookie.remember.username=chenh; cookie.checked.password=checked; cookie.remember.password=0; JSESSIONID=95C8F36D69F473D8ACEECC5A09D75787.worker2; language=zh_CN; cookie.current.username=chenh; cookie.current.userId=U0010000015"));
+				//初始化插件提示信息(事件回调函数)
+				addEvent(plugin(), 'pluginPrompt', function pluginPrompt(arg){if(arg){alert(arg);}});
+				//初始化插件文件上传结果信息(事件回调函数)
+				addEvent(plugin(), 'uploadFile', function dd(sArg, bArg){alert(sArg);});
+				//初始化插件文件下载结果信息(事件回调函数)
+				addEvent(plugin(), 'downloadFile', function dd(sArg, bArg){alert(sArg);});
+				//selectLocalPath接口回调函数
+				addEvent(plugin(), 'selectLocalPath', function dd(arg){alert(arg);});
+				//selectLocalFile接口回调函数
+				addEvent(plugin(), 'selectLocalFile', function dd(arg){alert(arg);});
+				//selectLocalSavePath接口回调函数
+				addEvent(plugin(), 'selectLocalSavePath', function dd(arg){alert(arg);});
+				
+			}
+			//function upload(){alert(plugin().upload("D:\\于海兵的word简历(9555555于海兵的word简历(5555555555于海兵的word简历(55555555555于海兵的word简历(5555555555于海兵的word简历(55555555555555555555于海兵的word简历(555555633354).rar",""));}
+			function upload(){alert(plugin().upload("D:\\d.rar",""));}
+			
+			//OCX回掉函数
+			function jScriptTest(param){
+				alert(param);
+			}
+			function upload1(){
+				alert(plugin().uploadFile("D:\\d.rar","", 10*1024*1024, true));
+				
+			}
+			//function upload(){alert(plugin().upload("D:\\d.doc",""));}
+			
+			//function download(){alert(plugin().download("http://121.192.174.188:8080/Struts2HW/images/区人大常委会机关工作人员名单花样百出奇才模压大厦大厦大厦榧大厦大厦欠妥欠妥欠妥欠顶替模压大厦大厦大厦大厦大厦大厦大厦大厦大13.doc","2016","区人大常委会机关工作人员名单花样百出奇才模压大厦大厦大厦榧大厦大厦欠妥欠妥欠妥欠顶替模压大厦大厦大厦大厦大厦大厦大厦大厦大13.doc",5));}
+			//function download(){alert(plugin().download("http://121.192.178.154:8083/Struts2HW/images/艼哈里还.jpg","2016","C:\\temp\\艼哈里还.jpg",5));}
+			//function download(){alert(plugin().download("http://oa.well-soft.com:8081/OAData/zEngine.nsf/all/1D99730897512D4D48257C53001B8AD1/$file/飞秋FeiQ.exe","2014","飞秋FeiQ.exe"));}
+			//function download(){plugin().download("http://p7.qhimg.com/t01b4e79e611d16fd31.png","2016","test.png",5);}
+			function download(){alert(plugin().download("http://192.168.0.204:8081/repository/file/mongo/downAllFiles4ocx?fileIDs=[{\"fileID\":\"7ed2171c0fbc4ba9be925380fe263561\"}]","2017","uploadTest.rar",5,true));}
+			//function download(){alert(plugin().download("http://121.192.178.154:8083/Struts2HW/httpDownload?fileName=艼哈里还.jpg","2016","C:\\temp\\艼哈里还.jpg",5));}
+			
+			//function download(){alert(plugin().download("http://pic.miercn.com/uploads/allimg/151010/85-1510100S302.jpg","2016","C:\\temp\\BodyTemp\\tupian.jpg",5));}
+			//function download(){alert(plugin().download("http://news.baidu.com/z/resource/r/image/2013-12-21/7704822c29ddf2526d77563b35c4d65a.jpg","","c:\\temp\\BodyTemp\\t013feedb73871a103b.png"));}
+			function selectLocalPath(){plugin().selectLocalPath();}
+			function selectLocalFile(){plugin().selectLocalFile("doc", false);}
+			function selectLocalSavePath (){plugin().selectLocalSavePath("SelectLocalSavePath.exe");}
+			//function openLocalFile(){alert(plugin().OpenLocalFile("D:\\MyJob\\test.doc", 2));}
+			//function focusLocalFile(){alert(plugin().focusLocalFile("D:\\MyJob\\test.doc"));}
+			//function closeLocalFile(){alert(plugin().closeLocalFile("D:\\MyJob\\test.doc", false));}
+			function deleteLocalFile(){alert(plugin().deleteLocalFile("D:\\dd"));}
+			function getLocalDir(){alert(plugin().getLocalDir("D:\\workspace"));}
+			function getLocalFileSize(){alert(plugin().getLocalFileSize("D:\\d.doc"));}
+			function getLocalFileModified(){alert(plugin().getLocalFileModified("D:\\d.doc"));}
+			//function getLocalFileEditor(){alert(plugin().getLocalFileEditor("D:\\MyJob\\test.doc"));}
+			function IsLocalFileExist(){alert(plugin().isLocalFileExist("C:\\Users\\Administrator\\Desktop\\testAPI1"));}
+			//function IsLocalFileOpen(){alert(plugin().sLocalFileOpen("D:\\MyJob\\test.doc"));}
+			//function IsLocalFileSaved(){alert(plugin().IsLocalFileSaved("D:\\MyJob\\test.doc"));}
+			function IsLocalFileModified(){alert(plugin().isLocalFileModified("D:\\d.doc"));}
+			
+			function getLocalCopyFiles(){alert(plugin().getLocalCopyFiles());}		
+			
+
+				
+			//附件接口---------------------------------------------------
+			
+			//doc正文接口---------------------------------------------------
+			function setRevision(){alert(plugin().setRevision("D:\\d.doc", true, true));}
+			function setRevision1(){alert(plugin().setRevision("D:\\d.doc", false, false));}
+			function setRevision2(){alert(plugin().setRevision("D:\\d.doc", true, true));}
+			function setRevisionEnabled1(){alert(plugin().setRevisionEnabled("D:\\d.doc", true));}
+			function setRevisionEnabled2(){alert(plugin().setRevisionEnabled("D:\\d.doc", false));}
+			function acceptRevision(){alert(plugin().acceptRevision("D:\\d.doc"));}
+			function rejectRevision(){alert(plugin().rejectRevision("D:\\d.doc"));}
+			function protectDocument(){alert(plugin().protectDocument("D:\\d.doc"));}
+			function setPrint(){alert(plugin().setPrint("D:\\d.doc", false));}
+			function setPrint1(){alert(plugin().setPrint("D:\\d.doc", true));}
+			function getVersion(){alert(plugin().getVersion());}
+			function runVBA(){
+				try{
+					var  vRes = plugin().runVBA("D:\\d.doc", "testvba","","","","","","","","","","");
+				}
+				catch(err){
+					alert("类型不匹配哦！");
+				}
+			}
+			function setEditUser(){alert(plugin().setEditUser("D:\\d.doc", "dengwl"));}	
+			function showRevisionsMode(){alert(plugin().showRevisionsMode("D:\\d.doc", "5"));}
+			
+			//doc正文接口---------------------------------------------------
+			
+			//XLS正文接口---------------------------------------------------
+			//function setRevision(){alert(plugin().setRevision("D:\\MyJob\\test.doc", true, false));}
+			//function acceptRevision(){alert(plugin().acceptRevision("D:\\MyJob\\test.doc"));}
+			//function rejectRevision(){alert(plugin().rejectRevision("D:\\MyJob\\test.doc"));}
+			//function protectDocument(){alert(plugin().protectDocument("D:\\MyJob\\test.doc"));}
+			//function setPrint(){alert(plugin().setPrint("D:\\MyJob\\test.doc", false));}
+			//function runVBA(){alert(plugin().runVBA("D:\\MyJob\\test.doc", "testvba","","","","","","","","","",""));}
+			//function setEditUser(){alert(plugin().setEditUser("D:\\MyJob\\test.doc", "dengwl"));}
+			//XLS正文接口---------------------------------------------------
+			
+			//套打接口---------------------------------------------------
+		//	function insertImage(){alert(plugin().insertImage("D:\\d.doc","","http://oa.well-soft.com:8081/icons/icons/login/Default/ico_logo.gif"))}
+			function insertImage(){alert(plugin().insertImage("D:\\d.doc","key1","D:\\test.png"))}
+			
+			function insertFile(){alert(plugin().insertFile("D:\\d.doc","key2","D:\\dd.doc"));   }
+			function insertCopy(){alert(plugin().insertCopy("D:\\d.doc", "总体要求"));      				}
+			function moveCursor(){alert( plugin().moveCursor("D:\\d.doc", "部分实现"));     				}
+			function replaceText(){alert(plugin().replaceText("D:\\d.doc","测试结果",""));  }
+			function moveToBottom(){alert(plugin().moveToBottom("D:\\d.doc", "控件测试结果"));}
+			//套打接口---------------------------------------------------
+			
+			
+			//IE接口---------------------------------------------------
+			function IEMax(){plugin().IEMax();}
+			function IEMin(){plugin().IEMin();}
+			function IEClose(){plugin().IEClose();}
+			function setLocation(){plugin().setLocation(false);}
+			function setMenu() {plugin().setMenu(false);}
+			function setStatusBar(){plugin().setStatusBar(false);}
+			function setIEClose(){plugin().setIEClose(false);}
+			function setIEMin(){plugin().setIEMin(false);}
+			function setIEClose1(){plugin().setIEClose(true);}
+			function setIEMin1(){plugin().setIEMin(true);}
+			function setIEPageSetup(){alert(plugin().setIEPageSetup("",""));}
+			function SetIECompatibleView(){alert(plugin().setIECompatibleView("163.com"));}
+			function SetTime1(){alert(plugin().setTime('2015-04-13 15:22:00'));}
+			//IE接口---------------------------------------------------
+    </script>
+<body onload="load()">
+<object id="plugin0" type="application/weboffice-plugin" width="100%" height="20">
+    <param name="onload" value="pluginLoaded" />
+</object><br />
+    
+
+
+<div style="text-align:center;font-size:40;font-weight:700;padding-top:20px;color:red;">OA Web Office Plugin Test</div>	
+		
+
+		<div style="text-align:left;padding:30px 10px 10px 10px;border-bottom:solid;border-color:#cccccc;border-width:1px;">
+			<span style='color:green;height:40px;width:300px;font-size:25;font-weight:700;'> 注意事项...... </span>
+		</div>
+		<div style="text-align:left;padding:10px;color:#F00;">
+			<ul>
+				<li style="margin:10px;">本地文件路径名分隔符用"\\", 网站URL分隔符用"/"。</li>
+				<li style="margin:10px;">要测试不同情况，请修改该网页对应的代码。</li>
+			</ul>
+		</div> 
+		<div style="text-align:left;padding:30px 10px 10px 10px;border-bottom:solid;border-color:#cccccc;border-width:1px;">
+			<span style='color:green;height:40px;width:300px;font-size:25;font-weight:700;'> 测试接口...... </span>
+		</div>
+		<div style="text-align:left;padding:10px;">
+			<a href="#" onclick="javascript:pluginValid()">Click me!</a> <br />
+			<a href="#" onclick="javascript:addTestEvent()">Activate click counter</a> <br />
+			<a href="#" onclick="javascript:testEvent()">Fire a test event</a> <br />
+			<a href="#" onclick="javascript:testFun()">Fire a test event</a> <br />
+		</div>
+		<div style="text-align:left;padding:30px 10px 10px 10px;border-bottom:solid;border-color:#cccccc;border-width:1px;">
+			<span style='color:green;height:40px;width:300px;font-size:25;font-weight:700;'> 附件接口...... </span>
+		</div>
+		<div style="text-align:left;padding:10px;">
+			<input type='button' title='控件初始化 成功返回true，否则返回false                                                         ' value='init                ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='init()'>
+			<input type='button' title='文件上传 成功返回true，否则返回false                            	   ' value='upload              ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='upload()'>
+			<input type='button' title='文件上传 成功返回true，否则返回false                            	   ' value='upload_回调         ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='upload1()'>
+			<input type='button' title='文件下载 成功返回true，否则返回false                                                           ' value='download            ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='download()'>
+			<input type='button' title='弹出选择本地目录窗口 返回用户选择的本地路径文本                                                ' value='selectLocalPath     ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='selectLocalPath()'>
+			<input type='button' title='弹出选择本地文件地址 返回用户选择的文件路径文本，若选择多个文件则以“|”分隔                   ' value='selectLocalFile     ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='selectLocalFile()'>
+			<input type='button' title='弹出选择另存为本地文件路径 返回用户指定的另存为路径值，包括文件名                              ' value='selectLocalSavePath ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='selectLocalSavePath()'>
+			<input type='button' title='打开本地文件  成功返回true，否则返回false (定时保存功能，只针对Office和WPS)                    ' value='openLocalFile-保存' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='openLocalFile2()'>
+			<input type='button' title='打开本地文件  成功返回true，否则返回false (定时保存功能，只针对Office和WPS)                    ' value='openLocalFile-编辑' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='openLocalFile1()'>
+			<input type='button' title='打开本地文件  成功返回true，否则返回false (定时保存功能，只针对Office和WPS)                    ' value='openLocalFile-只读' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='openLocalFile0()'>
+			<input type='button' title='打开文件聚焦   成功返回true，否则返回false  ，只针对Office和WPS                                ' value='focusLocalFile      ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='focusLocalFile()'>
+			<input type='button' title='关闭本地文件   成功返回true，否则返回false  ，只针对Office和WPS                                ' value='closeLocalFile-保存' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='closeLocalFile1()'>
+			<input type='button' title='关闭本地文件   成功返回true，否则返回false  ，只针对Office和WPS                                ' value='closeLocalFile-不保存' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='closeLocalFile0()'>
+			<input type='button' title='删除本地目录(包括子目录)或者文件 成功返回true，否则返回false                                   ' value='deleteLocalFile     ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='deleteLocalFile()'>
+			<input type='button' title='获取本地目录下所有直接子目录及文件列表 返回子目录(以“\”结尾)及文件名列表，多个值则以“|”分隔	  ' value='getLocalDir         ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='getLocalDir()'>
+			<input type='button' title='获取本地文件大小  长整型，按字节计                                                             ' value='getLocalFileSize    ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='getLocalFileSize()'>
+			<input type='button' title='获取本地文件最后编辑时间  返回文件的最后修改时间文本，yyyy-mm-dd hh:mm:ss                      ' value='getLocalFileModified' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='getLocalFileModified()'>
+			<input type='button' title='获取本地文件最后编辑人员  返回文件的最后编辑人员文本                                           ' value='getLocalFileEditor  ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='getLocalFileEditor()'>
+			<input type='button' title='判断本地文件是否存在    存在返回true，否则返回false                                            ' value='IsLocalFileExist    ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='IsLocalFileExist()'>
+			<input type='button' title='判断本地文件是否打开  打开返回true，否则返回false     ，只针对Office和WPS                      ' value='IsLocalFileOpen     ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='IsLocalFileOpen()'>
+			<input type='button' title='判断本地文件是否打开编辑了且未保存    打开编辑了且未保存返回true，否则返回false ，只针对Office和WPS' value='IsLocalFileSaved    ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='IsLocalFileSaved()'>
+			<input type='button' title='判断文件是否已经编辑保存过  编辑保存过返回true，否则返回false    ，只针对Office和WPS           ' value='IsLocalFileModified ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='IsLocalFileModified()'>
+			<input type='button' title='获取本地文件文本内容   返回本地文件的文本内容 ，只针对Office和WPS                              ' value='getLocalFileText    ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='getLocalFileText()'>
+			<input type='button' title='获取用户已选择并执行复制标记的本地文件列表   返回本地文件路径列表，多个以“|”分隔               ' value='getLocalCopyFiles   ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='getLocalCopyFiles()'>
+		</div>                      
+		                            
+		<div style="text-align:left;padding:30px 10px 10px 10px;border-bottom:solid;border-color:#cccccc;border-width:1px;">
+			<span style='color:green;height:40px;width:300px;font-size:25;font-weight:700;'> 正文接口...... </span>
+		</div>                      
+		<div style="text-align:left;padding:10px;">
+			<input type='button' title='对打开文件进行修订痕迹控制 成功返回true，否则返回false  ' value='setRevision    ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='setRevision();'>
+			<input type='button' title='对打开文件进行修订痕迹控制 成功返回true，否则返回false  ' value='setRevision-保留-不显示    ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='setRevision1();'>
+			<input type='button' title='对打开文件进行修订痕迹控制 成功返回true，否则返回false  ' value='setRevision-保留-显示    ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='setRevision2();'>
+			<input type='button' title='对打开文件进行修订菜单控制 成功返回true，否则返回false  ' value='setRevisionEnabled-True' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='setRevisionEnabled1();'>
+			<input type='button' title='对打开文件进行修订菜单控制 成功返回true，否则返回false  ' value='setRevisionEnabled-False' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='setRevisionEnabled2();'>
+			<input type='button' title='对打开文件接受所有修订 成功返回true，否则返回false      ' value='acceptRevision ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='acceptRevision();'>
+			<input type='button' title='对打开文件拒绝所有修订 成功返回true，否则返回false      ' value='rejectRevision ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='rejectRevision();'>
+			<input type='button' title='对打开文件设置关闭后不可编辑 成功返回true，否则返回false' value='protectDocument' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='protectDocument();'>
+			<input type='button' title='对打开文件设置是否可打印 成功返回true，否则返回false。不可打印    ' value='setPrint       ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='setPrint();'>
+			<input type='button' title='对打开文件设置是否可打印 成功返回true，否则返回false。可打印    ' value='setPrint       ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='setPrint1();'>
+			<input type='button' title='对打开文件运行VBA代码 允许VBA函数返回文本值             ' value='runVBA         ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='runVBA();'>
+			<input type='button' title='对打开文件变更修改人员 成功返回true，否则返回false      ' value='setEditUser    ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='setEditUser();'>
+			<input type='button' title='对打开文件设置痕迹显示方式。成功返回true，否则返回false。psLocalFilePath	已打开的本地文件全路径值，piMode	1显示标记的最终状态；或所有标记	2最终状态；3显示标记的原始状态;4原始状态；5简单标记，6无标记 ' value='ShowRevisionsMode' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='showRevisionsMode();'>
+		
+		</div>                      
+		                            
+		<div style="text-align:left;padding:30px 10px 10px 10px;border-bottom:solid;border-color:#cccccc;border-width:1px;">
+			<span style='color:green;height:40px;width:300px;font-size:25;font-weight:700;'> 套打接口...... </span>
+		</div>                      
+		<div style="text-align:left;padding:10px;">
+			<input type='button' title='对打开文件进行插入图片    ' value='insertImage ' style='margin-bottom:10px;text-align:center;height:40px;width:200px;font-size:20;font-weight:700;' onclick='insertImage();'>
+			<input type='button' title='对打开文件进行插入文件    ' value='insertFile  ' style='margin-bottom:10px;text-align:center;height:40px;width:200px;font-size:20;font-weight:700;' onclick='insertFile();'>
+			<input type='button' title='对打开文件进行插入内存拷贝' value='insertCopy  ' style='margin-bottom:10px;text-align:center;height:40px;width:200px;font-size:20;font-weight:700;' onclick='insertCopy();'>
+			<input type='button' title='对打开文件执行文本替换    ' value='replaceText ' style='margin-bottom:10px;text-align:center;height:40px;width:200px;font-size:20;font-weight:700;' onclick='replaceText();'>
+			<input type='button' title='对打开文件执行文本替换    ' value='moveCursor ' style='margin-bottom:10px;text-align:center;height:40px;width:200px;font-size:20;font-weight:700;' onclick='moveCursor();'>
+			<input type='button' title='对打开文件进行置底        ' value='moveToBottom' style='margin-bottom:10px;text-align:center;height:40px;width:200px;font-size:20;font-weight:700;' onclick='moveToBottom();'>
+		</div>                        
+		                              
+		<div style="text-align:left;padding:30px 10px 10px 10px;border-bottom:solid;border-color:#cccccc;border-width:1px;">
+			<span style='color:green;height:40px;width:300px;font-size:25;font-weight:700;'> IE接口...... </span>
+		</div>
+		<div style="text-align:left;padding:10px;">
+			<input type='button' title='IE窗口最大化，只保留了标题栏                ' value='IEMax       ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='IEMax();'>
+			<input type='button' title='IE窗口最小化                                ' value='IEMin       ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='IEMin();'>	
+			<input type='button' title='IE窗口关闭                                  ' value='IEClose     ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='IEClose();'>	
+			<input type='button' title='是否显示地址栏  成功返回true，否则返回false ' value='setLocation ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='setLocation();'>	
+			<input type='button' title='是否显示菜单栏  成功返回true，否则返回false ' value='setMenu     ' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='setMenu();'>	
+			<input type='button' title='是否显示状态栏  成功返回true，否则返回false ' value='setStatusBar' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='setStatusBar();'>				
+			<input type='button' title='是否允许窗口关闭，  成功返回true，否则返回false ' value='setIEClose' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='setIEClose();'>
+			<input type='button' title='是否允许窗口最小化，  成功返回true，否则返回false ' value='setIEMin' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='setIEMin();'>
+			<input type='button' title='是否允许窗口关闭，  成功返回true，否则返回false ' value='setIEClose1' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='setIEClose1();'>
+			<input type='button' title='是否允许窗口最小化，  成功返回true，否则返回false ' value='setIEMin1' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='setIEMin1();'>
+			<input type='button' title='设置IE页眉页脚，  成功返回true，否则返回false ' value='setIEPageSetup' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='setIEPageSetup();'>
+			<input type='button' title='设置IE页眉页脚，  成功返回true，否则返回false ' value='SetIECompatibleView' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='SetIECompatibleView();'>
+			<input type='button' title='设置IE页眉页脚，  成功返回true，否则返回false ' value='SetIECompatibleView' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='SetIECompatibleView();'>
+			<input type='button' title='设置系统时间，  成功返回true，否则返回false ' value='SetTime' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='SetTime1();'>
+			<input type='button' title='获取插件版本号 ' value='GetVersion' style='margin-bottom:10px;height:40px;width:200px;font-size:20;font-weight:700;' onclick='getVersion();'>
+		</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<div class="container-fluid">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#import_rule_basic_info" aria-controls="import_rule_basic_info" role="tab" data-toggle="tab"
+               aria-expanded="true">基本信息</a>
+        </li>
+        <li role="presentation">
+            <a href="#import_rule_col_info" aria-controls="import_rule_col_info" role="tab"
+               data-toggle="tab"
+               aria-expanded="true">列定义</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane active" id="import_rule_basic_info" style="padding-top: 10px;">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label required">名称</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name">
+                        <input type="hidden" id="uuid" name="uuid">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id" class="col-sm-2 control-label">ID</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="id" name="id">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="code" class="col-sm-2 control-label">编号</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="code" name="code">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="startRow" class="col-sm-2 control-label">开始行</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="startRow" name="startRow">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="moduleId" class="col-sm-2 control-label">所属模块</label>
+                    <div class="col-sm-10">
+                        <input type="hidden" class="form-control" id="moduleId" name="moduleId"
+                               readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="type" class="col-sm-2 control-label">返回类型</label>
+                    <div class="col-sm-10">
+                        <input type="hidden" class="form-control" id="type" name="type">
+                    </div>
+                </div>
+
+                <div class="form-group type entity" style="display: none;">
+                    <label for="entity" class="col-sm-2 control-label">实体</label>
+                    <div class="col-sm-10">
+                        <input type="hidden" class="form-control" id="entity" name="entity">
+                    </div>
+                </div>
+
+                <div id="templateUploadDiv"></div>
+
+            </div>
+        </div>
+
+
+        <div role="tabpanel" class="tab-pane" style="padding-top: 10px;" id="import_rule_col_info">
+            <div id="div_column_toolbar" class="btn-group btn_column_info">
+                <button id="btn_add_column" type="button"
+                        class="btn btn-primary btn-sm" title="新增">新增
+                </button>
+                <button id="btn_delete_column" type="button"
+                        class="btn btn-danger btn-sm" title="删除">删除
+                </button>
+            </div>
+            <table id="table_column_info" data-height="600"></table>
+        </div>
+
+        <div class="row" style="margin-top:80px;">
+            <div class="col-sm-12 text-center">
+                <button class="btn btn-primary" id="btn_save_import_rule">保存</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

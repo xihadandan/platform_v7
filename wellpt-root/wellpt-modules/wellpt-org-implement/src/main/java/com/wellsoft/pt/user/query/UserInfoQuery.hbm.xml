@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <!-- 用户ID名称查询 -->
+    <sql-query name="userInfoIdNameQuery">
+        <![CDATA[
+            select u.user_id ,u.user_name
+            <if isNotBlank(locale)>
+		   ,i.user_name as i_user_name
+		    </if>
+		    from user_info u
+		    <if isNotBlank(locale)>
+		    left join user_name_i18n i on u.user_id = i.user_id and i.locale=:locale
+		    </if>
+		    where u.user_id in :userIds
+		    <if orgVersionIds?? && (orgVersionIds?size > 0)>
+		        and exists(select 1 from org_user o where o.user_id = u.user_id
+		        and o.org_version_uuid in(select v.uuid from org_version v where v.id in(:orgVersionIds)))
+		    </if>
+		    <if bizOrgIds?? && (bizOrgIds?size > 0)>
+		        and exists(select 1 from biz_org_element_member o where o.member_id = u.user_id
+		        and o.biz_org_uuid in(select bo.uuid from biz_org_organization bo where bo.id in(:bizOrgIds)))
+		    </if>
+	    ]]>
+    </sql-query>
+
+</hibernate-mapping>

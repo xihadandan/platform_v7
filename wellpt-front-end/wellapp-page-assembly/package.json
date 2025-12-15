@@ -1,0 +1,96 @@
+{
+  "name": "wellapp-page-assembly",
+  "version": "70.2.0",
+  "description": "平台页面组件包，提供各类的页面组件，以及页面组件的解析引擎",
+  "eggPlugin": {
+    "name": "wellappPageAssembly"
+  },
+  "keywords": [
+    "wellsoft",
+    "wellapp",
+    "wellapp-plugin",
+    "wellappPageAssembly",
+    "wellapp-page-assembly"
+  ],
+  "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
+    "@ant-design/colors": "7.0.0",
+    "@sqltools/formatter": "^1.2.5",
+    "acorn": "^8.15.0",
+    "bwip-js": "^4.7.0",
+    "cheerio": "1.0.0-rc.3",
+    "codemirror": "^5.65.2",
+    "compressing": "^1.9.0",
+    "echarts": "^5.5.0",
+    "esprima": "^4.0.1",
+    "gridstack": "^10.3.1",
+    "html-to-image": "^1.11.11",
+    "intro.js": "^7.2.0",
+    "is": "^3.3.0",
+    "jsoneditor": "^9.10.0",
+    "jsonrepair": "^3.0.3",
+    "moveable": "^0.53.0",
+    "qrcode": "^1.5.4",
+    "quill": "^1.3.6",
+    "spark-md5": "^3.0.2",
+    "v-viewer": "^1.6.4",
+    "vue-color": "^2.8.1",
+    "vue-draggable-resizable": "^2.3.0",
+    "vue-json-viewer": "^2.2.22",
+    "vue-moveable": "2.0.0-beta.75",
+    "vue-selecto": "^1.26.3",
+    "vue-sketch-ruler": "^1.0.3",
+    "vue-swatches": "^2.1.1",
+    "vuedraggable": "^2.24.3",
+    "wellapp-framework": "70.2.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-plugin-transform-vue-jsx": "^3.7.0",
+    "babel-preset-env": "^1.6.0",
+    "eslint": "^5.13.0",
+    "eslint-config-egg": "^7.1.0",
+    "html5-qrcode": "^2.3.8",
+    "husky": "^3.0.4",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "lint-staged": "^9.2.3",
+    "prettier": "^2.8.8",
+    "style-resources-loader": "^1.5.0"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "test": "npm run lint -- --fix && egg-bin pkgfiles && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "egg-bin pkgfiles --check && npm run lint && npm run cov",
+    "pkgfiles": "egg-bin pkgfiles",
+    "autod": "autod",
+    "npm-link": "npm link ../wellapp-framework"
+  },
+  "files": [
+    "app.js",
+    "agent.js",
+    "config",
+    "app",
+    ".babelrc"
+  ],
+  "ci": {
+    "version": "8, 10"
+  },
+  "author": "wellsoft",
+  "license": "MIT"
+}

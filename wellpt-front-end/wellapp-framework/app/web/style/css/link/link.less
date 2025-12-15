@@ -1,0 +1,81 @@
+body {
+  // 默认
+  --w-link-text-color: var(--w-link-color);
+  --w-link-font-size: var(--w-font-size-base);
+  --w-link-font-weight: var(--w-font-weight-regular);
+  --w-link-background-color: transparent;
+  --w-link-lr-padding: var(--w-padding-2xs);
+  // 悬停
+  --w-link-color-hover: var(--w-link-color-5);
+  --w-link-font-size-hover: var(--w-font-size-base);
+  --w-link-font-weight-hover: var(--w-font-weight-regular);
+  --w-link-background-color-hover: transparent;
+  // 点击
+  --w-link-color-active: var(--w-link-color-7);
+  --w-link-font-size-active: var(--w-font-size-base);
+  --w-link-font-weight-active: var(--w-font-weight-regular);
+  --w-link-background-color-active: transparent;
+  // 禁用
+  --w-link-color-disabled: var(--w-text-color-light);
+  --w-link-font-size-disabled: var(--w-font-size-base);
+  --w-link-font-weight-disabled: var(--w-font-weight-regular);
+  --w-link-background-color-disabled: transparent;
+}
+
+a {
+  color: var(--w-link-text-color);
+
+  &:hover {
+    color: var(--w-link-color-hover);
+  }
+
+  &:active {
+    color: var(--w-link-color-active);
+  }
+}
+
+.widget-hyperlink {
+  color: var(--w-link-text-color);
+  font-size: var(--w-link-font-size);
+  font-weight: var(--w-link-font-weight);
+  background-color: var(--w-link-background-color);
+  padding-left: var(--w-link-lr-padding);
+  padding-right: var(--w-link-lr-padding);
+  display: inline-block;
+}
+
+.widget-hyperlink-hover,
+.widget-hyperlink:hover {
+  &.widget-hyperlink-disabled {
+    color: var(--w-link-color-hover);
+    font-size: var(--w-link-font-size-hover);
+    font-weight: var(--w-link-font-weight-hover);
+    background-color: var(--w-link-background-color-hover);
+    padding-left: var(--w-link-lr-padding);
+    padding-right: var(--w-link-lr-padding);
+  }
+}
+
+.widget-hyperlink-active,
+.widget-hyperlink:active {
+  color: var(--w-link-color-active);
+  font-size: var(--w-link-font-size-active);
+  font-weight: var(--w-link-font-weight-active);
+  background-color: var(--w-link-background-color-active);
+  padding-left: var(--w-link-lr-padding);
+  padding-right: var(--w-link-lr-padding);
+}
+
+.widget-hyperlink-disabled {
+  color: var(--w-link-color-disabled);
+  font-size: var(--w-link-font-size-disabled);
+  font-weight: var(--w-link-font-weight-disabled);
+  background-color: var(--w-link-background-color-disabled);
+  padding-left: var(--w-link-lr-padding);
+  padding-right: var(--w-link-lr-padding);
+  cursor: not-allowed;
+
+  &:hover {
+    color: var(--w-link-color-disabled);
+  }
+}

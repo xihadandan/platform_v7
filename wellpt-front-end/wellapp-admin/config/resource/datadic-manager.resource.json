@@ -1,0 +1,22 @@
+{
+  "js": {
+    "AppDataDicDetailsWidgetDevelopment": {
+      "path": "/datadic-mgr/AppDataDicDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_数据字典详情_HTML组件二开",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "AppPtMgrDetailsWidgetDevelopment",
+        "formBuilder"
+      ]
+    },
+    "AppDataDicTreeDetailsWidgetDevelopment": {
+      "path": "/datadic-mgr/AppDataDicTreeDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_数据字典树形_HTML组件二开",
+      "dependencies": [
+        "AppPtMgrDetailsWidgetDevelopment",
+        "ztree"
+      ]
+    }
+  },
+  "css": {}
+}

@@ -1,0 +1,94 @@
+<div id="widget_bootstrap_tabs">
+  <form id="widget_bootstrap_tabs_form" class="form-horizontal">
+    <div id="widget_tree_tabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#widget_tree_tabs_base_info">基础配置</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_tree_tabs_tabs_info">页签配置</a>
+        </li>
+      </ul>
+      <div class="tab-content" style="height: 500px">
+        <div role="tabpanel" class="tab-pane active" id="widget_tree_tabs_base_info">
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">名称<font color="red">*</font>
+            </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" name="name" id="name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="form-control w-configurer-option" name="jsModuleName" id="jsModuleName"/>
+              <input type="text" class="form-control w-configurer-option" name="jsModule" id="jsModule"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="twoOpenView" class="col-sm-2 control-label">二开组件名</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" name="twoOpenView" id="twoOpenView">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="jsModule" class="col-sm-2 control-label">Tab模式</label>
+            <div class="col-sm-10">
+              <select class="form-control w-configurer-option" id="tabType" name="tabType">
+                <option value="1" selected="selected">顶部滑块</option>
+                <option value="2">顶部选项卡</option>
+                <option value="3">底侧选项卡</option>
+                <option value="4">右滑菜单</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group tab-type tab-type-2 hidden">
+            <label for="jsModule" class="col-sm-2 control-label">选项卡</label>
+            <div class="col-sm-10">
+              <select class="form-control w-configurer-option" id="tab2style" name="tab2style">
+                <option value="inverted" selected="selected">文字</option>
+                <option value="button">按钮</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group tab-type tab-type-4 hidden">
+            <label for="jsModule" class="col-sm-2 control-label">右滑动画效果</label>
+            <div class="col-sm-10">
+              <select class="form-control w-configurer-option" id="tab4style" name="tab4style">
+                <option value="main-move" selected="selected">主界面移动、菜单不动</option>
+                <option value="menu-move">主界面不动、菜单移动</option>
+                <option value="all-move">整体移动</option>
+                <option value="main-move-scalable">缩放式侧滑</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group tab-type tab-type-4 hidden">
+            <label for="jsModule" class="col-sm-2 control-label">右滑帮助说明</label>
+            <div class="col-sm-10">
+              <textarea class="form-control w-configurer-option" id="tab4help" name="tab4help"></textarea>
+            </div>
+          </div>
+          {% include "./widget_base_info.nj" %}
+        </div>
+        <div role="tabpanel" class="tab-pane " id="widget_tree_tabs_tabs_info">
+          <div id="div_button_tab_toolbar" class="btn-group btn_tab_info">
+            <button id="btn_add_tab" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+            <button id="btn_delete_tab" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+            </button>
+            <button id="btn_row_up_tab" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+            </button>
+            <button id="btn_row_down_tab" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+            </button>
+          </div>
+          <table id="table_tabs_info" class="field_info" data-height="400"></table>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

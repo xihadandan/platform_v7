@@ -1,0 +1,52 @@
+{
+  "js": {
+    "js-ofd-api": {
+      "path": "/ofd/ofd-api",
+      "name": "平台应用_OFD_API",
+      "dependencies": ["constant", "commons", "server", "suwell-ofdReader"]
+    },
+    "js-checkwps": {
+      "path": "/wps/checkwps",
+      "name": "平台应用_JS_CHECKWPS",
+      "dependencies": ["jquery"]
+    },
+    "js-launchwps": {
+      "path": "/wps/launchwps",
+      "name": "平台应用_JS_LAUNCHWPS",
+      "dependencies": ["js-checkwps"]
+    },
+
+    "js-wps": {
+      "path": "/wps/wps",
+      "name": "平台应用_JS_WPS",
+      "dependencies": ["js-base64", "js-launchwps"]
+    },
+    "js-base64": {
+      "path": "/wps/base64",
+      "name": "平台应用_JS_BASE64"
+    },
+    "suwell-ofdReader": {
+      "path": "/ofd/suwell_ofdReader",
+      "name": "平台应用_SUWELL-OFDREADER"
+    },
+    "wps-sdk": {
+      "path": "/wps/oaassist/server/wwwroot/resource/js/wps_sdk",
+      "name": "平台应用_WPS_SDK"
+    },
+    "js-body-api": {
+      "path": "/body/body-api",
+      "name": "平台应用_body_API",
+      "dependencies": ["constant", "commons", "server", "js-wps"]
+    },
+    "js-body-api-v2": {
+      "path": "/body/body-api-v2",
+      "name": "平台应用_BODY_API_V2",
+      "dependencies": ["constant", "commons", "server", "wps-sdk"]
+    },
+    "filePreviewApi": {
+      "path": "/filepreview/filePreviewApi",
+      "name": "平台应用_附件预览API",
+      "dependencies": ["jquery", "appModal"]
+    }
+  }
+}

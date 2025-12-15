@@ -1,0 +1,70 @@
+/**
+  * 标题设置弹窗
+  * - 表单设计器: 表单标题设置
+  * - 资源日历组件配置: 事项标题设置
+  * - 流程设计器: 流程标题设置
+  */
+
+.title_expression_wrap {
+  // 标题设置弹窗 - 顶部提示信息
+  .tip {
+    .size(100%, 42px);
+
+    margin-bottom: 15px;
+    padding: 0 10px;
+    line-height: 40px;
+    font-size: @font-size-base;
+    color: @text-color;
+    background: @background-primary-light;
+    border: @border-default-primary-light;
+    border-radius: @border-radius-base;
+
+    i {
+      margin-right: 10px;
+      line-height: 40px;
+      font-size: @font-size-xl;
+      color: @text-color-primary;
+    }
+  }
+
+  // 标题设置弹窗 - 设置窗口
+  .content {
+    width: 100%;
+    background: @component-background;
+    border: @border-default-dark;
+    border-radius: @border-radius-base;
+
+    .choose-btns {
+      .size(100%, 33px);
+
+      background: @background-light;
+      border-bottom: @border-default-dark;
+      border-radius: @border-radius-base @border-radius-base 0 0;
+
+      .choose-item {
+        position: relative;
+        float: left;
+        width: auto;
+        margin-right: 20px;
+        padding: 0 30px 0 10px;
+        line-height: 32px;
+        font-size: @font-size-base;
+        color: @text-color-primary;
+        cursor: pointer;
+      }
+    }
+
+    textarea {
+      width: 100%;
+      background: @component-background;
+      border: none;
+    }
+  }
+
+  // 标题设置弹窗 - 底部提示信息
+  .bottom-tip {
+    line-height: 30px;
+    font-size: @font-size-base;
+    color: @text-color-light;
+  }
+}

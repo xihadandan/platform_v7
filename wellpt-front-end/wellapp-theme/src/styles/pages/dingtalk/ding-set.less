@@ -1,0 +1,147 @@
+/* 钉钉接入设置提示框 */
+.form-tooltip {
+  position: relative;
+  display: inline-block;
+
+  .tooltip-body {
+    position: absolute;
+    display: none;
+    width: 250px;
+    line-height: 20px;
+    padding: 15px;
+    box-shadow: 0px 2px 10px 0px rgb(0 0 0 / 15%);
+    border-radius: @border-radius-base;
+    text-align: left;
+    color: @text-color-light;
+    background: @white;
+    font-size: @font-size-sm;
+
+    &.show-down {
+      .absolute(32px false false -100px);
+
+      &::after {
+        .absolute(-34px 30px 0 30px);
+
+        content: '';
+        z-index: 10;
+      }
+
+      span.arrow {
+        .absolute(-10px false false 50%);
+
+        margin-left: -22px;
+        content: '';
+        display: block;
+        border-left: 8px solid transparent;
+        border-bottom: 10px solid #fff;
+        border-right: 10px solid transparent;
+      }
+    }
+  }
+
+  > i:hover + .tooltip-body,
+  > i + .tooltip-body:hover {
+    display: block;
+  }
+}
+
+/**** 钉钉接入设置 *****/
+.org-sync-set {
+  padding: 20px 0;
+  width: 86%;
+
+  .warm-tip {
+    font-size: @font-size-base;
+    color: @text-color-light;
+    margin-bottom: 14px;
+  }
+
+  table tbody tr td {
+    padding: 12px 15px;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    &.label-td {
+      width: 16%;
+      text-align: center !important;
+      font-size: 15px !important;
+    }
+  }
+
+  table td p.sub-text {
+    color: @text-color-dark;
+  }
+
+  .sub-text .gray {
+    color: @text-color-light;
+  }
+
+  .check-text {
+    width: 170px;
+    text-align: left;
+
+    .proposal {
+      color: @text-color;
+
+      .organge {
+        color: @warning-color;
+      }
+    }
+  }
+
+  .float-right {
+    float: right;
+  }
+
+  .float-left {
+    float: left;
+  }
+
+  .form-tooltip {
+    position: relative;
+    display: inline-block;
+
+    .tooltip-body {
+      position: absolute;
+      display: none;
+      width: 400px;
+      line-height: 20px;
+      padding: 15px;
+      box-shadow: 0px 2px 10px 0px rgb(0 0 0 / 15%);
+      border-radius: @border-radius-base;
+      text-align: left;
+      color: @text-color-light;
+      background: @white;
+      font-size: @font-size-sm;
+
+      &.show-down {
+        .absolute(32px false false -300px);
+
+        &::after {
+          .absolute(-34px 30px 0 30px);
+
+          content: '';
+          z-index: 10;
+        }
+
+        span.arrow {
+          .absolute(-10px false false 80%);
+
+          // margin-left: -22px;
+          content: '';
+          display: block;
+          border-left: 8px solid transparent;
+          border-bottom: 10px solid #fff;
+          border-right: 10px solid transparent;
+        }
+      }
+    }
+
+    > i:hover + .tooltip-body,
+    > i + .tooltip-body:hover {
+      display: block;
+    }
+  }
+}

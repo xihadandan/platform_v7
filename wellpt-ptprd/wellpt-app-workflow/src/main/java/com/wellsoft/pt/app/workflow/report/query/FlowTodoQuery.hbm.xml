@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="listFlowTodoByUserQuery">
+        <![CDATA[
+            select * from (
+                select distinct ti.uuid
+                from wf_task_identity t1
+                         left join (${userQuerySql}) t2 on t1.user_id = t2.user_id or t1.user_id = t2.dept_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                where t1.suspension_state = 0
+                    and not exists (
+                        select 1 from acl_task_entry acl where acl.uuid in (
+                            select ad.acl_task_uuid from acl_task_done_marker ad
+                            where 1 = 1
+                                <if userIds?? && userIds?size gt 0>
+                                    and ad.user_id in (:userIds)
+                                </if>
+                        ) and acl.object_id_identity = ti.uuid
+                    )
+                    <if userIds?? && userIds?size gt 0>
+                        and t2.user_id in (:userIds) and t2.user_id is not null
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listFlowTodoCountByUserGroupByFlowQuery">
+        <![CDATA[
+            select * from (
+                select  count(distinct ti.uuid)  as count,
+                        t3.name         as name,
+                        t3.id           as id
+                from wf_task_identity t1
+                         left join (${userQuerySql}) t2 on t1.user_id = t2.user_id or t1.user_id = t2.dept_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                where t1.suspension_state = 0
+                    and not exists (
+                        select 1 from acl_task_entry acl where acl.uuid in (
+                            select ad.acl_task_uuid from acl_task_done_marker ad
+                            where 1 = 1
+                                <if userIds?? && userIds?size gt 0>
+                                    and ad.user_id in (:userIds)
+                                </if>
+                        ) and acl.object_id_identity = ti.uuid
+                    )
+                    <if userIds?? && userIds?size gt 0>
+                        and t2.user_id in (:userIds) and t2.user_id is not null
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                group by t3.name, t3.id
+            ) t
+            where 1 = 1
+            order by t.count desc
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listFlowTodoCountByUserGroupByUserQuery">
+        <![CDATA[
+            select * from (
+                select  count(distinct t1.task_inst_uuid)    as count,
+                        t2.user_id                  as user_id,
+                        t2.user_name                as user_name
+                from wf_task_identity t1
+                         left join (${userQuerySql}) t2 on t1.user_id = t2.user_id or t1.user_id = t2.dept_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                where t1.suspension_state = 0
+                    <if isOverdue??>
+                        <if isOverdue == 1>
+                            and t3.is_over_due = :isOverdue
+                        <else>
+                            and (t3.is_over_due = :isOverdue or t3.is_over_due is null)
+                        </if>
+                    </if>
+                    and not exists (
+                        select 1 from acl_task_entry acl where acl.uuid in (
+                            select ad.acl_task_uuid from acl_task_done_marker ad
+                            where 1 = 1
+                                <if userIds?? && userIds?size gt 0>
+                                    and ad.user_id in (:userIds)
+                                </if>
+                        ) and acl.object_id_identity = ti.uuid
+                    )
+                    <if userIds?? && userIds?size gt 0>
+                        and t2.user_id in (:userIds) and t2.user_id is not null
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                group by t2.user_id, t2.user_name
+            ) t
+            where 1 = 1
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            <else>
+                order by t.count desc
+            </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listFlowTodoCountByUserGroupByUserAndFlowQuery">
+        <![CDATA[
+            select * from (
+                select  count(distinct t1.task_inst_uuid)    as count,
+                        t3.id                       as id,
+                        t3.name                     as name,
+                        t4.category                 as category_uuid,
+                        t5.name                     as category_name,
+                        t2.user_id                  as user_id,
+                        t2.user_name                as user_name
+                from wf_task_identity t1
+                         left join (${userQuerySql}) t2 on t1.user_id = t2.user_id or t1.user_id = t2.dept_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         left join wf_def_category t5 on t4.category = t5.uuid
+                where t1.suspension_state = 0
+                    <if isOverdue??>
+                        <if isOverdue == 1>
+                            and t3.is_over_due = :isOverdue
+                        <else>
+                            and (t3.is_over_due = :isOverdue or t3.is_over_due is null)
+                        </if>
+                    </if>
+                    and not exists (
+                        select 1 from acl_task_entry acl where acl.uuid in (
+                            select ad.acl_task_uuid from acl_task_done_marker ad
+                            where 1 = 1
+                                <if userIds?? && userIds?size gt 0>
+                                    and ad.user_id in (:userIds)
+                                </if>
+                        ) and acl.object_id_identity = ti.uuid
+                    )
+                    <if userIds?? && userIds?size gt 0>
+                        and t2.user_id in (:userIds) and t2.user_id is not null
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                group by t3.id, t3.name, t4.category, t5.name, t2.user_id, t2.user_name
+            ) t
+            where 1 = 1
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            <else>
+                order by t.count desc
+            </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listFlowTodoDetailByUserQuery">
+        <![CDATA[
+            select * from (
+                select  distinct t1.uuid                     as uuid,
+                        t3.title                    as title,
+                        t3.id                       as id,
+                        t3.name                     as name,
+                        t3.start_user_id            as start_user_id,
+                        t5.user_name                as start_user_name,
+                        t3.start_time               as start_time,
+                        t3.is_over_due              as is_over_due,
+                        ti.id                       as task_id,
+                        ti.name                     as task_name,
+                        ti.todo_user_name           as todo_user_name
+                from wf_task_identity t1
+                         left join (${userQuerySql}) t2 on t1.user_id = t2.user_id or t1.user_id = t2.dept_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         <if isNotBlank(flowInstWhereSql) || isNotBlank(categoryUuid)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                         left join user_info t5 on t3.start_user_id = t5.user_id
+                where t1.suspension_state = 0 and t2.user_id = :userId
+                    and not exists (
+                        select 1 from acl_task_entry acl where acl.uuid in (
+                            select ad.acl_task_uuid from acl_task_done_marker ad
+                            where 1 = 1
+                                <if userIds?? && userIds?size gt 0>
+                                    and ad.user_id in (:userIds)
+                                </if>
+                        ) and acl.object_id_identity = ti.uuid
+                    )
+                    <if isNotBlank(categoryUuid)>
+                        and t4.category = :categoryUuid
+                    </if>
+                    <if isNotBlank(flowDefId)>
+                        and t3.id = :flowDefId
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            where 1 = 1
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listFlowTodoDeptIdByDeptQuery">
+        <![CDATA[
+            select d.id   as dept_id,
+                   d.name as dept_name
+            from (select distinct d.id, d.name
+                      from org_element d
+                      where d.type <> 'job'
+                        and d.org_version_uuid in (
+                          select v.uuid
+                          from org_version v
+                          where v.state = 0
+                          <if isNotBlank(system)>
+                            and v.system = :system
+                          </if>
+                      )
+                      <if limitDeptIds?? && (limitDeptIds?size > 0)>
+                        and d.id in (:limitDeptIds)
+                      </if>
+                      <if deptLevel == 'top'>
+                        and d.parent_uuid is null
+                      </if>
+                      <if deptLevel == 'leaf'>
+                        and not exists (
+                            select 1
+                            from org_element e
+                            where e.type <> 'job'
+                              and e.parent_uuid = d.uuid
+                        )
+                      </if>
+                  union all
+                     select distinct d.id as id, d.name as name
+                     from biz_org_element d
+                     where 1 = 1 and d.biz_org_uuid in (
+                        select b.uuid from biz_org_organization b
+                         where b.enable = 1
+                         <if isNotBlank(system)>
+                            and b.system = :system
+                         </if>
+                     )
+                     <if limitDeptIds?? && (limitDeptIds?size > 0)>
+                        and d.id in (:limitDeptIds)
+                      </if>
+                      <if deptLevel == 'top'>
+                        and d.parent_uuid is null
+                      </if>
+                      <if deptLevel == 'leaf'>
+                        and not exists (
+                            select 1
+                            from biz_org_element e
+                            where e.parent_uuid = d.uuid
+                        )
+                      </if>
+                  ) d
+                  where 1 = 1
+                  <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                  </if>
+                  <if isNotBlank(orderBy)>
+                    ${orderBy}
+                  </if>
+        ]]>
+    </sql-query>
+
+    <sql-query name="listFlowTodoCountByDeptGroupByDeptQuery">
+        <![CDATA[
+            select *
+            from (
+                select count(distinct ti.flow_inst_uuid) as count, t2.dept_id as dept_id
+                from wf_task_identity t1
+                         left join (${deptQuerySql}) t2 on t1.user_id = t2.user_id or t1.user_id = t2.dept_id or t1.user_id = t2.dept_role_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                where t1.suspension_state = 0 and t2.user_id is not null and t2.dept_id is not null
+                    <if isOverdue??>
+                        <if isOverdue == 1>
+                            and t3.is_over_due = :isOverdue
+                        <else>
+                            and (t3.is_over_due = :isOverdue or t3.is_over_due is null)
+                        </if>
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                group by t2.dept_id
+            ) t
+            where 1 = 1
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listFlowTodoCountByDeptGroupByDeptAndFlowQuery">
+        <![CDATA[
+            select *
+            from (
+                select  count(distinct ti.flow_inst_uuid) as count,
+                        t3.id                       as id,
+                        t3.name                     as name,
+                        t4.category                 as category_uuid,
+                        t5.name                     as category_name,
+                        t2.dept_id                  as dept_id
+                from wf_task_identity t1
+                         left join (${deptQuerySql}) t2 on t1.user_id = t2.user_id or t1.user_id = t2.dept_id or t1.user_id = t2.dept_role_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         left join wf_def_category t5 on t4.category = t5.uuid
+                where t1.suspension_state = 0 and t2.user_id is not null and t2.dept_id is not null
+                    <if isOverdue??>
+                        <if isOverdue == 1>
+                            and t3.is_over_due = :isOverdue
+                        <else>
+                            and (t3.is_over_due = :isOverdue or t3.is_over_due is null)
+                        </if>
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                group by t3.id, t3.name, t4.category, t5.name, t2.dept_id
+            ) t
+            where 1 = 1
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listFlowTodoCountByDeptGroupByFlowQuery">
+        <![CDATA[
+            select *
+            from (
+                select count(distinct ti.flow_inst_uuid)    as count,
+                       t3.name                              as name,
+                       t3.id                                as id
+                from wf_task_identity t1
+                         left join (${deptQuerySql}) t2
+                                   on t1.user_id = t2.user_id or t1.user_id = t2.dept_id or t1.user_id = t2.dept_role_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                where t1.suspension_state = 0 and t2.user_id is not null and t2.dept_id is not null
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                group by t3.name, t3.id
+            ) t
+            where 1 = 1
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listFlowTodoDetailByDeptQuery">
+        <![CDATA[
+            select * from (
+                select distinct t3.uuid             as uuid,
+                        t3.title                    as title,
+                        t3.id                       as id,
+                        t3.name                     as name,
+                        t3.start_user_id            as start_user_id,
+                        t5.user_name                as start_user_name,
+                        t3.start_time               as start_time,
+                        t3.is_over_due              as is_over_due,
+                        ti.id                       as task_id,
+                        ti.name                     as task_name,
+                        ti.todo_user_name           as todo_user_name
+                from wf_task_identity t1
+                         left join (${deptQuerySql}) t2 on t1.user_id = t2.user_id or t1.user_id = t2.dept_id or t1.user_id = t2.dept_role_id
+                         left join wf_task_instance ti on t1.task_inst_uuid = ti.uuid
+                         left join wf_flow_instance t3 on ti.flow_inst_uuid = t3.uuid
+                         <if isNotBlank(flowInstWhereSql) || isNotBlank(categoryUuid)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                         left join user_info t5 on t3.start_user_id = t5.user_id
+                where t1.suspension_state = 0 and t2.dept_id = :deptId
+                    <if isNotBlank(categoryUuid)>
+                        and t4.category = :categoryUuid
+                    </if>
+                    <if isNotBlank(flowDefId)>
+                        and t3.id = :flowDefId
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            where 1 = 1
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            <else>
+                order by t.count desc
+            </if>
+	    ]]>
+    </sql-query>
+
+</hibernate-mapping>

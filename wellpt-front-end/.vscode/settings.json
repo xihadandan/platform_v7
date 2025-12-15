@@ -1,0 +1,85 @@
+{
+  "html.suggest.html5": true,
+  "editor.formatOnSave": true,
+  "vue.inlayHints.optionsWrapper": false,
+  "search.exclude": {
+    "**/node_modules": true
+  },
+  "files.associations": {
+    "*.html": "html",
+    "*.nj": "njk",
+    "*.njk": "njk"
+  },
+  "emmet.includeLanguages": {
+    "njk": "html",
+    "nj": "html"
+  },
+  "vsicons.associations.files": [
+    {
+      "icon": "nunjucks",
+      "extensions": ["nj", "njk", "html"],
+      "format": "svg"
+    }
+  ],
+  "cSpell.words": [
+    "CKEDITOR",
+    "Treegrid",
+    "bootbox",
+    "cardgrid",
+    "cascader",
+    "ckedit",
+    "clazz",
+    "colspan",
+    "desaturate",
+    "dingtalk",
+    "endfor",
+    "fullcalendar",
+    "glyphicon",
+    "jqgrid",
+    "jquery",
+    "jsoneditor",
+    "layui",
+    "lessc",
+    "metismenu",
+    "mixins",
+    "readonly",
+    "rowspan",
+    "sprintf",
+    "subform",
+    "welldev",
+    "wellpt",
+    "ztree"
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[njk]": {
+    "editor.defaultFormatter": "douglaszaltron.nunjucks-vscode-extensionpack"
+  },
+  "[nj]": {
+    "editor.defaultFormatter": "douglaszaltron.nunjucks-vscode-extensionpack"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.tabSize": 2,
+  "todo-tree.highlights.customHighlight": {
+    "TODO": {
+      "foreground": "#fff",
+      "background": "#ffab00",
+      "icon": "check"
+    },
+    "FIXME": {
+      "foreground": "#fff",
+      "background": "#ee6492",
+      "iconColour": "#ee6492",
+      "gutterIcon": true,
+      "type": "line"
+    }
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "files.eol": "\n"
+}

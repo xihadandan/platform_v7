@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:tns="http://localhost:8080/webservice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:ns1="http://localhost:8080/webservice/"
+                  name="SmsTonganService" targetNamespace="http://localhost:8080/webservice">
+    <wsdl:import location="http://192.168.158.199:7611/webservice/SmsTonganService?wsdl=SmsTonganService.wsdl"
+                 namespace="http://localhost:8080/webservice/">
+    </wsdl:import>
+    <wsdl:binding name="SmsTonganServiceSoapBinding" type="ns1:SmsTonganService">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="sendMt">
+            <soap:operation soapAction="http://localhost:8080/webservice/sendMt" style="rpc"/>
+            <wsdl:input name="sendMt">
+                <soap:body namespace="http://localhost:8080/webservice/" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="sendMtResponse">
+                <soap:body namespace="http://localhost:8080/webservice/" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SmsTonganService">
+        <wsdl:port binding="tns:SmsTonganServiceSoapBinding" name="SmsTonganServicePort">
+            <soap:address location="http://192.168.158.199:7611/webservice/SmsTonganService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

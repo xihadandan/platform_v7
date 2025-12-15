@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <!-- 获取新建组织时对应的归属单wselect2使用 -->
+    <sql-query name="queryMultiOrgOptionsByLikeIdCodeName">
+        <![CDATA[
+		from MultiOrgOption e
+		where e.isEnable = 1 and (e.systemUnitId = :systemUnitId or e.systemUnitId= :ptSystemUnitId)
+		<if isNotBlank( value )>
+			and (e.name like '%${value}%' or  e.id like '%${value}%' or e.code like '%${value}%')
+		</if>
+	]]>
+    </sql-query>
+
+    <sql-query name="getOrgOptionsByIds">
+        <![CDATA[
+		from MultiOrgOption e
+		where (e.systemUnitId = :systemUnitId or e.systemUnitId= :ptSystemUnitId) and e.id in (:ids)
+	]]>
+    </sql-query>
+
+    <sql-query name="queryMultiOrgOptions">
+        <![CDATA[
+		select t.*
+		  from MULTI_ORG_OPTION t
+		 where 1 = 1
+		 <if isNotBlank( keyword )>
+		  and (
+		   t.name like '%${keyword}%' or t.id like '%${keyword}%' or t.code like '%${keyword}%'
+		  )
+		 </if>
+		 <if isNotBlank( orderBy )>
+			 ${orderBy}
+		 </if>
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

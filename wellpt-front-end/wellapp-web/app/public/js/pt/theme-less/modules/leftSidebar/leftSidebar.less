@@ -1,0 +1,101 @@
+//左侧菜单栏开始
+@import '../../variables/variables.less';
+.ui-wLeftSidebar {
+    position: relative;
+    transition: .3s all;
+    .nav-toggle-btn{
+        position: absolute;
+        top: 0;
+        left: 100%;
+        background: none;
+        border: none;
+        i{
+            border-left: 13px solid #ccc;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            height: 34px;
+            display: block;
+            position: relative;
+            &:before{
+                font-size: 16px;
+                position: absolute;
+                left: -12px;
+                top: 2px;
+                color: #fff;
+            }
+        }
+        &:hover{
+            i{
+                border-left: 13px solid @themebgcolor; 
+            }
+        }
+        &.close-nav{
+            i:before{
+                content: "\f100";
+            }
+        }
+    }
+    .icon-nav{
+        width: 50px;
+        display: none;
+        .icon-nav-item{
+            padding: 10px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 24px;
+            i{
+                font-size: 24px;
+            }
+            &:not(:last-child){
+                border-bottom: 1px solid #eee;
+            }
+            &:hover,&.selected{
+                background: @themebg-darker;
+            }
+        }
+    }
+    .metismenu{
+        .nav-menu-item{                       
+            >a{
+                padding: 14px 20px; 
+                line-height: 21px;
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                .badge{
+                    margin-left: 5px;
+                }
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                .iconfont{
+                    font-size: 17px;
+                    vertical-align: middle;
+                }
+            }
+            >a:hover,>a:focus,>a:active{
+                text-decoration: none;
+            }
+        }
+        .collapse{
+            >.nav-menu-item.subnav-menu-item,>.nav-menu-item.thirdnav-menu-item{
+                >a{
+                    display: block; 
+                    padding: 4px 20px 4px 0;                  
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    text-decoration: none;
+                }
+            }
+            >.nav-menu-item.subnav-menu-item{
+                padding:10px 15px 10px 38px;  
+            }      
+            >.nav-menu-item.thirdnav-menu-item{
+                padding:10px 15px 10px 58px;  
+            }    
+        }
+    }
+}
+//左侧菜单栏结束

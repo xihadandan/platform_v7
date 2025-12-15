@@ -1,0 +1,88 @@
+.panel-default.tree-panel .panel-body {
+  overflow: auto;
+}
+.folder-tree.ztree li {
+  line-height: 30px;
+  position: relative;
+}
+.folder-tree.ztree li a {
+  height: 30px;
+  padding: 0 15px 0 20px;
+  border: 1px solid #ddd;
+  width: 100%;
+  min-width: 80px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.folder-tree.ztree li a:hover {
+  text-decoration: none;
+  background-color: #E7E7E7;
+}
+.folder-tree.ztree li a span.button.switch {
+  visibility: hidden;
+}
+.folder-tree.ztree li a span:first-child {
+  display: none;
+  padding-left: 10px;
+}
+.folder-tree.ztree li a.curSelectedNode {
+  border: 0;
+  height: 30px;
+}
+.folder-tree.ztree li a.curSelectedNode span {
+  font-weight: normal;
+  font-size: 120%;
+}
+.folder-tree.ztree li span {
+  line-height: 30px;
+  font-size: 14px;
+}
+.folder-tree.ztree li span.button {
+  margin-top: -7px;
+  background: none;
+}
+.folder-tree.ztree li span.button.center_close,
+.folder-tree.ztree li span.button.bottom_close,
+.folder-tree.ztree li span.button.root_close {
+  background-image: url("images/menu-ico-close_03.png");
+  *background-image: url("images/menu-ico-close_03.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.folder-tree.ztree li span.button.bottom_open,
+.folder-tree.ztree li span.button.center_open,
+.folder-tree.ztree li span.button.root_open {
+  background-position: 0 0;
+  background-image: url("images/menu-ico_03.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.folder-tree.ztree li span.button.switch.level0,
+.folder-tree.ztree li span.button.switch.level1,
+.folder-tree.ztree li span.button.switch {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  left: 5px;
+  top: 15px;
+}
+.folder-tree.ztree li span.button.noline_open {
+  background-position: 0 0;
+}
+.folder-tree.ztree li span.button.noline_close {
+  background-position: -18px 0;
+}
+.folder-tree.ztree li span.button.noline_open.level0 {
+  background-position: 0 -18px;
+}
+.folder-tree.ztree li span.button.noline_close.level0 {
+  background-position: -18px -18px;
+}
+.folder-tree.ztree li ul {
+  margin: 0;
+  padding: 0 0 0 18px;
+}
+.folder-tree.ztree.showIcon li a span.button.switch {
+  visibility: visible;
+}

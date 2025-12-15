@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="appModuleSelect2Query">
+        <![CDATA[
+		select t.id as id, t.name as name ,t.uuid as uuid
+			from AppModule t
+				where 1 = 1
+					<if excludeIds??>
+						and t.id not in (:excludeIds)
+					</if>
+					<if excludeUuids??>
+						 and t.uuid not in(:excludeUuids)
+					</if>
+					<if isNotBlank(systemUnitId)>
+						and t.systemUnitId = :systemUnitId
+					</if>
+					<if systemUnitIds??>
+						 and t.systemUnitId in(:systemUnitIds)
+					</if>
+					<if systemIds?? && (systemIds?size > 0) && isNotBlank(tenantId)>
+                        and (
+                            exists (
+                                select pm.moduleId from AppProdModuleEntity pm, AppSystemInfoEntity si
+                                    where pm.prodVersionUuid = si.prodVersionUuid
+                                    and t.id = pm.moduleId and si.system in (:systemIds) and si.tenant = :tenantId
+                            )
+                            or t.system in (:systemIds)
+                        )
+                    <elseif systemIds?? && (systemIds?size > 0)>
+                        and t.system in (:systemIds)
+                    <elseif isNotBlank(tenantId)>
+                        and t.tenant = :tenantId
+                    </if>
+
+					<if isNotBlank(name) || isNotBlank(code) || isNotBlank(id)>
+						and (1 = 2
+							<if isNotBlank(name)>
+								or lower(t.name) like '%${name?lower_case}%'
+							</if>
+							<if isNotBlank(code)>
+								or lower(t.code) like '%${code?lower_case}%'
+							</if>
+							<if isNotBlank(id)>
+								or lower(t.id) like '%${id?lower_case}%'
+							</if>
+						)
+					</if>
+		order by code asc,name
+	]]>
+    </sql-query>
+
+    <sql-query name="appModuleSelect2IdsQuery">
+        <![CDATA[
+		select t.id as id, t.name as name,t.uuid as uuid
+			from AppModule t
+				where t.id in (:appModuleIds)
+		order by code asc,name
+	]]>
+    </sql-query>
+</hibernate-mapping>

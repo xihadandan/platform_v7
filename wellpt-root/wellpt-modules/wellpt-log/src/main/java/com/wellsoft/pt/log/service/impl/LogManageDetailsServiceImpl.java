@@ -1,0 +1,40 @@
+/*
+ * @(#)2021-06-28 V1.0
+ *
+ * Copyright 2018 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.log.service.impl;
+
+import com.wellsoft.pt.jpa.service.impl.AbstractJpaServiceImpl;
+import com.wellsoft.pt.log.dao.LogManageDetailsDao;
+import com.wellsoft.pt.log.entity.LogManageDetailsEntity;
+import com.wellsoft.pt.log.service.LogManageDetailsService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+/**
+ * Description: 数据库表LOG_MANAGE_DETAILS的service服务接口实现类
+ *
+ * @author zenghw
+ * @version 1.0
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2021-06-28.1	zenghw		2021-06-28		Create
+ * </pre>
+ * @date 2021-06-28
+ */
+@Service
+public class LogManageDetailsServiceImpl extends
+        AbstractJpaServiceImpl<LogManageDetailsEntity, LogManageDetailsDao, String> implements LogManageDetailsService {
+
+    @Override
+    public List<LogManageDetailsEntity> getListByLogId(String logId) {
+        LogManageDetailsEntity entity = new LogManageDetailsEntity();
+        entity.setLogId(logId);
+        List<LogManageDetailsEntity> entities = this.dao.listByEntity(entity);
+        return entities;
+    }
+}

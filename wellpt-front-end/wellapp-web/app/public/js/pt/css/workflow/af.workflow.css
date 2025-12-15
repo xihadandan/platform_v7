@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+
+#af_unit_choose_users input[type="radio"] + label,#af_unit_choose_users input[type="checkbox"] + label {
+	float: none;
+	width: 4em;
+}
+#af_unit_choose_users label{
+	font-weight: bold;
+}
+#af_unit_choose_users_list .list li {
+	padding-left: 40px;
+}
+
+#af_wf_choose_task input[type="radio"]:not(.toggle) + label:before {
+	margin-left: 10px;
+	top: 0px;
+}
+#af_wf_choose_task input[type="radio"] + label, #af_wf_choose_task input[type="checkbox"] + label {
+	width: 1em;
+}

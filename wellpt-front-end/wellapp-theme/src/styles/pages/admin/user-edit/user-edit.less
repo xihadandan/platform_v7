@@ -1,0 +1,226 @@
+/** 组织管理 - 用户 - 用户编辑页面 */
+
+// 用户搜索框
+.user-search-box {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+
+  input {
+    padding-right: 25px;
+
+    + i {
+      .absolute(50% 8px false false);
+
+      display: none;
+      margin-top: -8px;
+      line-height: 1;
+      cursor: pointer;
+    }
+  }
+}
+
+// 1. 用户编辑页面 - 角色信息
+// 2. 用户编辑页面 - 工作台信息
+#div_all_role,
+#org-user-tabs-7 {
+  .ui-wBootstrapTable {
+    .fixed-table-header {
+      overflow: visible;
+
+      th .th-inner {
+        overflow: visible;
+      }
+    }
+
+    .fixed-table-body {
+      overflow-x: hidden;
+    }
+  }
+}
+
+// 用户编辑页面 - 角色信息 - 配置用户角色弹窗
+#user-roles-dialog-selectable-roles,
+#user-roles-dialog-selected-roles {
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: @border-default;
+  padding: 8px;
+
+  li {
+    .text-overflow();
+
+    height: 28px;
+    padding: 4px;
+
+    &:hover {
+      background-color: @item-hover-background;
+    }
+  }
+}
+
+#user-roles-dialog-selectable-roles {
+  height: 385px;
+
+  li label {
+    .text-overflow();
+
+    vertical-align: top;
+
+    span {
+      font-weight: normal;
+    }
+  }
+}
+
+#user-roles-dialog-selected-roles {
+  height: 430px;
+
+  li {
+    .role-delete-btn {
+      display: none;
+      cursor: pointer;
+      color: gray;
+      float: right;
+      margin-right: 4px;
+      font-size: @font-size-lg;
+
+      &:hover {
+        color: @btn-primary-line-hover-font-color;
+      }
+    }
+
+    &:hover {
+      span.role-name {
+        .text-overflow();
+
+        display: inline-block;
+        width: 92%;
+      }
+
+      .role-delete-btn {
+        display: block;
+      }
+    }
+  }
+}
+
+// 用户编辑页面 - 权限信息 - 右侧产品集成信息
+#user_resource_tree {
+  // 标题行
+  .title-row {
+    .horizontal-line-gray {
+      .size(@title-decoration-width, @title-decoration-height);
+
+      display: inline-block;
+      position: relative;
+      top: 3px;
+      background: @text-color;
+    }
+
+    .title {
+      color: @text-color-dark;
+      font-weight: 400;
+    }
+
+    .title-role-name {
+      color: @text-color;
+      font-weight: 400;
+      font-size: @font-size-base;
+    }
+
+    .title-role {
+      display: inline-block;
+      margin-left: 40px;
+    }
+  }
+
+  // 提示行
+  .title-tip {
+    background: @background-light;
+    color: @text-color-light;
+    padding: 4px 4px 4px 10px;
+    margin-top: 12px;
+
+    .iconfont {
+      color: @text-color-primary;
+    }
+
+    .title-tip-message {
+      margin-left: 6px;
+    }
+  }
+
+  // 搜索框
+  #user-role-integrate-info .input-box {
+    width: 342px;
+    position: relative;
+
+    i {
+      .absolute(7px 7px false false );
+
+      &:hover {
+        color: @text-color-primary;
+      }
+    }
+  }
+}
+
+// 1. 用户编辑页面 - 角色信息 - 表格组件计算路径提示弹窗
+// 2. 用户编辑页面 - 工作台信息 - 表格组件计算路径提示弹窗
+.workbench-route,
+.user-role-path {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  line-height: 1;
+
+  i {
+    display: block;
+    line-height: 1;
+
+    &:hover {
+      color: @text-color-primary;
+    }
+
+    &:after {
+      .absolute(-2px -15px -2px -15px);
+      content: '';
+    }
+  }
+}
+
+.workbench-route .workbench-route-tips,
+.user-role-path .user-role-path-tips {
+  .absolute(28px false false 50%);
+
+  display: none;
+  margin-left: -130px;
+  padding: 8px;
+  line-height: 20px;
+  color: @text-color-light;
+  border-radius: @border-radius-base;
+  box-shadow: @shadow-popup-default;
+  width: 260px;
+  white-space: normal;
+  background: @component-background;
+  z-index: 100;
+
+  &:before {
+    .absolute(-10px false false 50%);
+
+    content: '';
+    display: block;
+    margin-left: -10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #fff;
+  }
+}
+
+.workbench-route i:hover + .workbench-route-tips,
+.workbench-route-tips:hover,
+.user-role-path i:hover + .user-role-path-tips,
+.user-role-path-tips:hover {
+  display: block;
+}

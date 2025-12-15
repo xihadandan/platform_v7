@@ -1,0 +1,12 @@
+{
+  "WidgetFormSelect": {
+    "selectAll": "Select All",
+    "moveUp": "Move Up",
+    "moveDown": "Move Down",
+    "delete": "Delete",
+    "add": "Add",
+    "more": "More",
+    "expand": "Expand",
+    "collapse": "Collapse"
+  }
+}

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <!--模块数据仓库查询-->
+    <sql-query name="appModuleDatastoreDefManagerQuery">
+        <![CDATA[
+    select t1.* from (
+    select t1.uuid as uuid,
+           t1.create_time as create_time,
+           t1.creator as creator,
+           t1.modifier as modifier,
+           t1.modify_time as modify_time,
+           t1.rec_ver as rec_ver,
+           t1.name as name,
+           t1.id as id,
+           t1.code as code,
+           t1.system_unit_id as system_unit_id,
+           t1.module_id as module_id,
+           0 as is_ref
+      from cd_data_store_definition t1
+     where 1=1
+        <if moduleId??>
+        and t1.module_id=:moduleId
+		 </if>
+		 <if systemUnitIds??>
+          and t1.system_unit_id in (:systemUnitIds)
+          </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+
+    <if moduleId??>
+    union
+
+    select t1.uuid as uuid,
+           t1.create_time as create_time,
+           t1.creator as creator,
+           t1.modifier as modifier,
+           t1.modify_time as modify_time,
+           t1.rec_ver as rec_ver,
+           t1.name as name,
+           t1.id as id,
+           t1.code as code,
+           t1.system_unit_id as system_unit_id,
+           t1.module_id as module_id,
+           1 as is_ref
+      from cd_data_store_definition t1, cd_data_store_definition_ref rr
+     where rr.ref_uuid = t1.uuid
+        <if moduleId??>
+             and rr.module_id=:moduleId
+             and (t1.module_id<>:moduleId or t1.module_id is NULL)
+         </if>
+         <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+         </if>
+          ) t1
+        <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+
+
+
+    ]]>
+
+
+    </sql-query>
+
+
+</hibernate-mapping>

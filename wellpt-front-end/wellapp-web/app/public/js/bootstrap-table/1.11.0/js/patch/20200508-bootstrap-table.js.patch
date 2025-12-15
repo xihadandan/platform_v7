@@ -1,0 +1,138 @@
+1、选择框隐藏显示有问题
+2、fixInitBody选项是initBody支持部分追加和移除
+
+Index: WebContent/resources/bootstrap-table/1.11.0/js/bootstrap-table.js
+===================================================================
+--- WebContent/resources/bootstrap-table/1.11.0/js/bootstrap-table.js	(revision 209284)
++++ WebContent/resources/bootstrap-table/1.11.0/js/bootstrap-table.js	(working copy)
+@@ -1670,10 +1670,16 @@
+         var that = this,
+             html = [],
+             data = this.getData();
+-
++        // 
++        var dataLength = data.length,
++        appendBody = that.options.fixInitBody && $.isArray(that.appendData);
++        if(true === appendBody) {
++        	data = that.appendData;
++        	dataLength -= that.appendData.length;
++        }
+         this.trigger('pre-body', data);
+ 
+-        this.$body = this.$el.find('>tbody');
++        this.$body = this.$body || this.$el.find('>tbody');
+         if (!this.$body.length) {
+             this.$body = $('<tbody></tbody>').appendTo(this.$el);
+         }
+@@ -1684,7 +1690,6 @@
+             this.pageFrom = 1;
+             this.pageTo = data.length;
+         }
+-
+         for (var i = this.pageFrom - 1; i < this.pageTo; i++) {
+             var key,
+                 item = data[i],
+@@ -1725,7 +1730,7 @@
+                 sprintf(' %s', htmlAttributes.join(' ')),
+                 sprintf(' id="%s"', $.isArray(item) ? undefined : item._id),
+                 sprintf(' class="%s"', style.classes || ($.isArray(item) ? undefined : item._class)),
+-                sprintf(' data-index="%s"', i),
++                sprintf(' data-index="%s"', (true === appendBody ? dataLength + i : i)),
+                 sprintf(' data-uniqueid="%s"', item[this.options.uniqueId]),
+                 sprintf('%s', data_),
+                 '>'
+@@ -1822,7 +1827,7 @@
+                     type = column.radio ? 'radio' : type;
+ 
+                     text = [sprintf(that.options.cardView ?
+-                        '<div class="card-view %s">' : '<td class="bs-checkbox %s">', column['class'] || ''),
++                        '<div class="card-view %s">' : '<td class="bs-checkbox %s" %s>', column['class'] || '', style),
+                         '<input',
+                         sprintf(' data-index="%s"', i) +
+                         sprintf(' name="%s"', that.options.selectItemName) +
+@@ -1872,14 +1877,19 @@
+         }
+ 
+         // show no records
+-        if (!html.length) {
++        if(true === appendBody){
++        	this.$body.find("tr.no-records-found").remove();
++        } else if (!html.length) {
+             html.push('<tr class="no-records-found">',
+                 sprintf('<td colspan="%s"><div class="well-table-no-data"></div><span>%s</span></td>',
+                     this.$header.find('th').length, this.options.formatNoMatches() || '鏆傛棤鏁版嵁'),
+                 '</tr>');
+         }
+-
+-        this.$body.html(html.join(''));
++        if(true === appendBody){
++        	this.$body.append(html.join(''));
++        } else {
++        	this.$body.html(html.join(''));
++        }
+ 
+         if (!fixedScroll) {
+             this.scrollTo(0);
+@@ -2456,11 +2466,13 @@
+     };
+ 
+     BootstrapTable.prototype.append = function (data) {
++    	this.appendData = [].concat(data);
+         this.initData(data, 'append');
+         this.initSearch();
+         this.initPagination();
+         this.initSort();
+         this.initBody(true);
++        delete this.appendData;
+     };
+ 
+     BootstrapTable.prototype.prepend = function (data) {
+@@ -2474,30 +2486,40 @@
+     BootstrapTable.prototype.remove = function (params) {
+         var len = this.options.data.length,
+             i, row;
+-
++        var that = this;
+         if (!params.hasOwnProperty('field') || !params.hasOwnProperty('values')) {
+             return;
+         }
+ 
+         for (i = len - 1; i >= 0; i--) {
+-            row = this.options.data[i];
++            row = that.options.data[i];
+ 
+             if (!row.hasOwnProperty(params.field)) {
+                 continue;
+             }
+             if ($.inArray(row[params.field], params.values) !== -1) {
+-                this.options.data.splice(i, 1);
++                that.options.data.splice(i, 1);
++                if(that.options.fixInitBody && that.$body){
++                	that.$body.find(sprintf('tr[data-index="%s"]', i)).remove();
++                }
+             }
+         }
+ 
+-        if (len === this.options.data.length) {
++        if (len === that.options.data.length) {
+             return;
+         }
+ 
+-        this.initSearch();
+-        this.initPagination();
+-        this.initSort();
+-        this.initBody(true);
++        that.initSearch();
++        that.initPagination();
++        that.initSort();
++        if(that.options.fixInitBody && that.$body) {
++        	// fix data-index
++        	that.$body.find('tr[data-index]').each(function(idx, element){
++        		$(element).attr("data-index", idx);
++        	});
++        } else {
++        	that.initBody(true);
++        }
+     };
+ 
+     BootstrapTable.prototype.removeAll = function () {

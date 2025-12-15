@@ -1,0 +1,10 @@
+{
+  "WidgetFormAmap": {
+    "searchPlaceholder": "Please enter location keywords",
+    "clear": "Clear",
+    "address": "Address",
+    "noInside": "Current location is outside the area",
+    "lng": "longitude",
+    "lat": "latitude"
+  }
+}

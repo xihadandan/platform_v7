@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="branchTaskDistributeInfoQuery">
+        <![CDATA[
+		select distinct t1.uuid                    as uuid,
+		                t1.create_time             as create_time,
+		                t1.creator                 as creator,
+		                t1.modify_time             as modify_time,
+		                t1.modifier                as modifier,
+		                t1.rec_ver                 as rec_ver,
+		                t1.flow_inst_uuid          as flow_inst_uuid,
+		                t1.task_inst_uuid          as task_inst_uuid,
+		                t1.content                 as content,
+		                t1.repo_file_ids           as repo_file_ids,
+		                t2.flow_inst_uuid          as distribute_flow_inst_uuid,
+		                t3.parallel_task_inst_uuid as distribute_task_inst_uuid,
+		                t3.parallel_task_id        as distribute_task_id
+		  from wf_task_info_distribution t1
+		 inner join wf_task_instance t2
+		    on t1.task_inst_uuid = t2.uuid
+		 inner join wf_task_branch t3
+		    on t2.parallel_task_inst_uuid = t3.parallel_task_inst_uuid
+		 where 1 = 1
+		   and t1.flow_inst_uuid = :flowInstUuid
+		   <if isNotBlank(keyword)>
+		    and t1.content like :keyword
+		   </if>
+		 order by t1.create_time desc
+	]]>
+    </sql-query>
+
+    <sql-query name="subFlowDistributeInfoQuery">
+        <![CDATA[
+		select t1.uuid           		as uuid,
+		       t1.create_time    		as create_time,
+		       t1.creator        		as creator,
+		       t1.modify_time    		as modify_time,
+		       t1.modifier       		as modifier,
+		       t1.rec_ver        		as rec_ver,
+		       t1.flow_inst_uuid 		as flow_inst_uuid,
+		       t1.task_inst_uuid 		as task_inst_uuid,
+		       t1.content        		as content,
+		       t1.repo_file_ids  		as repo_file_ids,
+		       t2.parent_flow_inst_uuid as distribute_flow_inst_uuid,
+		       t2.parent_task_inst_uuid as distribute_task_inst_uuid,
+		       t2.parent_task_id        as distribute_task_id
+		  from wf_task_info_distribution t1
+		  	left join wf_task_sub_flow t2
+    			on t1.flow_inst_uuid = t2.flow_inst_uuid
+		 where t1.flow_inst_uuid in
+		       (select t3.flow_inst_uuid
+		          from wf_task_sub_flow t3
+		         where t3.parent_flow_inst_uuid = :flowInstUuid
+		        union all
+		        select t4.flow_inst_uuid
+		          from wf_task_sub_flow t4
+		         where t4.parent_flow_inst_uuid in
+		               (select t5.parent_flow_inst_uuid
+		                  from wf_task_sub_flow t5
+		                 where t5.flow_inst_uuid = :flowInstUuid))
+		       <if isNotBlank(keyword)>
+				and t1.content like :keyword
+			   </if>
+		 order by t1.create_time desc
+	]]>
+    </sql-query>
+
+    <sql-query name="subFlowDistributeInfoQueryByParentFlowInstUuid">
+        <![CDATA[
+		select t1.uuid           		as uuid,
+		       t1.create_time    		as create_time,
+		       t1.creator        		as creator,
+		       t1.modify_time    		as modify_time,
+		       t1.modifier       		as modifier,
+		       t1.rec_ver        		as rec_ver,
+		       t1.flow_inst_uuid 		as flow_inst_uuid,
+		       t1.task_inst_uuid 		as task_inst_uuid,
+		       t1.content        		as content,
+		       t1.repo_file_ids  		as repo_file_ids,
+		       t2.parent_flow_inst_uuid as distribute_flow_inst_uuid,
+		       t2.parent_task_inst_uuid as distribute_task_inst_uuid,
+		       t2.parent_task_id        as distribute_task_id
+		  from wf_task_info_distribution t1
+		  	left join wf_task_sub_flow t2
+    			on t1.flow_inst_uuid = t2.flow_inst_uuid
+		 where t1.flow_inst_uuid in
+		       (select t3.flow_inst_uuid
+		          from wf_task_sub_flow t3
+		         where t3.parent_flow_inst_uuid = :flowInstUuid)
+		 	<if isNotBlank(keyword)>
+				and t1.content like :keyword
+		   	</if>
+		 order by t1.create_time desc
+	]]>
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <sql-query name="getDyFormDefinitionBasicInfo">
+        <![CDATA[
+		select t.uuid        as uuid,
+	           t.version     as version,
+	           t.tableName 	 as tableName,
+	           t.name        as name,
+	           t.code        as code,
+	           t.id     	 as id,
+	           t.formType    as formType
+	      from FormDefinition t
+	      where 1 = 1
+	      	<if uuids?? && (uuids?size > 0)>
+	      		and t.uuid in(:uuids)
+	      	</if>
+	      	<if systemIds?? && (systemIds?size > 0) && isNotBlank(tenantId)>
+                and (
+                    exists (
+                        select pm.moduleId from AppProdModuleEntity pm, AppSystemInfoEntity si
+                            where pm.prodVersionUuid = si.prodVersionUuid
+                            and t.moduleId = pm.moduleId and si.system in (:systemIds) and si.tenant = :tenantId
+                    )
+                    or t.system in (:systemIds)
+                )
+            <elseif systemIds?? && (systemIds?size > 0)>
+                and t.system in (:systemIds)
+            <elseif isNotBlank(tenantId)>
+                and t.tenant = :tenantId
+            </if>
+	      	<if isNotBlank(tableName) || isNotBlank(name) || isNotBlank(code) || isNotBlank(id)>
+	      		and (1 = 2
+				<if isNotBlank(tableName)>
+					or t.tableName like '%${tableName}%'
+				</if>
+				<if isNotBlank(name)>
+					or t.name like '%${name}%'
+				</if>
+				<if isNotBlank(code)>
+					or t.code like '%${code}%'
+				</if>
+				<if isNotBlank(id)>
+					or t.id like '%${id}%'
+				</if>
+				)
+			</if>
+
+	     order by t.code, t.id, t.version desc
+	]]>
+    </sql-query>
+
+    <sql-query name="getDyFormDefinitionBasicInfoByFlowDefIds">
+        <![CDATA[
+		select t.uuid        as uuid,
+	           t.version     as version,
+	           t.tableName 	 as tableName,
+	           t.name        as name,
+	           t.code        as code,
+	           t.id          as id,
+	           t.formType    as formType
+	      from FormDefinition t
+	      	where t.uuid in(
+				select distinct f.formUuid from FlowDefinition f
+				where f.id in (:flowDefIds)
+			)
+	     order by t.code, t.id, t.version desc
+	]]>
+    </sql-query>
+
+
+    <!--查询模块化的表单定义数据，包括模块引用的其他表单-->
+    <sql-query name="getDyFormDefinitionIncludeRefDyFormByPiUuid">
+        <![CDATA[
+		select t.uuid        as uuid,
+	           t.version     as version,
+	           t.tableName 	 as tableName,
+	           t.name        as name,
+	           t.code        as code,
+	           t.id     	 as id,
+	           t.formType    as formType
+	      from FormDefinition t
+	      where 1 = 1
+	      	<if isNotBlank(formType)>
+	      		and t.formType = :formType
+	      	</if>
+	      	<if isNotBlank(uuidString)>
+	      		and t.uuid in(:uuids)
+	      	</if>
+	      	<if isNotBlank(tableName) || isNotBlank(name) || isNotBlank(code) || isNotBlank(id)>
+	      		and (1 = 2
+				<if isNotBlank(tableName)>
+					or t.tableName like '%${tableName}%'
+				</if>
+				<if isNotBlank(name)>
+					or t.name like '%${name}%'
+				</if>
+				<if isNotBlank(code)>
+					or t.code like '%${code}%'
+				</if>
+				<if isNotBlank(id)>
+					or t.id like '%${id}%'
+				</if>
+				)
+			</if>
+			<if isNotBlank(piUuid)>
+				and (exists
+			(select 1
+			   from AppProductIntegration i
+				  where  (
+				(i.parentUuid =:piUuid and i.dataType = '2' and i.dataId = t.moduleId)
+				or  (i.uuid =:piUuid and i.dataType = '2' and i.dataId = t.moduleId )
+				or ( i.uuid=:piUuid and i.dataType='3' and exists (
+					 select 1 from AppProductIntegration p where p.uuid=i.parentUuid and p.dataType='2' and p.dataId=t.moduleId
+					))
+				))
+			or exists
+			(select 1
+			   from AppProductIntegration i, FormDefinitionRefEntity f
+			  where i.dataType = '2'
+				and i.dataId = f.moduleId
+				and f.moduleId <> t.moduleId
+				and f.refUuid = t.uuid
+				and (i.parentUuid =:piUuid or i.uuid =:piUuid or exists (
+					select 1 from AppProductIntegration ia where ia.dataType='3' and ia.uuid=:piUuid
+					and ia.parentUuid=i.uuid
+				) )
+			 ))
+		    </if>
+		    <if isNotBlank(systemUnitId)>
+		    and t.systemUnitId=:systemUnitId
+		    </if>
+
+	     order by t.code, t.id, t.version desc
+	]]>
+    </sql-query>
+
+    <!--查询模块化的表单定义数据，包括模块引用的其他表单-->
+    <sql-query name="queryModuleDyFormDefinitionIncludeRefDyForm">
+        <![CDATA[
+		select t.uuid        as uuid,
+	           t.version     as version,
+	           t.tableName 	 as tableName,
+	           t.name        as name,
+	           t.code        as code,
+	           t.id     	 as id,
+	           t.formType    as formType
+	      from FormDefinition t
+	      where 1 = 1
+			<if isNotBlank(piUuid)>
+				and (exists
+			(select 1
+			   from AppProductIntegration i
+				  where  (
+				(i.parentUuid =:piUuid and i.dataType = '2' and i.dataId = t.moduleId)
+				or  (i.uuid =:piUuid and i.dataType = '2' and i.dataId = t.moduleId )
+				or ( i.uuid=:piUuid and i.dataType='3' and exists (
+					 select 1 from AppProductIntegration p where p.uuid=i.parentUuid and p.dataType='2' and p.dataId=t.moduleId
+					))
+				))
+			or exists
+			(select 1
+			   from AppProductIntegration i, FormDefinitionRefEntity f
+			  where i.dataType = '2'
+				and i.dataId = f.moduleId
+				and f.moduleId <> t.moduleId
+				and f.refUuid = t.uuid
+				and (i.parentUuid =:piUuid or i.uuid =:piUuid)
+			 ))
+		    </if>
+		    <if isNotBlank(systemUnitId)>
+		    and t.systemUnitId=:systemUnitId
+		    </if>
+		    <if isNotBlank(moduleId)>
+		    and (
+		      t.moduleId=:moduleId
+		      or
+		      (
+		       exists (
+		        	select 1 from FormDefinitionRefEntity f where f.moduleId=:moduleId
+		        	and f.refUuid=t.uuid
+		       )
+		      )
+		    )
+		    </if>
+
+	     order by t.code, t.id, t.version desc
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

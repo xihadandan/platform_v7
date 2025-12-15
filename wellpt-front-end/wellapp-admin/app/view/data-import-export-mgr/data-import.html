@@ -1,0 +1,136 @@
+<div class="data-import-export-mod">
+  <div class="alert alert-info alert-dismissable mt10" id="recent_list_tip" style="/* display: none; */">
+    <span style="color: #488cee">
+      <i class="iconfont icon-ptkj-xinxiwenxintishi"></i>
+      导入说明：
+    </span>
+    您可以选择以下数据类型，将服务器磁盘上的指定数据包导入系统。
+    <span class="pull-right info-close">
+      <i class="iconfont icon-ptkj-dacha"></i>
+    </span>
+    <!--<button type="button" class="well-btn w-btn-primary well-btn-sm pull-right" id="btn_more">更多说明</button>-->
+  </div>
+</div>
+<form id="data_import_form" style="margin-top: 15px" class="data-import-export-mod">
+  <input type="hidden" id="uuid" name="uuid" />
+  <div class="well-form form-horizontal">
+    <div class="form-group">
+      <label class="well-form-label control-label required">导入数据类型 ：</label>
+      <div class="well-form-control dataType" id="dataType_imp"></div>
+    </div>
+
+    <div class="form-group">
+      <label class="well-form-label control-label required">
+        源数据UUID字段
+        <div class="ts-tooltip">
+          <i class="iconfont icon-ptkj-tishishuoming"></i>
+          ：
+          <div class="ts-tooltip-content">导入系统的数据原有的UUID字段名，用于判断导入系统的数据是否重复</div>
+        </div>
+      </label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="dataSuuid_imp" name="dataSuuid_imp" />
+        <label class="error iconfont icon-ptkj-wentiziduantishi" style="text-align: left; display: none"></label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="well-form-label control-label required">
+        导入的数据路径
+        <div class="ts-tooltip">
+          <i class="iconfont icon-ptkj-tishishuoming"></i>
+          ：
+          <div class="ts-tooltip-content">系统将从指定的服务器磁盘路径获取数据包导入系统，请确认输入的磁盘路径有效</div>
+        </div>
+      </label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="dataFolder_imp" name="dataFolder_imp" />
+        <label class="error iconfont icon-ptkj-wentiziduantishi" style="text-align: left; display: none"></label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="well-form-label control-label required">
+        数据归属
+        <div class="ts-tooltip">
+          <i class="iconfont icon-ptkj-tishishuoming"></i>
+          ：
+          <div class="ts-tooltip-content">选择指定系统单位导入以上类型的数据</div>
+        </div>
+      </label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="dataAttribution_imp" name="dataAttribution_imp" placeholder="请选择" />
+        <label class="error iconfont icon-ptkj-wentiziduantishi" style="text-align: left; display: none"></label>
+        <input type="hidden" class="form-control" name="dataAttributionName_imp" id="dataAttributionName_imp" />
+      </div>
+    </div>
+
+    <div class="form-group dataOrganizationVersion_imp" style="display: none">
+      <label class="well-form-label control-label required">
+        选择组织版本
+        <div class="ts-tooltip">
+          <i class="iconfont icon-ptkj-tishishuoming"></i>
+          ：
+          <div class="ts-tooltip-content">组织数据将导入至所选择的组织版本中</div>
+        </div>
+      </label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="dataOrganizationVersion_imp" name="dataOrganizationVersion_imp" placeholder="请选择" />
+        <label class="error iconfont icon-ptkj-wentiziduantishi" style="text-align: left; display: none"></label>
+        <input type="hidden" class="form-control" name="dataOrganizationVersionName_imp" id="dataOrganizationVersionName_imp" />
+      </div>
+    </div>
+
+    <div class="form-group dataPassword_imp" style="display: none">
+      <label class="well-form-label control-label required">
+        设置登录密码
+        <div class="ts-tooltip">
+          <i class="iconfont icon-ptkj-tishishuoming"></i>
+          ：
+          <div class="ts-tooltip-content">统一设置用户导入后的登录密码</div>
+        </div>
+      </label>
+      <div class="well-form-control">
+        <div class="well-password-input editableClass" style="width: 100%" disabled="disabled" readonly="readonly">
+          <input
+            type="password"
+            id="dataPassword_imp"
+            maxlength="255"
+            placeholder=""
+            style="width: 100%; text-align: left; font-size: 14px; color: rgb(0, 0, 0)"
+          />
+          <label class="error iconfont icon-ptkj-wentiziduantishi" style="text-align: left; display: none"></label>
+          <div class="password-eye-btn close" style="margin: 3px">
+            <span class="iconfont icon-wsbs-xianshi"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="well-form-label control-label">数据重复时 ：</label>
+      <div class="well-form-control">
+        <input type="radio" name="dataRepeat_imp" id="repeat_1" value="1" checked="checked" />
+        <label class="radio-inline" for="repeat_1" style="vertical-align: text-bottom; padding-left: 0">替换重复数据</label>
+        <input type="radio" name="dataRepeat_imp" id="repeat_2" value="2" style="margin-left: 20px" />
+        <label class="radio-inline" for="repeat_2" style="vertical-align: text-bottom; padding-left: 0">跳过重复数据</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="well-form-label control-label">数据异常时 ：</label>
+      <div class="well-form-control">
+        <input type="radio" name="dataAbnormal_imp" id="abnormal_2" value="2" checked="checked" />
+        <label class="radio-inline" for="abnormal_2" style="vertical-align: text-bottom; padding-left: 0">跳过异常数据</label>
+        <input type="radio" name="dataAbnormal_imp" id="abnormal_1" value="1" style="margin-left: 20px" />
+        <label class="radio-inline" for="abnormal_1" style="vertical-align: text-bottom; padding-left: 0">终止数据导入</label>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px">
+      <div class="col-sm-12 text-center">
+        <button type="button" class="well-btn w-btn-primary" id="btn_save_imp">导入</button>
+      </div>
+    </div>
+  </div>
+</form>

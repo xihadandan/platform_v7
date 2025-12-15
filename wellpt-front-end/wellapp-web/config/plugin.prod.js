@@ -1,0 +1,4 @@
+exports.wellappRedisSession = {
+  enable: true
+};
+

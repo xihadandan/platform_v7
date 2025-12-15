@@ -1,0 +1,114 @@
+/** 二级页面布局容器 */
+
+// - 二级页面布局容器 - 左导航展开
+.second-page {
+  position: relative;
+  height: 100%;
+  background: @body-background;
+
+  >.menu-sidebar {
+    .size(230px, 100%);
+
+    position: relative;
+    float: left;
+    background: @component-background;
+    padding: 0;
+
+    >.scroll-inner {
+      .size(@left-sidebar-expanded-width, 100%);
+
+      background: @left-sidebar-expanded-nav-background;
+
+      >.ui-wLeftSidebar {
+        width: @left-sidebar-expanded-width;
+      }
+    }
+  }
+
+  >.content {
+    .size(calc(100% - @left-sidebar-expanded-width), 100%);
+
+    margin-left: @left-sidebar-expanded-width;
+    padding: @padding-lg;
+    overflow: auto;
+    background: @body-background;
+    transition: all @animation-duration-slow;
+
+    >.panel {
+      margin: 0;
+    }
+
+    .row,
+    .col-xs-12 {
+      height: 100%;
+    }
+
+    .ui-custom-layout {
+      // margin: 0;
+    }
+  }
+}
+
+.second-page>.menu-sidebar,
+.second-page>.menu-sidebar>.scroll-inner,
+.second-page>.menu-sidebar>.scroll-inner>.ui-wLeftSidebar>.metismenu {
+  transition: all @animation-duration-slow;
+}
+
+// - 二级页面布局容器 - 左导航折叠 (带缩略图)
+.second-page.show-float-menu {
+  >.menu-sidebar {
+    width: @left-sidebar-collapsed-width;
+
+    &>.scroll-inner {
+      &:extend(> .menu-sidebar);
+
+      width: @left-sidebar-collapsed-width;
+
+      >.ui-wLeftSidebar>.nav-toggle-btn {
+        left: @left-sidebar-collapsed-width;
+        transition: all @animation-duration-slow;
+      }
+    }
+  }
+
+  >.content {
+    width: calc(100% - @left-sidebar-collapsed-width);
+    margin-left: @left-sidebar-collapsed-width;
+  }
+}
+
+// - 二级页面布局容器 - 左导航折叠  (无缩略图)
+.second-page.show-float-menu.no-thumbnailNav {
+  >.menu-sidebar>.scroll-inner>.ui-wLeftSidebar>.metismenu {
+    overflow: hidden;
+
+    .nav-toggle-btn {
+      left: 0 !important;
+      transition: all @animation-duration-slow;
+    }
+  }
+
+  >.content {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  >.menu-sidebar,
+  >.menu-sidebar>.scroll-inner,
+  >.menu-sidebar>.scroll-inner>.ui-wLeftSidebar,
+  >.menu-sidebar>.scroll-inner>.ui-wLeftSidebar>.metismenu {
+    width: 0;
+  }
+}
+
+// - 二级页面布局容器 - 左导航折叠  (无缩略图)
+
+.second-page.show-float-menu.no-thumbnailNav {
+  >.menu-sidebar>.scroll-inner>.ui-wLeftSidebar {
+    >.nav-toggle-btn {
+      left: 0 !important;
+      transition: all @animation-duration-slow;
+    }
+  }
+}

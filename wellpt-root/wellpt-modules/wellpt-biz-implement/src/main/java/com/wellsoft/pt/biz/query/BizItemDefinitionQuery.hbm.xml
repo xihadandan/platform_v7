@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="bizItemDefinitionQuery">
+        <![CDATA[
+        select t.uuid 			as uuid,
+               t.create_time	as create_time,
+               t.creator		as creator,
+               t.modifier   	as modifier,
+               t.modify_time 	as modify_time,
+               t.rec_ver     	as rec_ver,
+               t.name          	as name,
+               t.id          	as id,
+               t.code        	as code,
+               t.type        	as type,
+               t.business_id 	as business_id,
+               t.form_id 		as form_id ,
+               t.remark 		as remark
+          from biz_item_definition t
+		 where 1 = 1
+		  <if isNotBlank(businessId)>
+            and t.business_id = :businessId
+          </if>
+          <if businessIds?? && (businessIds?size > 0)>
+            and t.business_id in(:businessIds)
+          </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+          <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+        ]]>
+    </sql-query>
+
+    <sql-query name="bizItemDataQuery">
+        <![CDATA[
+        select * from (
+            ${sql}
+        ) t where 1 = 1
+          <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+          <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+        ]]>
+    </sql-query>
+</hibernate-mapping>

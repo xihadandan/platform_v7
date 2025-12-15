@@ -1,0 +1,9 @@
+{
+  "WidgetFormInput": {
+    "validateMessage": {
+      "required": "จำเป็นต้องกรอก",
+      "dataFormateError": "รูปแบบข้อมูลไม่ถูกต้อง",
+      "dataExistError": "ข้อมูลนี้มีอยู่แล้ว"
+    }
+  }
+}

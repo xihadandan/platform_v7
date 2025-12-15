@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="queryTableColumnMetadata">
+        <![CDATA[
+			SELECT DISTINCT A.COLUMN_NAME,A.DATA_TYPE,nvl(C.COMMENTS,A.COLUMN_NAME) as COMMENTS
+            FROM sys.all_tab_columns A left join ALL_COL_COMMENTS C on A.TABLE_NAME = C.TABLE_NAME and A.COLUMN_NAME = C.COLUMN_NAME
+            WHERE A.TABLE_NAME = :tableName
+		]]>
+    </sql-query>
+
+    <sql-query name="queryTableComments">
+        <![CDATA[
+			select t.TABLE_NAME,t.COMMENTS from sys.all_tab_comments  t
+			where t.TABLE_NAME in :tableName
+		]]>
+    </sql-query>
+
+    <sql-query name="queryTableNamesLike">
+        <![CDATA[
+			select table_name from sys.all_tab_comments where table_name like :tableName
+		]]>
+    </sql-query>
+
+    <sql-query name="existTableColumn">
+        <![CDATA[
+			select
+                1
+            from sys.all_tab_columns
+            where TABLE_NAME = :tableName
+            AND COLUMN_NAME = :columnName
+		]]>
+    </sql-query>
+
+</hibernate-mapping>

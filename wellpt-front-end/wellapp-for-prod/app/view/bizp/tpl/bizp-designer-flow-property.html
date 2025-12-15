@@ -1,0 +1,50 @@
+<ul class="nav nav-tabs property-tabs">
+	<li class="active"><a href="#basic_info" data-toggle="tab">基本属性</a></li>
+</ul>
+<div class="tab-content">
+	<div class="tab-pane fade in active" id="basic_info">
+		<form class="form-horizontal property-form" role="form">
+			<div class="form-group"></div>
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label">名称<font color="red">&nbsp;*</font></label>
+				<div class="col-sm-10">
+					<input id="name" name="name" type="text" class="form-control w-configurer-option" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="id" class="col-sm-2 control-label">ID<font color="red">&nbsp;*</font></label>
+				<div class="col-sm-10">
+					<input id="id" name="id" type="text" class="form-control w-configurer-option" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="code" class="col-sm-2 control-label">编号</label>
+				<div class="col-sm-10">
+					<input id="code" name="code" type="text" class="form-control w-configurer-option" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="category" class="col-sm-2 control-label">类别<font color="red">&nbsp;*</font></label>
+				<div class="col-sm-10">
+					<input id="category" name="category" type="text" class="form-control w-configurer-option" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="isEnabled" class="col-sm-2 control-label">状态</label>
+				<div class="col-sm-10">
+					<label class="radio-inline"> <input id="isEnabled_1" name="isEnabled" type="radio"
+						class="w-configurer-option" value="true" checked style="margin-top: 4px;">启用
+					</label> <label class="radio-inline"> <input id="isEnabled_0" name="isEnabled" type="radio"
+						class="w-configurer-option" value="false" style="margin-top: 4px;">禁用
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="remark" class="col-sm-2 control-label">备注</label>
+				<div class="col-sm-10">
+					<textarea id="remark" name="remark" class="form-control w-configurer-option" rows="3"></textarea>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

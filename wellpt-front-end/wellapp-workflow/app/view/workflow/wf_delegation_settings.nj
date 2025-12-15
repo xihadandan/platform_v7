@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=8"/>
+    <title>工作委托</title>
+
+    {% for file in themeFiles %}
+      <link href="{{file}}" rel="stylesheet">
+    {% endfor %}
+
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="widget-box widget-color-blue">
+          <div class="widget-header fixed">
+            <div class="widget-header-fill-top"></div>
+            <h5 class="widget-title">工作委托</h5>
+            <div class="widget-toolbar no-border dms-widget-toolbar">
+              {% if not duty_agent_view and not duty_agent_consult %}
+                <button id="btn_save" class="well-btn w-btn-primary hidden">保存</button>
+              {% endif %}
+              <button id="btn_edit" class="well-btn w-btn-primary hidden">编辑</button>
+            </div>
+            <div class="widget-header-fill-bottom"></div>
+          </div>
+          <div class="widget-body">
+            <div class="widget-main ace-scroll scroll-disabled" style="position: relative;">
+              <input type="hidden" id='uuid' value='{{uuid}}'/>
+              <input type="hidden" id='duty_agent_view' value='{{duty_agent_view}}'/>
+              <input type="hidden" id='duty_agent_consult' value='{{duty_agent_consult}}'/>
+              <form id="duty_agent_form" class="dyform" action="">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td colspan="4" class="title">委托信息</td>
+                    </tr>
+                    <tr class="field">
+                      <td width="110">委托人</td>
+                      <td width="110" rowspan="1" colspan="3"><input type="text" class="editableClass" name="consignor_name" id="consignor_name" readonly="readonly"></td>
+                    </tr>
+                    <tr class="field" style="display: none;">
+                      <td width="110">委托人ID</td>
+                      <td width="110" rowspan="1" colspan="3"><input type="text" class="editableClass" name="consignor" id="consignor"></td>
+                    </tr>
+                    <tr class="field">
+                      <td width="110">受托人</td>
+                      <td width="110" rowspan="1" colspan="3"><input type="text" class="editableClass" name="trustee_name" id="trustee_name"></td>
+                    </tr>
+                    <tr class="field" style="display: none;">
+                      <td width="110">受托人ID</td>
+                      <td width="110" rowspan="1" colspan="3"><input type="text" class="editableClass" name="trustee" id="trustee"></td>
+                    </tr>
+                    <tr class="field" style="display: none;">
+                      <td width="110">编号</td>
+                      <td width="110" rowspan="1" colspan="3"><input type="text" class="editableClass" name="code" id="code"></td>
+                    </tr>
+                    <tr class="field" style="display: none;">
+                      <td width="110">业务类型</td>
+                      <td width="110" rowspan="1" colspan="3"><input type="text" class="editableClass" name="business_name" id="business_name" value="流程管理">
+                        <input type="hidden" class="editableClass" name="business_type" id="business_type" value="WORKFLOW"/></td>
+                    </tr>
+                    <tr class="field">
+                      <td width="110">委托内容</td>
+                      <td width="110" rowspan="1" colspan="3">
+                        <textarea style="width: 100%;" type="text" class="editableClass" name="content_name" id="content_name"></textarea>
+                        <input id="includeCurrentWork" name="includeCurrentWork" type="checkbox"/>
+                        <label for="includeCurrentWork">包括待办中的流程</label>
+                        <input id="dueToTakeBackWork" name="dueToTakeBackWork" type="checkbox"/>
+                        <label for="dueToTakeBackWork">到期时收回受托人未办理的事项</label>
+                        <input id="deactiveToTakeBackWork" name="deactiveToTakeBackWork" type="checkbox"/>
+                        <label for="deactiveToTakeBackWork">终止时收回受托人未办理的事项</label><br/>
+                        <font color="red">注：不选择委托内容表示委托所有工作</font>
+                      </td>
+                    </tr>
+                    <tr class="field" style="display: none;">
+                      <td width="110">委托内容真实值</td>
+                      <td width="110" rowspan="1" colspan="3"><input type="text" class="editableClass" name="content" id="content"></td>
+                    </tr>
+                    <tr class="field">
+                      <td width="110">开始时间</td>
+                      <td width="110" rowspan="1" colspan="3"><input type="text" class="editableClass" name="from_time" id="from_time"></td>
+                    </tr>
+                    <tr class="field">
+                      <td width="110">结束时间</td>
+                      <td width="110" rowspan="1" colspan="3"><input type="text" class="editableClass" name="to_time" id="to_time"></td>
+                    </tr>
+                    <tr class="field tr-status">
+                      <td width="110">状态</td>
+                      <td width="110" rowspan="1" colspan="3"><input id="status_active" name="status" type="radio" value="1" checked="checked"/>
+                        <label for="status_active">激活</label>
+                        <input id="status_deactive" name="status" type="radio" value="0"/>
+                        <label for="status_deactive">终止</label>
+                        <input id="status_consult" name="status" type="radio" value="2"/>
+                        <label for="status_consult">征求受托人意见</label>
+                      </td>
+                    </tr>
+
+                    <tr class="field tr-status">
+                      <td width="110">待办显示</td>
+                      <td width="110" rowspan="1" colspan="3">
+                        <input id="status_delegation_0" name="delegation_task_visible" type="radio" value="0"/>
+                        <label for="status_delegation_0">受托人</label>
+                        <input id="status_delegation_1" name="delegation_task_visible" type="radio" value="1"/>
+                        <label for="status_delegation_1">受托人+委托人</label>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </form>
+            </div>
+          </div>
+          <div class="widget-footer-fill-top"></div>
+          <div class="footer fixed"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="{{helper.staticPrefix()}}/js/requirejs/2.3.2/require.min.js?t="></script>
+  <script type="text/javascript" src="/jsexplainer/requirejsConfigScript.js?ids=pace,bootstrap,appContext,multiOrg,select2,select2_locale_zh-cn,appModal,server,wCommonDialog,DmsDocumentViewDevelopment,jquery-dmsDocumentView,wCommonComboTree,appWindowManager"></script>
+  <script type="text/javascript">
+    var ctx = '';
+    require(['js/requirejs/domReady'], function (domReady) {
+      domReady(function () {
+        require([
+          'pace',
+          'bootstrap',
+          'appContext',
+          'select2',
+          'select2_locale_zh-cn',
+          'appModal',
+          'multiOrg',
+          'server',
+          'DmsDocumentViewDevelopment',
+          'jquery-dmsDocumentView',
+          'wCommonDialog',
+          'wCommonComboTree',
+          "appWindowManager"
+        ], function () {
+          require(["workflow/js/delegation/wf_delegation_settings"]);
+        });
+      });
+    });
+  </script>
+
+</html>

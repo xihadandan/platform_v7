@@ -1,0 +1,167 @@
+/** 流程环节样式 */
+
+#rightMenuContainer #wf_sign_opinion.tab-pane {
+  padding: 0;
+}
+
+// 流程环节样式
+.work-flow-link {
+  padding: 7px 0 8px;
+  border-bottom: @border-default;
+
+  .work-flow-link-item {
+    .size(130px 34px);
+
+    float: left;
+    position: relative;
+    display: block;
+    margin-left: 5px;
+    line-height: 34px;
+    background: @primary-1;
+    color: @text-color-dark;
+    font-size: @font-size-base;
+
+    // 流程环节节点
+    .work-flow-link-content {
+      .text-overflow();
+
+      text-align: center;
+      width: 120px;
+      padding-left: 10px;
+    }
+
+    // 流程环节节点 鼠标悬浮弹窗
+    .work-flow-link-member {
+      .absolute(34px false false false);
+
+      min-width: calc(100% + 10px);
+      max-width: 400px;
+      width: max-content;
+      padding: 10px;
+      line-height: 20px;
+      display: none;
+      background: @component-background;
+      color: @text-color-light;
+      font-size: @font-size-base;
+      box-shadow: @shadow-popup-default;
+      border-radius: @border-radius-base;
+      box-sizing: border-box;
+      z-index: 10;
+      word-break: break-all;
+
+      // 办理人标签
+      .doLabel {
+        position: absolute;
+      }
+
+      // 办理人姓名
+      .doUser {
+        color: @text-color;
+        display: inline-block;
+        padding-left: 56px;
+
+        &.work-flow-link-members {
+          padding-left: 85px;
+        }
+      }
+
+      // 流程环节节点 鼠标悬浮弹窗 上方箭头
+      &:before {
+        .absolute(-8px false false false);
+
+        content: '';
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid @border-color-inverse;
+      }
+
+      // 已完成节点
+      &.mPrevious {
+        left: 0;
+
+        &:before {
+          left: 70px;
+        }
+      }
+
+      // 当前节点
+      &.mCurrent {
+        left: 0;
+        min-width: calc(100% + 20px);
+
+        &:before {
+          left: 70px;
+        }
+      }
+
+      // 未完成节点
+      &.mNext {
+        right: -10px;
+
+        &:before {
+          right: 65px;
+        }
+      }
+    }
+
+    &:first-of-type {
+      width: 125px;
+      padding-left: 10px;
+      margin-left: 0;
+    }
+
+    &:not(:last-of-type):before {
+      .absolute(0 -14px false false);
+
+      content: '';
+
+      border-top: 17px solid transparent;
+      border-bottom: 17px solid transparent;
+      border-left: 10px solid @text-color-inverse;
+      z-index: 3;
+    }
+
+    // 流程环节节点箭头
+    &:after {
+      .absolute(0 -10px false false);
+
+      content: '';
+      border-top: 17px solid transparent;
+      border-bottom: 17px solid transparent;
+      border-left: 10px solid @primary-1;
+      z-index: 5;
+    }
+
+    &:nth-of-type(3):after {
+      right: -9px;
+    }
+
+    &:nth-of-type(2) .work-flow-link-member.mCurrent {
+      transform: translateX(calc(-50% + 10px));
+      left: calc(50%);
+
+      &:before {
+        left: calc(50% - 16px);
+      }
+    }
+
+    // 当前环节
+    &.work-flow-link-current {
+      color: @text-color-primary;
+      background: @background-primary-light;
+
+      .work-flow-link-content {
+        font-weight: bold;
+      }
+
+      &:after {
+        border-left-color: @background-primary-light;
+      }
+    }
+
+    &:hover .work-flow-link-member {
+      display: block;
+      word-break: break-all;
+    }
+  }
+}

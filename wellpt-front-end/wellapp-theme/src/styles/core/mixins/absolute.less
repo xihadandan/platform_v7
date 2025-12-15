@@ -1,0 +1,18 @@
+.absolute(@coords:0 false false 0) {
+  position: absolute;
+  .coordinates(@coords);
+}
+
+.absolute-inside(@width, @height, @valign:top, @halign:left, @xOffset:0, @yOffset:0) {
+  width: @width;
+  height: @height;
+  position: absolute;
+  .coordinates-inside(@width, @height, @valign, @halign, @xOffset, @yOffset);
+}
+
+.absolute-outside(@width, @height, @valign:top, @halign:left, @xOffset:0, @yOffset:0) {
+  width: @width;
+  height: @height;
+  position: absolute;
+  .coordinates-outside(@width, @height, @valign, @halign, @xOffset, @yOffset);
+}

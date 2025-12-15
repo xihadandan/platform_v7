@@ -1,0 +1,22 @@
+{
+  "js": {
+    "AppLayoutDocumentServiceManagementListDevelopment": {
+      "path": "/layoutdocumentservice-mgr/AppLayoutDocumentServiceManagementListDevelopment",
+      "name": "平台应用_基础数据管理_版式文档服务配置_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppLayoutDocumentServiceManagementWidgetDevelopment": {
+      "path": "/layoutdocumentservice-mgr/AppLayoutDocumentServiceManagementWidgetDevelopment",
+      "name": "平台应用_基础数据管理_版式文档服务配置_详情二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "global",
+        "system-admin"
+      ]
+    }
+  },
+  "template": {},
+  "css": {}
+}

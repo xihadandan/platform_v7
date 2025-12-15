@@ -1,0 +1,57 @@
+/*
+ * @(#)2013-10-30 V1.0
+ * 
+ * Copyright 2013 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.integration.support;
+
+import org.quartz.JobExecutionContext;
+
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.integration.service.ExchangeDataFlowService;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+
+/**
+ * 
+ * Description: 如何描述该类
+ *  
+ * @author Administrator
+ * @date 2014-1-1
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2014-1-1.1	Administrator		2014-1-1		Create
+ * </pre>
+ *
+ */
+public class ExchangeDataRepeatTask extends Job {
+	private static boolean locked;
+
+	/** 
+	 * 如何描述该方法
+	 * 
+	 * (non-Javadoc)
+	 * @see com.wellsoft.pt.task.job.Job#execute(org.quartz.JobExecutionContext, com.wellsoft.pt.task.job.JobData)
+	 */
+	@Override
+	protected void execute(JobExecutionContext arg0, JobData arg1) {
+		if (locked) {
+			return;
+		}
+
+		try {
+			locked = true;
+			ExchangeDataFlowService exchangeDataFlowService = ApplicationContextHolder
+					.getBean(ExchangeDataFlowService.class);
+			exchangeDataFlowService.exchangeDataRepeatTask();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		} finally {
+			locked = false;
+		}
+	}
+
+}

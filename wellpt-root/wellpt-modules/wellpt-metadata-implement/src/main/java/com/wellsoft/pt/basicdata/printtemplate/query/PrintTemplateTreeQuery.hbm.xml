@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="topPrintTemplateTreeQuery">
+        <![CDATA[
+		select def.uuid as uuid,
+			def.name as name,
+			def.id as id,
+			def.code as code,
+			def.type as type,
+			def.version as version,
+			def.creator	as	creator,
+			def.createTime	as	createTime,
+			def.modifier	as	modifier,
+			def.modifyTime	as	modifyTime
+		from PrintTemplate def
+		where 1 = 1
+		and (def.id,def.version) in (
+			select oo.id,max(oo.version) from PrintTemplate o, PrintTemplate oo where o.id = oo.id
+		<if isNotBlank(name) || isNotBlank(id)|| isNotBlank(type) || isNotBlank(code)>
+			and (1 = 2
+				<if isNotBlank(name)>
+					or o.name like '%${name}%'
+				</if>
+				<if isNotBlank(id)>
+					or o.id like '%${id}%'
+				</if>
+				<if isNotBlank(type)>
+					or o.type like '%${type}%'
+				</if>
+				<if isNotBlank(code)>
+					or o.code like '%${code}%'
+				</if>
+			)
+		</if>
+			group by oo.id
+		)
+		<if isNotBlank(enabled)>
+			and def.enabled = :enabled
+		</if>
+		order by def.code, def.name
+	]]>
+    </sql-query>
+
+    <sql-query name="printTemplateTreeQuery">
+        <![CDATA[
+		select def.uuid as uuid,
+			def.name as name,
+			def.id as id,
+			def.code as code,
+			def.type as type,
+			def.version as version,
+			def.creator	as	creator,
+			def.createTime	as	createTime,
+			def.modifier	as	modifier,
+			def.modifyTime	as	modifyTime
+		from PrintTemplate def
+		where 1 = 1
+			and def.uuid != :parentUuid and def.id = :id
+		<if isNotBlank(name) || isNotBlank(id)|| isNotBlank(type) || isNotBlank(code)>
+			and (1 = 2
+				<if isNotBlank(name)>
+					or def.name like '%${name}%'
+				</if>
+				<if isNotBlank(id)>
+					or def.id like '%${id}%'
+				</if>
+				<if isNotBlank(type)>
+					or def.type like '%${type}%'
+				</if>
+				<if isNotBlank(code)>
+					or def.code like '%${code}%'
+				</if>
+			)
+		</if>
+		<if isNotBlank(enabled)>
+			and def.enabled = :enabled
+		</if>
+		order by def.version desc,def.code, def.name
+	]]>
+    </sql-query>
+
+
+    <sql-query name="queryAllPrintTemplateByModuleId">
+        <![CDATA[
+		from PrintTemplate fd
+		where  1=1
+		<if moduleId??>
+		and fd.moduleId =:moduleId
+		</if>
+		<if excludeModuleIds??>
+		and fd.moduleId not in (:excludeModuleIds)
+		</if>
+		<if systemUnitId??>
+		and fd.systemUnitId =:systemUnitId
+		</if>
+	 	 order by fd.modifyTime desc
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

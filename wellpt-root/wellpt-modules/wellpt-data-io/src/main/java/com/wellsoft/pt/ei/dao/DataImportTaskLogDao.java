@@ -1,0 +1,21 @@
+package com.wellsoft.pt.ei.dao;
+
+import com.wellsoft.pt.ei.entity.DataImportTaskLog;
+import com.wellsoft.pt.jpa.dao.JpaDao;
+
+/**
+ * Description: 数据导入任务日志dao
+ *
+ * @author liuyz
+ * @version 1.0
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2021/9/16.1	liuyz		2021/9/16		Create
+ * </pre>
+ * @date 2021/9/16
+ */
+public interface DataImportTaskLogDao extends JpaDao<DataImportTaskLog, String> {
+
+}

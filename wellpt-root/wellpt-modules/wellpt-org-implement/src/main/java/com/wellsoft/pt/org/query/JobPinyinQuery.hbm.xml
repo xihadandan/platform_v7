@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="jobPinyinQuery">
+        <![CDATA[
+		from Job job
+		where 1 = 1
+		<if isNotBlank(departmentUuids)>
+		and job.departmentUuid=:departmentUuids
+		</if>
+		and (
+			lower(job.name) like '%${name?lower_case}%'
+			or exists (
+				select entityUuid from Pinyin pinyin
+				where pinyin.entityUuid = job.uuid
+				and pinyin.type = 'Job'
+				and lower(pinyin.pinyin) like '${pinyin?lower_case}%'
+			)
+		)
+		order by code asc,name
+	]]>
+    </sql-query>
+</hibernate-mapping>

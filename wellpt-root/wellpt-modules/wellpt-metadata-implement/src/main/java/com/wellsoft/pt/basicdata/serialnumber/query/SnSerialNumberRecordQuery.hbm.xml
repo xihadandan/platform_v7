@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="listMissingSerialNumberRecord">
+        <![CDATA[
+		select
+            t.uuid as uuid,
+            t.creator as creator,
+            t.relation_uuid as relation_uuid,
+            t.maintain_uuid as maintain_uuid,
+            t.prefix as prefix,
+            t.pointer as pointer,
+            t.suffix as suffix,
+            t.serial_no as serial_no
+        from
+            sn_serial_number_record t
+        where 1 = 1
+         <if isNotBlank(maintainUuid)>
+            and t.maintain_uuid = :maintainUuid
+         </if>
+          <if maintainUuids?? && (maintainUuids?size > 0)>
+            and t.maintain_uuid in(:maintainUuids)
+         </if>
+         <if isNotBlank(relationTableSql)>
+            and t.serial_no not in (${relationTableSql})
+         </if>
+         <if isNotBlank(uuid)>
+            and t.uuid = :uuid
+         </if>
+         <if isNotBlank(serialNo)>
+            and t.serial_no = :serialNo
+         </if>
+         <if isBlank(maintainUuid) && isBlank(relationTableSql) && isBlank(serialNo)>
+            and 1 = 2
+         </if>
+         order by t.pointer asc
+	]]>
+    </sql-query>
+
+    <!--  流水号定义使用查询 -->
+    <sql-query name="snSerialNumberDefinitionUsedQuery">
+        <![CDATA[
+        select * from (
+            select
+                d.uuid as uuid,
+                d.create_time as create_time,
+                d.creator as creator,
+                d.modifier as modifier,
+                d.modify_time as modify_time,
+                d.rec_ver as rec_ver,
+                d.name as name,
+                d.id as id,
+                d.code as code,
+                d.module_id as module_id,
+                d.category_uuid as category_uuid,
+                d.remark as remark,
+                t_.function_uuid as function_uuid,
+                t_.function_name as function_name,
+                t_.function_item_name as function_item_name,
+                t_.function_type as function_type,
+                t_.function_module_name as function_module_name,
+                t_.modifier_name as modifier_name,
+                c.name as category_name,
+                c.code as category_type,
+                t_.module_name as module_name
+            from sn_serial_number_definition d
+                left join(
+                    select
+                        t4.uuid as uuid,
+                        t2.data_def_uuid as function_uuid,
+                        t2.data_def_name as function_name,
+                        t2.item_name as function_item_name,
+                        nvl2(t2.uuid, t2.data_def_type, '') as function_type,
+                        t8.name as function_module_name,
+                        t6.user_name as modifier_name,
+                        t5.name as category_name,
+                        t5.code as category_type,
+                        t7.name as module_name
+                    from
+                        app_data_def_ref_resource t2
+                        left join app_function t3 on t2.app_function_uuid = t3.uuid
+                        left join sn_serial_number_definition t4 on t3.code = t4.code
+                        left join sn_serial_number_category t5 on t4.category_uuid = t5.uuid
+                        left join user_info t6 on t4.modifier = t6.user_id
+                        left join app_module t7 on t7.id = t4.module_id
+                        left join app_module t8 on t8.id = t2.module_id
+                        where t3.type = 'snSerialNumberDefinition'
+                            <if moduleId??>
+                                and t4.module_id = :moduleId
+                            </if>
+                ) t_ on d.uuid = t_.uuid
+                left join sn_serial_number_category c on d.category_uuid = c.uuid
+                where 1 = 1
+                    <if uuids?? && (uuids?size > 0)>
+                        and d.uuid in (:uuids)
+                    </if>
+                    <if moduleId??>
+                        and d.module_id = :moduleId
+                    </if>
+        )   t
+            where 1=1
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            </if>
+            <if isBlank(orderBy)>
+               order by t.modify_time desc, t.function_type
+            </if>
+    ]]>
+    </sql-query>
+</hibernate-mapping>

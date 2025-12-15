@@ -1,0 +1,18 @@
+package com.wellsoft.pt.message.sms;
+
+import org.quartz.JobExecutionContext;
+
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.message.service.ShortMessageService;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+
+public class MasJob extends Job {
+
+	@Override
+	protected void execute(JobExecutionContext context, JobData jobData) {
+		ShortMessageService shortMessageService = ApplicationContextHolder.getBean(ShortMessageService.class);
+		shortMessageService.doMasJob();
+	}
+
+}

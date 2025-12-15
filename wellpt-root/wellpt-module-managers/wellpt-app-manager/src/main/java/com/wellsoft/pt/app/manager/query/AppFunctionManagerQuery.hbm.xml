@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="appFunctionManagerQuery">
+        <![CDATA[
+        select t1.uuid         as uuid,
+		       t2.create_time  as create_time,
+		       t2.creator      as creator,
+		       t2.modifier     as modifier,
+		       t2.modify_time  as modify_time,
+		       t2.rec_ver      as rec_ver,
+		       t1.name         as name,
+		       t1.id           as id,
+		       t1.code         as code,
+		       t1.type         as type,
+		       t1.remark       as remark,
+		       t2.uuid         as app_pi_uuid,
+		       t2.parent_uuid  as parent_app_pi_uuid,
+		       t2.is_protected as is_protected,
+		       t2.sort_order   as sort_order
+		  from app_function t1
+		  left join app_product_integration t2
+		    on t1.uuid = t2.data_uuid
+		   and t2.data_type = 4
+		 where 1 = 1
+		  <if isNotBlank(keyword)>
+            and (t1.name like '%${keyword}%'
+                or t1.id like '%${keyword}%'
+                or t1.code like '%${keyword}%')
+          </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+		  <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+    ]]>
+    </sql-query>
+</hibernate-mapping>

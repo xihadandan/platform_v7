@@ -1,0 +1,28 @@
+{
+  "loginComponent": {
+    "acctLogin": "Account Login",
+    "acctInputPlaceholder": "Please enter your account",
+    "pwdInputPlaceholder": "Please enter your password",
+    "rememberAcct": "Remember Account",
+    "rememberPwd": "Remember Password",
+    "forgetPwd": "Forgot Password",
+    "register": "Register",
+    "login": "Login",
+    "error": {
+      "Bad credentials": "Incorrect username or password",
+      "captchaExpired": "The verification code has expired",
+      "captchaError": "Verification code error",
+      "Missing credentials": "Missing credentials",
+      "failed": "Login failed"
+    },
+    "feishuQrLogin": "Feishu QR login",
+    "feishuConfigError": "Feishu access not enabled or application ID not configured",
+    "sso": {
+      "logining": "SSO logining",
+      "success": "SSO login success",
+      "failed": "SSO login failed"
+    },
+    "dingtalkQrLogin": "Dingtalk QR login",
+    "weixinQrLogin": "WeCom QR login"
+  }
+}

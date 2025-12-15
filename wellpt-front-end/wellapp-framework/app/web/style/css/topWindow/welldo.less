@@ -1,0 +1,55 @@
+//产品信息表单
+.product-manager-info-form-modal {
+  .base-info-form {
+    .ant-form-item {
+      margin-bottom: var(--w-padding-sm);
+    }
+
+    .ant-form-item-label > label {
+      font-size: var(--w-font-size-base);
+      color: var(--w-color-black);
+    }
+
+    .icon-btn {
+      position: relative;
+      padding-left: var(--w-padding-2xs);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--w-primary-color);
+
+        &::after {
+          border-color: var(--w-primary-color);
+        }
+      }
+
+      &::after {
+        content: '';
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--w-border-color-base);
+        border-radius: var(--w-border-radius-2);
+        display: block;
+        position: absolute;
+        top: -6px;
+        left: 0;
+      }
+
+      &.circle {
+        &::after {
+          border-radius: 50%;
+        }
+      }
+
+      &-small {
+        padding-left: var(--w-padding-3xs);
+
+        &::after {
+          width: 24px;
+          height: 24px;
+          top: -3px;
+        }
+      }
+    }
+  }
+}

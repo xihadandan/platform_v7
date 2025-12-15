@@ -1,0 +1,196 @@
+<table>
+  <tr>
+    <td class="Label">关联方式</td>
+    <td class="value">
+      <select name="relativeMethod" id="relativeMethod" style="float: left; margin-left: 5px; margin-bottom: 5px">
+        <option value="1">弹出框</option>
+        <option value="2">搜索框</option>
+      </select>
+      <input type="text" id="dialogTitle" name="dialogTitle" style="display: none; width: 90%; margin-left: 5px" placeholder="弹窗标题" />
+    </td>
+  </tr>
+  <tr id="dialogSize">
+    <td class="Label">弹窗尺寸</td>
+    <td class="value">
+      <input type="radio" name="dialogSize" id="dialogSizeSmall" value="small" />
+      <label for="dialogSizeSmall">小</label>
+      <input type="radio" name="dialogSize" id="dialogSizeMiddle" value="middle" checked />
+      <label for="dialogSizeMiddle">中</label>
+      <input type="radio" name="dialogSize" id="dialogSizeLarge" value="large" />
+      <label for="dialogSizeLarge">大</label>
+    </td>
+  </tr>
+  <tr class="viewSetting odd">
+    <td class="Label">关联流程</td>
+    <td class="value">
+      <input type="checkbox" name="isRelevantWorkFlow" id="isRelevantWorkFlow" value="1" />
+      <label for="isRelevantWorkFlow">关联流程</label>
+      <!-- 是否关联于流程 ,否则值为0-->
+    </td>
+  </tr>
+  <tr class="viewSetting isWf">
+    <td class="Label">是否办结</td>
+    <td class="value">
+      <input type="checkbox" name="isCompleteForm" id="isCompleteForm" value="1" />
+      <label for="isCompleteForm">办结</label>
+      <!-- 办结为1，全部为0-->
+    </td>
+  </tr>
+  <tr class="viewSetting isWf">
+    <td class="Label">流程</td>
+    <td class="value">
+      <div id="workflowContainer"></div>
+      <input type="text" name="workflowId" id="workflowId" style="display: none" />
+      <input type="text" name="workflowName" id="workflowName" />
+    </td>
+  </tr>
+  <tr class="viewSetting">
+    <td class="Label">视图设置</td>
+    <td class="value">
+      <input type="text" id="relationDataTextTwo" name="relationDataTextTwo" />
+      <input id="relationDataValueTwo" type="hidden" name="relationDataValueTwo" />
+      <input id="relationDataIdTwo" type="hidden" name="relationDataIdTwo" />
+      <input id="relationDataSourceTwo" type="hidden" name="relationDataSourceTwo" />
+      <input id="relationDsDefaultCondition" type="hidden" name="relationDsDefaultCondition" />
+    </td>
+  </tr>
+  <tr class="dataSourceSetting" style="display: none">
+    <td class="Label">数据仓库</td>
+    <td class="value">
+      <select name="relationDataTextTwo4Ds" id="relationDataTextTwo4Ds"></select>
+    </td>
+  </tr>
+
+  <tr class="viewSetting notWf odd">
+    <td class="Label"></td>
+    <td class="value">
+      <input type="checkbox" name="destType" id="destType" value="1" />
+      <label for="destType">插入到从表中</label>
+      (将对话框中的行插入到从表中)
+      <span class="selectType" style="display: none">
+        <input type="checkbox" name="selectType" id="selectType" value="1" />
+        <label for="selectType">多选</label>
+        (对话框中的行可以多选)
+      </span>
+      <br />
+
+      <span class="allowValNotInDs" style="display: none">
+        <input type="checkbox" name="allowValNotInDs" id="allowValNotInDs" />
+        <label for="allowValNotInDs">允许输入值非数据仓库数据值</label>
+      </span>
+    </td>
+  </tr>
+  <tr class="viewSetting">
+    <td class="Label">视图默认条件</td>
+    <td class="value">
+      <textarea rows="8" id="queryDefaultCondition" name="queryDefaultCondition" style="width: 95%"></textarea>
+      <br />
+      示例：SORT_CODE between 1 and 4 and SORT_ID in ('OA_HRM_RZXX','OA_HRM_JYJL')
+    </td>
+  </tr>
+  <tr class="viewSetting notWf countViewNumTr">
+    <td class="Label">统计视图数量</td>
+    <td class="value">
+      <input type="checkbox" id="countNum2Input" name="countNum2Input" />
+      <label for="countNum2Input">统计数量到输入框</label>
+    </td>
+  </tr>
+  <tr class="viewSetting notWf countNumTr">
+    <td class="Label"></td>
+    <td class="value">
+      <input type="checkbox" id="countNumHref" name="countNumHref" />
+      <label for="countNumHref">显示统计数量超链接</label>
+      <input
+        type="text"
+        style="display: none; width: 78%"
+        id="countNumHrefText"
+        name="countNumHrefText"
+        placeholder="提示：变量${count}表示总数"
+      />
+    </td>
+  </tr>
+
+  <tr class="destSubform relation" style="display: none">
+    <td class="Label">选择从表</td>
+    <td class="value">
+      <select id="destSubform" name="destSubform">
+        <option value="">--请选择--</option>
+      </select>
+    </td>
+  </tr>
+
+  <tr id="contraint">
+    <td>约束条件</td>
+    <td class="value">
+      <input type="text" id="relationDataTwoSql" name="relationDataTwoSql" />
+      对于数据源的配置方式:
+      <br />
+      格式为fieldName1=controlName1;fieldName2=controlName2
+      <br />
+      每个搜索条件以分号隔开,等号之前的为字段名，等号之后为控件对应的字段名
+      <br />
+    </td>
+  </tr>
+
+  <tr class="dataSourceSetting" style="display: none">
+    <td class="Label">显示条数/页</td>
+    <td class="value">
+      <input type="text" id="pageSize" name="pageSize" />
+      (不填默认为300)
+    </td>
+  </tr>
+
+  <tr class="notWf odd relation">
+    <td class="Label">关联数据选择</td>
+    <td class="value">
+      <input id="relationDataDefiantion" type="text" style="display: none" name="relationDataDefiantion" />
+      <table>
+        <tr>
+          <td rowspan="2" style="width: 35%; text-align: left">
+            添加映射关系：
+            <select id="sqlField" name="sqlField" style="width: 90px"></select>
+          </td>
+          <td>
+            (数据库字段)--
+            <select id="formField" name="formField" style="width: 35%"></select>
+            (字段名称)
+            <input id="searchCheck" type="checkbox" value="yes" />
+            <label for="searchCheck">查</label>
+            <button class="well-btn w-btn-primary well-btn-sm addRelationField my-del-btn">添加</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            (用户自定义)--
+            <input type="text" id="userDefinedField" name="userDefinedField" style="width: 35%" />
+            (字段名称)&nbsp;&nbsp;&nbsp;
+            <button class="well-btn w-btn-primary well-btn-sm addRelationUserField my-del-btn">添加</button>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr class="notWf relation">
+    <td class="Label">映射关系</td>
+    <td class="value">
+      <div class="definitionDiv" style="margin-bottom: 5px">
+        <table class="definitiontrtable">
+          <tbody>
+            <tr class="definitiontitle" style="background-color: #dbdbdb">
+              <td>字段标题</td>
+              <td>字段名</td>
+              <td>表单字段</td>
+              <td style="display: none">字段名</td>
+              <td>查询字段</td>
+              <td>隐藏</td>
+              <td>宽度</td>
+              <td>操作</td>
+            </tr>
+            <tr class="definitioncontentiteam" style="background-color: #ffffff"></tr>
+          </tbody>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>

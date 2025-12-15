@@ -1,0 +1,391 @@
+.folder_tree {
+	background: none;
+	margin-left: 10px;
+}
+.folder_tree ul {
+	background: none;
+}
+.folder_tree ul li span {
+	color: #000;
+	background: none;
+}
+.folder_tree ul li a:hover {
+	color: #000;
+	background: none;
+	padding: 1px 3px 0 0;
+	margin: 0;
+	text-decoration: none;
+}
+.ztree li span.button.node_folder_ico_open{
+	margin:0;
+	background: url(../../ztree/css/zTreeStyle/img/zTreeStandard.png) no-repeat scroll -8px -72px transparent;
+	vertical-align:top;
+	width: 10px;
+	height: 18px;
+	*vertical-align:middle;
+}
+.ztree li span.button.node_folder_ico_close{
+	margin:0;
+	background: url(../../ztree/css/zTreeStyle/img/zTreeStandard.png) no-repeat scroll -23px -72px transparent; 
+	vertical-align:top; 
+	width: 10px;	
+	*vertical-align:middle;
+}
+.ztree li span.button.node_file_ico_docu{
+	margin:0;
+	background: url(../../ztree/css/zTreeStyle/img/zTreeStandard.png) no-repeat scroll -23px -72px transparent; 
+	vertical-align:top; 
+	width: 10px;
+	*vertical-align:middle;
+}
+.ztree li ul {
+    padding: 0 0 0 13px;
+}
+.ztree li span.button.switch {
+    width: 17px;
+}
+.ztree li span.button.center_open,
+.ztree li span.button.center_close,
+.ztree li span.button.roots_close,
+.ztree li span.button.roots_open{
+    background-position: -56px -18px;
+}
+.ztree li span.button.bottom_open,
+.ztree li span.button.bottom_close {
+    background-position: -56px -36px;
+}
+
+.file_list{
+	font-family:"宋体";
+	font-size:13px;
+	width:99%;	
+	color:#666666;
+}
+.file_list .file_list_h1{
+	width:100%;	
+	height:45px;
+	background:#F7F7F7;
+	border:1px solid #ddd;
+	padding: 12px 0 0 12px;
+}
+.file_list .file_list_h1 .file_list_h1_l{
+	float: left;
+    height: 30px;
+    margin-left: 10px;
+    margin-top: 7px;
+    width: 105px;
+	cursor:pointer;
+}
+.file_list .file_list_h1 .file_list_h1_l1{
+    background: url("../images/upfile.png");
+}
+.file_list .file_list_h1 .file_list_h1_l2{
+	background: url("../images/addfolder.png") no-repeat scroll 0 0 transparent;
+}
+.file_list .file_list_h2{
+	width:100%;	
+	height:auto;
+}
+.file_list .file_list_h2 .file_list_h2_h1{
+	height: 25px;
+    margin: 0 auto;
+    padding-top: 10px;
+    width: 96%;
+}
+.file_list .file_list_h2 .file_list_h2_h1 .file_list_h2_h1_l1{
+	float:left;
+}
+.file_list .file_list_h2 .file_list_h2_h1 .file_list_h2_h1_l a{
+	text-decoration:none;
+	color:#0066CC;
+}
+.file_list .file_list_h2 .file_list_h2_h1 .file_list_h2_h1_l a:hover{
+	text-decoration:underline;
+	color:#0066CC;
+}
+.file_list .file_list_h2 .file_list_h2_h1 .file_list_h2_h1_l2{
+	float:right;
+}
+.file_list .file_list_h2 .file_list_h2_h2{
+	clear: both;
+    margin: auto;
+    width: 96%;
+}
+.file_list .file_list_h2 .file_list_h2_h2 table{ 
+	width:100%;
+	border: medium none;
+	border-collapse: collapse;
+	
+}
+.file_list .file_list_h2 .file_list_h2_h2 table tr{ 
+	height:35px;
+}
+.file_list .file_list_h2 .file_list_h2_h2 table tr td{ 
+	padding-left:1em;
+}
+.file_list .file_list_h2 .file_list_h2_h2 table thead tr{ 
+	background:#F7F7F7;
+}
+.file_list .file_list_h2 .file_list_h2_h2 table tbody tr{ 
+	border-bottom:1px solid #ddd;
+}
+.file_list .file_list_h2 .file_list_h2_h2 table tbody tr:hover{ 
+	background:#F0F8FD;
+}
+.file_list .file_list_h2 .file_list_h2_h2 table thead tr td{ 
+	border:1px solid #ddd;
+}
+.file-list-table th{
+	border: 1px solid #DDDDDD;
+	font-weight: normal;
+	padding-left: 1em;
+}
+.file-list-table th.th1{
+	width: 2em;
+}
+.file-list-table th.th2{
+	width: 400px;
+}
+.file_icon{
+	height: 22px;
+    width: 26px;
+	background: url("../images/file_img.gif") no-repeat scroll 9999px 9999px transparent;
+	cursor: pointer;
+	float: left;
+}
+
+.file_name {
+    float: left;
+    height: 17px;
+    margin-left: 10px;
+    padding-top: 5px;
+	cursor: pointer;
+	color:#000;
+}
+.file_name:hover {
+    text-decoration:underline;
+}
+.folder_img{
+	width: 26px;
+	height: 22px;
+ 	background: url("../images/file/folder.png") no-repeat scroll 6px 6px transparent;
+}
+.lib_img{
+	width: 26px;
+	height: 22px;
+ 	background: url("../images/file/lib.png") no-repeat scroll 6px 6px transparent;
+}
+.file_excel_img{
+	background-position: -128px -80px;
+}
+.file_word_img{
+	background-position: -96px -80px;
+}
+.file_text_img{
+ 	background-position: -160px -80px;
+}
+.file_zip_img{
+	background-position: -352px -80px;
+}
+.file__img{
+	background-position: -416px -80px;
+}
+.file_other_img{
+	background-position: -416px -80px;
+}
+.file_pdf_img{
+	background-position: -64px -80px;
+}
+.file_ppt_img{
+	background-position: -256px -80px;
+}
+.file_img_img{
+	background-position: 0 -80px;
+}
+.file_video_img{
+	background-position: -224px -80px;
+}
+.file_voice_img{
+	background-position: -192px -80px;
+}
+.file_operate{
+	 position: absolute;
+	 z-index:5;
+	 right:1.5em;
+	 display:none;
+}
+.file_operate div{
+	background: url("../images/btn_icon.gif") no-repeat scroll 0 0 transparent;
+	float:left;
+	margin-left:5px;
+	height: 20px;
+	width: 20px;
+	cursor:pointer;
+	text-indent:-999px;
+}
+.file_operate .file_operate_del{
+	background-position: -182px -59px;
+}
+.file_operate .file_operate_down{
+	background-position: -182px -39px;
+}
+.file_operate .file_operate_more{
+	background-position: -183px -307px;
+}
+
+.form_operate {
+	margin-top: 0;
+	padding-right: 5px;
+}
+.form_operate a, .file_operate button {
+	background: url("../../../resources/pt/images/v1_icon.png") no-repeat scroll 0 -165px transparent;
+    border: 1px solid #DEE1E2;
+    color: #0F599C;
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    height: 22px;
+    margin-left: 4px;
+    padding: 0 5px;
+    display: inline-block;
+}
+.form_operate a:hover, .file_operate button:hover {
+	text-decoration: none;
+	color: #FF7200;
+}
+ 
+.finder-footer {
+    color: #434343;
+    font-size: 12px;
+/*     margin-left: 71px; */
+    width: 500px;
+}
+.page_ {
+	margin-left: 5px;
+	padding-top: 4px;
+	float: left;
+	color: #000;
+	height: 16px;
+	text-align: center;
+	border: 1px;
+	font-size: 12px;
+}
+.txt_page_no {
+    float: left;
+    font-size: 12px;
+    height: 19px;
+    margin-left: 5px;
+    text-align: center;
+    width: 12px;
+    cursor:pointer;
+}
+
+.txt_page {
+	cursor:pointer;
+    float: left;
+    font-size: 12px;
+    height: 19px;
+    margin-left: 5px;
+    text-align: center;
+    width: 12px;
+}
+
+.txt_page_ {
+	cursor:pointer;
+    float: left;
+    font-size: 12px;
+    height: 19px;
+    margin-left: 5px;
+    text-align: center;
+    width: 12px;
+}
+
+.writ_page {
+	 color: #666666;
+    float: left;
+    font-size: 12px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.nub_page {
+    cursor: pointer;
+    float: left;
+    text-align: center;
+    font-size:12px;
+    color: #0F599C;
+    height: 20px;
+    padding: 0 6px;
+    margin-top: 1px;
+}
+.nub_page_ {
+    cursor: pointer;
+    float: left;
+    text-align: center;
+    font-size:12px;
+/*     color: #434343; */
+    height: 20px;
+    padding: 0 6px;
+    margin-top: 1px;
+}
+
+.input_text {
+    border: 1px solid #D7D7D7;
+    color: #666666;
+    float: left;
+    font-size: 12px;
+    height: 16px;
+    width: 20px;
+
+}
+
+.input_btn {
+ background: none repeat scroll 0 0 #E2E8EB;
+    border-color: #FFFFFF #BEC6CE #BEC6CE #FFFFFF;
+    border-style: solid;
+    border-width: 1px;
+    color: #666666;
+    cursor: pointer;
+    float: left;
+    font-size: 12px;
+    margin-left: 5px;
+    text-align: center;
+	line-height:20px;
+	height:20px;
+	padding:0px;
+}
+
+.jumpmodule {
+    float: left;
+    margin-left: 10px;
+    width: 120px;
+    font-size: 12px;
+}
+.jumpmodule #jumppage {
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    width: 20px;
+}
+.jumpmodule .jump_btn {
+    background: url("../../../theme/images/v1_icon.png") no-repeat scroll 0 -165px transparent;
+    border: 1px solid #DEE1E2;
+    color: #0F599C;
+    font-size: 12px;
+    height: 22px;
+    padding: 2px 5px;
+}
+
+.lastpage {
+    float: left;
+    margin-left: -10px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.firstpage {
+	cursor: pointer;	
+    float: left;
+    margin-left: 5px;
+    margin-right: -5px;
+}
+	 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="dmsFileRecycleBinQuery">
+        <![CDATA[
+		select *
+		  from (select f1.uuid 				as uuid,
+		               f1.name 				as name,
+		               'application/folder'	as content_type,
+		               0 					as file_size,
+		               '' 					as data_def_uuid,
+		               '' 					as data_uuid,
+		               f1.parent_uuid 		as folder_uuid,
+		               f1.status 			as status,
+		               f1.creator 			as creator,
+		               f1.create_time 		as create_time,
+		               f1.modifier      	as modifier,
+		               f1.modify_time   	as modify_time
+		          from dms_folder f1, dms_recycle_bin b1
+		         where f1.uuid = b1.data_uuid
+		           and f1.status = :status
+		           and b1.data_type = :folderDataType
+		           and b1.user_id = :userId
+		           and f1.uuid_path like '' || (select f2.uuid_path from dms_folder f2 where f2.uuid = :folderUuid) || '%'
+
+		        union all
+
+		        select f1.uuid          as uuid,
+		               f1.file_name     as name,
+		               f1.content_type  as content_type,
+		               f1.file_size     as file_size,
+		               f1.data_def_uuid as data_def_uuid,
+		               f1.data_uuid     as data_uuid,
+		               f1.folder_uuid  	as folder_uuid,
+		               f1.status        as status,
+		               f1.creator       as creator,
+		               f1.create_time   as create_time,
+		               f1.modifier      as modifier,
+		               f1.modify_time   as modify_time
+		          from dms_file f1, dms_recycle_bin b1,
+		          (select f2_.uuid
+                          from dms_folder f2_
+                         where f2_.uuid_path like
+                               '' ||
+                               (select f3_.uuid_path
+                                  from dms_folder f3_
+                                 where f3_.uuid = :folderUuid) || '%') f2
+		         where f1.uuid = b1.data_uuid
+		           and f1.status = :status
+		           and b1.data_type = :fileDataType
+		           and b1.user_id = :userId
+		           and f1.folder_uuid = f2.uuid) t
+			 where 1 = 1
+		   		<if isNotBlank(whereSql)>
+		   			and ${whereSql}
+		   		</if>
+		   		<if isNotBlank(orderString)>
+		   			${orderString}
+		   		</if>
+	]]>
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,45 @@
+each(range(10), {
+  .bg-primary-@{value} {
+    @color: "primary-@{value}";
+    background-color:rgb(@@color);
+  }
+
+  .primary-@{value} {
+    @color: "primary-@{value}";
+    color: rgb(@@color);
+  }
+
+  .bc-primary-@{value} {
+    @color: "primary-@{value}";
+    border-color: rgb(@@color);
+  }
+}
+
+);
+
+each(range(12), {
+  .bg-gray-@{value} {
+    @color: "gray-@{value}";
+    background-color: rgb(@@color);
+  }
+
+  .gray-@{value} {
+    @color: "gray-@{value}";
+    color: rgb(@@color);
+  }
+
+  .bc-gray-@{value} {
+    @color: "primary-@{value}";
+    border-color: rgb(@@color);
+  }
+}
+
+);
+
+.item-active-background {
+  background-color: @item-active-background !important;
+}
+
+.add-item-active-background {
+  background-color: @item-active-background !important;
+}

@@ -1,0 +1,79 @@
+{
+  "js": {
+    "AppMsgFormatListDevelopment": {
+      "path": "message-mgr/AppMsgFormatListDevelopment",
+      "name": "平台应用_消息管理_消息格式_列表二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment",
+        "iexportData_V61"
+      ]
+    },
+    "AppMsgFormatWidgetDevelopment": {
+      "path": "message-mgr/AppMsgFormatWidgetDevelopment",
+      "name": "平台应用_消息管理_消息格式_编辑二开",
+      "dependencies": [
+        "dependencyUIComponentModule",
+        "dependencyBootstrapTableModule",
+        "HtmlWidgetDevelopment",
+        "design_commons",
+        "formBuilder",
+        "appContext",
+        "jquery-form",
+        "jquery-validate",
+        "wSelect2",
+        "comboTree",
+        "global",
+        "system-admin"
+      ]
+    },
+    "AppMessageTemplateListViewWidgetDevelopment": {
+      "path": "message-mgr/AppMessageTemplateListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_消息格式列表_视图组件二开",
+      "dependencies": [
+        "AppPtMgrListViewWidgetDevelopment"
+      ]
+    },
+    "AppMessageViewDevelopment": {
+      "path": "message-mgr/AppMessageViewDevelopment",
+      "name": "平台应用_视图组件二开_移动信息机设置",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "global",
+        "comboTree"
+      ]
+    },
+    "AppMessageQueueProcessingStatisticsWidgetDevelopment": {
+      "path": "message-mgr/AppMessageQueueProcessingStatisticsWidgetDevelopment",
+      "name": "平台管理_消息管理_消息队列处理统计_视图组件二开",
+      "dependencies": [
+        "AppPtMgrDetailsWidgetDevelopment",
+        "echarts"
+      ]
+    },
+    "AppMessageQueueMonitorListViewWidgetDevelopment": {
+      "path": "message-mgr/AppMessageQueueMonitorListViewWidgetDevelopment",
+      "name": "平台管理_消息管理_消息队列监控列表_视图组件二开",
+      "dependencies": [
+        "AppPtMgrListViewWidgetDevelopment"
+      ]
+    },
+    "AppMessageTemplateDetailsWidgetDevelopment": {
+      "path": "message-mgr/AppMessageTemplateDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_消息格式_HTML组件二开",
+      "dependencies": [
+        "AppPtMgrDetailsWidgetDevelopment",
+        "comboTree",
+        "formBuilder"
+      ]
+    },
+    "AppShortMsgListDevelopment": {
+      "path": "message-mgr/AppShortMsgListDevelopment",
+      "name": "平台应用_消息管理_短信消息监控列表二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment"
+      ]
+    }
+  },
+  "css": {}
+}

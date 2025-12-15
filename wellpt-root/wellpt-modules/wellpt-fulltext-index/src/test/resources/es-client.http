@@ -1,0 +1,403 @@
+### 创建附件抽取管道
+PUT http://192.168.0.177:9200/_ingest/pipeline/attachment
+Content-Type: application/json
+
+{
+    "description": "Extract attachment information",
+    "processors": [
+        {
+            "attachment": {
+                "field": "content",
+                "indexed_chars": -1,
+                "ignore_missing": true
+            },
+            "remove": {
+                "field": "content"
+            }
+        }
+    ]
+}
+
+### 创建附件抽取管道
+PUT http://192.168.0.177:9200/_ingest/pipeline/attachments
+Content-Type: application/json
+
+{
+    "description": "Extract attachment information",
+    "processors": [
+        {
+            "foreach": {
+                "field": "attachments",
+                "processor": {
+                    "attachment": {
+                        "target_field": "_ingest._value.attachment",
+                        "field": "_ingest._value.data",
+                        "indexed_chars": -1,
+                        "ignore_missing": true
+                    }
+                }
+            }
+        },
+        {
+            "foreach": {
+                "field": "attachments",
+                "processor": {
+                    "remove": {
+                        "field": "_ingest._value.data"
+                    }
+                }
+            }
+        }
+    ]
+}
+
+### 查看附件提取管道
+GET http://192.168.0.177:9200/_ingest/pipeline/attachment
+
+### 查看附件提取管道
+GET http://192.168.0.177:9200/_ingest/pipeline/attachments
+
+### 映射查询
+GET http://192.168.0.177:9200/dms_file_document/_mapping
+
+### 添加映射
+PUT http://192.168.0.177:9200/dms_file_document/_mapping
+Content-Type: application/json
+
+{
+    "properties": {
+        "dataDefUuid": {
+            "type": "keyword"
+        },
+        "dataUuid": {
+            "type": "keyword"
+        }
+    }
+}
+
+### 索引查询
+POST http://192.168.0.116:9200/dms_file_document/_search
+Content-Type: application/json
+
+{
+    "from": 0,
+    "size": 10,
+    "query": {
+        "bool": {
+            "must": [
+                {
+                    "multi_match": {
+                        "query": "当前登录人",
+                        "fields": [
+                            "attachment.content^1.0"
+                        ],
+                        "type": "best_fields",
+                        "operator": "OR",
+                        "slop": 0,
+                        "prefix_length": 0,
+                        "max_expansions": 50,
+                        "zero_terms_query": "NONE",
+                        "auto_generate_synonyms_phrase_query": true,
+                        "fuzzy_transpositions": true,
+                        "boost": 1.0
+                    }
+                }
+            ],
+            "filter": [
+                {
+                    "term": {
+                        "isDelete": {
+                            "value": 0,
+                            "boost": 1.0
+                        }
+                    }
+                },
+                {
+                    "term": {
+                        "systemUnitId": {
+                            "value": "S0000000000",
+                            "boost": 1.0
+                        }
+                    }
+                },
+                {
+                    "term": {
+                        "libraryUuid": {
+                            "value": "188347567011004416",
+                            "boost": 1.0
+                        }
+                    }
+                }
+            ],
+            "adjust_pure_negative": true,
+            "boost": 1.0
+        }
+    },
+    "sort": [
+        {
+            "modifyTime": {
+                "order": "desc"
+            }
+        }
+    ],
+    "highlight": {
+        "pre_tags": [
+            "<font color='#e75213'>"
+        ],
+        "post_tags": [
+            "</font>"
+        ],
+        "fragment_size": 150,
+        "number_of_fragments": 1,
+        "fields": {
+            "attachment.content": {}
+        }
+    }
+}
+
+### 索引删除
+DELETE http://192.168.0.177:9200/dms_file_document
+
+### 索引查询
+POST http://192.168.0.177:9200/dms_file_document/_search
+Content-Type: application/json
+
+{
+    "from": 0,
+    "size": 10
+}
+
+### 索引查询
+POST http://192.168.0.177:9200/dms_file_document/_search
+Content-Type: application/json
+
+{
+    "from": 0,
+    "size": 10,
+    "_source": {
+        "excludes": [
+            "attachment"
+        ]
+    },
+    "query": {
+        "bool": {
+            "must": [
+                {
+                    "terms": {
+                        "categoryCodes": [
+                            "dms_file"
+                        ],
+                        "boost": 1.0
+                    }
+                },
+                {
+                    "terms": {
+                        "readers": [
+                            "U_160405540218863616",
+                            "J_160405099162632192"
+                        ],
+                        "boost": 1.0
+                    }
+                }
+            ],
+            "filter": [
+                {
+                    "term": {
+                        "isDelete": {
+                            "value": 0,
+                            "boost": 1.0
+                        }
+                    }
+                }
+            ],
+            "adjust_pure_negative": true,
+            "boost": 1.0
+        }
+    },
+    "sort": [
+        {
+            "modifyTime": {
+                "order": "desc"
+            }
+        }
+    ]
+}
+
+### 索引查询
+POST http://192.168.0.177:9200/dms_file_document/_search
+Content-Type: application/json
+
+{
+    "from": 0,
+    "size": 1,
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "term": {
+                        "system": {
+                            "value": "prod_20230921170909",
+                            "boost": 1.0
+                        }
+                    }
+                }
+            ],
+            "adjust_pure_negative": true,
+            "boost": 1.0
+        }
+    }
+}
+
+### 索引查询
+POST http://192.168.0.177:9200/form_data_document/_search
+Content-Type: application/json
+
+{
+    "from": 0,
+    "size": 10,
+    "_source": {
+        "excludes": [
+            "attachment"
+        ]
+    },
+    "aggs": {
+        "categoryCodes_count": {
+            "terms": {
+                "field": "categoryCodes"
+            }
+        }
+    },
+    "query": {
+        "bool": {
+            "must": [
+                {
+                    "terms": {
+                        "categoryCodes": [
+                            "325202156443402240",
+                            "workflow",
+                            "form_data",
+                            "dms_file"
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}
+
+### 索引查询
+POST http://192.168.0.177:9200/workflow_document/_search
+Content-Type: application/json
+
+{
+    "from": 0,
+    "size": 10,
+    "aggs": {
+        "categoryCodes_count": {
+            "terms": {
+                "field": "categoryCodes"
+            }
+        }
+    },
+    "query": {
+        "bool": {
+            "must": [
+                {
+                    "multi_match": {
+                        "query": "部门",
+                        "fields": [
+                            "content^1.0",
+                            "creator^1.0",
+                            "fileNames^1.0",
+                            "modifier^1.0",
+                            "title^1.0"
+                        ],
+                        "type": "best_fields",
+                        "operator": "OR",
+                        "slop": 0,
+                        "prefix_length": 0,
+                        "max_expansions": 50,
+                        "zero_terms_query": "NONE",
+                        "auto_generate_synonyms_phrase_query": true,
+                        "fuzzy_transpositions": true,
+                        "boost": 1.0
+                    }
+                },
+                {
+                    "terms": {
+                        "categoryCodes": [
+                            "workflow",
+                            "form_data"
+                        ],
+                        "boost": 1.0
+                    }
+                }
+            ],
+            "filter": [
+                {
+                    "bool": {
+                        "should": [
+                            {
+                                "range": {
+                                    "modifyTime": {
+                                        "from": "2025-06-12T06:09:22.316Z",
+                                        "to": "2025-06-19T06:09:22.316Z",
+                                        "include_lower": true,
+                                        "include_upper": true,
+                                        "boost": 1.0
+                                    }
+                                }
+                            }
+                        ],
+                        "adjust_pure_negative": true,
+                        "boost": 1.0
+                    }
+                },
+                {
+                    "term": {
+                        "isDelete": {
+                            "value": 0,
+                            "boost": 1.0
+                        }
+                    }
+                }
+            ],
+            "adjust_pure_negative": true,
+            "boost": 1.0
+        }
+    },
+    "sort": [
+        {
+            "createTime": {
+                "order": "desc"
+            }
+        }
+    ],
+    "highlight": {
+        "pre_tags": [
+            "<font color='#e75213'>"
+        ],
+        "post_tags": [
+            "</font>"
+        ],
+        "fragment_size": 150,
+        "number_of_fragments": 1,
+        "fields": {
+            "creator": {},
+            "modifier": {},
+            "title": {},
+            "content": {},
+            "fileNames": {}
+        }
+    }
+}
+
+
+### 索引查询
+POST http://192.168.0.177:9200/attachment_document/_search
+Content-Type: application/json
+
+{
+    "from": 0,
+    "size": 10
+}

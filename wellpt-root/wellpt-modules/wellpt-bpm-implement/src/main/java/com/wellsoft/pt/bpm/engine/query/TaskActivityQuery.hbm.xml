@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="getPreTaskId">
+        <![CDATA[
+		SELECT
+			pre_task_id
+		FROM
+			WF_TASK_ACTIVITY
+		WHERE
+			FLOW_INST_UUID = :flowInstUuid
+		AND task_ID = :taskId
+	]]>
+    </sql-query>
+
+    <sql-query name="getAllActivityByTaskInstUuid">
+        <![CDATA[
+		select	t1.taskId as taskId,
+				t3.name as taskName,
+				t1.taskInstUuid as taskInstUuid,
+				t1.preTaskId as preTaskId,
+				t1.preTaskInstUuid as preTaskInstUuid,
+				t1.transferCode as transferCode,
+				t1.flowInstUuid as flowInstUuid,
+				t3.isParallel as isParallel,
+				t3.parallelTaskInstUuid as parallelTaskInstUuid,
+				t1.endTime as endTime,
+				t1.creator as creator,
+				t1.createTime as createTime,
+				t1.modifier as modifier,
+				t1.modifyTime as modifyTime
+		from TaskActivity t1, TaskInstance t3
+			where t1.taskInstUuid = t3.uuid
+			and t1.flowInstUuid = (select t2.flowInstance.uuid from TaskInstance t2 where t2.uuid = :taskInstUuid)
+	]]>
+    </sql-query>
+
+    <sql-query name="getAllActivityByFlowInstUuid">
+        <![CDATA[
+		select	t1.taskId as taskId,
+				t3.name as taskName,
+				t1.taskInstUuid as taskInstUuid,
+				t1.preTaskId as preTaskId,
+				t1.preTaskInstUuid as preTaskInstUuid,
+				t1.preGatewayIds as preGatewayIds,
+				t1.transferCode as transferCode,
+				t1.flowInstUuid as flowInstUuid,
+				t3.isParallel as isParallel,
+				t3.parallelTaskInstUuid as parallelTaskInstUuid,
+				t1.endTime as endTime,
+				t1.creator as creator,
+				t1.createTime as createTime,
+				t1.modifier as modifier,
+				t1.modifyTime as modifyTime
+		from TaskActivity t1, TaskInstance t3
+			where t1.taskInstUuid = t3.uuid
+			and t1.flowInstUuid = :flowInstUuid
+	]]>
+    </sql-query>
+</hibernate-mapping>

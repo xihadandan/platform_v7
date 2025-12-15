@@ -1,0 +1,69 @@
+<table>
+  <tr class="odd">
+    <td class="Label">字体样式</td>
+    <td class="value">
+      <div class="tr_td_div_left">
+        <span id="fontcolorElement" class="fontColorCss"></span>
+        <input type="hidden" value="" id="fontColor" />
+        <div class="subcolorCss" id="subcolor">
+          <div style="display: none" class="colors">
+            <span onclick="selColor('black');" style="background-color: black" class="selectcolor"></span>
+            <span onclick="selColor('red');" style="background-color: red" class="selectcolor"></span>
+            <span onclick="selColor('blue');" style="background-color: blue" class="selectcolor"></span>
+            <span onclick="selColor('orange');" style="background-color: orange" class="selectcolor"></span>
+            <span onclick="selColor('green');" style="background-color: green" class="selectcolor"></span>
+            <span onclick="selColor('yellow');" style="background-color: yellow" class="selectcolor"></span>
+            <span onclick="selColor('purple');" style="background-color: purple" class="selectcolor"></span>
+            <span onclick="selColor('silver');" style="background-color: silver" class="selectcolor"></span>
+            <span onclick="selColor('tan');" style="background-color: tan" class="selectcolor"></span>
+            <span onclick="selColor('maroon');" style="background-color: maroon" class="selectcolor"></span>
+            <span onclick="selColor('olive');" style="background-color: olive" class="selectcolor"></span>
+            <span onclick="selColor('gray');" style="background-color: gray" class="selectcolor"></span>
+            <span onclick="selColor('lime');" style="background-color: lime" class="selectcolor"></span>
+          </div>
+        </div>
+      </div>
+      <div class="tr_td_div_left">
+        <select name="fontSize" id="fontSize" style="display: block; float: left; width: 112px">
+          <option value="8" style="font-size: 8px">8</option>
+          <option value="9" style="font-size: 9px">9</option>
+          <option value="10" style="font-size: 10px">10</option>
+          <option value="11" style="font-size: 11px">11</option>
+          <option value="12" style="font-size: 12px">12</option>
+          <option value="14" style="font-size: 14px" selected="selected">14</option>
+          <option value="16" style="font-size: 16px">16</option>
+          <option value="18" style="font-size: 18px">18</option>
+          <option value="20" style="font-size: 20px">20</option>
+          <option value="22" style="font-size: 22px">22</option>
+          <option value="24" style="font-size: 24px">24</option>
+          <option value="26" style="font-size: 26px">26</option>
+          <option value="28" style="font-size: 28px">28</option>
+          <option value="36" style="font-size: 36px">36</option>
+          <option value="48" style="font-size: 48px">48</option>
+          <option value="72" style="font-size: 72px">72</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td class="Label">控件样式</td>
+    <td class="value">
+      <div class="tr_td_div_left">
+        <span style="line-height: 36px">宽度:</span>
+        <input type="text" name="ctlWidth" id="ctlWidth" />
+      </div>
+      <div class="tr_td_div_left">
+        <span style="line-height: 36px">高度:</span>
+        <input type="text" name="ctlHight" id="ctlHight" />
+      </div>
+      <div class="tr_td_div_left">
+        <select name="textAlign" id="textAlign" style="width: 100px">
+          <option value="">--对齐方式--</option>
+          <option value="center">居中</option>
+          <option value="left">靠左</option>
+          <option value="right">靠右</option>
+        </select>
+      </div>
+    </td>
+  </tr>
+</table>

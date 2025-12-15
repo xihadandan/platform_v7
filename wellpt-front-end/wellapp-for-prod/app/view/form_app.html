@@ -1,0 +1,54 @@
+<form action="" id="form_application_form" style="margin-top: 15px">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#form_application_basic_info" aria-controls="form_application_basic_info" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+        </li>
+        <li role="presentation">
+            <a href="#form_application_role" aria-controls="form_application_role" role="tab" data-toggle="tab" aria-expanded="true">表单信息</a>
+        </li>
+    </ul>
+    <input type="hidden" id="applicationUuid" name="applicationUuid"/>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="form_application_basic_info" style="padding-top: 10px;">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label for="form_application_uuid" class="well-form-label control-label required">业务类别</label>
+                    <div class="well-form-control">
+                        <input type="hidden" class="form-control" id="form_application_uuid" name="uuid">
+                        <input type="hidden" class="form-control" id="form_application_name" name="name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="form_application_manageDeptValue" class="well-form-label control-label">业务管理单位</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="form_application_manageDeptValue" name="manageDeptValue" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="form_application_manageUserValue" class="well-form-label control-label">业务管理员</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="form_application_manageUserValue" name="manageUserValue" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="form_application_role" style="padding-top: 10px;">
+            <div id="div_form_application_toolbar" class="btn-group">
+                <button id="btn_add_form_application" type="button" class="well-btn w-btn-primary">
+                    <i class="iconfont icon-ptkj-jiahao" aria-hidden="true"></i>新增
+                </button>
+                <button id="btn_delete_form_application" type="button" class="well-btn w-btn-danger">
+                    <i class="iconfont icon-ptkj-shanchu" aria-hidden="true"></i>删除
+                </button>
+            </div>
+            <table id="form_application_table" class=""></table>
+        </div>
+    </div>
+    <div class="row" style="margin-top:30px;">
+        <div class="col-sm-12 text-center">
+            <button type="button" class="well-btn w-btn-primary" id="form_application_btn_save">保存</button>
+        </div>
+    </div>
+    </div>
+</form>
+

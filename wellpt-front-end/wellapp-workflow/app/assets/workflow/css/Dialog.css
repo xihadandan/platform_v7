@@ -1,0 +1,293 @@
+﻿<!--
+
+BODY {
+	FONT-SIZE: 9pt; 
+	FONT-FAMILY: 宋体,Arial,"Ms Sans Serif"; 
+	text-align: center;
+	BACKGROUND-COLOR: #DADADA;
+	MARGIN:0px;
+	overflow-x:auto;
+	overflow-y:auto;
+
+	scrollbar-face-color:#DADADA;
+	scrollbar-highlight-color:#FFFFFF;
+	scrollbar-3dlight-color:#DADADA;
+	scrollbar-darkshadow-color:#DADADA;
+	scrollbar-shadow-color:#808080;
+	scrollbar-arrow-color:#999999;
+	scrollbar-track-color:#DADADA;
+}
+
+.BODY_SELECT {
+	FONT-FAMILY: "宋体", "Arial", "Ms Sans Serif";
+	FONT-SIZE: 9pt;
+	BACKGROUND-COLOR: #F0F0F0;
+	MARGIN: 5px;
+	overflow-x: auto;
+	overflow-y: auto;
+
+	scrollbar-face-color: #DADADA;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-3dlight-color: #DADADA;
+	scrollbar-darkshadow-color: #DADADA;
+	scrollbar-shadow-color: #808080;
+	scrollbar-arrow-color: #999999;
+	scrollbar-track-color: #DADADA;
+}
+
+A {
+	FONT-FAMILY: "宋体", "Arial", "Ms Sans Serif";
+	FONT-SIZE: 9pt;
+	COLOR: #000000;
+	TEXT-DECORATION: none;
+}
+
+A:hover {
+	COLOR: #FF0000;
+	TEXT-DECORATION: underline;
+}
+
+FORM {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+INPUT {
+	FONT-FAMILY: "宋体", "Arial", "Ms Sans Serif";
+	FONT-SIZE: 9pt; 
+}
+
+TEXTAREA {
+	FONT-FAMILY: "宋体", "Arial", "Ms Sans Serif";
+	FONT-SIZE: 9pt;
+	width: 100%;
+}
+
+SELECT {
+	FONT-FAMILY: "宋体", Arial, "Ms Sans Serif";
+	FONT-SIZE: 9pt;
+	width:100%;
+}
+
+IMG {
+	BORDER: 0pt;
+}
+
+HR {
+	size: 1pt
+}
+
+TABLE {
+	font-size: 9pt;
+}
+
+TD {
+	FONT-FAMILY: "宋体", "Arial", "Ms Sans Serif";
+	FONT-SIZE: 9pt;
+	FONT-STYLE: normal;
+}
+
+FONT {
+	FONT-SIZE: 9pt;
+}
+
+.LabelText {
+	text-align: left;
+	padding-left: 15px;
+	padding-top: 4px;
+	padding-bottom: 3px;
+	width: 25%;
+}
+
+.Remark {
+	color: gray;
+}
+
+.DropDown {
+	font-size: small;
+	background-color: white;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image: url(act_Down.gif);
+	width: 17pt;
+	height: 17pt;
+	vertical-align: top; 
+	border: 1px solid white;
+}
+
+.HotSpot {
+	text-align: left;
+	color: blue;
+	padding-top: 2px;
+	border: 0px solid;
+	background-color: transparent;
+	width: auto;
+	height: auto;
+	cursor: hand;
+}
+
+.RADIO {
+	border: 0px;
+	width: auto;
+}
+
+.CHECKBOX {
+	border: 0px;
+	width: auto;
+}
+
+.BORDER_INSET {
+	word-break: break-all;
+	border: 1px inset;
+}
+
+.BORDER_BUTTON {
+	padding-top: 3px;
+	padding-bottom: 1px;
+	border: 1px outset;
+	background-color: #DADADA;
+	width: auto;
+}
+
+.Date {
+	border:1px inset;
+	word-break:break-all;
+	background-image:url(act_calendar.gif);
+	background-position: right center;
+	background-repeat:no-repeat;
+	width:90px;
+}
+
+.Time {
+	border:1px inset;
+	word-break:break-all;
+	background-image:url(act_time.gif);
+	background-position: right center;
+	background-repeat:no-repeat;
+	width:70px;
+}
+
+/*************************页签(Start)*************************/
+.PageLabel {
+	padding:10px;
+	border-top: 0px outset;
+	border-bottom: 1px outset;
+	border-left: 1px #EEEEEE solid;
+	border-right: 1px outset;
+	width: 90%;
+}
+
+.PageLabel_Head {
+	width: 90%;
+	height: 22px;
+	cursor: default;
+}
+
+.PageLabel_Head .Bar {
+	border-collapse: collapse;
+	width:100%;
+	height:auto;
+	margin:0px;
+}
+
+.PageLabel_Head .Title {
+	vertical-align:bottom;
+	padding: 0px;
+	border: 0px;
+}
+
+.PageLabel_Head .Blank {
+	border-top:0px;
+	border-bottom: 1px solid #EEEEEE;
+	border-left: 0px;
+	border-right: 0px;
+	width: 100%;
+}
+
+
+.PageLabel_Head .Label {
+	line-height: 12pt;
+	margin: 0px;
+}
+
+.PageLabel_Head .LABEL TD {
+	padding: 0px;
+	border: 0px;
+}
+
+.PageLabel_Head .LABEL SPAN {
+	padding-top: 2px;
+	padding-bottom: 0px;
+	padding-left: 5px;
+	padding-right: 5px;
+	width: 100%;
+	height: 100%;
+}
+
+.PageLabel_Head .Line {
+	background-color: #EEEEEE;
+}
+
+.PageLabel_Head .Line_R1 {
+	background-color: #DADADA;
+}
+
+.PageLabel_Head .Line_R2 {
+	background-color: gray;
+}
+
+.PageLabel_Head .Btn_NoSel {
+	white-space: nowrap;
+	height: 20px;
+}
+
+.PageLabel_Head .Btn_Sel {
+	font-weight: bold;
+	white-space: nowrap;
+	height: 21px;
+}
+
+.PageLabel_Head .Line_B_NoSel {
+	background-color: #EEEEEE;
+	height: 1px;
+}
+
+.PageLabel_Head .Line_B_Sel {
+	background-color: #DADADA;
+	height: 1px;
+}
+/*************************页签(End)*************************/
+
+
+.Foot {
+	text-align:right;
+	background-color:#f8e6e6;
+}			
+
+.Foot .Line {
+	font-size:0px;
+	border-top:1px solid #e40500;
+}
+
+.Foot SPAN.Btn {
+	font-family: "宋体", "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	color: #000000;
+	font-weight: normal;
+	vertical-align: middle;
+	letter-spacing: 6px;
+	line-height: 125%;
+	white-space: nowrap;
+	text-align: center;
+	padding-top: 4px;
+	padding-bottom: 2px;
+	padding-left: 12px;
+	padding-right: 12px;
+	border: 1px solid #8B0000;
+	background-color: #FFFFFF;
+	width: 50px;
+	height: 20px;
+	cursor: hand;
+}
+
+-->

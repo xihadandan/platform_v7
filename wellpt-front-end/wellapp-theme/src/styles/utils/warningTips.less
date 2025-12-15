@@ -1,0 +1,38 @@
+// 温馨提示
+.tips {
+  font-size: @font-size-base;
+  color: @text-color;
+  height: @height-xl;
+  line-height: @height-lg;
+  background: @warning-1;
+  border: @border-width-base @border-style-base @warning-3;
+  border-radius: @border-radius-base;
+  padding-left: 16px;
+
+  span {
+    line-height: @height-lg;
+    font-size: @font-size-base;
+    color: @warning-color;
+  }
+
+  i {
+    margin-right: 10px;
+    line-height: @height-lg;
+    font-size: @font-size-xl;
+  }
+  .tips-close {
+    font-size: @font-size-sm;
+    float: right;
+    color: @text-color-light;
+
+    &:hover {
+      color: @primary-color;
+    }
+  }
+}
+
+// 未知类名
+.title .title-text {
+  font-size: @font-size-base;
+  color: @text-color-light;
+}

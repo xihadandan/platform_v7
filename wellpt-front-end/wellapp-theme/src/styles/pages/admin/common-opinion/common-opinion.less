@@ -1,0 +1,49 @@
+/** 常用意见库和分类样式 */
+
+.opinion_tree_box {
+  padding-top: 8px;
+  background: @background-light;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.15);
+
+  ul {
+    background: @component-background;
+  }
+}
+
+.well-form .opinion_tree_box .common_opinion {
+  width: calc(100% - 10px);
+  margin-left: 5px;
+  background: @component-background;
+}
+
+.well-form .common_opinion,
+.ui-wHtml .common_opinion {
+  border: @border-default-dark;
+  border-radius: @border-radius-base;
+  font-size: 0;
+  transition: all @animation-duration-base;
+
+  &:hover {
+    box-shadow: @shadow-active-default;
+    border-color: @border-color-primary;
+  }
+
+  input {
+    width: calc(100% - 30px);
+    border: none;
+    outline: none;
+    box-shadow: none !important;
+  }
+
+  button {
+    width: 28px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+
+    i {
+      font-size: @font-size-xl;
+      color: @text-color-primary;
+    }
+  }
+}

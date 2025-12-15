@@ -1,0 +1,40 @@
+{
+  "js": {
+    "AppShortMsgLogListDevelopment": {
+      "path": "/log-mgr/AppShortMsgLogListDevelopment",
+      "name": "平台应用_日志管理_短信收发日志_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppApiLogWidgetDevelopment": {
+      "path": "/log-mgr/AppApiLogWidgetDevelopment",
+      "name": "平台应用_日志管理_API接口访问日志_查看二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "global", "system-admin"]
+    },
+    "AppSysLogListDevelopment": {
+      "path": "/log-mgr/AppSysLogListDevelopment",
+      "name": "平台应用_日志管理_系统日志_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppUserOperateLogDevelopment": {
+      "path": "/log-mgr/AppUserOperateLogDevelopment",
+      "name": "平台应用_日志管理_用户操作日志_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppUserLogDetailDevelopment": {
+      "path": "/log-mgr/AppUserLogDetailDevelopment",
+      "name": "平台应用_日志管理_用户操作明细日志_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppManageLogListDevelopment": {
+      "path": "/log-mgr/AppManageLogListDevelopment",
+      "name": "平台应用_日志管理_管理操作日志_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppManageLogWidgeetDevelopment": {
+      "path": "/log-mgr/AppManageLogWidgeetDevelopment",
+      "name": "平台应用_日志管理_管理操作日志_详情二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "global", "system-admin", "mergely", "CodeMirror"]
+    }
+  },
+  "css": {}
+}

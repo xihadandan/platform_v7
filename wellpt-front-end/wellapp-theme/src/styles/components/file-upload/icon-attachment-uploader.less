@@ -1,0 +1,409 @@
+/** 图标附件 */
+// 包含三种视图：
+// - 图标视图
+// - 列表视图
+// - 表格视图
+
+// 图标附件（三种视图） - 标题行
+.fileUpdateload {
+  overflow-x: hidden;
+  width: 100%;
+  border-left-width: 2px;
+  padding: 0px;
+  background: @background-light;
+  color: @text-color-inverse;
+  border: @border-default;
+
+  // 图标附件 - 标题行 -左侧数量
+  .left-counter {
+    color: @text-color-dark;
+    line-height: 30px;
+
+    .file_icon {
+      margin: 10px 8px 0px 12px;
+      background: none;
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: inherit;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+
+      &:before {
+        content: '\f0c6';
+        color: @text-color-primary;
+      }
+    }
+  }
+
+  // 图标附件 - 标题行 - 右侧操作区域
+  .fileUpload-btn a {
+    padding: 0 10px;
+    color: @text-color;
+    text-decoration: none;
+
+    label {
+      color: @text-color;
+      font-weight: normal;
+
+      input[type='checkbox'] {
+        width: auto;
+        border: 0;
+        display: inline-block;
+        margin: 0px 4px;
+      }
+    }
+
+    .iconfont {
+      font-size: @font-size-base;
+      margin-right: @margin-3xs;
+    }
+
+    &:hover,
+    &:hover label {
+      color: @text-color-primary;
+    }
+  }
+}
+
+// 图标附件 -
+.fileContainer {
+  width: 100%;
+  background: @component-background;
+  border: @border-default;
+  padding: 10px 10px 0px;
+}
+
+// 图标附件（表格视图） - 标题行
+.fileContainer .file-table-header {
+  display: none;
+  position: relative;
+  background: @background-light;
+
+  span {
+    color: @text-color;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 3px 0px 3px 15px;
+    border-left: @border-default-dark;
+    border-bottom: @border-default-dark;
+
+    &.td1 {
+      // 文件名
+      width: 40%;
+    }
+
+    &.td2 {
+      // 文件大小
+      width: 8%;
+    }
+
+    &.td3 {
+      // 上传时间
+      width: 12%;
+    }
+
+    &.td4 {
+      // 操作人
+      width: 10%;
+    }
+
+    &.td5 {
+      // 操作
+      width: 30%;
+    }
+  }
+}
+
+.ui-table .fileContainer .file-table-header {
+  // - 仅表格视图显示标题行
+  display: table;
+  width: 100%;
+
+  +.file-nodata {
+    padding: @padding-xs 0;
+  }
+}
+
+// 图标附件（三种视图） - 无数据
+.fileContainer .file-nodata {
+  padding: 0 0 @padding-xs;
+  text-align: center;
+
+  img {
+    .size(30px, 24px);
+
+    display: inline-block;
+  }
+
+  span {
+    color: @text-color-lighter;
+    font-size: @font-size-base;
+    margin-left: @margin-sm;
+  }
+}
+
+// 图标附件（三种视图） - 附件项
+.fileContainer .icoItem {
+  line-height: 28px;
+  position: relative;
+  color: @text-color;
+  border-bottom: @border-default-dark;
+  table-layout: fixed;
+  width: 100%;
+  display: table;
+
+  >img {
+    .square(18px);
+
+    margin-right: 4px;
+  }
+
+  .file-inline-info {
+    font-size: @font-size-sm;
+    color: @text-color-light;
+    margin-left: 10px;
+  }
+
+  .kh {
+    display: none;
+    font-size: 12px;
+    color: @text-color-light;
+  }
+
+  .file-inline-info>span {
+    margin-left: 12px;
+  }
+
+  >input {
+    margin: 0px 4px 4px 0px;
+  }
+
+  .c-group {
+    display: none;
+    float: right;
+    line-height: 28px;
+
+    >button {
+      font-size: @font-size-base;
+      height: 24px;
+      padding: 2px 10px;
+      margin-right: 6px;
+      background: @component-background;
+      color: @text-color-primary;
+
+      &:hover {
+        border: @border-default-primary;
+      }
+    }
+
+    .dropdown-menu button {
+      font-size: @font-size-base;
+      height: 24px;
+      padding: 2px 10px;
+      margin-right: 6px;
+      background: @component-background;
+      color: @text-color-primary;
+      width: 100%;
+      text-align: left;
+
+      &:hover {
+        background: @item-hover-background;
+        color: @text-color-primary;
+      }
+    }
+  }
+
+  &:hover {
+    background: @item-hover-background;
+  }
+
+  &:last-child {
+    border-width: 0px;
+  }
+}
+
+// 图标附件（图标视图） - 附件项
+.ui-image .fileContainer .icoItem {
+  .size(128px, 96px);
+
+  float: left;
+  // display: inline-block;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  background: #fafafa;
+  border-bottom-width: 0px;
+
+  .file-inline-info {
+    display: none;
+  }
+
+  .fileName {
+    .absolute(62px false false false);
+    .size(100%, 16px);
+    .text-overflow();
+
+    line-height: 16px;
+    display: block;
+    text-align: center;
+    padding: 0px 10px;
+  }
+
+  .fileSize {
+    .absolute(80px false false false);
+    .size(100%, 14px);
+
+    display: block;
+    line-height: 14px;
+    text-align: center;
+    margin: 0px;
+  }
+
+  .c-group {
+    display: none !important;
+  }
+
+  >img,
+  >i.icon {
+    .relative(0 false false 40px);
+    .square(58px);
+
+    font-size: 58px;
+    line-height: 58px;
+  }
+
+  >input {
+    .absolute(6px false false 6px);
+    margin: 0px 4px 0px 0px;
+  }
+}
+
+// 图标附件（图标视图） - 附件项  - 操作菜单弹出层
+.tip-file {
+  max-width: 400px;
+
+  .tip-s {
+    color: @text-color-light;
+    margin-right: 20px;
+    font-size: @font-size-sm;
+  }
+
+  .c-group>button {
+    font-size: @font-size-base;
+    height: 24px;
+    padding: 2px 10px;
+    margin-right: 6px;
+    background: @component-background;
+    color: @text-color-primary;
+
+    &:hover {
+      border: @border-default-primary;
+    }
+  }
+}
+
+// 图标附件（表格视图） - 附件项
+.ui-table .fileContainer {
+  padding: 0px;
+
+  .icoItem {
+    padding-left: 15px;
+    font-size: 0;
+
+    .fileName {
+      width: calc(40% - 63px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+      -webkit-line-clamp: 1;
+      margin-left: 10px;
+      cursor: pointer;
+      vertical-align: middle;
+      font-size: @font-size-base;
+    }
+
+    .file-inline-info {
+      .text-overflow();
+      margin-left: 0px;
+      padding-left: 10px;
+      vertical-align: middle;
+
+      &:before {
+        .absolute(0 false false false);
+        .size(1px, 100%);
+
+        content: '';
+        background: #ddd;
+      }
+    }
+
+    .fileSize {
+      width: 8%;
+      display: inline-block;
+
+      &:before {
+        left: 40%;
+      }
+    }
+
+    .fileCreatetime {
+      display: inline-block;
+      width: 12%;
+
+      &:before {
+        left: 47.9%;
+      }
+    }
+
+    .user-name {
+      width: 10%;
+      display: inline-block;
+
+      &:before {
+        left: 60%;
+      }
+    }
+
+    >input,
+    >.icon {
+      vertical-align: middle;
+    }
+
+    .c-group {
+      width: 30%;
+      padding: 8px 10px;
+      margin-left: 3px;
+      border-left: @border-default-dark;
+      display: inline-block;
+      white-space: normal;
+      vertical-align: middle;
+      float: none;
+      display: inline-block !important;
+    }
+  }
+}
+
+// 图标附件（列表视图） - 附件项
+.ui-list .fileContainer .icoItem {
+  .fileName {
+    .text-overflow();
+    max-width: 40%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -4px;
+    cursor: pointer;
+  }
+
+  .kh {
+    display: inline-block;
+  }
+
+  .kh1 {
+    margin: 0px -7px 0px 10px;
+  }
+
+  .c-group {
+    float: none;
+    margin-left: 20px;
+  }
+}

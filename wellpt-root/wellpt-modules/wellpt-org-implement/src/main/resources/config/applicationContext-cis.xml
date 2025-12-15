@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+       default-lazy-init="true">
+
+    <description>组织机构统一用户管理 数据源配置</description>
+
+    <!-- 租户库数据源配置,使用应用服务器的数据库连接池 -->
+    <bean id="ds_cis" class="com.wellsoft.pt.jpa.hibernate.BitronixDataSourceFactoryBean" lazy-init="false">
+        <property name="uniqueName" value="jdbc/ds_cis"></property>
+        <property name="maxPoolSize" value="30"></property>
+        <property name="databaseType" value="${database.type}"></property>
+        <property name="driverProperties">
+            <props>
+                <prop key="ServerName">${multi.tenancy.cis.server_name}</prop>
+                <prop key="DatabaseName">${multi.tenancy.cis.database_name}</prop>
+                <prop key="SelectMethod">cursor</prop>
+                <prop key="URL">${multi.tenancy.cis.url}</prop>
+                <prop key="User">${multi.tenancy.cis.username}</prop>
+                <prop key="Password">${multi.tenancy.cis.password}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- ORG Hibernate SessionFactory配置 -->
+    <bean id="cisSessionFactory" class="com.wellsoft.pt.jpa.support.SupportMultiDatabaseLocalSessionFactoryBean">
+        <property name="dataSource" ref="ds_cis"></property>
+        <property name="namingStrategy">
+            <bean class="com.wellsoft.pt.jpa.hibernate4.CustomeImprovedNamingStrategy"/>
+        </property>
+        <property name="annotatedClasses">
+            <bean class="com.wellsoft.pt.jpa.support.TenantEntityAnnotatedClassesFactoryBean">
+                <property name="packagesToScan" value="com.wellsoft.***.**"/>
+            </bean>
+        </property>
+        <property name="mappingLocations">
+            <bean class="com.wellsoft.pt.jpa.support.HibernateMappingLocationsFactoryBean">
+                <property name="ignoreUrlResource" value="true"></property>
+            </bean>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+                <prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+                <prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+                <prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
+                <prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+
+                <prop key="hibernate.connection.datasource">jdbc/ds_cis</prop>
+                <prop key="hibernate.connection.release_mode">after_statement</prop>
+                <prop key="hibernate.jndi.class">bitronix.tm.jndi.BitronixInitialContextFactory</prop>
+                <prop key="hibernate.current_session_context_class">
+                    org.springframework.orm.hibernate4.SpringJtaSessionContext
+                </prop>
+                <prop key="hibernate.transaction.factory_class">
+                    org.hibernate.engine.transaction.internal.jta.CMTTransactionFactory
+                </prop>
+                <prop key="hibernate.transaction.jta.platform">
+                    org.hibernate.service.jta.platform.internal.BitronixJtaPlatform
+                </prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

@@ -1,0 +1,97 @@
+package com.wellsoft.pt.log.job;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.http.client.utils.DateUtils;
+import org.elasticsearch.action.admin.cluster.health.ClusterHealthResponse;
+import org.elasticsearch.client.Client;
+import org.elasticsearch.cluster.health.ClusterIndexHealth;
+import org.quartz.JobExecutionContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.log.LogConfiguration;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+
+/**
+ * 
+ * Description: 如何描述该类
+ *  
+ * @author wangrf
+ * @date 2020年3月3日
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2020年3月3日.1	wangrf		2020年3月3日		Create
+ * </pre>
+ *
+ */
+public class ElasticSearchLogIndicesDropJob extends Job {
+
+    private static Logger logger = LoggerFactory.getLogger(ElasticSearchLogIndicesDropJob.class);
+
+    @Override
+    protected void execute(JobExecutionContext jobExecutionContext, JobData jobData) {
+        cleanIndices(null);
+    }
+
+    public void cleanIndices(String currentUserId) {
+        logger.info("开始清除日志索引");
+        // 获取所有的index
+        Client client = (Client) ApplicationContextHolder.getBean("elasticsearchClient");
+        ClusterHealthResponse res = client.admin().cluster().prepareHealth().get();
+        List<String> lists = new ArrayList<String>();
+        String prefix = "wellpt-log-";
+        for (ClusterIndexHealth health : res.getIndices().values()) {
+            String index = health.getIndex();
+            if (index.contains(prefix)) {
+                lists.add(index);
+            }
+        }
+        // 排序
+        Collections.sort(lists);
+        // 计算出要保存的天数（与保存）
+        LogConfiguration logConfiguration = ApplicationContextHolder.getBean(LogConfiguration.class);
+        int days = logConfiguration.getSaveDays();
+        Date now = new Date();
+        // days中后面要加l表示long类型
+        Date saveDay = new Date(now.getTime() - days * 3600 * 24 * 1000l);
+        String saveDayStr = prefix + DateUtils.formatDate(saveDay, "yyyy.MM.dd");
+        int deleteIndex = -1;
+        for (int i = 0; i < lists.size(); i++) {
+            // 计算出需要删除数据的下标
+            String arg = lists.get(i);
+            if (arg.compareTo(saveDayStr) > 0) {
+                deleteIndex = i;
+                break;
+            }
+        }
+        ElasticsearchTemplate elasticsearchTemplate = null;
+        try {
+            elasticsearchTemplate =  ApplicationContextHolder.getBean(ElasticsearchTemplate.class);
+        } catch (Exception e) {
+            logger.warn("不存在的elasticsearchTemplate");
+            logger.info("结束清除日志索引");
+            return;
+        }
+        // 没有索引删除
+        if (deleteIndex > 0) {
+            List<String> list2 = lists.subList(0, deleteIndex);
+            for (String s : list2) {
+                elasticsearchTemplate.deleteIndex(s);
+            }
+            logger.info("elastic删除索引数据:" + list2.toString());
+        } else {
+            logger.info("此次定时任务没有删除索引数据");
+        }
+        logger.info("结束清除日志索引");
+    }
+}

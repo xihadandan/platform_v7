@@ -1,0 +1,547 @@
+(function (a) {
+  a.fn.tagEditorInput = function () {
+    var c = " ",
+      f = a(this),
+      g = parseInt(f.css("fontSize")),
+      b = a("<span/>").css({
+        position: "absolute",
+        top: -9999,
+        left: -9999,
+        width: "auto",
+        fontSize: f.css("fontSize"),
+        fontFamily: f.css("fontFamily"),
+        fontWeight: f.css("fontWeight"),
+        letterSpacing: f.css("letterSpacing"),
+        whiteSpace: "nowrap"
+      }),
+      d = function () {
+        if (c !== (c = f.val())) {
+          b.text(c);
+          var e = b.width() + g;
+          20 > e && (e = 20), e != f.width() && f.width(e);
+        }
+      };
+    return b.insertAfter(f), f.bind("keyup keydown focus", d);
+  };
+  a.fn.tagEditor = function (m, e, f, c, k, b) {
+    function l(n) {
+      return n.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+    var h, d = a.extend({}, a.fn.tagEditor.defaults, m),
+      g = this,
+      c = c == undefined ? true : !!c;
+    d.dregex = new RegExp("[" + d.delimiter.replace("-", "-") + "]", "g");
+    if (typeof m == "string") {
+      var j = [];
+      g.each(function () {
+        var s = a(this),
+          v = s.data("options"),
+          n = s.next(".tag-editor");
+        if (m == "getTags") {
+          j.push({
+            field: s[0],
+            editor: n,
+            tags: n.data("tags")
+          });
+        } else {
+          if (m == "addTag") {
+            if (v.maxTags && n.data("tags").length >= v.maxTags) {
+              return false;
+            }
+            if (a.isFunction(b) && b(e) === false) {
+              return false;
+            }
+            var w = a('<li><div class="tag-editor-spacer">&nbsp;' + v.delimiter[0] + '</div><div class="tag-editor-tag" ' + (c ? "" : "disable-edit") + '></div><div class="tag-editor-delete"><i class="iconfont icon-ptkj-dacha"></i></div></li>');
+            w.appendTo(n).find(".tag-editor-tag").html('<input type="text" maxlength="' + v.maxLength + '">').addClass("active").find("input").val(e).blur();
+            if (k != undefined) {
+              w.data("data", k);
+            }
+            if (!f) {
+              n.click();
+            } else {
+              a(".placeholder", n).remove();
+            }
+          } else {
+            if (m == "removeTag") {
+              a(".tag-editor-tag", n).filter(function () {
+                return a(this).text() == e;
+              }).closest("li").find(".tag-editor-delete").click();
+              if (!f) {
+                n.click();
+              }
+            } else {
+              if (m == "removeTagIndex") {
+                a(".tag-editor-tag", n).filter(":eq(" + e + ")").closest("li").find(".tag-editor-delete").click();
+                if (!f) {
+                  n.click();
+                }
+              } else {
+                if (m == "destroy") {
+                  s.removeClass("tag-editor-hidden-src").removeData("options").off("focus.tag-editor").next(".tag-editor").remove();
+                } else {
+                  if (m == "getTagDatas") {
+                    var r = n.data("tags");
+                    for (var q = 0, p = r.length; q < p; q++) {
+                      var u = n.find("li:eq(" + (q + 1) + ")").data("data");
+                      j.push(u || null);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      });
+      return m.indexOf("get") == 0 ? j : this;
+    }
+    if (window.getSelection) {
+      a(document).off("keydown.tag-editor").on("keydown.tag-editor", function (s) {
+        if (s.which == 8 || s.which == 46 || s.ctrlKey && s.which == 88) {
+          try {
+            var q = getSelection(),
+              p = document.activeElement.tagName != "INPUT" ? a(q.getRangeAt(0).startContainer.parentNode).closest(".tag-editor") : 0;
+          } catch (s) {
+            p = 0;
+          }
+          if (q.rangeCount > 0 && p && p.length) {
+            var o = [],
+              r = q.toString().split(p.prev().data("options").dregex);
+            for (i = 0; i < r.length; i++) {
+              var n = a.trim(r[i]);
+              if (n) {
+                o.push(n);
+              }
+            }
+            a(".tag-editor-tag", p).each(function () {
+              if (~a.inArray(a(this).text(), o)) {
+                a(this).closest("li").find(".tag-editor-delete").click();
+              }
+            });
+            return false;
+          }
+        }
+      });
+    }
+    return g.each(function () {
+      var o = a(this),
+        w = [];
+      var t = a("<ul " + (d.clickDelete ? 'oncontextmenu="return false;" ' : "") + 'class="tag-editor"></ul>').insertAfter(o);
+      o.addClass("tag-editor-hidden-src").data("options", d).on("focus.tag-editor", function () {
+        t.click();
+      });
+      t.append('<li style="width:1px">&nbsp;</li>');
+      var r = '<li><div class="tag-editor-spacer">&nbsp;' + d.delimiter[0] + '</div><div class="tag-editor-tag"></div><div class="tag-editor-delete"><i class="iconfont icon-ptkj-dacha"></i></div></li>';
+
+      function p() {
+        if (d.placeholder && !w.length && !a(".deleted, .placeholder, input", t).length) {
+          t.append('<li class="placeholder"><div>' + d.placeholder + "</div></li>");
+        }
+      }
+
+      function v(A) {
+        var z = w.toString();
+        w = a(".tag-editor-tag:not(.deleted)", t).map(function (B, C) {
+          var D = a.trim(a(this).hasClass("active") ? a(this).find("input").val() : a(C).text());
+          if (D) {
+            return D;
+          }
+        }).get();
+        t.data("tags", w);
+        o.val(w.join(d.delimiter[0]));
+        if (!A) {
+          if (z != w.toString()) {
+            d.onChange(o, t, w);
+          }
+        }
+        p();
+      }
+      t.click(function (A, z) {
+        var D, C = 99999,
+          B;
+        if (window.getSelection && getSelection() != "") {
+          return;
+        }
+        if (d.maxTags && t.data("tags").length >= d.maxTags) {
+          t.find("input").blur();
+          return false;
+        }
+        h = true;
+        a("input:focus", t).blur();
+        if (!h) {
+          return false;
+        }
+        h = true;
+        a(".placeholder", t).remove();
+        if (z && z.length) {
+          B = "before";
+        } else {
+          a(".tag-editor-tag", t).each(function () {
+            var E = a(this),
+              H = E.offset(),
+              G = H.left,
+              F = H.top;
+            if (A.pageY >= F && A.pageY <= F + E.height()) {
+              if (A.pageX < G) {
+                B = "before", D = G - A.pageX;
+              } else {
+                B = "after", D = A.pageX - G - E.width();
+              }
+              if (D < C) {
+                C = D, z = E;
+              }
+            }
+          });
+        }
+        if (B == "before") {
+          a(r).insertBefore(z.closest("li")).find(".tag-editor-tag").click();
+        } else {
+          if (B == "after") {
+            a(r).insertAfter(z.closest("li")).find(".tag-editor-tag").click();
+          } else {
+            a(r).appendTo(t).find(".tag-editor-tag").click();
+          }
+        }
+        return false;
+      });
+      t.on("click", ".tag-editor-delete", function (B) {
+        if (a(this).prev().hasClass("active")) {
+          a(this).closest("li").find("input").caret(-1);
+          return false;
+        }
+        var A = a(this).closest("li"),
+          z = A.find(".tag-editor-tag");
+        if (d.beforeTagDelete(o, t, w, z.text(), A.index() - 1) === false) {
+          return false;
+        }
+        z.addClass("deleted").animate({
+          width: 0
+        }, d.animateDelete, function () {
+          A.remove();
+          p();
+        });
+        v();
+        return false;
+      });
+      if (d.clickDelete) {
+        t.on("mousedown", ".tag-editor-tag", function (B) {
+          if (B.ctrlKey || B.which > 1) {
+            var A = a(this).closest("li"),
+              z = A.find(".tag-editor-tag");
+            if (d.beforeTagDelete(o, t, w, z.text(), A.index() - 1) === false) {
+              return false;
+            }
+            z.addClass("deleted").animate({
+              width: 0
+            }, d.animateDelete, function () {
+              A.remove();
+              p();
+            });
+            v();
+            return false;
+          }
+        });
+      }
+      t.on("click", ".tag-editor-tag", function (F) {
+        d.beforeClick(t);
+        if (d.clickDelete && (F.ctrlKey || F.which > 1)) {
+          return false;
+        }
+        if (a(this).attr("disable-edit") != undefined) {
+          return false;
+        }
+        if (!a(this).hasClass("active")) {
+          var B = a(this).text();
+          var E = Math.abs((a(this).offset().left - F.pageX) / a(this).width()),
+            A = parseInt(B.length * E),
+            C = a(this).html('<input type="text" maxlength="' + d.maxLength + '" value="' + l(B) + '">').addClass("active").find("input");
+          C.data("old_tag", B).tagEditorInput().focus().caret(A);
+          if (d.autocomplete) {
+            var D = a.extend({}, d.autocomplete);
+            var z = "select" in D ? d.autocomplete.select : "";
+            D.select = function (H, G) {
+              if (z) {
+                z(H, G);
+              }
+              setTimeout(function () {
+                t.trigger("click", [a(".active", t).find("input").closest("li").next("li").find(".tag-editor-tag")]);
+              }, 20);
+            };
+            C.autocomplete(D);
+          }
+        }
+        return false;
+      });
+
+      function n(B) {
+        var z = B.closest("li"),
+          F = B.val().replace(/ +/, " ").split(d.dregex),
+          E = B.data("old_tag"),
+          A = w.slice(0),
+          G = false,
+          D;
+        for (var C = 0; C < F.length; C++) {
+          x = a.trim(F[C]).slice(0, d.maxLength);
+          if (x.length == 0) {
+            continue;
+          }
+          if (d.forceLowercase) {
+            x = x.toLowerCase();
+          }
+          D = d.beforeTagSave(o, t, A, E, x);
+          x = D || x;
+          if (D === false || !x) {
+            continue;
+          }
+          if (d.removeDuplicates && ~a.inArray(x, A)) {
+            a(".tag-editor-tag", t).each(function () {
+              if (a(this).text() == x) {
+                a(this).closest("li").remove();
+              }
+            });
+          }
+          A.push(x);
+          z.before('<li><div class="tag-editor-spacer">&nbsp;' + d.delimiter[0] + '</div><div class="tag-editor-tag">' + l(x) + '</div><div class="tag-editor-delete"><i class="iconfont icon-ptkj-dacha"></i></div></li>');
+          if (d.maxTags && A.length >= d.maxTags) {
+            G = true;
+            break;
+          }
+        }
+        B.attr("maxlength", d.maxLength).removeData("old_tag").val("");
+        if (G) {
+          B.blur();
+        } else {
+          B.focus();
+        }
+        v();
+      }
+      t.on("blur", "input", function (C) {
+        C.stopPropagation();
+        // var hiddenProperty = 'hidden' in document ? 'hidden' :
+        //     'webkitHidden' in document ? 'webkitHidden' :
+        //         'mozHidden' in document ? 'mozHidden' :
+        //             null;
+        // var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+        // var onVisibilityChange = function(){
+        //     $(".user-name-list").hide();
+        // }
+        // document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+        var A = a(this),
+          B = A.data("old_tag"),
+          z = a.trim(A.val().replace(/ +/, " ").replace(d.dregex, d.delimiter[0]));
+        if (!z) {
+          if (B && d.beforeTagDelete(o, t, w, B, A.closest("li").index() - 1) === false) {
+            A.val(B).focus();
+            h = false;
+            v();
+            return;
+          }
+          try {
+            A.closest("li").remove();
+          } catch (C) {}
+          if (B) {
+            v();
+          }
+        } else {
+          if (z.indexOf(d.delimiter[0]) >= 0) {
+            n(A);
+            return;
+          } else {
+            if (z != B) {
+              if (d.forceLowercase) {
+                z = z.toLowerCase();
+              }
+              cb_val = d.beforeTagSave(o, t, w, B, z);
+              z = cb_val || z;
+              if (cb_val === false) {
+                if (B) {
+                  A.val(B).focus();
+                  h = false;
+                  v();
+                  return;
+                }
+                try {
+                  A.closest("li").remove();
+                } catch (C) {}
+                if (B) {
+                  v();
+                }
+              } else {
+                if (d.removeDuplicates) {
+                  a(".tag-editor-tag:not(.active)", t).each(function () {
+                    if (a(this).text() == z) {
+                      a(this).closest("li").remove();
+                    }
+                  });
+                }
+              }
+            }
+          }
+        }
+        A.parent().html(l(z)).removeClass("active");
+        if (z != B) {
+          v();
+        }
+        p();
+      });
+      var s;
+      t.on("paste", "input", function (z) {
+        a(this).removeAttr("maxlength");
+        s = a(this);
+        setTimeout(function () {
+          n(s);
+        }, 30);
+      });
+      var u;
+      t.on("keyup", "input", _.debounce(function (z) {
+        var val = $(this).val();
+        $(this).addClass("isEditting");
+        d.onKeyUp(t, val);
+      }, 500, {
+        leading: false,
+        trailing: true
+      }));
+      t.on("keypress", "input", function (z) {
+        if (d.delimiter.indexOf(String.fromCharCode(z.which)) >= 0) {
+          u = a(this);
+          setTimeout(function () {
+            n(u);
+          }, 20);
+        }
+      });
+      t.on("keydown", "input", function (z) {
+        var C = a(this);
+        if ((z.which == 37 || !d.autocomplete && z.which == 38) && !C.caret() || z.which == 8 && !C.val()) {
+          var B = C.closest("li").prev("li").find(".tag-editor-tag");
+          if (B.length) {
+            B.click().find("input").caret(-1);
+          } else {
+            if (C.val() && !(d.maxTags && t.data("tags").length >= d.maxTags)) {
+              a(r).insertBefore(C.closest("li")).find(".tag-editor-tag").click();
+            }
+          }
+          return false;
+        } else {
+          if ((z.which == 39 || !d.autocomplete && z.which == 40) && (C.caret() == C.val().length)) {
+            var A = C.closest("li").next("li").find(".tag-editor-tag");
+            if (A.length) {
+              A.click().find("input").caret(0);
+            } else {
+              if (C.val()) {
+                t.click();
+              }
+            }
+            return false;
+          } else {
+            if (z.which == 9) {
+              if (z.shiftKey) {
+                var B = C.closest("li").prev("li").find(".tag-editor-tag");
+                if (B.length) {
+                  B.click().find("input").caret(0);
+                } else {
+                  if (C.val() && !(d.maxTags && t.data("tags").length >= d.maxTags)) {
+                    a(r).insertBefore(C.closest("li")).find(".tag-editor-tag").click();
+                  } else {
+                    o.attr("disabled", "disabled");
+                    setTimeout(function () {
+                      o.removeAttr("disabled");
+                    }, 30);
+                    return;
+                  }
+                }
+                return false;
+              } else {
+                var A = C.closest("li").next("li").find(".tag-editor-tag");
+                if (A.length) {
+                  A.click().find("input").caret(0);
+                } else {
+                  if (C.val()) {
+                    t.click();
+                  } else {
+                    return;
+                  }
+                }
+                return false;
+              }
+            } else {
+              if (z.which == 46 && (!a.trim(C.val()) || (C.caret() == C.val().length))) {
+                var A = C.closest("li").next("li").find(".tag-editor-tag");
+                if (A.length) {
+                  A.click().find("input").caret(0);
+                } else {
+                  if (C.val()) {
+                    t.click();
+                  }
+                }
+                return false;
+              } else {
+                if (z.which == 13) {
+                  t.trigger("click", [C.closest("li").next("li").find(".tag-editor-tag")]);
+                  if (d.maxTags && t.data("tags").length >= d.maxTags) {
+                    t.find("input").blur();
+                  }
+                  return false;
+                } else {
+                  if (z.which == 36 && !C.caret()) {
+                    t.find(".tag-editor-tag").first().click();
+                  } else {
+                    if (z.which == 35 && C.caret() == C.val().length) {
+                      t.find(".tag-editor-tag").last().click();
+                    } else {
+                      if (z.which == 27) {
+                        C.val(C.data("old_tag") ? C.data("old_tag") : "").blur();
+                        return false;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+      });
+      var y = d.initialTags.length ? d.initialTags : o.val().split(d.dregex);
+      for (var q = 0; q < y.length; q++) {
+        if (d.maxTags && q >= d.maxTags) {
+          break;
+        }
+        var x = a.trim(y[q].replace(/ +/, " "));
+        if (x) {
+          if (d.forceLowercase) {
+            x = x.toLowerCase();
+          }
+          w.push(x);
+          t.append('<li><div class="tag-editor-spacer">&nbsp;' + d.delimiter[0] + '</div><div class="tag-editor-tag">' + l(x) + '</div><div class="tag-editor-delete"><i class="iconfont icon-ptkj-dacha"></i></div></li>');
+        }
+      }
+      v(true);
+      if (d.sortable && a.fn.sortable) {
+        t.sortable({
+          distance: 5,
+          cancel: ".tag-editor-spacer, input",
+          helper: "clone",
+          update: function () {
+            v();
+          }
+        });
+      }
+    });
+  };
+  a.fn.tagEditor.defaults = {
+    initialTags: [],
+    maxTags: 0,
+    maxLength: 50,
+    delimiter: ",;；，",
+    placeholder: "",
+    forceLowercase: true,
+    removeDuplicates: true,
+    clickDelete: false,
+    animateDelete: 175,
+    sortable: true,
+    autocomplete: null,
+    onChange: function () {},
+    beforeTagSave: function () {},
+    beforeTagDelete: function () {},
+    onKeyUp: function () {}
+  };
+}(jQuery));

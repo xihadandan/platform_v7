@@ -1,0 +1,73 @@
+<form action="" id="cd_script_definiton_form" style="margin-top: 15px">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#cd_script_definiton_basic_info" aria-controls="cd_script_definiton_basic_info" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+        </li>
+        <li role="presentation">
+            <a href="#cd_script_definiton_script_variable" aria-controls="cd_script_definiton_script_variable" role="tab" data-toggle="tab" aria-expanded="true">脚本变量</a>
+        </li>
+    </ul>
+    <input type="hidden" id="cd_script_definiton_uuid" name="uuid" />
+    <input type="hidden" id="cd_script_definiton_recVer" name="recVer" />
+    <input type="hidden" id="cd_script_definiton_systemUnitId" name="systemUnitId" />
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="cd_script_definiton_basic_info" style="padding-top: 10px;">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label for="cd_script_definiton_name" class="well-form-label control-label required">名称</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="cd_script_definiton_name" name="name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cd_script_definiton_id" class="well-form-label control-label required">ID</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="cd_script_definiton_id" name="id">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cd_script_definiton_code" class="well-form-label control-label">编号</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="cd_script_definiton_code" name="code">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cd_script_definiton_type" class="well-form-label control-label">类型</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="cd_script_definiton_type" name="type">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cd_script_definiton_content" class="well-form-label control-label">内容</label>
+                    <div class="well-form-control">
+                        <textarea class="form-control" rows="20" id="cd_script_definiton_content" name="content"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cd_script_definiton_remark" class="well-form-label control-label">备注</label>
+                    <div class="well-form-control">
+                        <textarea class="form-control" id="cd_script_definiton_remark" name="remark"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="cd_script_definiton_script_variable" style="padding-top: 10px;">
+            <div id="div_script_variable_toolbar" class="btn-group">
+                <button id="btn_add_script_variable" type="button" class="well-btn w-btn-primary">
+                    <i class="iconfont icon-ptkj-jiahao" aria-hidden="true"></i>新增
+                </button>
+                <button id="btn_delete_script_variable" type="button" class="well-btn w-btn-danger">
+                    <i class="iconfont icon-ptkj-shanchu" aria-hidden="true"></i>删除
+                </button>
+            </div>
+            <table id="script_variable_table" class=""></table>
+        </div>
+        </div>
+        <div class="row" style="margin-top:30px;">
+            <div class="col-sm-12 text-center">
+                <button type="button" class="well-btn w-btn-primary" id="btn_save">保存</button>
+            </div>
+        </div>
+    </div>
+</form>
+

@@ -1,0 +1,7 @@
+
+请把之前继承 com.wellsoft.pt.task.job.Job 类全部移除，改为xxlJob实现
+后续会删除 wellpt-job 包，请移除项目代码中引用该包 com.wellsoft.pt.task 中的类
+
+转为xxlJob代码改造说明文档
+wiki地址：http://wiki.well-soft.com:81/pages/viewpage.action?pageId=9371778
+

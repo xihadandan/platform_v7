@@ -1,0 +1,23 @@
+{
+  "WidgetFormSerialNumber": {
+    "fillNumber": "กรอกหมายเลข",
+    "clickToEdit": "คลิกเพื่อแก้ไข Waterflow",
+    "editable": "แก้ไขเครื่องหมายน้ำ",
+    "serialNumberName": "ชื่อกระแสน้ำ",
+    "selectable": "สามารถเลือกเรือไหลได้",
+    "serialNumber": "เรือไหล",
+    "fieldName": "ชื่อฟิลด์",
+    "isResubmit": "ไม่ว่าจะเป็นการยื่นซ้ำ",
+    "error": "การรายงานข้อผิดพลาดล้มเหลว",
+    "prompt": "เคล็ดลับ",
+    "selectDefinition": "โปรดเลือกคำนิยาม Waterflow！",
+    "selectSerialNumber": "โปรดเลือกเครื่องหมายน้ำ!",
+    "enterPointer": "โปรดป้อนตัวชี้ที่ถูกต้อง！",
+    "pointerOccupied": "ตัวชี้นี้ไม่ถูกต้องหรือถูกครอบครองแล้ว！",
+    "serialNumberOccupied": "เรือลำนี้ถูกครอบครองแล้ว!",
+    "requestException": "ความผิดปกติของการร้องขอบริการ！",
+    "enterValidPointer": "โปรดป้อนตัวชี้ที่ถูกต้อง！",
+    "noUsableSerialNumber": "ไม่มีเรือวิ่งให้บริการ",
+    "alreadyHasSerialNumber": "ตัวชี้ที่ระบุมีบันทึกการไหลแล้ว!"
+  }
+}

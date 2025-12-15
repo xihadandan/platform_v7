@@ -1,0 +1,146 @@
+.pull-right-nav > li > a, .pull-right-nav > div > a{
+    writing-mode: lr-tb;
+    width:30px;
+    padding:13px 8px;
+    color: #488CEE;
+    background:rgba(72,140,238,0.15);
+    font-size: 14px;
+    border-radius: 0;
+}
+.pull-right-nav > div{
+    margin-top: 2px;
+}
+.pull-right-nav > div > a{
+    display: block;
+    text-decoration: none;
+}
+.pull-right-nav > li:not(:first-of-type) > a{
+    margin-top: 0px;
+}
+.pull-right-nav>li>a{
+    color: #488CEE;
+    background:rgba(72,140,238,0.15);
+}
+.pull-right-nav > div > a:hover,
+.pull-right-nav>li>a:focus, .pull-right-nav>li>a:hover,
+.pull-right-nav>li.active>a, .pull-right-nav>li.active>a:focus, .pull-right-nav>li.active>a:hover {
+    color: #fff;
+    background-color: #488CEE;
+}
+.pull-right-nav>li.active>a{
+    position: relative;
+}
+.pull-right-nav>li.active>a:before{
+    position: absolute;
+    content: "";
+    top:50%;
+    left:-5px;
+    display: block;
+    border-top:7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-right:5px solid #488CEE;
+    margin-top: -5px;
+}
+
+#rightMenuContainer button.stick,
+#rightMenuContainer button.open-tab{
+    position: fixed;
+    bottom:50px;
+    color: #999;
+    width: 30px;
+    margin-top: 2px;
+    height: 30px;
+    padding: 0px;
+    background: transparent;
+    outline: none;
+    display: block;
+}
+
+#rightMenuContainer button.stick-active,
+#rightMenuContainer button.open-tab-active{
+    color: #488CEE;
+    background-color: transparent;
+}
+#rightMenuContainer button.open-tab{
+    font-size: 16px;
+    bottom:86px;
+}
+#rightMenuContainer button.stick:hover,
+#rightMenuContainer button.open-tab:hover{
+    color:#488CEE;
+}
+#rightMenuContainer button.btn.active.focus,
+#rightMenuContainer button.btn.active:focus,
+#rightMenuContainer button.btn.focus,
+#rightMenuContainer button.btn:active.focus,
+#rightMenuContainer button.btn:active:focus,
+#rightMenuContainer button.btn:focus{
+    /*background: transparent;*/
+    box-shadow: none;
+}
+#rightMenuContainer .tab-pane{
+    padding: 15px 15px 15px 0;
+    box-sizing: border-box;
+}
+#rightMenuContainer .tab-pane.work-process-tab-pane{
+    padding-left:15px;
+    padding-left:10px;
+    padding-bottom:10px;
+}
+#rightMenuContainer #wf_work_process{
+    padding:0 0 15px 0;
+    min-height:3000px;
+}
+#rightMenuTabContainer{
+    position: fixed!important;
+    right: 0px;
+    padding-right: 30px!important;
+    padding-left: 0px!important;
+    background-color: white;
+    box-shadow:0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+}
+.box-shadow{
+    box-shadow:0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+#rightMenuTabContainer .tab-content{
+    padding-right:0px;
+    padding-left: 0px;
+    border-right:1px solid #E8E8E8;
+}
+#rightMenuTabContainer .work-process-viewer .tab-content{
+    border-right:none;
+    height:calc(100vh - 130px);
+    overflow-y: scroll;
+}
+#rightMenuTabContainer .tab-nav{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 10px
+}
+
+#rightMenuTabNavContainer{
+    position: fixed!important;
+    right: 0px!important;
+    padding-right: 0px!important;
+    padding-left: 0px!important;
+}
+#rightMenuContainer .sidebar-tab-opinion .tab-content .tab-pane{
+    padding: 0 15px 0 10px;
+}
+.drag-line{
+    min-height: 800px;
+    cursor: e-resize;
+    z-index: 1;
+    background: transparent;
+    width: 14px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+#rightMenuContainer .sidebar-tab-opinion .tab-content #wf-opinion-common{
+    position: relative;
+    padding-right:0;
+}
+
+

@@ -1,0 +1,33 @@
+<div id="layout_bootgrid_custom">
+	<form id="layout_bootgrid_custom_form" class="form-horizontal">
+		<div id="layout_bootgrid_custom_tabs">
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation"><a href="#layout_bootgrid_custom_tabs_base_info">基础信息</a></li>
+				<li role="presentation" class="active"><a href="#layout_bootgrid_custom_tabs_grid_cell_info">列信息1</a></li>
+			</ul>
+			<div class="tab-content" style="height: 500px">
+				<div role="tabpanel" class="tab-pane" id="layout_bootgrid_custom_tabs_base_info">
+					<div class="form-group"></div>
+					{% include "./widget_base_info.nj" %}
+				</div>
+				<div role="tabpanel" class="tab-pane active" id="layout_bootgrid_custom_tabs_grid_cell_info">
+					<div id="div_button_info_toolbar" class="btn-group btn_button_info hidden">
+						<button id="btn_add_button" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+						</button>
+						<button id="btn_delete_button" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+						</button>
+						<button id="btn_row_up_button" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+						</button>
+						<button id="btn_row_down_button" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+						</button>
+					</div>
+					<table id="table_grid_cell_info" class="grid_cell_info" data-height="400"></table>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

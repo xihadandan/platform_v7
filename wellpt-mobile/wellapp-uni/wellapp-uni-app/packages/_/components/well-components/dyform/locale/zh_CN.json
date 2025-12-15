@@ -1,0 +1,17 @@
+{
+  "widgetDyform": {
+    "validateFormData": "表单数据校验",
+    "validateTip": "校验提示",
+    "validateFailed": "数据校验不通过",
+    "required": "必填",
+    "formatError": "数据格式错误",
+    "existData": "数据已存在",
+    "leastNumber": "请选择至少{min}项",
+    "mostNumber": "最多可选{max}项",
+    "message": {
+      "saveFailed": "表单数据保存失败！",
+      "syntaxError": "保存时,后台语法错误!!!有可能是人为去修改了表单后台数据库表字段,更详细的信息如下:",
+      "toReload": "请重新加载并修改数据:"
+    }
+  }
+}

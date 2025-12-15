@@ -1,0 +1,57 @@
+<div class="ibox-content inspinia-timeline">
+  {% for process in workProcesses %}
+    <div class="timeline-item">
+      <div class="row mui-row">
+        <div class="col-xs-3 mui-col-xs-1 line">
+          <hr class="timeline-hr">
+          {% if process.status == '未完成' %}
+            <i class="fa fa-pencil mui-icon mui-icon-compose" title="待办"></i>
+          {% else %}
+            <i class="fa fa-file-text mui-icon mui-icon-paperclip" title="已办"></i>
+          {% endif %}
+          <hr class="timeline-hr">
+        </div>
+        <div class="timeline-arrow"></div>
+        <div class="col-xs-9 mui-col-xs-8 content">
+          <label class="m-b-xs mui-clearfix">
+            <strong>{{process.taskName}}</strong>
+            <a class="mui-h5">{{process.endTime}}</a>
+          </label>
+          <p class="assignee" assigneeid="{{process.assigneeId}}">
+            {{process.assignee}}&nbsp;&nbsp;{{process.actionName}}
+            {% if process.actionType == 'CounterSign' or process.actionType == 'Transfer' %}
+              ({{process.toUser}})
+            {% endif %}
+            {% if process.actionType == 'CopyTo' %}
+              ({{process.copyUser}})
+            {% endif %}
+          </p>
+
+          <p>{{process.opinion}}
+            {% if process.isMobileApp %}(移动端){% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+    {% if process.status == '办结' %}
+      <div class="timeline-item">
+        <div class="row mui-row">
+          <div class="col-xs-3 mui-col-xs-1 line">
+            <hr class="timeline-hr">
+            <div class="fa fa-check mui-icon mui-icon-checkmarkempty" title="办结"></div>
+            <hr class="timeline-hr">
+          </div>
+          <div class="timeline-arrow"></div>
+          <div class="col-xs-9 mui-col-xs-8 content">
+            <label class="m-b-xs mui-clearfix">
+              <strong>归档成功</strong>
+              <a class="mui-h5">{{process.endTime}}</a>
+            </label>
+            <p>&nbsp;&nbsp;</p>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+  {% endfor %}
+</div>

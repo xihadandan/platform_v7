@@ -1,0 +1,81 @@
+<div>
+<table>
+<tr>
+<td class="Label" style="vertical-align: top;">请输入标题:</td><td class="value"><textarea type="text" id="labelInput" value="" rows="10" cols="40"></textarea></td>
+</tr>
+</table>
+</div>
+<style type="text/css">
+.cke_reset_all textarea {
+	padding : 5px 4px 6px;
+	border: 1px solid #d5d5d5;
+}
+</style>
+<script type="text/javascript">
+var label = {};
+
+/**
+ * 初始化属性窗口
+ */
+ label.initPropertyDialog = function (editor){
+	// $(".cke_reset_all"  ).removeClass("cke_reset_all");
+	this.editor = editor;  
+	
+	var focusedDom = editor.focusedDom;//当前editor被双击的对象(CKEDITOR.dom.node类) 
+	//console.log("init===========");
+	//console.log( focusedDom );
+	var labelText = "";
+	if(focusedDom != null && (typeof focusedDom) != "undefined"){ 
+		labelText =  focusedDom.getHtml();// focusedDom.getText();
+		//为了兼容老数据,所以必须检查下uuid，没有的话，需要补齐
+		var uuid = this.editor.focusedDom.getAttribute("uuid");
+		//console.log( uuid );
+		if( uuid == null || uuid == ""  ){
+			uuid = UUID.prototype.createUUID();
+			this.editor.focusedDom.setAttribute("uuid", "label-"+uuid);
+		}
+	}
+	//console.log( labelText );
+	$("#labelInput").val(labelText);
+};
+
+
+label.exitDialog = function(){
+	$.ControlConfigUtil.exitDialog(this.editor);
+	$("#labelInput").val("");
+}
+
+label.fillCkeditor = function(){
+	console.log("fillCkeditor===========");
+	var labelText = $("#labelInput").val();
+	if( labelText == null || $.trim( labelText) == "" ){
+		alert( dymsg.labelNotEmpty );
+		return false;
+	}
+	console.log(this.editor.focusedDom );
+	console.log( labelText );
+	//初始化过就只需要变更值就可以
+	if( this.editor.focusedDom  ){
+		console.log( $(this.editor.focusedDom).find("label").size() );
+		//$(this.editor.focusedDom).find("label").first().html(labelText);
+		this.editor.focusedDom.setHtml( labelText );
+	}else{
+		var uuid = 'label-' + UUID.prototype.createUUID();
+		var html = "<label class='label' uuid='"+ uuid +"' focusable='true'>" + labelText  + "</label>";
+		//注意，这个element不是dom的element,是ckeditor的element
+		var element = CKEDITOR.dom.element.createFromHtml( html );
+		this.editor.insertElement( element );
+		var parent = element.getParent();
+		console.log( parent );
+		if( parent.getName() == "label" || parent.getName() == "Label" ){
+			//标签嵌套了， 需要移出去
+			element.insertAfter( parent );
+		}
+		
+	}
+}
+
+
+
+
+</script>

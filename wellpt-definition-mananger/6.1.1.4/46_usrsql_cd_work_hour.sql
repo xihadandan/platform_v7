@@ -1,0 +1,1 @@
+delete from cd_work_hour where type='Workday' and code not in ('TUE','MON','FRI','THU','WED','SAT','SUN') or code is null

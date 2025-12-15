@@ -1,0 +1,95 @@
+
+@import '../../variables/variables.less';
+@import '../../mixin/mixin.less';
+
+.bootbox{
+    .modal-dialog.modal-lg,.modal-dialog.modal-md,.modal-dialog.modal-sm{
+        .modal-header{
+            padding: 5px 15px;
+        }
+    }
+    .modal-warning,.modal-error,.modal-success,.modal-info,.modal-confirm{
+        width:450px;
+        .message-content{
+            display: table-cell;
+            width: 100%;
+            height:110px;
+            vertical-align: middle;
+            text-align: left;
+        }
+        .modal-body{
+			min-height:140px;
+			.col-xs-3{
+				text-align: center;
+			}
+			i{
+				line-height: 110px;
+				font-size: 60px;
+				vertical-align: middle;
+			}
+		}
+    }
+    .modal-warning{
+        .setModalsvgColor(@warning);
+    }
+    .modal-error{
+        .setModalsvgColor(@danger);
+    }
+    .modal-success{
+        .setModalsvgColor(@success);
+    }
+    .modal-info{
+        .setModalsvgColor(@info);
+    }
+
+    .modal-dialog{
+        .modal-header{
+            padding:0 15px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            .modal-title {
+                line-height: 33px;
+                padding:0;
+                font-size: 16px;
+            }
+            .close{
+                text-shadow: none;
+                opacity: 1;
+            }
+            .close:hover{
+                color: rgb(185, 8, 8);
+            }
+        }
+        .modal-body{
+            padding:15px;
+        }
+        .modal-footer{
+            button{
+                width: auto;
+            }
+            border-top:1px solid #ddd;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            padding:5px 15px;
+        }
+    }
+}
+.modal-open {
+	overflow: hidden;
+}
+
+.modal.ui-front {
+	z-index: 1050;
+}
+
+.modal-bottom-right {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	z-index: 1050;
+	display: none;
+	overflow: hidden;
+	-webkit-overflow-scrolling: touch;
+	outline: 0;
+}
+//弹出框bootbox结束

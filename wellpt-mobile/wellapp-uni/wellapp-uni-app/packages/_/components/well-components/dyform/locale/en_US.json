@@ -1,0 +1,12 @@
+{
+  "widgetDyform": {
+    "validateFormData": "Form Data Validation",
+    "validateTip": "Validation Tip",
+    "validateFailed": "Data Validation Failed",
+    "required": "Required",
+    "formatError": "Data Format Error",
+    "existData": "Data Already Exists",
+    "leastNumber": "Please select at least {min} items",
+    "mostNumber": "You can select up to {max} items"
+  }
+}

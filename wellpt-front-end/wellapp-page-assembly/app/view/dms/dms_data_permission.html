@@ -1,0 +1,163 @@
+<div action="" class="form-widget" style="margin-top: 15px;">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#permission-tabs-1" aria-controls="permission-tabs-1" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+        </li>
+        <li role="presentation">
+            <a href="#permission-tabs-2" aria-controls="permission-tabs-2" role="tab" data-toggle="tab" aria-expanded="true">数据规则</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active clearfix" id="permission-tabs-1">
+            <form action="" id="dms_data_permission_definition_form">
+                <input type="hidden" id="uuid" name="uuid" />
+                <input type="hidden" id="recVer" name="recVer" />
+                <div class="well-form form-horizontal">
+                    <div class="form-group">
+                        <label for="name" class="well-form-label control-label required">名称</label>
+                        <div class="well-form-control">
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="code" class="well-form-label control-label required">ID</label>
+                        <div class="well-form-control">
+                            <input type="text" class="form-control" id="id" name="id">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="code" class="well-form-label control-label">编号</label>
+                        <div class="well-form-control">
+                            <input type="text" class="form-control" id="code" name="code">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="type" class="well-form-label control-label required">类型</label>
+                        <div class="well-form-control">
+                            <input type="text" id="typeName" name="typeName" class="form-control">
+                            <input type="hidden" id="type" name="type" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group data-type data-type-1" style="display: none;">
+                        <label for="tableName" class="well-form-label control-label required">数据库表</label>
+                        <div class="well-form-control">
+                            <input type="text" class="form-control" id="tableName" name="tableName">
+                            <input type="hidden" class="form-control" id="tableId" name="tableId">
+                        </div>
+                    </div>
+                    <div class="form-group data-type data-type-2" style="display: none;">
+                        <label for="viewName" class="well-form-label control-label required">数据库视图</label>
+                        <div class="well-form-control">
+                            <input type="text" class="form-control" id="viewName" name="viewName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="remark" class="well-form-label control-label">备注</label>
+                        <div class="well-form-control">
+                            <textarea type="text" class="form-control" id="remark" name="remark"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div role="tabpanel" class="tab-pane clearfix" id="permission-tabs-2" style="margin-top: 15px;">
+            <div class="row">
+                <button type="button" class="well-btn w-btn-primary" id="btn_rule_group_add">新增分组</button>
+                <button type="button" class="well-btn w-btn-primary" id="btn_rule_def_add">新增规则</button>
+                <button type="button" class="well-btn w-btn-danger" id="btn_rule_delete">删除</button>
+            </div>
+            <div>
+                <div class="col-xs-5">
+                    <ul id="rule_tree" class="ztree"></ul>
+                </div>
+                <div class="col-xs-7 tab-rule tab-rule-group" style="display: none">
+                    <form class="form-widget form-bordered" id="dms_data_permission_rule_group_form" >
+                        <input type="hidden" id="groupId" name="groupId" />
+                        <h3 class="title">定义分组</h3>
+                        <div class="well-form form-horizontal">
+                            <div class="form-group">
+                                <label for="groupName" class="well-form-label control-label required">分组名称</label>
+                                <div class="well-form-control">
+                                    <input type="text" class="form-control" id="groupName" name="groupName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="parentGroupId" class="well-form-label control-label">上级分组</label>
+                                <div class="well-form-control">
+                                    <input type="text" id="parentGroupId" name="parentGroupId" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row-group-connector" style="display: none;">
+                                <label for="groupConnector" class="well-form-label control-label">连接符</label>
+                                <div class="well-form-control">
+                                    <input type="hidden" id="groupConnector" name="groupConnector">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <button id="btn_rule_group_ok" type="button" class="well-btn w-btn-primary">确定</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-xs-7 tab-rule tab-rule-definition" style="display: none">
+                    <form class="form-widget form-bordered" id="dms_data_permission_rule_def_form" >
+                        <input type="hidden" id="ruleId" name="ruleId" />
+                        <h3 class="title">定义规则</h3>
+                        <div class="well-form form-horizontal">
+                            <div class="form-group">
+                                <label for="ruleName" class="well-form-label control-label required">规则名称</label>
+                                <div class="well-form-control">
+                                    <input type="text" class="form-control" id="ruleName" name="ruleName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ruleType" class="well-form-label control-label required">类型</label>
+                                <div class="well-form-control">
+                                    <input id="ruleType" name="ruleType" type="text"/>
+                                </div>
+                            </div>
+                            <div class="form-group rule-type rule-type-1">
+                                <label for="roleId" class="well-form-label control-label required">角色</label>
+                                <div class="well-form-control">
+                                    <input type="text" class="form-control" id="roleId" name="roleId">
+                                </div>
+                            </div>
+                            <div class="form-group rule-type rule-type-2">
+                                <label for="fieldName" class="well-form-label control-label required">字段名</label>
+                                <div class="well-form-control">
+                                    <input type="text" class="form-control" id="fieldName" name="fieldName">
+                                </div>
+                            </div>
+                            <div class="form-group rule-type rule-type-2">
+                                <label for="operator" class="well-form-label control-label required">比较符</label>
+                                <div class="well-form-control">
+                                    <input id="operator" name="operator" type="text"/>
+                                </div>
+                            </div>
+                            <div class="form-group rule-type rule-type-2">
+                                <label for="fieldValue" class="well-form-label control-label required">比较值</label>
+                                <div class="well-form-control">
+                                    <input type="text" class="form-control" id="fieldValue" name="fieldValue">
+                                </div>
+                            </div>
+                            <div class="form-group row-rule-connector">
+                                <label for="ruleConnector" class="well-form-label control-label">连接符</label>
+                                <div class="well-form-control">
+                                    <input id="ruleConnector" name="ruleConnector" type="text"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <button id="btn_rule_def_ok" type="button" class="well-btn w-btn-primary">确定</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:30px;">
+            <div class="col-sm-12 text-center">
+                <button type="button" class="well-btn w-btn-primary" id="permission_btn_save">保存</button>
+            </div>
+        </div>
+    </div>
+</div>

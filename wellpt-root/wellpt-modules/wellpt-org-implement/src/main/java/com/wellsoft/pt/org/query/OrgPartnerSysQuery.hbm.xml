@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="orgPartnerSysApplyListKeywordQuery">
+        <![CDATA[
+        SELECT A.*,C.NAME AS CATEGORY_NAME
+		from ORG_PARTNER_SYS_APPLY A
+		 <if isNotBlank( categoryUuid )>
+		 ,  ORG_PARTNER_SYS_CATEGORY C
+		 </if>
+		 <if isBlank( categoryUuid )>
+		 LEFT JOIN ORG_PARTNER_SYS_CATEGORY C ON C.UUID=A.CATEGORY_UUID
+		 </if>
+		 where 1=1
+		 <if isNotBlank( categoryUuid )>
+		  and C.UUID = :categoryUuid AND A.CATEGORY_UUID = C.UUID
+		 </if>
+		 <if isNotBlank( system )>
+		    and A.SYSTEM = :system
+		 </if>
+		 <if isNotBlank( keyword )>
+		   and (
+               A.REQ_NAME like '%' || :keyword || '%'
+               A.RES_NAME like '%' || :keyword || '%'
+               or A.CODE like '%' || :keyword || '%'
+ 		   )
+		 </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+		 <if isNotBlank( orderBy )>
+			 ${orderBy}
+		 </if>
+	]]>
+    </sql-query>
+
+
+    <sql-query name="orgPartnerSysOrgListKeywordQuery">
+        <![CDATA[
+        SELECT A.*
+		from ORG_PARTNER_SYS_ORG A where 1=1
+		 <if isNotBlank( system )>
+		    and A.SYSTEM = :system
+		 </if>
+		 <if isNotBlank( keyword )>
+		   and (
+               A.NAME like '%' || :keyword || '%'
+               A.REMARK like '%' || :keyword || '%'
+               or A.ID like '%' || :keyword || '%'
+ 		   )
+		 </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+		 <if isNotBlank( orderBy )>
+			 ${orderBy}
+		 </if>
+	]]>
+    </sql-query>
+
+
+    <sql-query name="orgPartnerSysCategoryListKeywordQuery">
+        <![CDATA[
+        SELECT A.*
+		from ORG_PARTNER_SYS_CATEGORY A where 1=1
+		 <if isNotBlank( system )>
+		    and A.SYSTEM = :system
+		 </if>
+		 <if isNotBlank( keyword )>
+		   and (
+               A.NAME like '%' || :keyword || '%'
+               A.REMARK like '%' || :keyword || '%'
+               or A.CODE like '%' || :keyword || '%'
+ 		   )
+		 </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+		 <if isNotBlank( orderBy )>
+			 ${orderBy}
+		 </if>
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

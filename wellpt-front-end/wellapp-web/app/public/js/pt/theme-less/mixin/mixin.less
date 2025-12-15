@@ -1,0 +1,117 @@
+/*text-overflow function start*/
+
+.text-overflow() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100px;
+  }
+
+/*text-overflow function end*/
+
+/*background function start*/
+
+.background(@bgcolor,@fontcolor){
+    background:@bgcolor;
+    color: @fontcolor; 
+}
+
+/*background function end*/
+
+/*font function start */
+
+.fontSize(@size,@weight,@color){
+    font-size: unit(@size,px);
+    font-weight: @weight;
+    color: @color;
+}
+
+/*font function end*/
+
+/*navbar function start*/
+.setNavbarColor(@color){
+    background:@color;
+    .nav{
+        >li{
+            >a{
+                color:@white;
+            }
+
+            &.active>a,&.active>a:hover,&.active>a:focus,&.active>a:visited{
+                background:darken(@color,20%);
+            }
+        }
+        >li:hover>a,>li:focus>a,>li>a:focus,li>a:hover{
+            background:darken(@color,20%);
+        }
+    }
+}
+/*navbar function end*/
+
+/*set modal svg-font color*/
+
+.setModalsvgColor(@color){
+    .modal-body i{
+		color: @color;
+	}
+}
+
+/*set modal svg-font color*/
+
+
+//Function part
+/*border-radius function start*/
+
+.border-radius(@x) when (isnumber(@x)){
+    border-radius:unit(@x,px);
+}
+.border-radius-top(@x) when (isnumber(@x)){
+    border-top-left-radius: unit(@x,px);
+    border-top-right-radius: unit(@x,px);
+}
+.border-radius-bottom(@x) when (isnumber(@x)){
+    border-bottom-left-radius: unit(@x,px);
+    border-bottom-right-radius: unit(@x,px);
+}
+.border-radius-left(@x) when (isnumber(@x)){
+    border-bottom-left-radius: unit(@x,px);
+    border-top-left-radius: unit(@x,px);
+}
+.border-radius-right(@x) when (isnumber(@x)){
+    border-top-right-radius: unit(@x,px);
+    border-bottom-right-radius: unit(@x,px);
+}
+
+/*border-radius function end*/
+
+/*padding function start*/
+
+.padding(@x) when (isnumber(@x)){
+    padding:unit(@x,px);
+}
+
+.padding(@x,@y) when (isnumber(@x,@y)) and (default()){
+    padding:unit(@x,px) unit(@y,px);
+}
+
+.padding(@a,@b,@c,@d) when (isnumber(@a,@b,@c,@d)) and (default()){
+    padding: unit(@a,px) unit(@b,px) unit(@c,px) unit(@d,px);
+}
+
+/*padding function end*/
+
+/*margin function start*/
+
+.margin(@x) when (isnumber(@x)){
+    margin:unit(@x,px);
+}
+
+.margin(@x,@y) when (isnumber(@x,@y)) and (default()){
+    margin:unit(@x,px) unit(@y,px);
+}
+
+.margin(@a,@b,@c,@d) when (isnumber(@a,@b,@c,@d)) and (default()){
+    margin: unit(@a,px) unit(@b,px) unit(@c,px) unit(@d,px);
+}
+
+/*margin function end*/

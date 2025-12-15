@@ -1,0 +1,47 @@
+{
+  "WidgetSubform": {
+    "subform": "Subform",
+    "selectAll": "Select all",
+    "noData": "No data",
+    "notFoundData": "No data found",
+    "modalEditButtonTitle": "Edit data through pop ups",
+    "uploadFilePlaceMessage": "Click or drag the file to upload to this area",
+    "downloadImportTemplateFilePrefixText": "Download Import Template",
+    "uploadDoneImportFilePrefixText": "uploaded",
+    "successImportFileResultPrefixText": "Successfully imported",
+    "selectImportColumnModalTitle": "Select Export Column",
+    "defaultTabPaneTitle": "Tab",
+    "column": {
+      "operation": "Operation",
+      "serialNumber": "No."
+    },
+    "search": {
+      "confirmButtonTitle": "search",
+      "resetButtonTitle": "reset",
+      "collapseButtonText": "collapse",
+      "searchMoreText": "more"
+    },
+    "button": {
+      "addRow": "Add",
+      "delRow": "Delete",
+      "importRow": "Import",
+      "exportRow": "Export",
+      "editRow": "Edit",
+      "copyRow": "Copy Row",
+      "insertRow": "Insert Row",
+      "appendRow": "Append Row",
+      "moveUpRow": "Move Up",
+      "moveDownRow": "Move Down",
+      "save": "Save",
+      "new": "New",
+      "view": "View Details"
+    },
+    "message": {
+      "unDeleteDefaultRow": "Row {indexs} is a default undeletable data item",
+      "formatXls": "Only xls or xlsx file formats are allowed",
+      "nodataExport": "No data available for export",
+      "unSelectedExport": "No data selected for export",
+      "unSelectedColumnExport": "No columns selected for export"
+    }
+  }
+}

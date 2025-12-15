@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="appDyformManagerQuery">
+        <![CDATA[
+        select t1.uuid                 as uuid,
+		       t1.create_time          as create_time,
+		       t1.creator              as creator,
+		       t1.modifier             as modifier,
+		       t1.modify_time          as modify_time,
+		       t1.rec_ver              as rec_ver,
+		       t1.name                 as name,
+		       t1.table_name           as table_name,
+		       t1.id                   as id,
+		       t1.code                 as code,
+		       t1.version              as version,
+		       t1.custom_js_module     as custom_js_module,
+		       t1.form_type            as form_type,
+		       t1.system_unit_id       as system_unit_id,
+		       t1.module_id            as module_id,
+		       t2.uuid                 as app_pi_uuid,
+		       t2.parent_uuid          as parent_app_pi_uuid,
+		       t2.app_product_uuid     as app_product_uuid,
+		       t2.app_system_uuid      as app_system_uuid,
+		       t7.max_version_form_uuid as max_version_form_uuid
+		  from DYFORM_FORM_DEFINITION t1
+           left join (
+              select t5.uuid as max_version_form_uuid,t5.id,t5.version  from DYFORM_FORM_DEFINITION t5,(select max(t4.version) as version , t4.id from DYFORM_FORM_DEFINITION t4 group by t4.id ) t6
+              where t5.id=t6.id and t5.version=t6.version
+          ) t7 on t1.id=t7.id and t1.version<>t7.version
+		  left join app_product_integration t2
+		  on t1.uuid = t2.data_uuid
+            and t2.data_type = 4
+		 where  1 = 1
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+
+    ]]>
+    </sql-query>
+
+    <!--模块表单查询-->
+    <sql-query name="appModuleDyformManagerQuery">
+        <![CDATA[
+        select t1.* from (
+            select t1.uuid                  as uuid,
+                   t1.create_time           as create_time,
+                   t1.creator               as creator,
+                   t1.modifier              as modifier,
+                   t1.modify_time           as modify_time,
+                   t1.rec_ver               as rec_ver,
+                   t1.name                  as name,
+                   t1.table_name            as table_name,
+                   t1.id                    as id,
+                   t1.code                  as code,
+                   t1.version               as version,
+                   t1.custom_js_module      as custom_js_module,
+                   t1.form_type             as form_type,
+                   t1.system_unit_id        as system_unit_id,
+                   t1.module_id             as module_id,
+                   t1.category_uuid         as category_uuid,
+                   t8.name                  as category_name,
+                   t7.max_version_form_uuid as max_version_form_uuid,
+                   0                        as is_ref
+              from DYFORM_FORM_DEFINITION t1
+              left join DYFORM_CATEGORY t8 on t1.category_uuid = t8.uuid
+              left join (select t5.uuid as max_version_form_uuid, t5.id, t5.version
+                           from DYFORM_FORM_DEFINITION t5,
+                                (select max(t4.version) as version, t4.id
+                                   from DYFORM_FORM_DEFINITION t4
+                                  group by t4.id) t6
+                          where t5.id = t6.id
+                            and t5.version = t6.version) t7
+                on t1.id = t7.id
+                and t1.version <> t7.version
+             where 1=1
+                <if moduleId??>
+                    and t1.module_id=:moduleId
+                </if>
+                <if systemUnitIds??>
+                    and (t1.system_unit_id in (:systemUnitIds) or t1.system_unit_id is null)
+                </if>
+                <if categoryUuids?? && (categoryUuids?size > 0)>
+                    and t1.category_uuid in (:categoryUuids)
+                </if>
+                <if systemIds?? && (systemIds?size > 0) && isNotBlank(tenantId)>
+                    and (
+                        exists (
+                            select pm.module_id from app_prod_module pm
+                                left join app_system_info si on pm.prod_version_uuid = si.prod_version_uuid
+                                where t1.module_id = pm.module_id and si.system in (:systemIds) and si.tenant = :tenantId
+                        )
+                        or t1.system in (:systemIds)
+                    )
+                <elseif systemIds?? && (systemIds?size > 0)>
+                    and t1.system in (:systemIds)
+                <elseif isNotBlank(tenantId)>
+                    and t1.tenant = :tenantId
+                </if>
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+
+            <if moduleId ??>
+                union
+
+                select t1.uuid as uuid,
+                       t1.create_time as create_time,
+                       t1.creator as creator,
+                       t1.modifier as modifier,
+                       t1.modify_time as modify_time,
+                       t1.rec_ver as rec_ver,
+                       t1.name as name,
+                       t1.table_name as table_name,
+                       t1.id as id,
+                       t1.code as code,
+                       t1.version as version,
+                       t1.custom_js_module as custom_js_module,
+                       t1.form_type as form_type,
+                       t1.system_unit_id as system_unit_id,
+                       t1.module_id as module_id,
+                       t1.category_uuid         as category_uuid,
+                       t8.name                  as category_name,
+                       '' as max_version_form_uuid,
+                       1 as is_ref
+                  from DYFORM_FORM_DEFINITION t1, DYFORM_FORM_DEFINITION_REF rr
+                  left join DYFORM_CATEGORY t8 on t1.category_uuid = t8.uuid
+                 where rr.ref_uuid = t1.uuid
+                    <if moduleId??>
+                        and rr.module_id=:moduleId
+                        and t1.module_id<>:moduleId
+                    </if>
+                    <if categoryUuids?? && (categoryUuids?size > 0)>
+                        and t1.category_uuid in (:categoryUuids)
+                      </if>
+                    <if isNotBlank(whereSql)>
+                        and ${whereSql}
+                    </if>
+            </if>
+        ) t1
+        <if isNotBlank(orderBy)>
+            ${orderBy}
+        </if>
+        ]]>
+    </sql-query>
+</hibernate-mapping>

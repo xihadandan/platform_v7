@@ -1,0 +1,29 @@
+/** 面包屑 */
+
+// - 面包屑导航样式主要继承自 `bootstrap.breadcrumbs.less`
+
+.breadcrumb {
+  position: relative;
+  border-radius: 0;
+  line-height: @breadcrumb-height;
+  padding: 0 0 0 (@font-size-xl + @margin-lg);
+  margin: 0 -15px @margin-lg;
+
+  border-bottom: @border-default;
+
+  // 面包屑导航前面图标
+  &:before {
+    .absolute(false false false @margin-md);
+    .content-icon(@breadcrumb-icon-font);
+
+    display: block;
+    font-size: @breadcrumb-icon-size;
+    color: @breadcrumb-icon-color;
+  }
+
+  // 面包屑导航分隔符
+  > li + li:before {
+    content: '>';
+    color: @breadcrumb-separator-color;
+  }
+}

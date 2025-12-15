@@ -1,0 +1,23 @@
+.widget-dyform {
+  --w-dyform-textonly-text-color: var(--w-text-color-dark);
+  --w-dyform-textonly-text-size: var(--w-font-size-base);
+  --w-dyform-textonly-text-weight: var(--w-font-weight-regular);
+
+  --w-dyform-label-text-color: var(--w-text-color-base);
+  --w-dyform-label-text-size: var(--w-font-size-base);
+  --w-dyform-label-text-weight: var(--w-font-weight-regular);
+
+  .textonly {
+    // 只读时文本样式
+    color: var(--w-dyform-textonly-text-color);
+    font-size: var(--w-dyform-textonly-text-size);
+    font-weight: var(--w-dyform-textonly-text-weight);
+  }
+
+  .label-col,
+  .ant-form-item-label>label {
+    color: var(--w-dyform-label-text-color);
+    font-size: var(--w-dyform-label-text-size);
+    font-weight: var(--w-dyform-label-text-weight);
+  }
+}

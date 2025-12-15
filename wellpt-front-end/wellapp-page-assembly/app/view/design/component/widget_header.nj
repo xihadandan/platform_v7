@@ -1,0 +1,103 @@
+
+<div id="widget_header">
+	<form id="widget_header_form" class="form-horizontal">
+		<div id="widget_header_tabs">
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#widget_header_tabs_base_info">基础信息</a></li>
+				<li role="presentation"><a href="#widget_header_tabs_main_nav_info">一级导航</a></li>
+				<li role="presentation"><a href="#widget_header_tabs_sub_nav_info">二级导航</a></li>
+				<li role="presentation"><a href="#widget_header_tabs_tool_bar_info">导航工具栏</a></li>
+			</ul>
+			<div class="tab-content" style="height: 500px">
+				<div role="tabpanel" class="tab-pane active" id="widget_header_tabs_base_info">
+					<div class="form-group">
+						<label for="logoFilePath" class="col-sm-3 control-label">LOGO</label>
+						<div class="col-sm-9">
+							<input type="hidden" class="form-control w-configurer-option" name="logoFilePath" id="logoFilePath"> <img
+								src="" alt="" class="img-responsive img-thumbnail" id="logoFileImage"
+								style="max-width: 400px; max-height: 50px; background-color: #ddd;">
+							<button type="button" class="btn btn-danger" id="logoFileImageRemoveBtn">删除</button>
+							<button type="button" class="btn btn-primary" id="logoFileImageSelectBtn">选择图片</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="systemTitle" class="col-sm-3 control-label">标题</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control w-configurer-option" name="systemTitle" id="systemTitle">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="mainNavShowCount" class="col-sm-3 control-label">一级导航显示数</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control w-configurer-option" name="mainNavShowCount" id="mainNavShowCount">
+							除【主题设置】、【个人信息】、【我的消息】外
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="subNavAndToolBarHidden" class="col-sm-3 control-label">隐藏二级导航及工具栏</label>
+						<div class="col-sm-9 checkbox">
+							<label> <input type="checkbox" class="w-configurer-option" value="true" name="subNavAndToolBarHidden"
+								id="subNavAndToolBarHidden" />
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="backgroudColor" class="col-sm-3 control-label">背景色</label>
+						<div class="col-sm-9">
+							<select class="form-control w-configurer-option" name="backgroudColor" id="backgroudColor"></select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="shortcut" class="col-sm-3 control-label">显示快捷操作</label>
+						<div class="col-sm-9 checkbox">
+							<label> <input type="checkbox" class="w-configurer-option" name="shortcut" id="shortcut" value="1"></input></label>
+						</div>
+					</div>					
+					<div class="form-group">
+						<label for="jsModule" class="col-sm-3 control-label">JS模块</label>
+						<div class="col-sm-9">
+							<input type="hidden" class="form-control w-configurer-option" name="jsModuleName" id="jsModuleName" /> <input
+								type="text" class="form-control w-configurer-option" name="jsModule" id="jsModule" />
+						</div>
+					</div>
+					{% include "./widget_base_info.nj" %}
+				</div>
+				<div role="tabpanel" class="tab-pane" id="widget_header_tabs_main_nav_info">
+					<div class="form-group">
+						<label for="mainNav-menuItems" class="col-sm-0 control-label"></label>
+						<div class="col-sm-12">
+							<div class="mainNav-menuItems"></div>
+						</div>
+						<div class="mark">备注：表格中默认三项为默认加载项，不可删除，不需要可以隐藏，不要建与之相同的项</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="widget_header_tabs_sub_nav_info">
+					<div class="form-group">
+						<label for="subNav-menuItems" class="col-sm-0 control-label"></label>
+						<div class="col-sm-12">
+							<div class="subNav-menuItems"></div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="navStyle" class="col-sm-2 control-label">导航风格</label>
+						<div class="col-sm-10">
+							<select class="form-control w-configurer-option" name="navStyle" id="navStyle">
+								<option value=""></option>
+								<option value="tabs">标签风格</option>
+								<option value="pills">胶囊风格</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="widget_header_tabs_tool_bar_info">
+					<div class="form-group">
+						<label for="toolBar-menuItems" class="col-sm-0 control-label"></label>
+						<div class="col-sm-12">
+							<div class="toolBar-menuItems"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

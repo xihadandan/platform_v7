@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="appPageDefinitionManagerQuery">
+        <![CDATA[
+        select *
+			  from (select t1.uuid              as uuid,
+			               t1.create_time       as create_time,
+			               t1.creator           as creator,
+			               t1.modifier          as modifier,
+			               t1.modify_time       as modify_time,
+			               t1.rec_ver           as rec_ver,
+			               t1.name              as name,
+			               t1.id                as id,
+			               t1.version           as version,
+			               t1.code              as code,
+			               t1.wtype             as wtype,
+			               t1.title             as title,
+			               t1.shared            as shared,
+			               t1.is_default        as is_default,
+			               t1.remark            as remark,
+			               t1.system_unit_id    as system_unit_id,
+			               null                 as max_version_page_uuid,
+			               t2.uuid              as app_pi_uuid,
+			               0                    as is_ref,
+			               t1.is_pc         as is_pc
+			          from app_page_definition t1
+			         inner join app_product_integration t2
+			            on t1.app_pi_uuid = t2.uuid
+			         where 1 = 1 and t1.user_id is null
+			         <if isNotBlank(appPiUuid)>
+			            and t2.uuid = :appPiUuid
+			          </if>
+			        union all
+			        select t1.uuid              as uuid,
+			               t3.create_time       as create_time,
+			               t3.creator           as creator,
+			               t3.modifier          as modifier,
+			               t3.modify_time       as modify_time,
+			               t1.rec_ver           as rec_ver,
+			               t1.name              as name,
+			               t1.id                as id,
+			               t1.version           as version,
+			               t1.code              as code,
+			               t1.wtype             as wtype,
+			               t1.title             as title,
+			               t1.shared            as shared,
+			               t1.is_default        as is_default,
+			               t1.remark            as remark,
+			               t1.system_unit_id    as system_unit_id,
+			               null                 as max_version_page_uuid,
+			               t3.app_pi_uuid       as app_pi_uuid,
+			               1                    as is_ref,
+			               t1.is_pc         as is_pc
+			          from app_page_definition t1
+			         inner join app_page_definition_ref t3
+			            on t3.ref_uuid = t1.uuid
+			         where 1 = 1 and t1.user_id is null
+				         <if isNotBlank(appPiUuid)>
+	                        and t3.app_pi_uuid = :appPiUuid
+	                     </if>
+			         ) t
+		 where 1 = 1
+		  <if isNotBlank(keyword)>
+            and (t.name like '%${keyword}%'
+                or t.id like '%${keyword}%'
+                or t.code like '%${keyword}%' )
+          </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+		  <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+          <if isBlank(orderBy)>
+            order by t.id, t.version desc, t.code
+          </if>
+    ]]>
+    </sql-query>
+
+
+    <sql-query name="appUserSystemPageDefinitionQuery">
+        <![CDATA[
+
+select *
+  from (select *
+          from (select t1.uuid           as uuid,
+                       t1.create_time    as create_time,
+                       t1.creator        as creator,
+                       t1.modifier       as modifier,
+                       t1.modify_time    as modify_time,
+                       t1.rec_ver        as rec_ver,
+                       t1.name           as name,
+                       t1.id             as id,
+                       t1.version        as version,
+                       t1.code           as code,
+                       t1.wtype          as wtype,
+                       t1.title          as title,
+                       t1.shared         as shared,
+                       t1.is_default     as is_default,
+                       t1.remark         as remark,
+                       t1.system_unit_id as system_unit_id,
+                       null              as max_version_page_uuid,
+                       t2.uuid           as app_pi_uuid,
+                       t2.app_system_uuid as app_system_uuid,
+                       0                 as is_ref,
+                       ap.create_time    as prod_create_time,
+                       t2.sort_order,
+                       t1.user_id,
+                       ap.name           as prod_name,
+                       t2.data_name      as sys_name
+                  from app_page_definition t1
+                 inner join app_product_integration t2
+                    on t1.app_pi_uuid = t2.uuid
+                 inner join app_product ap
+                    on ap.uuid = t2.app_product_uuid
+                 inner join app_system asys
+                    on asys.uuid = t2.data_uuid
+                   and t2.data_type = '1'
+                 where  (t1.user_id is null or t1.user_id = :userId)
+                   and asys.system_unit_id = :systemUnitId
+                union all
+                select t1.uuid           as uuid,
+                       t3.create_time    as create_time,
+                       t3.creator        as creator,
+                       t3.modifier       as modifier,
+                       t3.modify_time    as modify_time,
+                       t1.rec_ver        as rec_ver,
+                       t1.name           as name,
+                       t1.id             as id,
+                       t1.version        as version,
+                       t1.code           as code,
+                       t1.wtype          as wtype,
+                       t1.title          as title,
+                       t1.shared         as shared,
+                       t1.is_default     as is_default,
+                       t1.remark         as remark,
+                       t1.system_unit_id as system_unit_id,
+                       null              as max_version_page_uuid,
+                       t3.app_pi_uuid    as app_pi_uuid,
+                       t2.app_system_uuid as app_system_uuid,
+                       1                 as is_ref,
+                       ap3.create_time   as prod_create_time,
+                       t3ap.sort_order   as sort_order,
+                       t1.user_id,
+                       ap3.name          as prod_name,
+                       t3ap.data_name    as sys_name
+                  from app_page_definition t1
+                 inner join app_product_integration t2
+                    on t1.app_pi_uuid = t2.uuid
+                 inner join app_page_definition_ref t3
+                    on t3.ref_uuid = t1.uuid
+                 inner join app_product_integration t3ap
+                    on t3ap.uuid=t3.app_pi_uuid
+                 inner join app_product ap3
+                    on ap3.uuid=t3ap.app_product_uuid
+                 inner join app_product ap
+                    on ap.uuid = t2.app_product_uuid
+                 inner join app_system asys
+                    on asys.uuid = t2.data_uuid
+                   and t2.data_type = '1'
+                 where t3.system_unit_id = :systemUnitId) t
+         where 1 = 1
+         order by t.prod_create_time asc,
+                  t.sort_order       asc,
+                  t.user_id          asc,
+                  t.is_default       desc,
+                  t.version          desc)
+
+         ]]>
+
+
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,112 @@
+/* 文档交换表格汇总行 */
+.table-summary-row {
+  padding: 0 @padding-sm;
+  line-height: 45px;
+  background: @background-primary-light;
+  border: @border-default;
+
+  .doc-table-toggle-btn {
+    font-size: @font-size-sm;
+    cursor: pointer;
+    color: @text-color-light;
+    display: inline-block;
+    transition: @animation-duration-slow;
+
+    &.closed {
+      transform: rotate(-90deg);
+    }
+
+    &:hover {
+      color: @text-color-primary;
+    }
+  }
+
+  .title {
+    color: @text-color;
+    font-weight: bold;
+    margin-left: @margin-2xs;
+  }
+
+  .subtitle {
+    margin-left: 4px;
+    color: @text-color-light;
+  }
+
+  .summary {
+    margin-left: 4px;
+    color: @text-color-light;
+
+    /* 签收情况 */
+    .no-sign .count {
+      color: @warning-color;
+    }
+
+    .signed .count {
+      color: @text-color-light;
+    }
+
+    .wait-sign .count {
+      color: @text-color-primary;
+    }
+
+    .returned .count {
+      color: @warning-color;
+    }
+
+    /* 反馈情况 */
+    .not-feedback .count {
+      color: @text-color-primary;
+    }
+
+    .already-feedback .count {
+      color: @text-color;
+    }
+  }
+
+  + .bootstrap-table > .fixed-table-container {
+    border-top: none;
+    border-top-left-radius: unset;
+    border-top-right-radius: unset;
+  }
+}
+
+/* 反馈查看详情 */
+.doc-detail-dialog-header {
+  background: @background-primary-light;
+  border: @border-default;
+  border-bottom: none;
+  line-height: 40px;
+  font-size: @font-size-base;
+  padding-left: 21px;
+
+  .iconfont {
+    color: @text-color-light;
+  }
+}
+
+.doc-detail-dialog-table {
+  border: @border-default;
+  width: 100%;
+
+  tr {
+    line-height: 42px;
+
+    td {
+      border: @border-default;
+      line-height: 42px;
+      padding-left: 21px;
+
+      &:first-child {
+        background: @background-primary-light;
+      }
+    }
+  }
+}
+
+.text-light {
+  color: @text-color-light;
+}
+
+.text-red {
+  color: red;
+}

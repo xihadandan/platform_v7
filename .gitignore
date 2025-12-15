@@ -1,0 +1,50 @@
+ndows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# java class file
+*.class
+
+# Package Files #
+*.war
+*.ear
+/target
+/.settings
+/.classpath
+/.project
+/.idea
+
+# ignore Maven generated target folders
+target
+out
+pom.xml
+*.tmp
+
+# ignore eclipse files
+.project
+.classpath
+.settings
+.factorypath
+.metadata
+.idea
+*.iml
+
+# Front-end
+*.yml
+*.log
+logs/
+package-lock.json
+yarn.lock
+github/
+run/
+node_modules/
+typings/
+config.local.js
+
+# ignore log files
+/.svn
+/.history
+*/.history/*

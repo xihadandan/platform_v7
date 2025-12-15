@@ -1,0 +1,1 @@
+alter trigger ${tableName}_TIG disable

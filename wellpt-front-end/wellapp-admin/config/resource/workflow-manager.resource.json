@@ -1,0 +1,79 @@
+{
+  "js": {
+    "AppWorkflowFormatListViewWidgetDevelopment": {
+      "path": "/workflow-mgr/AppWorkflowFormatListViewWidgetDevelopment",
+      "name": "平台管理_流程管理_信息格式_列表组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment", "iexportData_V61"]
+    },
+    "AppWorkflowCategorySetViewWidgetDevelopment": {
+      "path": "/workflow-mgr/AppWorkflowCategorySetViewWidgetDevelopment",
+      "name": "平台管理_流程管理_流程分类_编辑组件二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "jquery-validate", "global", "system-admin"]
+    },
+    "AppWorkflowDefineListViewWidgetDevelopment": {
+      "path": "/workflow-mgr/AppWorkflowDefineListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_流程定义列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppWorkflowRecycleStationListViewWidgetDevelopment": {
+      "path": "/workflow-mgr/AppWorkflowRecycleStationListViewWidgetDevelopment",
+      "name": "平台管理_流程管理_流程定义_回收站二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppWorkflowCategoryListViewWidgetDevelopment": {
+      "path": "/workflow-mgr/AppWorkflowCategoryListViewWidgetDevelopment",
+      "name": "平台管理_流程管理_流程分类_列表组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment", "iexportData_V61"]
+    },
+    "AppOpinionClassifyListDevelopment": {
+      "path": "/workflow-mgr/AppOpinionClassifyListDevelopment",
+      "name": "平台管理_基础数据管理_常用意见分类_列表组件二开",
+      "dependencies": ["ListViewWidgetDevelopment", "jquery-form", "jquery-validate", "global", "ztree", "comboTree", "system-admin"]
+    },
+    "AppOpinionBaseTreeDevelopment": {
+      "path": "/workflow-mgr/AppOpinionBaseTreeDevelopment",
+      "name": "平台管理_基础数据管理_常用意见库_树组件二开",
+      "dependencies": ["HtmlWidgetDevelopment", "ztree", "bootstrapTable", "bootstrapTable_editable", "wBootstrapTable", "system-admin"]
+    },
+    "AppWorkflowFormatSetViewWidgetDevelopment": {
+      "path": "/workflow-mgr/AppWorkflowFormatSetViewWidgetDevelopment",
+      "name": "平台管理_流程管理_信息格式_编辑组件二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "jquery-validate", "global", "system-admin", "formBuilder"]
+    },
+    "AppWorkFlowCateWidgetDevelopment": {
+      "path": "/workflow-mgr/AppWorkFlowCateWidgetDevelopment",
+      "name": "平台应用_流程管理_流程分类树_二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "ztree",
+        "global",
+        "system-admin",
+        "wCommonPictureLib",
+        "minicolors",
+        "dependencyBootstrapTableModule"
+      ]
+    },
+    "AppOpinionClassifyTreeDevelopment": {
+      "path": "/workflow-mgr/AppOpinionClassifyTreeDevelopment",
+      "name": "平台管理_基础数据管理_常用意见分类_树组件二开",
+      "dependencies": ["HtmlWidgetDevelopment", "ztree", "bootstrapTable", "bootstrapTable_editable", "wBootstrapTable", "system-admin"]
+    },
+    "AppOpinionBaseListDevelopment": {
+      "path": "/workflow-mgr/AppOpinionBaseListDevelopment",
+      "name": "平台管理_基础数据管理_常用意见库_列表组件二开",
+      "dependencies": ["ListViewWidgetDevelopment", "jquery-form", "jquery-validate", "global", "ztree", "comboTree", "system-admin"]
+    },
+    "AppWorkFlowOpinionRuleViewWidgetDevelopment": {
+      "path": "/workflow-mgr/AppWorkFlowOpinionRuleViewWidgetDevelopment",
+      "name": "流程签署意见_校验规则管理_编辑组件二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "jquery-validate", "global", "system-admin", "formBuilder"]
+    },
+    "AppWorkFlowOpinionRuleListViewWidgetDevelopment": {
+      "path": "/workflow-mgr/AppWorkFlowOpinionRuleListViewWidgetDevelopment",
+      "name": "流程签署意见_校验规则管理_视图组件二开",
+      "dependencies": ["ListViewWidgetDevelopment", "jquery-form", "jquery-validate", "global", "ztree", "comboTree", "system-admin"]
+    }
+  },
+  "css": {}
+}

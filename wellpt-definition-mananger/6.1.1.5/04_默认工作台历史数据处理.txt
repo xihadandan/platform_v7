@@ -1,0 +1,12 @@
+主要处理 当1个系统下，无系统默认工作台时，将列表第1个工作台设为系统默认工作台
+需求：http://zen.well-soft.com:81/zentao/story-view-2891.html
+项目重构启动后，登陆
+然后在页面控制台执行：
+JDS.call({
+	service : 'roleFacadeService.initOldWorkbenchRole',
+	data : [],
+	async : false,
+	success : function(result) {
+		console.log(result);
+	}
+});

@@ -1,0 +1,67 @@
+/*
+ * @(#)2013-10-30 V1.0
+ * 
+ * Copyright 2013 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.integration.support;
+
+import java.util.Map;
+
+import org.quartz.JobExecutionContext;
+
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.integration.entity.SysProperties;
+import com.wellsoft.pt.integration.facade.ExchangedataApiFacade;
+import com.wellsoft.pt.integration.service.ExchangeDataSynService;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+
+/**
+ * 
+ * Description: 如何描述该类
+ *  
+ * @author ruanhg
+ * @date 2014-12-10
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2014-12-10.1	ruanhg		2014-12-10		Create
+ * </pre>
+ *
+ */
+public class SynchronousThreeBackTask extends Job {
+
+	/** 
+	 * 如何描述该方法
+	 * 
+	 * (non-Javadoc)
+	 * @see com.wellsoft.pt.task.job.Job#execute(org.quartz.JobExecutionContext, com.wellsoft.pt.task.job.JobData)
+	 */
+	@Override
+	protected void execute(JobExecutionContext arg0, JobData arg1) {
+		ExchangedataApiFacade exchangedataApiFacade = ApplicationContextHolder.getBean(ExchangedataApiFacade.class);
+		Map<String, SysProperties> sysPropertiess = exchangedataApiFacade.getAllSysProperties("SYSPROPERTIES");
+		ExchangeDataSynService exchangeDataSynService = ApplicationContextHolder.getBean(ExchangeDataSynService.class);
+		StringBuffer param = new StringBuffer(" and o.stable_name not in (");
+		param.append(ExchangeDataSynService.PARAM_MSG).append(",");
+		param.append(ExchangeDataSynService.PARAM_ACL).append(",");
+		param.append(ExchangeDataSynService.PARAM_REPO).append(",");
+		param.append(ExchangeDataSynService.PARAM_FLOW).append(") ");
+		while (true) {
+			try {
+				if (exchangeDataSynService.synBackData(sysPropertiess, param.toString())) {
+					continue;
+				}
+			} catch (Exception e) {
+				logger.error("SynchronousThreeBackTask业务异常", e);
+			}
+			try {
+				Thread.sleep(SynStaticsUtils.DEFAULT_SLEEP_MILLIS);
+			} catch (InterruptedException e) {
+				logger.error(e.getMessage(), e);
+			}
+		}
+	}
+}

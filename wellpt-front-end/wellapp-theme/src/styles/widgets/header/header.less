@@ -1,0 +1,413 @@
+/* 头部组件 */
+
+// 头部组件
+.ui-wHeader .ui-wHeader-mainNavbar {
+  height: @header-height;
+  position: relative;
+  margin-bottom: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+// 头部组件 - 应用图标/名称区域
+.ui-wHeader .ui-wHeader-mainNavbar .ui-wHeader-baseInfo {
+  // Logo
+  > .ui-wHeader-logo {
+    padding: ((@header-height - @header-img-height) / 2) @padding-xs;
+    height: auto;
+
+    img {
+      display: block;
+      height: @header-img-height;
+    }
+  }
+
+  // 名称
+  > .ui-wHeader-title {
+    height: @header-height;
+    line-height: @header-height;
+    padding: 0;
+    color: @header-title-color;
+  }
+}
+
+// 头部组件 - 导航 (生效于左侧 & 右侧)
+.ui-wHeader .ui-wHeader-mainNavbar .navbar-nav {
+  margin: 0;
+
+  &.ui-wHeader-rightNav {
+    .absolute(0 0 false false);
+  }
+
+  > li {
+    height: @header-height;
+    padding: 0 @padding-md;
+    text-align: center;
+    display: inline-block;
+
+    &:hover::before,
+    &.active::before {
+      .box();
+
+      content: '';
+      background: @header-nav-hover-background;
+    }
+
+    // 头部组件 - 导航 (生效于左侧 & 右侧)
+    > a {
+      padding: 0;
+      word-break: keep-all;
+      height: @header-height;
+      line-height: @header-height;
+      color: @text-color-inverse;
+
+      &:hover,
+      &:focus {
+        background: none;
+      }
+
+      .glyphicon:before {
+        margin-right: 0;
+        font-size: @header-icon-size;
+      }
+
+      // 头部组件 - 导航 (生效于左侧 & 右侧) - 导航图标
+      .ui-wIcon {
+        width: 25px;
+        font-size: @header-icon-size;
+        vertical-align: middle;
+        line-height: @header-height;
+
+        &.icon-ptkj-morentouxiang {
+          font-size: @header-nav-avatar-size;
+        }
+      }
+
+      .nav-avatar {
+        .square(@header-nav-avatar-size);
+
+        border-radius: 50%;
+      }
+
+      // 头部组件 - 导航 (生效于左侧 & 右侧) - 导航文本
+      .nav-text {
+        margin-left: @margin-sm;
+        vertical-align: middle;
+      }
+
+      // 头部组件 - 导航 (生效于左侧 & 右侧) - 导航徽标
+      .badge {
+        .absolute(20px false false 10px);
+
+        display: inline-block;
+        min-width: @header-badge-min-width;
+        padding-right: @padding-3xs;
+        // padding-top: @padding-3xs;
+        font-size: @header-badge-size;
+        font-weight: normal;
+        line-height: @header-badge-size;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        border-radius: @header-badge-size;
+        background: @header-badge-background;
+        z-index: 2;
+      }
+    }
+  }
+}
+
+// 头部组件 - 导航 - 用户信息 - 下拉弹出层
+.ui-wHeader .ui-wHeader-mainNavbar .navbar-nav > li .person-info-list {
+  .absolute(@header-height 0px false false);
+
+  display: none;
+  background: @dropdown-background;
+  z-index: 20;
+  min-width: 114px;
+  box-shadow: @shadow-popup-default;
+
+  li {
+    .text-overflow();
+    .size(100%, @dropdown-item-height);
+
+    padding: 0 @dropdown-item-padding-horizontal;
+    line-height: @dropdown-item-height;
+    font-size: @dropdown-item-font-size;
+    color: @dropdown-item-font-color;
+    cursor: pointer;
+
+    i {
+      margin-right: @margin-sm;
+      font-size: @dropdown-item-icon-size;
+      color: @dropdown-item-icon-color;
+      vertical-align: bottom;
+    }
+
+    &:hover {
+      color: @dropdown-hover-item-font-color;
+      background: @dropdown-hover-item-background;
+
+      a,
+      i {
+        color: @dropdown-hover-item-icon-color;
+      }
+    }
+  }
+}
+
+// 头部组件 - 导航 - 通用弹出层
+.ui-wHeader .ui-wHeader-mainNavbar .dropdown-wrap .dropdown-ul {
+  .absolute(@header-height 0 false false);
+  .hide-scrollbar();
+
+  display: none;
+  left: 0;
+  right: initial;
+  overflow-y: auto;
+  background: @dropdown-background;
+  z-index: 20;
+  min-width: 114px;
+  box-shadow: @shadow-popup-default;
+  max-height: calc(100vh - @header-height);
+
+  // 导航项
+  li {
+    .size(100%, @dropdown-item-height);
+    .text-overflow();
+
+    padding: 0 @dropdown-item-padding-horizontal;
+    line-height: @dropdown-item-height;
+    font-size: @dropdown-item-font-size;
+    color: @dropdown-item-font-color;
+    cursor: pointer;
+
+    a {
+      font-size: @dropdown-item-font-size;
+      color: @dropdown-item-font-color;
+      cursor: pointer;
+      text-decoration: none;
+
+      i {
+        margin-right: 0;
+      }
+    }
+
+    i {
+      margin-right: @margin-sm;
+      font-size: @dropdown-item-icon-size;
+      color: @dropdown-item-icon-color;
+      vertical-align: bottom;
+    }
+
+    &:hover {
+      color: @dropdown-hover-item-font-color;
+      background: @dropdown-hover-item-background;
+
+      a,
+      i {
+        color: @dropdown-hover-item-icon-color;
+      }
+    }
+  }
+
+  // 滚动按钮项
+  .nav-scroll-btn-li {
+    @nav-scroll-btn-height: 26px;
+
+    .fixed(false false 0 false);
+
+    display: none;
+    background-color: @dropdown-background;
+    padding: 1px;
+
+    .move-up,
+    .move-down {
+      .size(50%, @nav-scroll-btn-height);
+
+      text-align: center;
+      display: inline-block;
+      margin: 0;
+      box-sizing: border-box;
+      height: @nav-scroll-btn-height;
+      line-height: @nav-scroll-btn-height;
+      box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.1);
+      background-color: @dropdown-background;
+      border: @border-default-light;
+
+      &:hover {
+        color: @text-color-primary;
+        border: @border-default-primary;
+      }
+
+      &.disabled {
+        color: @disabled-text-color;
+        cursor: not-allowed;
+        border: @border-default-light;
+      }
+
+      .iconfont {
+        font-size: 9px;
+      }
+    }
+  }
+}
+
+// 头部组件 - 导航 - 更多导航弹出层
+.ui-wHeader .ui-wHeader-mainNavbar .dropdown-wrap .wHeaderNavMoreUL {
+  right: 0;
+  left: initial;
+
+  > li .ui-wIcon {
+    line-height: @dropdown-item-height;
+  }
+}
+
+// 头部组件 - 导航 - 可滚动弹出层 （主要用于固定头部）
+.ui-wHeader .ui-wHeader-mainNavbar .dropdown-wrap .dropdown-ul.scrollable {
+  &:after {
+    content: '';
+    height: 35px;
+    display: block;
+  }
+
+  &:hover .nav-scroll-btn-li {
+    display: block;
+    width: inherit;
+    background: @header-dropdown-popup-background;
+  }
+}
+
+// 头部组件 - 导航(工作台) - 弹出层
+.ui-wHeader .ui-wHeader-mainNavbar .dropdown-wrap .dropdown-ul.wHeaderNav-workbench {
+  .scrollbar();
+
+  display: block;
+  left: initial;
+  right: 0;
+  overflow: auto;
+
+  li {
+    text-align: left;
+
+    i {
+      display: inline-block;
+      width: 18px;
+    }
+  }
+}
+
+/*主题颜色开始*/
+.navbar-primary {
+  background: @primary-color;
+}
+
+.navbar-info {
+  background: @info-color;
+}
+
+.navbar-warning {
+  background: @warning-color;
+}
+
+.navbar-success {
+  background: @success-color;
+}
+
+.navbar-default {
+  background: @gray-2;
+  border: @border-default;
+}
+
+.navbar-inverse {
+  background: @gray-11;
+}
+
+.navbar-themeColor {
+  // 头部组件背景色使用该类配置
+  background: @primary-color;
+}
+
+.navbar-danger {
+  background: @danger-color;
+}
+
+// **旧版**头部组件 - 子导航 (已弃用)
+// @deprecated
+.ui-wHeader .ui-wHeader-subNavbar {
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 0;
+  border: 0;
+  border-radius: 0;
+
+  .navbar-nav {
+    margin: 0;
+  }
+
+  .ui-wHeader-subNav {
+    margin-left: 62px;
+    border-bottom: 0;
+    float: left;
+
+    > li > a {
+      padding: 0 20px;
+      line-height: 50px;
+      border: 0;
+      border-radius: 0;
+      font-size: @font-size-base;
+
+      span {
+        margin-right: 4px;
+        top: 2px;
+      }
+    }
+
+    .navbar-right > li {
+      display: inline-block;
+
+      a {
+        line-height: 50px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+
+      span {
+        margin-right: 2px;
+      }
+    }
+  }
+}
+
+// **旧版**头部组件 - 快捷键 (已弃用)
+// @deprecated
+.ui-wHeader .ui-wHeader-shortcut {
+  .fixed(149px 15px false false);
+
+  z-index: 999;
+  width: 1em;
+
+  > li {
+    margin: 0;
+    padding: 7px;
+    float: left;
+    font-size: @font-size-base;
+    line-height: 1;
+    text-align: left;
+    position: relative;
+    border: 0;
+    margin-bottom: 1px;
+
+    a {
+      text-decoration: none;
+    }
+
+    &.glyphicon-home {
+      margin-bottom: 2px;
+    }
+
+    &.glyphicon-plus {
+      background: #a7a8aa;
+    }
+  }
+}

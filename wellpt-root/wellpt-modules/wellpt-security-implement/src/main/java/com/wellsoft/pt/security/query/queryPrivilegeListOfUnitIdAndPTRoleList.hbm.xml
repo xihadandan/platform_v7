@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="queryPrivilegeListOfUnitIdAndPTRoleList">
+        <![CDATA[
+        from Privilege p where p.systemDef=0 and ( p.systemUnitId = :unitId
+            <if appIds?? && (appIds?size > 0)>
+            <else>
+                or ( p.systemUnitId = :ptId and p.name not like '后台_%' )
+			</if>
+		)
+		<if appIds?? && (appIds?size > 0)>
+            and appId in (:appIds)
+		</if>
+		order by p.systemUnitId , p.name asc
+	]]>
+    </sql-query>
+</hibernate-mapping>

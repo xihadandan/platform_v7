@@ -1,0 +1,34 @@
+{
+  "quill": {
+    "defaultFontFamily": "ตัวอักษรเริ่มต้น",
+    "defaultFontSize": "ขนาดตัวอักษรเริ่มต้น",
+    "fontFamily": {
+      "songti": "ตัวอักษรส่ง",
+      "heiti": "ตัวอักษรโกธิค",
+      "kaiti": "ตัวอักษรไคที",
+      "fangsong": "ตัวอักษรฟังซ่ง",
+      "lishu": "ตัวอักษรลิชู",
+      "youyuan": "ตัวอักษรยัวหยวน",
+      "weiruanyahei": "ตัวอักษรมายครอสซอฟท์ยาเฮ่ย"
+    },
+    "bold": "ตัวหนา",
+    "italic": "เอียง",
+    "underline": "ขีดเส้นใต้",
+    "minusIndent": "ลดระดับย่อหน้า",
+    "addIndent": "เพิ่มระดับย่อหน้า",
+    "backgroundColor": "สีพื้นหลัง",
+    "fontColor": "สีตัวอักษร",
+    "align": "การจัดตำแหน่ง",
+    "leftAlign": "จัดซ้าย",
+    "centerAlign": "จัดกลาง",
+    "rightAlign": "จัดขวา",
+    "justifyAlign": "จัดให้แน่นทั้งสองข้าง",
+    "ordered": "รายการเลขลำดับ",
+    "bullet": "รายการเครื่องหมาย",
+    "insertImage": "แทรกภาพ",
+    "insertLink": "แทรกลิงค์",
+    "sourceCode": "โค้ดแหล่งที่มา",
+    "maximize": "ขยายเต็มหน้าจอ",
+    "recover": "กู้คืน"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "WidgetSubform": {
+    "subform": "从表",
+    "selectAll": "全选",
+    "noData": "暂无数据",
+    "notFoundData": "查无数据",
+    "modalEditButtonTitle": "弹窗编辑数据",
+    "uploadFilePlaceMessage": "点击或者拖拽文件到此区域上传",
+    "downloadImportTemplateFilePrefixText": "下载导入模板",
+    "uploadDoneImportFilePrefixText": "已上传",
+    "successImportFileResultPrefixText": "成功导入",
+    "selectImportColumnModalTitle": "选择导出列",
+    "defaultTabPaneTitle": "页签",
+    "column": {
+      "operation": "操作",
+      "serialNumber": "序号"
+    },
+    "search": {
+      "confirmButtonTitle": "查询",
+      "resetButtonTitle": "重置",
+      "collapseButtonText": "收起",
+      "searchMoreText": "更多"
+    },
+    "button": {
+      "addRow": "添加",
+      "delRow": "删除",
+      "importRow": "导入",
+      "exportRow": "导出",
+      "editRow": "编辑",
+      "copyRow": "复制行",
+      "insertRow": "插入行",
+      "appendRow": "添加行",
+      "moveUpRow": "上移",
+      "moveDownRow": "下移",
+      "save": "保存",
+      "new": "新增",
+      "view": "查看详情"
+    },
+    "message": {
+      "unDeleteDefaultRow": "第{indexs}项数据为不可删除的默认数据",
+      "formatXls": "只允许上传 xls 或者 xlsx 文件格式",
+      "nodataExport": "暂无数据导出",
+      "unSelectedExport": "未选择数据进行导出",
+      "unSelectedColumnExport": "未选择导出列"
+    }
+  }
+}

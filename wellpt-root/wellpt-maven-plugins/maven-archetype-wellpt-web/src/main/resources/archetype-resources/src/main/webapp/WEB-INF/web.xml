@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID"
+         version="3.0">
+
+    <display-name>ROOT</display-name>
+
+    <!--
+
+        注意：
+
+        1. 不需要添加配置Spring相关的servlet、filter、上下文等配置项，该配置信息已经统一代码配置化
+
+        2. web.xml允许添加其他servlet、filter配置项
+
+    -->
+
+
+</web-app>

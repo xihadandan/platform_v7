@@ -1,0 +1,233 @@
+table {
+    border-collapse: collapse;
+}
+.mail_css_bg {
+    background: url("../../theme/images/v1_bd3.png") repeat-y scroll 100% 0 #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    margin: 10px auto 0;
+    width: 76%;
+    font-family: "Microsoft YaHei";
+}
+.mail_css {
+    width: 99.5%;
+    min-height: 650px;
+}
+.mail_content {
+    margin: 10px 15px 0 25px;
+}
+.mail_content .odd{
+	background:#f7f7f7;
+}
+.body_foot {
+    background: url("../../theme/images/v1_bg_bottom.png") repeat-x scroll 0 0 transparent;
+    height: 33px;
+    margin: 0 auto;
+    width: 76%;
+}
+.form_header {
+	background: url(../images/icon.png) repeat-x scroll 0 -53px transparent;
+}
+
+.post-detail .Label {
+    width: 60px;
+}
+
+.post-detail td {
+	text-align: left;
+    border: 1px solid #FFFFFF;
+    color: #666666;
+    font-family: "Microsoft YaHei";
+    font-weight: normal;
+    text-indent: 10px;
+}
+.post-detail a{
+	color: #666666;
+}
+/* .cke_inner .cke_toolbox_collapser{ */
+/* 	margin: 0; */
+/* } */
+.post-detail #receiveMail,
+.post-detail #copyMail,
+.post-detail #mbcc a,
+.post-detail #delCc a,
+.post-detail #delBcc a,
+.post-detail #addCc a,
+.post-detail #addBcc a{
+	color: #4b9ad2;
+}
+.post-detail #receiveMail:hover,
+.post-detail #copyMail:hover,
+.post-detail #mbcc a:hover,
+.post-detail #delCc a:hover,
+.post-detail #delBcc a:hover,
+.post-detail #addCc a:hover,
+.post-detail #addBcc a:hover{
+	color: #ff7200;
+    text-decoration: none;
+}
+.post-detail {
+    padding-bottom: 20px;
+}
+.tableForm input[type="text"],.tableForm select{
+	border-radius: 0 0 0 0;
+    font-family: microsoft yahei;
+    margin-top: 5px;
+    transform: none;
+    width: 90%;
+}
+#cname {
+	border-radius: 0 0 0 0;
+    font-family: "Microsoft YaHei";
+    height: 13px;
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 152px;
+}
+.tableForm input[type="checkbox"],.tableForm input[type="radio"]{
+	margin: 13px 5px 13px 2px;
+}
+.odd #nymdhs_span {
+    margin-left: 15px;
+}
+.post-detail .ckediter_td{
+	text-indent: 0;
+}
+#nymdhs_span #nymdhs {
+    width: 251px;
+    margin-top: 10px;
+}
+.tableForm #subcolor {
+    background: url("../../theme/images/v1_icon3.png") no-repeat scroll 0 -263px transparent;
+    cursor: pointer;
+    float: right;
+    height: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    width: 20px;
+    position: relative;
+}
+.upload_div {
+    background: none repeat scroll 0 0 transparent;
+    height: 25px;
+    padding-top: 5px;
+}
+.form_header .form_title {
+    border-top: 1px solid #FFFFFF;
+    height: 40px;
+    margin: 0 auto;
+}
+.form_header .form_title h2 {
+	color: #FFFFFF;
+    float: left;
+    font-family: "Microsoft YaHei";
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0px;
+    padding: 8px 0 0 15px;
+    line-height: 20px;
+}
+.form_content {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width:880px;
+	margin-top: 90px;
+	overflow: auto;
+}
+.form_toolbar {
+	background: none repeat scroll 0 0 #F4F8FA;
+    padding: 8px;
+    text-align: right;
+}
+.form_operate {
+    margin:0 auto;
+}
+.form_operate button {
+	font-family : arial;
+	font-size : 13.3333px;
+	font-weight : normal;
+	cursor: pointer;
+	display: inline-block;
+	height: 20px;
+	margin-left: 5px;
+	padding: 0 3px;
+	line-height: 16px;
+	background: url(../images/icon.png) no-repeat scroll 0 -165px transparent;
+	color: #0F599C;
+	border: 1px solid #DEE1E2;
+	vertical-align: middle;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	box-shadow : none;
+	text-shadow : none;
+}
+.form_operate button:hover {
+	color: #FF7200;
+	background: url(../images/icon.png) no-repeat scroll 0 -165px transparent;
+}
+
+.img_icon{
+    background: url(../images/file_img.gif) no-repeat scroll 999px 999px transparent;
+    cursor: pointer;
+    float: left;
+    height: 22px;
+    width: 26px;
+}
+.imgWord{
+    background-position: -96px -80px;
+}
+
+.ztree {
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+.ztree li a {
+    color: #000;
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    margin-top: 0;
+    padding-top: 0;
+}
+.ztree li:hover{
+	background: #4b9ad2;
+}
+.ztree li a:hover{
+	color: #000;
+}
+.form_header .form_close {
+    background: url("../../theme/images/v1_close_btn.png") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    float: right;
+    height: 32px;
+    margin: 4px;
+    width: 32px;
+}
+.colors {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #DDDDDD;
+    left: -40px;
+    position: absolute;
+    top: 18px;
+    width: 58px;
+}
+.selectcolor {
+    display: block;
+    float: left;
+    height: 15px;
+    margin: 2px;
+    width: 15px;
+}
+.searchDiv{
+	position: relative;
+}
+.searchIcon {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}

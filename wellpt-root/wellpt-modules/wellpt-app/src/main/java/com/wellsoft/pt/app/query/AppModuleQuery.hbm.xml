@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="topAppModuleTreeQuery">
+        <![CDATA[
+		from AppModule t where t.parentUuid is null
+		order by code asc,name
+	]]>
+    </sql-query>
+
+    <sql-query name="appModuleTreeQuery">
+        <![CDATA[
+		from AppModule t where 1 = 1
+		<if isNotBlank(appModuleUuids)>
+			and t.uuid=:appModuleUuids
+		</if>
+		<if isNotBlank(name) || isNotBlank(code) || isNotBlank(id)>
+			and (1 = 2
+				<if isNotBlank(name)>
+					or lower(t.name) like '%${name?lower_case}%'
+				</if>
+				<if isNotBlank(code)>
+					or lower(t.code) like '%${code?lower_case}%'
+				</if>
+				<if isNotBlank(id)>
+					or lower(t.id) like '%${id?lower_case}%'
+				</if>
+			)
+		</if>
+		order by code asc,name
+	]]>
+    </sql-query>
+
+    <sql-query name="appModuleTreeByIdQuery">
+        <![CDATA[
+		from AppModule t where t.id = :id
+		order by code asc,name
+	]]>
+    </sql-query>
+
+    <sql-query name="queryProdVersionModules">
+        <![CDATA[
+		from AppModule t where exists (
+		    select 1 from AppProdVersionEntity v ,AppProdModuleEntity pm where pm.prodVersionUuid = v.uuid
+		    and pm.moduleId = t.id
+		    <if isNotBlank(prodVersionUuid)>
+		     and v.uuid=:prodVersionUuid
+		    </if>
+		    <if isNotBlank(prodVersionId)>
+		     and v.versionId=:prodVersionId
+		    </if>
+		)
+	]]>
+    </sql-query>
+</hibernate-mapping>

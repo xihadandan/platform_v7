@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <sql-query name="wmWebmailFolderCapacityQuery">
+        <![CDATA[
+    select t.*,c.capacity_used
+      from (
+            select '-1' as uuid,
+                    '收件箱' as name,
+                    'INBOX' as code,
+                    '系统文件夹' as type_name,
+                    null as create_time,
+                    null as modify_time,
+                    1 as type_code
+              from dual
+            union
+            select '-2' as uuid,
+                    '草稿箱' as name,
+                    'DRAFT' as code,
+                    '系统文件夹' as type_name,
+                    null as create_time,
+                    null as modify_time,
+                    2 as type_code
+              from dual
+            union
+            select '-3' as uuid,
+                    '发件箱' as name,
+                    'OUTBOX' as code,
+                    '系统文件夹' as type_name,
+                    null as create_time,
+                    null as modify_time,
+                    3 as type_code
+              from dual
+            union
+            select '-4' as uuid,
+                    '回收站' as name,
+                    'RECYCLE' as code,
+                    '系统文件夹' as type_name,
+                    null as create_time,
+                    null as modify_time,
+                    4       as type_code
+              from dual
+            union
+            select f.uuid,
+                    f.folder_name as name,
+                    f.folder_code as code,
+                    '其他文件夹' as type_name,
+                    f.create_time,
+                    f.modify_time,
+                    5 as type_code
+              from wm_mail_folder f where f.user_id=:userId
+            union
+            select u.uuid as uuid,
+                    u.mail_address as name,
+                    u.mail_address as code,
+                    '其他邮箱账号' as type_name,
+                    u.create_time,
+                    u.modify_time,
+                    6 as type_code
+              from wm_mail_user u
+             where u.is_inner_user = 0 and u.user_id=:userId) t left join wm_mail_use_capacity c on t.code = c.mailbox
+             and c.user_id=:userId
+             where 1=1
+             <if isNotBlank(whereSql)>
+                and ${whereSql}
+              </if>
+               <if isNotBlank(orderBy)>
+                ${orderBy}
+              </if>
+
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

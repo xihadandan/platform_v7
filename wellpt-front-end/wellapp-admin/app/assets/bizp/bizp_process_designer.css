@@ -1,0 +1,163 @@
+@CHARSET "UTF-8";
+/* 页面全局配置开始 */
+.bizp-designer {
+	min-height: 1000px;
+	cursor: auto;
+	padding-top: 50px;
+	padding-bottom: 40px;
+	margin-left: 100px;
+	-webkit-transition: margin 500ms ease;
+	-moz-transition: margin 500ms ease;
+	-ms-transition: margin 500ms ease;
+	-o-transition: margin 500ms ease;
+	transition: margin 500ms ease;
+}
+/* 页面全局配置结束 */
+
+/* 左导航组件列表开始 */
+.designer-sidebar-nav {
+	position: fixed;
+	width: 100px;
+	left: 0px;
+	bottom: 0;
+	top: 44px;
+	overflow-x: auto;
+	overflow-y: visible;
+	padding: 9px 0;
+	z-index: 10;
+	transition: all 500ms ease;
+}
+
+.designer-sidebar-nav .list-group-item {
+	margin-top: 1em;
+}
+
+.designer-sidebar-nav .list-group-item:hover {
+	background-color: #DDDDDD;
+	cursor: default;
+}
+
+.designer-sidebar-nav .list-group-item.selected {
+	background-color: #DDDDDD;
+}
+
+.designer-sidebar-nav .list-group-item>.badge {
+	/*   float: left; */
+	/*   width:120px; */
+	
+}
+
+.designer-sidebar-nav .panel-title a {
+	text-decoration: none;
+}
+/* 左导航组件列表结束 */
+
+/* 页面容器开始 */
+.bizp-designer-container {
+	margin-left: 0px;
+	margin-top: 10px;
+	padding: 0;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px;
+	position: relative;
+	word-wrap: break-word;
+}
+/* 页面容器结束 */
+
+/* 右键菜单开始  */
+.bizp-designer .ui-menu-item {
+	width: 3em;
+	border: 1px solid #000;
+	background-color: #fff;
+}
+/* 右键菜单结束 */
+
+/* 右侧属性内容开始  */
+.sidebar-container {
+	width: auto;
+	height: 100%;
+	overflow: hidden;
+}
+
+.sidebar-container .panel {
+	padding-left: 2.5em;
+	padding-right: 0.5em;
+}
+
+.sidebar-container .right-sidebar .property-tabs {
+	margin: 0px;
+}
+
+.designer-right-sidebar {
+	background-color: #fff;
+	border-left: 1px solid #e7eaec;
+	border-top: 1px solid #e7eaec;
+	overflow: hidden;
+	position: fixed;
+	top: 45px;
+	width: 260px !important;
+	z-index: 99;
+	bottom: 0;
+	right: -260px;
+	display: none;
+}
+
+.designer-right-sidebar.sidebar-open {
+	right: 0;
+	background-color: #fff;
+	border-left: 0px solid #e7eaec;
+	border-top: 0px solid #e7eaec;
+	overflow: hidden;
+	position: fixed;
+	display: none;
+	top: 67px;
+	/*107*/
+	width: 458px !important;
+	z-index: 99;
+	-moz-box-shadow: -3px 0px 8px #888;
+	/* Firefox */
+	box-shadow: -3px 0px 8px #888;
+	top: 67px;
+}
+
+.designer-right-sidebar .guanbi:hover {
+	background: url(../../pt/theme/default/images/guanbi-hover.jpg) center left no-repeat;
+}
+
+.designer-right-sidebar .guanbi {
+	z-index: 999;
+	width: 24px;
+	height: 50px;
+	background: url(../../pt/theme/default/images/guanbi.jpg) center left no-repeat;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.sidebar-container .select2-container {
+	padding: 0 !important;
+}
+
+.sidebar-container .select2-choice {
+	height: 36px;
+}
+
+.sidebar-container .select2-choice span {
+	line-height: 36px;
+}
+
+.sidebar-container .property-form label.error {
+	color: red;
+}
+/* 右侧属性内容结束  */
+
+/* 右键菜单开始  */
+.ui-menu-item .ui-icon {
+	background-image: none;
+}
+
+.ui-menu-item .ui-state-active {
+	background: none;
+	border: none;
+}
+/* 右键菜单结束  */

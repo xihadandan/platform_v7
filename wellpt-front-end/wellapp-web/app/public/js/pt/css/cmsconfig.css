@@ -1,0 +1,199 @@
+body {
+	background-color: #FFF;
+	margin: 0;
+	padding: 0;
+}
+
+#widgetWrap { /*position: absolute;
+	top: 0;
+	left: 0;*/
+	width: 100px;
+	float: left;
+}
+#widgetWrap > table {
+    padding: 5px;
+/*     position: fixed; */
+    width: 100px;
+    z-index: 11;
+    background: url("../images/cms/pageconfig1.png") repeat-y scroll -6px 0 transparent;
+}
+#widgetWrap > table tr {
+    display: block;
+    height: auto;
+}
+#widgetWrap > table tr td {
+    display: block;
+    margin-bottom: 5px;
+    text-align: center;
+}
+#widgetWrap td {
+    text-align: center;
+}
+#showHide {
+	width: 20px;
+	cursor: pointer;
+}
+
+#ifgoWidgets {
+	width: auto;
+	height: 100%;
+}
+
+.clear {
+	clear: both;
+	font-size: 0px;
+	height: 0;
+	overflow: hidden;
+}
+
+.dnr,.dnrw {
+	width: 100px;
+	height: 55px;
+	padding: 0;
+	margin: 5px;
+	float: left;
+	background-color: #fff;
+	box-shadow: 3px 3px #dedede;
+/* 	border: 1px solid #4C556E; */
+}
+
+.dnrw {
+	clear: both;
+	position: absolute;
+	margin: 0;
+	padding: 0;
+}
+
+.dnr h3,.dnrw h3 {
+	background: none repeat scroll 0 0 #597A99;
+    color: #FFFFFF;
+    cursor: move;
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+    font-weight: normal;
+    height: 25px;
+    line-height: 10px;
+    margin: 0;
+    overflow: hidden;
+    padding: 5px 0 0 5px;
+}
+
+.dnrw .widgetContent {
+	overflow-x: auto;
+	overflow-y: auto;
+}
+.dnrw .showTitle {
+	position: absolute;
+	right: 40px;
+	top: 1px;
+	cursor: pointer;
+}
+
+.dnrw .handler {
+	width: 10px;
+	height: 10px;
+	line-height: 10px;
+	border-right: solid 1px #888;
+	border-bottom: solid 1px #888;
+	position: absolute;
+	right: 1px;
+	bottom: 1px;
+	cursor: nw-resize;
+	-moz-border-radius: 5px; /* Gecko browsers */
+	-webkit-border-radius: 5px; /* Webkit browsers */
+	border-radius: 5px; /* W3C syntax */
+}
+
+#widgetlist { /*position: absolute;
+	top: 0;
+	left: 161.5px;*/
+	margin: 0px auto;
+	padding: 0;
+	min-height: 2000px;
+	width: 940px;
+}
+
+.center { /* position: absolute;
+	top: 0;
+	left: 161.5px;*/
+	float: left;
+}
+
+.over {
+	background: url(../../gridster/bgover_10px.gif);
+	border: 1px solid #FCC;
+	border-width: 1px 0 0 1px;
+}
+
+.out {
+	background: url(../../gridster/bg_10px.gif);
+	border: 1px solid #eee;
+	border-width: 1px 0 0 1px;
+}
+
+.btnBar {
+	position: absolute;
+	top: 120px;
+	right: 0;
+	height: 30px;
+	text-align: right;
+}
+.module_content {
+    background: none repeat scroll 0 0 #F1F1F1;
+    border-radius: 0 4px 4px 4px;
+    box-shadow: 2px 2px #DDDDDD;
+    height: auto;
+    left: 0;
+    padding: 5px;
+    position: absolute;
+    top: 58px;
+    width: 890px;
+    z-index: 11;
+}
+.cate_div {
+    cursor: pointer;
+    height: 61px;
+    margin-top: 10px;
+    position: relative;
+    width: 82px;
+    background: url("../images/cms/pageconfig2.png") no-repeat scroll 0 0 transparent;
+}
+.cate_name {
+    font-size: 12px;
+    padding-top: 38px;
+    text-align: center;
+}
+
+.border_while {
+    background: none repeat scroll 0 0 #f1f1f1;
+    height: 1px;
+    left: 0;
+    position: absolute;
+    top: -1px;
+    width: 83px;
+}
+.setProp input, .setProp select, .setProp textarea{
+	width: 220px;
+}
+
+.set,.dragIcon,.close{
+	background: url("../images/cms/pageconfig3.png") no-repeat scroll 0 0 transparent;
+    float: right;
+    height: 20px;
+    margin-right: 5px;
+    width: 20px;
+    cursor: pointer;
+}
+.dragIcon{
+	cursor: move;
+	background-position: -30px 0;
+}
+.close{
+	background-position: -60px 0;
+}
+.dnrw .title {
+    float: left;
+}
+.ui-dialog .ui-dialog-title {
+    line-height: 10px;
+}

@@ -1,0 +1,484 @@
+<style>
+  fieldset {
+    border: 1px solid #e5e5e5;
+    margin: 0;
+    padding: 0;
+    padding-left: 10px;
+  }
+
+  legend {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-use-text-color -moz-use-text-color #e5e5e5;
+    border-image: none;
+    border-style: none none dashed;
+    border-width: 0;
+    color: #333333;
+    display: block;
+    line-height: 40px;
+    margin-bottom: 5px;
+    padding: 0;
+    width: auto;
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  .my-del-btn {
+    width: 55px;
+    color: #fff;
+    padding: 0 10px;
+    height: 26px;
+    text-align: center;
+  }
+</style>
+<div id="tabPropertyDiv" class="tabPropertyDiv">
+  <font color="red">(编码字段在点击确定之后，将不可再更改)</font>
+  <br />
+  <div class="tabItem">
+    <label>
+      <span style="color: red">*</span>
+      编码：
+    </label>
+    <input type="text" id="name" value="" />
+  </div>
+  <div class="tabItem">
+    <label>
+      <span style="color: red">*</span>
+      标题：
+    </label>
+    <input type="text" id="displayName" value="" />
+  </div>
+  <br />
+  <div class="tabItem">
+    <label>
+      <span style="color: red">*</span>
+      高度：
+    </label>
+    <input type="text" id="height" value="" />
+  </div>
+  <div class="tabItem">
+    <label>
+      <span style="color: red">*</span>
+      宽度：
+    </label>
+    <input type="text" id="width" value="" />
+  </div>
+  <br />
+  <div class="tabStyle">
+    <label>页签风格：</label>
+    <select name="tabStyle" id="tabStyle" class="w2ui-select">
+      <option value="top" selected>顶部风格</option>
+      <option value="left">左侧风格</option>
+      <option value="right">右侧风格</option>
+    </select>
+
+    <label>页签边框：</label>
+    <select name="tabBorder" id="tabBorder" class="w2ui-select">
+      <option value="noborder" selected>无边框</option>
+      <option value="border">有边框</option>
+    </select>
+    <br />
+    <div style="margin-top: 10px">
+      <label>页签宽度：</label>
+      <input type="text" id="tabWidth" />
+      <label>内容宽度：</label>
+      <input type="text" id="contentWidth" />
+    </div>
+  </div>
+  <fieldset>
+    <legend class="form_operate">
+      子页签
+      <button type="button" value="新增" id="btnAdddSubtbl">新增</button>
+    </legend>
+    <table class="tabtable">
+      <tr class="title">
+        <td>
+          <span style="color: red">*</span>
+          编码
+        </td>
+        <td>
+          <span style="color: red">*</span>
+          标题
+        </td>
+        <td>激活</td>
+        <td>操作</td>
+      </tr>
+    </table>
+  </fieldset>
+</div>
+<script type="text/javascript">
+  var UUID = commons.UUID;
+  var tabP = {
+    $: function (selector) {
+      return $(selector, $('#tabPropertyDiv'));
+    },
+    layout: {},
+    /**
+     * 初始化属性窗口
+     */
+    initPropertyDialog: function (editor) {
+      // debugger;
+      // $(".cke_reset_all"  ).removeClass("cke_reset_all");
+      this.editor = editor;
+      this.initBtnAdddSubtbl();
+      var focusedDom = editor.focusedDom; //当前editor被双击的对象(CKEDITOR.dom.node类)
+
+      var labelText = '';
+      var tabCode = '';
+      $("select[name='tabStyle']").on('change', function () {
+        var tabStyleVal = $("select[name='tabStyle']").val();
+        if (tabStyleVal == 'top') {
+          $('#tabBorder').removeAttr('disabled');
+          $('#tabWidth').attr('disabled', 'disabled');
+          $('#contentWidth').attr('disabled', 'disabled');
+        } else {
+          $('#tabBorder').attr('disabled', 'disabled');
+          $('#tabBorder').val('noborder');
+          $('#tabWidth').removeAttr('disabled');
+          $('#contentWidth').removeAttr('disabled');
+        }
+      });
+
+      if (focusedDom != null && typeof focusedDom != 'undefined') {
+        var name = $(focusedDom).attr('name');
+        this.protoName = name;
+        this.setName(name);
+        this.$('#name').attr('readonly', 'readonly');
+        this.layout = formDefinition.layouts[name]; //表单中从表的信息
+        // debugger
+        this.setDisplayName(this.layout.displayName);
+        this.setWidth(this.layout.width);
+        this.setHeight(this.layout.height);
+        this.setTabStyle(this.layout.tabStyle);
+        if (this.layout.tabStyle == 'top') {
+          $('#tabBorder').removeAttr('disabled');
+          $('#tabWidth').attr('disabled', 'disabled');
+          $('#contentWidth').attr('disabled', 'disabled');
+        } else {
+          $('#tabBorder').attr('disabled', 'disabled');
+          $('#tabWidth').removeAttr('disabled');
+          $('#contentWidth').removeAttr('disabled');
+        }
+        this.setTabBorder(this.layout.tabBorder);
+        this.setTabWidth(this.layout.tabWidth);
+        this.setContentWidth(this.layout.contentWidth);
+        for (var subTabName in this.layout.subtabs) {
+          var subTab = this.layout.subtabs[subTabName];
+          this.addNewSubTbl(subTab);
+        }
+      } else {
+        this.addNewSubTbl();
+      }
+    },
+
+    setHeight: function (height) {
+      this.$('#height').val(height);
+    },
+    getHeight: function () {
+      return this.$('#height').val();
+    },
+    setWidth: function (width) {
+      this.$('#width').val(width);
+    },
+    getWidth: function () {
+      return this.$('#width').val();
+    },
+    setName: function (name) {
+      this.$('#name').val(name);
+    },
+    getName: function () {
+      return this.$('#name').val();
+    },
+    setDisplayName: function (displayName) {
+      this.$('#displayName').val(displayName);
+    },
+    getDisplayName: function () {
+      return this.$('#displayName').val();
+    },
+    setTabStyle: function (tabStyle) {
+      this.$('#tabStyle').val(tabStyle);
+    },
+    getTabStyle: function () {
+      return this.$('#tabStyle').val();
+    },
+    setTabBorder: function (tabBorder) {
+      this.$('#tabBorder').val(tabBorder);
+    },
+    getTabBorder: function () {
+      return this.$('#tabBorder').val();
+    },
+    setTabWidth: function (tabWidth) {
+      this.$('#tabWidth').val(tabWidth);
+    },
+    getTabWidth: function () {
+      return this.$('#tabWidth').val();
+    },
+    setContentWidth: function (contentWidth) {
+      this.$('#contentWidth').val(contentWidth);
+    },
+    getContentWidth: function () {
+      return this.$('#contentWidth').val();
+    },
+
+    initBtnAdddSubtbl: function () {
+      var _this = this;
+      this.$('#btnAdddSubtbl').click(function () {
+        _this.addNewSubTbl();
+      });
+    },
+
+    addNewSubTbl: function (subtblDef) {
+      var _this = this;
+      var name = '';
+      var displayName = '';
+      var isActive = false;
+      var countOfSubTbl = this.$("input[name='subtblActive']").size(); //用于处理哪个子页签是处理激活状态
+      var uuid = UUID.createUUID();
+      if (typeof subtblDef == 'undefined') {
+        if (countOfSubTbl == 0) {
+          //对于新增的页签，第一个子页签默认为激活状态
+          isActive = true;
+        }
+        name = 'subtbl_' + generateMixed(16);
+      } else {
+        name = subtblDef.name;
+        displayName = subtblDef.displayName;
+        isActive = subtblDef.isActive;
+      }
+
+      var html = '';
+      html = html.concat("<tr class='subtbl'>");
+      html = html.concat('<td>');
+      html = html.concat(
+        "<input type='text' name='subtblName' value='" + name + "' oldname='" + name + "' countOfSubTbl='" + countOfSubTbl + "'/>"
+      );
+      html = html.concat('</td>');
+      html = html.concat('<td>');
+      html = html.concat("<input type='text' name='subtblDisplayName' value='" + displayName + "' />");
+      html = html.concat('</td>');
+      html = html.concat('<td>');
+      html = html.concat(
+        "<input type='radio' name='subtblActive'  " +
+          (isActive == true ? 'checked' : '') +
+          " countOfSubTbl='" +
+          countOfSubTbl +
+          "' " +
+          "id='" +
+          uuid +
+          "'" +
+          '/>' +
+          "<label for='" +
+          uuid +
+          "'></label>"
+      );
+      html = html.concat('</td>');
+      html = html.concat('<td>');
+      html = html.concat('<button type="primary" class="well-btn w-btn-primary well-btn-sm my-del-btn" >删除</button>');
+      html = html.concat('</td>');
+      html = html.concat('</tr>');
+      $(html)
+        .appendTo(this.$('.tabtable > tbody'))
+        .find('.my-del-btn')
+        .click(function () {
+          if (!confirm('删除操作将会导致该子标签中的信息不可恢复的丢失,确定删除该子标签吗？')) {
+            return;
+          }
+          _this.deleteUselessSubTbl($(this).closest('tr').find("input[name='subtblName']").attr('oldname'), countOfSubTbl);
+        });
+    },
+
+    collectSubTabs: function () {
+      var _this = this;
+      var subtbls = {};
+      this.$('.subtbl').each(function () {
+        var subtblName = $(this).find("input[name='subtblName']").val();
+        if ($.trim(subtblName).length == 0) {
+          alert('请输入子页签编码');
+          throw new Error('请输入子页签编码');
+        }
+        var subtblDisplayName = $(this).find("input[name='subtblDisplayName']").val();
+        if ($.trim(subtblDisplayName).length == 0) {
+          alert('请输入子页签标题');
+          throw new Error('请输入子页签标题');
+        }
+
+        var countOfSubTbl = $(this).find("input[name='subtblName']").attr('countOfSubTbl');
+        var oldSubtblName = $(this).find("input[name='subtblName']").attr('oldname');
+
+        var subtblActive =
+          $(this)
+            .find("input[name='subtblActive'][countOfSubTbl='" + countOfSubTbl + "']")
+            .attr('checked') == 'checked';
+        subtbls[subtblName] = {
+          name: subtblName,
+          displayName: subtblDisplayName,
+          isActive: subtblActive,
+          oldName: oldSubtblName,
+          parent: _this.getName()
+        };
+      });
+      return subtbls;
+    },
+
+    updateSubTbls: function (subtbls, tabName) {
+      for (var i in subtbls) {
+        this.updateSubTbl(subtbls[i], tabName);
+      }
+    },
+    updateSubTbl: function (subtbl, tabName) {
+      if (subtbl.oldName != subtbl.name && subtbl.oldName.length > 0) {
+        //将原子页签改名
+        this.editor.document
+          .find(".subtab-design[name='" + subtbl.oldName + "']")
+          .getItem(0)
+          .setAttribute('name', subtbl.name);
+      }
+
+      var subtblnode = this.editor.document.find(".subtab-design[name='" + subtbl.name + "']");
+
+      if (subtblnode.count() > 0) {
+        subtblnode = subtblnode.getItem(0);
+      } else {
+        this.addSubTbl(subtbl, tabName);
+      }
+    },
+
+    deleteUselessSubTbl: function (name, index) {
+      this.$("input[name='subtblName'][countOfSubTbl='" + index + "']")
+        .parents('tr')
+        .first()
+        .remove();
+      var subtabs = this.editor.document.find(".subtab-design[name='" + name + "']");
+      if (subtabs.count() > 0) {
+        subtabs.getItem(0).remove();
+      }
+      // }
+    },
+
+    addSubTbls: function (subtbls, tabName) {
+      for (var i in subtbls) {
+        this.addSubTbl(subtbls[i], tabName);
+      }
+    },
+    addSubTbl: function (subtbl, tabName) {
+      var html = '';
+      var subTblTmp = '<div name="${name}" type="subTab" symbol="${name}" class="subtab-design layout content" container=${tabName}></div>';
+      var subTbl = commons.StringUtils.format(subTblTmp, {
+        name: subtbl.name,
+        tabName: tabName
+      });
+
+      html += subTbl;
+
+      var groupName = this.getName();
+      var tabGroup = this.editor.document.find(".tab-design[name='" + groupName + "']");
+      if (tabGroup.count() == 0) {
+        return;
+      }
+      var element = CKEDITOR.dom.element.createFromHtml(html);
+      tabGroup = tabGroup.getItem(0);
+      element.appendTo(tabGroup);
+    },
+
+    exitDialog: function () {
+      $.ControlConfigUtil.exitDialog(this.editor);
+    },
+
+    objectLength: function (obj) {
+      var count = 0;
+      for (var i in obj) {
+        count++;
+      }
+      return count;
+    },
+
+    collectAndFill: function () {
+      var name = this.getName();
+      if ($.trim(name).length == 0) {
+        alert('请输入编码');
+        return false;
+      }
+      var displayName = this.getDisplayName();
+      if ($.trim(displayName).length == 0) {
+        alert('请输入标题');
+        return false;
+      }
+
+      if (typeof formDefinition.layouts == 'undefined') {
+        formDefinition.layouts = {};
+      } else {
+        for (var i in formDefinition.layouts) {
+          if (i == this.protoName) {
+            delete formDefinition.layouts[i];
+            continue;
+          } else {
+            if (i == name) {
+              alert(dymsg.tabExist + ':' + name);
+              return false;
+            }
+          }
+        }
+      }
+
+      try {
+        var subtbls = this.collectSubTabs();
+        if (this.objectLength(subtbls) == 0) {
+          // 至少要有一个子面签
+          alert(dymsg.atLeastOnesubtbl);
+          return false;
+        }
+      } catch (e) {
+        return false;
+      }
+
+      this.layout.name = name;
+      this.layout.displayName = displayName;
+      this.layout.width = this.getWidth();
+      this.layout.height = this.getHeight();
+      this.layout.tabStyle = this.getTabStyle();
+      this.layout.tabBorder = this.getTabBorder();
+      this.layout.tabWidth = this.getTabWidth();
+      this.layout.contentWidth = this.getContentWidth();
+
+      if (this.layout.width == null || $.trim(this.layout.width).length == 0) {
+        this.layout.width = '100%';
+      }
+      this.layout.inputMode = layOutInput.tab;
+
+      // debugger;
+      if (this.editor.focusedDom != null) {
+        $(this.editor.focusedDom).attr('name', name);
+        this.updateSubTbls(subtbls, name);
+        var element = this.editor.document.find(".tab-design[name='" + name + "']").getItem(0);
+      } else {
+        if (name in formDefinition.layouts) {
+          alert('编码为:' + name + ' 的标签已经存在');
+          return false;
+        }
+        var html = '';
+        html += '<div name="' + name + '" class="container tab-design" type="tab" symbol="' + name + '" ></div>';
+        var element = CKEDITOR.dom.element.createFromHtml(html);
+
+        this.editor.insertElement(element);
+        this.addSubTbls(subtbls, name);
+      }
+
+      element.setStyle('width', this.layout.width);
+      this.layout.subtabs = subtbls;
+
+      formDefinition.layouts[name] = this.layout;
+    }
+  };
+
+  var chars = '0123456789ABCDEFGHIGKLMNOPQRSTUVWXYZ'.split('');
+  function generateMixed(n) {
+    var res = '';
+    for (var i = 0; i < n; i++) {
+      var id = Math.ceil(Math.random() * 35);
+      res += chars[id];
+    }
+    return res;
+  }
+</script>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="isExistTable">
+        <![CDATA[
+			SELECT count(1) FROM information_schema.TABLES WHERE table_name = :tblName
+		]]>
+    </sql-query>
+
+
+    <sql-query name="queryDatabaseCharacter">
+        <![CDATA[
+            select DEFAULT_CHARACTER_SET_NAME as value
+            from information_schema.SCHEMATA where SCHEMA_NAME='${getSystemProperties('multi.tenancy.tenant.database_name')}'
+		]]>
+    </sql-query>
+
+
+</hibernate-mapping>

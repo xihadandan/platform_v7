@@ -1,0 +1,30 @@
+{
+  "js": {
+    "api-wBootstrapTable": {
+      "path": "/js/component-api/jquery-api-wBootstrapTable",
+      "name": "cms表格组件api",
+      "dependencies": [
+        "commons",
+        "server",
+        "appContext",
+        "appModal",
+        "DmsListViewActionBase",
+        "DmsDataServices",
+        "api-commons"
+      ]
+    },
+    "api-commons": {
+      "path": "/js/component-api/jquery-api-commons",
+      "name": "js公用api封装",
+      "dependencies": [
+        "commons",
+        "server",
+        "appContext",
+        "appModal",
+        "DmsListViewActionBase",
+        "DmsDataServices"
+      ]
+    }
+  },
+  "css": {}
+}

@@ -1,0 +1,51 @@
+1、新增js/jquery.ztree.js文件，作为项目中使用的js
+2、修改jquery.ztree.js文件以支持JDS调用
+2.1
+增加909行
+
+2.2
+917行
+if (isJson) tmpParam += "}";
+改为
+if (isJson){
+	var argsString = "[]";
+	var args = [(node == null) ? -1 : node.id];
+	if(setting.async.otherParam && setting.async.otherParam.data){
+		var dataArgs = setting.async.otherParam.data;
+		if ($.isArray(dataArgs) === true) {
+			argsString = JSON.stringify(args.concat(dataArgs));
+		} else {
+			argsString = JSON.stringify(args.concat([ dataArgs ]));
+		}
+	}else{
+		argsString = JSON.stringify(args);
+	}
+	tmpParam += "}";
+	var tmpParamObject = JSON.parse(tmpParam);
+	tmpParamObject.args = argsString;
+	tmpParam = JSON.stringify(tmpParamObject);
+};
+
+2.3
+934行开始
+	{
+		newNodes = eval("(" + msg + ")");
+	} else {
+		newNodes = msg;
+	}
+改为
+{
+	msg = eval("(" + msg + ")");
+	if(msg.data){
+		msg = msg.data;
+	}
+	newNodes = msg;
+} else {
+	if(msg.data){
+		msg = msg.data;
+	}
+	newNodes = msg;
+}
+
+9.2
+修改zTreeStandard.png 添加图标

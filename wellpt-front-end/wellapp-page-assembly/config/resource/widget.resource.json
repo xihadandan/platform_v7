@@ -1,0 +1,692 @@
+{
+  "js": {
+    "DyformDataViewerWidgetDevelopment": {
+      "path": "/js/develop/DyformDataViewerWidgetDevelopment",
+      "name": "表单数据查看器_二开接口",
+      "dependencies": ["WidgetDevelopment"]
+    },
+    "widget_suspended_frame": {
+      "path": "/js/design/component/widget_suspended_frame",
+      "name": "悬浮导航组件",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "app_component_config_dialog": {
+      "path": "/js/design/app_component_config_dialog",
+      "name": "设计器组件配置弹出框",
+      "dependencies": ["jquery", "appModal"]
+    },
+    "LeftSidebarWidgetDevelopment": {
+      "path": "/js/develop/LeftSidebarWidgetDevelopment",
+      "name": "平台基础_头部组件_二开接口",
+      "dependencies": ["WidgetDevelopment"]
+    },
+    "FileLibraryWidgetDevelopment": {
+      "path": "/js/develop/FileLibraryWidgetDevelopment",
+      "name": "文件夹目录维护组件_二开接口",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "WidgetDevelopment": {
+      "path": "/js/develop/WidgetDevelopment",
+      "name": "平台基础_组件二开_基础接口",
+      "dependencies": ["constant", "commons", "server"]
+    },
+    "TreeWidgetDevelopment": {
+      "path": "/js/develop/TreeWidgetDevelopment",
+      "name": "通用树组件_二开接口",
+      "dependencies": ["WidgetDevelopment"]
+    },
+    "widget_accordion": {
+      "path": "/js/design/component/widget_accordion",
+      "name": "手风琴组件",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "widget_footer": {
+      "path": "/js/design/component/widget_footer",
+      "name": "底部组件",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "widget_navbar": {
+      "path": "/js/design/component/widget_navbar",
+      "name": "导航条组件",
+      "dependencies": ["dependencyUIComponentModule", "ztree"]
+    },
+    "design_constant": {
+      "path": "/js/design/common/design_constant",
+      "name": "设计器公共常量",
+      "dependencies": ["jquery"]
+    },
+    "CalendarWidgetDevelopment": {
+      "path": "/js/develop/CalendarWidgetDevelopment",
+      "name": "平台基础_日历组件_二开接口",
+      "dependencies": ["WidgetDevelopment", "moment"]
+    },
+    "widget_button": {
+      "path": "/js/design/component/widget_button",
+      "name": "按钮组件",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "dependencyJQueryUIWidgetModule": {
+      "name": "dependencyJQueryUIWidgetModule",
+      "abstract": true,
+      "dependencies": [
+        "bootstrap",
+        "constant",
+        "commons",
+        "appContext",
+        "wWidget",
+        "hoverDelay",
+        "wCommonDialog",
+        "select2",
+        "wSelect2",
+        "wSelect2Group",
+        "appModal"
+      ]
+    },
+    "app_page_config": {
+      "path": "/js/design/app_page_config",
+      "name": "页面设计",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "app_page_config_new": {
+      "path": "/js/design/app_page_config_new",
+      "name": "页面设计new",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "appPageVueComponents": {
+      "path": "/js/design/appPageVueComponents",
+      "name": "页面设计vue组件",
+      "dependencies": [
+        "vue",
+        "sortable",
+        "vuedraggable",
+        "secondPageComponent",
+        "tabLayoutComponent",
+        "panelLayoutComponent",
+        "splitPaneComponent"
+      ]
+    },
+    "secondPageComponent": {
+      "path": "/js/design/secondPageComponent",
+      "name": "二级页面容器布局",
+      "dependencies": ["vue", "sortable", "vuedraggable"]
+    },
+    "tabLayoutComponent": {
+      "path": "/js/design/tabLayoutComponent",
+      "name": "页面设计页签布局",
+      "dependencies": ["vue", "sortable", "vuedraggable"]
+    },
+    "panelLayoutComponent": {
+      "path": "/js/design/panelLayoutComponent",
+      "name": "页面设计面板布局",
+      "dependencies": ["vue", "sortable", "vuedraggable"]
+    },
+    "splitPaneComponent": {
+      "path": "/js/design/splitPaneComponent",
+      "name": "页面设计分割布局",
+      "dependencies": ["vue", "sortable", "vuedraggable"]
+    },
+    "wFullCalendar": {
+      "path": "/js/ui/widget/jquery-ui-wFullCalendar",
+      "name": "资源日历组件",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "dependencyFullCalendarModule",
+        "dependencyBootstrapTableModule",
+        "dependencyUIComponentModule",
+        "jquery-validate",
+        "formBuilder",
+        "bootstrap-datetimepicker",
+        "wickedpicker",
+        "dataStoreBase",
+        "CalendarDevelopmentBase",
+        "well_calendar"
+      ]
+    },
+    "wMyCalendar": {
+      "path": "/js/ui/widget/jquery-ui-wMyCalendar",
+      "name": "资源日历组件(新)",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "dependencyFullCalendarModule",
+        "dependencyBootstrapTableModule",
+        "dependencyUIComponentModule",
+        "jquery-validate",
+        "formBuilder",
+        "bootstrap-datetimepicker",
+        "wickedpicker",
+        "dataStoreBase",
+        "CalendarDevelopmentBase",
+        "well_calendar",
+        "dataStoreBase"
+      ]
+    },
+    "wAccordion": {
+      "path": "/js/ui/widget/jquery-ui-wAccordion",
+      "name": "手风琴组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "dataStoreBase"]
+    },
+    "PanelWidgetDevelopment": {
+      "path": "/js/develop/PanelWidgetDevelopment",
+      "name": "平台基础_面板组件_二开接口",
+      "dependencies": ["WidgetDevelopment"]
+    },
+    "wPage": {
+      "path": "/js/ui/layout/jquery-ui-wPage",
+      "name": "页面容器",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "wAbsoluteLayout": {
+      "path": "/js/ui/layout/jquery-ui-wAbsoluteLayout",
+      "name": "绝对布局",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "container_panel": {
+      "path": "/js/design/component/container_panel",
+      "name": "面板容器",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "layout_secondPage": {
+      "path": "/js/design/component/layout_second_page",
+      "name": "二级页面固定布局",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "widget_mobile_calendar": {
+      "path": "/js/design/component/widget_mobile_calendar",
+      "name": "资源日历组件",
+      "dependencies": ["dependencyUIComponentModule", "dependencyBootstrapTableModule", "formBuilder", "bootstrap-datetimepicker"]
+    },
+    "widget_nav_tab": {
+      "path": "/js/design/component/widget_nav_tab",
+      "name": "多标签导航组件",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "AppPageDesigner": {
+      "path": "/js/design/AppPageDesigner",
+      "name": "页面设计器",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "layout_bootstrap_grid": {
+      "path": "/js/design/component/layout_bootstrap_grid",
+      "name": "Bootgrid布局",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "wNavBlock": {
+      "path": "/js/ui/widget/jquery-ui-wNavBlock",
+      "name": "导航块组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "dataStoreBase", "layDate"]
+    },
+    "widget_nav_block": {
+      "path": "/js/design/component/widget_nav_block",
+      "name": "导航块组件",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "TileWidgetDevelopment": {
+      "path": "/js/develop/TileWidgetDevelopment",
+      "name": "平台基础_磁贴组件_二开接口",
+      "dependencies": ["WidgetDevelopment"]
+    },
+    "wLeftSidebar": {
+      "path": "/js/ui/widget/jquery-ui-wLeftSidebar",
+      "name": "左导航组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "metisMenu", "dataStoreBase", "niceScroll", "perfectScrollbar"]
+    },
+    "wCarousel": {
+      "path": "/js/ui/widget/jquery-ui-wCarousel",
+      "name": "轮播图组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "dataStoreBase"]
+    },
+    "widget_full_calendar": {
+      "path": "/js/design/component/widget_full_calendar",
+      "name": "资源日历组件",
+      "dependencies": ["dependencyUIComponentModule", "dependencyBootstrapTableModule", "formBuilder", "bootstrap-datetimepicker"]
+    },
+    "widget_my_calendar": {
+      "path": "/js/design/component/widget_my_calendar",
+      "name": "资源日历组件(新)",
+      "dependencies": [
+        "dependencyUIComponentModule",
+        "dependencyBootstrapTableModule",
+        "formBuilder",
+        "bootstrap-datetimepicker",
+        "dataStoreBase"
+      ]
+    },
+    "app-login": {
+      "path": "/appLogin",
+      "name": "平台登录组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "dependencyUIComponentModule": {
+      "name": "dependencyUIComponentModule",
+      "abstract": true,
+      "dependencies": [
+        "bootstrap",
+        "appContext",
+        "ui_component",
+        "app_component_config_dialog",
+        "design_commons",
+        "design_constant",
+        "constant",
+        "appModal",
+        "wSelect2",
+        "wSelect2Group",
+        "ace_code_editor",
+        "ace_ext_language_tools",
+        "ace_ext_zoom_win",
+        "ace_ext_code_his",
+        "ace_ext_code_var_snippets",
+        "tinymce",
+        "vue",
+        "velocity",
+        "appPageVueComponents",
+        "sortable",
+        "vuedraggable"
+      ]
+    },
+    "wBootstrapTabs": {
+      "path": "/js/ui/widget/jquery-ui-wBootstrapTabs",
+      "name": "bootstrapTabs组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "dataStoreBase"]
+    },
+    "PanelDevelopmentSchedule": {
+      "path": "/js/PanelDevelopmentSchedule",
+      "name": "OA日程提醒",
+      "dependencies": ["PanelWidgetDevelopment"]
+    },
+    "widget_none": {
+      "path": "/js/design/component/widget_none",
+      "name": "空Widget组件",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "wDyformDataViewer": {
+      "path": "/js/ui/widget/jquery-ui-wDyformDataViewer",
+      "name": "表单数据查看器",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "wSuspendedFrame": {
+      "path": "/js/ui/widget/jquery-ui-wSuspendedFrame",
+      "name": "悬浮导航组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "dataStoreBase"]
+    },
+    "layout_absolute": {
+      "path": "/js/design/component/layout_absolute",
+      "name": "绝对布局",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "wTiles": {
+      "path": "/js/ui/widget/jquery-ui-wTiles",
+      "name": "磁贴组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "minicolors", "carousel", "dataStoreBase"]
+    },
+    "widget_left_sidebar": {
+      "path": "/js/design/component/widget_left_sidebar",
+      "name": "左导航组件",
+      "dependencies": ["dependencyUIComponentModule", "ztree"]
+    },
+    "widget_html": {
+      "path": "/js/design/component/widget_html",
+      "name": "HTML组件",
+      "dependencies": ["dependencyUIComponentModule", "summernote"]
+    },
+    "wUserCenter": {
+      "path": "/js/ui/widget/jquery-ui-wUserCenter",
+      "name": "个人中心组件",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "dependencyBootstrapTableModule",
+        "dataStoreBase",
+        "QuickSendMailDialog",
+        "QuickSendMsgDialog"
+      ]
+    },
+    "dependencyApiLibModule": {
+      "name": "dependencyApiLibModule",
+      "abstract": true
+    },
+    "layout_custom_page": {
+      "path": "/js/design/component/layout_custom_page",
+      "name": "自定义页面布局",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "widget_user_center": {
+      "path": "/js/design/component/widget_user_center",
+      "name": "个人中心组件",
+      "dependencies": ["dependencyUIComponentModule", "formBuilder"]
+    },
+    "widget_tiles": {
+      "path": "/js/design/component/widget_tiles",
+      "name": "磁贴组件",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "wFileLibrary": {
+      "path": "/js/ui/widget/jquery-ui-wFileLibrary",
+      "name": "文件夹目录维护组件",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "dependencyBootstrapTableModule",
+        "formBuilder",
+        "moment",
+        "bootstrap-datetimepicker",
+        "bootstrap-table-pagination",
+        "dataStoreBase",
+        "ViewDevelopmentBase",
+        "bootstrap-table-label-mark",
+        "api-wBootstrapTable",
+        "bootstrap-table-treegrid",
+        "layDate",
+        "wellBtnLib"
+      ]
+    },
+    "wFileManager": {
+      "path": "/js/ui/widget/jquery-ui-wFileManager",
+      "name": "文件管理",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "dependencyZtreeModule",
+        "DmsFileManagerThumbnailView",
+        "DmsFileServices",
+        "wBootstrapTable",
+        "jquery.fileupload",
+        "jquery.iframe-transport",
+        "jquery.fileupload-process"
+      ]
+    },
+    "wFooter": {
+      "path": "/js/ui/widget/jquery-ui-wFooter",
+      "name": "底部组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "widget_header": {
+      "path": "/js/design/component/widget_header",
+      "name": "头部组件1",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "widget_file_manager": {
+      "path": "/js/design/component/widget_file_manager",
+      "name": "文件管理",
+      "dependencies": ["dependencyUIComponentModule", "comboTree"]
+    },
+    "widget_tag_tree": {
+      "path": "/js/design/component/widget_tag_tree",
+      "name": "标签树",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "widget_bootstrap_tabs": {
+      "path": "/js/design/component/widget_bootstrap_tabs",
+      "name": "bootstrapTabs组件",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "widget_bootstrap_table": {
+      "path": "/js/design/component/widget_bootstrap_table",
+      "name": "Bootstrap表格组件",
+      "dependencies": ["dependencyUIComponentModule", "dependencyBootstrapTableModule", "formBuilder", "bootstrap-datetimepicker"]
+    },
+    "design_app_event": {
+      "path": "/js/design/common/design_app_event",
+      "name": "设计器选择事件处理",
+      "dependencies": ["jquery", "commons", "appModal", "formBuilder"]
+    },
+    "SuspendedFrameWidgetDevelopment": {
+      "path": "/js/develop/SuspendedFrameWidgetDevelopment",
+      "name": "悬浮导航组件_二开接口",
+      "dependencies": ["WidgetDevelopment"]
+    },
+    "wButton": {
+      "path": "/js/ui/widget/jquery-ui-wButton",
+      "name": "按钮组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "wBootstrapTable": {
+      "path": "/js/ui/widget/jquery-ui-wBootstrapTable",
+      "name": "Bootstrap表格组件",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "dependencyBootstrapTableModule",
+        "formBuilder",
+        "moment",
+        "niceScroll",
+        "bootstrap-datetimepicker",
+        "bootstrap-table-pagination",
+        "dataStoreBase",
+        "ViewDevelopmentBase",
+        "bootstrap-table-label-mark",
+        "api-wBootstrapTable",
+        "wellBtnLib",
+        "MarkerRead",
+        "MarkerUnRead"
+      ]
+    },
+    "widget_unit_tree": {
+      "path": "/js/design/component/widget_unit_tree",
+      "name": "组织树组件定义",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "wStepNav": {
+      "path": "/js/ui/widget/jquery-ui-wStepNav",
+      "name": "步骤导航组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "wNavbar": {
+      "path": "/js/ui/widget/jquery-ui-wNavbar",
+      "name": "导航条组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "metisMenu", "dataStoreBase"]
+    },
+    "widget_carousel": {
+      "path": "/js/design/component/widget_carousel",
+      "name": "轮播图组件",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "widget_unified_portal": {
+      "path": "/js/design/component/widget_unified_portal",
+      "name": "统一门户组件",
+      "dependencies": ["dependencyUIComponentModule", "ztree", "minicolors"]
+    },
+    "wUnifiedPortal": {
+      "path": "/js/ui/widget/jquery-ui-wUnifiedPortal",
+      "name": "统一门户组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "dataStoreBase"]
+    },
+    "BootstrapTabsWidgetDevelopment": {
+      "path": "/js/develop/BootstrapTabsWidgetDevelopment",
+      "name": "bootstarpTabs组件_二开接口",
+      "dependencies": ["WidgetDevelopment"]
+    },
+    "widget_dyform_data_viewer": {
+      "path": "/js/design/component/widget_dyform_data_viewer",
+      "name": "表单数据查看器",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "ListViewWidgetDevelopment": {
+      "path": "/js/develop/ListViewWidgetDevelopment",
+      "name": "平台基础_视图组件_二开接口",
+      "dependencies": ["WidgetDevelopment", "iexportData_V61"]
+    },
+    "PanelDevelopmentTips": {
+      "path": "/js/PanelDevelopmentTips",
+      "name": "重要提醒显示隐藏控制",
+      "dependencies": ["PanelWidgetDevelopment"]
+    },
+    "wLayoutit": {
+      "path": "/js/ui/layout/jquery-ui-wLayoutit",
+      "name": "Layoutit页面容器",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "widget_file_library": {
+      "path": "/js/design/component/widget_file_library",
+      "name": "悬浮导航组件",
+      "dependencies": ["dependencyUIComponentModule", "dependencyBootstrapTableModule", "formBuilder", "bootstrap-datetimepicker"]
+    },
+    "ui_component": {
+      "path": "/js/design/component/ui_component",
+      "name": "基础组件",
+      "dependencies": [
+        "jquery-ui",
+        "commons",
+        "server",
+        "select2",
+        "select2_locale_zh-cn",
+        "wCommonPictureLib",
+        "wCommonComboTree",
+        "wCommonDialog",
+        "jsonview"
+      ]
+    },
+    "wUnitTree": {
+      "path": "/js/ui/widget/jquery-ui-wUnitTree",
+      "name": "空Widget组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "dependencyZtreeModule"]
+    },
+    "wBootgrid": {
+      "path": "/js/ui/layout/jquery-ui-wBootgrid",
+      "name": "Bootgrid布局",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "widget_report": {
+      "path": "/js/design/component/widget_report",
+      "name": "报表组件",
+      "dependencies": ["dependencyUIComponentModule", "formBuilder"]
+    },
+    "wNavTab": {
+      "path": "/js/ui/widget/jquery-ui-wNavTab",
+      "name": "多标签导航组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "dataStoreBase", "layDate"]
+    },
+    "widget_step_nav": {
+      "path": "/js/design/component/widget_step_nav",
+      "name": "步骤导航组件",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "wNewHeader": {
+      "path": "/js/ui/widget/jquery-ui-wNewHeader",
+      "name": "头部组件(不含导航条)",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "dataStoreBase", "HeaderDefaultEvent", "wellfileupload", "FullTextEvent"]
+    },
+    "wSecondPageLayout": {
+      "path": "/js/ui/layout/jquery-ui-wSecondPageLayout",
+      "name": "二级页面容器布局",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "AccordionWidgetDevelopment": {
+      "path": "/js/develop/AccordionWidgetDevelopment",
+      "name": "手风琴组件_二开接口",
+      "dependencies": ["WidgetDevelopment"]
+    },
+    "wLayoutCustomPage": {
+      "path": "/js/ui/layout/jquery-ui-wLayoutCustomPage",
+      "name": "自定义页面布局",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "mousewheel", "perfectScrollbar"]
+    },
+    "wPanel": {
+      "path": "/js/ui/layout/jquery-ui-wPanel",
+      "name": "面板容器",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "dataStoreBase"]
+    },
+    "HtmlWidgetDevelopment": {
+      "path": "/js/develop/HtmlWidgetDevelopment",
+      "name": "平台基础_HTML组件_二开接口",
+      "dependencies": ["WidgetDevelopment"]
+    },
+    "wWidget": {
+      "path": "/js/ui/jquery-ui-wWidget",
+      "name": "基础组件",
+      "dependencies": ["jquery-ui", "commons", "server"]
+    },
+    "wHtml": {
+      "path": "/js/ui/widget/jquery-ui-wHtml",
+      "name": "HTML组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "UserCenterWidgetDevelopment": {
+      "path": "/js/develop/UserCenterWidgetDevelopment",
+      "name": "个人中心组件_二开接口",
+      "dependencies": ["WidgetDevelopment"]
+    },
+    "HeaderWidgetDevelopment": {
+      "path": "/js/develop/HeaderWidgetDevelopment",
+      "name": "平台基础_头部组件_二开接口",
+      "dependencies": ["WidgetDevelopment"]
+    },
+    "widget_new_header": {
+      "path": "/js/design/component/widget_newHeader",
+      "name": "头部组件(不含导航条)",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "container_page": {
+      "path": "/js/design/component/container_page",
+      "name": "页面容器",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "widget_dashboard": {
+      "path": "/js/design/component/widget_dashboard",
+      "name": "仪表盘",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "wHeader": {
+      "path": "/js/ui/widget/jquery-ui-wHeader",
+      "name": "头部组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "wNone": {
+      "path": "/js/ui/widget/jquery-ui-wNone",
+      "name": "空Widget组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "wDashboard": {
+      "path": "/js/ui/widget/jquery-ui-wDashboard",
+      "name": "仪表盘",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "config_component": {
+      "path": "/js/design/common/config_component",
+      "name": "页面设计器",
+      "dependencies": [
+        "jquery-ui",
+        "bootstrap",
+        "commons",
+        "server",
+        "select2",
+        "select2_locale_zh-cn",
+        "wCommonPictureLib",
+        "wCommonComboTree",
+        "wCommonDialog",
+        "jquery-layout",
+        "jquery-htmlClean",
+        "jquery-ui-contextmenu",
+        "docs-min",
+        "bootstrap-switch",
+        "jquery-validate"
+      ]
+    },
+    "design_commons": {
+      "path": "/js/design/common/design_commons",
+      "name": "设计器公共工具",
+      "dependencies": [
+        "jquery",
+        "commons",
+        "ace_code_editor",
+        "ace_ext_language_tools",
+        "minicolors",
+        "ace_ext_zoom_win",
+        "ace_ext_code_his",
+        "ace_ext_code_var_snippets",
+        "jsoneditor",
+        "design_app_event",
+        "wellBtnLib",
+        "uuid",
+        "jquery-form",
+        "niceScroll"
+      ]
+    },
+    "FileSourceDevelopment": {
+      "path": "/js/develop/FileSourceDevelopment",
+      "name": "附件来源_基础接口",
+      "dependencies": ["constant", "commons", "server"]
+    },
+    "UnifiedPortalWidgetDevelopment": {
+      "path": "/js/develop/UnifiedPortalWidgetDevelopment",
+      "name": "统一门户组件_二开接口",
+      "dependencies": ["WidgetDevelopment"]
+    }
+  },
+  "css": {}
+}

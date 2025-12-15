@@ -1,0 +1,47 @@
+.ztree li {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ztree li a span.C_ico_open,
+.ztree li a span.C_ico_close,
+.ztree li a span.C_ico_docu,
+.ztree li a span.D_ico_open,
+.ztree li a span.D_ico_close,
+.ztree li a span.D_ico_docu {
+    background: url('../img/department.png') no-repeat;
+    background-size: contain;
+}
+
+.ztree li a span.U_ico_docu {
+    background: url('../img/person.png') no-repeat;
+    background-size: contain;
+}
+
+.ztree li a span.B_ico_open,
+.ztree li a span.B_ico_close,
+.ztree li a span.B_ico_docu {
+    background: url('../img/company.png') no-repeat;
+    background-size: contain;
+}
+
+.ztree li a span.J_ico_open,
+.ztree li a span.J_ico_close,
+.ztree li a span.J_ico_docu {
+    background: url('../img/job.png') no-repeat;
+    background-size: contain;
+}
+
+.ztree li a span.O_ico_open,
+.ztree li a span.O_ico_close,
+.ztree li a span.O_ico_docu {
+    background: url('../img/orgtree.png') no-repeat;
+    background-size: contain;
+}
+
+.ztree li a span.V_ico_open,
+.ztree li a span.V_ico_close,
+.ztree li a span.V_ico_docu {
+    background: url('../img/orgtree.png') no-repeat;
+    background-size: contain;
+}

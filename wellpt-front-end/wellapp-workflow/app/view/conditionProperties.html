@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+
+    {% for file in themeFiles %}
+    <link href="{{file}}" rel="stylesheet" />
+    {% endfor %}
+  </head>
+  <body style="background: #fff">
+    <div class="fixed-tabs">
+      <ul class="nav nav-tabs tab-style-btns" role="tablist">
+        <li class="active">
+          <a href="#baseTab" data-toggle="tab" aria-expanded="true">基本属性</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="tab-content" style="height: 40px; padding: 60px 10px 10px">
+      <form id="conditionForm" class="well-workflow-form" name="conditionForm">
+        <div class="tab-pane subtab active" name="baseTab" title="基本属性" id="baseTab">
+          <div class="form-group">
+            <label class="sub-label">
+              <span>名称</span>
+            </label>
+            <input id="name" name="name" type="text" class="form-control" placeholder="请输入" />
+          </div>
+          <div class="form-group">
+            <label class="sub-label">
+              <span>描述</span>
+            </label>
+            <textarea id="description" name="description" class="form-control" placeholder=""></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="/static/js/requirejs/2.3.2/require.min.js"></script>
+    <script src="/static/workflow/js/designer/JSConstant.js?v={{helper.resVer()}}"></script>
+    <script
+      type="text/javascript"
+      src="/jsexplainer/requirejsConfigScript.js?ids=jquery,bootstrap,global,jqueryWorkflow,workflowCommon,conditionProperties"
+    ></script>
+    <script>
+      var ctx = '';
+      require(['js/requirejs/domReady'], function (domReady) {
+        domReady(function () {
+          require(['jquery', 'bootstrap', 'global', 'jqueryWorkflow', 'workflowCommon', 'conditionProperties'], function () {
+            var timer = setInterval(function () {
+              if (parent.goWorkFlow.flowXML) {
+                clearInterval(timer);
+                setConditionProperty();
+              }
+            }, 100);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

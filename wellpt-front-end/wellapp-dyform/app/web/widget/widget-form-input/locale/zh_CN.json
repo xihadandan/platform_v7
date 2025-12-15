@@ -1,0 +1,9 @@
+{
+  "WidgetFormInput": {
+    "validateMessage": {
+      "required": "必填",
+      "dataFormateError": "数据格式错误",
+      "dataExistError": "数据已存在"
+    }
+  }
+}

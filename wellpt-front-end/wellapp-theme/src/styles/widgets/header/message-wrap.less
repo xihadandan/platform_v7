@@ -1,0 +1,209 @@
+/* 头部组件 - 我的消息弹窗 */
+
+// 我的消息弹窗
+.myMsgWrap {
+  .absolute( @header-height 0 false false);
+
+  width: @header-message-popup-width;
+  z-index: 100000;
+  background: @dropdown-background;
+  box-shadow: @shadow-popup-default;
+
+  // 我的消息弹窗 - 标题行(设置行)
+  .myMsgSet {
+    .size(100%, @header-message-popup-setting-row-height);
+
+    line-height: @header-message-popup-setting-row-height;
+    padding-right: @padding-md;
+    background: @dropdown-background-darker;
+    border-bottom: @border-default-light;
+    text-align: right;
+
+    i {
+      font-size: @dropdown-item-icon-size;
+      color: @dropdown-item-icon-color;
+      cursor: pointer;
+
+      &:hover {
+        color: @dropdown-hover-item-icon-color;
+      }
+    }
+  }
+
+  // 我的消息弹窗 - 消息列表
+  > ul li {
+    width: @header-message-popup-width;
+    padding: @padding-xs @padding-lg;
+    border-bottom: @border-default-light;
+    cursor: pointer;
+
+    // 我的消息弹窗 - 消息列表 - 标题
+    .tit {
+      .text-overflow();
+
+      line-height: 1;
+      font-size: @font-size-base;
+      color: @text-color-light;
+      width: 50%;
+      text-align: left;
+
+      i {
+        @header-message-popup-item-icon-size: 24px;
+        .square(@header-message-popup-item-icon-size);
+
+        font-size: @header-message-popup-item-icon-size;
+        line-height: @header-message-popup-item-icon-size;
+        margin-right: @margin-sm;
+        color: @text-color-primary-hover;
+        vertical-align: middle;
+        opacity: 0.75;
+        font-weight: 500;
+        border-radius: 50%;
+        display: inline-block;
+        text-align: center;
+      }
+    }
+
+    // 我的消息弹窗 - 消息列表 - 时间
+    .time {
+      line-height: 24px;
+      font-size: @font-size-sm;
+      color: @text-color-light;
+    }
+
+    // 我的消息弹窗 - 消息列表 - 主题
+    .msgSubject {
+      margin-top: @margin-xs;
+      font-size: @font-size-lg;
+      color: @text-color-dark;
+      line-height: 1;
+      text-align: left;
+    }
+
+    // 我的消息弹窗 - 消息列表 - 正文
+    .content {
+      .text-overflow();
+
+      margin-top: @margin-2xs;
+      line-height: 18px;
+      font-size: @font-size-base;
+      color: @text-color;
+      text-align: left;
+      height: 36px;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+
+      .text {
+        line-height: 18px;
+      }
+    }
+
+    &:hover {
+      background: @dropdown-hover-item-background;
+
+      .tit i {
+        opacity: 1;
+      }
+    }
+  }
+
+  // 我的消息弹窗 - 提示信息(空消息)
+  .msg-tip {
+    padding-top: 125px;
+    display: none;
+    height: 436px;
+    font-size: @font-size-base;
+    color: @text-color-light;
+    text-align: center;
+
+    img {
+      .square(100px);
+
+      display: inline-block;
+      margin-bottom: @margin-lg;
+    }
+  }
+
+  // 我的消息弹窗 - 底部按钮行
+  .myMsg-btns {
+    position: relative;
+    font-size: @font-size-base;
+    color: @text-color;
+    text-align: center;
+    border-top: @border-default-light;
+    height: @header-message-popup-setting-row-height;
+    line-height: @header-message-popup-setting-row-height;
+
+    &::after {
+      .absolute(0 false  0 50%);
+
+      z-index: 1;
+      content: '';
+      width: 1px;
+      margin-left: -0.5px;
+      background: @gray-5;
+    }
+
+    .myMsg-read {
+      width: 50%;
+      border-right: @border-default-light;
+      cursor: pointer;
+
+      &:hover {
+        color: @text-color-primary;
+      }
+    }
+
+    .myMsg-more {
+      width: 50%;
+      color: @text-color-primary;
+      cursor: pointer;
+
+      &:hover {
+        color: @text-color-primary-hover;
+      }
+
+      i {
+        margin-left: 5px;
+        font-size: @font-size-sm;
+      }
+    }
+  }
+}
+
+// 我的消息弹窗 (无消息状态)
+.myMsgWrap.noMsg {
+  // 我的消息弹窗 - 消息列表
+  > ul {
+    display: none;
+  }
+
+  // 我的消息弹窗 - 提示信息(空消息)
+  .msg-tip {
+    display: block;
+  }
+
+  // 我的消息弹窗 - 底部按钮行
+  .myMsg-btns {
+    background: @gray-1;
+
+    .myMsg-read {
+      cursor: not-allowed;
+      color: @disabled-text-color;
+    }
+  }
+}
+
+// 请使用 `.float-left` 代替！
+// @deprecated
+.fl {
+  float: left;
+}
+
+// 请使用 `.float-right` 代替！
+// @deprecated
+.fr {
+  float: right;
+}

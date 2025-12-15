@@ -1,0 +1,32 @@
+.color-item-wrapper {
+  .square(26px);
+
+  display: inline-block;
+  padding: 3px;
+  border: @border-default-transparent;
+  margin-right: 2px;
+  margin-top: 2px;
+  position: relative;
+
+  &:hover {
+    border: @border-default-dark;
+  }
+
+  &.selected {
+    border: @border-default-primary;
+
+    &::before {
+      .box();
+
+      content: '✓';
+      color: @text-color-inverse;
+      font-size: @font-size-base;
+      text-align: center;
+      line-height: 24px;
+    }
+  }
+
+  .color-item-inner {
+    .size(18px);
+  }
+}

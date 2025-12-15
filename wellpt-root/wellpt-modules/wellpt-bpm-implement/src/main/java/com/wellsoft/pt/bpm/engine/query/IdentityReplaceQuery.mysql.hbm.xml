@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="queryFlowSchema">
+        <![CDATA[
+		select uuid, content from WF_FLOW_SCHEMA t1 where 1 = 1
+		<if systemIds?? && (systemIds?size > 0)>
+		    and exists (
+		        select d.uuid from wf_flow_definition d
+		        where
+		           (exists (
+                       select pm.module_id
+                       from app_prod_module pm
+                                left join app_system_info si on pm.prod_version_uuid = si.prod_version_uuid
+                       where d.module_id = pm.module_id
+                         and si.system in (:systemIds)
+                   )
+                   or d.system in (:systemIds))
+		         and d.flow_schema_uuid = t1.uuid
+		    )
+		</if>
+		<if isNotBlank( name )>
+            and content like '%${name}%'
+        </if>
+        <if isNotBlank( station )>
+            and content like '%${station}%'
+        </if>
+        <if isNotBlank( flowGroup )>
+            and content like '%${flowGroup}%'
+        </if>
+        <if isNotBlank( department )>
+            and content like '%${department}%'
+        </if>
+        <if isNotBlank( flowName )>
+            and content like '%${flowName}%'
+        </if>
+	]]>
+    </sql-query>
+
+    <sql-query name="flowDefinitionTaskUserQuery">
+        <![CDATA[
+        select t1.uuid                as uuid,
+               t1.create_time         as create_time,
+               t1.modify_time         as modify_time,
+               t1.category            as category,
+               t2.name                as category_name,
+               t1.name                as name,
+               t1.id                  as id,
+               t1.code                as code,
+               t1.version             as version,
+               t1.form_uuid           as form_uuid,
+               t1.form_name           as form_name,
+               t1.enabled             as enabled,
+               t1.freeed              as freeed,
+               t1.remark              as remark,
+               t1.delete_status       as delete_status,
+               t1.delete_time         as delete_time,
+               t3.node_uuids          as node_uuids,
+               t3.node_type           as node_type,
+               t3.node_name           as node_name,
+               t3.node_id             as node_id,
+               t3.node_user_attribute as node_user_attribute,
+               t3.user_value          as user_value,
+               t3.user_arg_value      as user_arg_value,
+               t3.user_org_id         as user_org_id
+        from wf_flow_definition t1
+            <if isNotBlank(distinctVersion)>
+		  		inner join (
+		  			select t.id as id, max(t.version) as version
+	                   from wf_flow_definition t
+	                   group by t.id, t.enabled
+	                   having t.enabled = 1
+		  		) t1_ on t1.id = t1_.id and t1.version = t1_.version
+		    </if>
+                 left join wf_def_category t2 on t1.category = t2.uuid
+                 inner join (
+            select t.flow_def_uuid       as                                             flow_def_uuid,
+                   t.node_type           as                                             node_type,
+                   t.node_name           as                                             node_name,
+                   t.node_id             as                                             node_id,
+                   t.node_user_attribute as                                             node_user_attribute,
+                   group_concat(t.uuid, ';')    as                                      node_uuids,
+                   group_concat(t.user_value, ';')   as                                 user_value,
+                   group_concat(t.user_arg_value, ';')  as                              user_arg_value,
+                   group_concat(t.user_org_id, ';') as                                  user_org_id
+            from wf_flow_definition_user t
+            group by t.flow_def_uuid, t.node_type, t.node_name, t.node_id, t.node_user_attribute
+        ) t3 on t1.uuid = t3.flow_def_uuid
+        where 1 = 1
+            <if moduleId??>
+        	    and t1.module_id=:moduleId
+            </if>
+            <if systemIds?? && (systemIds?size > 0) && isNotBlank(tenantId)>
+                and (
+                    exists (
+                        select pm.module_id from app_prod_module pm
+                            left join app_system_info si on pm.prod_version_uuid = si.prod_version_uuid
+                            where t1.module_id = pm.module_id and si.system in (:systemIds) and si.tenant = :tenantId
+                    )
+                    or t1.system in (:systemIds)
+                )
+            <elseif systemIds?? && (systemIds?size > 0)>
+                and t1.system in (:systemIds)
+            <elseif isNotBlank(tenantId)>
+                and t1.tenant = :tenantId
+            </if>
+            <if categoryUuid??>
+                and t1.category = :categoryUuid
+            </if>
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            </if>
+    ]]>
+    </sql-query>
+
+    <sql-query name="flowDefinitionFlowUserQuery">
+        <![CDATA[
+        select t1.uuid                as uuid,
+               t1.create_time         as create_time,
+               t1.modify_time         as modify_time,
+               t1.category            as category,
+               t2.name                as category_name,
+               t1.name                as name,
+               t1.id                  as id,
+               t1.code                as code,
+               t1.version             as version,
+               t1.form_uuid           as form_uuid,
+               t1.form_name           as form_name,
+               t1.enabled             as enabled,
+               t1.freeed              as freeed,
+               t1.remark              as remark,
+               t1.delete_status       as delete_status,
+               t1.delete_time         as delete_time,
+               t3.creators            as creators,
+               t3.users               as users,
+               t3.monitors            as monitors,
+               t3.admins              as admins,
+               t3.viewers             as viewers
+        from wf_flow_definition t1
+            <if isNotBlank(distinctVersion)>
+		  		inner join (
+		  			select t.id as id, max(t.version) as version
+	                   from wf_flow_definition t
+	                   group by t.id, t.enabled
+	                   having t.enabled = 1
+		  		) t1_ on t1.id = t1_.id and t1.version = t1_.version
+		    </if>
+                 left join wf_def_category t2 on t1.category = t2.uuid
+                 inner join (
+                    select  uuid        as flow_def_uuid,
+                            c.creators  as creators,
+                            u.users     as users,
+                            m.monitors  as monitors,
+                            a.admins    as admins,
+                            v.viewers   as viewers
+                    from wf_flow_definition t
+                    left join (
+                        select t.flow_def_uuid as                                                  flow_def_uuid,
+                               group_concat(t.user_arg_value, ';') as                              creators
+                        from wf_flow_definition_user t
+                        where t.node_type = 'flow'
+                          and t.node_user_attribute = 'creators'
+                        group by t.flow_def_uuid, t.node_type, t.node_name, t.node_id, t.node_user_attribute
+                    ) c on c.flow_def_uuid = t.uuid
+                    left join (
+                        select t.flow_def_uuid as                                                  flow_def_uuid,
+                               group_concat(t.user_arg_value, ';') as                              users
+                        from wf_flow_definition_user t
+                        where t.node_type = 'flow'
+                          and t.node_user_attribute = 'users'
+                        group by t.flow_def_uuid, t.node_type, t.node_name, t.node_id, t.node_user_attribute
+                    ) u on u.flow_def_uuid = t.uuid
+                    left join (
+                        select t.flow_def_uuid as                                                  flow_def_uuid,
+                               group_concat(t.user_arg_value, ';')  as                             monitors
+                        from wf_flow_definition_user t
+                        where t.node_type = 'flow'
+                          and t.node_user_attribute = 'monitors'
+                        group by t.flow_def_uuid, t.node_type, t.node_name, t.node_id, t.node_user_attribute
+                    ) m on m.flow_def_uuid = t.uuid
+                    left join (
+                        select t.flow_def_uuid as                                                  flow_def_uuid,
+                               group_concat(t.user_arg_value, ';') as                              admins
+                        from wf_flow_definition_user t
+                        where t.node_type = 'flow'
+                          and t.node_user_attribute = 'admins'
+                        group by t.flow_def_uuid, t.node_type, t.node_name, t.node_id, t.node_user_attribute
+                    ) a on a.flow_def_uuid = t.uuid
+                    left join (
+                        select t.flow_def_uuid as                                                  flow_def_uuid,
+                               group_concat(t.user_arg_value, ';') as                              viewers
+                        from wf_flow_definition_user t
+                        where t.node_type = 'flow'
+                          and t.node_user_attribute = 'viewers'
+                        group by t.flow_def_uuid, t.node_type, t.node_name, t.node_id, t.node_user_attribute
+                    ) v on v.flow_def_uuid = t.uuid
+                ) t3 on t1.uuid = t3.flow_def_uuid
+        where 1 = 1
+            <if moduleId??>
+        	    and t1.module_id=:moduleId
+            </if>
+            <if systemIds?? && (systemIds?size > 0) && isNotBlank(tenantId)>
+                and (
+                    exists (
+                        select pm.module_id from app_prod_module pm
+                            left join app_system_info si on pm.prod_version_uuid = si.prod_version_uuid
+                            where t1.module_id = pm.module_id and si.system in (:systemIds) and si.tenant = :tenantId
+                    )
+                    or t1.system in (:systemIds)
+                )
+            <elseif systemIds?? && (systemIds?size > 0)>
+                and t1.system in (:systemIds)
+            <elseif isNotBlank(tenantId)>
+                and t1.tenant = :tenantId
+            </if>
+            <if categoryUuid??>
+                and t1.category = :categoryUuid
+            </if>
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            </if>
+    ]]>
+    </sql-query>
+
+</hibernate-mapping>

@@ -1,0 +1,614 @@
+{
+  "js": {
+    "mui-poppicker": {
+      "path": "/mobile/mui/js/mui.poppicker",
+      "name": "mui-poppicker",
+      "dependencies": ["mui", "mui-listpicker"]
+    },
+    "mui-dtpicker": {
+      "path": "/mobile/mui/js/mui.picker.min",
+      "name": "mui-dtpicker",
+      "dependencies": ["mui"]
+    },
+    "mui-wDialog": {
+      "path": "/mobile/mui/js/app/dyform/mui.wDialog",
+      "name": "手机端_表单弹出框",
+      "dependencies": ["mui-DyformField", "mui-pullToRefresh", "mui-listpicker", "mui-poppicker", "wMobileListView", "dataStoreBase"]
+    },
+    "mui-DyformValidation": {
+      "path": "/mobile/mui/js/app/dyform/mui.DyformValidation",
+      "name": "手机端_表单验证"
+    },
+    "app-adapter": {
+      "path": "/mobile/mui/js/app/appAdapter",
+      "name": "app-adapter",
+      "dependencies": ["formBuilder"]
+    },
+    "mui-WorkFlowOverMobileListViewDevelopment": {
+      "path": "/mobile/mui/js/app/workflow/mui.WorkFlowOverMobileListViewDevelopment",
+      "name": "工作流程_手机数据列表_办结二开",
+      "dependencies": ["mui-WorkFlowMobileListViewDevelopmentBase"]
+    },
+    "mui-wFileUpload": {
+      "path": "/mobile/mui/js/app/dyform/mui.wFileUpload",
+      "name": "手机端_表单附件上传",
+      "dependencies": ["mui-DyformField", "mui-fileupload"]
+    },
+    "mui-WorkFlowAttentionMobileListViewDevelopment": {
+      "path": "/mobile/mui/js/app/workflow/mui.WorkFlowAttentionMobileListViewDevelopment",
+      "name": "工作流程_手机数据列表_关注二开",
+      "dependencies": ["mui-WorkFlowMobileListViewDevelopmentBase"]
+    },
+    "mobile_app_nav": {
+      "path": "/mobile/mui/js/app/mobile_app_nav",
+      "name": "手机应用_工作导航",
+      "dependencies": ["constant", "commons", "server", "appDispatcher", "appContext", "appWindowManager"]
+    },
+    "wMobileListView": {
+      "path": "/mobile/mui/js/ui/widget/mui.wMobileListView",
+      "name": "手机数据列表解析",
+      "dependencies": ["mui-wWidget", "dataStoreBase", "MobileListDevelopmentBase", "mui-pullToRefresh", "mui-appModal"]
+    },
+    "mui-wEmbedded": {
+      "path": "/mobile/mui/js/app/dyform/mui.wEmbedded",
+      "name": "手机端_表单URL嵌入页面",
+      "dependencies": ["mui-DyformField", "mui-formBiulder"]
+    },
+    "mui-wViewdisplay": {
+      "path": "/mobile/mui/js/app/dyform/mui.wViewdisplay",
+      "name": "手机端_表单视图展示",
+      "dependencies": ["mui-DyformField"]
+    },
+    "mobileApp": {
+      "path": "/mobile/mui/js/app/app",
+      "name": "手机应用入口",
+      "dependencies": ["app-adapter", "mui-wWidget"]
+    },
+    "wMobileGridView": {
+      "path": "/mobile/mui/js/ui/widget/mui.wMobileGridView",
+      "name": "手机九宫格解析",
+      "dependencies": ["mui-wWidget"]
+    },
+    "mui-WorkView": {
+      "path": "/workflow/js/work/WorkView",
+      "name": "手机端WorkView流程单据默认实现",
+      "alias": "WorkView",
+      "dependencies": ["mui-WorkFlowDevelopment", "mui-DyformExplain"]
+    },
+    "wMobileButton": {
+      "path": "/mobile/mui/js/ui/layout/mui.wMobileButton",
+      "name": "手机按钮组件解析",
+      "dependencies": ["mui-wWidget"]
+    },
+    "mui-WorkFlowSharePanelDevelopment": {
+      "path": "/mobile/mui/js/app/workflow/mui.WorkFlowSharePanelDevelopment",
+      "name": "工作流程_分享详情页",
+      "dependencies": ["mui-MobilePanelDevelopmentBase", "mui-WorkView", "mui-WorkViewProxy"]
+    },
+    "mui-wSelect": {
+      "path": "/mobile/mui/js/app/dyform/mui.wSelect",
+      "name": "手机端_表单下拉选项框",
+      "dependencies": ["mui-poppicker", "mui-DyformFieldOptionBase"]
+    },
+    "mui-DyformCommons": {
+      "path": "/mobile/mui/js/app/dyform/mui.DyformCommons",
+      "name": "手机端_表单公共工具方法",
+      "dependencies": ["constant", "commons", "server"]
+    },
+    "mui-addressBook": {
+      "path": "/mobile/mui/js/common/mui.addressBook",
+      "name": "手机通讯录",
+      "dependencies": ["mui", "constant", "commons", "appModal", "formBuilder"]
+    },
+    "mui-MobileGridDevelopmentBase": {
+      "path": "/mobile/mui/js/app/MobileGridDevelopmentBase",
+      "name": "手机九宫格_二开基础",
+      "dependencies": ["mui", "commons", "constant", "server"]
+    },
+    "mui-MobileNoticeListViewDevelopment": {
+      "path": "/mobile/mui/js/app/message/mui.MobileNoticeListViewDevelopment",
+      "name": "手机面板-消息公告列表",
+      "dependencies": ["MobileListDevelopmentBase"]
+    },
+    "wMobilePanel": {
+      "path": "/mobile/mui/js/ui/layout/mui.wMobilePanel",
+      "name": "手机面板解析",
+      "dependencies": ["mui-wWidget"]
+    },
+    "mui-wXml": {
+      "path": "/mobile/mui/js/app/dyform/mui.wXml",
+      "name": "手机端_表单XML",
+      "dependencies": ["mui-DyformField"]
+    },
+    "mui-showEmail": {
+      "path": "/mobile/mui/js/email/show_mail",
+      "name": "手机邮件展示详情",
+      "dependencies": ["mui-webmailBox"]
+    },
+    "mui-WorkViewProxy": {
+      "path": "/mobile/mui/js/app/workflow/mui.WorkViewProxy",
+      "name": "手机端workView代理",
+      "alias": "WorkViewProxy",
+      "dependencies": ["constant", "commons", "server", "DyformExplain"]
+    },
+    "mui-WorkFlowReadMobileListViewDevelopment": {
+      "path": "/mobile/mui/js/app/workflow/mui.WorkFlowReadMobileListViewDevelopment",
+      "name": "工作流程_手机数据列表_已阅二开",
+      "dependencies": ["mui-WorkFlowMobileListViewDevelopmentBase"]
+    },
+    "mui-calendar": {
+      "path": "/mobile/mui/js/mui.calendar",
+      "name": "mui日程组件",
+      "alias": "mui-calendar",
+      "dependencies": ["mui"]
+    },
+    "mui-wTimeEmploy": {
+      "path": "/mobile/mui/js/app/dyform/mui.wTimeEmploy",
+      "name": "手机端_表单资源选择",
+      "dependencies": ["mui-DyformField"]
+    },
+    "mui-global": {
+      "path": "/mobile/mui/js/common/mui.global",
+      "name": "mui-global",
+      "alias": "global",
+      "dependencies": ["mui"]
+    },
+    "mui-WorkFlowDraftMobileListViewDevelopment": {
+      "path": "/mobile/mui/js/app/workflow/mui.WorkFlowDraftMobileListViewDevelopment",
+      "name": "工作流程_手机数据列表_草稿二开",
+      "dependencies": ["mui-WorkFlowMobileListViewDevelopmentBase"]
+    },
+    "mui-wDatePicker": {
+      "path": "/mobile/mui/js/app/dyform/mui.wDatePicker",
+      "name": "手机端_表单日期",
+      "dependencies": ["mui-DyformField", "mui-dtpicker"]
+    },
+    "mui-wRadio": {
+      "path": "/mobile/mui/js/app/dyform/mui.wRadio",
+      "name": "手机端_表单单选框",
+      "dependencies": ["mui-DyformFieldOptionBase"]
+    },
+    "mui-webmailBox": {
+      "path": "/mobile/mui/js/email/webmail_box",
+      "name": "手机邮件公共",
+      "dependencies": ["constant", "commons", "server", "mui-unit", "mui-filepreview", "mui-fileupload"]
+    },
+    "wMobileSlider": {
+      "path": "/mobile/mui/js/ui/layout/mui.wMobileSlider",
+      "name": "手机轮播组件解析",
+      "dependencies": ["mui-wWidget"]
+    },
+    "mui-appModal": {
+      "path": "/mobile/mui/js/app/mui.appModal",
+      "name": "mui-appModal",
+      "alias": "appModal",
+      "dependencies": ["mui", "commons", "appContext"]
+    },
+    "mui-WorkFlowTodoDevelopment": {
+      "path": "/mobile/mui/js/app/workflow/mui.WorkFlowTodoPanelDevelopment",
+      "name": "工作流程_待办详情页",
+      "dependencies": ["mui-MobilePanelDevelopmentBase", "mui-WorkView", "mui-WorkViewProxy"]
+    },
+    "mui-wUnit": {
+      "path": "/mobile/mui/js/app/dyform/mui.wUnit",
+      "name": "手机端_表单组织选择框",
+      "dependencies": ["mui-DyformField", "mui-DyformConstant", "mui-unit"]
+    },
+    "mui-WorkFlowViewerMobileListViewDevelopment": {
+      "path": "/mobile/mui/js/app/workflow/mui.WorkFlowViewerMobileListViewDevelopment",
+      "name": "工作流程_手机数据列表_查看二开",
+      "dependencies": ["mui-WorkFlowMobileListViewDevelopmentBase"]
+    },
+    "mui-appTabs": {
+      "path": "/mobile/mui/js/app/mui.appTabs",
+      "name": "mui-appTabs",
+      "alias": "AppTabs"
+    },
+    "mui-wTextBody": {
+      "path": "/mobile/mui/js/app/dyform/mui.wTextBody",
+      "name": "手机端_表单正文",
+      "dependencies": ["mui-DyformField"]
+    },
+    "mui-WorkFlowWorkMobileListViewDevelopment": {
+      "path": "/mobile/mui/js/app/workflow/mui.WorkFlowWorkMobileListViewDevelopment",
+      "name": "工作流程_手机数据列表_通用二开",
+      "dependencies": ["mui-WorkFlowMobileListViewDevelopmentBase"]
+    },
+    "mobile-calendar": {
+      "path": "/mobile/mui/js/app/mobile_calendar",
+      "name": "手机日程",
+      "alias": "mobile-calendar",
+      "dependencies": ["mui", "constant", "server", "commons", "mui-appModal", "mui-calendar"]
+    },
+    "mui-DyformConstant": {
+      "path": "/dyform/commons/dyform_constant",
+      "name": "手机端_表单常量",
+      "dependencies": ["jquery"]
+    },
+    "mui-wRichEditor": {
+      "path": "/mobile/mui/js/app/dyform/mui.wRichEditor",
+      "name": "手机端_富文本输入框",
+      "dependencies": ["mui-DyformField", "quill"]
+    },
+    "quill": {
+      "path": "/js/quill/quill.min",
+      "name": "quill"
+    },
+    "container_mobile_panel": {
+      "path": "/mobile/mui/js/design/component/container_mobile_panel",
+      "name": "手机面板定义",
+      "dependencies": ["dependencyUIComponentModule", "dependencyBootstrapTableModule", "formBuilder", "bootstrap-datetimepicker"]
+    },
+    "widget_mobile_nav": {
+      "path": "/mobile/mui/js/design/component/widget_mobile_nav",
+      "name": "手机端导航组件",
+      "dependencies": ["dependencyUIComponentModule", "ztree"]
+    },
+    "mui-wWidget": {
+      "path": "/mobile/mui/js/ui/mui.wWidget",
+      "name": "mui-wWidget",
+      "dependencies": ["mui-widget"]
+    },
+    "mui-UserInfo": {
+      "path": "/mobile/mui/js/app/mobile_userinfo",
+      "name": "手机端用户信息",
+      "dependencies": ["constant", "commons", "server", "mui-WorkView", "mui-WorkViewProxy"]
+    },
+    "mui-DyformFieldOptionBase": {
+      "path": "/mobile/mui/js/app/dyform/mui.DyformFieldOptionBase",
+      "name": "手机端_表单字段_可选项值控件基类",
+      "dependencies": ["mui-DyformField"]
+    },
+    "mui-fileupload": {
+      "path": "/mobile/mui/js/common/mui.fileupload",
+      "name": "mui附件控件",
+      "alias": "mui-fileupload",
+      "dependencies": ["mui", "constant", "commons", "server"]
+    },
+    "mui-WorkFlowUnreadMobileListViewDevelopment": {
+      "path": "/mobile/mui/js/app/workflow/mui.WorkFlowUnreadMobileListViewDevelopment",
+      "name": "工作流程_手机数据列表_未阅二开",
+      "dependencies": ["mui-WorkFlowMobileListViewDevelopmentBase"]
+    },
+    "mui-WorkFlowMonitorMobileListViewDevelopment": {
+      "path": "/mobile/mui/js/app/workflow/mui.WorkFlowMonitorMobileListViewDevelopment",
+      "name": "工作流程_手机数据列表_监控二开",
+      "dependencies": ["mui-WorkFlowMobileListViewDevelopmentBase"]
+    },
+    "mui-DyformExplain": {
+      "path": "/mobile/mui/js/app/dyform/mui.DyformExplain",
+      "name": "手机端_表单解析",
+      "alias": "DyformExplain",
+      "dependencies": ["mui-DyformField", "mui-DyformScope", "mui-DyformValidation", "mui-DyformCommons", "mui-unit", "DyformDevelopment"]
+    },
+    "widget_mobile_button": {
+      "path": "/mobile/mui/js/design/component/widget_mobile_button",
+      "name": "手机端按钮组件",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "mui-wTextInput": {
+      "path": "/mobile/mui/js/app/dyform/mui.wTextInput",
+      "name": "手机端_表单普通输入框",
+      "dependencies": ["mui-DyformField"]
+    },
+    "mui-WorkFlowDevelopment": {
+      "path": "/workflow/js/work/WorkFlowDevelopment",
+      "name": "手机端流程单据开发WorkFlowDevelopment",
+      "alias": "WorkFlowDevelopment",
+      "dependencies": ["mui-WorkFlow", "WorkFlowErrorHandler"]
+    },
+    "mui-wJobSelect": {
+      "path": "/mobile/mui/js/app/dyform/mui.wJobSelect",
+      "name": "手机端_表单职位控件",
+      "dependencies": ["mui-DyformField", "mui-wSelect"]
+    },
+    "widget_mobile_list_view": {
+      "path": "/mobile/mui/js/design/component/widget_mobile_list_view",
+      "name": "手机数据列表定义",
+      "dependencies": ["dependencyUIComponentModule", "dependencyBootstrapTableModule", "formBuilder", "bootstrap-datetimepicker"]
+    },
+    "mui-wTextArea": {
+      "path": "/mobile/mui/js/app/dyform/mui.wTextArea",
+      "name": "手机端_表单文本域",
+      "dependencies": ["mui-DyformField"]
+    },
+    "widget_mobile_html": {
+      "path": "/mobile/mui/js/design/component/widget_mobile_html",
+      "name": "手机端HTML组件",
+      "dependencies": ["dependencyUIComponentModule", "summernote"]
+    },
+    "wMobilePage": {
+      "path": "/mobile/mui/js/ui/layout/mui.wMobilePage",
+      "name": "手机App页面容器解析",
+      "dependencies": ["mui-wWidget", "app-adapter"]
+    },
+    "mui-WorkFlowMobileListViewDevelopmentBase": {
+      "path": "/mobile/mui/js/app/workflow/mui.WorkFlowMobileListViewDevelopmentBase",
+      "name": "工作流程_手机数据列表_二开基础",
+      "dependencies": ["MobileListDevelopmentBase", "mui-WorkViewProxy", "mui-WorkView"]
+    },
+    "mui-ShowUserInfo": {
+      "path": "/mobile/mui/js/app/mobile_show_userinfo",
+      "name": "手机端用户信息展示",
+      "dependencies": ["constant", "commons", "server"]
+    },
+    "mui-WorkFlowDoneMobileListViewDevelopment": {
+      "path": "/mobile/mui/js/app/workflow/mui.WorkFlowDoneMobileListViewDevelopment",
+      "name": "工作流程_手机数据列表_已办二开",
+      "dependencies": ["mui-WorkFlowMobileListViewDevelopmentBase"]
+    },
+    "wMobileTabs": {
+      "path": "/mobile/mui/js/ui/widget/mui.wMobileTabs",
+      "name": "手机页签组件解析",
+      "dependencies": ["mui", "commons", "server", "mui-wWidget", "mui-appModal", "mui-formBiulder", "moment", "mui-calendar"]
+    },
+    "wMobileNav": {
+      "path": "/mobile/mui/js/ui/layout/mui.wMobileNav",
+      "name": "手机导航组件解析",
+      "dependencies": ["mui-wWidget"]
+    },
+    "mui-editEmail": {
+      "path": "/mobile/mui/js/email/edit_mail",
+      "name": "手机邮件写邮件",
+      "dependencies": ["mui-webmailBox"]
+    },
+    "mui-MobilePanelDevelopmentBase": {
+      "path": "/mobile/mui/js/app/MobilePanelDevelopmentBase",
+      "name": "手机面板_二开基础"
+    },
+    "mui-DyformScope": {
+      "path": "/mobile/mui/js/app/dyform/mui.DyformScope",
+      "name": "手机端_表单作用域",
+      "dependencies": ["jquery", "constant", "commons", "server", "appContext", "mui-appModal"]
+    },
+    "mui-echarts": {
+      "path": "/mobile/mui/libs/echarts-all",
+      "name": "mui统计图表",
+      "alias": "mui-echarts",
+      "dependencies": ["mui", "constant", "server", "commons"]
+    },
+    "mui-wRelevant": {
+      "path": "/mobile/mui/js/app/dyform/mui.wRelevant",
+      "name": "手机端_表单相关数据控件",
+      "dependencies": ["mui-DyformField"]
+    },
+    "mui-wNumberInput": {
+      "path": "/mobile/mui/js/app/dyform/mui.wNumberInput",
+      "name": "手机端_表单数字控件",
+      "dependencies": ["mui-DyformField"]
+    },
+    "mui-DyformCustom": {
+      "path": "/mobile/mui/js/common/mui.DyformCustom",
+      "name": "mui公共表单二开",
+      "alias": "mui-DyformCustom",
+      "dependencies": ["mui", "server", "commons", "constant", "appContext", "mui-appModal", "mui-DyformConstant", "mui-DyformCommons"]
+    },
+    "mui-widget": {
+      "path": "/mobile/mui/js/ui/mui.widget",
+      "name": "mui-widget",
+      "dependencies": ["mui", "i18n", "constant", "commons", "server", "appDispatcher", "appContext", "appWindowManager", "mui-appModal"]
+    },
+    "mui-wComboTree": {
+      "path": "/mobile/mui/js/app/dyform/mui.wComboTree",
+      "name": "手机端_表单树形下拉框",
+      "dependencies": ["mui-DyformField"]
+    },
+    "mui-WorkFlowDoneDevelopment": {
+      "path": "/mobile/mui/js/app/workflow/mui.WorkFlowDonePanelDevelopment",
+      "name": "工作流程_已办详情页",
+      "dependencies": ["mui-MobilePanelDevelopmentBase", "mui-WorkView", "mui-WorkViewProxy"]
+    },
+    "widget_mobile_tabs": {
+      "path": "/mobile/mui/js/design/component/widget_mobile_tabs",
+      "name": "mobileTabs组件",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "mui-wCheckbox": {
+      "path": "/mobile/mui/js/app/dyform/mui.wCheckbox",
+      "name": "手机端_表单复选框",
+      "dependencies": ["mui-DyformFieldOptionBase"]
+    },
+    "mui-WorkFlow": {
+      "path": "/workflow/js/work/WorkFlow",
+      "name": "手机端WorkFlow前台接口对象",
+      "alias": "WorkFlow",
+      "dependencies": ["jquery", "constant", "commons", "server", "appContext", "mui-appModal", "WorkFlowInteraction"]
+    },
+    "mui": {
+      "path": "/mobile/mui/js/mui",
+      "name": "mui",
+      "alias": "jquery",
+      "dependencies": ["zepto"]
+    },
+    "zepto": {
+      "path": "/mobile/mui/js/zepto",
+      "name": "zepto",
+      "alias": "zepto"
+    },
+    "mui-wSerialNumber": {
+      "path": "/mobile/mui/js/app/dyform/mui.wSerialNumber",
+      "name": "手机端_表单流水号",
+      "dependencies": ["mui-DyformField"]
+    },
+    "mui-WorkFlowSuperviseMobileListViewDevelopment": {
+      "path": "/mobile/mui/js/app/workflow/mui.WorkFlowSuperviseMobileListViewDevelopment",
+      "name": "工作流程_手机数据列表_督办二开",
+      "dependencies": ["mui-WorkFlowMobileListViewDevelopmentBase"]
+    },
+    "mui-listpicker": {
+      "path": "/mobile/mui/js/mui.listpicker",
+      "name": "mui-listpicker",
+      "dependencies": ["mui"]
+    },
+    "mui-DyformField": {
+      "path": "/mobile/mui/js/app/dyform/mui.DyformField",
+      "name": "手机端_表单字段接口对象",
+      "dependencies": [
+        "jquery",
+        "i18n",
+        "constant",
+        "commons",
+        "server",
+        "appContext",
+        "mui-appModal",
+        "mui-DyformConstant",
+        "mui-DyformCommons"
+      ]
+    },
+    "mui-MobileNoticeDevelopment": {
+      "path": "/mobile/mui/js/app/message/mui.MobileNoticePanelDevelopment",
+      "name": "手机面板-消息详情页",
+      "dependencies": ["mui-MobilePanelDevelopmentBase", "mui-DyformExplain"]
+    },
+    "wMobileCalendar": {
+      "path": "/mobile/mui/js/ui/widget/mui.wMobileCalendar",
+      "name": "手机日程组件解析",
+      "dependencies": ["mui", "commons", "server", "mui-wWidget", "mui-appModal", "mui-formBiulder", "moment", "mui-calendar"]
+    },
+    "mui-SkinSelector": {
+      "path": "/mobile/mui/js/app/mobile_skin_selector",
+      "name": "手机端皮肤选择",
+      "dependencies": ["constant", "commons", "server"]
+    },
+    "mui-DyformPreview": {
+      "path": "/mobile/mui/js/app/dyform/mui.DyformPreview",
+      "name": "手机端_表单解析",
+      "dependencies": ["mui", "appWindowManager", "mui-DyformExplain"]
+    },
+    "widget_mobile_slider": {
+      "path": "/mobile/mui/js/design/component/widget_mobile_slider",
+      "name": "手机端轮播图组件",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "widget_mobile_panel": {
+      "path": "/mobile/mui/js/design/component/container_mobile_panel",
+      "name": "手机面板组件",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "mobile_new_work": {
+      "path": "/mobile/mui/js/app/mobile_new_work",
+      "name": "工作流程_手机应用_发起工作",
+      "dependencies": [
+        "constant",
+        "commons",
+        "server",
+        "appDispatcher",
+        "appContext",
+        "appWindowManager",
+        "mui-WorkViewProxy",
+        "mui-WorkView",
+        "mui-DyformExplain"
+      ]
+    },
+    "container_mobile_page": {
+      "path": "/mobile/mui/js/design/component/container_mobile_page",
+      "name": "手机App页面容器定义",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "mui-statistic": {
+      "path": "/mobile/mui/js/statistics/document-statistics",
+      "name": "手机文件统计",
+      "dependencies": ["mui", "constant", "commons", "appModal", "formBuilder"]
+    },
+    "mui-unit": {
+      "path": "/mobile/mui/js/common/mui.unit",
+      "name": "mui组织选择框",
+      "alias": "multiOrg",
+      "dependencies": ["constant", "commons", "server", "mui-formBiulder"]
+    },
+    "mui-WorkFlowTodoMobileListViewDevelopment": {
+      "path": "/mobile/mui/js/app/workflow/mui.WorkFlowTodoMobileListViewDevelopment",
+      "name": "工作流程_手机数据列表_待办二开",
+      "dependencies": ["mui-WorkFlowMobileListViewDevelopmentBase"]
+    },
+    "wMobileHtml": {
+      "path": "/mobile/mui/js/ui/layout/mui.wMobileHtml",
+      "name": "手机html组件解析",
+      "dependencies": ["mui-wWidget"]
+    },
+    "mui-wSubForm": {
+      "path": "/mobile/mui/js/app/dyform/mui.wSubForm",
+      "name": "手机端_表单从表",
+      "dependencies": ["mui-formBiulder", "mui-DyformField", "mui-DyformCommons"]
+    },
+    "widget_mobile_grid_view": {
+      "path": "/mobile/mui/js/design/component/widget_mobile_grid_view",
+      "name": "手机九宫格解析定义",
+      "dependencies": ["dependencyUIComponentModule", "dependencyBootstrapTableModule", "formBuilder", "bootstrap-datetimepicker"]
+    },
+    "widget_mobile_tiles": {
+      "path": "/mobile/mui/js/design/component/widget_mobile_tiles",
+      "name": "手机磁贴解析定义",
+      "dependencies": ["dependencyUIComponentModule", "dependencyBootstrapTableModule", "formBuilder", "bootstrap-datetimepicker"]
+    },
+    "widget_mobile_tab_bar": {
+      "path": "/mobile/mui/js/design/component/widget_mobile_tab_bar",
+      "name": "手机底部选项卡解析定义",
+      "dependencies": ["dependencyUIComponentModule", "dependencyBootstrapTableModule", "formBuilder", "bootstrap-datetimepicker"]
+    },
+    "mui-pullToRefresh": {
+      "path": "/mobile/mui/js/mui.pullToRefresh",
+      "name": "手机端_表单下拉刷新",
+      "dependencies": ["mui-DyformField"]
+    },
+    "mui-ModifyPassword": {
+      "path": "/mobile/mui/js/app/mobile_modify_password",
+      "name": "手机端用户密码更改",
+      "dependencies": ["constant", "commons", "server", "mui-WorkView", "mui-WorkViewProxy"]
+    },
+    "mui-formBiulder": {
+      "path": "/mobile/mui/js/app/mui.formBuilder",
+      "name": "mui表单构建工具类",
+      "alias": "formBuilder",
+      "dependencies": ["constant", "commons", "server", "mui-dtpicker", "moment"]
+    },
+    "mui-filepreview": {
+      "path": "/mobile/mui/js/common/mui.filepreview",
+      "name": "mui文件预览",
+      "dependencies": ["filePreviewApi"]
+    }
+  },
+  "jsTemplate": {
+    "mui-app-nav": {
+      "path": "/mobile/mui/tpl/mui-app-nav.html",
+      "name": "移动端_平台应用_工作导航"
+    }
+  },
+  "css": {
+    "mui": {
+      "path": "/mobile/mui/css/mui.min",
+      "name": "手机APP样式mui",
+      "order": 10
+    },
+    "mui-calendar": {
+      "path": "/mobile/mui/css/calendar",
+      "name": "手机APP日程",
+      "order": 25
+    },
+    "mui-listpicker": {
+      "path": "/mobile/mui/css/mui.listpicker",
+      "name": "手机APP样式listpicker",
+      "order": 13
+    },
+    "mui-dtpicker": {
+      "path": "/mobile/mui/css/mui.picker.min",
+      "name": "手机APP样式dtpicker",
+      "order": 12
+    },
+    "mui-app-uxd": {
+      "path": "/mobile/mui/css/app-uxd",
+      "name": "手机APP样式mui-uxd个性化css",
+      "order": 29
+    },
+    "mui-app": {
+      "path": "/mobile/mui/css/app",
+      "name": "手机APP样式mui个性化css",
+      "order": 19
+    },
+    "quill-show": {
+      "path": "/js/quill/quill.snow",
+      "name": "手机APP样式mui个性化css",
+      "order": 30
+    }
+  }
+}

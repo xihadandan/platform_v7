@@ -1,0 +1,818 @@
+/** 节假日安排 */
+.holiday_arrangement {
+  display: flex;
+
+  .holiday_arrangement_left {
+    width: 220px;
+    border-right: @border-default;
+
+    .year-item {
+      padding: 0 20px 0 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 34px;
+      line-height: 34px;
+      font-size: @font-size-base;
+      cursor: pointer;
+
+      span:first-of-type {
+        color: @text-color;
+      }
+
+      span:last-of-type {
+        color: @text-color-light;
+      }
+
+      &:hover,
+      &.active {
+        background-color: @background-primary-light;
+
+        span:first-of-type {
+          color: @text-color-primary;
+        }
+      }
+    }
+  }
+
+  .holiday_arrangement_right {
+    width: calc(100% - 220px);
+    padding: @padding-lg;
+
+    // 保存按钮
+    .btn-save-holiday {
+      text-align: right;
+      border-bottom: @border-default;
+      padding-bottom: @padding-xs;
+      margin-bottom: @margin-sm;
+    }
+
+    // 节假日内容区域
+    .holiday-content {
+      margin-top: @margin-md;
+
+      // 节假日项
+      .holiday-content-item {
+        display: flex;
+        align-items: flex-start;
+        padding-bottom: 22px;
+        position: relative;
+
+        &:not(:last-of-type):before {
+          .absolute(42px false false 30px);
+          .size(1px calc(100% - 42px));
+
+          content: '';
+          display: block;
+          background: @border-color-base;
+        }
+
+        // 节假日时间 + 节假日名称
+        .holiday-item-time {
+          .size(180px 42px);
+
+          display: flex;
+          align-items: center;
+          position: relative;
+          line-height: 42px;
+          padding-left: 10px;
+          background: @background-primary-lighter;
+          border-radius: 21px;
+          box-sizing: border-box;
+
+          &:after {
+            .absolute(50% -25px false false);
+            .size(25px 1px);
+
+            content: '';
+            background: @border-color-base;
+          }
+
+          i {
+            .square(18px);
+
+            position: relative;
+            display: inline-block;
+            border-radius: 50%;
+            background-color: @background-primary-light;
+
+            &:after {
+              .absolute(3px false false 3px);
+              .square(12px);
+
+              content: '';
+              display: inline-block;
+              border-radius: 50%;
+              background-color: @text-color-primary;
+            }
+          }
+
+          .time-date {
+            margin: 0 8px;
+            font-size: @font-size-base;
+            font-weight: bold;
+            color: @text-color;
+          }
+
+          .time-text {
+            .text-overflow();
+
+            font-size: @font-size-base;
+            font-weight: bold;
+            color: @text-color-primary;
+            max-width: 90px;
+
+            &.otherYear {
+              max-width: 49px;
+            }
+          }
+        }
+
+        // 节假日标题 + 节假日设置
+        .holiday-item-detail {
+          flex: 1;
+          margin-left: 25px;
+          border: 1px solid rgba(232, 232, 232, 0.5);
+
+          // 节假日标题
+          .holiday-detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 40px;
+            padding: 0 @padding-md;
+            box-sizing: border-box;
+            background: @background-primary-lighter;
+
+            .holiday-header-text {
+              font-size: @font-size-base;
+              font-weight: bold;
+              color: @text-color;
+
+              .holiday-header-collpase {
+                font-size: 10px;
+                margin-right: 5px;
+                padding: 2.5px 7px;
+              }
+            }
+
+            .holiday-header-btn {
+              font-size: @font-size-base;
+              font-weight: 400;
+              color: @text-color-primary;
+              cursor: pointer;
+
+              i {
+                margin-right: 5px;
+              }
+            }
+          }
+
+          // 节假日设置
+          .holiday-detail-body {
+            padding: 15px;
+            box-sizing: border-box;
+
+            // 节假日设置项
+            .holiday-body-row {
+              display: flex;
+              align-items: flex-start;
+              margin-bottom: @margin-md;
+
+              .holiday-row-label {
+                .size(120px 35px);
+
+                line-height: 35px;
+                margin-right: 10px;
+                text-align: right;
+                color: @text-color-dark;
+                font-size: @font-size-base;
+              }
+
+              // 节假日设置控件
+              .holiday-row-content {
+                .switch-wrap {
+                  margin-top: 7px;
+                }
+
+                textarea,
+                input {
+                  width: 480px;
+
+                  &.isCheck {
+                    display: inline;
+                    background: transparent !important;
+                    border: none;
+                    box-shadow: none !important;
+                    cursor: text;
+                  }
+                }
+
+                // 节假日设置 - 补班日期
+                .holiday-row-days {
+                  display: flex;
+                  align-items: center;
+                  margin-bottom: 10px;
+
+                  input {
+                    width: 220px;
+                    margin-right: @margin-md;
+                  }
+
+                  i {
+                    .square(20px);
+
+                    display: block;
+                    line-height: 17px;
+                    text-align: center;
+                    border-radius: 50%;
+                    color: @text-color-primary;
+                    border: 2px solid @border-color-primary;
+                    box-sizing: border-box;
+                    cursor: pointer;
+                  }
+                }
+
+                input[name='buDate'].isCheck,
+                input[name='buDay'].isCheck {
+                  width: 90px;
+                  padding-right: 0px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.holiday_arrangement_left {
+  width: 220px;
+  border-right: @border-default;
+
+  .year-item {
+    padding: 0 20px 0 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 34px;
+    line-height: 34px;
+    font-size: @font-size-base;
+    cursor: pointer;
+
+    span:first-of-type {
+      color: @text-color;
+    }
+
+    span:last-of-type {
+      color: @text-color-light;
+    }
+
+    &:hover,
+    &.active {
+      background-color: @background-primary-light;
+
+      span:first-of-type {
+        color: @text-color-primary;
+      }
+    }
+  }
+}
+
+/*节假日安排*/
+.holiday_arrangement_right {
+  // width: calc(100% - 220px);
+  width: 100%;
+  padding: @padding-lg;
+
+  // 保存按钮
+  .btn-save-holiday {
+    text-align: right;
+    border-bottom: @border-default;
+    padding-bottom: @padding-xs;
+    margin-bottom: @margin-sm;
+  }
+
+  // 节假日内容区域
+  .holiday-content {
+    margin-top: @margin-md;
+
+    // 节假日项
+    .holiday-content-item {
+      display: flex;
+      align-items: flex-start;
+      padding-bottom: 22px;
+      position: relative;
+
+      &:not(:last-of-type):before {
+        .absolute(42px false false 30px);
+        .size(1px calc(100% - 42px));
+
+        content: '';
+        display: block;
+        background: @border-color-base;
+      }
+
+      // 节假日时间 + 节假日名称
+      .holiday-item-time {
+        .size(180px 42px);
+
+        display: flex;
+        align-items: center;
+        position: relative;
+        line-height: 42px;
+        padding-left: 10px;
+        background: @background-primary-lighter;
+        border-radius: 21px;
+        box-sizing: border-box;
+
+        &:after {
+          .absolute(50% -25px false false);
+          .size(25px 1px);
+
+          content: '';
+          background: @border-color-base;
+        }
+
+        i {
+          .square(18px);
+
+          position: relative;
+          display: inline-block;
+          border-radius: 50%;
+          background-color: @background-primary-light;
+
+          &:after {
+            .absolute(3px false false 3px);
+            .square(12px);
+
+            content: '';
+            display: inline-block;
+            border-radius: 50%;
+            background-color: @text-color-primary;
+          }
+        }
+
+        .time-date {
+          margin: 0 8px;
+          font-size: @font-size-base;
+          font-weight: bold;
+          color: @text-color;
+        }
+
+        .time-text {
+          .text-overflow();
+
+          font-size: @font-size-base;
+          font-weight: bold;
+          color: @text-color-primary;
+          max-width: 90px;
+
+          &.otherYear {
+            max-width: 49px;
+          }
+        }
+      }
+
+      // 节假日标题 + 节假日设置
+      .holiday-item-detail {
+        flex: 1;
+        margin-left: 25px;
+        border: 1px solid rgba(232, 232, 232, 0.5);
+
+        // 节假日标题
+        .holiday-detail-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 40px;
+          padding: 0 @padding-md;
+          box-sizing: border-box;
+          background: @background-primary-lighter;
+
+          .holiday-header-text {
+            font-size: @font-size-base;
+            font-weight: bold;
+            color: @text-color;
+
+            .holiday-header-collpase {
+              font-size: 10px;
+              margin-right: 5px;
+            }
+          }
+
+          .holiday-header-btn {
+            font-size: @font-size-base;
+            font-weight: 400;
+            color: @text-color-primary;
+            cursor: pointer;
+
+            i {
+              margin-right: 5px;
+            }
+          }
+        }
+
+        // 节假日设置
+        .holiday-detail-body {
+          padding: 15px;
+          box-sizing: border-box;
+
+          // 节假日设置项
+          .holiday-body-row {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: @margin-md;
+
+            .holiday-row-label {
+              .size(120px 35px);
+
+              line-height: 35px;
+              margin-right: 10px;
+              text-align: right;
+              color: @text-color-dark;
+              font-size: @font-size-base;
+            }
+
+            // 节假日设置控件
+            .holiday-row-content {
+              .switch-wrap {
+                margin-top: 7px;
+              }
+
+              textarea,
+              input {
+                width: 480px;
+
+                &.isCheck {
+                  display: inline;
+                  background: transparent !important;
+                  border: none;
+                  box-shadow: none !important;
+                  cursor: text;
+                }
+              }
+
+              // 节假日设置 - 补班日期
+              .holiday-row-days {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+
+                input {
+                  width: 220px;
+                  margin-right: @margin-md;
+                }
+
+                i {
+                  .square(20px);
+
+                  display: block;
+                  line-height: 17px;
+                  text-align: center;
+                  border-radius: 50%;
+                  color: @text-color-primary;
+                  border: 2px solid @border-color-primary;
+                  box-sizing: border-box;
+                  cursor: pointer;
+                }
+              }
+
+              input[name='buDate'].isCheck,
+              input[name='buDay'].isCheck {
+                width: 90px;
+                padding-right: 0px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.holiday-row-content .addDate:disabled,
+.holiday-body-row .holiday-row-days .cutDate.isDisabled {
+  color: @disabled-text-color;
+  border-color: @border-color-darker;
+  background-color: @background-light;
+  cursor: not-allowed;
+}
+
+.work-body-info .field input.isCheck {
+  display: inline;
+  background: transparent !important;
+  border: none;
+  box-shadow: none !important;
+  cursor: text;
+}
+
+// 添加节假日弹窗
+.holiday-wrapper {
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 @padding-xs;
+  margin-top: @margin-sm;
+
+  .holiday-wrapper-left,
+  .holiday-wrapper-right {
+    .size(390px 420px);
+
+    border: @border-default-dark;
+  }
+
+  .holiday-wrapper-left {
+    margin-right: @margin-lg;
+
+    // 搜索框
+    .holiday-left-search {
+      height: 50px;
+      padding: 8px 10px;
+      box-shadow: 0px @border-width-base 0px 0px @border-color-base;
+      box-sizing: border-box;
+      position: relative;
+
+      i {
+        position: absolute;
+        cursor: pointer;
+        top: 50%;
+      }
+
+      .input-close {
+        display: none;
+        right: 45px;
+        margin-top: -8px;
+        font-size: @font-size-base;
+        color: @text-color-light;
+
+        &:hover {
+          color: @text-color-primary;
+        }
+      }
+
+      .input-search {
+        right: 20px;
+        margin-top: -11px;
+        font-size: @font-size-xl;
+        color: @text-color-primary;
+      }
+    }
+
+    // 筛选器
+    .holiday-left-tag {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      padding: 8px 10px;
+      box-sizing: border-box;
+
+      // 已选列表
+      .tag-list {
+        width: 365px;
+        margin-right: 6px;
+
+        .tag-item {
+          line-height: 1;
+          padding: 3px;
+          margin-right: 5px;
+          background: @background-light;
+          border: @border-default-primary-light;
+          border-radius: @border-radius-base;
+          font-size: @font-size-base;
+          font-weight: 400;
+          color: @text-color-primary;
+          box-sizing: border-box;
+          display: inline-block;
+
+          i {
+            margin-left: 5px;
+            font-size: 8px;
+            color: @text-color-primary;
+            cursor: pointer;
+          }
+        }
+      }
+
+      // 筛选器切换按钮
+      .tag-icon {
+        font-size: @font-size-lg;
+        color: @text-color-light;
+        line-height: 1;
+        cursor: pointer;
+
+        &:hover {
+          color: @text-color-primary;
+        }
+      }
+
+      // 筛选器弹窗
+      .holiday-type-box {
+        .absolute(33px 0 false false);
+        .size(380px 307px);
+
+        display: none;
+        background: @component-background;
+        box-shadow: @shadow-popup-default;
+        z-index: 999;
+
+        &::before {
+          .absolute(-10px 10px false false);
+
+          content: '';
+          border-left: 8px solid transparent;
+          border-right: 8px solid transparent;
+          border-bottom: 10px solid #fff;
+        }
+
+        .holiday-type-list {
+          height: 240px;
+          padding: 15px;
+          box-sizing: border-box;
+
+          .holiday-type-item {
+            margin-bottom: 20px;
+
+            .title {
+              margin-bottom: 15px;
+              font-size: @font-size-base;
+              font-weight: bold;
+              color: @text-color-dark;
+            }
+
+            .list span {
+              padding: 3px;
+              margin-right: 10px;
+              background: @background-light;
+              border: @border-default-darker;
+              border-radius: @border-radius-base;
+              font-size: @font-size-base;
+              font-weight: 400;
+              color: @text-color;
+              box-sizing: border-box;
+              cursor: pointer;
+
+              &.active,
+              &:hover {
+                background: @background-primary-lighter;
+                border: @border-default-primary-light;
+                color: @text-color-primary;
+              }
+            }
+          }
+        }
+
+        .holiday-type-btn {
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          padding-right: 15px;
+          box-sizing: border-box;
+          border-top: @border-default;
+        }
+      }
+    }
+
+    .holiday-left-table {
+      .size(100% 325px);
+
+      padding: 5px;
+      box-sizing: border-box;
+      overflow: auto;
+    }
+  }
+
+  .holiday-wrapper-right {
+    .holiday-right-title {
+      display: flex;
+      align-items: center;
+      position: relative;
+      height: 40px;
+      padding-left: 30px;
+      background: @background-light;
+      font-size: @font-size-base;
+      color: @text-color-dark;
+
+      &:before {
+        .absolute(50% false false 15px);
+        .size(4px 16px);
+
+        content: '';
+        margin-top: -8px;
+        background-color: @text-color-primary;
+        border-radius: 2px;
+      }
+
+      .holiday-right-title span {
+        color: @text-color-primary;
+        margin: 0 3px;
+      }
+    }
+
+    .holiday-right-list {
+      padding: 5px;
+      box-sizing: border-box;
+
+      .holiday-right-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        line-height: 1;
+        padding: 8px 15px;
+        font-size: @font-size-base;
+        color: @text-color;
+
+        &:hover {
+          background: @background-primary-light;
+          color: @text-color-primary;
+
+          i {
+            display: block;
+          }
+        }
+
+        i {
+          font-size: 10px;
+          display: none;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.holiday-tag {
+  padding: 3px;
+  margin-right: 3px;
+  font-size: @font-size-base;
+  color: @text-color-primary;
+  background: @background-primary-lighter;
+  border: @border-default-primary-light;
+  border-radius: @border-radius-base;
+  box-sizing: border-box;
+  display: inline-block;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.holiday_arrangement .error {
+  position: relative;
+  color: #f00;
+  margin: 10px 0;
+  padding-left: 15px;
+  line-height: 1;
+
+  &:before {
+    content: '\e920';
+    top: 0;
+    left: 0;
+    position: absolute;
+    font-family: 'iconfont' !important;
+  }
+}
+
+.holiday_arrangement_left .tabs-right .nav-tabs {
+  background: @background-light;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.holiday_arrangement_left .nav-tabs>li {
+  >a {
+    height: 40px;
+    line-height: 38px;
+    padding: 0 20px;
+    color: @text-color-dark;
+    border: none;
+    background: transparent;
+    border: none;
+
+    &:before {
+      .absolute(false false 0 100%);
+      .size(0 3px);
+
+      content: '';
+      background: transparent;
+      transition: @animation-duration-base all cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+  }
+
+  &:hover>a {
+    color: @text-color-primary;
+    border: none;
+    background: transparent;
+  }
+
+  &.active>a {
+    border: none;
+
+    &:focus:before,
+    &:before {
+      left: 0;
+      width: 100%;
+      background: @primary-color;
+      border: none;
+    }
+  }
+}

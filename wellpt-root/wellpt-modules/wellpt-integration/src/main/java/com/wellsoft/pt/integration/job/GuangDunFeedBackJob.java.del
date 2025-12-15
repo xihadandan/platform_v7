@@ -1,0 +1,60 @@
+/*
+ * @(#)2017年5月11日 V1.0
+ * 
+ * Copyright 2017 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.integration.job;
+
+import org.apache.commons.lang.exception.ExceptionUtils;
+import org.quartz.JobExecutionContext;
+import org.springframework.stereotype.Component;
+
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.integration.service.ZongXianExchangeService;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+
+/**
+ * Description: 光盾数据反馈机制任务
+ *  
+ * @author xujianjia
+ * @date 2017年5月11日
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2017年5月11日.1	xujianjia		2017年5月11日		Create
+ * </pre>
+ *
+ */
+@Component
+public class GuangDunFeedBackJob extends Job {
+	private static boolean locked;
+
+	/** 
+	 * 如何描述该方法
+	 * 
+	 * (non-Javadoc)
+	 * @see com.wellsoft.pt.task.job.Job#execute(org.quartz.JobExecutionContext, com.wellsoft.pt.task.job.JobData)
+	 */
+	@Override
+	protected void execute(JobExecutionContext arg0, JobData arg1) {
+		if (locked) {
+			return;
+		}
+		try {
+			locked = true;
+			ZongXianExchangeService zongXianExchangeService = ApplicationContextHolder
+					.getBean(ZongXianExchangeService.class);
+			zongXianExchangeService.feedBackJob();
+
+		} catch (Exception e) {
+			logger.error("光盾数据反馈机制任务,业务执行异常,堆栈异常:" + ExceptionUtils.getStackTrace(e));
+			logger.error(e.getMessage(), e);
+		} finally {
+			locked = false;
+		}
+	}
+
+}

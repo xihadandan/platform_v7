@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="listTaskQueryOfOneFlowWithDM">
+        <![CDATA[
+        select
+			   t1.uuid             as task_inst_uuid,
+		       t1.modifier         as task_modifier,
+		       t1.modify_time      as task_modify_time,
+		       t1.start_time       as task_start_time,
+		       t1.end_time         as task_end_time,
+		       t1.name             as task_name,
+		       t1.id               as task_id,
+		       t1.form_uuid        as form_uuid,
+		       t1.data_uuid        as data_uuid,
+		       t1.serial_no        as serial_no,
+		       t1.owner            as owner,
+		       t1.assignee         as pre_operator_id,
+		       t1.todo_user_id     as todo_user_id,
+		       t1.todo_user_name   as todo_user_name,
+		       t1.alarm_time       as alarm_time,
+		       t1.due_time         as due_time,
+		       t1.timing_state     as timing_state,
+		       t1.alarm_state      as alarm_state,
+		       t1.over_due_state   as over_due_state,
+		       t1.suspension_state as suspension_state,
+		       t2.reserved_text1   as reserved_text1,
+		       t2.reserved_text2   as reserved_text2,
+		       t2.reserved_text3   as reserved_text3,
+		       t2.reserved_text4   as reserved_text4,
+		       t2.reserved_text5   as reserved_text5,
+		       t2.reserved_text6   as reserved_text6,
+		       t2.reserved_text7   as reserved_text7,
+		       t2.reserved_text8   as reserved_text8,
+		       t2.reserved_text9   as reserved_text9,
+		       t2.reserved_text10  as reserved_text10,
+		       t2.reserved_text11  as reserved_text11,
+		       t2.reserved_text12  as reserved_text12,
+		       t2.reserved_number1 as reserved_number1,
+		       t2.reserved_number2 as reserved_number2,
+		       t2.reserved_number3 as reserved_number3,
+		       t2.reserved_date1   as reserved_date1,
+		       t2.reserved_date2   as reserved_date2,
+		       t2.uuid             as flow_inst_uuid,
+		       t2.title            as flow_title,
+		       t2.start_user_id    as flow_start_user_id,
+		       t2.start_time       as flow_start_time,
+		       t2.end_time         as flow_end_time,
+		       t2.is_active        as is_active,
+		       t3.id               as flow_id,
+		       t3.name             as flow_name,
+		       t3.category         as flow_category,
+			   <if isNotBlank(isCopyTo)>
+			    t4.copy_to_time     as copy_to_time,
+			   </if>
+		       ${dyformFields}
+		       <if isNotBlank(joinProjectionClause)>
+		        , ${joinProjectionClause}
+		       </if>
+		  from ${dyformTableName} d1
+            inner join wf_task_instance t1
+                on t1.form_uuid = :formUuid and t1.data_uuid = d1.uuid and t1.suspension_state in(0, 4)
+            /* 我的已办，是通过操作记录去反推出 用户办理过的流程实例   */
+		    <if isNotBlank(flowInstSql)>
+		        inner join ( ${flowInstSql} ) t2
+		            on t2.data_uuid = d1.uuid
+		    <else>
+                left join wf_flow_instance t2
+                    on t1.flow_inst_uuid = t2.uuid
+            </if>
+            left join wf_flow_definition t3
+                on t1.flow_def_uuid = t3.uuid
+            /* 判断是否是抄送给我, 需要关联操作记录，来算出最后一次抄送时间 */
+		    <if isNotBlank(isCopyTo)>
+                left join (
+                    select max(o1.create_time) as copy_to_time, o1.flow_inst_uuid as flow_inst_uuid
+                    from wf_task_operation o1
+                    where o1.action_code = 11 and o1.copy_user_id like '%${sidUser}%'
+                    group by o1.flow_inst_uuid
+                ) t4 on t2.uuid = t4.flow_inst_uuid
+		    </if>
+            <if isNotBlank(joinTableClause)>
+                ${joinTableClause}
+		    </if>
+            where t3.uuid = :flowDefUuid
+                <if isNotBlank(masks) && isBlank(flowInstSql)>
+                    and (exists (
+                        select 1 from acl_task_entry a1
+                        where t1.uuid = a1.object_id_identity
+                            ${authWhere}
+                            and a1.sid in (:userSids)
+                     ))
+                </if>
+                <if isNotBlank(whereSql)>
+                    and ( ${whereSql} )
+                </if>
+                <if isNotBlank(reqUserId)>
+                    and d1.creator =:reqUserId
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                </if>
+        ]]>
+    </sql-query>
+    <sql-query name="listTaskQueryOfOneFlow">
+        <![CDATA[
+		select
+			   t1.uuid             as task_inst_uuid,
+		       t1.modifier         as task_modifier,
+		       t1.modify_time      as task_modify_time,
+		       t1.start_time       as task_start_time,
+		       t1.end_time         as task_end_time,
+		       t1.name             as task_name,
+		       t1.id               as task_id,
+		       t1.form_uuid        as form_uuid,
+		       t1.data_uuid        as data_uuid,
+		       t1.serial_no        as serial_no,
+		       t1.owner            as owner,
+		       t1.assignee         as pre_operator_id,
+		       t1.todo_user_id     as todo_user_id,
+		       t1.todo_user_name   as todo_user_name,
+		       t1.alarm_time       as alarm_time,
+		       t1.due_time         as due_time,
+		       t1.timing_state     as timing_state,
+		       t1.alarm_state      as alarm_state,
+		       t1.over_due_state   as over_due_state,
+		       t1.suspension_state as suspension_state,
+		       t2.reserved_text1   as reserved_text1,
+		       t2.reserved_text2   as reserved_text2,
+		       t2.reserved_text3   as reserved_text3,
+		       t2.reserved_text4   as reserved_text4,
+		       t2.reserved_text5   as reserved_text5,
+		       t2.reserved_text6   as reserved_text6,
+		       t2.reserved_text7   as reserved_text7,
+		       t2.reserved_text8   as reserved_text8,
+		       t2.reserved_text9   as reserved_text9,
+		       t2.reserved_text10  as reserved_text10,
+		       t2.reserved_text11  as reserved_text11,
+		       t2.reserved_text12  as reserved_text12,
+		       t2.reserved_number1 as reserved_number1,
+		       t2.reserved_number2 as reserved_number2,
+		       t2.reserved_number3 as reserved_number3,
+		       t2.reserved_date1   as reserved_date1,
+		       t2.reserved_date2   as reserved_date2,
+		       t2.uuid             as flow_inst_uuid,
+		       t2.title            as flow_title,
+		       t2.start_user_id    as flow_start_user_id,
+		       t2.start_time       as flow_start_time,
+		       t2.end_time         as flow_end_time,
+		       t2.is_active        as is_active,
+		       t3.id               as flow_id,
+		       t3.name             as flow_name,
+		       t3.category         as flow_category,
+			  <if isNotBlank(isCopyTo)>
+			   t4.copy_to_time     as copy_to_time,
+			  </if>
+		       ${dyformFields}
+
+		  from ${dyformTableName} d1
+
+		  /* 我的已办，是通过操作记录去反推出 用户办理过的流程实例   */
+		  <if isNotBlank(flowInstSql)>
+		  inner join ( ${flowInstSql} ) t2  on t2.data_uuid = d1.uuid
+		  /* 找出用户有访问权限的流程实例数据, 我的待办，我的办结，我关注的，抄送给我，我已阅的，我未阅的  */
+		  <elseif isNotBlank(masks)>
+		  inner join(
+		  	/* 因为用户可能对多个环节都有权限，所以这里需要用distinct 去重 */
+			select distinct fi.* from(
+			    select a1.object_id_identity as task_inst_uuid from acl_task_entry a1
+                        where 1 = 1 ${authWhere} and a1.sid = :sidUser
+			) a
+			left join wf_task_instance ti on ti.uuid = a.task_inst_uuid
+			left join wf_flow_instance fi on ti.flow_inst_uuid = fi.uuid
+			where fi.flow_def_uuid = :flowDefUuid
+		  ) t2  on t2.data_uuid = d1.uuid
+		  <else>
+		  /* 我的申请，全部申请  */
+		  inner join wf_flow_instance t2  on t2.data_uuid = d1.uuid
+		  </if>
+
+		  /* 关联该流程实例对应的最新环节的数据 */
+		  left join (
+			select * from(
+				select t.*, row_number() over( partition by t.flow_inst_uuid order by t.create_time desc ) as row_num
+				from wf_task_instance t where t.flow_def_uuid = :flowDefUuid
+			) where row_num = 1
+		  ) t1 on t1.flow_inst_uuid = t2.uuid
+
+		  /* 关联对应的流程定义信息 */
+		  left join wf_flow_definition t3 on t3.uuid = t1.flow_def_uuid
+
+		  /* 判断是否是抄送给我, 需要关联操作记录，来算出最后一次抄送时间 */
+		  <if isNotBlank(isCopyTo)>
+		  left join (
+		  	select max(o1.create_time) as copy_to_time, o1.flow_inst_uuid as flow_inst_uuid
+		  	from wf_task_operation o1
+		  	where o1.action_code = 11 and o1.copy_user_id like '%${sidUser}%'
+		  	group by o1.flow_inst_uuid
+		  ) t4 on t2.uuid = t4.flow_inst_uuid
+		  </if>
+
+
+		  where t3.uuid = :flowDefUuid
+
+			<if isNotBlank(whereSql)>
+				and ( ${whereSql} )
+			</if>
+			<if isNotBlank(reqUserId)>
+				and d1.creator =:reqUserId
+			</if>
+			<if isNotBlank(orderBy)>
+				${orderBy}
+			</if>
+	]]>
+    </sql-query>
+
+
+    <sql-query name="flowInstQuery">
+        <![CDATA[
+ 		select * from( select f1.*,
+			   row_number() over(partition by o.flow_inst_uuid, o.assignee order by o.create_time desc) as row_num
+		  from wf_task_operation o, wf_flow_instance f1
+		 where o.flow_inst_uuid = f1.uuid
+		   and f1.flow_def_uuid = :flowDefUuid
+		   and o.assignee = '${userId}'
+			  /* 剔除拟稿环节, 即剔除第一环节 */
+		   and exists (select *
+				  from (select t.*,
+							   row_number() over(partition by t.flow_inst_uuid order by t.create_time asc) as row_num
+						  from wf_task_instance t
+						 where t.flow_def_uuid = :flowDefUuid) a
+				 where  o.task_inst_uuid = a.uuid)
+			<if isNotBlank(includeOver)>
+			<else>
+			  /* 剔除已办结数据 */
+		   		and f1.end_time is null
+		   	</if>
+		   )
+		 where row_num = 1
+
+        ]]>
+    </sql-query>
+
+
+</hibernate-mapping>

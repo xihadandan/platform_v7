@@ -1,0 +1,106 @@
+#select_to_user,
+#select_cc_user,
+#select_bcc_user {
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.mail_user_contact {
+  border: 1px solid;
+  height: 100%;
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.table th,
+.table td {
+  border-top: 0px solid #ddd;
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+.table th,
+.table td.Label {
+  width: 5em;
+}
+
+.cc-bcc-choose {
+  margin-bottom: 1em;
+}
+
+.cc-bcc-choose a {
+  cursor: pointer;
+  margin-right: 0.7em;
+  text-decoration: none;
+}
+
+.row-cc {
+  display: none;
+}
+
+.del-cc {
+  display: none;
+}
+
+.row-bcc {
+  display: none;
+}
+
+.del-bcc {
+  display: none;
+}
+
+.inbox-content {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: auto;
+}
+
+.form_header {
+  background-color: #007aa7;
+}
+
+.mailstatus-icon {
+  display: inline-block;
+  width: 14px;
+  height: 9px;
+}
+
+.status-succeed {
+  background: url(../../images/mails.png) -95px -128px no-repeat;
+}
+
+.status-fail {
+  background: url(../../images/mails.png) -63px -128px no-repeat;
+}
+
+.status-process {
+  background: url(../../images/mails.png) -127px -128px no-repeat;
+}
+
+.status-recal {
+  background: url(../../images/mails.png) -112px -128px no-repeat;
+}
+
+.status-title {
+  background-color: #007aa7;
+  color: #fff;
+  margin: 4px 0px;
+}
+
+.status-list {
+  margin: 0px;
+}
+
+.item-status {
+  float: right;
+}
+
+.status-sended {
+  color: #ef4f4f;
+}

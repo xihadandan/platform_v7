@@ -1,0 +1,109 @@
+/** 图片预览 */
+
+.pic-previewer {
+  // 图片预览 - 标题行
+  .pic-previewer-header {
+    height: @picture-previewer-header-height;
+    background: @picture-previewer-header-background;
+    line-height: @picture-previewer-header-height;
+    border-bottom: @border-default;
+    position: relative;
+    z-index: 1;
+
+    // 图片预览 - 标题行 - 图片标题
+    .pic-previewer-header-title {
+      height: @picture-previewer-header-height;
+      color: @text-color-dark;
+      font-size: @picture-previewer-header-font-size;
+      margin-left: @picture-previewer-header-height;
+    }
+
+    // 图片预览 - 标题行 - 操作按钮
+    .iconfont {
+      color: @picture-previewer-header-operation-color;
+      font-size: @picture-previewer-header-operation-size;
+      cursor: pointer;
+
+      &:hover {
+        color: @picture-previewer-header-operation-hover-color;
+      }
+    }
+
+    // 图片预览 - 标题行 - 中间操作按钮区域(旋转)
+    .pic-previewer-header-middle-operations {
+      float: right;
+      margin-right: @margin-md;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+
+      span {
+        padding-left: @margin-md;
+        padding-right: @margin-md;
+      }
+    }
+
+    // 图片预览 - 标题行 - 右侧操作按钮区域(关闭)
+    .pic-previewer-header-right-operations {
+      float: right;
+      margin-right: @margin-md;
+    }
+  }
+
+  // 图片预览 - 图片区域
+  .pic-previewer-body {
+    height: calc(100vh - @picture-previewer-header-height);
+    background: @picture-previewer-background;
+    position: relative;
+
+    // 图片预览 - 图片区域 - 图片
+    .pic-previewer-img {
+      .square(auto);
+      .absolute(20px 20px 20px 20px);
+
+      max-width: calc(100vw - 200px);
+      max-height: calc(100vh - 80px);
+      margin: auto;
+
+      // 旋转方向后
+      &.inclined {
+        max-width: calc(100vh - 80px);
+        max-height: calc(100vw - 200px);
+      }
+    }
+
+    // 图片预览 - 图片区域 - 上一张/下一张箭头按钮
+    .previous-pic-btn,
+    .next-pic-btn {
+      .size(@picture-previewer-arrow-button-size);
+
+      border: none;
+      background: @picture-previewer-arrow-button-background;
+
+      .iconfont {
+        font-size: @picture-previewer-arrow-icon-size;
+        font-weight: lighter;
+        color: @picture-previewer-arrow-icon-color;
+      }
+
+      &.disabled {
+        background: @picture-previewer-arrow-disabled-background;
+        cursor: not-allowed;
+      }
+    }
+
+    .previous-pic-btn {
+      .absolute(50% false false false);
+
+      transform: translateY(-50%);
+      border-radius: 0px @border-radius-base @border-radius-base 0px;
+    }
+
+    .next-pic-btn {
+      .absolute(50% 0 false false);
+
+      transform: translateY(-50%);
+      border-radius: @border-radius-base 0px 0px @border-radius-base;
+    }
+  }
+}

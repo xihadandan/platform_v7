@@ -1,0 +1,157 @@
+<div id="blockAttrCfgDiv" title="属性设置" style="height: 150px; width: 400px; overflow: auto">
+  <div>
+    <div class="dyform">
+      <div class="post-sign">
+        <div class="post-detail">
+          <table>
+            <tr>
+              <td class="Label">区块编码:</td>
+              <td class="value"><input type="text" id="blockCode" value="" /></td>
+            </tr>
+            <tr class="odd">
+              <td class="Label">区块标题:</td>
+              <td class="value"><input type="text" id="blockTitle" value="" /></td>
+            </tr>
+            <tr>
+              <td class="Label">显示模式:</td>
+              <td class="value">
+                <input type="checkbox" name="showType" id="showType" value="1" />
+                隐藏
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var block = {};
+
+  block.$ = function (selector) {
+    return $(selector, $('#blockAttrCfgDiv'));
+  };
+
+  /**
+   * 初始化属性窗口
+   */
+  block.initPropertyDialog = function (editor) {
+    // $(".cke_reset_all"  ).removeClass("cke_reset_all");
+    this.editor = editor;
+    // 编辑区块时,默认移出提示
+    this.editor.removeHintInDesigner();
+
+    var focusedDom = editor.focusedDom; //当前editor被双击的对象(CKEDITOR.dom.node类)
+
+    var labelText = '';
+    var blockCode = '';
+    var blockHide = false;
+    if (focusedDom != null && typeof focusedDom != 'undefined') {
+      labelText = focusedDom.getText();
+      block.oldBlockCode = $(focusedDom).attr('blockCode');
+      blockCode = block.oldBlockCode;
+      blockHide = $(focusedDom).attr('blockHide') == 'true' ? true : false;
+    }
+
+    $('#blockCode').val(blockCode);
+    $('#blockTitle').val(labelText);
+
+    // add by wujx 20160707	是否隐藏赋值 begin
+    if (blockHide) {
+      $("input[name='showType'][value='1']").attr('checked', true);
+    }
+    // add by wujx 20160707	是否隐藏赋值 end
+  };
+
+  block.exitDialog = function () {
+    this.editor.focusedDom = null;
+    $('#blockTitle').val('');
+    $('#blockCode').val('');
+  };
+
+  block.fillCkeditor = function () {
+    var blockTitle = $('#blockTitle').val();
+    var blockCode = $('#blockCode').val();
+    if (blockCode == '' || blockCode == undefined) {
+      alert(dymsg.blockCodeNotEmpty);
+      return false;
+    }
+
+    var re = /^([a-zA-Z_][a-zA-Z0-9_]*)$/;
+    if (!re.test(blockCode)) {
+      alert(dymsg.blockCodeError);
+      return false;
+    }
+    var oldBlockTitle;
+    if (typeof formDefinition.blocks == 'undefined') {
+      formDefinition.blocks = {};
+    } else {
+      for (var i in formDefinition.blocks) {
+        if (i == this.oldBlockCode) {
+          continue;
+        } else {
+          if (i == blockCode) {
+            alert(dymsg.blockexist);
+            return false;
+          }
+        }
+      }
+      oldBlockTitle = formDefinition.blocks[this.oldBlockCode] && formDefinition.blocks[this.oldBlockCode].blockTitle;
+      delete formDefinition.blocks[this.oldBlockCode];
+    }
+
+    // add by wujx 20160707	设置是否隐藏 begin
+    var blockHide = false;
+    $("input[name='showType']:checked").each(function () {
+      if (this.checked) {
+        if ($(this).val() == '1') {
+          blockHide = true;
+        }
+      }
+    });
+    // add by wujx 20160707	设置是否隐藏end
+
+    if (this.editor.focusedDom != null) {
+      var oldBlockTitle2 = this.editor.focusedDom.getHtml();
+      if (oldBlockTitle && oldBlockTitle2) {
+        this.editor.focusedDom.setHtml(oldBlockTitle2.replace(oldBlockTitle, blockTitle));
+      } else {
+        this.editor.focusedDom.setHtml(blockTitle);
+      }
+      $(this.editor.focusedDom).attr('blockCode', $('#blockCode').val());
+      $(this.editor.focusedDom).attr('blockHide', blockHide);
+    } else {
+      var html = '';
+      html += '<table >';
+      html += '<tr>';
+      html += "<td class='title' colspan='2' blockCode='" + $('#blockCode').val() + "'>" + $('#blockTitle').val() + '</td>';
+      html += '</tr>';
+      html += '<tr>';
+      html += "<td width='110px;'>&nbsp;</td><td>&nbsp;</td>";
+      html += '</tr>';
+      html += '<tr>';
+      html += "<td width='110px;'>&nbsp;</td><td>&nbsp;</td>";
+      html += '</tr>';
+      html += '<tr>';
+      html += "<td width='110px;'>&nbsp;</td><td>&nbsp;</td>";
+      html += '</tr>';
+      html += '</table>';
+
+      var element = CKEDITOR.dom.element.createFromHtml(html);
+
+      /* //this.editor.insertHtml(html);
+		var selection = this.editor.getSelection();
+		var elem = selection.getStartElement();
+		if(elem.getParent().getName() == "div" && elem.getParent().getAttribute("class") == "dyform"){
+			alert("请将光标移至白色编辑区内")
+			elem.focus();
+			return ;
+		} */
+
+      this.editor.insertElement(element);
+    }
+
+    formDefinition.blocks[blockCode] = { blockTitle: blockTitle, blockCode: blockCode, hide: blockHide };
+    return true;
+  };
+</script>

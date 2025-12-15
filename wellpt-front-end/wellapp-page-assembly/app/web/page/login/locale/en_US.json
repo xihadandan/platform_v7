@@ -1,0 +1,7 @@
+{
+  "LoginRender": {
+    "error": "error",
+    "sessionTimedOut": "The user session has timed out, please log in again",
+    "loginFailedAgain": "Login failed, please log in again!"
+  }
+}

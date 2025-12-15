@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="queryDutySeqListByParam">
+        <![CDATA[
+		select distinct * from
+		(select uuid,duty_seq_code,duty_seq_name,icon,background_color,describe,parent_uuid
+				from ORG_DUTY_SEQ
+				start with uuid in (
+					select uuid
+					from ORG_DUTY_SEQ e
+					where e.system_unit_id = :systemUnitId
+					<if isNotBlank( keyword )>
+						and (e.duty_seq_code like '%${keyword}%' or e.duty_seq_name like '%${keyword}%')
+					</if>)
+				connect by prior  parent_uuid = uuid
+		union all
+		select uuid,duty_seq_code,duty_seq_name,icon,background_color,describe,parent_uuid
+				from ORG_DUTY_SEQ
+				start with uuid in (
+					select uuid
+					from ORG_DUTY_SEQ e
+					where e.system_unit_id = :systemUnitId
+					<if isNotBlank( keyword )>
+						and (e.duty_seq_code like '%${keyword}%' or e.duty_seq_name like '%${keyword}%')
+					</if>)
+				connect by prior  uuid = parent_uuid
+			)
+		order by duty_seq_code
+	]]>
+    </sql-query>
+    <sql-query name="getDutySeqAndjobRankListByRankIds">
+        <![CDATA[
+		SELECT
+			MOJR. ID AS job_rank_id,
+			ODS.DUTY_SEQ_CODE AS duty_seq_code
+		FROM
+			MULTI_ORG_JOB_RANK MOJR,
+			ORG_DUTY_SEQ ODS
+		WHERE
+			MOJR.DUTY_SEQ_UUID = ODS.UUID
+			AND MOJR.ID IN (:jobRankIds)
+	]]>
+    </sql-query>
+
+
+    <sql-query name="queryDutySeqListByUuids">
+        <![CDATA[
+		select distinct uuid,duty_seq_code,duty_seq_name,icon,describe,parent_uuid
+				from ORG_DUTY_SEQ
+				start with uuid in (:dutySeqUuids)
+				connect by prior  parent_uuid = uuid
+		order by duty_seq_code
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

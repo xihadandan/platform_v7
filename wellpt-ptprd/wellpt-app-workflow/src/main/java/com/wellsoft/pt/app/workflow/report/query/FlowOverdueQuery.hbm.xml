@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="listFlowOverdueTimeQuery">
+        <![CDATA[
+            select * from (
+                select  t1.uuid             as uuid,
+                        t1.title            as title,
+                        t1.name             as name,
+                        t1.id               as id,
+                        t1.start_user_id    as start_user_id,
+                        u.user_name         as start_user_name,
+                        t1.start_time       as start_time,
+                        t1.end_time         as end_time,
+                        sum((cast(nvl(ti.end_time, nvl(t1.end_time, sysdate)) as date) - cast(nvl(nvl(ti.overdue_time, t1.overdue_time), t1.due_time) as date)) * 24 * 60) as overdue_minutes
+                from wf_flow_instance t1
+                    left join user_info u on t1.start_user_id = u.user_id
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                    </if>
+                    left join (
+                        select *
+                        from (
+                                 select ti.flow_inst_uuid,
+                                        ti.end_time,
+                                        ti.overdue_time,
+                                        row_number() over (partition by ti.task_timer_uuid order by ti.end_time desc) as row_num
+                                 from wf_task_instance ti
+                                          left join wf_flow_instance t1 on t1.uuid = ti.flow_inst_uuid
+                                          <if isNotBlank(flowInstWhereSql)>
+                                            left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                                          </if>
+                                          left join wf_task_activity t3 on ti.uuid = t3.pre_task_inst_uuid
+                                 where ti.over_due_state = 1
+                                    <if isNotBlank(flowDefId)>
+                                        and t1.id = :flowDefId
+                                    </if>
+                                    <if isNotBlank(flowInstWhereSql)>
+                                        and ${flowInstWhereSql}
+                                    </if>
+                             )
+                        where row_num = 1
+                    ) ti on t1.uuid = ti.flow_inst_uuid
+                where t1.is_over_due = 1
+                    <if isNotBlank(flowDefId)>
+                        and t1.id = :flowDefId
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                    group by t1.uuid, t1.title, t1.name, t1.id, t1.start_user_id, u.user_name, t1.start_time, t1.end_time
+            ) t
+            where 1 = 1 and overdue_minutes is not null
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowAvgOverdueTimeQuery">
+        <![CDATA[
+            select avg(overdue_minutes) as avg_overdue_minutes
+            from (
+                select  t1.uuid             as uuid,
+                        t1.title            as title,
+                        t1.name             as name,
+                        t1.id               as id,
+                        t1.start_time       as start_time,
+                        t1.end_time         as end_time,
+                        sum((cast(nvl(ti.end_time, nvl(t1.end_time, sysdate)) as date) - cast(nvl(nvl(ti.overdue_time, t1.overdue_time), t1.due_time) as date)) * 24 * 60) as overdue_minutes
+                from wf_flow_instance t1
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                    </if>
+                    left join (
+                        select *
+                        from (
+                                 select ti.flow_inst_uuid,
+                                        ti.end_time,
+                                        ti.overdue_time,
+                                        row_number() over (partition by ti.task_timer_uuid order by ti.end_time desc) as row_num
+                                 from wf_task_instance ti
+                                          left join wf_flow_instance t1 on t1.uuid = ti.flow_inst_uuid
+                                          <if isNotBlank(flowInstWhereSql)>
+                                            left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                                          </if>
+                                          left join wf_task_activity t3 on ti.uuid = t3.pre_task_inst_uuid
+                                 where ti.over_due_state = 1
+                                    <if isNotBlank(flowDefId)>
+                                        and t1.id = :flowDefId
+                                    </if>
+                                    <if isNotBlank(flowInstWhereSql)>
+                                        and ${flowInstWhereSql}
+                                    </if>
+                             )
+                        where row_num = 1
+                    ) ti on t1.uuid = ti.flow_inst_uuid
+                where t1.is_over_due = 1
+                    <if isNotBlank(flowDefId)>
+                        and t1.id = :flowDefId
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                    group by t1.uuid, t1.title, t1.name, t1.id, t1.start_time, t1.end_time
+            ) t
+            where 1 = 1
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listFlowOverdueCountQuery">
+        <![CDATA[
+            select * from (
+                select  count(t1.uuid) as count,
+                        t1.name  as name,
+                        t1.id    as id
+                from wf_flow_instance t1
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                    </if>
+                where t1.is_over_due = 1
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                group by t1.name, t1.id
+            ) t
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                <else>
+                    order by t.count desc
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listFlowAvgOverdueTimeQuery">
+        <![CDATA[
+            select name, id, avg(overdue_minutes) as avg_overdue_minutes
+            from (
+                select  t1.uuid             as uuid,
+                        t1.title            as title,
+                        t1.name             as name,
+                        t1.id               as id,
+                        t1.start_time       as start_time,
+                        t1.end_time         as end_time,
+                        sum((cast(nvl(ti.end_time, nvl(t1.end_time, sysdate)) as date) - cast(nvl(nvl(ti.overdue_time, t1.overdue_time), t1.due_time) as date)) * 24 * 60) as overdue_minutes
+                from wf_flow_instance t1
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                    </if>
+                    left join (
+                        select *
+                        from (
+                                 select ti.flow_inst_uuid,
+                                        ti.end_time,
+                                        ti.overdue_time,
+                                        row_number() over (partition by ti.task_timer_uuid order by ti.end_time desc) as row_num
+                                 from wf_task_instance ti
+                                          left join wf_flow_instance t1 on t1.uuid = ti.flow_inst_uuid
+                                          <if isNotBlank(flowInstWhereSql)>
+                                            left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                                          </if>
+                                          left join wf_task_activity t3 on ti.uuid = t3.pre_task_inst_uuid
+                                 where ti.over_due_state = 1
+                                    <if isNotBlank(flowDefId)>
+                                        and t1.id = :flowDefId
+                                    </if>
+                                    <if isNotBlank(flowInstWhereSql)>
+                                        and ${flowInstWhereSql}
+                                    </if>
+                             )
+                        where row_num = 1
+                    ) ti on t1.uuid = ti.flow_inst_uuid
+                where t1.is_over_due = 1
+                    <if isNotBlank(flowDefId)>
+                        and t1.id = :flowDefId
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                    group by t1.uuid, t1.title, t1.name, t1.id, t1.start_time, t1.end_time
+            ) t
+            where 1 = 1 and overdue_minutes is not null
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                group by name, id
+                order by avg_overdue_minutes desc
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listTaskOverdueDetailQuery">
+        <![CDATA[
+            select * from (
+                select  ti.uuid         as uuid,
+                        t1.title        as title,
+                        t1.name         as name,
+                        t1.id           as id,
+                        ti.start_time   as start_time,
+                        ti.end_time     as end_time,
+                        ti.id           as task_id,
+                        ti.name         as task_name,
+                        ti.type         as task_type,
+                        t.user_id       as owner,
+                        ti.timing_state as timing_state,
+                        (cast(nvl(ti.end_time, sysdate) as date) - cast(ti.start_time as date)) * 24 * 60 as duration
+                from wf_task_identity t
+                     left join wf_task_instance ti on t.task_inst_uuid = ti.uuid
+                     left join wf_flow_instance t1 on ti.flow_inst_uuid = t1.uuid
+                     <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                     </if>
+                where 1 = 1 and ti.task_timer_uuid is not null and t.overdue_state = 1
+                    <if isNotBlank(flowInstUuid)>
+                        and ti.flow_inst_uuid = :flowInstUuid
+                    <elseif isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                </if>
+	    ]]>
+    </sql-query>
+
+</hibernate-mapping>

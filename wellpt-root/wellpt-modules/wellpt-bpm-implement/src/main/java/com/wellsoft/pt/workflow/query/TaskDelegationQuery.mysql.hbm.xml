@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="listTaskDelegationQuery">
+        <![CDATA[
+		select * from(
+			select distinct
+						<if isBlank(projectionClause)>
+						    t1.consignor_name        as consignor_name,
+			                t1.consignor             as consignor,
+			                t1.trustee_name          as trustee_name,
+			                t1.trustee               as trustee,
+			                t1.from_time             as from_time,
+			                t1.to_time               as to_time,
+			                t1.due_to_take_back_work as due_to_take_back_work,
+			                t1.completion_state      as completion_state,
+			                t1.create_time           as delegation_time,
+			                t1.flow_inst_uuid        as flow_inst_uuid,
+			                t1.task_inst_uuid		 as task_inst_uuid,
+			                t1.task_identity_uuid 	 as task_identity_uuid,
+			                t2.title                 as flow_title,
+			                t2.name                  as flow_name,
+			                t2.start_time         	 as flow_start_time,
+			                t2.end_time         	 as flow_end_time,
+			                t4.operator_name         as operator_name,
+			                t4.operate_task_name     as operate_task_name,
+						    t4.operate_time          as operate_time
+			         	<else>
+			         		${projectionClause}
+			         	</if>
+			  from wf_task_delegation t1
+			    left join wf_flow_instance t2 on t1.flow_inst_uuid = t2.uuid
+                left join wf_task_instance t3 on t1.task_inst_uuid = t3.uuid
+			    left join (
+			     select *
+                    from (
+                             select o.flow_inst_uuid as flow_inst_uuid,
+                                    o.assignee_name as operator_name,
+                                    o.task_name as operate_task_name,
+                                    o.create_time as operate_time,
+                                    o.task_identity_uuid as task_identity_uuid
+                             from wf_task_operation o
+                                 left join wf_task_delegation d on o.flow_inst_uuid = d.flow_inst_uuid and o.task_identity_uuid = d.task_identity_uuid
+                                 left join (
+                                 select max(o1.create_time) as max_create_time, o1.task_inst_uuid
+                                 from wf_task_operation o1
+                                 group by o1.task_inst_uuid
+                             ) o1 on o1.task_inst_uuid = o.task_inst_uuid
+                            where o.task_identity_uuid is not null and o.create_time = o1.max_create_time
+                         )
+			  ) t4 on t1.flow_inst_uuid = t4.flow_inst_uuid and t1.task_identity_uuid = t4.task_identity_uuid
+			 where 1 = 1
+                <if isNotBlank(delegationSettingsUuid)>
+		            and t1.delegation_settings_uuid = :delegationSettingsUuid
+		        </if>
+
+			    <if isNotBlank(completionStates)>
+			    	and t1.completion_state in (:completionStates)
+			    </if>
+
+			    <if isBlank(whereSql)>
+					<if isNotBlank(consignor)>
+						and t1.consignor = :consignor
+					</if>
+					<if isNotBlank(trustee)>
+						and t1.trustee = :trustee
+					</if>
+				</if>
+				<if isNotBlank(whereSql)>
+					and (1 = 2 or ${whereSql})
+				</if>
+
+				<if isNotBlank(orderBy)>
+					order by ${orderBy}
+				</if>
+				<if isNotBlank(orderString)>
+					${orderString}
+				</if>
+			)  t
+	]]>
+    </sql-query>
+</hibernate-mapping>

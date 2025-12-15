@@ -1,0 +1,212 @@
+.div_search_toolbar .label-formbuilder .search-tooltip,
+.well-workflow-form .form-group .form-tooltip {
+  position: relative;
+  display: inline-block;
+
+  i {
+    color: @text-color-inverse;
+    font-weight: normal;
+
+    &:hover + .form-tooltip-content {
+      display: block;
+    }
+  }
+}
+
+.div_search_toolbar .label-formbuilder .search-tooltip .search-tooltip-content,
+.well-workflow-form .form-group .form-tooltip .form-tooltip-content {
+  .absolute(-10px false false 30px);
+
+  display: none;
+  width: 250px;
+  line-height: 20px;
+  padding: 15px;
+  box-shadow: @shadow-popup-default;
+  border-radius: @border-radius-base;
+  text-align: left;
+  color: @text-color-inverse;
+  background: @component-background;
+  font-size: @font-size-base;
+  font-weight: normal;
+  z-index: 105;
+}
+
+.div_search_toolbar .label-formbuilder .search-tooltip .search-tooltip-content {
+  top: 30px;
+  left: -100px;
+
+  &:before {
+    .absolute(-10px false false 100px);
+
+    content: '';
+    display: block;
+    border-right: 8px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 10px solid #fff;
+  }
+}
+
+.well-workflow-form .form-group .form-tooltip .form-tooltip-content:before {
+  .absolute(10px false false -10px);
+
+  content: '';
+  display: block;
+  border-top: 8px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #fff;
+}
+
+.workflow-popup.well-workflow-form .form-group .form-tooltip .form-tooltip-content {
+  top: initial;
+  left: initial;
+  transform: translate(-85px, -117px);
+
+  &:before {
+    left: 85px;
+    bottom: -10px;
+    top: initial;
+  }
+
+  &.t-bottom {
+    top: 25px;
+    transform: none;
+    left: -87px;
+
+    &:before {
+      top: -10px;
+      bottom: initial;
+    }
+  }
+
+  &.show-down {
+    transform: translate(-85px, 10px);
+
+    &:before {
+      bottom: initial;
+      top: -10px;
+    }
+  }
+
+  &.show-top {
+    transform: translate(-85px, -100px);
+
+    &:before {
+      position: absolute;
+      content: '';
+      border-top: 8px solid #fff;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      bottom: -18px;
+    }
+  }
+}
+
+.well-workflow-form .line-set {
+  display: inline-block;
+  font-size: 0;
+
+  li {
+    &.active {
+      border-color: @border-color-primary;
+      color: @text-color-primary;
+    }
+
+    &:first-of-type {
+      border-radius: @border-radius-base 0 0 @border-radius-base;
+      border-right: none;
+
+      &.active {
+        border-right: @border-default-primary;
+      }
+    }
+
+    &:last-of-type {
+      border-left: none;
+      border-radius: 0 @border-radius-base @border-radius-base 0;
+
+      &.active {
+        border-left: @border-default-primary;
+      }
+    }
+  }
+
+  &.disable li {
+    border-color: border-color-darker;
+    color: @disabled-text-color;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    &.active {
+      border-color: @text-color-dark;
+      color: @text-color;
+    }
+  }
+}
+
+.well-workflow-form .line-direction {
+  display: inline-block;
+  margin-left: 50px;
+  border-radius: @border-radius-base;
+}
+
+.well-workflow-form .line-direction,
+.well-workflow-form .line-set li {
+  display: inline-block;
+  padding: 8px;
+  line-height: 1;
+  font-size: @font-size-base;
+  border: @border-default-dark;
+  color: @text-color;
+  cursor: pointer;
+
+  &.active {
+    border-color: @border-color-primary;
+    color: @text-color-primary;
+  }
+
+  &:hover {
+    border-color: @border-color-primary;
+  }
+}
+
+.well-workflow-form {
+  input[disabled] {
+    pointer-events: none;
+  }
+
+  input[disabled] + label {
+    pointer-events: none;
+
+    div {
+      pointer-events: initial;
+    }
+
+    &:before {
+      color: @disabled-text-color !important;
+    }
+  }
+}
+
+.form-disabled {
+  input {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  input + label {
+    cursor: not-allowed;
+    pointer-events: none;
+
+    &:before {
+      color: @disabled-text-color !important;
+    }
+  }
+
+  button {
+    pointer-events: none;
+
+    .iconfont {
+      color: @disabled-text-color;
+    }
+  }
+}

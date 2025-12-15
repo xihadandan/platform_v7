@@ -1,0 +1,12 @@
+{
+  "WidgetGridstack": {
+    "resetDefault": "Reset to Default",
+    "resetDefaultLayout": "Restore the default typography",
+    "resetDefaultLayoutTips": "Are you sure you want to restore the default typography?",
+    "drapLayout": "Drag the layout",
+    "start": "Start",
+    "saveAndEnd": "Save and End",
+    "saveAndEndDragLayout": "Save and end the drag layout",
+    "startDragLayout": "Start dragging the layout"
+  }
+}

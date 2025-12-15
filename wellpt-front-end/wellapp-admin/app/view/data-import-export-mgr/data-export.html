@@ -1,0 +1,74 @@
+<div class="data-import-export-mod">
+  <div class="alert alert-info alert-dismissable mt10" id="recent_list_tip" style="/* display: none; */">
+    <span style="color: #488cee">
+      <i class="iconfont icon-ptkj-xinxiwenxintishi"></i>
+      导出说明：
+    </span>
+    您可以选择以下数据进行批量导出，数据将以数据包的形式导出至服务器磁盘。
+    <span class="pull-right info-close">
+      <i class="iconfont icon-ptkj-dacha"></i>
+    </span>
+    <!--<button type="button" class="well-btn w-btn-primary well-btn-sm pull-right" id="btn_more">更多说明</button>-->
+  </div>
+</div>
+<form id="data_export_form" style="margin-top: 15px" class="data-import-export-mod">
+  <input type="hidden" id="uuid" name="uuid" />
+  <div class="well-form form-horizontal">
+    <div class="form-group">
+      <label class="well-form-label control-label required">导出数据类型 ：</label>
+      <div class="well-form-control dataType" id="dataType_exp"></div>
+    </div>
+
+    <div class="form-group">
+      <label class="well-form-label control-label required">
+        数据归属
+        <div class="ts-tooltip">
+          <i class="iconfont icon-ptkj-tishishuoming"></i>
+          <div class="ts-tooltip-content">选择指定系统单位导出以上类型的数据</div>
+        </div>
+        ：
+      </label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="dataAttribution_exp" name="dataAttribution_exp" placeholder="请选择" />
+        <label class="error iconfont icon-ptkj-wentiziduantishi" style="text-align: left; display: none"></label>
+        <input type="hidden" class="form-control" name="dataAttributionName_exp" id="dataAttributionName_exp" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="well-form-label control-label required">
+        导出到
+        <div class="ts-tooltip">
+          <i class="iconfont icon-ptkj-tishishuoming"></i>
+          ：
+          <div class="ts-tooltip-content">数据导出至服务器的具体存放位置，请确认输入的磁盘路径有效</div>
+        </div>
+      </label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="dataFolder_exp" name="dataFolder_exp" />
+        <label class="error iconfont icon-ptkj-wentiziduantishi" style="text-align: left; display: none"></label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="well-form-label control-label">
+        导出数据拆分
+        <div class="ts-tooltip">
+          <i class="iconfont icon-ptkj-tishishuoming"></i>
+          ：
+          <div class="ts-tooltip-content">设置数据包中单个文件的最大数据量，导出的数据超出该数据量时将拆分成多个文件</div>
+        </div>
+      </label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="dataSize_exp" name="dataSize_exp" />
+        <label class="error iconfont icon-ptkj-wentiziduantishi" style="text-align: left; display: none"></label>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px">
+      <div class="col-sm-12 text-center">
+        <button type="button" class="well-btn w-btn-primary" id="btn_save_exp">导出</button>
+      </div>
+    </div>
+  </div>
+</form>

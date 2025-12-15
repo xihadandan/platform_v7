@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="/pt/common/taglibs.jsp" %>
+<form class="form-horizontal" role="form" id="personalInfoModifyPwd">
+    <div class="form-group">
+        <input type="hidden" value="${user.uuid}" name="userUuid"/>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">旧密码</label>
+        <div class="col-sm-8">
+            <input type="password" class="form-control" name="oldPwd">
+            <label class="error iconfont" style="text-align: left;"></label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">新密码</label>
+        <div class="col-sm-8">
+            <input type="password" class="form-control" name="newPwd">
+            <label class="error iconfont" style="text-align: left;"></label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">确认密码</label>
+        <div class="col-sm-8">
+            <input type="password" class="form-control" name="confirmPwd">
+            <label class="error iconfont " style="text-align: left;"></label>
+        </div>
+    </div>
+</form>

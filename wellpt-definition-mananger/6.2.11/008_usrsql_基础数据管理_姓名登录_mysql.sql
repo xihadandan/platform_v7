@@ -1,0 +1,32 @@
+
+--------------------------用户中文登录-------------------------------------
+drop table if exists `MULTI_USER_LOGIN_SETTINGS`;
+CREATE TABLE `MULTI_USER_LOGIN_SETTINGS`
+(
+  `UUID` VARCHAR(64) NOT NULL,
+  `ACCOUNT_ALIAS`          VARCHAR(100) COMMENT '账户别名',
+  `ACCOUNT_ZH_ENABLE`     CHAR(1) COMMENT '是否启用中文账户',
+  `ACCOUNT_ZH_ALIAS`      VARCHAR(100) COMMENT '中文账户别名',
+  `REC_VER`              DECIMAL(10,0) COMMENT  '版本号',
+  `CREATE_TIME`            TIMESTAMP COMMENT  '创建时间',
+  `CREATOR`                VARCHAR(255) COMMENT  '创建人',
+  `MODIFIER`               VARCHAR(255) COMMENT '更新人',
+  `MODIFY_TIME`            TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `SYSTEM_UNIT_ID`         VARCHAR(64) COMMENT '系统单位ID',
+  `NAME_EN_ENABLE`         CHAR(1) COMMENT  '是否启用英文名',
+  `NAME_EN_ALIAS`          VARCHAR(100) COMMENT '英文名别名',
+  `TELL_ENABLE`            CHAR(1) COMMENT '是否启用手机号',
+  `TELL_ALIAS`             VARCHAR(100) COMMENT '手机号别名',
+  `IDENTIFIER_CODE_ENABLE` CHAR(1) COMMENT '是否启用身份证号',
+  `IDENTIFIER_CODE_ALIAS`  VARCHAR(100) COMMENT '身份证号别名',
+  `EMAIL_ENABLE`           CHAR(1) COMMENT '是否启用邮箱',
+  `EMAIL_ALIAS`            VARCHAR(100) COMMENT '邮箱别名',
+  `EMP_CODE_ENABLE`        CHAR(1) COMMENT '是否启用员工编号',
+  `EMP_CODE_ALIAS`         VARCHAR(100) COMMENT '员工编号别名',
+  PRIMARY KEY (`UUID`)
+) COMMENT = '用户登录设置';
+
+
+ALTER TABLE `MULTI_ORG_USER_ACCOUNT` ADD COLUMN `LOGIN_NAME_ZH` VARCHAR(255) COMMENT '中文用户名';
+  
+UPDATE MULTI_ORG_USER_ACCOUNT SET LOGIN_NAME_ZH = USER_NAME;

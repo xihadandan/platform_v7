@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="bizProcessDefinitionQuery">
+        <![CDATA[
+        select t.uuid 			as uuid,
+               t.create_time	as create_time,
+               t.creator		as creator,
+               t.modifier   	as modifier,
+               t.modify_time 	as modify_time,
+               t.rec_ver     	as rec_ver,
+               t.name          	as name,
+               t.id          	as id,
+               t.code        	as code,
+               t.version        as version,
+               t.enabled        as enabled,
+               t.business_id 	as business_id,
+               t.tag_id        	as tag_id,
+               t.remark 		as remark
+          from biz_process_definition t
+		 where 1 = 1
+		  <if isNotBlank(businessId)>
+            and t.business_id = :businessId
+          </if>
+          <if businessIds?? && (businessIds?size > 0)>
+            and t.business_id in(:businessIds)
+          </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+          <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+        ]]>
+    </sql-query>
+
+    <sql-query name="listProcessDefinitionOfRefTemplate">
+        <![CDATA[
+        <if templateType == '50'>
+            select t.uuid 			as uuid,
+                   t.create_time	as create_time,
+                   t.creator		as creator,
+                   t.modifier   	as modifier,
+                   t.modify_time 	as modify_time,
+                   t.rec_ver     	as rec_ver,
+                   t.name          	as name,
+                   t.id          	as id,
+                   t.code        	as code,
+                   t.version        as version,
+                   t.enabled        as enabled,
+                   t.business_id 	as business_id,
+                   t.tag_id        	as tag_id,
+                   t.remark 		as remark
+              from biz_process_definition t
+              where t.uuid in (
+                 select t1.process_def_uuid
+                 from biz_process_item_definition t1
+                 where t1.item_id = :itemId
+                   and t1.ref_process_def_uuid = :processDefUuid
+             )
+        <else>
+            select t.uuid 			as uuid,
+                   t.create_time	as create_time,
+                   t.creator		as creator,
+                   t.modifier   	as modifier,
+                   t.modify_time 	as modify_time,
+                   t.rec_ver     	as rec_ver,
+                   t.name          	as name,
+                   t.id          	as id,
+                   t.code        	as code,
+                   t.version        as version,
+                   t.enabled        as enabled,
+                   t.business_id 	as business_id,
+                   t.tag_id        	as tag_id,
+                   t.remark 		as remark
+              from biz_process_definition t
+              where t.uuid in (
+                 select t1.process_def_uuid
+                 from biz_process_node_definition t1
+                 where t1.id = :nodeId
+                   and t1.ref_process_def_uuid = :processDefUuid
+             )
+        </if>
+        ]]>
+    </sql-query>
+</hibernate-mapping>

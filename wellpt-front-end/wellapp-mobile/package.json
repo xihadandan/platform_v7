@@ -1,0 +1,66 @@
+{
+  "name": "wellapp-mobile",
+  "version": "70.2.0",
+  "description": "手机端",
+  "eggPlugin": {
+    "name": "wellappMobile"
+  },
+  "keywords": [
+    "wellsoft",
+    "wellapp",
+    "wellapp-plugin",
+    "wellappMobile",
+    "wellapp-mobile"
+  ],
+  "dependencies": {
+    "qrcode": "^1.4.4",
+    "vue-json-viewer": "^2.2.22",
+    "wellapp-framework": "70.2.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-plugin-transform-vue-jsx": "^3.7.0",
+    "babel-preset-env": "^1.6.0",
+    "eslint": "^5.13.0",
+    "eslint-config-egg": "^7.1.0",
+    "husky": "^3.0.4",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "lint-staged": "^9.2.3",
+    "prettier": "^2.0.2",
+    "style-resources-loader": "^1.5.0"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "test": "npm run lint -- --fix && egg-bin pkgfiles && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "egg-bin pkgfiles --check && npm run lint && npm run cov",
+    "pkgfiles": "egg-bin pkgfiles",
+    "autod": "autod",
+    "npm-link": "npm link ../wellapp-framework"
+  },
+  "files": [
+    "app.js",
+    "agent.js",
+    "config",
+    "app"
+  ],
+  "ci": {
+    "version": "8, 10"
+  },
+  "author": "wellsoft",
+  "license": "MIT"
+}

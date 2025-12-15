@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="getBusinessDetailsLogItemByLogIds">
+        <![CDATA[
+		SELECT
+		log_id,count(1) as num
+	FROM
+		LOG_BUSINESS_DETAILS tt
+	WHERE
+		tt.log_id in( :logIds)
+	GROUP BY log_id
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

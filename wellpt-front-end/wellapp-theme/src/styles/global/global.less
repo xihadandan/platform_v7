@@ -1,0 +1,559 @@
+html,
+body {
+  *position: static;
+  height: 100%;
+}
+
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  position: relative;
+  // background: @body-background;
+  overflow: -moz-scrollbars-none;
+}
+
+body::-webkit-scrollbar {
+  width: 0px !important;
+}
+
+body.cke_editable::-webkit-scrollbar {
+  width: 10px !important;
+}
+
+body.cke_editable::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.5);
+}
+
+body > .web-app-container.container-fluid {
+  position: relative;
+  height: 100%;
+  min-height: 100%;
+  background: @background-light;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+iframe,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+button,
+input,
+textarea,
+th,
+td,
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol,
+dl {
+  list-style-type: none;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+th,
+var {
+  font-style: normal;
+  font-weight: 400;
+}
+
+input,
+button,
+textarea,
+select,
+optgroup,
+option {
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+input,
+button {
+  overflow: visible;
+  vertical-align: middle;
+  outline: none;
+  height: 35px;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  height: auto;
+  outline: none;
+}
+
+input[type='submit'],
+input[type='reset'],
+input[type='button'],
+input[type='text'],
+input[type='password'] {
+  -webkit-appearance: none;
+  outline: none;
+}
+
+/* 搜索input出现x图标开始 */
+input[type='search']::-webkit-search-cancel-button {
+  -webkit-appearance: searchfield-cancel-button;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+
+input[type='search'] {
+  -webkit-appearance: textfield;
+
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+}
+
+/** 搜索input出现x图标结束 */
+pre,
+th,
+td,
+button,
+input,
+select,
+textarea {
+  font-family: @font-family;
+  font-size: @font-size-base;
+  color: @text-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: @font-family;
+  font-size: @font-size-base;
+  color: @text-color-black;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 767px) {
+  html {
+    overflow-y: auto;
+  }
+  body,
+  th,
+  td,
+  button,
+  input,
+  select,
+  textarea {
+    font-size: @font-size-base;
+  }
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: @primary-color;
+
+  &:hover {
+    text-decoration: underline;
+    color: @primary-8;
+  }
+
+  &:visited {
+    color: @danger-8;
+  }
+
+  &:focus,
+  &:hover,
+  &:active {
+    outline: none;
+  }
+}
+
+sub,
+sup {
+  vertical-align: baseline;
+}
+
+button,
+input[type='button'],
+input[type='submit'] {
+  line-height: 1.4;
+}
+
+img {
+  border: 0;
+  vertical-align: middle;
+}
+
+a img,
+img {
+  -ms-interpolation-mode: bicubic;
+}
+
+header,
+footer,
+section,
+aside,
+details,
+menu,
+article,
+section,
+nav,
+address,
+hgroup,
+figure,
+figcaption,
+legend {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+time {
+  display: inline;
+}
+
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+legend {
+  width: unset !important;
+  margin-bottom: 20px;
+  margin-left: 0.625em;
+  font-size: @font-size-2xl;
+  line-height: 40px;
+  border: 0;
+  // border-bottom: @border-default;
+
+  small {
+    font-size: @font-size-lg;
+    color: @text-color-light;
+  }
+}
+
+fieldset {
+  border-width: 0;
+  padding: 0.35em 0.625em 0.75em;
+  margin: 2px 0;
+  border: @border-default-darker;
+  border-radius: @border-radius-base;
+}
+
+h1 {
+  font-size: @font-size-5xl;
+}
+
+h2 {
+  font-size: @font-size-4xl;
+}
+
+h3 {
+  font-size: @font-size-3xl;
+}
+
+h4 {
+  font-size: @font-size-xl;
+}
+
+h5 {
+  font-size: @font-size-base;
+}
+
+h6 {
+  font-size: @font-size-sm;
+}
+
+p {
+  margin-bottom: @margin-sm;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+  line-height: 1.1;
+  color: @text-color-dark;
+  // font-size: 100%; 影响到前面h系列的字体大小了
+
+  small,
+  .small {
+    font-weight: 400;
+    line-height: 1;
+    color: @text-color-light;
+  }
+}
+
+h1,
+h2,
+h3 {
+  small,
+  .small {
+    font-size: 65%;
+  }
+}
+
+h4,
+h5,
+h6 {
+  small,
+  .small {
+    font-size: 75%;
+  }
+}
+
+/** 小型文本 */
+small {
+  font-size: 85%;
+}
+
+/** 重要的文本，加粗 */
+b,
+strong {
+  font-weight: bold;
+}
+
+/** 被强调的文本 */
+em {
+  font-style: italic;
+}
+
+/** 引用 */
+cite {
+  font-style: normal;
+}
+
+/** 突出显示文本 */
+mark {
+  color: @text-color-dark;
+  background: @warning-color;
+}
+
+/** 预格式化的文本 */
+pre {
+  white-space: pre-wrap;
+}
+
+/** 去除ie及edge输入框自带的清除按钮 */
+::-ms-clear {
+  display: none;
+}
+
+::-ms-reveal {
+  display: none;
+}
+
+::-o-clear {
+  display: none;
+}
+
+/* 清除浮动 */
+ks-clear:after,
+.clear:after {
+  content: '\20';
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.ks-clear,
+.clear {
+  *zoom: 1;
+}
+
+.column {
+  transition: @animation-duration-base all;
+}
+
+.row {
+  margin: 0;
+  padding: 0;
+}
+
+input[type='text'],
+input[type='password'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='date'],
+input[type='month'],
+input[type='time'],
+input[type='week'],
+input[type='number'],
+input[type='email'],
+input[type='url'],
+input[type='search'],
+input[type='tel'],
+input[type='color'],
+select,
+select[multiple],
+select.form-control[multiple] {
+  .size(100% 35px);
+  color: @text-color;
+  background-color: @component-background;
+  border: @border-default-dark;
+  padding: 5px 8px;
+  font-size: @font-size-base;
+  font-family: inherit;
+  box-shadow: none !important;
+  resize: none !important;
+  transition-duration: @animation-duration-fast;
+  overflow: hidden;
+  text-overflow: initial;
+  white-space: nowrap;
+  border-radius: @border-radius-base;
+}
+
+input:not([type='file']),
+textarea,
+select {
+  box-sizing: border-box;
+  border: @border-default-dark;
+  transition: all @animation-duration-base linear;
+  outline: none;
+
+  &:hover {
+    border: @border-default-primary;
+  }
+}
+
+input[type='text'].editableClass:hover,
+input[type='password']:hover {
+  box-shadow: @shadow-active-default !important;
+}
+
+input:not([type='file']):focus,
+textarea:focus,
+select:focus {
+  border: @border-default-primary;
+  box-shadow: @shadow-active-default;
+}
+
+input[disabled],
+textarea[disabled],
+select[disabled] {
+  color: @disabled-text-color;
+  background: @background-light !important;
+  cursor: default;
+}
+
+textarea {
+  height: 100px;
+  resize: none;
+  font-size: @font-size-base;
+  padding: 10px;
+  border-radius: @border-radius-base;
+
+  &.allow-resize {
+    min-height: 100px;
+    resize: vertical;
+    overflow-y: auto;
+    font-size: @font-size-base;
+    padding: 10px;
+    border-radius: @border-radius-base;
+  }
+}
+
+label {
+  font-weight: normal;
+}
+label.required::before {
+  content: '*';
+  color: red;
+}
+label > span.required::before {
+  content: '*';
+  color: red;
+}
+
+// .page-config input[type='radio'],
+// input[type='checkbox'] {
+//   margin-top: -5px;
+// }
+
+input[readonly]:not(.modal-input) {
+  color: @gray-9;
+  background: @background-light !important;
+  cursor: default;
+}
+
+input.Wdate {
+  background-position: calc(100% - 10px);
+}
+
+input[type='radio'].w-data-range + label.radio-inline {
+  padding-left: 0;
+  padding-top: 0;
+  margin-top: 4px;
+  margin-right: 20px;
+}
+
+input::-webkit-input-placeholder {
+  /* WebKit browsers 适配谷歌 */
+  color: @text-color-light;
+}
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 适配火狐 */
+  color: @text-color-light;
+}
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ 适配火狐 */
+  color: @text-color-light;
+}
+input:-ms-input-placeholder {
+  /* Internet Explorer 10+  适配ie*/
+  color: @text-color-light;
+}
+
+input:not([type='file']):hover,
+input:not([type='radio']):hover,
+input:not([type='checkbox']):hover,
+input:not([readonly]):hover,
+input:not([disabled]):hover,
+textarea:hover,
+select:hover {
+  border-color: @border-color-primary!important;
+  box-shadow: @shadow-active-default !important;
+}
+
+// 选中样式
+::selection {
+  background: fade(@primary-color, 50%);
+  color: @text-color-inverse;
+}

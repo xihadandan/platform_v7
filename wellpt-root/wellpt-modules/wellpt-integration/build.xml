@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="jar" name="wellpt-integration">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="D:/eclipse"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+
+    <property name="lib.dir" value="lib"/>
+    <property name="src.dir" value="src/main/java"/>
+    <property name="classes.dir" value="bin"/>
+
+    <property name="output.dir" value="../wellpt-web/WebContent/WEB-INF/lib/"/>
+    <property name="jarname" value="wellpt-integration.jar"/>
+
+    <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
+        <fileset dir="../../apache-tomcat-7.0.32/lib/">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+    <path id="Web App Libraries [wellpt-web].libraryclasspath">
+        <fileset dir="../wellpt-web/WebContent/WEB-INF/lib/">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+    <path id="wellpt-integration.classpath">
+        <pathelement location="bin"/>
+        <path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
+        <path refid="Web App Libraries [wellpt-web].libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src/main/java">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+        <delete file="${output.dir}/${jarname}"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac destdir="bin" source="${source}" target="${target}">
+            <src path="src/main/java"/>
+            <classpath refid="wellpt-integration.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes."
+            name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+
+    <!-- 2. 编译 -->
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
+            <compilerarg line="-encoding UTF-8"/>
+            <classpath refid="wellpt-integration.classpath"/>
+        </javac>
+    </target>
+
+    <!-- 3. 打包jar文件 -->
+    <target name="jar" depends="clean,compile">
+        <!-- jar文件的输出路径 -->
+        <jar destfile="${output.dir}/${jarname}" basedir="${classes.dir}"/>
+    </target>
+</project>

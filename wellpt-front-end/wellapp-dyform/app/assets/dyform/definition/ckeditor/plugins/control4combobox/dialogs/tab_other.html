@@ -1,0 +1,136 @@
+<table>
+
+    <tr>
+        <td class="Label">显示值字段<br/></td>
+        <td class="value">
+            <select name="realDisplay_display" id="realDisplay_display">
+                <option value="">--请选择--</option>
+
+            </select>
+        </td>
+    </tr>
+
+    <!-- realDisplay.real is Deprecated -->
+	<tr style="display:none">
+        <td class="Label">真实值字段<br/></td>
+        <td class="value">
+            <select name="realDisplay_real" id="realDisplay_real">
+                <option value="">--请选择--</option>
+
+            </select>
+        </td>
+    </tr>
+    <tr class="odd">
+        <td class="Label">备选项来源</td>
+        <td class="value">
+            <input id="optionDataSource_1" type="radio" value="1" name="optionDataSource">
+            <label for="optionDataSource_1">常量</label>
+            <input id="optionDataSource_2" type="radio" value="2" name="optionDataSource"
+                   checked="checked">
+            <label for="optionDataSource_2">取字典</label>
+            <input id="optionDataSource_4" type="radio" value="4" name="optionDataSource"
+                   checked="checked">
+            <label for="optionDataSource_4">数据仓库</label>
+        </td>
+    </tr>
+
+    <tr id='tr_data' hide="true">
+        <td class="Label">备选项设置</td>
+        <td class="value"><input type="text" id="optdata" name="optdata" value=""
+                                 placeholder='例：{"1":"笔记本","2":"台式"}（非数组）或[{value:"1", name:"笔记本"},{value:"2", name:"台式"}]（数组）'/>
+        </td>
+    </tr>
+
+
+    <tr hide="true" class="odd tr_dataSource">
+        <td class="Label">数据仓库</td>
+        <td class="value">
+            <input type="hidden" id="dataSourceText" name="dataSourceText" value=""
+                   style=" width: 220px;"/>
+            <input type="text" id="dataSourceId" name="dataSourceId" value=""
+                   style=" width: 220px;"/>
+
+            真实值:
+            <select name="dataSourceFieldName" id="dataSourceFieldName" style=" width: 90px;">
+
+            </select>
+            显示值:
+            <select name="dataSourceDisplayName" id="dataSourceDisplayName"
+                    style=" width: 90px;">
+
+            </select>
+
+
+        </td>
+    </tr>
+
+    <tr hide="true" class="tr_dataSource">
+        <td class="Label">默认条件</td>
+        <td class="value">
+            <textarea name="defaultCondition" id="defaultCondition" value="" rows="3"
+                      cols="85"></textarea>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="Label">下拉框其他选项</td>
+        <td class="value">
+            <input type="checkbox" name="searchable" id="searchable" value="true"/>
+            <label for="searchable">是否显示搜索框</label>
+            <!--<input type="checkbox" name="selectMultiple" id="selectMultiple" value="true"/>-->
+            <!--<label for="selectMultiple">是否开启多选</label>-->
+            <!--<input type="checkbox" name="selectCheckAll" id="selectCheckAll" value="true"/>-->
+            <!--<label for="selectCheckAll">是否支持全选</label><br>-->
+            <!--<input type="text" name="maximumSelectionLength" id="maximumSelectionLength" value="" placeholder="配置最多能选择多少项"/>-->
+    </tr>
+
+    <tr hide="true" class="tr_dataSource">
+        <td class="Label">其他字段映射</td>
+        <td class="value">
+
+            <div id="div_ds_field_map_info_toolbar" class="btn-group btn_ds_field_map_info">
+                <button id="btn_add_ds_field_map" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                </button>
+                <button id="btn_delete_ds_field_map" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                </button>
+                <!--<button id="btn_row_up_ds_field_map" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+                </button>
+                <button id="btn_row_down_ds_field_map" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+                </button>-->
+                <button type="button" class="btn btn-default btn-pt-help">
+                    帮助说明
+                    <span style="display: none" class="pt-help-content">
+                        支持${}的表达式，提供以下变量：
+                        <ul>
+                            <li>value：数据仓库字段对应的值，例如：${value}</li>
+                            <li>dataSourceData：数据仓库的选项数据，例如：${dataSourceData.字段名}</li>
+                            <li>formData:表单数据，例如：${formData.字段名}</li>
+                        </ul>
+                    </span>
+                </button>
+            </div>
+            <table id="table_ds_field_map" class="table" data-height="430">
+
+            </table>
+
+
+        </td>
+    </tr>
+
+    <tr id='tr_dicCode'>
+        <td class="Label">字典编码</td>
+        <td class="value">
+            <input id="dictName" class="w100" type="text" value="--请选择--" name="dictName">
+            <input id="dictCode" type="hidden" class="w100" type="text" name="dictCode">
+
+
+            <ul id="datadict_tree" class="ztree"></ul>
+        </td>
+    </tr>
+
+
+</table>

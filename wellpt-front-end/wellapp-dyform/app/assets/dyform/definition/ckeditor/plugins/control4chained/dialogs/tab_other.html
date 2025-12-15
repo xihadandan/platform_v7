@@ -1,0 +1,191 @@
+<table>
+  <tr>
+    <td class="Label">
+      显示值字段
+      <br />
+    </td>
+    <td class="value">
+      <select name="realDisplay_display" id="realDisplay_display">
+        <option value="">--请选择--</option>
+      </select>
+    </td>
+  </tr>
+
+  <!-- realDisplay.real is Deprecated -->
+  <tr style="display: none">
+    <td class="Label">
+      真实值字段
+      <br />
+    </td>
+    <td class="value">
+      <select name="realDisplay_real" id="realDisplay_real">
+        <option value="">--请选择--</option>
+      </select>
+    </td>
+  </tr>
+
+  <tr class="odd">
+    <td class="Label">备选项来源</td>
+    <td class="value">
+      <input id="optionDataSource_1" type="radio" value="1" name="optionDataSource" style="display: none" />
+      <label for="optionDataSource_1" style="display: none">常量</label>
+      <input id="optionDataSource_2" type="radio" value="2" name="optionDataSource" checked="checked" />
+      <label for="optionDataSource_2">
+        取字典
+        <div id="optionDataSourceTip" style="display: inline-block">
+          <i class="iconfont icon-ptkj-tishishuoming"></i>
+        </div>
+      </label>
+      <input id="optionDataSource_4" type="radio" value="4" name="optionDataSource" checked="checked" />
+      <label for="optionDataSource_4">数据仓库</label>
+      <!--
+				<input id="optionDataSource_8" type="radio" value="8" name="optionDataSource" checked="checked">
+				<label for="optionDataSource_8">数据仓库</label>
+				 -->
+    </td>
+  </tr>
+
+  <tr hide="true" class="tr_data">
+    <td class="Label">备选项设置</td>
+    <td class="value">
+      <input
+        type="text"
+        id="optdata"
+        name="optdata"
+        value=""
+        placeholder='例：{"1":"笔记本","2":"台式"}（非数组）或[{value:"1", name:"笔记本"},{value:"2", name:"台式"}]（数组）'
+      />
+    </td>
+  </tr>
+  <!--字典-->
+  <tr class="tr_dicCode" hide="true">
+    <td class="Label">备选项动态设置</td>
+    <td class="value">
+      <input type="checkbox" value="0" name="optionDataAutoSet2" id="optionDataAutoSet2" class="switch" />
+      <label for="optionDataAutoSet2"></label>
+    </td>
+  </tr>
+
+  <tr class="tr_dicCode dicAutoSet1" hide="true">
+    <td class="Label">
+      <font style="color: red">*</font>
+      联动字段
+      <div id="relateFieldTip" style="display: inline-block">
+        <i class="iconfont icon-ptkj-tishishuoming"></i>
+      </div>
+    </td>
+    <td class="value">
+      <input type="text" id="relateField2" name="relateField2" placeholder="请选择" />
+    </td>
+  </tr>
+
+  <tr class="tr_dicCode odd">
+    <td class="Label">
+      <font style="color: red">*</font>
+      字典
+    </td>
+    <td class="value">
+      <div class="dicAutoSet1">根据联动字段的值读取（示例：联动字段【性别】，值【女】时，字典自动读取【女】对应的字典）</div>
+      <div class="dicAutoSet2">
+        <input id="dictName" class="w100" type="text" name="dictName" />
+        <input id="dictCode" type="hidden" class="w100" type="text" name="dictCode" />
+        <ul id="datadict_tree" class="ztree"></ul>
+      </div>
+    </td>
+  </tr>
+
+  <tr class="tr_dicCode">
+    <td class="Label">
+      <font style="color: red">*</font>
+      层级标题
+    </td>
+    <td class="value">
+      <input type="text" id="dicTitles" name="dicTitles" value="" placeholder="省/市/区|县/镇|乡" />
+      <br />
+      多级用"/"符分割,代表每一级的标题
+    </td>
+  </tr>
+
+  <!--数据仓库-->
+  <tr class="tr_dataSource" hide="true">
+    <td class="Label">备选项动态设置</td>
+    <td class="value">
+      <input type="checkbox" value="0" name="optionDataAutoSet3" id="optionDataAutoSet3" class="switch" />
+      <label for="optionDataAutoSet3"></label>
+    </td>
+  </tr>
+
+  <tr class="tr_dataSource sourceAutoSet1" hide="true">
+    <td class="Label">
+      <font style="color: red">*</font>
+      联动字段
+    </td>
+    <td class="value">
+      <input type="text" id="relateField3" name="relateField3" placeholder="请选择" />
+    </td>
+  </tr>
+
+  <tr hide="true" class="tr_dataSource">
+    <td class="Label">数据仓库</td>
+    <td class="value">
+      <span class="btn-group">
+        <button type="button" id="btn-add" hide="true" class="btn btn-default btn-sm" style="margin-right: 4px">添加</button>
+        <button type="button" id="btn-upRow" hide="true" class="btn btn-default btn-sm" style="margin-right: 4px">上移</button>
+        <button type="button" id="btn-downRow" hide="true" class="btn btn-default btn-sm" style="margin-right: 4px">下移</button>
+        <button type="button" id="btn-del" class="btn btn-del btn-default btn-sm">删除</button>
+      </span>
+    </td>
+  </tr>
+
+  <tr hide="true" class="tr_dataSource">
+    <p class="fl"></p>
+    <td class="value" colspan="2">
+      <div class="definitionDiv" style="margin-bottom: 5px; overflow-x: hidden">
+        <table class="definitiontrtable">
+          <thead>
+            <tr>
+              <th>层级标题</th>
+              <th>数据仓库</th>
+              <th>真实值</th>
+              <th>显示值</th>
+              <th>条件</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" name="dataSourceTitle" placeholder="层级标题" /></td>
+              <td>
+                <input type="hidden" name="dataSourceText" />
+                <input type="text" name="dataSourceId" value="" placeholder="请选择数据仓库" style="width: 220px" />
+              </td>
+              <td><select name="dataSourceFieldName"></select></td>
+              <td><select name="dataSourceDisplayName"></select></td>
+              <td>
+                <select name="dataSourceRel"></select>
+                <input type="text" name="dsWhereSql" placeholder="查询条件" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<style type="text/css">
+  .definitiontrtable tr.row-selected {
+    background-color: #d0d0d0;
+  }
+
+  .definitiontrtable tr input[name='dsWhereSql'] {
+    display: none;
+  }
+
+  .definitiontrtable tr:first-child input[name='dsWhereSql'] {
+    display: inline-block;
+  }
+
+  .definitiontrtable tr:first-child select[name='dataSourceRel'] {
+    display: none;
+  }
+</style>

@@ -1,0 +1,17 @@
+调用接口：注意，是后端端口！是后端端口！是后端端口！
+实际IP+后端端口+
+/api/mail/manager/oldToNew?jwt=**
+
+jwt参数为前后端分离认证需要的jwt认证数据
+返回数据：{"code":0,"msg":"成功","data":null}
+
+如返回其他 请排查相关问题 后可重复执行，直至返回如上值
+
+删除xxl-job 调度定时任务：
+
+1：DefaultWebmailClientSyncInboxMailJob  默认Webmail客户端同步收件箱
+不再自动同步收件箱，需手动在邮件界面点击收件
+
+2：WebmailCapacityCalculateJob 平台邮件用户使用空间初始化计算
+不再自动修复计算使用空间，重置用户邮件账号 时加入计算
+

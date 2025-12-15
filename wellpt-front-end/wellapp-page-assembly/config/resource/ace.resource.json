@@ -1,0 +1,15 @@
+{
+  "js": {
+    "container_ace_page": {
+      "path": "/js/design/component/container_ace_page",
+      "name": "ACE页面容器",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "wAcePage": {
+      "path": "/js/ui/layout/jquery-ui-wAcePage",
+      "name": "ACE页面容器",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "slimScroll", "metisMenu"]
+    }
+  },
+  "css": {}
+}

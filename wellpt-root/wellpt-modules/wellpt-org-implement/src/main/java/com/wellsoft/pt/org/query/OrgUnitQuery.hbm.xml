@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="orgUitManagerListKeywordQuery">
+        <![CDATA[
+		from OrgUnitEntity
+		 where  (
+		 ( system is null and tenant is null )
+		 <if isNotBlank( system )>
+		       or ( system = :system and tenant = :tenant )
+		 </if>
+		 )
+
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+		 <if isNotBlank( orderBy )>
+			 ${orderBy}
+		 </if>
+	]]>
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="findByDataUuids">
+        <![CDATA[
+		select	t1.tag_uuid		as 	tagUuid,
+				t1.data_uuid	as 	dataUuid,
+				t2.name 		as 	tagName,
+				t2.color		as  tagColor
+		  from dms_tag_data t1
+		 inner join dms_tag t2
+		    on t1.tag_uuid = t2.uuid
+		 where t1.data_uuid in (:dataUuids)
+		 order by t2.create_time asc
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

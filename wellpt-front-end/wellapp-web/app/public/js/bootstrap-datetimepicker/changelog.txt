@@ -1,0 +1,4 @@
+1、bootstrap-datetimepicker.min.js的第1行第1120列的delete改为"delete"
+2、bootstrap-datetimepicker.min.js的第2行第6322列的delete改为"delete"
+3、3.1.4\js\bootstrap-datetimepicker.js的第1390行默认参数language默认为zh-cn
+4、3.1.4\js\bootstrap-datetimepicker.js的添加727行picker.hide();选择日期后关闭

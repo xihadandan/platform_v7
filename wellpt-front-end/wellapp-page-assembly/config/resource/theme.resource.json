@@ -1,0 +1,43 @@
+{
+  "js": {
+    "default": {
+      "path": "/js/pt/theme/default/default",
+      "name": "default"
+    },
+    "dark": {
+      "path": "/js/pt/theme/dark/dark",
+      "name": "dark"
+    }
+  },
+  "css": {
+    "default": {
+      "path": "/js/pt/theme/default/default",
+      "name": "平台默认主题样式",
+      "order": 1001
+    },
+    "dark": {
+      "path": "/js/pt/theme/dark/dark",
+      "name": "页面设计器样式",
+      "order": 1002
+    }
+  },
+
+  "theme": {
+    "default": {
+      "name": "默认主题",
+      "order": 1,
+      "css": [
+        "default",
+        "bootstrapTable",
+        "fullcalendar",
+        "well_calendar",
+        "fullcalendar-resourceview",
+        "bootstrap-datetimepicker",
+        "animate",
+        "pt-iconfont",
+        "fileuploadcss",
+        "wFileManager"
+      ]
+    }
+  }
+}

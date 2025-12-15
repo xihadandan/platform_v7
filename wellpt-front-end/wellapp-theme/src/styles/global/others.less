@@ -1,0 +1,754 @@
+// TODO: to be checked
+
+.bootstrap-datetimepicker-widget table tr td.day,
+.bootstrap-datetimepicker-widget .picker-switch table tr td.day,
+.bootstrap-datetimepicker-widget table tr td,
+.bootstrap-datetimepicker-widget .picker-switch table tr td {
+  text-align: center;
+  padding: @padding-3xs;
+  border-color: @text-color-inverse;
+}
+
+.datepick-wrapper {
+  z-index: 100;
+  display: none;
+
+  input {
+    display: inline-block;
+    width: 100px;
+  }
+}
+
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
+  outline: none;
+  outline-offset: 0;
+}
+
+/** Start region: dashboard-dot */
+.dashboard-circle-overdue {
+  .square(8px);
+
+  border: @danger-6 2px solid;
+  border-radius: 50%;
+  background: @danger-color;
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.dashboard-circle-due {
+  .square(8px);
+
+  border: @warning-6 2px solid;
+  border-radius: 50%;
+  background: @warning-color;
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.dashboard-circle-normal {
+  .square(5px);
+
+  border: @gray-7 2px solid;
+  border-radius: 50%;
+  background: @gray-7;
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.hideTdBorder table th,
+.hideTdBorder table td {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.tableNoBorder,
+.tableNoBorder th,
+.tableNoBorder td {
+  border: none !important;
+}
+
+.panel-default.tree-panel .panel-body {
+  overflow: auto;
+}
+
+article.content > .panel > .panel-body {
+  padding: 0;
+}
+
+.layui-layer .layui-layer-title {
+  background: @primary-color;
+  color: @text-color-inverse;
+}
+
+.dms-hide-title .widget-header.fixed {
+  display: none;
+}
+
+.widget-box > .widget-header {
+  background: @primary-color;
+}
+
+.widget-box > .widget-header > .widget-title {
+  color: #333;
+}
+
+.widget-box .widget-body {
+  background: #fff;
+  margin: 0 -15px;
+}
+
+.widget-box .footer.fixed .form-control {
+  border: @border-default-primary;
+}
+
+.widget-box .footer.fixed .row-sign-opinion-text .sign_opinion_text {
+  background: @primary-color;
+  color: @text-color-inverse;
+}
+
+.widget-box .footer.fixed .row-sign-opinion-text .wf-opinion-recent-snapshop .list-group-item {
+  border-bottom: @border-default-primary;
+}
+
+.widget-box .footer.fixed .wf-opinion .list-group a {
+  border-bottom: 1px #f2f4f8 solid;
+}
+
+.widget-box .footer.fixed .wf-opinion .list-group a:hover {
+  background: #f2f4f8;
+  color: @primary-color;
+}
+
+.widget-box .footer.fixed .tabs-container .nav-tabs li a:hover {
+  background: #f2f4f8;
+}
+
+.widget-box .footer.fixed .tabs-container .nav-tabs li.active a {
+  color: @primary-color;
+}
+
+.right-sidebar .nav-tabs {
+  background: @primary-color;
+  color: @text-color-inverse;
+}
+
+.right-sidebar .nav-tabs > li > a {
+  border: @border-default-primary;
+  background: #fff;
+  color: @primary-color;
+}
+
+.right-sidebar .nav-tabs > li > a:hover {
+  color: @text-color-inverse;
+  border: @border-default-primary;
+  background-color: #057aa6;
+}
+
+.right-sidebar .nav-tabs > li.active > a {
+  border: @border-default-primary;
+  background: @primary-color;
+  color: @text-color-inverse;
+}
+
+.ui-jqgrid .ui-jqgrid-titlebar {
+  background: @primary-color;
+  color: @text-color-inverse;
+  border-color: @primary-color;
+}
+
+.jquery-ui-favorite:before {
+  content: url('../../../theme/images/star-off.png');
+}
+
+.jquery-ui-favorite.favorite:before {
+  content: url('../../../theme/images/star-on.png');
+}
+
+/*formBuilder.js中构建bootstrap风格控件用到的样式开始*/
+
+.div-bootstraptable-formbuilder {
+  padding: 0 15px;
+}
+
+.label-formbuilder,
+.label-formbuilder + .controls {
+  padding-top: 7px;
+}
+
+.formbuilder .controls {
+  padding: 0;
+  padding-top: 0 !important;
+}
+
+.formbuilder input[type='text'],
+.formbuilder textarea {
+  width: 100%;
+}
+
+.formbuilder .minicolors-theme-default.minicolors {
+  width: 100%;
+}
+
+.formbuilder .minicolors-theme-default .minicolors-input {
+  height: inherit;
+  width: 100%;
+  display: inline-block;
+  padding-left: 26px;
+}
+
+.formbuilder .numberInterval {
+  float: left;
+  width: 40px;
+  line-height: 35px;
+  text-align: center;
+}
+
+.formbuilder .input-loading {
+  padding-right: 20px;
+  background: url('images/loading2.gif') no-repeat scroll right center transparent !important;
+}
+
+/*formBuilder.js中构建bootstrap风格控件用到的样式结束*/
+
+/* 数据管理开始 */
+.dms-history-version-table td.remark {
+  .text-overflow();
+
+  max-width: 200px;
+}
+/* 数据管理结束 */
+
+/** Start region: 右键菜单开始 */
+.modal-open .ui-menu {
+  background-color: @text-color-light;
+  border: @border-default-darker;
+  z-index: 9999;
+  width: 5em;
+  padding: 0 5px;
+}
+
+.modal-open .ui-menu-item .ui-icon {
+  background-image: none;
+}
+
+.modal-open .ui-menu-item .ui-state-active {
+  background: none;
+  border: none;
+}
+/** End region: 右键菜单开始 */
+
+/** Start region: 物品管理弹框样式 */
+.dlg-goods-to-outbound table td input.form-control {
+  width: 100%;
+}
+
+.dlg-goods-to-outbound table td .help-block {
+  white-space: normal;
+}
+/** End region: 物品管理弹框样式 */
+
+/*日程模块*/
+.fc .fc-toolbar > * > * {
+  margin: 0;
+}
+
+/*日程模块*/
+
+/* select2开始 */
+form .select2-container {
+  padding: 0 !important;
+}
+
+form .select2-container .select2-choice {
+  height: 35px;
+}
+
+form .select2-container .select2-choice span {
+  line-height: 35px;
+}
+/* select2结束 */
+
+/** Start region: 审批环节 */
+.choose-next-task .radio-inline.label-formbuilder {
+  display: block;
+}
+
+.choose-next-task .radio-inline + .radio-inline {
+  margin: 0;
+}
+/** End region: 审批环节 */
+
+/** Start region: 门户开始 */
+.popover .portal-menu .divider {
+  border: 1px solid #ccc;
+}
+
+.popover .portal-menu li a {
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/** End region: 门户开始 */
+
+/** 时间控件 icon */
+.date-icon {
+  z-index: 10;
+  position: absolute;
+  right: 5px;
+  top: 0;
+  line-height: 34px;
+  color: @text-color-light;
+}
+
+.label-formbuilder {
+  text-align: right;
+}
+
+#dyform .cke_top {
+  position: relative;
+}
+
+#dyform .cke_toolgroup {
+  border: none;
+  background: none;
+  background-image: none;
+  box-shadow: none;
+  filter: none;
+}
+
+#dyform .cke_button__maximize {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+}
+
+#dyform .cke_button__changemode {
+  position: absolute;
+  top: 6px;
+  right: 48px;
+}
+
+#dyform .cke_toolbox_collapser {
+  display: none;
+}
+
+.fixed-bs-margin {
+  margin: 0 -15px;
+}
+
+/* formBuilder 样式冲突 */
+.modal-dialog .form-group {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.modal-dialog .formbuilder {
+  padding-left: initial;
+}
+
+.modal-dialog .formbuilder .label-formbuilder {
+  position: initial;
+  text-align: left;
+  left: initial;
+}
+
+.modal-dialog .formbuilder .col-xs-0 {
+  width: 16.66666667% !important;
+}
+
+.modal-dialog .formbuilder .col-xs-1 {
+  width: 8.33333333% !important;
+}
+
+.modal-dialog .formbuilder .col-xs-2 {
+  width: 16.66666667% !important;
+}
+
+.modal-dialog .formbuilder .col-xs-3 {
+  width: 25% !important;
+}
+
+.modal-dialog .formbuilder .col-xs-4 {
+  width: 33.33333333% !important;
+}
+
+.modal-dialog .formbuilder .col-xs-5 {
+  width: 41.66666667% !important;
+}
+
+.modal-dialog .formbuilder .col-xs-6 {
+  width: 50% !important;
+}
+
+.modal-dialog .formbuilder .col-xs-7 {
+  width: 58.33333333% !important;
+}
+
+.modal-dialog .formbuilder .col-xs-8 {
+  width: 66.66666667% !important;
+}
+
+.modal-dialog .formbuilder .col-xs-9 {
+  width: 75% !important;
+}
+
+.modal-dialog .formbuilder .col-xs-10 {
+  width: 83.33333333% !important;
+}
+
+.modal-dialog .formbuilder .col-xs-11 {
+  width: 91.66666667% !important;
+}
+
+.modal-dialog .formbuilder .col-xs-12 {
+  width: 100% !important;
+}
+
+.modal-dialog .formbuilder .radio-inline,
+.modal-dialog .formbuilder .checkbox-inline {
+  width: auto !important;
+}
+
+.formbuilder .controls .checkbox-inline,
+.formbuilder .controls .radio-inline {
+  position: static;
+  width: auto !important;
+}
+
+.formbuilder .controls .checkbox-inline input,
+.formbuilder .controls .radio-inline input {
+  margin-left: 0;
+}
+
+.open > .dropdown-toggle.btn-default {
+  color: @primary-color !important;
+  background-color: #ffffff !important;
+  border-color: @primary-color !important;
+}
+
+.dropdown-menu {
+  padding: 0px !important;
+  border: 0px !important;
+}
+
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:focus,
+.dropdown-menu > .active > a:hover {
+  color: initial;
+  background-color: #e4eefc;
+}
+
+.formbuilder .switch-wrap {
+  margin-top: 7px;
+}
+
+.server_stoped {
+  border: 1px solid #838683;
+  border-radius: 2px;
+  margin-left: 4px;
+  background-color: #838683;
+  color: @text-color-inverse;
+  padding: 1px;
+  float: right;
+}
+
+.server_running {
+  border: 1px solid #289e27;
+  border-radius: 2px;
+  margin-left: 4px;
+  background-color: #289e27;
+  color: @text-color-inverse;
+  padding: 1px;
+  float: right;
+}
+
+/** Start Region: 日期控件样式覆盖 */
+.layui-laydate {
+  z-index: 1000000000 !important;
+}
+
+/*layer弹窗样式覆盖*/
+.layui-layer {
+  z-index: 1000000000 !important;
+}
+
+.layui-layer-tab .layui-layer-title span.layui-this {
+  color: @primary-color;
+}
+
+.mb20 {
+  margin-bottom: 20px !important;
+}
+/** End Region: 日期控件样式覆盖 */
+
+/** Start Region: 修改密码图标样式 */
+#personalInfoModifyPwd label.error {
+  display: block;
+}
+
+#personalInfoModifyPwd label:before {
+  color: @danger-color;
+  margin-right: @margin-xs;
+}
+
+.fixed-table-toolbar .btn-group > .btn-group {
+  float: none;
+  margin-left: 0;
+  vertical-align: bottom;
+}
+
+/* .cke_reset_all .cke_dialog {
+  top: 0 !important;
+} */
+
+.new-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: @border-radius-base;
+  background: @danger-color;
+}
+
+.msg-batch-buttons {
+  margin-top: @margin-md;
+  margin-bottom: @margin-sm;
+}
+
+.msg-batch-buttons .msg-batch-close {
+  width: 18px;
+  height: 18px;
+  display: block;
+  float: right;
+  font-size: @font-size-xl;
+  color: rgba(153, 153, 153, 0.65);
+  cursor: pointer;
+  margin-top: @margin-xs;
+  line-height: 1;
+}
+
+.msg-batch-buttons .msg-batch-close:hover {
+  color: @text-color-light;
+}
+
+a.relateUrl {
+  float: left;
+  margin-top: 8px;
+  text-decoration: underline;
+  color: @primary-color;
+  font-size: @font-size-base;
+  margin-right: 8px;
+  order: -100;
+}
+
+.bootbox .modal-default:not(.modal-lg) .bootbox-body .rightMsgDialogTitle {
+  color: @text-color-light;
+  font-size: @font-size-lg;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.msg-event-wrap .formbuilder {
+  padding-left: 65px;
+}
+
+.msg-event-wrap .formbuilder .label-formbuilder {
+  width: 56px !important;
+}
+
+.msg-event-wrap .well-table-no-data {
+  display: none;
+}
+
+#msg_format_form .dyform table td label {
+  color: @danger-color;
+}
+
+.showCustomTitle_expression {
+  position: relative;
+  padding-right: 60px;
+}
+
+.showCustomTitle_expression div:not(.well-btn) {
+  padding-right: 23px;
+  word-break: break-all;
+}
+
+.showCustomTitle_expression .well-btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 26px;
+  min-width: auto;
+  margin-top: -13px;
+  padding: 0;
+  text-align: center;
+}
+
+.showCustomTitle_expression .well-btn i {
+  margin-right: 0;
+}
+
+.distributeConditionType-wrap .control {
+  display: inline-block;
+  width: 75px;
+  margin: 0 10px;
+}
+
+.org-select-placeholder::after {
+  content: '请选择';
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-left: 8px;
+  line-height: 34px;
+  font-size: @font-size-sm;
+  color: #c5c8ce;
+}
+
+/** Start Region: 设置承办人弹窗 */
+.combineSelect {
+  width: 150px;
+  display: inline-block;
+  margin-bottom: @margin-sm;
+  margin-right: @margin-sm;
+}
+
+.expressionSelect {
+  border: @border-default-dark;
+  border-radius: @border-radius-base;
+  padding: @padding-3xs;
+  min-height: 100px;
+}
+
+.expressionSelect div {
+  margin-top: 5px;
+  padding: 0 @padding-xs;
+}
+
+.expressionSelect div.active {
+  background: #eee;
+}
+/** End Region: 设置承办人弹窗 */
+
+/*  */
+.form-left-main .fixed-table-container .fixed-table-body table.no-table-borders thead > tr > th,
+.form-left-main .fixed-table-container .fixed-table-body table.no-table-borders tbody > tr > td,
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table.no-table-borders thead > tr > th,
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table.no-table-borders tbody > tr > td {
+  border: none;
+  border-bottom: @border-default;
+}
+
+.form-left-main .fixed-table-container,
+.form-left-main .fixed-table-container .fixed-table-body table.no-table-borders tr,
+.form-left-main .fixed-table-container .fixed-table-body table.no-table-borders {
+  border: none;
+}
+
+.form-left-main .fixed-table-container .fixed-table-body table.no-table-borders tbody > tr > td {
+  text-align: left;
+  line-height: 34px;
+}
+
+.form-left-main .fixed-table-container .fixed-table-body table.no-table-borders tbody > tr.no-records-found > td {
+  text-align: center;
+}
+
+.form-left-main .fixed-table-container .fixed-table-body table.no-table-borders thead > tr > th {
+  background: @background-light;
+}
+
+.form-left-main .fixed-table-container .fixed-table-body table.no-table-borders tbody > tr > td,
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table.no-table-borders tbody > tr > td {
+  overflow: visible;
+  position: relative;
+}
+
+.form-left-main .fixed-table-container .fixed-table-body table.no-table-borders tbody > tr > td .setFiles,
+.form-left-main .fixed-table-container .fixed-table-body table.no-table-borders tbody > tr > td .setSubForm,
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table.no-table-borders tbody > tr > td .setFiles,
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table.no-table-borders tbody > tr > td .setSubForm {
+  position: absolute;
+  left: 360px;
+  top: 50%;
+  z-index: 100;
+  margin-top: -17px;
+  color: @primary-color;
+}
+
+.form-left-main .fixed-table-container .fixed-table-body table.no-table-borders tbody > tr > td .setFiles,
+.form-left-main .fixed-table-container .fixed-table-body table.no-table-borders tbody > tr > td .setSubForm {
+  left: 390px;
+}
+
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table.no-table-borders tbody > tr > td .fieldNameWidth,
+.form-left-main .fixed-table-container .fixed-table-body table.no-table-borders tbody > tr > td .fieldNameWidth {
+  .text-overflow();
+
+  display: inline-block;
+  width: 100px;
+  vertical-align: middle;
+}
+
+.well-form-control .inputAndSelect {
+  display: inline-block;
+  width: 200px;
+  margin-bottom: @margin-sm;
+  margin-right: @margin-sm;
+  vertical-align: top;
+}
+.inputAndSelect .well-select .well-select-item {
+  padding: @padding-2xs @padding-lg @padding-2xs @padding-md;
+}
+.well-form-control .inputAndSelect .level-num-wrap {
+  margin: 0;
+  & > input {
+    border: 0;
+    &:hover {
+      box-shadow: none !important;
+      border: none;
+    }
+  }
+}
+
+.password_rule_form .form-group {
+  margin-bottom: @margin-sm;
+}
+
+.form-control.modal-input[readonly] {
+  background-color: inherit;
+}
+
+.pointer-disabled {
+  pointer-events: none;
+}
+
+.text-light {
+  color: #999;
+}
+
+.text-red {
+  color: red;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+// 头部组件
+#widget_header_tabs_main_nav_info .popover-content .formbuilder .col-xs-0,
+#widget_header_tabs_right_nav_info .popover-content .formbuilder .col-xs-0 {
+  width: unset !important;
+}

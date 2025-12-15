@@ -1,0 +1,87 @@
+/*
+ * @(#)2018年8月15日 V1.0
+ * 
+ * Copyright 2018 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.bpm.engine.delegation.job;
+
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+import org.quartz.JobExecutionContext;
+
+import com.wellsoft.context.config.Config;
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.bpm.engine.delegation.service.TaskDelegationTakeBackService;
+import com.wellsoft.pt.bpm.engine.entity.FlowDelegationSettings;
+import com.wellsoft.pt.bpm.engine.entity.TaskDelegation;
+import com.wellsoft.pt.bpm.engine.service.FlowDelegationSettingsService;
+import com.wellsoft.pt.bpm.engine.service.TaskDelegationService;
+import com.wellsoft.pt.security.util.IgnoreLoginUtils;
+import com.wellsoft.pt.security.util.SpringSecurityUtils;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+
+/**
+ * Description: 如何描述该类
+ *  
+ * @author zhulh
+ * @date 2018年8月15日
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2018年8月15日.1	zhulh		2018年8月15日		Create
+ * </pre>
+ *
+ */
+public class TaskDelegationCleanUpJob extends Job {
+
+	/** 
+	 * (non-Javadoc)
+	 * @see com.wellsoft.pt.task.job.Job#isAutoScheduling()
+	 */
+	@Override
+	public boolean isAutoScheduling() {
+		return true;
+	}
+
+	/** 
+	 * (non-Javadoc)
+	 * @see com.wellsoft.pt.task.job.Job#execute(org.quartz.JobExecutionContext, com.wellsoft.pt.task.job.JobData)
+	 */
+	@Override
+	protected void execute(JobExecutionContext jobExecutionContext, JobData jobData) {
+		// 清理过期的委托配置
+		FlowDelegationSettingsService flowDelegationSettingsService = ApplicationContextHolder
+				.getBean(FlowDelegationSettingsService.class);
+		List<FlowDelegationSettings> overDueSettings = flowDelegationSettingsService.getOverdueSettings();
+		for (FlowDelegationSettings delegationSettings : overDueSettings) {
+			flowDelegationSettingsService.deactive(delegationSettings.getUuid());
+		}
+
+		// 清理过期的工作委托
+		TaskDelegationTakeBackService takeBackService = ApplicationContextHolder
+				.getBean(TaskDelegationTakeBackService.class);
+		TaskDelegationService taskDelegationService = ApplicationContextHolder.getBean(TaskDelegationService.class);
+		List<TaskDelegation> taskDelegations = taskDelegationService.getOverdueTaskDelegation();
+		String tenantId = SpringSecurityUtils.getCurrentTenantId();
+		if (StringUtils.isBlank(tenantId)) {
+			tenantId = Config.DEFAULT_TENANT;
+		}
+		for (TaskDelegation taskDelegation : taskDelegations) {
+			String userId = taskDelegation.getConsignor();
+			String taskDelegationUuid = taskDelegation.getUuid();
+			try {
+				IgnoreLoginUtils.login(tenantId, userId);
+				takeBackService.takeBack(taskDelegationUuid);
+			} catch (Exception e) {
+				logger.error(e.getMessage(), e);
+			} finally {
+				IgnoreLoginUtils.logout();
+			}
+		}
+	}
+
+}

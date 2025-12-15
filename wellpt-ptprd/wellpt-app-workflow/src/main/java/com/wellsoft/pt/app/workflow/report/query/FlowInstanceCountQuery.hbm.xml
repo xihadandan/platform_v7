@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="flowInstanceCountQuery">
+        <![CDATA[
+            select  count(t1.id) as count,
+                    1 as completed
+            from wf_flow_instance t1
+                    left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                    left join wf_def_category t3 on t2.category = t3.uuid
+            where t1.end_time is not null and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t1.uuid)
+                <if isNotBlank(system)>
+                    and t3.system = :system
+                </if>
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+            union all
+            select  count(t1.id) as count,
+                    0 as completed
+            from wf_flow_instance t1
+                    left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                    left join wf_def_category t3 on t2.category = t3.uuid
+            where t1.end_time is null and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t1.uuid)
+                <if isNotBlank(system)>
+                    and t3.system = :system
+                </if>
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowInstanceCountByCategoryQuery">
+        <![CDATA[
+            select  t3.name as category_name,
+                    t3.uuid as category_uuid,
+                    count(t1.id) as count,
+                    1 as completed
+            from wf_flow_instance t1
+                     left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                     left join wf_def_category t3 on t2.category = t3.uuid
+            where t3.uuid is not null and t1.end_time is not null
+                and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t1.uuid)
+                <if isNotBlank(system)>
+                    and t3.system = :system
+                </if>
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+            group by t3.name, t3.uuid
+            union all
+            select  t3.name as category_name,
+                    t3.uuid as category_uuid,
+                    count(t1.id) as count,
+                    0 as completed
+            from wf_flow_instance t1
+                     left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                     left join wf_def_category t3 on t2.category = t3.uuid
+            where t3.uuid is not null and t1.end_time is null
+                and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t1.uuid)
+                <if isNotBlank(system)>
+                    and t3.system = :system
+                </if>
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+            group by t3.name, t3.uuid
+	    ]]>
+    </sql-query>
+
+
+    <sql-query name="flowInstanceCountByDefinitionQuery">
+        <![CDATA[
+            select t.uuid     as uuid,
+                   t.id       as id,
+                   t.name     as name,
+                   t.category as category_uuid,
+                   <if joinCategory>
+                   c.name     as category_name,
+                   </if>
+                   nvl(t1.count, 0) + nvl(t2.count, 0) as total_count,
+                   nvl(t1.count, 0)   as completed_count,
+                   nvl(t2.count, 0)   as uncompleted_count
+            from wf_flow_definition t
+                     left join (
+                select t2.uuid      as uuid,
+                       t2.name      as name,
+                       count(t1.id) as count
+                from wf_flow_instance t1
+                         left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                where t2.uuid is not null and t1.end_time is not null
+                    and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t1.uuid)
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                    group by t2.name, t2.uuid
+            ) t1 on t.uuid = t1.uuid
+                     left join (
+                select t2.uuid      as uuid,
+                       t2.name      as name,
+                       count(t1.id) as count
+                from wf_flow_instance t1
+                         left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                where t2.uuid is not null and t1.end_time is null
+                    and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t1.uuid)
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                    group by t2.name, t2.uuid
+            ) t2 on t.uuid = t2.uuid
+            <if joinCategory || isNotBlank(system)>
+                left join wf_def_category c on t.category = c.uuid
+            </if>
+            where 1 = 1
+                <if isNotBlank(system)>
+                    and c.system = :system
+                </if>
+                <if isNotBlank(categoryUuid)>
+                    and t.category = :categoryUuid
+                </if>
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                </if>
+	    ]]>
+    </sql-query>
+
+</hibernate-mapping>

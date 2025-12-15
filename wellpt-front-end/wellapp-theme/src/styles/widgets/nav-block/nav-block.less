@@ -1,0 +1,546 @@
+/** 导航块组件组件 */
+
+// 导航块区域
+.ui-wNavBlock .nav-block-wrap {
+  padding: 12px @padding-lg;
+  background: @nav-block-background;
+
+  // 导航块
+  .nav-block-item {
+    float: left;
+    margin-right: @nav-block-item-gutter;
+    font-size: @nav-block-font-size;
+    color: @nav-block-font-color;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    line-height: @nav-block-icon-diameter;
+
+    // 导航块 - 图标
+    .icon-wrap {
+      .square(@nav-block-icon-diameter);
+
+      display: inline-block;
+      line-height: @nav-block-icon-diameter;
+      border-radius: 50%;
+      color: @nav-block-icon-color;
+      background: @nav-block-icon-background;
+      text-align: center;
+
+      i {
+        font-size: @nav-block-icon-size;
+      }
+    }
+
+    // 导航块 - 文本
+    .text {
+      margin: 0 @margin-sm;
+    }
+
+    // 导航块 - 徽标
+    .nav-block-badge {
+      color: @nav-block-badge-color !important;
+    }
+
+    // 导航块 **鼠标悬浮状态**
+    &:hover {
+      color: @nav-block-item-hover-font-color;
+
+      // 导航块 - 图标
+      .icon-wrap {
+        background: @nav-block-item-hover-icon-background;
+        color: @nav-block-item-hover-icon-color;
+        animation: Circular 1s forwards;
+      }
+    }
+  }
+
+  // 导航块编辑弹窗按钮
+  .nav-block-item.nav-block-edit {
+    line-height: @nav-block-icon-diameter;
+  }
+}
+
+@keyframes circle {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+// 导航块编辑弹窗内容区域 - 顶部提示条
+.nav-block-modal .tip {
+  font-size: @font-size-base;
+  color: @text-color;
+  line-height: @nav-block-modal-tip-row-height;
+  height: @nav-block-modal-tip-row-height + @border-width-base * 2;
+  padding-left: @padding-md;
+  background: @primary-1;
+  border: @border-width-base solid @primary-3;
+  border-radius: @btn-border-radius;
+
+  // 导航块编辑弹窗内容区域 - 顶部提示条 - 左侧“温馨提示”
+  span {
+    color: @text-color-primary!important;
+
+    i {
+      margin-right: @margin-sm;
+      line-height: 40px;
+      font-size: @font-size-xl;
+    }
+  }
+
+  // 导航块编辑弹窗内容区域 - 顶部提示条 - 右侧“关闭按钮”
+  .tips-close {
+    font-size: @font-size-sm;
+    float: right;
+    color: @text-color-light;
+    margin-right: @margin-sm;
+    cursor: pointer;
+
+    &:hover {
+      color: @text-color-primary;
+    }
+  }
+}
+
+// 选择关注项 / 已选关注项 标题
+.nav-block-modal .choose-tit {
+  position: relative;
+  padding: 0 15px 0 30px;
+  height: @nav-block-modal-content-title-height;
+  line-height: @nav-block-modal-content-title-height;
+  font-size: @font-size-lg;
+  color: @text-color-dark;
+  background: @nav-block-modal-content-title-background;
+
+  // 选择关注项 / 已选关注项 标题 - 右侧图标
+  &::before {
+    @nav-block-title-symbol-offset: ((@nav-block-modal-content-title-height - @nav-block-modal-content-title-symbol-height) / 2);
+    .absolute(@nav-block-title-symbol-offset false false @padding-md);
+    .size(@nav-block-modal-content-title-symbol-width, @nav-block-modal-content-title-symbol-height);
+
+    content: '';
+    background: @primary-color;
+    border-radius: @nav-block-modal-content-title-symbol-width / 2;
+  }
+}
+
+// 导航块编辑弹窗内容区域 - 左侧选择关注项
+.nav-block-modal .choose-wrap {
+  .size(@nav-block-modal-choose-window-width, @nav-block-modal-window-height);
+
+  position: relative;
+  float: left;
+  padding-top: 50px;
+  margin-top: 10px;
+  margin-right: 17px;
+  border: @border-default;
+  overflow: hidden;
+
+  // 导航块编辑弹窗内容区域 - 左侧选择关注项 - 标题
+  .choose-tit {
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    &::before {
+      .absolute(13px false false 15px);
+      .size(4px 15px);
+
+      content: '';
+      background: @nav-block-modal-choose-wrap-background;
+      border-radius: @border-width-1;
+    }
+
+    .search-wrap {
+      .absolute(2px 10px false false);
+      .size(300px, 34px);
+
+      input {
+        .square(100%);
+
+        &.blur {
+          box-shadow: none;
+        }
+      }
+
+      .delete-icon,
+      .search-icon,
+      .nav-block-search-icon {
+        .absolute(0 0 false false);
+
+        width: 34px;
+        line-height: 34px;
+        color: @text-color-primary!important;
+        text-align: center;
+        cursor: pointer;
+
+        i {
+          font-size: @font-size-2xl;
+        }
+      }
+
+      .delete-icon {
+        .absolute(7px 40px false false);
+        .square(@height-3xs);
+
+        display: none;
+        line-height: 16px;
+        border-radius: 50%;
+        background: @background-light;
+
+        i {
+          display: inline-block;
+          font-size: 8px;
+          color: @text-color-light;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+  // 导航块编辑弹窗内容区域 - 左侧选择关注项 - 内容
+  .choose-content {
+    height: 390px;
+    padding: @padding-xs 0 @padding-xs @padding-xs;
+    overflow-y: auto;
+
+    .choose-item {
+      min-height: 10px;
+      padding-right: 15px;
+
+      ul {
+        overflow: hidden;
+
+        li {
+          position: relative;
+          float: left;
+          height: 44px;
+          margin: 0 10px 10px 0;
+          padding: 0 10px;
+          line-height: 42px;
+          font-size: @font-size-base;
+          color: @text-color;
+          border: @border-default-dark;
+          background: @component-background;
+          cursor: pointer;
+          border-radius: @border-radius-base;
+
+          &:hover {
+            border: @border-default-primary;
+          }
+
+          .has-choose-icon {
+            display: none;
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            line-height: 1;
+            color: @text-color-primary;
+
+            i {
+              font-size: 26px;
+            }
+          }
+
+          &.has-choose {
+            border: @border-default-primary;
+            border-radius: @border-radius-base;
+            background: @component-background;
+            overflow: hidden;
+
+            .has-choose-icon {
+              .square(26px);
+
+              display: block;
+              overflow: hidden;
+              border-top-right-radius: @border-radius-base;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // 导航块编辑弹窗内容区域 - 左侧选择关注项 - 底部展开/折叠按钮行
+  .choose-control {
+    .size(100%, 34px);
+    .absolute(false false 0 false);
+
+    padding: 0 @padding-md;
+    line-height: 34px;
+    background: @background-light;
+
+    .choose-control-item {
+      display: inline-block;
+      padding: 0 6px;
+      margin: 0;
+      font-size: @font-size-base;
+      height: 26px;
+      line-height: 24px;
+      color: @text-color-primary!important;
+      border: @border-width-base solid transparent;
+      border-radius: @border-radius-base;
+      cursor: pointer;
+      outline: none;
+
+      i {
+        margin-right: 5px;
+        font-size: @font-size-base;
+        color: @text-color-primary!important;
+      }
+
+      &:hover {
+        border: @border-default-primary;
+      }
+    }
+  }
+}
+
+// 导航块编辑弹窗内容区域 - 右侧已选关注项
+.nav-block-modal .drag-content {
+  .size(@nav-block-modal-selected-window-width, @nav-block-modal-window-height);
+
+  float: left;
+  margin-top: 10px;
+  border: @border-default;
+
+  .drag-wrap {
+    height: 438px;
+    padding: 0 5px 5px;
+    background: f6f6f6;
+
+    .drag-box {
+      height: 100%;
+      padding: 15px 5px 15px 15px;
+      background: @nav-block-background;
+
+      li {
+        float: left;
+        height: 44px;
+        margin: 0 10px 10px 0;
+        padding: 0 10px;
+        padding-right: 28px;
+        line-height: 42px;
+        font-size: @font-size-base;
+        color: @text-color;
+        border: @border-default-dark;
+        background: @nav-block-background;
+        cursor: pointer;
+        position: relative;
+        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.05);
+        border-radius: @border-radius-base;
+        border: none;
+
+        .close {
+          .absolute(10px 5px false false );
+
+          line-height: 24px;
+          color: @text-color-light;
+          transform: scale(0.5);
+
+          i {
+            font-size: @font-size-lg;
+          }
+        }
+
+        &:hover,
+        &.hover {
+          box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+
+          .close {
+            color: @primary-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 导航块编辑弹窗
+// **用于悬浮框组件和统一门户组件**
+.nav-block-modal {
+  // 导航块编辑弹窗 - 弹窗标题行
+  .modal-dialog {
+    .modal-header {
+      height: 40px;
+      padding: 0 15px;
+      line-height: 40px;
+      font-size: @font-size-lg;
+      color: @component-background;
+      background: @primary-color;
+      border-bottom: none;
+
+      .close {
+        height: 40px;
+        margin-top: 0;
+        line-height: 40px;
+        font-size: @font-size-sm;
+        color: @text-color-inverse;
+        opacity: 0.65;
+        font-weight: normal;
+        text-shadow: none;
+
+        i {
+          font-size: @font-size-sm;
+        }
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .modal-content {
+      border-radius: 0;
+      border: none;
+    }
+
+    .modal-footer button {
+      height: 34px;
+      margin-right: 10px;
+      padding: 0 15px !important;
+    }
+  }
+}
+
+// 导航块编辑弹窗内容区域 - 图标
+.nav-block-modal .choose-wrap .choose-content .choose-item li .icon-wrap,
+.nav-block-modal .drag-wrap .drag-box li .icon-wrap {
+  .square(34px);
+
+  display: inline-block;
+  margin: 4px 8px 4px 0;
+  line-height: 32px;
+  color: @text-color-primary;
+  border-radius: 50%;
+  background: @primary-1;
+  text-align: center;
+  vertical-align: bottom;
+
+  i {
+    line-height: 32px;
+    font-size: @font-size-xl;
+  }
+}
+
+.divider {
+  .size(100% 1px);
+  position: relative;
+  margin: 20px 0;
+  background: @divider-background;
+
+  .text {
+    .absolute(-20px false false 0);
+    padding-right: 14px;
+    line-height: @divider-height;
+    font-size: @divider-font-size;
+    color: @divider-text-color;
+    background: @white;
+    cursor: pointer;
+
+    i {
+      font-size: @font-size-sm;
+      margin-right: 5px;
+      transform: scale(0.8);
+    }
+  }
+}
+
+.ui-sortable-helper {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+.suspended-wrap {
+  position: fixed;
+  top: 50%;
+  z-index: 100;
+  overflow: hidden;
+  transform: translateY(-50%);
+
+  &.suspended-style-left {
+    left: 0;
+    border-radius: @border-radius-3 0 0 @border-radius-3;
+
+    &:hover .suspended-item {
+      width: 100%;
+    }
+  }
+
+  &.suspended-style-right {
+    &:hover .suspended-item {
+      width: auto;
+    }
+  }
+
+  .suspended-item {
+    .square(40px);
+    color: #fff;
+    background: rgba(0, 0, 0, 0.65);
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: all 0.2s;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.85);
+    }
+
+    .icon-wrap {
+      .square(40px);
+      line-height: @divider-height;
+      text-align: center;
+      display: inline-block;
+
+      i {
+        font-size: @font-size-2xl;
+      }
+    }
+
+    .text {
+      padding: 0 15px;
+      font-size: @font-size-base;
+      line-height: @divider-height;
+    }
+  }
+
+  & + .nav-block-modal .choose-wrap .choose-content .choose-item li .icon-wrap,
+  & + .nav-block-modal .drag-wrap .drag-box li .icon-wrap {
+    background: transparent;
+    margin: 0 7px 0 0;
+    width: auto;
+    vertical-align: middle;
+  }
+
+  & + .nav-block-modal .choose-wrap .choose-content .choose-item li {
+    padding: 0 12px;
+    line-height: 44px;
+    height: 42px;
+  }
+
+  & + .nav-block-modal .drag-wrap .drag-box li .close {
+    top: 8px;
+  }
+}
+
+.suspended-wrap.suspended-style-left .suspended-item .icon-wrap,
+.suspended-wrap.suspended-style-left .suspended-item .text {
+  float: left;
+}
+.suspended-wrap.suspended-style-right .suspended-item .icon-wrap,
+.suspended-wrap.suspended-style-right .suspended-item .text {
+  float: right;
+}

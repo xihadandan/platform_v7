@@ -1,0 +1,59 @@
+/** 空数据 */
+
+.well-no-data,
+.well-table-no-data,
+.well-search-no-match {
+  width: 100% !important;
+  padding: 60px 0 100px !important;
+  background: url('@{image-url-prefix}/table-empty.@{theme-color}.png') no-repeat !important;
+  background-position: center 60px !important;
+  border-bottom: none !important;
+}
+
+.popover .well-no-data,
+.popover .well-table-no-data,
+.popover .well-search-no-match {
+  padding: 0 !important;
+}
+
+.well-search-no-match {
+  background-position: center;
+
+  &::after {
+    .absolute(calc(50% + 70px) 0 false 0);
+
+    content: @empty-content;
+    text-align: center;
+    font-size: @font-size-base;
+    color: @text-color;
+  }
+}
+
+.no-records-found td {
+  background: @component-background  !important;
+  color: @text-color-light  !important;
+  border: none !important;
+}
+
+.bootstrap-table .table {
+  border-bottom: none;
+
+  tbody {
+    tr:first-child {
+      td {
+        border-top: 0;
+      }
+    }
+  }
+}
+
+.well-no-data-wrap {
+  display: none;
+  text-align: center;
+
+  span {
+    line-height: 34px;
+    font-size: @font-size-base;
+    color: @text-color-light;
+  }
+}

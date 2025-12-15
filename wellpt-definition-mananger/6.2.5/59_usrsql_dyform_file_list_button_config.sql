@@ -1,0 +1,3 @@
+insert into dyform_file_list_button_config (UUID, CREATE_TIME, CREATOR, MODIFIER, MODIFY_TIME, REC_VER, BUTTON_NAME, CODE, BTN_LIB, EVENT_MANGER, FILE_EXTENSIONS, DEFAULT_FLAG, ORDER_INDEX, BTN_TYPE, BTN_SHOW_TYPE)
+values ('ac764fe8-3cab-4100-b128-9f514be135c0', '25-MAY-21 11.53.50.988000 AM', 'U0000000059', null, null, 1, '全部下载', 'download_all_btn', '{"btnSize":"","iconInfo":null,"btnInfo":{"type":"line","type_name":"线框按钮","class":"w-line-btn","status":[{"class":"","text":"普通状态"},{"class":"hover","text":"鼠标移入状态"},{"class":"active","text":"点击状态"},{"class":"w-disable-btn","text":"禁用状态"}]},"btnColor":"w-btn-primary"}', '{}', null, 1, 3, '1', 'show');
+commit;

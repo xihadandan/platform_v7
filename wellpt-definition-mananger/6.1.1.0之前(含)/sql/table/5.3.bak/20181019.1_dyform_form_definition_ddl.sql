@@ -1,0 +1,1 @@
+alter table dyform_form_definition add events clob

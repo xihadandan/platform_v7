@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>组织用户树</title>
+
+    {% for file in themeFiles %}
+      <link href="{{file}}?v={{helper.resVer()}}" rel="stylesheet">
+    {% endfor %}
+
+    {# <link type="text/css" rel="stylesheet" href="{{helper.staticPrefix()}}/css/iconfont/iconfont.css">
+    <link type="text/css" rel="stylesheet" href="{{helper.staticPrefix()}}/css/pt-iconfont/iconfont.css">
+    <link type="text/css" rel="stylesheet" href="{{helper.staticPrefix()}}/js/jquery.wellSelect/wellSelect.css">
+    <link rel="stylesheet" type="text/css" href="{{helper.staticPrefix()}}/js/ztree/3.5.24/css/zTreeStyle/zTreeStyle.css"/>
+    <link type="text/css" rel="stylesheet" href="{{helper.staticPrefix()}}/js/pt/js/multi/org/multiUnitTreeDialog.css">
+    <link type="text/css" rel="stylesheet" href="{{helper.staticPrefix()}}/css/appModal.css"/> #}
+  </head>
+
+  <body style="overflow-x: hidden; overflow-y: hidden; margin: 0; padding: 0;" class="unit-tree-dialog-body">
+    <div class="unit-content">
+      <div id="div_orgOptionList" style="display: none">{{orgOptionList}}</div>
+      <div class="unit-list">
+        <ul id="UnitType" name="UnitType" class="unit-list-content"></ul>
+      </div>
+      <div class="unit-panel">
+        <div class="unit-search-wrapper clear">
+          <div id="keySearch" class="fl">
+            <input id="KeyWords" class="lKeyWords" name="KeyWords" type="text" value="" style="width: 295px; margin: 0 0 0 5px;" placeholder="搜索" autocomplete="off">
+            <div class="ID_clear" style="display: none">
+              <i class="iconfont icon-ptkj-dacha-xiao"></i>
+            </div>
+            <i class="iconfont icon-ptkj-sousuochaxun" id="ID_Search"></i>
+            <i class="icon iconfont icon-ptkj-zuzhijiagoufenjishitu" id="ID_SwitchView" title="切换视图"></i>
+          </div>
+        </div>
+        <div class="unit-table" style="width: 360px;height: 425px; ">
+          <div style="">
+            <select style="" id="ID_OrgType" title="选择组织类型">
+              <option value="" selected="selected">...</option>
+            </select>
+          </div>
+          <div style="border-top: 0px solid rgba(232,232,232,1);">
+            <div class="left-tree" id="ID_LVIEWPORT" style="">
+              <div id="ID_LTree" class="ztree"></div>
+              <div id="ID_LView" style="display:none">
+                <div class="indexed-list">
+                  <div class="indexed-list-search input-row search" style="display: none;">
+                    <input type="search" class="input-clear indexed-list-search-input" placeholder="搜索" autocomplete="off">
+                  </div>
+                  <div class="indexed-list-bar">
+                    <div class="bar-inner"></div>
+                    <!-- 至少10个 -->
+                  </div>
+                  <div class="indexed-list-alert"></div>
+                  <div class="indexed-list-inner">
+                    <div class="indexed-list-empty-alert">暂无数据</div>
+                    <div class="table-view">
+                      <ul class="table-view-list"></ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="ID_SearchTree" class="ztree" style="display:none"></div>
+            </div>
+            <div class="form_operate">
+              <div id="ID_LCheckAll" style="display: inline-block">
+                <input type="button" id="ID_LSelectAll" value="全选" style="display: none;">
+                <input type="button" id="ID_LUnSelectAll" value="不选" style="display: none;">
+                <input type="checkbox" id="ID_LSelectAll_Box">
+                <label for="ID_LSelectAll_Box" class="chkboxAll iconfont"></label>
+                <label for="ID_LSelectAll_Box">全选</label>
+              </div>
+              <button type="button" id="ID_LCollapseAll" class="fr" style="margin-right: 10px" value="折叠">
+                <i class="icon iconfont icon-ptkj-zhedie"></i>折叠</button>
+              <button type="button" id="ID_LExpandAll" class="fr" value="展开">
+                <i class="icon iconfont icon-ptkj-zhankai"></i>展开</button>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div style="" class="middle-panel">
+        <div id="ID_SelectedText">
+          成员<span id="ID_DMemberCount">0</span>个
+        </div>
+        <div id="ID_MTree_box">
+          <ul id="ID_MTree" class="middle-tree">
+            <li class="no-data">暂无预览</li>
+          </ul>
+        </div>
+
+        <div class="form_operate">
+          <input type="button" id="ID_MSelectAll" value="全选" style="display: none;">
+          <input type="button" id="ID_MUnSelectAll" value="不选" style="display: none;">
+          <input type="checkbox" id="ID_MSelectAll_Box">
+          <label for="ID_MSelectAll_Box" class="chkboxAll iconfont"></label>
+          <label for="ID_MSelectAll_Box">全选</label>
+        </div>
+      </div>
+      <div style="width: 46px; float: left;  background-color: white; position: relative; display:none;">
+        <button class="operate-move gt icon iconfont icon-ptkj-xianmiaojiantou-you" title="添加选择">
+          <!-- &gt; -->
+        </button>
+        <button class="operate-move lt icon iconfont icon-ptkj-xianmiaojiantou-zuo" title="删除选择">
+          <!-- &lt; -->
+        </button>
+        <button class="operate-move gtgt icon iconfont icon-ptkj-xianmiaoshuangjiantou-you" title="添加所有">
+          <!-- &gt;&gt; -->
+        </button>
+        <button class="operate-move ltlt icon iconfont icon-ptkj-xianmiaoshuangjiantou-zuo" title="清空所有">
+          <!-- &lt;&lt; -->
+        </button>
+      </div>
+      <div style="width: 300px;margin-left: 10px; border-left: 1px solid #e8e8e8;border-right: 1px solid #e8e8e8;" class="unit-panel">
+        <div style="" class="unit-search-wrapper clear">
+          <div id="keySearch" style="float: left;">
+            <input id="KeyWords2" name="KeyWords2" type="text" value="" style="width: 270px; margin: 0 0 0 5px; " placeholder="搜索" autocomplete="off">
+            <div class="ID_clear" style="display: none">
+              <i class="iconfont icon-ptkj-dacha-xiao"></i>
+            </div>
+            <i class="iconfont icon-ptkj-sousuochaxun" id="ID_Search2"></i>
+          </div>
+          <div style="float: right; text-align: right; padding-right: 15px; line-height:30px; color:#666"></div>
+          <div class="clear"></div>
+        </div>
+        <div id="rightPanel" class="unit-table">
+          <div id="ID_SelectedText" style="display: none;">
+            已选择<span id="ID_RMemberCount">0</span>个
+          </div>
+          <div id='ID_RTree' class="right-tree">
+            <div class="right-tree-list"></div>
+          </div>
+          <div class="form_operate">
+            <button type="button" id="ID_RDeleteSelected" value="删除" style="display: none;">
+              <i class="iconfont icon-ptkj-shanchu"></i>删除</button>
+            <button type="button" id="ID_REmptySelected" value="清空">
+              <i class="iconfont icon-ptkj-shanchu"></i>清空</button>
+            <button type="button" id="ID_RMoveUpSelected" value="上移">
+              <i class="icon iconfont icon-ptkj-shangyi"></i>上移</button>
+            <button type="button" id="ID_RMoveDownSelected" value="下移">
+              <i class="icon iconfont icon-ptkj-xiayi"></i>下移</button>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </body>
+
+  <script>
+    var ctx = '';
+  </script>
+
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/jquery/jquery.js?v={{helper.resVer()}}"></script>
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/global.js?v={{helper.resVer()}}"></script>
+
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/constant.js?v={{helper.resVer()}}"></script>
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/lodash/3.10.1/lodash.custom.min.js?v={{helper.resVer()}}"></script>
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/moment/moment-with-locales.min.js?v={{helper.resVer()}}"></script>
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/commons.js?v={{helper.resVer()}}"></script>
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/server.js?v={{helper.resVer()}}"></script>
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/formBuilder.js?v={{helper.resVer()}}"></script>
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/bootstrap-bootbox/4.4.0/bootbox.js?v={{helper.resVer()}}"></script>
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common2/jquery.common.Dialog.js?v={{helper.resVer()}}"></script>
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/bodymovin.js?v={{helper.resVer()}}"></script>
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/appModal.js?v={{helper.resVer()}}"></script>
+
+  <script type="text/javascript" src="{{helper.staticPrefix()}}//js/jquery.nicescroll/jquery.nicescroll.js?v={{helper.resVer()}}"></script>
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/ztree/3.5.24/js/jquery.ztree.all.fixed.min.js?v={{helper.resVer()}}"></script>
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/ztree/3.5.24/js/jquery.ztree.exhide.min.js?v={{helper.resVer()}}"></script>
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/jquery.wellSelect/wellSelect.js?v={{helper.resVer()}}"></script>
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/multi/org/multiUnitTree.js?v={{helper.resVer()}}"></script>
+
+</html>

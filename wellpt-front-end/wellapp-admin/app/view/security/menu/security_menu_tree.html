@@ -1,0 +1,39 @@
+<div class="container-fluid ui-wBootstrapTable">
+  <div class="bootstrap-table">
+    <div class="fixed-table-toolbar">
+      <div class="search" style="display: flex">
+        <input class="form-control" type="search" placeholder="搜索" style="flex: 1; margin-right: 5px" />
+        <button class="btn btn-primary btn-query" type="button" name="query" title="查询">
+          <i class="glyphicon glyphicon-search"></i>
+          查询
+        </button>
+        <button class="btn btn-default btn-reset" type="button" name="reset" title="重置">
+          <i class="glyphicon glyphicon-remove"></i>
+          重置
+        </button>
+      </div>
+      <div class="bs-bars" style="margin-top: 20px">
+        <div class="div_header_toolbar btn-group">
+          <button type="button" class="btn btn-primary glyphicon glyphicon-plus btn_class_btn_add" title="新增">新增</button>
+          <button type="button" class="btn btn-danger glyphicon glyphicon-trash btn_class_btn_delete" title="删除">删除</button>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              更多
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li class="li_class_definition_export"><a href="#">定义导出</a></li>
+              <li class="li_class_definition_import"><a href="#">定义导入</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <ul id="security_menu_tree" class="ztree"></ul>
+    </div>
+  </div>
+</div>

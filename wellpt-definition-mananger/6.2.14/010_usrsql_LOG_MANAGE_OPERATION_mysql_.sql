@@ -1,0 +1,26 @@
+create table LOG_MANAGE_OPERATION 
+(
+   UUID                 varchar(255)   not null,
+   CREATE_TIME          datetime,
+   CREATOR              varchar(255),
+   MODIFIER             varchar(255),
+   MODIFY_TIME          datetime,
+   REC_VER              int,
+   SYSTEM_UNIT_ID       varchar(12) comment '归属系统单位',
+   MODULE_ID            varchar(255) comment '模块id',
+   MODULE_NAME          varchar(255) comment '模块名称',
+   DATA_TYPE_ID         varchar(2) comment '',
+   DATA_TYPE            varchar(255) comment '数据类型：流程分类，流程定义',
+   DATA_ID              varchar(255) comment '数据id',
+   BEFORE_DATA_NAME     varchar(1024) comment '操作前的数据名称',
+   AFTER_DATA_NAME      varchar(1024) comment '操作后的数据名称',
+   DATA_NAME_INFO       varchar(1024) comment '数据名称简介',
+   OPERATION            varchar(255) comment '操作类型',
+   USER_ID              varchar(64) comment '操作人id',
+   USER_NAME            varchar(64) comment '操作人',
+   DATA_PARSE_TYPE      varchar(10) comment '数据解析类型：entity;xml;json等',
+   BEFORE_MESSAGE_VALUE longtext comment '报文操作前的数据值（不涉及搜索）',
+   AFTER_MESSAGE_VALUE  longtext comment '报文操作后的数据值（不涉及搜索）',
+    OPERATION_ID   varchar(20) comment '操作类型ID',
+   constraint PK_LOG_MANAGE_OPERATION primary key (UUID)
+)comment ='管理操作日志';

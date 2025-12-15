@@ -1,0 +1,130 @@
+package com.wellsoft.distributedlog.jedis;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.redis.connection.RedisClusterConfiguration;
+import org.springframework.data.redis.connection.RedisNode;
+import org.springframework.data.redis.connection.RedisSentinelConfiguration;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import redis.clients.jedis.JedisPoolConfig;
+
+/**
+ * Description: jedis工厂类，生成连接池
+ *
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本        修改人     修改日期    修改内容
+ * 2021年06月30日   chenq	 Create
+ * </pre>
+ */
+public class JedisFactory {
+
+    private static JedisConnectionFactory connectionFactory = null;
+
+    public static JedisConnectionFactory connectionFactory(JedisConfig config) {
+        if (connectionFactory == null) {
+            synchronized (JedisFactory.class) {
+                if (connectionFactory == null)
+                    connectionFactory = build(config);
+            }
+        }
+        return connectionFactory;
+    }
+
+
+    private static JedisConnectionFactory build(JedisConfig config) {
+        JedisConnectionFactory jedisConnectionFactory = null;
+        RedisClusterConfiguration clusterConfiguration = clusterConfiguration(config);
+        if (clusterConfiguration != null) {//redis-cluster集群配置优先
+            jedisConnectionFactory = new JedisConnectionFactory(clusterConfiguration, jedispoolConfig(config));
+            return jedisConnectionFactory;
+        }
+
+        RedisSentinelConfiguration sentinelConfiguration = sentinelConfiguration(config);
+        if (sentinelConfiguration != null) {
+            jedisConnectionFactory = new JedisConnectionFactory(sentinelConfiguration, jedispoolConfig(config));
+            return jedisConnectionFactory;
+        }
+        //单机redis
+        jedisConnectionFactory = standaloneJedisConnectionFactory(config);
+        jedisConnectionFactory.afterPropertiesSet();
+        return jedisConnectionFactory;
+    }
+
+
+    private static JedisConnectionFactory standaloneJedisConnectionFactory(JedisConfig config) {
+        String[] parts = config.getRedisNodes().split(":");
+        RedisStandaloneConfiguration standaloneConfiguration = new RedisStandaloneConfiguration();
+        standaloneConfiguration.setHostName(parts[0].trim());
+        standaloneConfiguration.setPort(Integer.parseInt(parts[1].trim()));
+        if (StringUtils.isNotBlank(config.getPassword())) {
+            standaloneConfiguration.setPassword(config.getPassword());
+        }
+        standaloneConfiguration.setDatabase(config.getDatabase());
+        return new JedisConnectionFactory(standaloneConfiguration);
+    }
+
+
+    private static JedisPoolConfig jedispoolConfig(JedisConfig config) {
+        JedisPoolConfig poolConfig = new JedisPoolConfig();
+        poolConfig.setMaxTotal(config.getPoolMaxTotal());
+        poolConfig.setMinIdle(config.getPoolMinIdle());
+        poolConfig.setMaxIdle(config.getPoolMaxIdle());
+        poolConfig.setMaxWaitMillis(3000L);
+        poolConfig.setTestOnBorrow(true);
+        return poolConfig;
+    }
+
+    private static RedisClusterConfiguration clusterConfiguration(JedisConfig config) {
+        RedisClusterConfiguration clusterConfiguration = new RedisClusterConfiguration();
+        if (StringUtils.isBlank(config.getMasterName())) {
+            return null;
+        }
+        //redis-cluster 集群方式
+        clusterConfiguration.setMaxRedirects(6);
+        if (StringUtils.isBlank(config.getRedisNodes())) {
+            return null;
+        }
+        String[] hosts = config.getRedisNodes().split(",");
+        if (hosts.length > 1 && hosts.length < 6) {
+            throw new RuntimeException(
+                    "解析redis集群配置，redis服务器至少6台，目前配置数:[" + hosts.length + "]");
+        }
+
+        if (hosts.length != 1) {//集群至少6台redis服务器
+            for (String h : hosts) {//添加集群节点
+                String[] parts = h.split(":");
+                clusterConfiguration.clusterNode(
+                        new RedisNode(parts[0].trim(), Integer.parseInt(parts[1].trim())));
+            }
+            clusterConfiguration.setMaxRedirects(hosts.length);//最大重定向次数
+        }
+        if (StringUtils.isNotBlank(config.getPassword())) {
+            clusterConfiguration.setPassword(config.getPassword());
+        }
+        return clusterConfiguration;
+    }
+
+    private static RedisSentinelConfiguration sentinelConfiguration(JedisConfig config) {
+        RedisSentinelConfiguration sentinelConfiguration = new RedisSentinelConfiguration();
+        if (StringUtils.isBlank(config.getMasterName())) {
+            return null;
+        }
+        //redis-sentinel 哨兵模式
+        sentinelConfiguration.master(config.getMasterName());
+        String[] hosts = config.getRedisNodes().split(",|;");
+        for (String h : hosts) {
+            String[] parts = h.split(":");
+            sentinelConfiguration.sentinel(
+                    new RedisNode(parts[0].trim(), Integer.parseInt(parts[1].trim())));
+        }
+        if (StringUtils.isNotBlank(config.getPassword())) {
+            sentinelConfiguration.setPassword(config.getPassword());
+        }
+        sentinelConfiguration.setDatabase(config.getDatabase());
+        return sentinelConfiguration;
+    }
+
+
+}

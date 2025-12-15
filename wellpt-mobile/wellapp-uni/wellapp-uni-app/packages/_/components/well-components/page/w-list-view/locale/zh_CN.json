@@ -1,0 +1,12 @@
+{
+  "WidgetListView": {
+    "select": "搜索",
+    "filter": "筛选",
+    "multiple": "多选",
+    "defaultSort": "默认排序",
+    "sort": "排序",
+    "ascSort": "按{name}升序",
+    "descSort": "按{name}降序",
+    "errorWorkflowIdExplain": "请确认数据的流程配置正确性"
+  }
+}

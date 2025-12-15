@@ -1,0 +1,1016 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="flowHandleEfficiencyAverageHandleTimeByUserQuery">
+        <![CDATA[
+            select *
+            from (
+                select avg((cast(t1.operate_time as date) - cast(nvl(t1.create_time, ti.start_time) as date)) * 24 * 60)            as avg_handle_time
+                from (
+                         select t1.uuid           as uuid,
+                                nvl(t3.modify_time, t1.create_time)    as create_time,
+                                t1.task_inst_uuid as task_inst_uuid,
+                                t1.user_id        as user_id,
+                                t2.uuid           as opt_uuid,
+                                t2.assignee       as assignee,
+                                t2.flow_inst_uuid as flow_inst_uuid,
+                                t2.create_time    as operate_time,
+                                t2.action_code    as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.uuid and t2.action_code in (1, 34, 3, 27, 4, 5, 7)
+                                  left join (
+                                    select *
+                                    from (
+                                             select t.modify_time                                                                                    as modify_time,
+                                                    t.source_task_identity_uuid                                                                      as source_task_identity_uuid,
+                                                    row_number() over (partition by t.source_task_identity_uuid, t.user_id order by t.modifier desc) as row_num
+                                             from wf_task_identity t
+                                             where t.todo_type = 2
+                                         )
+                                    where row_num = 1
+                                  ) t3 on t3.source_task_identity_uuid = t1.uuid
+                         where t1.todo_type <> 2
+                         union all
+                         select t1.uuid           as uuid,
+                                nvl(t3.modify_time, t1.create_time)    as create_time,
+                                t1.task_inst_uuid as task_inst_uuid,
+                                t1.user_id        as user_id,
+                                t2.uuid           as opt_uuid,
+                                t2.assignee       as assignee,
+                                t2.flow_inst_uuid as flow_inst_uuid,
+                                t2.create_time    as operate_time,
+                                t2.action_code    as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.uuid and t2.action_code = 2
+                                  left join (
+                                    select *
+                                    from (
+                                             select t.modify_time                                                                                    as modify_time,
+                                                    t.source_task_identity_uuid                                                                      as source_task_identity_uuid,
+                                                    row_number() over (partition by t.source_task_identity_uuid, t.user_id order by t.modifier desc) as row_num
+                                             from wf_task_identity t
+                                             where t.todo_type = 2
+                                         )
+                                    where row_num = 1
+                                  ) t3 on t3.source_task_identity_uuid = t1.uuid
+                         where t1.todo_type = 2
+                         union all
+                         select t1.source_task_identity_uuid as uuid,
+                                t3.create_time               as create_time,
+                                t1.task_inst_uuid            as task_inst_uuid,
+                                t1.owner_id                  as user_id,
+                                t2.uuid                      as opt_uuid,
+                                t2.assignee                  as assignee,
+                                t2.flow_inst_uuid            as flow_inst_uuid,
+                                t2.create_time               as operate_time,
+                                t2.action_code               as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.source_task_identity_uuid and t2.action_code = 8
+                                  left join wf_task_identity t3 on t3.uuid = t1.source_task_identity_uuid
+                         where t1.source_task_identity_uuid is not null
+                           and t1.todo_type = 2) t1
+                         left join wf_task_instance ti on ti.uuid = t1.task_inst_uuid
+                         left join wf_flow_instance t3 on t3.uuid = t1.flow_inst_uuid
+                         <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                where 1 = 1 and t1.action_code in(1, 2, 34, 3, 27, 4, 5, 7, 8)
+                    <if userIds?? && (userIds?size > 0)>
+                        and t1.assignee in(:userIds)
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleEfficiencyAverageHandleTimeGroupByUserQuery">
+        <![CDATA[
+            select *
+            from (
+                select  avg((cast(t1.operate_time as date) - cast(nvl(t1.create_time, ti.start_time) as date)) * 24 * 60) as avg_handle_time,
+                        count(t1.assignee)  as  handle_count,
+                        t1.assignee         as  user_id,
+                        u.user_name         as  user_name
+                from (
+                         select t1.uuid           as uuid,
+                                nvl(t3.modify_time, t1.create_time)    as create_time,
+                                t1.task_inst_uuid as task_inst_uuid,
+                                t1.user_id        as user_id,
+                                t2.uuid           as opt_uuid,
+                                t2.assignee       as assignee,
+                                t2.flow_inst_uuid as flow_inst_uuid,
+                                t2.create_time    as operate_time,
+                                t2.action_code    as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.uuid and t2.action_code in (1, 34, 3, 27, 4, 5, 7)
+                                  left join (
+                                    select *
+                                    from (
+                                             select t.modify_time                                                                                    as modify_time,
+                                                    t.source_task_identity_uuid                                                                      as source_task_identity_uuid,
+                                                    row_number() over (partition by t.source_task_identity_uuid, t.user_id order by t.modifier desc) as row_num
+                                             from wf_task_identity t
+                                             where t.todo_type = 2
+                                         )
+                                    where row_num = 1
+                                  ) t3 on t3.source_task_identity_uuid = t1.uuid
+                         where t1.todo_type <> 2
+                         union all
+                         select t1.uuid           as uuid,
+                                nvl(t3.modify_time, t1.create_time)    as create_time,
+                                t1.task_inst_uuid as task_inst_uuid,
+                                t1.user_id        as user_id,
+                                t2.uuid           as opt_uuid,
+                                t2.assignee       as assignee,
+                                t2.flow_inst_uuid as flow_inst_uuid,
+                                t2.create_time    as operate_time,
+                                t2.action_code    as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.uuid and t2.action_code = 2
+                                  left join (
+                                    select *
+                                    from (
+                                             select t.modify_time                                                                                    as modify_time,
+                                                    t.source_task_identity_uuid                                                                      as source_task_identity_uuid,
+                                                    row_number() over (partition by t.source_task_identity_uuid, t.user_id order by t.modifier desc) as row_num
+                                             from wf_task_identity t
+                                             where t.todo_type = 2
+                                         )
+                                    where row_num = 1
+                                  ) t3 on t3.source_task_identity_uuid = t1.uuid
+                         where t1.todo_type = 2
+                         union all
+                         select t1.source_task_identity_uuid as uuid,
+                                t3.create_time               as create_time,
+                                t1.task_inst_uuid            as task_inst_uuid,
+                                t1.owner_id                  as user_id,
+                                t2.uuid                      as opt_uuid,
+                                t2.assignee                  as assignee,
+                                t2.flow_inst_uuid            as flow_inst_uuid,
+                                t2.create_time               as operate_time,
+                                t2.action_code               as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.source_task_identity_uuid and t2.action_code = 8
+                                  left join wf_task_identity t3 on t3.uuid = t1.source_task_identity_uuid
+                         where t1.source_task_identity_uuid is not null
+                           and t1.todo_type = 2) t1
+                    left join wf_task_instance ti on ti.uuid = t1.task_inst_uuid
+                    left join wf_flow_instance t3 on t3.uuid = t1.flow_inst_uuid
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                    </if>
+                    left join user_info u on u.user_id = t1.assignee
+                where 1 = 1 and t1.action_code in(1, 2, 34, 3, 27, 4, 5, 7, 8)
+                    <if userIds?? && (userIds?size > 0)>
+                        and t1.assignee in(:userIds)
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                    group by t1.assignee, u.user_name
+            ) t
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                <else>
+                    order by t.avg_handle_time desc
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleEfficiencyAverageHandleTimeGroupByUserAndFlowQuery">
+        <![CDATA[
+            select *
+            from (
+                select avg((cast(t1.operate_time as date) - cast(nvl(t1.create_time, ti.start_time) as date)) * 24 * 60)            as avg_handle_time
+                     , count(t1.assignee) as handle_count
+                     , t3.id              as id
+                     , t3.name            as name
+                     , t1.assignee        as user_id
+                from (
+                         select t1.uuid           as uuid,
+                                nvl(t3.modify_time, t1.create_time)    as create_time,
+                                t1.task_inst_uuid as task_inst_uuid,
+                                t1.user_id        as user_id,
+                                t2.uuid           as opt_uuid,
+                                t2.assignee       as assignee,
+                                t2.flow_inst_uuid as flow_inst_uuid,
+                                t2.create_time    as operate_time,
+                                t2.action_code    as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.uuid and t2.action_code in (1, 34, 3, 27, 4, 5, 7)
+                                  left join (
+                                    select *
+                                    from (
+                                             select t.modify_time                                                                                    as modify_time,
+                                                    t.source_task_identity_uuid                                                                      as source_task_identity_uuid,
+                                                    row_number() over (partition by t.source_task_identity_uuid, t.user_id order by t.modifier desc) as row_num
+                                             from wf_task_identity t
+                                             where t.todo_type = 2
+                                         )
+                                    where row_num = 1
+                                  ) t3 on t3.source_task_identity_uuid = t1.uuid
+                         where t1.todo_type <> 2
+                         union all
+                         select t1.uuid           as uuid,
+                                nvl(t3.modify_time, t1.create_time)    as create_time,
+                                t1.task_inst_uuid as task_inst_uuid,
+                                t1.user_id        as user_id,
+                                t2.uuid           as opt_uuid,
+                                t2.assignee       as assignee,
+                                t2.flow_inst_uuid as flow_inst_uuid,
+                                t2.create_time    as operate_time,
+                                t2.action_code    as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.uuid and t2.action_code = 2
+                                  left join (
+                                    select *
+                                    from (
+                                             select t.modify_time                                                                                    as modify_time,
+                                                    t.source_task_identity_uuid                                                                      as source_task_identity_uuid,
+                                                    row_number() over (partition by t.source_task_identity_uuid, t.user_id order by t.modifier desc) as row_num
+                                             from wf_task_identity t
+                                             where t.todo_type = 2
+                                         )
+                                    where row_num = 1
+                                  ) t3 on t3.source_task_identity_uuid = t1.uuid
+                         where t1.todo_type = 2
+                         union all
+                         select t1.source_task_identity_uuid as uuid,
+                                t3.create_time               as create_time,
+                                t1.task_inst_uuid            as task_inst_uuid,
+                                t1.owner_id                  as user_id,
+                                t2.uuid                      as opt_uuid,
+                                t2.assignee                  as assignee,
+                                t2.flow_inst_uuid            as flow_inst_uuid,
+                                t2.create_time               as operate_time,
+                                t2.action_code               as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.source_task_identity_uuid and t2.action_code = 8
+                                  left join wf_task_identity t3 on t3.uuid = t1.source_task_identity_uuid
+                         where t1.source_task_identity_uuid is not null
+                           and t1.todo_type = 2) t1
+                         left join wf_task_instance ti on ti.uuid = t1.task_inst_uuid
+                         left join wf_flow_instance t3 on t3.uuid = t1.flow_inst_uuid
+                         <if isNotBlank(flowInstWhereSql)>
+                            left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                         </if>
+                where 1 = 1
+                    and t1.assignee = :userId
+                    and t1.action_code in(1, 2, 34, 3, 27, 4, 5, 7, 8)
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                    group by t3.id, t3.name, t1.assignee
+            ) t
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                <else>
+                    order by t.avg_handle_time desc
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleEfficiencyListHandleTimeByUserQuery">
+        <![CDATA[
+            select *
+            from (
+                select  (cast(t1.operate_time as date) - cast(nvl(t1.create_time, ti.start_time) as date)) * 24 * 60 as handle_time
+                from (
+                         select t1.uuid           as uuid,
+                                nvl(t3.modify_time, t1.create_time)    as create_time,
+                                t1.task_inst_uuid as task_inst_uuid,
+                                t1.user_id        as user_id,
+                                t2.uuid           as opt_uuid,
+                                t2.assignee       as assignee,
+                                t2.flow_inst_uuid as flow_inst_uuid,
+                                t2.create_time    as operate_time,
+                                t2.action_code    as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.uuid and t2.action_code in (1, 34, 3, 27, 4, 5, 7)
+                                  left join (
+                                    select *
+                                    from (
+                                             select t.modify_time                                                                                    as modify_time,
+                                                    t.source_task_identity_uuid                                                                      as source_task_identity_uuid,
+                                                    row_number() over (partition by t.source_task_identity_uuid, t.user_id order by t.modifier desc) as row_num
+                                             from wf_task_identity t
+                                             where t.todo_type = 2
+                                         )
+                                    where row_num = 1
+                                  ) t3 on t3.source_task_identity_uuid = t1.uuid
+                         where t1.todo_type <> 2
+                         union all
+                         select t1.uuid           as uuid,
+                                nvl(t3.modify_time, t1.create_time)    as create_time,
+                                t1.task_inst_uuid as task_inst_uuid,
+                                t1.user_id        as user_id,
+                                t2.uuid           as opt_uuid,
+                                t2.assignee       as assignee,
+                                t2.flow_inst_uuid as flow_inst_uuid,
+                                t2.create_time    as operate_time,
+                                t2.action_code    as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.uuid and t2.action_code = 2
+                                  left join (
+                                    select *
+                                    from (
+                                             select t.modify_time                                                                                    as modify_time,
+                                                    t.source_task_identity_uuid                                                                      as source_task_identity_uuid,
+                                                    row_number() over (partition by t.source_task_identity_uuid, t.user_id order by t.modifier desc) as row_num
+                                             from wf_task_identity t
+                                             where t.todo_type = 2
+                                         )
+                                    where row_num = 1
+                                  ) t3 on t3.source_task_identity_uuid = t1.uuid
+                         where t1.todo_type = 2
+                         union all
+                         select t1.source_task_identity_uuid as uuid,
+                                t3.create_time               as create_time,
+                                t1.task_inst_uuid            as task_inst_uuid,
+                                t1.owner_id                  as user_id,
+                                t2.uuid                      as opt_uuid,
+                                t2.assignee                  as assignee,
+                                t2.flow_inst_uuid            as flow_inst_uuid,
+                                t2.create_time               as operate_time,
+                                t2.action_code               as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.source_task_identity_uuid and t2.action_code = 8
+                                  left join wf_task_identity t3 on t3.uuid = t1.source_task_identity_uuid
+                         where t1.source_task_identity_uuid is not null
+                           and t1.todo_type = 2) t1
+                    left join wf_task_instance ti on ti.uuid = t1.task_inst_uuid
+                    left join wf_flow_instance t3 on t3.uuid = t1.flow_inst_uuid
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                    </if>
+                where 1 = 1 and t1.action_code in(1, 2, 34, 3, 27, 4, 5, 7, 8)
+                    <if userIds?? && (userIds?size > 0)>
+                        and t1.assignee in(:userIds)
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleEfficiencyAverageHandleTimeGroupByUserDetailQuery">
+        <![CDATA[
+            select *
+            from (
+                select  avg((cast(t1.operate_time as date) - cast(nvl(t1.create_time, ti.start_time) as date)) * 24 * 60) as avg_handle_time,
+                        count(t1.assignee)  as  handle_count,
+                        t3.id               as  id,
+                        t3.name             as  name,
+                        t1.assignee         as  user_id,
+                        u.user_name         as  user_name,
+                        t1.task_id          as  task_id,
+                        t1.task_name        as  task_name
+                from (
+                         select t1.uuid           as uuid,
+                                nvl(t3.modify_time, t1.create_time)    as create_time,
+                                t1.task_inst_uuid as task_inst_uuid,
+                                t1.user_id        as user_id,
+                                t2.uuid           as opt_uuid,
+                                t2.assignee       as assignee,
+                                t2.flow_inst_uuid as flow_inst_uuid,
+                                t2.create_time    as operate_time,
+                                t2.action_code    as action_code,
+                                t2.task_id        as task_id,
+                                t2.task_name      as task_name
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.uuid and t2.action_code in (1, 34, 3, 27, 4, 5, 7)
+                                  left join (
+                                    select *
+                                    from (
+                                             select t.modify_time                                                                                    as modify_time,
+                                                    t.source_task_identity_uuid                                                                      as source_task_identity_uuid,
+                                                    row_number() over (partition by t.source_task_identity_uuid, t.user_id order by t.modifier desc) as row_num
+                                             from wf_task_identity t
+                                             where t.todo_type = 2
+                                         )
+                                    where row_num = 1
+                                  ) t3 on t3.source_task_identity_uuid = t1.uuid
+                         where t1.todo_type <> 2
+                         union all
+                         select t1.uuid           as uuid,
+                                nvl(t3.modify_time, t1.create_time)    as create_time,
+                                t1.task_inst_uuid as task_inst_uuid,
+                                t1.user_id        as user_id,
+                                t2.uuid           as opt_uuid,
+                                t2.assignee       as assignee,
+                                t2.flow_inst_uuid as flow_inst_uuid,
+                                t2.create_time    as operate_time,
+                                t2.action_code    as action_code,
+                                t2.task_id        as task_id,
+                                t2.task_name      as task_name
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.uuid and t2.action_code = 2
+                                  left join (
+                                    select *
+                                    from (
+                                             select t.modify_time                                                                                    as modify_time,
+                                                    t.source_task_identity_uuid                                                                      as source_task_identity_uuid,
+                                                    row_number() over (partition by t.source_task_identity_uuid, t.user_id order by t.modifier desc) as row_num
+                                             from wf_task_identity t
+                                             where t.todo_type = 2
+                                         )
+                                    where row_num = 1
+                                  ) t3 on t3.source_task_identity_uuid = t1.uuid
+                         where t1.todo_type = 2
+                         union all
+                         select t1.source_task_identity_uuid as uuid,
+                                t3.create_time               as create_time,
+                                t1.task_inst_uuid            as task_inst_uuid,
+                                t1.owner_id                  as user_id,
+                                t2.uuid                      as opt_uuid,
+                                t2.assignee                  as assignee,
+                                t2.flow_inst_uuid            as flow_inst_uuid,
+                                t2.create_time               as operate_time,
+                                t2.action_code               as action_code,
+                                t2.task_id                   as task_id,
+                                t2.task_name                 as task_name
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.source_task_identity_uuid and t2.action_code = 8
+                                  left join wf_task_identity t3 on t3.uuid = t1.source_task_identity_uuid
+                         where t1.source_task_identity_uuid is not null
+                           and t1.todo_type = 2) t1
+                    left join wf_task_instance ti on ti.uuid = t1.task_inst_uuid
+                    left join wf_flow_instance t3 on t3.uuid = t1.flow_inst_uuid
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                    </if>
+                    left join user_info u on u.user_id = t1.assignee
+                where 1 = 1 and t1.action_code in(1, 2, 34, 3, 27, 4, 5, 7, 8)
+                    <if userIds?? && (userIds?size > 0)>
+                        and t1.assignee in(:userIds)
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                    group by t3.id, t3.name, t1.assignee, u.user_name, t1.task_id, t1.task_name
+            ) t
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleEfficiencyAverageHandleTimeByDeptQuery">
+        <![CDATA[
+            select *
+            from (
+                select  avg((cast(t1.operate_time as date) - cast(nvl(t1.create_time, ti.start_time) as date)) * 24 * 60) as avg_handle_time
+                from (
+                         select t1.uuid           as uuid,
+                                nvl(t3.modify_time, t1.create_time)    as create_time,
+                                t1.task_inst_uuid as task_inst_uuid,
+                                t1.user_id        as user_id,
+                                t2.uuid           as opt_uuid,
+                                t2.assignee       as assignee,
+                                t2.flow_inst_uuid as flow_inst_uuid,
+                                t2.create_time    as operate_time,
+                                t2.action_code    as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.uuid and t2.action_code in (1, 34, 3, 27, 4, 5, 7)
+                                  left join (
+                                    select *
+                                    from (
+                                             select t.modify_time                                                                                    as modify_time,
+                                                    t.source_task_identity_uuid                                                                      as source_task_identity_uuid,
+                                                    row_number() over (partition by t.source_task_identity_uuid, t.user_id order by t.modifier desc) as row_num
+                                             from wf_task_identity t
+                                             where t.todo_type = 2
+                                         )
+                                    where row_num = 1
+                                  ) t3 on t3.source_task_identity_uuid = t1.uuid
+                         where t1.todo_type <> 2
+                         union all
+                         select t1.uuid           as uuid,
+                                nvl(t3.modify_time, t1.create_time)    as create_time,
+                                t1.task_inst_uuid as task_inst_uuid,
+                                t1.user_id        as user_id,
+                                t2.uuid           as opt_uuid,
+                                t2.assignee       as assignee,
+                                t2.flow_inst_uuid as flow_inst_uuid,
+                                t2.create_time    as operate_time,
+                                t2.action_code    as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.uuid and t2.action_code = 2
+                                  left join (
+                                    select *
+                                    from (
+                                             select t.modify_time                                                                                    as modify_time,
+                                                    t.source_task_identity_uuid                                                                      as source_task_identity_uuid,
+                                                    row_number() over (partition by t.source_task_identity_uuid, t.user_id order by t.modifier desc) as row_num
+                                             from wf_task_identity t
+                                             where t.todo_type = 2
+                                         )
+                                    where row_num = 1
+                                  ) t3 on t3.source_task_identity_uuid = t1.uuid
+                         where t1.todo_type = 2
+                         union all
+                         select t1.source_task_identity_uuid as uuid,
+                                t3.create_time               as create_time,
+                                t1.task_inst_uuid            as task_inst_uuid,
+                                t1.owner_id                  as user_id,
+                                t2.uuid                      as opt_uuid,
+                                t2.assignee                  as assignee,
+                                t2.flow_inst_uuid            as flow_inst_uuid,
+                                t2.create_time               as operate_time,
+                                t2.action_code               as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.source_task_identity_uuid and t2.action_code = 8
+                                  left join wf_task_identity t3 on t3.uuid = t1.source_task_identity_uuid
+                         where t1.source_task_identity_uuid is not null
+                           and t1.todo_type = 2) t1
+                    left join (${deptQuerySql}) t2 on t2.user_id = t1.assignee
+                    left join wf_task_instance ti on ti.uuid = t1.task_inst_uuid
+                    left join wf_flow_instance t3 on t3.uuid = t1.flow_inst_uuid
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                    </if>
+                where 1 = 1 and t1.action_code in(1, 2, 34, 3, 27, 4, 5, 7, 8) and t2.dept_id is not null
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleEfficiencyAverageHandleTimeGroupByDeptQuery">
+        <![CDATA[
+            select *
+            from (
+                select  avg((cast(t1.operate_time as date) - cast(nvl(t1.create_time, ti.start_time) as date)) * 24 * 60) as avg_handle_time,
+                        count(t2.dept_id)   as  handle_count,
+                        t2.dept_id          as  dept_id
+                from (
+                         select t1.uuid           as uuid,
+                                nvl(t3.modify_time, t1.create_time)    as create_time,
+                                t1.task_inst_uuid as task_inst_uuid,
+                                t1.user_id        as user_id,
+                                t2.uuid           as opt_uuid,
+                                t2.assignee       as assignee,
+                                t2.flow_inst_uuid as flow_inst_uuid,
+                                t2.create_time    as operate_time,
+                                t2.action_code    as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.uuid and t2.action_code in (1, 34, 3, 27, 4, 5, 7)
+                                  left join (
+                                    select *
+                                    from (
+                                             select t.modify_time                                                                                    as modify_time,
+                                                    t.source_task_identity_uuid                                                                      as source_task_identity_uuid,
+                                                    row_number() over (partition by t.source_task_identity_uuid, t.user_id order by t.modifier desc) as row_num
+                                             from wf_task_identity t
+                                             where t.todo_type = 2
+                                         )
+                                    where row_num = 1
+                                  ) t3 on t3.source_task_identity_uuid = t1.uuid
+                         where t1.todo_type <> 2
+                         union all
+                         select t1.uuid           as uuid,
+                                nvl(t3.modify_time, t1.create_time)    as create_time,
+                                t1.task_inst_uuid as task_inst_uuid,
+                                t1.user_id        as user_id,
+                                t2.uuid           as opt_uuid,
+                                t2.assignee       as assignee,
+                                t2.flow_inst_uuid as flow_inst_uuid,
+                                t2.create_time    as operate_time,
+                                t2.action_code    as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.uuid and t2.action_code = 2
+                                  left join (
+                                    select *
+                                    from (
+                                             select t.modify_time                                                                                    as modify_time,
+                                                    t.source_task_identity_uuid                                                                      as source_task_identity_uuid,
+                                                    row_number() over (partition by t.source_task_identity_uuid, t.user_id order by t.modifier desc) as row_num
+                                             from wf_task_identity t
+                                             where t.todo_type = 2
+                                         )
+                                    where row_num = 1
+                                  ) t3 on t3.source_task_identity_uuid = t1.uuid
+                         where t1.todo_type = 2
+                         union all
+                         select t1.source_task_identity_uuid as uuid,
+                                t3.create_time               as create_time,
+                                t1.task_inst_uuid            as task_inst_uuid,
+                                t1.owner_id                  as user_id,
+                                t2.uuid                      as opt_uuid,
+                                t2.assignee                  as assignee,
+                                t2.flow_inst_uuid            as flow_inst_uuid,
+                                t2.create_time               as operate_time,
+                                t2.action_code               as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.source_task_identity_uuid and t2.action_code = 8
+                                  left join wf_task_identity t3 on t3.uuid = t1.source_task_identity_uuid
+                         where t1.source_task_identity_uuid is not null
+                           and t1.todo_type = 2) t1
+                    left join (${deptQuerySql}) t2 on t2.user_id = t1.assignee
+                    left join wf_task_instance ti on ti.uuid = t1.task_inst_uuid
+                    left join wf_flow_instance t3 on t3.uuid = t1.flow_inst_uuid
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                    </if>
+                where 1 = 1 and t1.action_code in(1, 2, 34, 3, 27, 4, 5, 7, 8) and t2.dept_id is not null
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                    group by t2.dept_id
+            ) t
+            where 1 = 1
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                <else>
+                    order by t.avg_handle_time desc
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowHandleEfficiencyAverageHandleTimeGroupByDeptAndFlowQuery">
+        <![CDATA[
+            select *
+            from (
+                select  avg((cast(t1.operate_time as date) - cast(nvl(t1.create_time, ti.start_time) as date)) * 24 * 60) as avg_handle_time,
+                        count(t1.assignee)  as  handle_count,
+                        t3.id               as  id,
+                        t3.name             as  name,
+                        t2.dept_id          as  dept_id
+                from (
+                         select t1.uuid           as uuid,
+                                nvl(t3.modify_time, t1.create_time)    as create_time,
+                                t1.task_inst_uuid as task_inst_uuid,
+                                t1.user_id        as user_id,
+                                t2.uuid           as opt_uuid,
+                                t2.assignee       as assignee,
+                                t2.flow_inst_uuid as flow_inst_uuid,
+                                t2.create_time    as operate_time,
+                                t2.action_code    as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.uuid and t2.action_code in (1, 34, 3, 27, 4, 5, 7)
+                                  left join (
+                                    select *
+                                    from (
+                                             select t.modify_time                                                                                    as modify_time,
+                                                    t.source_task_identity_uuid                                                                      as source_task_identity_uuid,
+                                                    row_number() over (partition by t.source_task_identity_uuid, t.user_id order by t.modifier desc) as row_num
+                                             from wf_task_identity t
+                                             where t.todo_type = 2
+                                         )
+                                    where row_num = 1
+                                  ) t3 on t3.source_task_identity_uuid = t1.uuid
+                         where t1.todo_type <> 2
+                         union all
+                         select t1.uuid           as uuid,
+                                nvl(t3.modify_time, t1.create_time)    as create_time,
+                                t1.task_inst_uuid as task_inst_uuid,
+                                t1.user_id        as user_id,
+                                t2.uuid           as opt_uuid,
+                                t2.assignee       as assignee,
+                                t2.flow_inst_uuid as flow_inst_uuid,
+                                t2.create_time    as operate_time,
+                                t2.action_code    as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.uuid and t2.action_code = 2
+                                  left join (
+                                    select *
+                                    from (
+                                             select t.modify_time                                                                                    as modify_time,
+                                                    t.source_task_identity_uuid                                                                      as source_task_identity_uuid,
+                                                    row_number() over (partition by t.source_task_identity_uuid, t.user_id order by t.modifier desc) as row_num
+                                             from wf_task_identity t
+                                             where t.todo_type = 2
+                                         )
+                                    where row_num = 1
+                                  ) t3 on t3.source_task_identity_uuid = t1.uuid
+                         where t1.todo_type = 2
+                         union all
+                         select t1.source_task_identity_uuid as uuid,
+                                t3.create_time               as create_time,
+                                t1.task_inst_uuid            as task_inst_uuid,
+                                t1.owner_id                  as user_id,
+                                t2.uuid                      as opt_uuid,
+                                t2.assignee                  as assignee,
+                                t2.flow_inst_uuid            as flow_inst_uuid,
+                                t2.create_time               as operate_time,
+                                t2.action_code               as action_code
+                         from wf_task_identity t1
+                                  left join wf_task_operation t2
+                                            on t2.task_identity_uuid = t1.source_task_identity_uuid and t2.action_code = 8
+                                  left join wf_task_identity t3 on t3.uuid = t1.source_task_identity_uuid
+                         where t1.source_task_identity_uuid is not null
+                           and t1.todo_type = 2) t1
+                    left join (${deptQuerySql}) t2 on t2.user_id = t1.assignee
+                    left join wf_task_instance ti on ti.uuid = t1.task_inst_uuid
+                    left join wf_flow_instance t3 on t3.uuid = t1.flow_inst_uuid
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t4 on t3.flow_def_uuid = t4.uuid
+                    </if>
+                where 1 = 1 and t1.action_code in(1, 2, 34, 3, 27, 4, 5, 7, 8) and t2.dept_id = :deptId
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                    group by t3.id, t3.name, t2.dept_id
+            ) t
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                <else>
+                    order by t.avg_handle_time desc
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowDeptReportQuery">
+        <![CDATA[
+            select distinct user_id as user_id, dept_id as dept_id, dept_role_id as dept_role_id
+            from (
+                select r.user_id, r.org_element_id as dept_id, null as dept_role_id
+                    from org_user r
+                    where exists (select 1
+                                     from org_version v
+                                     where v.state = 0
+                                     <if isNotBlank(system)>
+                                        and v.system = :system
+                                     </if>
+                                     and r.org_version_uuid = v.uuid
+                    )
+                      and r.org_element_id is not null
+                      and r.org_element_type <> 'job'
+                      <if deptIds?? && (deptIds?size > 0)>
+                        and r.org_element_id in (:deptIds)
+                      </if>
+                      <if deptIds1?? && (deptIds1?size > 0)>
+                        and (
+                            r.org_element_id in (:deptIds1)
+                            <if deptIds2?? && (deptIds2?size > 0)>
+                                 or r.org_element_id in (:deptIds2)
+                            </if>
+                            <if deptIds3?? && (deptIds3?size > 0)>
+                                 or r.org_element_id in (:deptIds3)
+                            </if>
+                        )
+                      </if>
+                    union all
+                    select r.user_id, c.sub_org_element_id as dept_id, null as dept_role_id
+                    from org_user r,
+                         org_element_path_chain c
+                    where exists (select 1
+                                     from org_version v
+                                     where v.state = 0
+                                     <if isNotBlank(system)>
+                                        and v.system = :system
+                                     </if>
+                                     and r.org_version_uuid = v.uuid
+                    )
+                      and c.sub_org_element_id = r.org_element_id
+                      and c.sub_org_element_type <> 'job'
+                      <if deptIds?? && (deptIds?size > 0)>
+                        and c.sub_org_element_id in (:deptIds)
+                      </if>
+                      <if deptIds1?? && (deptIds1?size > 0)>
+                        and (
+                            c.sub_org_element_id in (:deptIds1)
+                            <if deptIds2?? && (deptIds2?size > 0)>
+                                 or c.sub_org_element_id in (:deptIds2)
+                            </if>
+                            <if deptIds3?? && (deptIds3?size > 0)>
+                                 or c.sub_org_element_id in (:deptIds3)
+                            </if>
+                        )
+                      </if>
+                    union all
+                    select r.user_id, c.org_element_id as dept_id, null as dept_role_id
+                    from org_user r,
+                         org_element_path_chain c
+                    where exists (select 1
+                                     from org_version v
+                                     where v.state = 0
+                                     <if isNotBlank(system)>
+                                        and v.system = :system
+                                     </if>
+                                     and r.org_version_uuid = v.uuid
+                    )
+                      and c.sub_org_element_id = r.org_element_id
+                      <if deptIds?? && (deptIds?size > 0)>
+                        and c.org_element_id in (:deptIds)
+                      </if>
+                      <if deptIds1?? && (deptIds1?size > 0)>
+                        and (
+                            c.org_element_id in (:deptIds1)
+                            <if deptIds2?? && (deptIds2?size > 0)>
+                                or c.org_element_id in (:deptIds2)
+                            </if>
+                            <if deptIds3?? && (deptIds3?size > 0)>
+                                or c.org_element_id in (:deptIds3)
+                            </if>
+                        )
+                      </if>
+                    union all
+                    select t.id as user_id, t.id as dept_id, null as dept_role_id
+                        from biz_org_element t
+                        where t.biz_org_uuid in (
+                             select b.uuid from biz_org_organization b
+                             where b.enable = 1
+                             <if isNotBlank(system)>
+                                and b.system = :system
+                             </if>
+                        )
+                      <if deptIds?? && (deptIds?size > 0)>
+                        and t.id in (:deptIds)
+                      </if>
+                      <if deptIds1?? && (deptIds1?size > 0)>
+                        and (
+                            t.id in (:deptIds1)
+                            <if deptIds2?? && (deptIds2?size > 0)>
+                                or t.id in (:deptIds2)
+                            </if>
+                            <if deptIds3?? && (deptIds3?size > 0)>
+                                or t.id in (:deptIds3)
+                            </if>
+                        )
+                      </if>
+                    union all
+                    select t1.id as user_id, t1.id as dept_id, t1.id || '/' || t2.id as dept_role_id
+                    from biz_org_element t1
+                             left join biz_org_role t2 on t1.biz_org_uuid = t2.biz_org_uuid
+                    where t2.id is not null
+                      and t1.biz_org_uuid in (
+                         select b.uuid from biz_org_organization b
+                         where b.enable = 1
+                         <if isNotBlank(system)>
+                            and b.system = :system
+                         </if>
+                      )
+                      <if deptIds?? && (deptIds?size > 0)>
+                        and t1.id in (:deptIds)
+                      </if>
+                      <if deptIds1?? && (deptIds1?size > 0)>
+                        and (
+                            t1.id in (:deptIds1)
+                            <if deptIds2?? && (deptIds2?size > 0)>
+                                or t1.id in (:deptIds2)
+                            </if>
+                            <if deptIds3?? && (deptIds3?size > 0)>
+                                or t1.id in (:deptIds3)
+                            </if>
+                        )
+                      </if>
+            ) dept_
+        ]]>
+    </sql-query>
+
+    <sql-query name="flowUserReportQuery">
+        <![CDATA[
+            select distinct user_.user_id as user_id, u.user_name as user_name, user_.dept_id as dept_id
+            from (
+                     select r.user_id, r.org_element_id as dept_id
+                     from org_user r
+                     where exists (select 1
+                                      from org_version v
+                                      where v.state = 0
+                                      <if isNotBlank(system)>
+                                        and v.system = :system
+                                      </if>
+                                      and r.org_version_uuid = v.uuid
+                     )
+                       and r.org_element_id is not null
+                     union all
+                     select r.user_id, c.sub_org_element_id as dept_id
+                     from org_user r,
+                         org_element_path_chain c
+                     where exists (select v.uuid
+                                     from org_version v
+                                     where v.state = 0
+                                     <if isNotBlank(system)>
+                                        and v.system = :system
+                                     </if>
+                                     and r.org_version_uuid = v.uuid
+                     )
+                      and c.sub_org_element_id = r.org_element_id
+                      and c.sub_org_element_type <> 'job'
+                     union all
+                     select r.user_id, c.org_element_id as dept_id
+                     from org_user r,
+                          org_element_path_chain c
+                     where exists (select v.uuid
+                                      from org_version v
+                                      where v.state = 0
+                                      <if isNotBlank(system)>
+                                        and v.system = :system
+                                      </if>
+                                      and r.org_version_uuid = v.uuid
+                     )
+                       and c.sub_org_element_id = r.org_element_id
+                     union all
+                     select gm.member_id as user_id, g.id as dept_id
+                        from org_group_member gm
+                                 left join org_group g on gm.group_uuid = g.uuid
+                        where 1 = 1
+                            <if isNotBlank(system)>
+                                and g.system = :system
+                             </if>
+                     union all
+                     select m.member_id          as user_id,
+                            m.biz_org_element_id as dept_id
+                     from biz_org_element_member m
+                     where m.biz_org_uuid in (
+                         select b.uuid from biz_org_organization b
+                         where b.enable = 1
+                             <if isNotBlank(system)>
+                                and b.system = :system
+                             </if>
+                     )
+                     union all
+                     select m.member_id                                      as user_id,
+                            m.biz_org_element_id || '/' || m.biz_org_role_id as dept_id
+                     from biz_org_element_member m
+                     where m.biz_org_uuid in (
+                         select b.uuid from biz_org_organization b
+                         where b.enable = 1
+                         <if isNotBlank(system)>
+                            and b.system = :system
+                         </if>
+                     )
+                     union all
+                     select m.member_id as user_id, c.id as dept_id
+                     from biz_org_element_path_chain c,
+                         biz_org_element_member m
+                     where c.sub_id = m.biz_org_element_id and m.biz_org_uuid in (
+                         select b.uuid from biz_org_organization b
+                         where b.enable = 1
+                         <if isNotBlank(system)>
+                            and b.system = :system
+                         </if>
+                     )
+                 ) user_ left join user_info u on user_.user_id = u.user_id
+            where 1 = 1
+                <if userIds?? && (userIds?size > 0)>
+                    and user_.user_id in (:userIds)
+                </if>
+        ]]>
+    </sql-query>
+
+</hibernate-mapping>

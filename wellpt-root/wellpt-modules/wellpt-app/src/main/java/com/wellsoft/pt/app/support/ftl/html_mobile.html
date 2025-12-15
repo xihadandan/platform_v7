@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>${title}</title> ${mobileCssFiles}
+    <script src="${ctx}/resources/requirejs/require.min.js"></script>
+    ${configScript}
+</head>
+<body class="">
+${html} ${requireScript}
+<!-- LDX访问统计
+<script type="text/javascript" src="http://lapp.leedarson.com:8081/ldsstatis/assets/lib/qingjs.js"></script>
+<script type="text/javascript" src="http://lapp.leedarson.com:8081/ldsstatis/assets/lib/ldsStatis.js"></script>
+-->
+</body>
+<script type="text/javascript">
+    var userAgent = navigator.userAgent;
+    if (userAgent && userAgent.indexOf("Qing") > -1) {
+        document.body.classList.add("pt-qing");
+    } else if (userAgent && (userAgent.indexOf("Wx") > -1 || userAgent.indexOf("wechat") > -1)) {
+        document.body.classList.add("pt-wx");
+    } else if (userAgent && (userAgent.indexOf("Wx") > -1 || userAgent.indexOf("wechat") > -1)) {
+        document.body.classList.add("pt-dingtalk");
+    }
+</script>
+</html>

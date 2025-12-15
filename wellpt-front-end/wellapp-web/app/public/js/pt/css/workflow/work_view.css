@@ -1,0 +1,1558 @@
+@charset "UTF-8";
+
+/* 办理过程表格CSS开始 */
+
+.view_process_table {
+  border: 1px solid #999;
+  border-collapse: collapse;
+}
+
+.view_process_table th {
+  /* 	border: 1px solid #999; */
+  background: none repeat scroll 0 0 #0f599c;
+  color: #fff;
+  font-weight: normal;
+  font-size: 14px;
+  height: 24px;
+  /* 	background: none repeat scroll 0 0 #8DB3E2; */
+  font-weight: normal;
+}
+
+.view_process_table td {
+  border: 1px solid #999;
+  font-size: 12px;
+  width: 15em;
+  min-width: 10em;
+  max-width: 20em;
+  height: 24px;
+  min-width: 50px;
+}
+
+.view_process_table .th1,
+.view_process_table .td1 {
+  width: 70px;
+}
+
+.view_process_table .th2,
+.view_process_table .td2 {
+  width: 70px;
+}
+
+.view_process_table .th3,
+.view_process_table .td3 {
+  width: 300px;
+}
+
+.view_process_table .th6,
+.view_process_table .td6 {
+  width: 70px;
+  display: none;
+}
+
+.view_process_table .th7,
+.view_process_table .th8,
+.view_process_table .td7,
+.view_process_table .td8 {
+  width: 40px;
+}
+
+.view_process_table .th,
+.view_process_table .th10,
+.view_process_table .td9,
+.view_process_table .td10 {
+  width: 110px;
+}
+
+.view_process_list {
+  margin: 0 15px 0 25px;
+  width: auto;
+}
+
+.view_process_header,
+.share_flow_header {
+  background: none repeat scroll 0 0 #0f599c;
+  /* 	width: 875px; */
+  height: 29px;
+  border-right: 1px solid #fff;
+  font: 12px/1.5 arial;
+  display: none;
+}
+
+.view_process_header a,
+.share_flow_header a {
+  display: block;
+  padding: 5px 15px 0 15px;
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 15px 0 15px;
+}
+
+.view_process_content,
+.share_flow_content {
+  display: block;
+  width: 910px;
+  padding-bottom: 30px;
+}
+
+.share_flow_content {
+  margin: 0 15px 0 25px;
+}
+
+/* 办理过程表格CSS结束 */
+
+/* 签署意见开始 */
+
+.wf-opinion .list-group {
+  max-height: 206px;
+  overflow: auto;
+  margin-bottom: 0px;
+}
+
+#rightMenuContainer .sidebar-tab-opinion .tab-content .tab-pane.opinion-recent,
+#rightMenuContainer .sidebar-tab-opinion .tab-content .tab-pane.opinion-common {
+  padding-right: 0;
+}
+
+.wf-opinion .opinion-recent .list-group,
+.wf-opinion .opinion-common .list-group {
+  min-height: 206px;
+  height: 206px;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+
+.wf-opinion .tab-content {
+  position: relative;
+}
+
+.wf-opinion .tab-content > span.wf-opinion-mgr {
+  position: absolute;
+  right: 12px;
+  top: -30px;
+  cursor: pointer;
+  color: #999;
+}
+
+.wf-opinion .tab-content > span.wf-opinion-mgr:hover {
+  color: #488cee;
+}
+
+.wf-opinion .list-group a.list-group-item,
+a.list-group-item > p,
+.user-opinion-list .list-group a.list-group-item {
+  max-height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  margin-bottom: 1px;
+  padding: 0px 6px;
+}
+
+.wf-opinion .list-group a.list-group-item .item-text {
+  width: calc(100% - 95px);
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #666;
+  display: inline-block;
+}
+
+.list-group .list-group-item .sign-btn {
+  background: #488cee;
+  color: #fff;
+  padding: 0 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  height: 24px;
+  line-height: 24px;
+  border: none;
+  margin-top: 8px;
+}
+
+a.list-group-item:focus,
+a.list-group-item:hover,
+button.list-group-item:focus,
+button.list-group-item:hover {
+  background: rgba(72, 140, 238, 0.15);
+}
+
+.public-opinion-list .list-group a.list-group-item:not(.disabled):focus,
+.public-opinion-list .list-group a.list-group-item:not(.disabled):hover {
+  background: rgba(72, 140, 238, 0.15);
+  box-shadow: none;
+}
+
+.wf-opinion .wf-opinion-summernote ~ .note-editor {
+  margin-bottom: 0px;
+}
+
+.wf_opinion .sign-opinion-text {
+  max-height: 200px;
+}
+
+#toolbar .wf_opinion {
+  position: relative;
+}
+
+.wf_opinion .sign-opinion-value {
+  float: left;
+  margin-left: 20px;
+}
+
+.list-group-item:first-child {
+  border: none;
+  border-radius: 0;
+}
+
+.list-group-item:last-child {
+  border-radius: 0;
+}
+
+.list-group .list-group-item {
+  border: none;
+}
+
+.opinion-recent .list-group .list-group-item,
+.opinion-common .list-group .list-group-item {
+  box-shadow: 0px 1px 0px 0px rgba(232, 232, 232, 1);
+}
+
+.list-group .list-group-item.disabled {
+  color: #ccc;
+  background: transparent;
+}
+
+.panel-title .sign-inner-text {
+  color: #333;
+}
+
+.panel-title .sign-inner-text + i {
+  cursor: pointer;
+  color: #999;
+}
+
+.panel-title .sign-inner-text + i:hover {
+  color: #488cee;
+}
+
+/*签署意见--全屏*/
+
+.bootbox .modal-dialog .modal-ignore.full-close {
+  position: absolute;
+  top: 40px;
+  right: 5px;
+  padding: 15px;
+  color: #999999;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.bootbox .modal-dialog .modal-ignore.full-close span {
+  line-height: 1;
+  margin-left: 0;
+  position: relative;
+}
+
+.bootbox .modal-dialog .modal-ignore.full-close:before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: 11px;
+  display: block;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 8px solid #fff;
+}
+
+.bootbox .modal-dialog .modal-ignore.full-close span.close-full-tips {
+  color: #488cee;
+  margin-left: 15px;
+}
+
+.bootbox .modal-dialog .rollback-task-tag {
+    display: inline-block;
+    margin: 3px;
+    padding: 0 8px;
+    font-size: 11px;
+    line-height: 22px;
+    color: #E33033;
+    background: #FCEAEA;
+    border: 1px solid #F5B6B7;
+    border-radius: 4px;
+}
+
+.opinion-full-screen {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999999;
+}
+
+.opinion-full-screen .panel {
+  width: 980px;
+  height: 620px;
+  margin: 80px auto;
+  border-radius: 0;
+}
+
+.opinion-full-screen .panel .panel-heading {
+  position: relative;
+  height: 40px;
+}
+
+.opinion-full-screen .panel .panel-title {
+  font-size: 16px;
+  color: #999;
+}
+
+.opinion-full-screen .panel-heading .opinion-full-tips {
+  position: absolute;
+  bottom: -50px;
+  right: 5px;
+  padding: 15px;
+  color: #999999;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+.opinion-full-screen .panel-heading .opinion-full-tips span {
+  margin-left: 15px;
+  color: #488cee;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.bootbox.full-screen-opinion .modal-body .bootbox-body {
+  /*height:580px;*/
+  padding-top: 0;
+}
+
+.bootbox.full-screen-opinion .modal-body .bootbox-body textarea {
+  height: 580px;
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  color: #666;
+  font-size: 14px;
+}
+
+.bootbox.full-screen-opinion .modal-body .bootbox-body textarea:focus {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* 签署管理——弹出框开始 */
+.dlg-opinion-mgr > .nav-tabs {
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+  border: none;
+}
+.dlg-opinion-mgr .alert-info {
+  font-size: 14px;
+  color: #666666;
+  border: 1px solid #e4eefc;
+  background: #f6f9fe;
+  height: 42px;
+  line-height: 42px;
+  padding: 0 15px;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.dlg-opinion-mgr .alert-info > i {
+  color: #488cee;
+  font-size: 18px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.dlg-opinion-mgr .alert-info span.info-close i {
+  cursor: pointer;
+  color: #999;
+  font-size: 10px;
+}
+
+.dlg-opinion-mgr .alert-info span.info-close i:hover {
+  color: #488cee;
+}
+
+.dlg-opinion-mgr .user-opinion-list .list-group {
+  height: 209px;
+  min-height: 209px;
+  /*max-height: 209px;*/
+  overflow: auto;
+}
+
+.dlg-opinion-mgr .opinion_search {
+  width: calc(100% - 20px);
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  margin: 10px auto;
+}
+
+.dlg-opinion-mgr .opinion_search input {
+  display: inline-block;
+  width: calc(100% - 30px);
+  border: none;
+  outline: none;
+}
+
+.dlg-opinion-mgr .opinion_search input:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.dlg-opinion-mgr .opinion_search span {
+  font-size: 20px;
+  color: #488cee;
+  vertical-align: middle;
+}
+
+.dlg-opinion-mgr .public-opinion-list {
+  border-top: 1px solid #e8e8e8;
+}
+
+.dlg-opinion-mgr .public-opinion-list .list-group {
+  height: 300px;
+  min-height: 300px;
+  max-height: 320px;
+  overflow: auto;
+}
+
+.dlg-opinion-mgr .public-opinion-list .list-group .search-no-opinion {
+  padding: 10px;
+  display: inline-block;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.dlg-opinion-mgr .alert-danger {
+  background-color: transparent;
+  color: #e33033;
+  float: left;
+  line-height: 34px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.dlg-opinion-mgr .alert-danger i {
+  margin-right: 7px;
+}
+
+.dlg-opinion-mgr .user-opinion-list .list-group a.list-group-item i.glyphicon-remove {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
+
+.dlg-opinion-mgr .user-opinion-list .list-group a.list-group-item i.glyphicon-arrow-down {
+  position: absolute;
+  top: 1em;
+  right: 3em;
+}
+
+.dlg-opinion-mgr .user-opinion-list .list-group a.list-group-item i.glyphicon-arrow-up {
+  position: absolute;
+  top: 1em;
+  right: 5em;
+}
+
+.list-group .item-text-tip {
+  text-align: center;
+  margin-top: 95px;
+  font-size: 14px;
+  color: #ccc;
+}
+.recent_opinion_list .list-group-item,
+.user-opinion-list .list-group-item {
+  position: relative;
+}
+.recent_opinion_list .list-group-item .group-item-text,
+.user-opinion-list .list-group-item .group-item-text {
+  display: inline-block;
+  width: 347px;
+  vertical-align: middle;
+  word-break: break-all;
+  padding: 6px 0 6px 20px;
+  border: 1px solid transparent;
+}
+.recent_opinion_list .list-group-item .group-item-text {
+  width: 820px;
+}
+.user-opinion-list .list-group-item .group-item-text.isEditable {
+  padding: 6px 8px;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.user-opinion-list .list-group-item .group-item-text[contenteditable]:focus {
+  outline: none;
+  box-sizing: border-box;
+}
+.recent_opinion_list .list-group-item.initStyle:before,
+.user-opinion-list .list-group-item.initStyle:before {
+  content: '';
+  position: absolute;
+  top: 17px;
+  left: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: block;
+  background: #ccc;
+}
+.recent_opinion_list .list-group-item .group-item-text + span,
+.user-opinion-list .list-group-item .group-item-text + span {
+  vertical-align: middle;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.user-opinion-list .edit-opinion-box {
+  background: rgba(72, 140, 238, 0.15);
+  padding: 4px;
+}
+
+.user-opinion-list .edit-opinion-box .edit-opinion {
+  width: 376px;
+}
+
+.user-opinion-list .edit-opinion-box textarea {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  padding: 4px 6px;
+  line-height: 20px;
+  border: 1px solid #dddddd;
+  word-break: break-all;
+  color: #666666;
+  font-size: 14px;
+  outline: none;
+}
+
+.user-opinion-list .edit-opinion-box textarea:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.custom-add-opinion {
+  border: 1px solid #e8e8e8;
+  padding: 0;
+  height: 422px;
+}
+
+.custom-add-opinion + div {
+  padding-right: 0;
+}
+
+.custom-add-opinion + div .panel {
+  height: 422px;
+  border-radius: 0;
+  border: 1px solid #e8e8e8;
+  box-shadow: none;
+}
+
+.custom-add-opinion + div .panel .user-opinion-title {
+  padding-left: 10px;
+  position: relative;
+  color: #333;
+  font-size: 14px;
+}
+
+.custom-add-opinion + div .panel .user-opinion-title:before {
+  position: absolute;
+  top: 3px;
+  left: -4px;
+  content: '';
+  width: 4px;
+  height: 15px;
+  display: block;
+  background: #488cee;
+  border-radius: 2px;
+}
+
+.custom-add-opinion + div .panel .panel-body {
+  height: 376px;
+  padding: 0;
+}
+
+.custom-add-opinion .nav-tabs {
+  background: #f6f6f6;
+  padding-left: 6px;
+  padding-top: 6px;
+}
+
+.custom-add-opinion .nav-tabs li a {
+  height: 35px;
+  line-height: 35px;
+  color: #333;
+  padding: 0 20px;
+}
+
+.custom-add-opinion .nav-tabs li a:hover {
+  color: #488cee;
+  background: transparent;
+  border-color: transparent;
+}
+
+.custom-add-opinion .nav-tabs li.active a:hover {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+}
+
+.custom-add-opinion .nav-tabs li:not(:first-of-type) {
+  margin-left: 15px;
+}
+
+.custom-add-opinion .nav-tabs > li.active > a,
+.custom-add-opinion .nav-tabs > li.active > a:focus,
+.custom-add-opinion .nav-tabs > li.active > a:hover {
+  color: #488cee;
+  /*background: transparent;*/
+}
+
+.custom-add-opinion .row textarea {
+  border: none;
+  height: 340px;
+  box-shadow: none;
+  outline: none;
+}
+
+.custom-add-opinion .row textarea:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.custom-add-opinion .custom-input-btn {
+  height: 39px;
+  background: #f6f6f6;
+  box-shadow: 0px -1px 0px 0px rgba(232, 232, 232, 1);
+  text-align: right;
+  padding: 2px 4px 2px 0;
+}
+.recent_opinion_list {
+  height: 402px;
+  margin-top: 10px;
+  border: 1px solid #e8e8e8;
+}
+
+.recent_opinion_list a.list-group-item,
+.user-opinion-list .list-group a.list-group-item {
+  color: #666;
+  max-height: initial;
+  line-height: 20px;
+  padding: 4px 8px 4px 4px;
+  margin-bottom: 0;
+  cursor: initial;
+}
+.recent_opinion_list a.list-group-item i,
+.user-opinion-list .list-group .list-group-item i {
+  color: #999999;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.user-opinion-list .list-group .list-group-item i:not(:first-of-type) {
+  margin-right: 20px;
+  font-size: 14px;
+}
+.recent_opinion_list a.list-group-item i:hover,
+.user-opinion-list .list-group .list-group-item i:hover {
+  color: #488cee;
+}
+
+.user-opinion-list .list-group .list-group-item:not(:last-of-type) {
+  box-shadow: none;
+}
+
+.user-opinion-list .list-group .list-group-item:hover {
+  background: rgba(72, 140, 238, 0.15) !important;
+}
+
+/* 签署管理——弹出框结束 */
+
+/* 签署意见——下拉框开始 */
+
+.wf_opinion .opinion-select {
+  padding: 0px;
+  margin: 0px;
+  width: 88px;
+  font-size: 11px;
+  height: 24px;
+  text-align: left;
+}
+
+.wf_opinion .opinion-select-label {
+  border-radius: 0 0 0 0;
+  height: 24px;
+  line-height: 24px;
+  text-align: left;
+  color: #0f599c;
+}
+
+.wf_opinion .chosen-single {
+  border-radius: 0 0 0 0;
+}
+
+.wf_opinion .chosen-single {
+  background: none repeat scroll 0 0 #fafafa;
+  box-shadow: none;
+  height: 24px;
+  line-height: 24px;
+  text-align: left;
+  color: #0f599c;
+  border-top: 1px solid #d6d8d7;
+  border-right: 1px solid #e7e8e9;
+  border-bottom: 1px solid #d5d9dc;
+  border-left: 1px solid #dfe1e0;
+}
+
+.wf_opinion .chosen-container-active .chosen-single {
+  border-color: #4492c9;
+}
+
+.wf_opinion .chosen-drop {
+  color: #0f599c;
+  text-align: left;
+}
+
+.wf_opinion .chosen-container-active .chosen-drop {
+  border-color: #4492c9;
+}
+
+/* 签署意见——下拉框结束 */
+
+/* 签署意见——文本输入域开始 */
+
+.collapse {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: height 0.35s ease;
+  -moz-transition: height 0.35s ease;
+  -o-transition: height 0.35s ease;
+  transition: height 0.35s ease;
+}
+
+.collapse.in {
+  height: auto;
+}
+
+.wf_opinion .sign-opinion-input {
+  border: none;
+  vertical-align: top;
+  position: absolute;
+  z-index: 1;
+  left: 115px;
+  width: 540px;
+  height: 26px;
+}
+
+.sign-opinion-input textarea {
+  float: left;
+  margin: 0;
+  padding: 2px;
+  border-top: 1px solid #d6d8d7;
+  width: 504px;
+  height: 20px;
+  overflow: hidden;
+  outline: none;
+}
+
+.sign-opinion-input textarea:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.sign-opinion-input .dropdown {
+  margin-top: 1px;
+}
+
+.wf_opinion .sign-open {
+  cursor: pointer;
+  right: 30px;
+  bottom: 0px;
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  background: url('../../../../resources/theme/images/v1_icon.png') no-repeat scroll 0 -200px transparent;
+}
+
+.wf_opinion .sign-close {
+  cursor: pointer;
+  right: 30px;
+  bottom: 0px;
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  background: url('../../../../resources/theme/images/v1_icon_top_close.png') no-repeat scroll 0 0 transparent;
+}
+
+/* 签署意见——文本输入域结束 */
+
+/* 签署意见——意见选择开始 */
+
+.btn-sign-opinion {
+  margin-top: 2px;
+  height: 22px;
+  width: 22px;
+  background: url('../../../../resources/pt/images/workflow/sign_opinion_0.png') no-repeat;
+  float: left;
+}
+
+.open .btn-sign-opinion {
+  background: url('../../../../resources/pt/images/workflow/sign_opinion_1.png') no-repeat;
+}
+
+.wf_opinion .accordion {
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  border-top: 1px solid #ddd6d4;
+  border-bottom: 1px solid #d9d5d8;
+  border-top: 1px solid #ddd6d4;
+}
+
+.wf_opinion .accordion-group {
+  margin-bottom: 1px;
+  border: none;
+}
+
+.wf_opinion .accordion-body {
+  background-color: #fff;
+  border: none;
+  max-height: 30em;
+  overflow-y: scroll;
+  overflow-x: auto;
+}
+
+.wf_opinion .accordion-inner {
+  border: 1px solid #c3c3c3;
+  padding: 0px;
+}
+
+.wf_opinion .accordion-inner ul {
+  overflow: auto;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+.wf_opinion .accordion-inner ul li {
+  margin: 0px;
+  padding: 8px 15px;
+  border-bottom: 1px solid #d9d9d9;
+  text-align: left;
+  line-height: 20px;
+}
+
+.wf_opinion .accordion-inner ul li:hover {
+  background: none;
+  background-color: #3399ff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.wf_opinion .accordion-inner ul li a {
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0px;
+  margin: 0px;
+}
+
+.wf_opinion .dropdown-menu li > a {
+  clear: both;
+  color: #333;
+  display: block;
+  font-weight: normal;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.wf_opinion .accordion-inner ul li a:hover {
+  background: none;
+  background-color: #3399ff;
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+}
+
+.wf_opinion .accordion-inner-single {
+  border: none;
+  padding: 0px;
+}
+
+.wf_opinion .accordion-inner-single ul li:hover {
+  background-color: #0081c2;
+}
+
+.wf_opinion .accordion-inner-single ul li a:hover {
+  background-color: #0081c2;
+}
+
+.wf_opinion .dropdown-custom {
+  border-radius: 0 0 0 0 !important;
+  border: 1px solid #a1a1a1;
+  padding-bottom: 1px;
+  background: #efefef;
+  min-width: 262px;
+}
+
+.wf_opinion .dropdown-custom > li > a {
+  padding: 0px;
+  margin: 0px;
+}
+
+.wf_opinion .nav-header {
+  text-align: right;
+}
+
+.wf_opinion .nav-header .icon-cog-blue {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  background: url('../../../../resources/pt/images/workflow/process.png') no-repeat scroll -102px -97px transparent;
+}
+
+.wf_opinion .nav-header span {
+  cursor: pointer;
+  color: #174c92;
+}
+
+.wf_opinion .nav-header span:hover {
+  color: #ff7200;
+}
+
+.wf_opinion .accordion {
+  margin-bottom: 0px;
+}
+
+.wf_opinion .navbar {
+  float: right;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  padding: 0px;
+}
+
+.wf_opinion .navbar .nav,
+.wf_opinion .navbar-inner {
+  min-height: 22px;
+  width: 22px;
+  height: 22px;
+  width: 22px;
+}
+
+.wf_opinion .nav > li > a {
+  padding: 0px;
+}
+
+.wf_opinion .dropdown > .dropdown-menu.pull-right:before,
+.dropdown-menu.pull-right.dropdown-caret:before {
+  left: auto;
+  right: 9px;
+}
+
+.wf_opinion .dropdown > .dropdown-menu:before,
+.dropdown-menu.dropdown-caret:before {
+  border-bottom: 7px solid rgba(0, 0, 0, 0.2);
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  display: inline-block;
+  left: 9px;
+  position: absolute;
+  top: -7px;
+}
+
+.wf_opinion .accordion-heading {
+  background-color: #0f5a9c;
+  position: relative;
+}
+
+.wf_opinion .accordion-heading .accordion-toggle:after {
+  color: #4c8fbd;
+  display: inline-block;
+  font-family: FontAwesome;
+  font-size: 16px;
+  line-height: 18px;
+  position: absolute;
+  right: 6px;
+  text-align: center;
+  width: 14px;
+}
+
+.wf_opinion .accordion-heading .accordion-toggle {
+  color: #f8ffff;
+  position: relative;
+  color: #f8ffff;
+  text-align: left;
+}
+
+.wf_opinion .accordion-heading .accordion-toggle-icon {
+  bottom: 11px;
+  right: 11px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  position: absolute;
+  background: url('../../../../resources/pt/images/workflow/process.png') no-repeat scroll -69px -91px transparent;
+}
+
+.wf_opinion .accordion-heading .accordion-toggle-icon.collapsed {
+  background: url('../../../../resources/pt/images/workflow/process.png') no-repeat scroll -69px -121px transparent;
+}
+
+.wf_opinion .accordion-heading a {
+  text-decoration: none;
+}
+
+.wf_opinion .accordion-heading .accordion-toggle.collapsed:after {
+  color: #667799;
+}
+
+.wf_opinion .accordion-heading .accordion-toggle:after {
+  color: #4c8fbd;
+  display: inline-block;
+  font-family: FontAwesome;
+  font-size: 16px;
+  line-height: 18px;
+  position: absolute;
+  right: 6px;
+  text-align: center;
+  width: 14px;
+}
+
+.wf_opinion .accordion-heading .accordion-toggle.collapsed {
+  color: #f8ffff;
+  color: #f8ffff;
+  font-weight: normal;
+  color: #f8ffff;
+}
+
+/* 签署意见——意见选择结束 */
+
+/* 签署意见结束 */
+
+/* 办理过程图形过程开始 */
+
+#process {
+  margin: 0 auto;
+  margin-top: 14px;
+  width: 875px;
+  padding: 22px 0 40px 0px;
+  min-width: 875px;
+}
+
+#process .proce {
+  width: 120px;
+  height: 20px;
+  float: left;
+  position: relative;
+}
+
+#process .proce1 {
+  margin-left: 45px;
+  width: 125px;
+  background: url('../../../../resources/pt/images/workflow/process.png') no-repeat scroll -111px -14px transparent;
+}
+
+#process .proce2 {
+  width: 219px;
+  background: url('../../../../resources/pt/images/workflow/process.png') repeat-x scroll -17px -35px transparent;
+}
+
+#process .proce2_start {
+  margin-left: 49px;
+  width: 122px;
+  background: url('../../../../resources/pt/images/workflow/process.png') repeat-x scroll -114px -35px transparent;
+}
+
+#process .proce3 {
+  width: 205px;
+  background: url('../../../../resources/pt/images/workflow/process.png') no-repeat scroll -31px -55px transparent;
+}
+
+#process .proce4 {
+  width: 160px;
+  background: url('../../../../resources/pt/images/workflow/process.png') no-repeat scroll -108px -74px transparent;
+}
+
+.proce ul {
+  margin-top: -20px;
+  position: absolute;
+  width: 320px;
+  list-style: none;
+  text-align: center;
+  margin-left: -22px;
+  padding: 0px;
+}
+
+.proce1 ul {
+  margin-left: -41px;
+}
+
+.proce2 ul {
+  width: 467px;
+}
+
+.proce2_start ul {
+  width: 274px;
+}
+
+.proce3 ul {
+  width: 440px;
+}
+
+.proce ul li.tx1,
+.proce ul li.tx2 {
+  font-size: 12px;
+  color: #686868;
+}
+
+.proce ul li.tx2 {
+  margin-top: 17px;
+}
+
+.proce ul li.tx3 {
+  color: #686868;
+}
+
+.view_process {
+  height: 20px;
+  line-height: 20px;
+}
+
+.view_process .view_process_img {
+  height: 15px;
+  background: url('../../../../resources/pt/images/workflow/process.png') no-repeat scroll -220px -94px transparent;
+}
+
+.view_process .view_process_img:hover {
+  cursor: pointer;
+}
+
+.view_process a {
+  height: 20px;
+  padding-left: 20px;
+  font-size: 12px;
+  color: #2468a9;
+  text-decoration: none;
+}
+
+.view_process a:hover {
+  color: #ff7200;
+  text-decoration: none;
+}
+
+/* 办理过程图形过程结束 */
+
+/* add by huanglinchuan 2014.10.18 begin*/
+
+/*modified by huanglinchuan 2014.10.27 begin*/
+
+.floatHeader {
+  position: fixed;
+  z-index: 2;
+  top: 0px;
+  height: 92px;
+  border-bottom: 2px solid #cccccc;
+}
+
+/*modified by huanglinchuan 2014.10.27 end*/
+
+.formHeader_top0 {
+  margin-top: 0px !important;
+}
+
+.floatHeaderBack {
+  position: relative;
+  z-index: -2;
+  top: 0px;
+  height: 92px;
+  border-bottom: none;
+  display: none;
+}
+
+/* add by huanglinchuan 2014.10.18 end*/
+
+#dlg_choose_specific_user .query-fields,
+#dlg_choose_one_user .query-fields {
+  float: right;
+}
+
+.wf-dlg .radio input[type='radio'],
+.checkbox input[type='checkbox'] {
+  margin-left: 0px;
+}
+
+.link-title {
+  margin-left: 2em;
+  cursor: pointer;
+}
+
+/* 子流程承办情况开始 */
+
+.share-data-header,
+.distribute-info-header,
+.task-operation-header {
+  width: 100%;
+  background-color: #f6f9fe;
+  padding: 7px 0px 7px 10px;
+  border: 1px solid #e8e8e8;
+}
+
+.wf-share-data {
+  margin-bottom: 6px;
+}
+
+.wf-share-data .btn-group-header {
+  border-left: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8;
+}
+
+.wf-share-data .share-data-header .arrow {
+  font-size: 12px;
+  color: #999999;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+}
+
+.wf-share-data .collapsed .arrow {
+  transform: rotate(-90deg);
+}
+
+.wf-share-data .btn-group-header .btn-group .dropdown-menu li:hover {
+  color: #488cee;
+  background-color: #e4eefc;
+}
+
+.wf-share-data .work-process-details .collapse-btn {
+  text-align: center;
+  position: absolute;
+  z-index: 9;
+  bottom: 0;
+  height: 14px;
+  width: 70px;
+  background-color: #f5f5f5;
+  border-radius: 2px 2px 0 0;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.wf-share-data .work-process-details .collapsed i {
+  transform: rotate(180deg);
+}
+
+.wf-share-data .work-process-details .collapse-btn i {
+  font-size: 4px;
+  display: inline-block;
+  position: relative;
+  top: -5px;
+}
+
+/*.btn-group-header button {*/
+
+/*	background: #fff;*/
+
+/*    border: 0px solid #ddd;*/
+
+/*    color: #007aa7;*/
+
+/*    font-size: 14px;*/
+
+/*    height: 28px;*/
+
+/*    padding: 0 20px;*/
+
+/*    border-radius: 3px;*/
+
+/*    font-weight: bold;*/
+
+/*}*/
+
+.sub-flow-file-info ul {
+  margin-top: 20px;
+}
+
+.wf-distribute-info .filename {
+  color: #4b9ad2;
+  cursor: pointer;
+}
+
+.wf-share-data table tr td {
+  word-break: break-all;
+}
+
+.wf-share-data th.col-checkbox {
+  width: 3em;
+  max-width: 3em;
+}
+
+.wf-share-data th.col-checkbox input {
+  opacity: 1;
+  position: relative;
+  margin: 0 10px;
+}
+
+.wf-share-data th.col-order {
+  width: 3.5em;
+  min-width: 3.5em;
+}
+
+.wf-share-data th.col-todo-user,
+.wf-share-data th.col-todoname {
+  width: 15em;
+  min-width: 10em;
+  max-width: 20em;
+}
+
+.wf-share-data th.col-task,
+.wf-share-data th.col-currenttaskname {
+  width: 15em;
+  min-width: 6em;
+}
+
+.wf-share-data th.col-current-user,
+.wf-share-data th.col-currenttodousername {
+  width: 15em;
+  min-width: 10em;
+  max-width: 20em;
+}
+
+.wf-share-data th.col-current-user,
+.wf-share-data th.col-custom {
+  width: 15em;
+  min-width: 10em;
+  max-width: 20em;
+}
+
+.wf-share-data th.col-current-user,
+.wf-share-data th.col-duetime,
+.wf-share-data th.col-remainingtime {
+  width: 10em;
+  min-width: 6em;
+  max-width: 15em;
+}
+
+.wf-share-data th.col-current-user,
+.wf-share-data th.col-workprocesses {
+  width: 25em;
+  min-width: 15em;
+  max-width: 40em;
+}
+
+.wf-share-data th.col-current-user,
+.wf-share-data th.col-resultfiles {
+  width: 15em;
+  min-width: 10em;
+  max-width: 20em;
+}
+
+.wf-share-data th.col-feedback-time {
+  min-width: 6em;
+}
+
+.wf-share-data th.col-handle-info {
+  width: 25em;
+  min-width: 15em;
+  max-width: 25em;
+}
+
+.wf-share-data th.col-result-files {
+  width: 10em;
+  min-width: 10em;
+  max-width: 20em;
+}
+
+.wf-distribute-info th.col-order {
+  width: 3.5em;
+  min-width: 3.5em;
+}
+
+.wf-task-operation th.col-order {
+  width: 3.5em;
+  min-width: 3.5em;
+}
+
+.dyform .wf-share-data .table th {
+  background: #f6f6f6;
+  border: 1px solid #e8e8e8;
+}
+
+.dyform .wf-distribute-info .table th {
+  background: #f6f6f6;
+  border: 1px solid #ccc;
+}
+
+.dyform .wf-task-operation .table th {
+  background: #f6f6f6;
+  border: 1px solid #ccc;
+}
+
+.dyform .wf-share-data .table td input[type='checkbox'] {
+  opacity: 1;
+  position: relative;
+  margin: 0 10px;
+}
+
+.wf-share-data .share-data-header .dispense-process {
+  margin-left: 10px;
+}
+.wf-share-data .share-data-header .dispense-process .circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #488cee;
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  line-height: 28px;
+}
+.wf-share-data .share-data-header .dispense-process .detail-text {
+  margin-left: 6px;
+  color: #488cee;
+  font-size: 14px;
+  font-weight: 400;
+}
+.wf-share-data .share-data-error {
+  background: #fef5f5;
+  border: 1px solid #e33033;
+  border-radius: 4px;
+  padding: 7px 15px;
+  margin: 3px 0 5px 6px;
+  display: none;
+}
+.wf-share-data .share-data-error i {
+  color: #e33033;
+}
+.wf-share-data .share-data-error .color-red {
+  color: #e33033;
+}
+.wf-share-data .share-data-error a {
+  color: #488cee;
+  margin-right: 6px;
+}
+.wf-share-data .table .dispatch-status {
+  color: #488cee;
+}
+.wf-share-data .table .dispatch-status.fail {
+  color: #e33033;
+}
+.container-error-table .fixed-table-container .fixed-table-pagination .pagination-detail {
+  display: none;
+}
+/* 子流程承办情况结束 */
+
+/*表单签署意见*/
+
+.dyform u.opinion_task_name {
+  color: #333;
+  font-weight: bold;
+}
+
+.dyform .opinion_user_name {
+  font-weight: normal;
+  color: #333;
+  margin: 0 10px 0 15px;
+}
+
+.dyform .opinion_user_name i {
+  font-weight: normal;
+  color: #999;
+  margin-left: 10px;
+}
+
+.dyform span .opinion_user_text {
+  color: #666;
+  margin-top: 10px;
+  line-height: 20px;
+  word-break: break-all;
+}
+
+.dyform span .opinion_user_text:not(:last-of-type) {
+  margin-bottom: 20px;
+}
+
+.workflow-job-li-select {
+  width: 100%;
+  height: 42px;
+  background: rgba(72, 140, 238, 0.05);
+  border-radius: 21px;
+  margin-bottom: 10px;
+}
+
+.workflow-job-li-select > label {
+  font-weight: 400;
+  color: #666666;
+  padding-left: 15px;
+  padding-top: 15px;
+  line-height: 12px;
+}
+
+.workflow-job-li-select > i {
+  float: right;
+  color: #aaaaaa;
+  font-size: 20px;
+  margin-top: 7px;
+  margin-right: 10px;
+}
+
+.workflow-job-li-select-active {
+  background: #488cee;
+}
+
+.workflow-job-li-select-active > label,
+.workflow-job-li-select-active > i {
+  color: white;
+}
+
+.workflow-job-li-select:hover {
+  background: #488cee;
+}
+
+.workflow-job-li-select:hover > label,
+.workflow-job-li-select:hover > i {
+  color: white;
+}
+
+@media screen and (max-width: 1366px) {
+  .wf-opinion .list-group a.list-group-item .item-text {
+    height: 34px;
+  }
+  .wf-opinion .opinion-recent .list-group,
+  .wf-opinion .opinion-common .list-group {
+    min-height: 170px;
+    height: 170px !important;
+  }
+  .wf-opinion .list-group a.list-group-item,
+  a.list-group-item > p,
+  .user-opinion-list .list-group a.list-group-item {
+    max-height: 34px;
+    line-height: 34px;
+    font-size: 12px;
+  }
+  .list-group .list-group-item .sign-btn {
+    margin-top: 5px;
+    font-size: 12px;
+  }
+  .wf-opinion .tab-content > span.wf-opinion-mgr {
+    top: -25px;
+  }
+  .wf-opinion .tab-content > span.wf-opinion-mgr i {
+    font-size: 14px;
+  }
+}

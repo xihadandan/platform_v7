@@ -1,0 +1,64 @@
+/**
+  * 流程设计器 - 属性配置 （列表配置）
+  * 例如消息分发配置
+  */
+
+.work-flow-settings li {
+  position: relative;
+  line-height: 32px;
+  margin-bottom: 2px;
+  padding: 0 64px 0 10px;
+  background: @background-light;
+  border-radius: @border-radius-base;
+
+  // 配置项名称
+  .name {
+    width: 100%;
+  }
+
+  // 操作区域
+  .btn-group {
+    .absolute(50% 10px false false);
+
+    height: 26px;
+    margin-top: -13px;
+    line-height: 24px;
+
+    .well-btn {
+      width: 26px;
+      min-width: auto;
+      margin-right: 0;
+      padding: 0;
+      background: transparent;
+
+      i {
+        margin-right: 0;
+      }
+    }
+
+    .switch-wrap {
+      margin-top: 3px;
+      margin-right: 10px;
+      vertical-align: top;
+    }
+  }
+
+  .work-flow-settings-item {
+    position: relative;
+    padding-top: 5px;
+
+    label {
+      .absolute(false false false 0);
+
+      font-size: @font-size-base;
+      font-weight: normal;
+      color: @text-color;
+      margin: 0;
+      padding: 0;
+    }
+
+    &.has-label {
+      padding-left: 32px;
+    }
+  }
+}

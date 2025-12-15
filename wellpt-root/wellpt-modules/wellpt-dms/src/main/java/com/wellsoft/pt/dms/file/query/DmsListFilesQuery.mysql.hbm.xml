@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="dmsListFilesQuery">
+        <![CDATA[
+        select t.*
+            <if isNotBlank(joinProjectionClause)>
+		        , ${joinProjectionClause}
+		    </if>
+        from (
+            select	t1.uuid          	as uuid,
+                    t1.file_name     	as name,
+                    ''		 			as code,
+                    t1.content_type  	as content_type,
+                    t1.file_size 		as file_size,
+                    t1.data_def_uuid	as data_def_uuid,
+                    t1.data_uuid     	as data_uuid,
+                    t1.folder_uuid		as folder_uuid,
+                    t1.status			as status,
+                    t1.creator 			as creator,
+                    t3.user_name 		as creator_name,
+                    t1.create_time 		as create_time,
+                    t1.modifier			as modifier,
+                    t1.modify_time 		as modify_time
+		    from dms_file t1 left join user_info t3 on t1.creator = t3.user_id
+            where t1.folder_uuid = :folderUuid and t1.status <> '0'
+                and (
+                    exists (
+                        select oaa.uuid
+                        from dms_object_assign_action oaa
+                        where oaa.org_id in (:orgIds)
+                            and oaa.object_id_identity = t1.uuid
+                    )
+                    or t1.creator = :unit_in_expression_org_id
+                    or exists (
+                        select distinct oar.object_identity_uuid
+                        from dms_object_assign_role oar,
+                             dms_object_assign_role_item oari,
+                             dms_role r,
+                             dms_role_action ra,
+                             dms_folder_configuration fc
+                             <if sids?? && (sids?size > 1000)>,
+                                (${userOrgIdsTemplate}) u_ -- 用户相关ID
+                             </if>
+                        where oar.uuid = oari.assign_role_uuid
+                          and oar.role_uuid = r.uuid
+                          and r.uuid = ra.role_uuid
+                          and ra.action = 'readFile'
+                          and oar.object_identity_uuid = fc.ref_object_identity_uuid
+                          <if sids?? && (sids?size > 1000)>
+                            and oari.org_id = u_.org_id
+                          <else>
+                            and oari.org_id in(:sids)
+                          </if>
+                          and fc.folder_uuid = t1.folder_uuid
+                    )
+                )
+
+        ) t <if isNotBlank(joinTableClause)>
+                ${joinTableClause}
+		    </if>
+            where 1 = 1
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderString)>
+                ${orderString}
+            <else>
+                order by t.code asc
+            </if>
+        ]]>
+    </sql-query>
+</hibernate-mapping>

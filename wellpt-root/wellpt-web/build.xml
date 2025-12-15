@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="wellpt-web">
+    <property environment="env"/>
+    <property name="message_src.link" value="../wellpt-message/src/main/java"/>
+    <property name="dytable_src.link" value="../wellpt-dytable/src/main/java"/>
+    <property name="basicdata_src.link" value="../wellpt-basicdata/src/main/java"/>
+    <property name="mail_src.link" value="../wellpt-mail/src/main/java"/>
+    <property name="file_src.link" value="../wellpt-file/src/main/java"/>
+    <property name="core_src.link" value="../wellpt-core/src/main/java"/>
+    <property name="ECLIPSE_HOME" value="F:/eclipse"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <property name="encodeing" value="utf-8"/>
+
+    <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
+        <fileset dir="../../apache-tomcat-7.0.32/lib/">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+    <path id="Web App Libraries.libraryclasspath">
+        <fileset dir="WebContent/WEB-INF/lib/">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+    <path id="wellpt-web.classpath">
+        <pathelement location="bin"/>
+        <path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy encoding="${encodeing}" includeemptydirs="false" todir="bin">
+            <fileset dir="src/main/java">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy encoding="${encodeing}" includeemptydirs="false" todir="bin">
+            <fileset dir="src/main/resources">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac includeantruntime="false" destdir="bin" source="${source}" target="${target}" encoding="${encodeing}">
+            <src path="src/main/java"/>
+            <classpath refid="wellpt-web.classpath"/>
+        </javac>
+        <javac includeantruntime="false" debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}"
+               target="${target}" encoding="${encodeing}">
+            <src path="src/main/resources"/>
+            <classpath refid="wellpt-web.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes."
+            name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+
+    <target name="war" depends="clean,init,build">
+        <war destfile="wellpt-web.war" basedir="WebContent" encoding="${encodeing}">
+            <classes dir="bin">
+            </classes>
+        </war>
+    </target>
+</project>

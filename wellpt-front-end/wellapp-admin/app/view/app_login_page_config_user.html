@@ -1,0 +1,93 @@
+<div style="margin-top: 10px" class="custom-login-config">
+  <form class="form-horizontal" id="loginConfigForm">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">登录页</label>
+      <div class="col-sm-10">
+        <div class="btn-radio" data-val="0">默认登录页</div>
+        <div class="btn-radio" data-val="1">单位自定义登录页</div>
+        <div class="enableOauth" style="display: none; color: #999; margin-top: 10px">系统已开启统一认证登录，无法使用自定义登录页</div>
+      </div>
+    </div>
+    <div class="custom-login-content" style="display: none">
+      <div class="form-group">
+        <label class="col-sm-2 control-label required">访问地址</label>
+        <div class="col-sm-8">
+          <div class="login-url">
+            <div class="login-url-content" id="login-url"></div>
+            <div class="login-url-tag"><input type="text" name="unitLoginPageUri" id="unitLoginPageUri" placeholder="访问地址后缀" /></div>
+          </div>
+          <div class="login-url-tip">设置单位自定义登录页后，用户须统一使用以上地址访问应用。</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">标题</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="pageTitle" name="pageTitle" />
+          <input type="hidden" name="uuid" id="uuid" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">背景图</label>
+        <div class="col-sm-8">
+          <input type="file" class="loginImages" name="pageBackgroundImage" id="pageBackgroundImage" style="display: none" />
+          <img
+            title="点击图片进行替换"
+            accept=".png"
+            id="pageBackgroundImagePreview"
+            style="max-width: 100px; max-height: 100px; cursor: pointer"
+            onclick="document.getElementById('pageBackgroundImage').click()"
+          />
+          <input type="button" class="well-btn w-btn-success btn-preview" value="预览" style="vertical-align: bottom" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">布局风格</label>
+        <div class="col-sm-8">
+          <select name="pageStyle" class="form-control" id="pageStyle">
+            <option value="" selected="selected">默认</option>
+            <option value="_right">右边风格</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">LOGO图片</label>
+        <div class="col-sm-8">
+          <input type="file" class="loginImages" name="pageLogo" id="pageLogo" style="display: none" />
+          <img
+            title="点击图片进行替换"
+            accept=".png"
+            id="pageLogoPreview"
+            style="max-width: 410px; max-height: 90px; cursor: pointer"
+            onclick="document.getElementById('pageLogo').click()"
+          />
+          <input type="button" class="well-btn w-btn-success btn-preview" value="预览" style="vertical-align: bottom" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">页脚内容</label>
+        <div class="col-sm-8">
+          <input type="file" id="uploadFile" style="display: none" />
+          <textarea id="footerContent" name="footerContent"></textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="row bottom-btns-bar" style="position: inherit">
+    <div class="center-block" style="width: 200px; text-align: center">
+      <button class="well-btn w-btn-primary" id="loginConfigSave">保存</button>
+      <button class="well-btn w-btn-success" id="preview-login">预览</button>
+    </div>
+  </div>
+
+  <input type="hidden" id="pageConfUuid" />
+  <input type="hidden" id="loginBoxHardware" />
+  <input type="hidden" id="loginBoxKey" />
+  <input type="hidden" id="loginBoxCode" />
+  <input type="hidden" id="loginBoxDing" />
+  <input type="hidden" id="loginBoxAccountRememberUse" />
+  <input type="hidden" id="loginBoxAccountRememberPas" />
+  <input type="hidden" id="loginBoxAccountForgetPassw" />
+  <input type="hidden" id="enableOauth" />
+  <input type="hidden" id="userNamePlaceholder" />
+</div>

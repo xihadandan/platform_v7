@@ -1,0 +1,28 @@
+.biz-org-manager-tab {
+  --w-widget-tab-pane-container-padding: 0;
+  > .ant-tabs-content {
+    .tab-pane-container {
+      .widget-row {
+        margin-bottom: 0;
+        .widget-menu {
+          height: 100%;
+          border-right: 1px solid var(--w-border-color-light);
+        }
+        .widget-col > .widget-table {
+          padding: var(--w-padding-xs) var(--w-padding-2xs);
+        }
+        .widget-table-card-list {
+          --w-card-border-radius: var(--w-border-radius-2);
+        }
+        .widget-card {
+          --w-card-head-title-weight: bold;
+          --w-card-head-padding: 0 var(--w-padding-2xs);
+          --w-card-body-padding-lr: var(--w-padding-2xs);
+          .ant-card-head {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}

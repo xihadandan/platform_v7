@@ -1,0 +1,20 @@
+{
+  "js": {},
+  "css": {
+    "iconfont": {
+      "path": "/iconfont/iconfont.css",
+      "name": "iconfont",
+      "order": 400
+    },
+    "pt-iconfont": {
+      "path": "/pt-iconfont/iconfont.css",
+      "name": "pt-iconfont",
+      "order": 401
+    },
+    "summernote": {
+      "path": "/js/bootstrap-wysiwyg/summernote/summernote",
+      "name": "summernote",
+      "order": 109
+    }
+  }
+}

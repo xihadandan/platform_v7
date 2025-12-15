@@ -1,0 +1,258 @@
+
+<div id="widget_mobile_list_view">
+	<form id="widget_mobile_list_view_form" class="form-horizontal">
+		<div id="widget_mobile_list_view_tabs">
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a
+					href="#widget_mobile_list_view_tabs_base_info">基础信息</a></li>
+				<li role="presentation"><a
+					href="#widget_mobile_list_view_tabs_properties_info">字段定义</a></li>
+				<li role="presentation"><a
+					href="#widget_bootstrap_table_tabs_button_info">按钮定义</a></li>
+				<li role="presentation"><a
+					href="#widget_bootstrap_table_tabs_query_info">查询定义</a></li>
+				<li role="presentation"><a
+					href="#widget_bootstrap_table_tabs_item_info">数据项内容定义</a></li>
+			</ul>
+			<div class="tab-content" style="height: 500px">
+				<div role="tabpanel" class="tab-pane active"
+					id="widget_mobile_list_view_tabs_base_info">
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">名称</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option"
+								name="name" id="name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="template" class="col-sm-2 control-label">模板</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option"
+								name="template" id="template">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="dataStoreName" class="col-sm-2 control-label">数据仓库</label>
+						<div class="col-sm-10">
+							<input type="hidden" class="w-configurer-option"
+								name="dataStoreName" id="dataStoreName" /> <input type="text"
+								class="form-control w-configurer-option" height="34px"
+								id="dataStoreId" name="dataStoreId" />
+						</div>
+					</div>
+
+					<div class="form-group" style='display: none'>
+						<label for="templateHtml" class="col-sm-2 control-label">模板HTML</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option"
+								height="34px" id="templateHtml" name="templateHtml" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option"
+								height="34px" name="jsModule" id="jsModule">
+						</div>
+					</div>
+          <div class="form-group">
+						<label for="uniJsModule" class="col-sm-2 control-label">uni-app二开组件名</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option" name="uniJsModule" id="uniJsModule">
+						</div>
+					</div>
+          <div class="form-group">
+            <label for="detailPageUrl" class="col-sm-2 control-label">uni-app详情页地址</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" name="detailPageUrl" id="detailPageUrl">
+            </div>
+          </div>
+					<div class="form-group">
+						<label for="hasSearch" class="col-sm-2 control-label">搜索</label>
+						<div class="col-sm-10 checkbox">
+							<input class="w-configurer-option" type="checkbox" id="hasSearch"
+								name="hasSearch" value="true">
+              <label for="hasSearch"> 启用</label>
+						</div>
+					</div>
+          <div class="form-group">
+						<label for="showSortOrder" class="col-sm-2 control-label">显示排序选择列表</label>
+						<div class="col-sm-10 checkbox">
+							<input class="w-configurer-option" type="checkbox" id="showSortOrder"
+								name="showSortOrder" value="true">
+              <label for="showSortOrder"> 启用</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="defaultCondition" class="col-sm-2 control-label">默认查询条件</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option "
+								height="34px" name="defaultCondition" id="defaultCondition">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="pageSize" class="col-sm-2 control-label">每页大小</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option"
+								height="34px" id="pageSize" name="pageSize" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="readMarker" class="col-sm-2 control-label">阅读状态</label>
+						<div class="col-sm-10 checkbox">
+              <input
+								class="w-configurer-option" type="checkbox" id="readMarker"
+								name="readMarker" value="true">
+							<label for="readMarker"> 标示阅读状态
+							</label>
+						</div>
+					</div>
+					<div class="form-group" id="div_readMarker_definition">
+						<label for="readMarkerField" class="col-sm-2 control-label">标示字段<font color="red">*</font></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option "
+								height="34px" name="readMarkerField" id="readMarkerField">
+						</div>
+					</div>
+					<div class="form-group" id="div_pkey">
+						<label for="primaryField" class="col-sm-2 control-label">主键字段</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option "
+								height="34px" name="primaryField" id="primaryField">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="editable" class="col-sm-2 control-label">编辑列表</label>
+						<div class="col-sm-10 checkbox">
+              <input class="w-configurer-option" type="checkbox" id="editable" name="editable" value="true">
+							<label for="editable"> 可编辑  <span class="small" style="color:#999">备注：该项必须基于搜索，请先勾选搜索</span></label>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane"
+					id="widget_mobile_list_view_tabs_properties_info">
+          <div class="row">
+            <div class="form-group">
+              <label for="displayStyle1" class="col-sm-2 control-label">数据展示风格</label>
+              <div class="col-sm-10 radio">
+                <label>
+                  <input type="radio" class="w-configurer-option" value="1" name="displayStyle" id="displayStyle1" checked="checked"/><label for="displayStyle1">列表</label>
+                </label>
+                <label>
+                  <input type="radio" class="w-configurer-option" value="2" name="displayStyle" id="displayStyle2"/><label for="displayStyle2">卡片</label>
+                </label>
+              </div>
+            </div>
+          </div>
+					<div id="div_properties_info_toolbar"
+						class="btn-group btn_properties_info">
+						<button id="btn_row_up_property" type="button"
+							class="btn btn-default">
+							<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+						</button>
+						<button id="btn_row_down_property" type="button"
+							class="btn btn-default">
+							<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+						</button>
+					</div>
+					<table id="table_properties_info" class="properties_info"
+						data-height="400"></table>
+				</div>
+				<div role="tabpanel" class="tab-pane"
+					id="widget_bootstrap_table_tabs_button_info">
+					<div id="div_button_info_toolbar" class="btn-group btn_button_info">
+						<button id="btn_add_button" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+						</button>
+						<button id="btn_delete_button" type="button"
+							class="btn btn-default">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+						</button>
+						<button id="btn_row_up_button" type="button"
+							class="btn btn-default">
+							<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+						</button>
+						<button id="btn_row_down_button" type="button"
+							class="btn btn-default">
+							<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+						</button>
+					</div>
+					<table id="table_button_info" class="definition_info " data-height="400"></table>
+				</div>
+				<div role="tabpanel" class="tab-pane"
+					id="widget_bootstrap_table_tabs_query_info">
+					<div class="form-group">
+						<div class="col-sm-10 checkbox">
+              <input class="w-configurer-option" type="checkbox" value="true" id="keyword" name="keyword">
+							<label for="keyword"> 关键字查询</label>
+              <input class="w-configurer-option" type="checkbox" value="true"
+								id="fieldSearch" name="fieldSearch">
+              <label for="fieldSearch"> 字段查询</label>
+              <label class="checkbox-inline hidden"> <input
+								class="w-configurer-option" type="checkbox" value="true"
+								id="allowSaveTemplate" name="allowSaveTemplate">允许保存为模板
+							</label>
+						</div>
+					</div>
+					<div id="div_field_search_info" class="form-group"
+						style="padding-left: 10px; padding-right: 10px;">
+						<div class="form-group" style="display:none">
+						<div class="col-sm-10 ">
+							 <label class="checkbox-inline"> <input
+								class="w-configurer-option" type="checkbox" value="true"
+								id="expandFieldSearch" name="expandFieldSearch"><label for="expandFieldSearch">默认展开字段查询</label>
+							</label>
+						</div>
+					</div>
+						<div id="div_field_search_info_toolbar"
+							class="btn-group btn_field_search_info">
+							<button id="btn_add_field" type="button" class="btn btn-default">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+							</button>
+							<button id="btn_delete_field" type="button"
+								class="btn btn-default">
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+							</button>
+							<button id="btn_row_up_field" type="button"
+								class="btn btn-default">
+								<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+							</button>
+							<button id="btn_row_down_field" type="button"
+								class="btn btn-default">
+								<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+							</button>
+						</div>
+						<table id="table_field_search_info" class="definition_info"
+							data-height="430"></table>
+					</div>
+				</div>
+        <div role="tabpanel" class="tab-pane"
+					id="widget_bootstrap_table_tabs_item_info">
+          <div class="form-group">
+            <label for="itemContentType1" class="col-sm-2 control-label">数据项内容</label>
+            <div class="col-sm-10 radio">
+              <label>
+                <input type="radio" class="w-configurer-option" value="1" name="itemContentType" id="itemContentType1" checked="checked"/><label for="itemContentType1">使用内置模板</label>
+              </label>
+              <label>
+                <input type="radio" class="w-configurer-option" value="2" name="itemContentType" id="itemContentType2"/><label for="itemContentType2">自定义</label>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+						<label for="templateHtmlCode" class="col-sm-2 control-label">模板HTML</label>
+						<div class="col-sm-10">
+              <code id="templateHtmlCode"></code>
+						</div>
+					</div>
+          <div class="form-group">
+						<div class="col-sm-12">
+							<textarea id='custom_template_html' name='custom_template_html' cols='50' rows='10' />
+              说明：数据项内容引用的变量用大括号标识，如数据仓库返回的行数据title字段值通过{title}引用
+						</div>
+					</div>
+        </div>
+			</div>
+		</div>
+	</form>
+</div>

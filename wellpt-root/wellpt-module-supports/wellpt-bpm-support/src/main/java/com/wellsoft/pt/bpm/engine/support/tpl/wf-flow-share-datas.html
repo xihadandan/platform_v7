@@ -1,0 +1,115 @@
+<div class="panel-group">
+    {@each shareDatas as shareData,index}
+    <div class="wf-share-data">
+        <div class="share-data-header ${index==0?'':'collapsed'}" data-toggle="collapse"
+             href="#${shareData.uniqueTime}">
+            <span class="arrow iconfont icon-ptkj-shixinjiantou-xia"></span>
+            <span style="font-weight: bold; font-size: 15px;">
+		{@if shareData.title != null && shareData.title != ""}
+			${shareData.title}
+		{@else}
+			承办情况
+		{@/if}
+		{@if shareDatas.length > 1}
+			${shareDatas.length - index}
+		{@/if}
+		</span>
+        </div>
+        <div id="${shareData.uniqueTime}" class="panel-collapse collapse ${index==0?'in':''}"
+             style="overflow: visible;">
+            <div class="btn-group-header" style="padding: 5px;" businessType="${shareData.businessType}"
+                 businessRole="${shareData.businessRole}" dataSource="${dataSource}"
+                 belongToTaskInstUuid="${shareData.belongToTaskInstUuid}">
+                {@each shareData.buttons as button,btnIndex}
+                {@if shareData.buttons.length == 3 || btnIndex < 2}
+                <button type="button" btnid="${button.id}" name="btn_${button.id}"
+                        class="well-btn w-btn-primary ${button.className}" style="margin-right: 5px;">${button.name}
+                </button>
+                {@/if}
+                {@/each}
+
+
+                {@if shareData.buttons.length > 3}
+                <div class="btn-group">
+                    <button type="button" class="well-btn w-btn-primary w-line-btn dropdown-toggle"
+                            data-toggle="dropdown" aria-expanded="false">
+                        <span class="add_icon">更多</span>
+                        <span class="glyphicon glyphicon-menu-down" style="font-size: 12px;"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" style="min-width: 100px;">
+                        {@each shareData.buttons as button,btnIndex}
+                        {@if btnIndex >= 2}
+                        <li btnid="${button.id}" name="btn_${button.id}" class="${button.className}"
+                            style="line-height: 28px;text-align: center;cursor:pointer;">${button.name}
+                        </li>
+                        {@/if}
+                        {@/each}
+                    </ul>
+                </div>
+                {@/if}
+
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    {@if index == 0 && (shareData.major == true || shareData.supervise == true)}
+                    <th class="col-checkbox">
+                        <input type="checkbox" name="checkAll"/>
+                    </th>
+                    {@/if}
+                    <th class="col-order">序号</th>
+                    {@each shareData.columns as column,columnIndex}
+                    <th class="${column.className}">${column.name}</th>
+                    {@/each}
+                </tr>
+                </thead>
+                <tbody>
+                {@each shareData.shareItems as shareItem,itemIndex}
+                <tr>{@if index == 0 && (shareData.major == true || shareData.supervise == true)}
+                    <td><input type="checkbox" name="checkOne" taskInstUuid="${shareItem.taskInstUuid}"
+                               flowInstUuid="${shareItem.flowInstUuid}"/></td>
+                    {@/if}
+                    <td>${parseInt(itemIndex) + 1}</td>
+                    {@each shareItem.columnValues as rowData,valueIndex}
+
+                    {@if rowData.index == 'todoName'}
+                    {@if dataSource == '1'}
+                    <td class="todoName">${rowData.value}</td>
+                    {@else}
+                    <td class="todoName"><a class="share-work-item"
+                                            href="${ctx}/workflow/work/v53/view/subflow/share?taskInstUuid=${shareItem.taskInstUuid}&flowInstUuid=${shareItem.flowInstUuid}&belongToFlowInstUuid=${shareData.belongToFlowInstUuid}"
+                                            target="_blank">${rowData.value}</a></td>
+                    {@/if}
+                    {@else if rowData.index == 'workProcesses'}
+                    <td>
+                        <div class="work-process-details" taskInstUuid="${shareItem.taskInstUuid}"
+                             flowInstUuid="${shareItem.flowInstUuid}" style="position: relative;"></div>
+                    </td>
+                    {@else if rowData.type == 'attach'}
+                    <td>
+                        <div class="work-flow-attach" shareDataIndex="${index}" shareItemIndex="${itemIndex}"
+                             columnValueIndex="${valueIndex}">
+                            {@each rowData.value as resultFile,fileIndex}
+                            <div>
+                                <a fileId="${resultFile.fileID}" class="share-file-item">${resultFile.fileName}</a>
+                            </div>
+                        </div>
+                        {@/each}
+                    </td>
+                    {@else if rowData.index == 'dueTime' && shareItem.timingState == 3 }
+                    <td class="dueTime" style="color:red;">${rowData.value}</td>
+                    {@else if rowData.index == 'currentTodoUserName'}
+                    <td class="currentTodoUserName" title="${rowData.value}">${rowData.value}</td>
+                    {@else}
+                    <td>${rowData.value}</td>
+                    {@/if}
+                    {@/each}
+                </tr>
+                {@/each}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    {@/each}
+</div>

@@ -1,0 +1,7 @@
+{
+  "WidgetFormDatePicker": {
+    "placeholder": "Please select date",
+    "startDate": "Start Date",
+    "endDate": "End Date"
+  }
+}

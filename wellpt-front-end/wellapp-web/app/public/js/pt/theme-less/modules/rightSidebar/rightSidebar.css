@@ -1,0 +1,140 @@
+/*hover color variables*/
+/*disabled color variables*/
+/*border-radius function start*/
+/*border-radius function end*/
+/*padding function start*/
+/*padding function end*/
+/*margin function start*/
+/*margin function end*/
+/*text-overflow function start*/
+/*text-overflow function end*/
+/*background function start*/
+/*background function end*/
+/*font function start */
+/*font function end*/
+/*navbar function start*/
+/*navbar function end*/
+/*set modal svg-font color*/
+/*set modal svg-font color*/
+/*右侧办理流程弹窗*/
+.right-sidebar.sidebar-open {
+  right: 0;
+  background-color: #fff;
+  border-left: 0px solid #e7eaec;
+  border-top: 0px solid #e7eaec;
+  overflow: hidden;
+  position: fixed;
+  top: 67px;
+  /*107*/
+  width: 458px !important;
+  z-index: 99;
+  -moz-box-shadow: -3px 0px 8px #888;
+  /* 老的 Firefox */
+  box-shadow: -3px 0px 8px #888;
+}
+.right-sidebar-dakai {
+  z-index: 98;
+  width: 24px;
+  height: 50px;
+  background: url(images/dakai.jpg) center left no-repeat;
+  position: fixed;
+  top: 67px;
+  right: 0px;
+}
+.right-sidebar-dakai:hover {
+  background: url(images/dakai-hover.jpg) center left no-repeat;
+}
+.right-sidebar {
+  background-color: #fff;
+  border-left: 1px solid #e7eaec;
+  border-top: 1px solid #e7eaec;
+  overflow: hidden;
+  position: fixed;
+  top: 45px;
+  width: 260px !important;
+  z-index: 99;
+  bottom: 0;
+  right: -260px;
+  display: none;
+}
+.right-sidebar .nav-tabs {
+  border-bottom: none;
+  text-align: center;
+  font-size: 16px;
+  width: 220px;
+  height: 40px;
+  margin: 20px auto;
+}
+.right-sidebar .nav-tabs > li {
+  float: left;
+  width: 50%;
+}
+.right-sidebar .nav-tabs > li > a {
+  margin: 0 auto;
+  line-height: 40px;
+  border-radius: 0;
+  padding: 0px;
+  cursor: pointer;
+}
+.right-sidebar .nav-tabs > li.active > a {
+  margin: 0 auto;
+  line-height: 40px;
+  border-radius: 0;
+  padding: 0px;
+  cursor: pointer;
+}
+.right-sidebar .liucheng-time {
+  width: 415px;
+  background: url(images/liucheng-tagbg.jpg) center left no-repeat;
+  height: 36px;
+  line-height: 36px;
+  color: #fff;
+  padding-left: 86px;
+  margin-left: 24px;
+}
+.right-sidebar .timeline-item:first-child .liucheng-time {
+  background: url(images/liucheng1.jpg) center left no-repeat;
+}
+.right-sidebar .liucheng-content {
+  width: 415px;
+  background: url(images/liucheng-bg.jpg) center left;
+  min-height: 60px;
+  line-height: 1.8;
+  color: #404040;
+  font-size: 14px;
+  padding: 20px 20px 0 86px;
+  margin-left: 24px;
+}
+.right-sidebar .liucheng-content .baidi {
+  background: #fff;
+  width: 344px;
+  height: 36px;
+  margin-left: -15px;
+  border-top: 20px #f5fafe solid;
+}
+.right-sidebar .now .liucheng-time {
+  background: url(images/liucheng2.jpg) center left no-repeat;
+}
+.right-sidebar .liucheng-tongguo {
+  width: 415px;
+  background: url(images/tongguo1.jpg) center left no-repeat;
+  height: 120px;
+  margin-left: 24px;
+}
+.right-sidebar .liucheng-tongguo.pass {
+  width: 415px;
+  background: url(images/tongguo2.jpg) center left no-repeat;
+}
+.right-sidebar .guanbi {
+  z-index: 999;
+  width: 24px;
+  height: 50px;
+  background: url(images/guanbi.jpg) center left no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.right-sidebar .guanbi:hover {
+  background: url(images/guanbi-hover.jpg) center left no-repeat;
+}
+/*右侧办理流程弹窗end*/

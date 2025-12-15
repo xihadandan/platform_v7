@@ -1,0 +1,37 @@
+{
+  "WidgetSubform": {
+    "selectAll": "Select all",
+    "noData": "No data",
+    "notFoundData": "No data found",
+    "modalEditButtonTitle": "Edit data through pop ups",
+    "edit": "Edit",
+    "uploadFilePlaceMessage": "Click or drag the file to upload to this area",
+    "downloadImportTemplateFilePrefixText": "Download Import Template",
+    "uploadDoneImportFilePrefixText": "uploaded",
+    "successImportFileResultPrefixText": "Successfully imported",
+    "selectImportColumnModalTitle": "Select Export Column",
+    "defaultTabPaneTitle": "Tab",
+    "totalPages": "Total {totalPages} pages",
+    "totalRecords": "{total} records",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "column": {
+      "operation": "Operation",
+      "serialNumber": "Serial Number"
+    },
+    "search": {
+      "confirmButtonTitle": "search",
+      "resetButtonTitle": "reset",
+      "collapseButtonText": "collapse",
+      "searchMoreText": "more",
+      "keywordSearchPlaceholder": "Please enter a keyword"
+    },
+    "message": {
+      "unDeleteDefaultRow": "Row {indexs} is a default undeletable data item",
+      "formatXls": "Only xls or xlsx file formats are allowed",
+      "nodataExport": "No data available for export",
+      "unSelectedExport": "No data selected for export",
+      "unSelectedColumnExport": "No columns selected for export"
+    }
+  }
+}

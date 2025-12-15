@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <!-- 根据职位ID查询用户工作信息 -->
+    <sql-query name="getUserWorkInfosByJobIdQuery">
+        <![CDATA[
+        select * from multi_org_user_work_info t
+        where t.job_ids like '%${jobId}%'
+    ]]>
+    </sql-query>
+
+    <!-- 批量删除指定单位的所有用户的工作冗余信息 -->
+    <sql-query name="deleteAllUserByUnit">
+        <![CDATA[
+		delete from multi_org_user_work_info 
+		where system_unit_id = :unitId
+	]]>
+    </sql-query>
+
+
+    <sql-query name="countUserByJob">
+        <![CDATA[
+        select count(distinct(a.uuid))
+			from multi_org_user_account a
+			left join multi_org_user_work_info i on a.id = i.user_id
+			where 1 = 1
+			and exists (
+			    select 1 from multi_org_user_work_info i where a.id = i.user_id
+			    and ( ${jobSql} )
+			)
+			<if excludeUsers??>
+			    and a.id not in (:excludeUsers)
+			</if>
+			<if isNotBlank( systemUnitId )>
+				and (
+					a.system_unit_id = :systemUnitId
+				)
+			</if>
+        ]]>
+    </sql-query>
+
+    <sql-query name="getUserWorkInfoByUserIds">
+        <![CDATA[
+        SELECT
+	        T.*
+        FROM
+            multi_org_user_work_info T
+        WHERE
+            T.user_id in(:userIds)
+    ]]>
+    </sql-query>
+
+
+</hibernate-mapping>

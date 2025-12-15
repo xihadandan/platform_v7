@@ -1,0 +1,352 @@
+@charset 'utf-8';
+
+/*----------------group by start----------------------*/
+
+.bootstrap-table .table > tbody > tr.groupBy {
+  cursor: pointer;
+}
+
+.bootstrap-table .table > tbody > tr.groupBy > td,
+.dyform .bootstrap-table .table > tbody > tr.groupBy > td {
+  position: static;
+  padding-left: 10px;
+  display: table-cell;
+  background-color: white;
+}
+
+.bootstrap-table .table > tbody > tr.groupBy > td:before,
+.dyform .bootstrap-table .table > tbody > tr.groupBy > td:before {
+  margin-right: 5px;
+}
+
+.bootstrap-table .table > tbody > tr.hidden + tr.detail-view {
+  display: none;
+}
+
+/*----------------group by end----------------------*/
+
+.dyform .bootstrap-table .fixed-table-container {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.dyform .fixed-table-footbar {
+  margin-top: 4px;
+}
+
+.dyform .bootstrap-table .table {
+  border: none;
+}
+
+.dyform .bootstrap-table .table > thead > tr > th {
+  background: #f6f6f6;
+  vertical-align: middle;
+}
+
+.dyform .bootstrap-table .table > tbody > tr > td {
+  padding: 0px;
+  vertical-align: middle;
+}
+
+.dyform .fixed-table-header > table > thead > tr > th,
+.dyform .fixed-table-body > table > thead > tr > th,
+.dyform .fixed-table-body > table > tbody > tr > td {
+  border: 1px solid rgba(221, 221, 221, 0.7);
+  border-top-width: 0px;
+  border-left-width: 0px;
+}
+
+.dyform .bootstrap-table button {
+  margin-right: 8px;
+}
+
+.dyform .bootstrap-table .btn_add,
+.dyform .bootstrap-table .btn_edit,
+.dyform .bootstrap-table .btn_add_sub,
+.dyform .bootstrap-table .btn_clear,
+.dyform .bootstrap-table .btn_del,
+.dyform .bootstrap-table .btn_exp_subform,
+.dyform .bootstrap-table .btn_imp_subform,
+.dyform .bootstrap-table .btn_up,
+.dyform .bootstrap-table .btn_down {
+  display: none;
+}
+
+.dyform .bootstrap-table.bt-enable-add .btn_add,
+.dyform .bootstrap-table.bt-enable-add-sub .btn_add_sub,
+.dyform .bootstrap-table.bt-enable-clear .btn_clear,
+.dyform .bootstrap-table.bt-enable-del .btn_del,
+.dyform .bootstrap-table.bt-enable-exp .btn_exp_subform,
+.dyform .bootstrap-table.bt-enable-imp .btn_imp_subform {
+  display: inline-block;
+}
+
+.dyform .bootstrap-table.bt-enable-add .btn_up,
+.dyform .bootstrap-table.bt-enable-del .btn_up,
+.dyform .bootstrap-table.bt-enable-imp .btn_up,
+.dyform .bootstrap-table.bt-enable-add .btn_down,
+.dyform .bootstrap-table.bt-enable-del .btn_down,
+.dyform .bootstrap-table.bt-enable-imp .btn_down {
+  display: inline-block;
+}
+
+.dyform .bootstrap-table.bt-enable-edit .btn_edit {
+  display: inline-block;
+}
+
+.dyform .bootstrap-table.bt-enable-imp .fixed-table-toolbar .btn {
+  margin: 5px 8px 5px 0;
+}
+
+.dyform .fixed-table-toolbar .bs-bars {
+  margin: 0;
+  width: 100%;
+  text-align: right;
+  background: rgba(72, 140, 238, 0.1);
+}
+
+.dyform .subform-title {
+  display: none;
+}
+
+.dyform .fixed-table-toolbar .subform-title {
+  display: inline-block;
+  float: left;
+  color: #666666;
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 10px;
+  margin: 5px 0px;
+}
+
+.dyform .bt-inline-toolbar {
+  white-space: nowrap;
+}
+
+.dyform .bt-inline-toolbar button {
+  background-color: white;
+  border-color: #488cee;
+  color: #488cee;
+}
+
+.dyform a.editable > input {
+  width: 100%;
+  color: #666666;
+  padding: 2px 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(221, 221, 221, 1);
+}
+
+.dyform .editable-inline .form-inline .form-group {
+  display: block;
+}
+
+.dyform .table-hover[formid] > tbody > tr:hover {
+  background-color: #f6f9fe;
+}
+
+.dyform .fixed-table-container thead th .th-inner,
+.dyform .fixed-table-container tbody td .th-inner {
+  font-size: 14px;
+  color: #333333;
+  font-weight: 400;
+  width: auto;
+  min-width: 36px;
+}
+
+.dyform .fixed-table-body .bs-checkbox {
+  vertical-align: middle;
+}
+
+.editable-popup .form-inline .form-group {
+  display: block;
+}
+
+table.dyform-subtable {
+  table-layout: fixed;
+}
+
+.dyform-subtable tr td a[data-pk] {
+  display: inline-block;
+  color: #404040;
+  text-decoration: none;
+  font-style: normal;
+  border-bottom: none;
+  cursor: default;
+  word-break: break-all;
+  white-space: normal;
+}
+.dyform-subtable a[data-pk] pre {
+  background: transparent;
+  border: none;
+  color: #666;
+  font-size: 14px;
+}
+
+.dyform-subtable a[data-pk] > input[readonly] {
+  background: white !important;
+}
+
+.dyform-subtable a[data-pk]:hover,
+.dyform-subtable a[data-pk]:active {
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.dyform-subtable span.editable-inline,
+.dyform-subtable span.editable-inline .editable-input {
+  width: 100%;
+}
+
+.dyform-subtable span.editable-inline .editableform .control-group {
+  margin-left: 0px;
+}
+
+.dyform-subtable span.editable-inline .form-inline .editable-buttons {
+  display: block;
+  margin-left: 0px;
+}
+
+.fixed-table-container .bs-checkbox .th-inner {
+  padding: 0;
+}
+
+.dyform-subtable .bs-checkbox input[type='radio'],
+.dyform-subtable .bs-checkbox input[type='checkbox'] {
+  display: none;
+}
+
+.dyform-subtable .bs-checkbox input[type='radio'] + label,
+.dyform-subtable .bs-checkbox input[type='checkbox'] + label {
+  vertical-align: baseline;
+  margin-bottom: 0;
+  float: initial;
+  font-size: 14px;
+  color: #666;
+  font-family: iconfont !important;
+  font-weight: normal;
+}
+
+.dyform-subtable .bs-checkbox input[type='checkbox'] + label:before {
+  content: '\e8f2';
+  color: #999;
+  font-size: 16px;
+  margin-right: 3px;
+}
+
+.dyform-subtable .bs-checkbox input[type='checkbox']:checked + label:before {
+  content: '\e8de';
+  color: #488cee;
+}
+
+.dyform-subtable .bs-checkbox input[type='radio'] + label:before {
+  content: '\e8db';
+  color: #999;
+}
+
+.dyform-subtable .bs-checkbox input[type='radio']:checked + label:before {
+  content: '\e8d6';
+  color: #488cee;
+}
+
+.bootstrap-group-table .fixed-table-body {
+  overflow-y: auto;
+}
+
+/*--------------table-form start--------------------------------*/
+
+table.table-form {
+  margin: 0;
+  padding: 0;
+  border-width: 0px;
+}
+
+table.table-form tr {
+  margin: 0;
+  padding: 0;
+  border-width: 0px;
+}
+
+table.table-form tr > td {
+  margin: 0;
+  padding: 0;
+  border-width: 0px;
+}
+
+.table-form-item {
+  position: relative;
+  border: 1px dashed #cecece;
+  padding: 18px 0px 0px;
+  margin: 18px 0px 0px;
+}
+
+.table-form-header {
+  height: 36px;
+  line-height: 36px;
+  position: absolute;
+  top: -18px;
+  padding: 0px 15px;
+  width: 100%;
+}
+
+.table-form-header .btn {
+  float: right;
+  margin-left: 15px;
+  color: #488cee;
+  background-color: white;
+  border-color: white;
+}
+
+.table-form-header .btn:hover {
+  border-color: #488cee;
+}
+
+.table-form-header .btn:active {
+  color: white;
+  background-color: #488cee;
+}
+
+.table-form-body {
+}
+
+.table-form-footer {
+}
+
+.table-form-item .dyform {
+  padding: 0px 10px 15px;
+}
+
+.table-form .btn_add,
+.table-form .btn_edit,
+.table-form .btn_add_sub,
+.table-form .btn_clear,
+.table-form .btn_del,
+.table-form .btn_exp_subform,
+.table-form .btn_imp_subform,
+.table-form .btn_up,
+.table-form .btn_down {
+  display: none;
+}
+
+.table-form.bt-enable-add .btn_add,
+.table-form.bt-enable-add .btn_add_sub,
+.table-form.bt-enable-del .btn_clear,
+.table-form.bt-enable-del .btn_del,
+.table-form.bt-enable-exp .btn_exp_subform,
+.table-form.bt-enable-imp .btn_imp_subform {
+  display: inline-block;
+}
+
+.table-form.bt-enable-add .btn_up,
+.table-form.bt-enable-del .btn_up,
+.table-form.bt-enable-imp .btn_up,
+.table-form.bt-enable-add .btn_down,
+.table-form.bt-enable-del .btn_down,
+.table-form.bt-enable-imp .btn_down {
+  display: inline-block;
+}
+
+/*--------------table-form end--------------------------------*/

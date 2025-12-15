@@ -1,0 +1,119 @@
+<form id="time_service_form" style="margin-top: 15px">
+  <input type="hidden" id="uuid" name="uuid" />
+  <div class="well-form form-horizontal">
+    <div class="form-group">
+      <label for="name" class="well-form-label control-label required">名称：</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="name" name="name" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="id" class="well-form-label control-label required">ID：</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" name="id" id="id" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="code" class="well-form-label control-label">编号：</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="code" name="code" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="categoryUuid" class="well-form-label control-label">分类：</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="categoryUuid" name="categoryUuid" placeholder="请选择" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="timingMode" class="well-form-label control-label required">
+        计时方式
+        <div class="w-tooltip">
+          <i class="iconfont icon-ptkj-tishishuoming"></i>
+          ：
+          <div class="w-tooltip-content">
+            <strong>工作日：</strong>
+            根据工作时间中的工作日，以及每个工作日的工作时段进行计时
+            <br />
+            <strong>工作日（一天24小时）：</strong>
+            根据工作时间中的工作日，每个工作日固定按24小时进行计时
+            <br />
+            <strong>自然日：</strong>
+            根据自然日，每天固定按24小时进行计时
+          </div>
+        </div>
+      </label>
+      <div class="well-form-control">
+        <input type="hidden" id="timingMode" name="timingMode" />
+        <div style="width: 49%; display: inline-block">
+          <input type="hidden" class="form-control" id="timingMode1" name="timingMode1" />
+        </div>
+        <div style="margin-top: 10px">
+          <span style="color: #999; margin-right: 8px">启动后</span>
+          <input type="radio" name="includeStartTimePoint" id="includeStartTimePoint1" value="0" checked="checked" />
+          <label for="includeStartTimePoint1">从下一</label>
+          <div style="width: 20%; display: inline-block">
+            <input type="hidden" class="form-control" id="timingMode2" name="timingMode2" />
+          </div>
+          <label for="includeStartTimePoint1">开始计时</label>
+          <input type="radio" name="includeStartTimePoint" id="includeStartTimePoint2" value="1" />
+          <label for="includeStartTimePoint2">立即开始计时</label>
+        </div>
+        <div class="autoDelay">
+          <span style="display: inline-block; color: #999; margin-right: 8px">到期时间在非工作时间时</span>
+          <input type="checkbox" name="autoDelay" id="autoDelay" />
+          <label for="autoDelay">自动推迟到下一工作时间的起始点前</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="timeLimitType" class="well-form-label control-label required">时限类型：</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="timeLimitType" name="timeLimitType" placeholder="请选择" />
+      </div>
+    </div>
+
+    <div class="timeLimitType timeLimitType10" style="display: none">
+      <div class="form-group">
+        <label for="timeLimit1" class="well-form-label control-label required">时限：</label>
+        <div class="well-form-control">
+          <input type="text" class="form-control" id="timeLimit1" name="timeLimit1" style="width: 200px" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="timeLimitUnit1" class="well-form-label control-label required">时限单位：</label>
+        <div class="well-form-control">
+          <input type="text" class="form-control" id="timeLimitUnit1" name="timeLimitUnit1" placeholder="请选择" />
+        </div>
+      </div>
+    </div>
+
+    <div class="timeLimitType timeLimitType20" style="display: none">
+      <div class="form-group">
+        <label for="timeLimitUnit2" class="well-form-label control-label required">时限单位：</label>
+        <div class="well-form-control" style="width: 350px">
+          <input type="text" class="form-control" id="timeLimitUnit2" name="timeLimitUnit2" placeholder="请选择" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="timeLimit2" class="well-form-label control-label required">截止时间：</label>
+        <div class="timeLimit2">
+          <input type="text" class="form-control" id="timeLimit2" name="timeLimit2" placeholder="请选择" style="width: 350px" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="remark" class="well-form-label control-label">备注</label>
+      <div class="well-form-control">
+        <textarea class="form-control" id="remark" name="remark" placeholder="请输入内容"></textarea>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px">
+      <div class="col-sm-12 text-center">
+        <button type="button" class="well-btn w-btn-primary" id="btn_save_time_service">保存</button>
+      </div>
+    </div>
+  </div>
+</form>

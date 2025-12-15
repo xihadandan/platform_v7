@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="flowInstanceSystemQuery">
+        <![CDATA[
+		 select     t1.uuid     as  uuid,
+		            t1.system   as  system,
+		            t1.tenant   as  tenant
+		    from FlowInstance t1
+		 where t1.uuid = (select t2.flowInstance.uuid from TaskInstance t2 where t2.uuid = :taskInstUuid)
+	    ]]>
+    </sql-query>
+
+</hibernate-mapping>

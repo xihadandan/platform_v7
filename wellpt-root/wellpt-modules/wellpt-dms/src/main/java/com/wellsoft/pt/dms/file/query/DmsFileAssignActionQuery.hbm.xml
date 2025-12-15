@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="dmsFileAssignActionQuery">
+        <![CDATA[
+            select t1.org_id as org_id, t1.action as action from dms_object_assign_action t1
+            where t1.object_id_identity = :fileUuid
+                and t1.org_id in (:orgIds)
+	    ]]>
+    </sql-query>
+
+    <sql-query name="dmsFileAssignActionUserQuery">
+        <![CDATA[
+            select oari.org_id as org_id
+                from dms_object_assign_role oar,
+                     dms_object_assign_role_item oari,
+                     dms_role r,
+                     dms_role_action ra,
+                     dms_folder_configuration fc
+                where oar.uuid = oari.assign_role_uuid
+                  and oar.role_uuid = r.uuid
+                  and r.uuid = ra.role_uuid
+                  and ra.action in :actions
+                  and oar.object_identity_uuid = fc.ref_object_identity_uuid
+                  and fc.folder_uuid = (select f.folder_uuid from dms_file f where f.uuid = :fileUuid)
+
+                union
+
+                select oaa.org_id as org_id
+                from dms_object_assign_action oaa
+                where oaa.action in :actions
+                  and oaa.object_id_identity = :fileUuid
+	    ]]>
+    </sql-query>
+</hibernate-mapping>

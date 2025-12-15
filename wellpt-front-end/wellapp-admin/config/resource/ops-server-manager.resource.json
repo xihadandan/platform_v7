@@ -1,0 +1,23 @@
+{
+  "js": {
+    "AppOpsServerListDevelopment": {
+      "path": "/ops-mgr/AppOpsServerListDevelopment",
+      "name": "平台应用_运维管理_应用节点信息列表二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment"
+      ]
+    },
+    "AppOpsServerDetailDevelopment": {
+      "path": "/ops-mgr/AppOpsServerDetailDevelopment",
+      "name": "平台应用_运维管理_应用节点信息查看二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "global",
+        "system-admin"
+      ]
+    }
+  },
+  "css": {}
+}

@@ -1,0 +1,41 @@
+{
+  "js": {
+    "AppPrintTptDetailsWidgetDevelopment": {
+      "path": "/printtemplate-mgr/AppPrintTptDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_打印模板详情_HTML组件二开",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "AppPtMgrDetailsWidgetDevelopment",
+        "formBuilder",
+        "printtemplateUtils",
+        "ckeditor",
+        "ztree",
+        "comboTree"
+      ]
+    },
+    "AppPrintTptListViewWidgetDevelopment": {
+      "path": "/printtemplate-mgr/AppPrintTptListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_打印模板列表_视图组件二开",
+      "dependencies": [
+        "AppPtMgrListViewWidgetDevelopment",
+        "printtemplateUtils"
+      ]
+    },
+    "AppPrintTptCateWidgetDevelopment": {
+      "path": "/printtemplate-mgr/AppPrintTptCateWidgetDevelopment",
+      "name": "平台应用_产品集成_打印模板分类树_二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "ztree",
+        "global",
+        "system-admin",
+        "wCommonPictureLib",
+        "minicolors",
+        "dependencyBootstrapTableModule",
+        "comboTree"
+      ]
+    }
+  },
+  "css": {}
+}

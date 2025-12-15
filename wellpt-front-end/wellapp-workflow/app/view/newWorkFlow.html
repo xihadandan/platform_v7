@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>新版流程定义</title>
+
+    {% for file in themeFiles %}
+    <link href="{{file}}" rel="stylesheet" />
+    {% endfor %}
+  </head>
+
+  <body>
+    <div class="new-work-flow-designer">
+      <div class="designer-header clear">
+        <div class="work-flow-title fl">流程设计</div>
+        <div class="work-flow-btns fr well-form-fontsize0">
+          <div id="workFlowSave" class="well-btn w-btn-primary">
+            <i class="iconfont icon-pt-ptkj-baocun"></i>
+            <span>保存</span>
+          </div>
+          <div id="workFlowSaveNew" class="well-btn w-btn-primary">
+            <i class="iconfont icon-pt-ptkj-baocun"></i>
+            <span>保存新版本</span>
+          </div>
+          <div id="workFlowExport" class="well-btn w-btn-primary w-line-btn">
+            <span>导出流程</span>
+          </div>
+          <!--<div id="workFlowHelp" class="well-btn w-btn-primary w-line-btn">-->
+          <!--<span>帮助</span>-->
+          <!--</div>-->
+        </div>
+        <div class="work-flow-download fr" style="display: none">
+          <div class="well-btn w-btn-primary">
+            <i class="iconfont icon-ptkj-xiazai"></i>
+            <span>下载流程图</span>
+          </div>
+        </div>
+      </div>
+      <div class="designer-body">
+        <div class="left-view-mode"></div>
+        <div id="designerLeft" class="designer-left">
+          <div class="designer-controls">
+            <div class="designer-controls-title">工具</div>
+            <ul class="designer-controls-tools">
+              <li data-type="DEFAULT">
+                <div class="icon choose-tool" title="选择工具"></div>
+                <span>选择工具</span>
+              </li>
+              <li data-type="DEFAULT">
+                <div class="icon drag-tool" title="移动画布"></div>
+                <span>移动画布</span>
+              </li>
+              <li data-type="BEELINE">
+                <div class="icon lineFlow-tool" title="直线流向"></div>
+                <span>直线流向</span>
+              </li>
+              <li data-type="CURVE">
+                <div class="icon curveFlow-tool" title="曲线流向"></div>
+                <span>曲线流向</span>
+              </li>
+            </ul>
+            <div class="designer-controls-title">节点</div>
+            <ul class="designer-controls-nodes">
+              <li data-type="BEGIN">
+                <div class="icon start-node" title="开始"></div>
+                <span>开始</span>
+              </li>
+              <li data-type="TASK">
+                <div class="icon link-node" title="环节"></div>
+                <span>环节</span>
+              </li>
+              <li data-type="CONDITION">
+                <div class="icon computed-node" title="判断点"></div>
+                <span>判断点</span>
+              </li>
+              <li data-type="END">
+                <div class="icon end-node" title="结束"></div>
+                <span>结束</span>
+              </li>
+            </ul>
+            <div class="designer-controls-title">子流程</div>
+            <ul class="designer-controls-subWorkFlows">
+              <li data-type="SUBFLOW">
+                <div class="icon subWorkFlow" title="子流程"></div>
+                <span>子流程</span>
+              </li>
+            </ul>
+            <div class="designer-controls-title">辅助</div>
+            <ul class="designer-controls-supports">
+              <!--<li data-type="DEFAULT">-->
+              <!--<div class="icon horizontal_swimlane" title="水平泳道"></div>-->
+              <!--<span>水平泳道</span>-->
+              <!--</li>-->
+              <!--<li data-type="DEFAULT">-->
+              <!--<div class="icon vertical_swimlane" title="垂直泳道"></div>-->
+              <!--<span>垂直泳道</span>-->
+              <!--</li>-->
+              <li data-type="LABEL">
+                <div class="icon annotation" title="注释"></div>
+                <span>注释</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="designer-main-wrap">
+          <iframe id="newWorkFlowDesigner" src="/html/newWorkFlowDesigner.html"></iframe>
+        </div>
+        <div class="right-view-mode"></div>
+        <div class="designer-right">
+          <ul id="workFlowMainTab" class="nav nav-tabs" role="tablist">
+            <li class="tab-noborder active" data-name="workflowProperties">
+              <a href="#workflowProperties" data-toggle="tab" aria-expanded="true">流程属性</a>
+            </li>
+            <li class="tab-noborder task-tab" style="display: none" data-name="nodeProperties">
+              <a href="#nodeProperties" data-toggle="tab">环节属性</a>
+            </li>
+            <li class="tab-noborder direct-tab" style="display: none" data-name="flowDirectProperties">
+              <a href="#flowDirectProperties" data-toggle="tab">流向属性</a>
+            </li>
+            <li class="tab-noborder subflow-tab" style="display: none" data-name="subFlowProperties">
+              <a href="#subFlowProperties" data-toggle="tab">子流程属性</a>
+            </li>
+            <li class="tab-noborder condition-tab" style="display: none" data-name="conditionProperties">
+              <a href="#conditionProperties" data-toggle="tab">条件属性</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane subtab active" name="workflowProperties" title="流程属性" id="workflowProperties">
+              <iframe id="propertiesFrame" src="/html/workflowProperties.html"></iframe>
+            </div>
+            <div class="tab-pane subtab" name="nodeProperties" title="环节属性" id="nodeProperties">
+              <iframe id="nodeFrame" name="nodeFrame" data-src="/html/linkProperties.html"></iframe>
+            </div>
+            <div class="tab-pane subtab" name="flowDirectProperties" title="流向属性" id="flowDirectProperties">
+              <iframe id="directionFrame" data-src="/html/flowDirectProperties.html"></iframe>
+            </div>
+            <div class="tab-pane subtab" name="subFlowProperties" title="子流程属性" id="subFlowProperties">
+              <iframe id="subFlowFrame" data-src="/html/subFlowProperties.html"></iframe>
+            </div>
+            <div class="tab-pane subtab" name="subFlowProperties" title="条件属性" id="conditionProperties">
+              <iframe id="conditionFrame" data-src="/html/conditionProperties.html"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="designer-footer"></div>
+    </div>
+    <script src="/static/js/utils/json2.js?v={{helper.resVer()}}"></script>
+    <script src="/static/js/pt/js/global.js?v={{helper.resVer()}}"></script>
+    <script src="/static/workflow/js/designer/JSConstant.js?v={{helper.resVer()}}"></script>
+    <script src="/static/workflow/js/designer/jquery.workflow.js?v={{helper.resVer()}}"></script>
+    <script src="/static/workflow/js/designer/newWorkflow.js?v={{helper.resVer()}}"></script>
+    <script src="/static/workflow/js/designer/x2js.min.js?v={{helper.resVer()}}"></script>
+    <script src="/static/workflow/js/designer/wellEasyTable.js?v={{helper.resVer()}}"></script>
+    <script src="/static/js/jquery.nicescroll/jquery.nicescroll.js?v={{helper.resVer()}}"></script>
+    <script src="/static/workflow/js/designer/newWorkflowDesigner.js?v={{helper.resVer()}}"></script>
+  </body>
+</html>

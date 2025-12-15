@@ -1,0 +1,187 @@
+<div>
+  <div class="handover-content handover-add">
+    <div class="handover-steps">
+      <div>
+        <span class="step doing">1</span>
+        <span>选择交接内容</span>
+      </div>
+      <div>
+        <span class="step">2</span>
+        <span>确认交接</span>
+      </div>
+      <div>
+        <span class="step">3</span>
+        <span>完成交接</span>
+      </div>
+    </div>
+    <div class="handover-body">
+      <div class="stepBody stepBody1">
+        <div class="handover-item">
+          <label>
+            <font style="color: #f00">*</font>
+            交接人
+          </label>
+          <div class="flex">
+            <input type="hidden" id="uuid" name="uuid" />
+            <input type="hidden" id="handoverPersonId" name="handoverPersonId" />
+            <input type="text" id="handoverPersonNameDialog" name="handoverPersonName" placeholder="请选择交接人" autocomplete="off" />
+            <div class="disabled-user ml20">
+              <i class="iconfont icon-oa-qingjia-wodeshenqing"></i>
+              选择已禁用人员
+            </div>
+          </div>
+        </div>
+        <div class="handover-item">
+          <label>
+            <font style="color: #f00">*</font>
+            接收人
+          </label>
+          <div>
+            <input type="hidden" id="receiverId" name="receiverId" />
+            <input type="text" id="receiverNameDialog" name="receiverName" autocomplete="off" placeholder="请选择接收人" />
+          </div>
+        </div>
+        <div class="handover-item">
+          <label>
+            <font style="color: #f00">*</font>
+            工作类型
+          </label>
+          <div style="width: 350px">
+            <input class="form-control" type="text" id="handoverWorkTypeName" name="handoverWorkTypeName" />
+            <input class="form-control" type="hidden" id="handoverWorkType" name="handoverWorkType" />
+          </div>
+        </div>
+        <div class="handover-item">
+          <label>
+            <font style="color: #f00">*</font>
+            交接内容
+          </label>
+          <div style="flex: 1">
+            <div class="workflow-item">
+              <input type="checkbox" id="todo" name="todo" checked />
+              <label for="todo">待办流程</label>
+            </div>
+            <div class="workflow-item">
+              <input type="checkbox" id="done" name="done" checked />
+              <label for="done">已办流程</label>
+              <input type="checkbox" id="done1" name="done1" />
+              <label for="done1">含已办结</label>
+            </div>
+            <div class="workflow-item">
+              <input type="checkbox" id="monitor" name="monitor" />
+              <label for="monitor">监控流程</label>
+              <input type="checkbox" id="monitor1" name="monitor1" />
+              <label for="monitor1" style="display: none">含已办结</label>
+            </div>
+            <div class="workflow-item">
+              <input type="checkbox" id="supervise" name="supervise" />
+              <label for="supervise">督办流程</label>
+              <input type="checkbox" id="supervise1" name="supervise1" />
+              <label for="supervise1" style="display: none">含已办结</label>
+            </div>
+            <div class="workflow-item">
+              <input type="checkbox" id="consult" name="consult" />
+              <label for="consult">查阅流程</label>
+              <input type="checkbox" id="consult1" name="consult1" />
+              <label for="consult1" style="display: none">含已办结</label>
+            </div>
+            <div class="mt20">
+              <div id="handoverContentsName" class="handoverContentsName"></div>
+              <input type="hidden" id="handoverContentsId" name="handoverContentsId" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stepBody stepBody2" style="display: none">
+        <div class="handover-item">
+          <label>交接执行时间</label>
+          <div>
+            <input type="radio" id="handoverWorkTimeSetting1" name="handoverWorkTimeSetting" value="1" checked />
+            <label for="handoverWorkTimeSetting1">
+              系统空闲时执行
+              <span>(推荐)</span>
+            </label>
+            <input type="radio" id="handoverWorkTimeSetting2" name="handoverWorkTimeSetting" value="2" />
+            <label for="handoverWorkTimeSetting2">立即执行</label>
+          </div>
+        </div>
+        <div class="handover-item">
+          <label>交接工作确认</label>
+          <div class="flex">
+            <button id="queryBtn" type="button" class="well-btn w-btn-primary">查询</button>
+            <div>查询将进行交接的工作</div>
+          </div>
+        </div>
+        <div class="handover-result" style="display: none">
+          <div>
+            根据您选择的交接内容，交接数据：
+            <span id="queryHandover" style="display: none">查询中...</span>
+          </div>
+          <div class="result-list"></div>
+        </div>
+        <div class="handover-item">
+          <label>通知接收人</label>
+          <div class="flex">
+            <div id="noticeHandoverPersonFlag" class="switch-wrap active"><span class="switch-radio"></span></div>
+            <div class="ml20 switch-tips">交接完成时将消息通知接收人</div>
+          </div>
+        </div>
+      </div>
+      <div class="stepBody stepBody3" style="display: none">
+        <i class="iconfont icon-ptkj-zhengquechenggongtishi"></i>
+        <div class="success">提交成功！</div>
+        <div class="step-tips">等待处理...</div>
+      </div>
+    </div>
+    <div class="handover-btns">
+      <button id="prevStepBtn" data-value="1" type="button" class="well-btn w-btn-primary w-btn-minor" style="display: none">上一步</button>
+      <button id="nextStepBtn" data-value="2" type="button" class="well-btn w-btn-primary">下一步</button>
+      <button id="handoverBtn" data-value="3" type="button" class="well-btn w-btn-primary" style="display: none">确定交接</button>
+      <button id="cancelBtn" type="button" class="btn btn-default">取消</button>
+    </div>
+  </div>
+  <div class="handover-content handover-edit" style="padding: 30px 20px; display: none">
+    <div style="min-height: 500px">
+      <div class="handover-item">
+        <label>交接人</label>
+        <div class="edit-info" id="edit-handoverPersonName"></div>
+      </div>
+      <div class="handover-item">
+        <label>接收人</label>
+        <div class="edit-info" id="edit-receiverName"></div>
+      </div>
+      <div class="handover-item">
+        <label>工作类型</label>
+        <div class="edit-info" id="edit-handoverWorkTypeName"></div>
+      </div>
+      <div class="handover-item">
+        <label>交接内容</label>
+        <div>
+          <div class="edit-info" id="edit-handoverWorkFlow"></div>
+          <div class="edit-info flex" id="edit-handoverContentsId"></div>
+        </div>
+      </div>
+      <div class="handover-item">
+        <label>操作人</label>
+        <div class="edit-info" id="edit-modifier" style="display: none"></div>
+        <div class="edit-info" id="edit-modifierName"></div>
+      </div>
+      <div class="handover-item">
+        <label>操作时间</label>
+        <div class="edit-info" id="edit-createTime"></div>
+      </div>
+      <div class="handover-item">
+        <label>执行时间</label>
+        <div class="edit-info" id="edit-handoverWorkTime"></div>
+      </div>
+      <div class="handover-result" style="display: none">
+        <label>交接结果</label>
+        <div class="result-list edit-info" id="edit-workHandoverStatus"></div>
+      </div>
+    </div>
+    <div class="handover-btns">
+      <button id="editBtn" type="button" class="well-btn w-btn-primary w-btn-minor">编辑</button>
+      <button id="closeBtn" type="button" class="btn btn-default">关闭</button>
+    </div>
+  </div>
+</div>

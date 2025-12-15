@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <!-- 获取所有组织的所有单位供给wselect2使用 -->
+    <sql-query name="queryOrgNodeListForSelect2ByType">
+        <![CDATA[
+		select e.id, e.name
+		from multi_org_element e
+		where e.type=:type
+		<if isNotBlank( name )>
+			and e.name like '%${name}%'
+		</if>
+		<if isNotBlank( excludeIds )>
+			and e.id not in ( :excludeIds )
+		</if>
+	]]>
+    </sql-query>
+
+
+    <sql-query name="queryElementMapByOrgVersion">
+        <![CDATA[
+		select e.*
+		from multi_org_element e, multi_org_tree_node t
+		where e.id = t.ele_id and t.org_version_id = :orgVersionId
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

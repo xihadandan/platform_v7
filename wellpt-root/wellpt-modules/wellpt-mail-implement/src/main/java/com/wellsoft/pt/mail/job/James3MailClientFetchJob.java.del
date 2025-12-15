@@ -1,0 +1,121 @@
+/*
+ * @(#)2015年8月6日 V1.0
+ * 
+ * Copyright 2015 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.mail.job;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+import org.quartz.JobExecutionContext;
+
+import com.wellsoft.context.config.Config;
+import com.wellsoft.context.jdbc.support.QueryItem;
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.mail.service.James3MailClientService;
+import com.wellsoft.pt.mail.service.James3MailService;
+import com.wellsoft.pt.mail.support.James3Constant;
+import com.wellsoft.pt.mail.support.James3MailId;
+import com.wellsoft.pt.multi.org.entity.MultiOrgUserAccount;
+import com.wellsoft.pt.multi.org.facade.service.OrgApiFacade;
+import com.wellsoft.pt.security.util.IgnoreLoginUtils;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+
+/**
+ * Description: 如何描述该类
+ *  
+ * @author zhulh
+ * @date 2015年8月6日
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2015年8月6日.1	zhulh		2015年8月6日		Create
+ * </pre>
+ *
+ */
+public class James3MailClientFetchJob extends Job {
+
+	/** 
+	 * (non-Javadoc)
+	 * @see com.wellsoft.pt.task.job.Job#execute(org.quartz.JobExecutionContext, com.wellsoft.pt.task.job.JobData)
+	 */
+	@Override
+	protected void execute(JobExecutionContext jobExecutionContext, JobData jobData) {
+		James3MailService jamesMailService = ApplicationContextHolder.getBean(James3MailService.class);
+		OrgApiFacade orgApiFacade = ApplicationContextHolder.getBean(OrgApiFacade.class);
+		James3MailClientService james3MailClientService = ApplicationContextHolder
+				.getBean(James3MailClientService.class);
+		List<QueryItem> queryItems = jamesMailService.getTodoAsyncJames3Mail();
+		Map<String, List<James3MailId>> itemMap = groupByUserName(queryItems);
+		for (String key : itemMap.keySet()) {
+			String username = key;
+			String userLoginName = getUserLoginName(username);
+			MultiOrgUserAccount user = orgApiFacade.getAccountByLoginName(userLoginName);
+			String tenantId = Config.DEFAULT_TENANT;
+			String userId = user.getId();
+			if (StringUtils.isBlank(tenantId)) {
+				continue;
+			}
+			try {
+				IgnoreLoginUtils.login(tenantId, userId);
+				// 邮件数据收取
+				james3MailClientService.fetchMail(username, itemMap.get(username));
+			} catch (Exception e) {
+				logger.error(e.getMessage(), e);
+			} finally {
+				IgnoreLoginUtils.logout();
+			}
+		}
+
+		// try {
+		// Thread.sleep(10 * 1000);
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		//
+		// logger.error(ExceptionUtils.getStackTrace(e));
+		// }
+
+	}
+
+	/**
+	 * @param queryItems
+	 * @return
+	 */
+	private static Map<String, List<James3MailId>> groupByUserName(List<QueryItem> queryItems) {
+		Map<String, List<James3MailId>> map = new HashMap<String, List<James3MailId>>();
+		for (QueryItem item : queryItems) {
+			String username = item.getString("userName");
+			if (!map.containsKey(username)) {
+				map.put(username, new ArrayList<James3MailId>());
+			}
+			map.get(username).add(new James3MailId(item.getLong("mailboxId"), item.getLong("mailUid")));
+		}
+		return map;
+	}
+
+	/**
+	 * 如何描述该方法
+	 * 
+	 * @param username
+	 * @return
+	 */
+	private static String getUserLoginName(String username) {
+		if (StringUtils.isBlank(username)) {
+			return username;
+		}
+
+		if (username.indexOf(James3Constant.SEPERATOR_AT) == -1) {
+			return username;
+		}
+
+		return StringUtils.split(username, James3Constant.SEPERATOR_AT)[0];
+	}
+
+}

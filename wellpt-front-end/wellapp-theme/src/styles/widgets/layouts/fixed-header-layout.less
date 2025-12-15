@@ -1,0 +1,33 @@
+/** 头部固定 / 导航条固定 相关样式 */
+
+.fixed-header {
+  padding-top: @header-height;
+}
+
+.fixed-navbar {
+  padding-top: @navbar-height;
+}
+
+.fixed-header.fixed-navbar {
+  padding-top: @header-height + @navbar-height;
+}
+
+.fixed-navbar .ui-wHeader,
+.fixed-header .ui-wHeader {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2002;
+}
+
+.fixed-navbar .ui-wNavbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1750;
+}
+
+.fixed-header.fixed-navbar .ui-wNavbar {
+  top: @header-height;
+  height: @navbar-height;
+}

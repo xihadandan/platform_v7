@@ -1,0 +1,23 @@
+.w-form-upload-simple {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  .upload-simple-bottom {
+    .upload-simple-count {
+      margin-right: 7px;
+      font-size: var(--w-font-size-sm);
+      color: var(--w-text-color-light);
+    }
+    .w-button-container {
+      margin-top: 10px;
+    }
+  }
+  .widget-file-upload-tips {
+    font-size: var(--w-font-size-sm);
+    color: var(--w-text-color-light);
+    margin-bottom: var(--w-margin-2xs);
+  }
+  .files-button {
+    display: flex;
+  }
+}

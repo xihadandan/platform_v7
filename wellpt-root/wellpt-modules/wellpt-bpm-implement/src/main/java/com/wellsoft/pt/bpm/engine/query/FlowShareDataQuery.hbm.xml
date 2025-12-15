@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="getBranchTaskShareDataQuery">
+        <![CDATA[
+		select t1.uuid                    as task_inst_uuid,
+		       t1.flow_inst_uuid          as flow_inst_uuid,
+		       t1.form_uuid               as form_uuid,
+		       t1.data_uuid               as data_uuid,
+		       t3.todo_id                 as todo_id,
+		       t3.todo_name               as todo_name,
+		       t1.id                      as current_task_id,
+		       t1.name                    as current_task_name,
+		       t1.todo_user_id            as current_todo_user_id,
+		       t1.todo_user_name          as current_todo_user_name,
+		       t1.due_time                as due_time,
+		       t4.limit_unit			  as limit_unit,
+		       t4.timer_uuid			  as timer_uuid,
+		       t2.id                      as flow_def_id,
+		       t3.branch_type             as branch_type,
+		       case when t3.branch_type = '2' then 1 else 0 end             as is_major,
+		       t3.is_share                as is_share,
+		       t3.completion_state        as completion_state,
+		       t3.parallel_task_id        as belong_to_task_id,
+		       t3.parallel_task_inst_uuid as belong_to_task_inst_uuid,
+		       t3.flow_inst_uuid          as belong_to_flow_inst_uuid,
+		       1                          as dispatch_state
+		  from wf_task_instance t1
+		  left join wf_flow_instance t2
+		    on t1.flow_inst_uuid = t2.uuid
+		 inner join wf_task_branch t3
+		    on t1.flow_inst_uuid = t3.flow_inst_uuid
+		   and t1.uuid = t3.current_task_inst_uuid
+	   	 left join (select wt2.flow_inst_uuid, wt2.task_inst_uuid, wt2.limit_unit, wt2.timer_uuid
+               from (select row_number() over(partition by wt1.task_inst_uuid order by wt1.modify_time desc) rn,
+                            wt1.*
+                       FROM wf_task_timer wt1) wt2
+              where wt2.rn = 1) t4
+     		on t3.current_task_inst_uuid = t4.task_inst_uuid
+		 where t1.type = 1 and t1.flow_inst_uuid = :flowInstUuid
+		 order by is_major desc, t3.branch_type desc, t1.create_time desc
+	]]>
+    </sql-query>
+
+    <sql-query name="getTodoUserNameByParentTaskInstUuid">
+        SELECT
+        ti.PARENT_TASK_INST_UUID,
+        MAX (TI.UUID),
+        listagg (TI.TODO_USER_NAME, ';') WITHIN GROUP (
+
+        ORDER BY
+        ti.PARENT_TASK_INST_UUID
+        ) AS todo_user_name
+        FROM
+        WF_TASK_INSTANCE ti
+        WHERE
+        TI.SUSPENSION_STATE = 0
+        AND TI.PARENT_TASK_INST_UUID in (:parentTaskInstUuids)
+        GROUP BY
+        ti.PARENT_TASK_INST_UUID
+    </sql-query>
+
+    <sql-query name="getFlowShareData">
+        <![CDATA[
+		select t1.uuid                  as task_inst_uuid,
+		       t2.uuid                  as flow_inst_uuid,
+		       t2.form_uuid             as form_uuid,
+		       t2.data_uuid             as data_uuid,
+		       t2.start_time            as start_time,
+		       t5.task_users            as todo_id,
+		       t3.todo_name             as todo_name,
+		       t1.id                    as current_task_id,
+		       t1.name                  as current_task_name,
+		       t1.todo_user_id          as current_todo_user_id,
+		       t1.todo_user_name        as current_todo_user_name,
+		       t2.timing_state          as timing_state,
+		       t2.due_time              as due_time,
+		       t4.limit_unit            as limit_unit,
+		       t4.timer_uuid            as timer_uuid,
+		       t3.flow_id               as flow_def_id,
+		       t3.is_major              as is_major,
+		       t3.is_share              as is_share,
+		       t3.is_wait               as is_wait,
+		       t3.completion_state      as completion_state,
+		       t3.parent_task_id        as belong_to_task_id,
+		       t3.parent_task_inst_uuid as belong_to_task_inst_uuid,
+		       t3.parent_flow_inst_uuid as belong_to_flow_inst_uuid,
+       		   t5.completion_state      as dispatch_state,
+       		   t5.result_msg            as dispatch_result_msg
+       		   <if isNotBlank( leftJoinSql )>
+       		  	,
+       		  	l.extraColumn0,
+				l.extraColumn1,
+				l.extraColumn2,
+				l.extraColumn3,
+				l.extraColumn4,
+				l.extraColumn5,
+				l.extraColumn6,
+				l.extraColumn7,
+				l.extraColumn8,
+				l.extraColumn9
+       		  	</if>
+		  from wf_flow_instance t2
+		  left join
+            (<if isNotBlank( taskInfoQuery )>${taskInfoQuery}</if><if isBlank(taskInfoQuery)> select * from wf_task_instance t where t.suspension_state in(0, 3, 4) </if>) t1
+		    on t1.flow_inst_uuid = t2.uuid
+		  left join wf_task_sub_flow t3
+		    on t2.uuid = t3.flow_inst_uuid
+		  left join (select wt2.flow_inst_uuid,
+		                    wt2.task_inst_uuid,
+		                    wt2.limit_unit,
+		                    wt2.timer_uuid
+		               from (select row_number() over(partition by wt1.task_inst_uuid order by wt1.modify_time desc) rn,
+		                            wt1.*
+		                       FROM wf_task_timer wt1) wt2
+		              where wt2.rn = 1) t4
+		    on t1.uuid = t4.task_inst_uuid
+		  left join wf_task_sub_flow_dispatch t5
+    		on t5.flow_inst_uuid = t2.uuid
+    		<if isNotBlank( leftJoinSql )>
+		   		left join
+		   		 (
+		   		 	SELECT distinct
+		   		 	    wl.uuid as uuid,
+						wl.extraColumn0 AS extraColumn0,
+						wl.extraColumn1 AS extraColumn1,
+						wl.extraColumn2 AS extraColumn2,
+						wl.extraColumn3 AS extraColumn3,
+						wl.extraColumn4 AS extraColumn4,
+						wl.extraColumn5 AS extraColumn5,
+						wl.extraColumn6 AS extraColumn6,
+						wl.extraColumn7 AS extraColumn7,
+						wl.extraColumn8 AS extraColumn8,
+						wl.extraColumn9 AS extraColumn9
+					 from
+		   		 (${leftJoinSql})wl) l on t2.data_uuid = l.uuid
+		   </if>
+		 where t2.parent_flow_inst_uuid = :parent_flow_inst_uuid
+		 	<if subFlowInstUuids?? && (subFlowInstUuids?size>0)>
+		 		and t2.uuid in(:subFlowInstUuids)
+		 	</if>
+		 	<if isNotBlank( belongToTaskInstUuid )>
+		 		and t3.parent_task_inst_uuid = :belongToTaskInstUuid
+		    </if>
+		 	<if isNotBlank( keyword )>
+		   		and (${keywordSql})
+		   </if>
+		   <if isBlank( orderBySql )>
+		 	order by t1.name,t3.is_major desc, t2.create_time desc
+		 	</if>
+		 	<if isNotBlank( orderBySql )>
+		 	 ${orderBySql}
+		 	</if>
+
+	]]>
+    </sql-query>
+
+    <sql-query name="getFlowShareDataBySubFlowInstUuid">
+        <![CDATA[
+		select t1.uuid                  as task_inst_uuid,
+		       t2.uuid                  as flow_inst_uuid,
+		       t2.form_uuid             as form_uuid,
+		       t2.data_uuid             as data_uuid,
+		       t5.task_users            as todo_id,
+		       t3.todo_name             as todo_name,
+		       t1.id                    as current_task_id,
+		       t1.name                  as current_task_name,
+		       t1.todo_user_id          as current_todo_user_id,
+		       t1.todo_user_name        as current_todo_user_name,
+		       t2.timing_state          as timing_state,
+		       t2.due_time              as due_time,
+		       t4.limit_unit            as limit_unit,
+		       t4.timer_uuid            as timer_uuid,
+		       t3.flow_id               as flow_def_id,
+		       t3.is_major              as is_major,
+		       t3.is_share              as is_share,
+		       t3.is_wait               as is_wait,
+		       t3.completion_state      as completion_state,
+		       t3.parent_task_id        as belong_to_task_id,
+		       t3.parent_task_inst_uuid as belong_to_task_inst_uuid,
+		       t3.parent_flow_inst_uuid as belong_to_flow_inst_uuid,
+		       t5.completion_state      as dispatch_state,
+       		   t5.result_msg            as dispatch_result_msg
+       		   <if isNotBlank( leftJoinSql )>
+       		  	,extraColumn0,extraColumn1,extraColumn2,extraColumn3,extraColumn4,extraColumn5,extraColumn6,extraColumn7,
+       		  	extraColumn8,extraColumn9
+       		  	</if>
+		  from wf_flow_instance t2
+		  left join (select * from wf_task_instance t where t.suspension_state in(0, 3, 4)) t1
+		    on t1.flow_inst_uuid = t2.uuid
+		  left join wf_task_sub_flow t3
+		    on t2.uuid = t3.flow_inst_uuid
+		  left join (select wt2.flow_inst_uuid,
+		                    wt2.task_inst_uuid,
+		                    wt2.limit_unit,
+		                    wt2.timer_uuid
+		               from (select row_number() over(partition by wt1.task_inst_uuid order by wt1.modify_time desc) rn,
+		                            wt1.*
+		                       FROM wf_task_timer wt1) wt2
+		              where wt2.rn = 1) t4
+		    on t1.uuid = t4.task_inst_uuid
+		  left join wf_task_sub_flow_dispatch t5
+		    on t5.flow_inst_uuid = t2.uuid
+		    <if isNotBlank( leftJoinSql )>
+		   		left join
+		   		 (select uuid,listagg(extraColumn0,'') within group (order by uuid) extraColumn0,
+					listagg(extraColumn1,'') within group (order by uuid) extraColumn1,
+					listagg(extraColumn2,'') within group (order by uuid) extraColumn2,
+					listagg(extraColumn3,'') within group (order by uuid) extraColumn3,
+					listagg(extraColumn4,'') within group (order by uuid) extraColumn4,
+					listagg(extraColumn5,'') within group (order by uuid) extraColumn5,
+					listagg(extraColumn6,'') within group (order by uuid) extraColumn6,
+					listagg(extraColumn7,'') within group (order by uuid) extraColumn7,
+					listagg(extraColumn8,'') within group (order by uuid) extraColumn8,
+					listagg(extraColumn9,'') within group (order by uuid) extraColumn9
+					 from
+		   		 (${leftJoinSql}) group by uuid) l on t2.data_uuid = l.uuid
+		   </if>
+		 where t2.parent_flow_inst_uuid in
+		       (select t.parent_flow_inst_uuid
+		          from wf_flow_instance t
+		         where t.uuid = :sub_flow_inst_uuid)
+		 	<if subFlowInstUuids?? && (subFlowInstUuids?size>0)>
+		 		and t2.uuid in(:subFlowInstUuids)
+		 	</if>
+		 	<if isNotBlank( keyword )>
+		   		and (${keywordSql})
+		   </if>
+		 	<if isBlank( orderBySql )>
+		 	order by t1.name,t3.is_major desc, t2.create_time desc
+		 	</if>
+		 	<if isNotBlank( orderBySql )>
+		 	 ${orderBySql}
+		 	</if>
+	]]>
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,6 @@
+索引名命名方式为表名_字段名_idx,如
+表org_user字段id建立的索引名称为org_user_id_idx
+若长度超边数据库规范，则表名取模块前缀之外的首字母，如
+表msg_message_content字段recipient建立的索引名称为msg_mc_recipient_idx
+
+组合索引：表名_DEFINATION_BATCH_IDX(最多16个字段放在一个组合索引里)

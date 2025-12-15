@@ -1,0 +1,54 @@
+/*hover color variables*/
+/*disabled color variables*/
+.ui-dialog {
+  padding: 0;
+}
+.ui-dialog.ui-widget.ui-widget-content {
+  border: none;
+}
+.ui-dialog .ui-widget-header {
+  height: 42px;
+  line-height: 29px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.ui-dialog .ui-widget-header .ui-dialog-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+.ui-dialog .ui-widget-header .ui-button,
+.ui-dialog .ui-widget-header .ui-button:hover {
+  background: none;
+  border: 0;
+}
+.ui-dialog .ui-dialog-buttonpane {
+  text-align: center;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+  float: none;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset button {
+  font-size: 14px;
+  padding: 0 35px;
+  border: none;
+  border-radius: 3px;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset button:first-child {
+  background: #4796e7;
+  color: #fff;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset button:first-child:hover {
+  background: #3089e4;
+  color: #fff;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset button:last-child {
+  background: #c2c2c2;
+  color: #fff;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset button:last-child:hover {
+  background: #b5b5b5;
+  color: #fff;
+}
+.ui-dialog .ui-resizable-handle {
+  display: none !important;
+}

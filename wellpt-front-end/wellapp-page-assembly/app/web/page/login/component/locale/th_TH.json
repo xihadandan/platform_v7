@@ -1,0 +1,28 @@
+{
+  "loginComponent": {
+    "acctLogin": "เข้าสู่ระบบบัญชี",
+    "acctInputPlaceholder": "กรุณาใส่บัญชีของคุณ",
+    "pwdInputPlaceholder": "กรุณาใส่รหัสผ่านของคุณ",
+    "rememberAcct": "จำบัญชี",
+    "rememberPwd": "จำรหัสผ่าน",
+    "forgetPwd": "ลืมรหัสผ่าน",
+    "register": "สมัครสมาชิก",
+    "login": "เข้าสู่ระบบ",
+    "error": {
+      "Bad credentials": "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง",
+      "captchaExpired": "รหัสยืนยันล้มเหลว",
+      "captchaError": "ข้อผิดพลาดของรหัสยืนยัน",
+      "Missing credentials": "ขาดข้อมูลประจำตัว",
+      "failed": "เข้าสู่ระบบล้มเหลว"
+    },
+    "feishuQrLogin": "Feishu รหัส QR เข้าสู่ระบบ",
+    "feishuConfigError": "Feishu ไม่ได้เปิดใช้งานหรือไม่ได้กำหนดค่า ID แอปพลิเคชัน",
+    "sso": {
+      "logining": "เข้าสู่ระบบเพียงครั้งเดียว",
+      "success": "เข้าสู่ระบบครั้งเดียวสำเร็จ",
+      "failed": "การเข้าสู่ระบบครั้งเดียวล้มเหลว"
+    },
+    "dingtalkQrLogin": "Dingtalk รหัส QR เข้าสู่ระบบ",
+    "weixinQrLogin": "WeCom รหัส QR เข้าสู่ระบบ"
+  }
+}

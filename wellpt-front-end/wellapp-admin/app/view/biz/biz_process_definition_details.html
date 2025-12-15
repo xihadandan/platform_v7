@@ -1,0 +1,630 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-3">
+      <div class="btn-group" style="margin-top: 20px">
+        <button id="btn_expand" type="button" class="well-btn w-btn-primary">展开</button>
+        <button id="btn_collapse" type="button" type="button" class="well-btn w-btn-primary">折叠</button>
+        <button id="btn_delete" type="button" type="button" class="well-btn w-btn-primary">删除</button>
+      </div>
+      <div>
+        <ul id="process_definition_tree" class="ztree" style="min-height: 600px"></ul>
+      </div>
+    </div>
+    <div class="col-xs-9">
+      <div class="btn-group" style="margin: 20px 0">
+        <button id="btn_process_node_add" type="button" class="well-btn w-btn-primary">新增过程节点</button>
+        <button id="btn_item_add" type="button" class="well-btn w-btn-primary">新增事项</button>
+        <button id="btn_definition_template" type="button" class="well-btn w-btn-primary">配置项模板管理</button>
+      </div>
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#process_definition_info" aria-controls="process_definition_info" role="tab" data-toggle="tab" aria-expanded="true">
+            业务流程信息
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#process_node_info" aria-controls="process_node_info" role="tab" data-toggle="tab" aria-expanded="true">过程节点信息</a>
+        </li>
+        <li role="presentation">
+          <a href="#process_item_info" aria-controls="process_item_info" role="tab" data-toggle="tab" aria-expanded="true">业务事项信息</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="process_definition_info" style="padding-top: 10px">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+              <a
+                href="#process_definition_info_basic"
+                aria-controls="process_definition_info_basic"
+                role="tab"
+                data-toggle="tab"
+                aria-expanded="true"
+              >
+                基本信息
+              </a>
+            </li>
+            <li role="presentation">
+              <a
+                href="#process_definition_info_form"
+                aria-controls="process_definition_info_form"
+                role="tab"
+                data-toggle="tab"
+                aria-expanded="true"
+              >
+                表单设置
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="process_definition_info_basic" style="padding-top: 10px">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label for="name" class="col-sm-2 control-label required">名称</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" name="name" />
+                    <input type="hidden" id="uuid" name="uuid" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="id" class="col-sm-2 control-label">ID</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="id" name="id" readonly />
+                  </div>
+                </div>
+                <div class="form-group hidden">
+                  <label for="code" class="col-sm-2 control-label">编号</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="code" name="code" />
+                  </div>
+                </div>
+                <div class="form-group hidden">
+                  <label for="code" class="col-sm-2 control-label">版本</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="version" name="version" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="code" class="col-sm-2 control-label">状态</label>
+                  <div class="col-sm-10">
+                    <input type="radio" class="form-control" id="enabled_1" name="enabled" value="1" />
+                    <label class="radio-inline" for="enabled_1">启用</label>
+                    <input type="radio" class="form-control" id="enabled_0" name="enabled" value="0" />
+                    <label class="radio-inline" for="enabled_0">禁用</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="code" class="col-sm-2 control-label">所属业务</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="businessName" name="businessName" readonly />
+                    <input type="hidden" class="form-control" id="businessId" name="businessId" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="code" class="col-sm-2 control-label">事件监听</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="listener" name="listener" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="code" class="col-sm-2 control-label">业务标签</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="tagId" name="tagId" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="code" class="col-sm-2 control-label">备注</label>
+                  <div class="col-sm-10">
+                    <textarea id="remark" name="remark" rows="3" class="form-control"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="process_definition_info_form" style="padding-top: 10px">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">设置方式</label>
+                  <div class="col-sm-10">
+                    <input
+                      type="radio"
+                      class="form-control"
+                      id="process_form_configType_1"
+                      name="processFormConfigType"
+                      value="1"
+                      checked
+                    />
+                    <label class="radio-inline" for="process_form_configType_1">引用模板</label>
+                    <input type="radio" class="form-control" id="process_form_configType_2" name="processFormConfigType" value="2" />
+                    <label class="radio-inline" for="process_form_configType_2">自定义</label>
+                  </div>
+                </div>
+                <div class="form-group config-type config-type-1">
+                  <label for="templateUuid" class="col-sm-2 control-label">引用模板</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="templateUuid" name="templateUuid" />
+                  </div>
+                </div>
+                <div class="form-config" style="position: relative">
+                  <div class="form-group">
+                    <label for="formUuid" class="col-sm-2 control-label">使用表单</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="formUuid" name="formUuid" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="entityNameField" class="col-sm-2 control-label">业务主体名称字段</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="entityNameField" name="entityNameField" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="entityIdField" class="col-sm-2 control-label">业务主体ID字段</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="entityIdField" name="entityIdField" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="code" class="col-sm-2 control-label">过程节点办理显示位置</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="processNodePlaceHolder" name="processNodePlaceHolder" />
+                    </div>
+                  </div>
+                  <div class="form-config-mask" style="position: absolute; width: 100%; top: 0; bottom: 0"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="process_node_info" style="padding-top: 10px">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+              <a href="#process_node_info_basic" aria-controls="process_node_info_basic" role="tab" data-toggle="tab" aria-expanded="true">
+                基本信息
+              </a>
+            </li>
+            <li role="presentation">
+              <a href="#process_node_info_form" aria-controls="process_node_info_form" role="tab" data-toggle="tab" aria-expanded="true">
+                表单设置
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="process_node_info_basic" style="padding-top: 10px">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label for="name" class="col-sm-2 control-label required">名称</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" name="name" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="id" class="col-sm-2 control-label">ID</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="id" name="id" readonly />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="code" class="col-sm-2 control-label">时限标限</label>
+                  <div class="col-sm-10" style="padding-left: 0; padding-right: 0">
+                    <div class="row">
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="timeLimit" name="timeLimit" />
+                      </div>
+                      <div class="col-sm-2">
+                        <select class="form-control" id="timeLimitType" name="timeLimitType">
+                          <option value="1">工作日</option>
+                          <option value="2">自然日</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="code" class="col-sm-2 control-label">里程碑</label>
+                  <div class="col-sm-10">
+                    <input type="radio" class="form-control" id="milestone_1" name="milestone" value="1" />
+                    <label class="radio-inline" for="milestone_1">是</label>
+                    <input type="radio" class="form-control" id="milestone_0" name="milestone" value="0" checked />
+                    <label class="radio-inline" for="milestone_0">否</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="code" class="col-sm-2 control-label">状态条件</label>
+                  <div class="col-sm-10" style="padding-left: 0; padding-right: 0">
+                    <div class="row">
+                      <div class="col-sm-10">
+                        <select multiple name="stateConditions" style="height: 100px; overflow: auto"></select>
+                      </div>
+                      <div class="col-sm-2 btn-group">
+                        <button type="button" class="btn btn-default" id="btn_state_condition_add">新增</button>
+                        <button type="button" class="btn btn-default" id="btn_state_condition_delete">删除</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="code" class="col-sm-2 control-label">事件监听</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="listener" name="listener" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="code" class="col-sm-2 control-label">业务标签</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="tagId" name="tagId" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="code" class="col-sm-2 control-label">备注</label>
+                  <div class="col-sm-10">
+                    <textarea id="remark" name="remark" rows="3" class="form-control"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="process_node_info_form" style="padding-top: 10px">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">设置方式</label>
+                  <div class="col-sm-10">
+                    <input
+                      type="radio"
+                      class="form-control"
+                      id="process_node_form_configType_1"
+                      name="processNodeFormConfigType"
+                      value="1"
+                      checked
+                    />
+                    <label class="radio-inline" for="process_node_form_configType_1">引用模板</label>
+                    <input
+                      type="radio"
+                      class="form-control"
+                      id="process_node_form_configType_2"
+                      name="processNodeFormConfigType"
+                      value="2"
+                    />
+                    <label class="radio-inline" for="process_node_form_configType_2">自定义</label>
+                  </div>
+                </div>
+                <div class="form-group config-type config-type-1">
+                  <label for="templateUuid" class="col-sm-2 control-label">引用模板</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="templateUuid" name="templateUuid" />
+                  </div>
+                </div>
+                <div class="form-config" style="position: relative">
+                  <div class="form-group">
+                    <label for="code" class="col-sm-2 control-label">使用表单</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="formUuid" name="formUuid" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="code" class="col-sm-2 control-label">业务主体名称字段</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="entityNameField" name="entityNameField" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="code" class="col-sm-2 control-label">业务主体ID字段</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="entityIdField" name="entityIdField" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="code" class="col-sm-2 control-label">事项办理显示位置</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="itemPlaceHolder" name="itemPlaceHolder" />
+                    </div>
+                  </div>
+                  <div class="form-config-mask" style="position: absolute; width: 100%; top: 0; bottom: 0"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="process_item_info" style="padding-top: 10px">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+              <a href="#process_item_info_basic" aria-controls="process_item_info_basic" role="tab" data-toggle="tab" aria-expanded="true">
+                基本信息
+              </a>
+            </li>
+            <li role="presentation">
+              <a href="#process_item_info_form" aria-controls="process_item_info_form" role="tab" data-toggle="tab" aria-expanded="true">
+                表单设置
+              </a>
+            </li>
+            <li role="presentation">
+              <a href="#process_item_info_bi" aria-controls="process_item_info_bi" role="tab" data-toggle="tab" aria-expanded="true">
+                业务集成
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="process_item_info_basic" style="padding-top: 10px">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label for="itemName" class="col-sm-2 control-label required">事项名称</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="itemName" name="itemName" readonly />
+                    <input type="hidden" class="form-control" id="itemType" name="itemType" />
+                    <input type="hidden" class="form-control" id="id" name="id" />
+                    <input type="hidden" class="form-control" id="itemDefName" name="itemDefName" />
+                    <input type="hidden" class="form-control" id="itemDefId" name="itemDefId" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="itemCode" class="col-sm-2 control-label">事项编码</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="itemCode" name="itemCode" readonly />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="timeLimitType" class="col-sm-2 control-label">时限类型</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" id="timeLimitType" name="timeLimitType">
+                      <option value="1">工作日</option>
+                      <option value="2">自然日</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="listener" class="col-sm-2 control-label">事件监听</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="listener" name="listener" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">是否必办件</label>
+                  <div class="col-sm-10">
+                    <input type="radio" class="form-control" id="mandatory_1" name="mandatory" value="1" />
+                    <label class="radio-inline" for="mandatory_1">是</label>
+                    <input type="radio" class="form-control" id="mandatory_0" name="mandatory" value="0" checked />
+                    <label class="radio-inline" for="mandatory_0">否</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">里程碑</label>
+                  <div class="col-sm-10">
+                    <input type="radio" class="form-control" id="item_milestone_1" name="itemMilestone" value="1" />
+                    <label class="radio-inline" for="item_milestone_1">是</label>
+                    <input type="radio" class="form-control" id="item_milestone_0" name="itemMilestone" value="0" checked />
+                    <label class="radio-inline" for="item_milestone_0">否</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">办理情形</label>
+                  <div class="col-sm-10">
+                    <input type="radio" class="form-control" id="enabledSituation_1" name="enabledSituation" value="1" />
+                    <label class="radio-inline" for="enabledSituation_1">是</label>
+                    <input type="radio" class="form-control" id="enabledSituation_0" name="enabledSituation" value="0" checked />
+                    <label class="radio-inline" for="enabledSituation_0">否</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label"></label>
+                  <div class="col-sm-10 enabled-situation"></div>
+                </div>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="process_item_info_form" style="padding-top: 10px">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">设置方式</label>
+                  <div class="col-sm-10">
+                    <input type="radio" class="form-control" id="item_form_configType_1" name="itemFormConfigType" value="1" checked />
+                    <label class="radio-inline" for="item_form_configType_1">引用模板</label>
+                    <input type="radio" class="form-control" id="item_form_configType_2" name="itemFormConfigType" value="2" />
+                    <label class="radio-inline" for="item_form_configType_2">自定义</label>
+                  </div>
+                </div>
+                <div class="form-group config-type config-type-1">
+                  <label for="templateUuid" class="col-sm-2 control-label">引用模板</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="templateUuid" name="templateUuid" />
+                  </div>
+                </div>
+                <div class="form-config" style="position: relative">
+                  <div class="form-group">
+                    <label for="formUuid" class="col-sm-2 control-label">使用表单</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="formUuid" name="formUuid" />
+                      <input type="hidden" class="form-control" id="formName" name="formName" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="itemNameField" class="col-sm-2 control-label">事项名称字段</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="itemNameField" name="itemNameField" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="itemCodeField" class="col-sm-2 control-label">事项编码字段</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="itemCodeField" name="itemCodeField" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="entityNameField" class="col-sm-2 control-label">业务主体名称字段</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="entityNameField" name="entityNameField" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="entityIdField" class="col-sm-2 control-label">业务主体ID字段</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="entityIdField" name="entityIdField" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="timeLimitField" class="col-sm-2 control-label">时限字段</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="timeLimitField" name="timeLimitField" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="materialSubformId" class="col-sm-2 control-label">材料从表</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="materialSubformId" name="materialSubformId" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="materialNameField" class="col-sm-2 control-label">材料名称字段</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="materialNameField" name="materialNameField" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="materialCodeField" class="col-sm-2 control-label">材料编码字段</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="materialCodeField" name="materialCodeField" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="materialRequiredField" class="col-sm-2 control-label">材料是否必填字段</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="materialRequiredField" name="materialRequiredField" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="materialFileField" class="col-sm-2 control-label">材料附件字段</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="materialFileField" name="materialFileField" />
+                    </div>
+                  </div>
+                  <div class="form-config-mask" style="position: absolute; width: 100%; top: 0; bottom: 0"></div>
+                </div>
+                <div class="form-group dispense-item">
+                  <label class="col-sm-2 control-label">是否分发事项</label>
+                  <div class="col-sm-10" style="padding-left: 0; padding-right: 0">
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <input type="radio" class="form-control" id="dispenseItem_1" name="dispenseItem" value="1" />
+                        <label class="radio-inline" for="dispenseItem_1">是</label>
+                        <input type="radio" class="form-control" id="dispenseItem_0" name="dispenseItem" value="0" checked />
+                        <label class="radio-inline" for="dispenseItem_0">否</label>
+                      </div>
+                      <div class="col-sm-10">
+                        <button type="button" class="btn btn-default dispense-item-1" id="btn_dispense_form_config">表单分发配置</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group dispense-item dispense-item-1">
+                  <label for="dispenseItemPlaceHolder" class="col-sm-2 control-label">分发事项办理显示位置</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="dispenseItemPlaceHolder" name="dispenseItemPlaceHolder" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="process_item_info_bi" style="padding-top: 10px">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label for="type_1" class="col-sm-2 control-label">集成方式</label>
+                  <div class="col-sm-10">
+                    <input type="checkbox" class="form-control" id="type_1" name="type" value="1" />
+                    <label class="checkbox-inline" for="type_1">流程业务</label>
+                  </div>
+                </div>
+                <div class="bi-type bi-type-1">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">流程业务集成</label>
+                    <div class="col-sm-10">
+                      <input type="radio" class="form-control" id="configType_1" name="configType" value="1" checked />
+                      <label class="radio-inline" for="configType_1">引用模板</label>
+                      <input type="radio" class="form-control" id="configType_2" name="configType" value="2" />
+                      <label class="radio-inline" for="configType_2">自定义</label>
+                    </div>
+                  </div>
+                  <div class="form-group config-type config-type-1">
+                    <label for="templateUuid" class="col-sm-2 control-label">引用模板</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="templateUuid" name="templateUuid" />
+                    </div>
+                  </div>
+                  <div class="item-workflow-config" style="position: relative">
+                    <div class="form-group">
+                      <label for="flowBizDefId" class="col-sm-2 control-label">流程业务定义</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="flowBizDefId" name="flowBizDefId" />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">流程单据数据</label>
+                      <div class="col-sm-10">
+                        <input type="radio" class="form-control" id="formDataType_1" name="formDataType" value="1" checked />
+                        <label class="radio-inline" for="formDataType_1">使用事项表单数据</label>
+                        <input type="radio" class="form-control" id="formDataType_2" name="formDataType" value="2" />
+                        <label class="radio-inline" for="formDataType_2">使用单据转换</label>
+                      </div>
+                    </div>
+                    <div class="form-group form-data-type form-data-type-2">
+                      <label for="copyBotRuleId" class="col-sm-2 control-label">单据转换规则</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="copyBotRuleId" name="copyBotRuleId" />
+                      </div>
+                    </div>
+                    <div class="form-group form-data-type form-data-type-2">
+                      <label class="col-sm-2 control-label">单据反馈</label>
+                      <div class="col-sm-10">
+                        <input type="checkbox" class="form-control" id="returnWithOver" name="returnWithOver" value="true" />
+                        <label class="checkbox-inline" for="returnWithOver">办结时反馈</label>
+                        <input type="checkbox" class="form-control" id="returnWithDirection" name="returnWithDirection" value="true" />
+                        <label class="checkbox-inline" for="returnWithDirection">指定反馈流向</label>
+                      </div>
+                    </div>
+                    <div class="form-group form-data-type form-data-type-2">
+                      <label for="returnDirectionId" class="col-sm-2 control-label">反馈流向</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="returnDirectionId" name="returnDirectionId" />
+                      </div>
+                    </div>
+                    <div class="form-group form-data-type form-data-type-2">
+                      <label for="returnBotRuleId" class="col-sm-2 control-label">反馈规则</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="returnBotRuleId" name="returnBotRuleId" />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">里程碑</label>
+                      <div class="col-sm-10 milestone-configs"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">计时信息</label>
+                      <div class="col-sm-10">
+                        <input type="checkbox" class="form-control" id="syncTimerInfo" name="syncTimerInfo" value="true" />
+                        <label class="checkbox-inline" for="syncTimerInfo">同步计时信息</label>
+                      </div>
+                    </div>
+                    <div class="item-workflow-config-mask" style="position: absolute; width: 100%; top: 0; bottom: 0"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">发起业务事项</label>
+                    <div class="col-sm-10" style="padding-left: 0; padding-right: 0">
+                      <div class="row">
+                        <div class="col-sm-10">
+                          <select multiple name="newItemConfigs" style="height: 100px; overflow: auto"></select>
+                        </div>
+                        <div class="col-sm-2 btn-group">
+                          <button type="button" class="btn btn-default" id="btn_new_item_add">新增</button>
+                          <button type="button" class="btn btn-default" id="btn_new_item_delete">删除</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-12 text-center">
+          <button type="button" class="btn btn-primary" id="btn_biz_process_definition_config_save">保存</button>
+          <button type="button" class="btn btn-primary" id="btn_biz_process_definition_config_save_as_new_version">保存新版本</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

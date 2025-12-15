@@ -1,0 +1,62 @@
+html {
+  @-moz-document url-prefix() {
+    scrollbar-width: thin;
+    scrollbar-color: #cccccc transparent;
+  }
+}
+
+.ant-modal-body,
+.ant-modal-body > div,
+.ant-modal-wrap,
+.ant-drawer-wrapper-body,
+.ant-drawer-body > div,
+.ant-card-body,
+body,
+.widget-subform-table .ant-table-content > .ant-table-body,
+.org-select-selection,
+div,
+ul,
+.ant-input {
+  @-moz-document url-prefix() {
+    scrollbar-width: thin;
+    scrollbar-color: #cccccc transparent;
+  }
+
+  /* 自定义整个滚动条 */
+  &::-webkit-scrollbar {
+    width: 8px;
+    /* 水平滚动条的宽度 */
+    height: 8px;
+    /* 垂直滚动条的高度 */
+  }
+
+  /* 自定义滚动条轨道 */
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    /* 设置轨道的背景颜色 */
+  }
+
+  /* 自定义滚动条轨道 */
+  &:hover::-webkit-scrollbar-track {
+    background: transparent;
+    /* 设置轨道的背景颜色 */
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    /* 悬停时滑块的背景颜色 */
+  }
+
+  /* 自定义滚动条的滑块（thumb） */
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 8px;
+    /* 设置滑块的背景颜色 */
+  }
+
+  /* 当滑块悬停或活动时，可以添加更多样式 */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    /* 设置滑块在悬停状态下的背景颜色 */
+  }
+}

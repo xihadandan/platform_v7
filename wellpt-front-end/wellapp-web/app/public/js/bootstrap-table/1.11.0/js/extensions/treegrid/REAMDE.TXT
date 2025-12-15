@@ -1,0 +1,21 @@
+1、我们的叶子节点前面的图标可以去掉；
+2、增加展开所有、折叠所有的功能；
+3、Level字段可以去掉，通过ParentId为null来确定根节点。
+
+onBeforeExpand	row	节点展开前触发，返回 false 则取消展开动作。
+onExpand	row	当节点展开时触发。
+onBeforeCollapse	row	节点折叠前触发，返回 false 则取消折叠动作。
+onCollapse	row	当节点折叠时触发。
+
+
+1、支持树形数据类型com.wellsoft.pt.common.component.tree.TreeNode和指定parentIdField
+2、支持排序
+3、支持树形列表与表格切换
+
+TODO：代码逻辑整理,不支持分页,异步加载
+
+
+
+分页指level 0分页,取回数据后进行初始化,然后分页
+异步加载指传idField的值到后台查询,并将返回的数据添加到data中
+

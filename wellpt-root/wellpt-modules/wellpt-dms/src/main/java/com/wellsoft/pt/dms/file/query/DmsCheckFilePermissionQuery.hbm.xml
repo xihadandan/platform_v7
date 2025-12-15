@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="isFileEditorQuery">
+        <![CDATA[
+		select a_.uuid as data_uuid
+		  from ${tableName} a_
+		 inner join(${userOrgIdsTemplate}) u_
+		    on a_.${editFileField} like '%' || u_.org_id || '%'
+		    	or a_.creator = u_.org_id
+		 where exists (select f_.data_uuid
+		          from dms_file f_
+		         where f_.uuid = :fileUuid
+		           and a_.uuid = f_.data_uuid)
+	]]>
+    </sql-query>
+
+    <sql-query name="isFileEditorByDataUuidQuery">
+        <![CDATA[
+		select a_.uuid as data_uuid
+		  from ${tableName} a_
+		 inner join(${userOrgIdsTemplate}) u_
+		    on a_.${editFileField} like '%' || u_.org_id || '%'
+		    	or a_.creator = u_.org_id
+		 where a_.uuid = :dataUuid
+	]]>
+    </sql-query>
+
+    <sql-query name="dmsCheckFilePermissionQuery">
+        <![CDATA[
+        select t1.folder_uuid as uuid
+        from dms_file t1
+            where t1.uuid = :fileUuid
+                and exists (
+                    select distinct oar.object_identity_uuid
+                    from dms_object_assign_role oar,
+                         dms_object_assign_role_item oari,
+                         dms_role r,
+                         dms_role_action ra,
+                         dms_folder_configuration fc
+                         <if sids?? && (sids?size > 1000)>,
+                            (${userOrgIdsTemplate}) u_ -- 用户相关ID
+                         </if>
+                    where oar.uuid = oari.assign_role_uuid
+                      and oar.role_uuid = r.uuid
+                      and r.uuid = ra.role_uuid
+                      and ra.action in(:actions)
+                      and oar.object_identity_uuid = fc.ref_object_identity_uuid
+                      <if sids?? && (sids?size > 1000)>
+                        and oari.org_id = u_.org_id
+                      <else>
+                        and oari.org_id in(:sids)
+                      </if>
+                      and fc.folder_uuid = t1.folder_uuid
+                )
+
+		 union
+
+		 select oaa.object_id_identity as uuid
+            from dms_object_assign_action oaa
+            where oaa.org_id in(:orgIds)
+            and oaa.action in(:actions)
+            and oaa.object_id_identity = :fileUuid
+	    ]]>
+    </sql-query>
+
+    <sql-query name="dmsFilterFileWithPermissionQuery">
+        <![CDATA[
+        select t1.uuid as uuid
+        from dms_file t1
+            where t1.uuid in(:fileUuids)
+                and exists (
+                    select distinct oar.object_identity_uuid
+                    from dms_object_assign_role oar,
+                         dms_object_assign_role_item oari,
+                         dms_role r,
+                         dms_role_action ra,
+                         dms_folder_configuration fc
+                         <if sids?? && (sids?size > 1000)>,
+                            (${userOrgIdsTemplate}) u_ -- 用户相关ID
+                         </if>
+                    where oar.uuid = oari.assign_role_uuid
+                      and oar.role_uuid = r.uuid
+                      and r.uuid = ra.role_uuid
+                      and ra.action in(:actions)
+                      and oar.object_identity_uuid = fc.ref_object_identity_uuid
+                      <if sids?? && (sids?size > 1000)>
+                        and oari.org_id = u_.org_id
+                      <else>
+                        and oari.org_id in(:sids)
+                      </if>
+                      and fc.folder_uuid = t1.folder_uuid
+                )
+
+		 union
+
+		 select oaa.object_id_identity as uuid
+            from dms_object_assign_action oaa
+            where oaa.org_id in(:orgIds)
+            and oaa.action in(:actions)
+            and oaa.object_id_identity in(:fileUuids)
+	    ]]>
+    </sql-query>
+</hibernate-mapping>

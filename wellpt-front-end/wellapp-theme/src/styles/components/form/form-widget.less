@@ -1,0 +1,192 @@
+/** 表单编辑页 */
+.form-widget .form-horizontal .form-group {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+form .bootstrap-table {
+  margin-top: 20px;
+}
+
+.form-widget .title,
+.form-widget .table-title {
+  position: relative;
+  padding-left: 15px;
+  margin-bottom: 10px;
+  color: @text-color-dark;
+  font-size: 18px;
+  line-height: 30px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 0;
+    width: 4px;
+    height: 16px;
+    background: @primary-color;
+    border-radius: 2px;
+  }
+}
+
+.form-widget .form-table > li {
+  padding-bottom: 30px;
+}
+
+.form-widget.form-bordered {
+  border: @border-default-dark;
+  border-radius: @border-radius-base;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.dev_table_widget .show_0 {
+  background: url('../../../pt/img/star-on.png');
+  background-size: 100% 100%;
+}
+
+.dev_table_widget .show_1 {
+  background: url('../../../pt/img/star-off.png');
+  background-size: 100% 100%;
+}
+
+.dev_table_widget .show_1,
+.dev_table_widget .show_0 {
+  display: inline-block;
+  height: 15px;
+  width: 16px;
+  text-indent: -9999px;
+  padding-right: 0;
+  margin-top: 5px;
+}
+
+.dyform table td label.error,
+.sys_log_list .loglevel_error {
+  color: @danger-color;
+}
+
+.sys_log_list .loglevel_warn {
+  color: @warning-color;
+}
+
+.sys_log_list .loglevel_info {
+  color: @text-color-primary;
+}
+
+.form-widget .form-group .well-form-control.w-h35 {
+  height: 35px;
+  line-height: 35px;
+}
+
+.form-widget .form-horizontal .form-group .control-label,
+.form-widget .form-table .control-label {
+  font-weight: 400;
+  font-size: @font-size-base;
+  color: @text-color;
+}
+
+.form-widget input[type='checkbox'],
+.form-widget input[type='radio'] {
+  display: none;
+
+  + label {
+    padding-top: 0;
+    color: @text-color;
+    font-weight: normal;
+    font-size: @font-size-base;
+    margin-bottom: 0;
+    height: 35px;
+    line-height: 35px;
+    margin-right: 20px;
+    font-family: 'iconfont' !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+.form-widget .ztree_check_all_div input[type='radio'] + label,
+.form-widget .ztree_check_all_div input[type='checkbox'] + label {
+  height: auto;
+  margin: 10px 0;
+}
+
+.form-widget .bs-checkbox input[type='checkbox'] + label {
+  height: auto;
+  line-height: 1;
+  margin-right: 0;
+
+  &:before {
+    margin-right: 0;
+  }
+}
+
+.form-widget input[type='radio'] + label:before,
+.form-widget input[type='checkbox'] + label:before {
+  margin-right: 8px;
+  font-size: @font-size-base;
+  font-family: iconfont !important;
+}
+
+.form-widget input[type='radio'] + label:before {
+  content: '\e8db';
+  color: @text-color-light;
+}
+
+.form-widget input[type='radio']:checked + label:before {
+  content: '\e8d6';
+  color: @text-color-primary;
+}
+
+.form-widget input[type='checkbox'] + label:before {
+  content: '\e8f2';
+  color: @text-color-light;
+}
+
+.form-widget input[type='checkbox']:checked + label:before {
+  content: '\e8de';
+  color: @text-color-primary;
+}
+
+.form-widget input[type='radio'][disabled='disabled'] + label,
+.form-widget input[type='checkbox'][disabled='disabled'] + label {
+  color: @disabled-text-color;
+  cursor: not-allowed;
+
+  &:before {
+    color: @disabled-text-color;
+  }
+}
+
+.form-widget .role-actions-item {
+  margin-bottom: 15px;
+
+  input[type='checkbox'] + label {
+    position: relative;
+    padding-left: 22px;
+    width: 31%;
+    margin-right: 2%;
+    height: auto;
+    line-height: 20px;
+    vertical-align: middle;
+
+    &:before {
+      position: absolute;
+      left: 0;
+    }
+  }
+}
+
+.form-widget input[type='file'] {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+#infoDetailContainer pre {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: @border-default-light;
+  padding: 10px 0;
+}

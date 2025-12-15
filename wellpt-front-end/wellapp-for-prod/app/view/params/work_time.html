@@ -1,0 +1,65 @@
+<form action="" id="work_hour_form" class="form-widget" style="margin-top: 15px;padding:0 30px;box-sizing: border-box;">
+    <ul class="form-table">
+        <li>
+            <h3 class="title">工作日设置</h3>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">工作日起止时间:</label>
+                    <div class="col-sm-10">
+                        <div class="col-sm-6" style="padding-left: 0;">
+                            <label class="control-label">上午</label>
+                            <input type="text" id="fromTime1" style="width:150px;" class="work_time_hour layui-input">&nbsp;至&nbsp;<input type="text" id="toTime1" style="width:150px;" class="work_time_hour">
+                        </div>
+                        <div class="col-sm-6 padding-l-0">
+                            <label class="control-label">下午</label>
+                            <input type="text" id="fromTime2" style="width:150px;" class="work_time_hour">&nbsp;至&nbsp;<input type="text" id="toTime2" style="width:150px;" class="work_time_hour">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">每周工作日:</label>
+                    <div class="col-sm-10 workday">
+                        <input type="checkbox" id="workday_name_MON" value="MON"><label for="workday_name_MON">星期一</label>
+                        <input type="checkbox" id="workday_name_TUE" value="TUE"><label for="workday_name_TUE">星期二</label>
+                        <input type="checkbox" id="workday_name_WED" value="WED"><label for="workday_name_WED">星期三</label>
+                        <input type="checkbox" id="workday_name_THU" value="THU"><label for="workday_name_THU">星期四</label>
+                        <input type="checkbox" id="workday_name_FRI" value="FRI"><label for="workday_name_FRI">星期五</label>
+                        <input type="checkbox" id="workday_name_SAT" value="SAT"><label for="workday_name_SAT">星期六</label>
+                        <input type="checkbox" id="workday_name_SUN" value="SUN"><label for="workday_name_SUN">星期日</label>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <h3 class="title">每年度固定节假日</h3>
+            <div class="row">
+                <button id="fixed_holidays_btn_add" type="button" data-apply="2" class="well-btn w-btn-primary btn-add-rows">新增</button>
+                <button id="fixed_holidays_btn_del" type="button" class="well-btn w-btn-danger btn-del-rows">删除</button>
+            </div>
+            <table id="fixed_holidays_list" class="work_time_list"></table>
+        </li>
+        <li>
+            <h3 class="title">其他特殊节假日</h3>
+            <div class="row">
+                <button id="special_holidays_btn_add" type="button" data-apply="3" class="well-btn w-btn-primary btn-add-rows">新增</button>
+                <button id="special_holidays_btn_del" type="button" class="well-btn w-btn-danger btn-del-rows">删除</button>
+            </div>
+            <table id="special_holidays_list" class="work_time_list"></table>
+        </li>
+        <li>
+            <h3 class="title">补班日期</h3>
+            <div class="row">
+                <button id="make_up_btn_add" type="button" data-apply="4" class="well-btn w-btn-primary btn-add-rows">新增</button>
+                <button id="make_up_btn_del" type="button" class="well-btn w-btn-danger btn-del-rows">删除</button>
+            </div>
+            <table id="make_up_list" class="work_time_list"></table>
+        </li>
+    </ul>
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-sm-12 text-center">
+            <button type="button" class="well-btn w-btn-primary" id="work_time_btn_save">保存</button>
+        </div>
+    </div>
+    <input type="hidden" id="uuid" name="uuid" />
+</form>
+

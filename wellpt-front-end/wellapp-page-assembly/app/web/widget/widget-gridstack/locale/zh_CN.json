@@ -1,0 +1,12 @@
+{
+  "WidgetGridstack": {
+    "resetDefault": "恢复默认",
+    "resetDefaultLayout": "恢复默认排版",
+    "resetDefaultLayoutTips": "确定要恢复默认排版吗？",
+    "drapLayout": "拖动排版",
+    "start": "开始",
+    "saveAndEnd": "保存并结束",
+    "saveAndEndDragLayout": "保存并结束拖动排版",
+    "startDragLayout": "开始拖动排版"
+  }
+}

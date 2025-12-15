@@ -1,0 +1,130 @@
+<div id="div4modelSub" style="width: 450px;">
+<div class="dyform">
+			<div class="post-sign">
+				<div class="post-detail">
+		<table>
+		
+			<tr class="odd">
+				<td>字段集</td><td><select id="names" style="width:300px;"><option value="">-请选择字段-</option></select></td>
+			</tr>
+			<tr >
+				<td>字段名</td>
+				<td><input type="text" id="name" readonly="readonly"></td>
+			</tr>
+			<tr  class="odd">
+				<td>显示名称</td>
+				<td><input type="text" id="displayName" readonly="readonly"></td>
+			</tr>
+			 
+</div>
+<script type="text/javascript">
+var modelSub = {};
+modelSub.$ =  function(selector){ 
+	return $(selector, $("#div4modelSub"));
+} 
+
+$.extend(modelSub, $.ControlConfigUtil);
+
+
+ 
+
+$.extend(true, modelSub, {
+	titleReg:/\${([^}]*)}/i,
+	initPropertyDialog:function (editor){
+		// $(".cke_reset_all"  ).removeClass("cke_reset_all");
+		this.editor = editor;  
+		 
+		var subforms = formDefinition.subforms;
+		this.init(subforms);
+		
+		var focusedDom = editor.focusedDom;//当前editor被双击的对象(CKEDITOR.dom.node类)  
+		var formId = "";
+		var displayName = "";
+		if(focusedDom != null && (typeof focusedDom) != "undefined"){
+			formId =  focusedDom.getAttribute("name");
+			var html = focusedDom.getHtml();
+			var title = html.match(this.titleReg);
+			if(title != null){
+				displayName = title[1];
+			}
+		}
+	
+		
+		this.$("#displayName").val(displayName);
+		this.$("#name").val(formId);
+		this.$("#names").val(formId);
+	},
+
+	exitDialog:function(){
+		this.editor.focusedDom = null; 
+	},
+	
+	init: function(subforms){
+		for(var i in subforms){
+			var subform = subforms[i]; 
+			this.$("#names").append("<option value='" + subform.outerId + "' title='" + subform.displayName +  "' type='field'>" +subform.outerId + "_" + subform.displayName + "</option>");
+		}
+		 
+		var _this = this;
+		this.$("#names").change(function(){
+			if($(this).val().length == 0){
+				return;
+			}
+			_this.$("#displayName").val($(this).find("option:selected").attr("title"));
+			_this.$("#name").val($(this).val());
+		});
+	},
+	
+	fillCkeditor:function(){
+		var fieldName = "";
+		var displayName = "";
+		fieldName = this.$("#name").val( );
+		displayName = this.$("#displayName").val( );
+		displayName = "${" + displayName + "}";
+		var focusedDom = this.editor.focusedDom;
+		var titleHtml = "";
+		
+		if(focusedDom != null && (typeof focusedDom) != "undefined"){
+			titleHtml = focusedDom.getHtml();
+			if(titleHtml.search(this.titleReg) != -1){
+				titleHtml = titleHtml.replace(this.titleReg, displayName);
+			}else{
+				titleHtml = displayName;
+			}
+		}else{
+			titleHtml = displayName;
+		}
+		 
+		
+		var html = "<span class='model_subform' name='" + fieldName + "'>" + titleHtml+ "</span>";
+		 
+		var element = CKEDITOR.dom.element.createFromHtml( html );
+		if(focusedDom != null){ 
+			focusedDom.setHtml(titleHtml);
+			focusedDom.setAttribute("name", fieldName);
+			//element.insertBefore(focusedDom);
+			//focusedDom.remove(); 
+		}else{ 
+			this.editor.insertElement( element );
+		}
+		
+		 
+	}	
+		
+	
+});
+ 
+
+
+	 	 
+
+	
+	
+	
+	
+ 
+
+
+
+
+</script>

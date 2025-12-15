@@ -1,0 +1,61 @@
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>事项名称</th>
+        <th>表单分发类型</th>
+        <th>单据转换</th>
+        <th>使用表单</th>
+        <th>业务主体名称字段</th>
+        <th>业务主体ID字段</th>
+        <th>办理时限</th>
+      </tr>
+    </thead>
+    <tbody>
+      {@each includeItems as item,index}
+      <tr class="tr tr-${index}" index="${index}">
+        <td class="td-index">
+          ${parseInt(index)+1}
+          <input name="itemDefName" value="${item.itemDefName}" type="hidden" />
+          <input name="itemDefId" value="${item.itemDefId}" type="hidden" />
+          <input name="itemType" value="${item.itemType}" type="hidden" />
+          <input name="itemName" value="${item.itemName}" type="hidden" />
+          <input name="itemCode" value="${item.itemCode}" type="hidden" />
+          <input name="formUuid" type="hidden" />
+          <input name="formName" type="hidden" />
+        </td>
+        <td>${item.itemName}</td>
+        <td>
+          <select name="type">
+            <option value="1">使用主表单</option>
+            <option value="2">使用单据转换</option>
+          </select>
+        </td>
+        <td>
+          <div class="type-1">
+            <input id="botName_${index}" name="botName" type="hidden" />
+            <input id="botId_${index}" name="botId" type="text" />
+          </div>
+        </td>
+        <td class="form-name"></td>
+        <td>
+          <div class="type-1">
+            <input name="entityNameField" type="text" />
+          </div>
+        </td>
+        <td>
+          <div class="type-1">
+            <input name="entityIdField" type="text" />
+          </div>
+        </td>
+        <td>
+          <div class="type-1">
+            <input name="timeLimitField" type="text" />
+          </div>
+        </td>
+      </tr>
+      {@/each}
+    </tbody>
+  </table>
+</div>

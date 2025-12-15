@@ -1,0 +1,396 @@
+@menu-prefix-cls: ~'@{ant-prefix}-menu';
+
+body {
+  --w-menu-item-text-color: var(--w-text-color-dark);
+  --w-menu-item-text-color-hover: var(--w-text-color-dark);
+  --w-menu-item-text-color-selected: var(--w-primary-color);
+  --w-menu-item-background-hover: var(--w-fill-color-light);
+  --w-menu-item-background-selected: var(--w-primary-color-2);
+  --w-menu-submenu-arrow-bg-color: var(--w-text-color-darker);
+  --w-menu-item-font-weight-selected: bold;
+}
+
+.@{menu-prefix-cls} {
+  &.dark {
+    background-color: var(--w-color-dark);
+
+    .@{menu-prefix-cls}-sub {
+      background-color: var(--w-color-dark);
+      box-shadow: none;
+    }
+
+    .@{menu-prefix-cls}-item-selected {
+      background-color: var(--w-menu-item-background-selected);
+    }
+
+    &:not(.@{menu-prefix-cls}-inline) {
+      .@{menu-prefix-cls}-submenu {
+        &-open,
+        &-active {
+          color: var(--w-color-white);
+        }
+      }
+    }
+  }
+
+  &-dark {
+    --w-menu-submenu-arrow-bg-color: var(--w-text-color-inverse);
+    --w-menu-item-text-color-hover: var(--w-text-color-inverse);
+    --w-menu-item-background-hover: var(--w-primary-color);
+    --w-menu-item-background-selected: var(--w-primary-color);
+
+    &.@{menu-prefix-cls}-submenu-popup {
+      .@{menu-prefix-cls} {
+        &-item {
+          &-selected {
+            background-color: var(--w-menu-item-background-selected);
+          }
+        }
+      }
+    }
+
+    &:not(.@{menu-prefix-cls}-inline) {
+      .@{menu-prefix-cls}-submenu {
+        &-open,
+        &-active {
+          color: var(--w-color-white);
+        }
+      }
+    }
+
+    &:not(.ant-menu-horizontal) {
+      .@{menu-prefix-cls} {
+        &-item {
+          border-radius: var(--w-border-radius-2);
+        }
+      }
+    }
+  }
+
+  &:not(.ant-menu-horizontal) {
+    .ant-menu-item,
+    .ant-menu-submenu-title,
+    .ant-menu-submenu .ant-menu-submenu-title {
+      height: 48px;
+      line-height: 48px;
+      margin-top: 0;
+      margin-bottom: 0;
+      width: 100%;
+      transition: none;
+    }
+  }
+
+  &.primary-color,
+  &.primary-color.ant-menu-light {
+    --w-menu-item-text-color: var(--w-text-color-inverse);
+    --w-menu-item-text-color-hover: var(--w-text-color-inverse);
+    --w-menu-item-text-color-selected: var(--w-text-color-inverse);
+    --w-menu-item-background-selected: var(--w-primary-color-7);
+    --w-menu-item-background-hover: var(--w-primary-color-5);
+    --w-menu-submenu-arrow-bg-color: var(--w-text-color-inverse);
+
+    background-color: var(--w-primary-color);
+
+    &.ant-menu-item,
+    .ant-menu-submenu-title,
+    .ant-menu-submenu-title > i::before,
+    .ant-menu-submenu-title > i::after {
+      color: var(--w-menu-item-text-color);
+      background-image: unset;
+    }
+
+    .ant-menu-item {
+      color: var(--w-menu-item-text-color);
+
+      &:hover {
+        background-color: var(--w-menu-item-background-hover);
+        border-bottom: none;
+      }
+
+      &-selected {
+        color: var(--w-menu-item-text-color-selected);
+        background-color: var(--w-menu-item-background-selected);
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+
+    &.ant-menu-vertical {
+      border-right: 0;
+    }
+
+    &:not(.ant-menu-horizontal) {
+      --w-menu-item-background-selected: var(--w-primary-color-5);
+
+      &.ant-menu-inline,
+      &.ant-menu-vertical,
+      &.ant-menu-vertical-left {
+        border-right: 0;
+      }
+
+      .ant-menu-item {
+        border-radius: var(--w-border-radius-2);
+
+        &:active {
+          background-color: var(--w-menu-item-background-hover);
+        }
+
+        &.ant-menu-item-selected {
+          color: var(--w-menu-item-text-color-hover);
+          background-color: var(--w-menu-item-background-hover);
+          font-weight: var(--w-menu-item-font-weight-selected);
+
+          &::after {
+            border-right-color: transparent;
+          }
+        }
+
+        &::after {
+          border-right-color: transparent;
+        }
+      }
+
+      .ant-menu-submenu.ant-menu-submenu-inline {
+        &.ant-menu-submenu-selected {
+          & > .ant-menu-submenu-title {
+            color: var(--w-menu-item-text-color-hover);
+            font-weight: var(--w-menu-item-font-weight-selected);
+          }
+        }
+      }
+
+      .ant-menu-submenu-title {
+        border-radius: var(--w-border-radius-2);
+      }
+    }
+
+    .ant-menu-submenu-title {
+      &:hover {
+        color: #fff;
+        background-color: var(--w-primary-color-7);
+
+        .ant-menu-submenu-arrow::before,
+        .ant-menu-submenu-arrow::after {
+          background: #fff;
+        }
+      }
+    }
+
+    .ant-menu-sub {
+      background-color: var(--w-primary-color);
+    }
+  }
+
+  &.light {
+    background-color: var(--w-color-light);
+
+    .ant-menu-sub {
+      background-color: var(--w-color-light);
+    }
+  }
+
+  &-light.light,
+  &-light:not(.primary-color) {
+    .ant-menu-item,
+    .ant-menu-submenu-title,
+    .ant-menu-submenu .ant-menu-submenu-title {
+      color: var(--w-menu-item-text-color);
+    }
+
+    .@{menu-prefix-cls}-item {
+      &:hover,
+      &-active {
+        color: var(--w-menu-item-text-color-hover);
+        background-color: var(--w-menu-item-background-hover);
+        border-bottom-color: var(--w-menu-item-background-hover);
+      }
+
+      &-selected {
+        background-color: var(--w-menu-item-background-selected);
+        border-bottom-color: var(--w-menu-item-background-selected);
+        color: var(--w-menu-item-text-color-selected);
+        font-weight: var(--w-menu-item-font-weight-selected);
+      }
+    }
+
+    .@{menu-prefix-cls}-submenu {
+      &-active,
+      &-selected {
+        > .ant-menu-submenu-title {
+          color: var(--w-menu-item-text-color-selected);
+          background-color: var(--w-menu-item-background-selected);
+        }
+      }
+    }
+
+    &:not(.ant-menu-horizontal) {
+      &.ant-menu-inline,
+      &.ant-menu-vertical,
+      &.ant-menu-vertical-left {
+        border-right: 0;
+      }
+
+      .@{menu-prefix-cls} {
+        &-item {
+          border-radius: var(--w-border-radius-2);
+
+          &:hover,
+          &-active {
+            color: var(--w-menu-item-text-color-hover);
+            background-color: var(--w-menu-item-background-hover);
+          }
+
+          &-selected {
+            background-color: var(--w-menu-item-background-selected);
+            color: var(--w-menu-item-text-color-selected);
+            font-weight: var(--w-menu-item-font-weight-selected);
+          }
+
+          &-selected {
+            &::after {
+              border-right-color: transparent;
+            }
+          }
+
+          &::after {
+            border-right-color: transparent;
+          }
+        }
+
+        // &-submenu-open,
+        &-submenu-active,
+        &-submenu-selected {
+          > .ant-menu-submenu-title {
+            color: var(--w-menu-item-text-color-selected);
+            background-color: transparent;
+
+            .ant-menu-submenu-arrow {
+              &::before,
+              &::after {
+                background: var(--w-menu-item-text-color-hover);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-submenu {
+    &-popup {
+      // &:not(.@{menu-prefix-cls}-dark) {
+      :not(.@{menu-prefix-cls}-horizontal) {
+        .@{menu-prefix-cls} {
+          &-item {
+            &:hover,
+            &-active,
+            &-selected {
+              background-color: var(--w-menu-item-background-hover);
+              color: var(--w-menu-item-text-color-hover);
+            }
+          }
+
+          &-submenu-open,
+          &-submenu-active,
+          &-submenu-selected {
+            > .ant-menu-submenu-title {
+              color: var(--w-menu-item-text-color-hover);
+              background-color: transparent;
+
+              .ant-menu-submenu-arrow {
+                &::before,
+                &::after {
+                  background: var(--w-menu-item-text-color-hover);
+                }
+              }
+            }
+          }
+
+          &-submenu-title {
+            padding-right: 34px;
+
+            .ant-menu-submenu-arrow {
+              &::before,
+              &::after {
+                background: var(--w-menu-submenu-arrow-bg-color);
+              }
+            }
+
+            &:hover,
+            &:active,
+            &:focus {
+              color: var(--w-menu-item-text-color-hover);
+              background-color: transparent;
+
+              .ant-menu-submenu-arrow {
+                &::before,
+                &::after {
+                  background: var(--w-menu-item-text-color-hover);
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // }
+
+      &.ant-menu-submenu-placement-rightTop {
+        padding-left: var(--w-padding-xs);
+      }
+
+      > .ant-menu-vertical.ant-menu-sub {
+        padding: var(--w-padding-xs) var(--w-padding-2xs);
+        border-radius: var(--w-border-radius-2);
+        max-width: 224px;
+        max-height: 500px;
+        overflow-y: auto;
+
+        /* 自定义整个滚动条 */
+        &::-webkit-scrollbar {
+          width: 8px;
+          /* 水平滚动条的宽度 */
+          height: 8px;
+          /* 垂直滚动条的高度 */
+        }
+
+        /* 自定义滚动条轨道 */
+        &::-webkit-scrollbar-track {
+          background: transparent;
+          /* 设置轨道的背景颜色 */
+        }
+
+        /* 自定义滚动条轨道 */
+        &:hover::-webkit-scrollbar-track {
+          background: transparent;
+          /* 设置轨道的背景颜色 */
+        }
+
+        &:hover::-webkit-scrollbar-thumb {
+          background: #cccccc;
+          /* 悬停时滑块的背景颜色 */
+        }
+
+        /* 自定义滚动条的滑块（thumb） */
+        &::-webkit-scrollbar-thumb {
+          background: transparent;
+          border-radius: 8px;
+          /* 设置滑块的背景颜色 */
+        }
+
+        /* 当滑块悬停或活动时，可以添加更多样式 */
+        &::-webkit-scrollbar-thumb:hover {
+          background: #b3b3b3;
+          /* 设置滑块在悬停状态下的背景颜色 */
+        }
+      }
+    }
+  }
+}
+
+.ant-menu-inline-collapsed-tooltip {
+  .ant-tooltip-inner {
+  }
+}

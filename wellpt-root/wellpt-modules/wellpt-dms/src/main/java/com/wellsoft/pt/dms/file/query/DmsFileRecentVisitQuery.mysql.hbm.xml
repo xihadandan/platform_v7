@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="dmsFileRecentVisitQuery">
+        <![CDATA[
+		select *
+		  from (select *
+		  			from (select f1.uuid 		as uuid,
+			               f1.name 				as name,
+			               'application/folder'	as content_type,
+			               0 					as file_size,
+			               '' 					as data_def_uuid,
+			               '' 					as data_uuid,
+			               f1.parent_uuid	 	as folder_uuid,
+			               f1.status 			as status,
+			               f1.creator 			as creator,
+			               f1.create_time 		as create_time,
+			               f1.modifier 			as modifier,
+			               f1.modify_time 		as modify_time,
+			               si1.read_time  		as read_time
+			          from dms_folder f1, cd_read_marker si1
+			         where f1.uuid = si1.entity_uuid
+			           and f1.status = :status
+			           and si1.user_id = :ownerId
+			            <if isNotBlank(folderOrderString)>
+			   				${folderOrderString}
+			   			</if>
+					 	<if isBlank(folderOrderString)>
+			   				order by f1.name asc
+			   			</if>) f1_
+		        union all
+		        select * from(
+		        		select f1.uuid          as uuid,
+				               f1.file_name     as name,
+				               f1.content_type  as content_type,
+				               f1.file_size     as file_size,
+				               f1.data_def_uuid as data_def_uuid,
+				               f1.data_uuid     as data_uuid,
+				               f1.folder_uuid  	as folder_uuid,
+				               f1.status        as status,
+				               f1.creator       as creator,
+				               f1.create_time   as create_time,
+				               f1.modifier      as modifier,
+				               f1.modify_time   as modify_time,
+				               si1.read_time    as read_time
+				          from dms_file f1, cd_read_marker si1
+				         where f1.uuid = si1.entity_uuid
+				           and f1.status = :status
+				           and si1.user_id = :ownerId
+				           	<if isNotBlank(fileOrderString)>
+				   				${fileOrderString}
+				   			</if>
+						 	<if isBlank(fileOrderString)>
+				   				order by f1.file_name asc
+				   			</if>) f1_) t
+				 where 1 = 1
+			   		<if isNotBlank(whereSql)>
+			   			and ${whereSql}
+			   		</if>
+	]]>
+    </sql-query>
+
+    <sql-query name="dmsFileRecentVisitListFolderAndFilesQuery">
+        <![CDATA[
+		select *
+		  from (select f1.uuid 				as uuid,
+		               f1.name 				as name,
+		               'application/folder'	as content_type,
+		               0 					as file_size,
+		               '' 					as data_def_uuid,
+		               '' 					as data_uuid,
+		               f1.uuid 				as folder_uuid,
+		               f1.status 			as status,
+		               f1.creator 			as creator,
+		               f1.create_time 		as create_time,
+		               f1.modifier 			as modifier,
+		               f1.modify_time 		as modify_time,
+		               f1.create_time 		as read_time
+		          from dms_folder f1,
+		               (select distinct	t1.uuid		as folder_uuid
+		                  from dms_folder t1, cd_read_marker t2
+		                 where t1.uuid_path like concat('%', t2.entity_uuid, '%')
+		                   and t1.status = :status
+		                   and t2.user_id = :ownerId
+		                   and t1.uuid = :folderUuid) si1
+		         where f1.parent_uuid = si1.folder_uuid
+		           and f1.status = :status
+		        union all
+		        select f1.uuid            	as uuid,
+		               f1.file_name       	as name,
+		               f1.content_type    	as content_type,
+		               f1.file_size       	as file_size,
+		               f1.data_def_uuid   	as data_def_uuid,
+		               f1.data_uuid       	as data_uuid,
+		               f1.folder_uuid   	as folder_uuid,
+		               f1.status          	as status,
+		               f1.creator         	as creator,
+		               f1.create_time     	as create_time,
+		               f1.modifier        	as modifier,
+		               f1.modify_time     	as modify_time,
+		               f1.create_time     	as read_time
+		          from dms_file f1,
+		               (select distinct t1.uuid		as folder_uuid
+		                  from dms_folder t1, cd_read_marker t2
+		                 where t1.uuid_path like concat('%', t2.entity_uuid, '%')
+		                   and t1.status = :status
+		                   and t2.user_id = :ownerId
+		                   and t1.uuid = :folderUuid) si1
+		         where f1.folder_uuid = si1.folder_uuid
+		           and f1.status = :status) t
+			 where 1 = 1
+		   		<if isNotBlank(whereSql)>
+		   			and ${whereSql}
+		   		</if>
+	]]>
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,56 @@
+{
+  "js": {
+    "AppPtMgrListViewWidgetDevelopment": {
+      "path": "/mgr-commons/AppPtMgrListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_视图列表基础_视图组件二开",
+      "dependencies": [
+        "dependencyAppPtMgrModule",
+        "ListViewWidgetDevelopment"
+      ]
+    },
+    "dependencyAppPtMgrModule": {
+      "name": "dependencyAppPtMgrModule",
+      "abstract": true,
+      "dependencies": [
+        "AppPtMgrCommons",
+        "ztree",
+        "jquery-validate",
+        "new_validate",
+        "jquery-validate-messages_zh_CN",
+        "wSelect2",
+        "wSelect2Group",
+        "iexportData_V61"
+      ]
+    },
+    "AppPtMgrDetailsWidgetDevelopment": {
+      "path": "/mgr-commons/AppPtMgrDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_数据详情基础_HTML组件二开",
+      "dependencies": [
+        "dependencyAppPtMgrModule",
+        "HtmlWidgetDevelopment"
+      ]
+    },
+    "GetModuleMgrTabBadgeCountDevelopment": {
+      "path": "/mgr-commons/GetModuleMgrTabBadgeCountDevelopment",
+      "name": "平台管理_产品集成_获取模块化管理下的各Tab表格视图数据总数",
+      "dependencies": [
+        "GetCountBase"
+      ]
+    },
+    "iexportData_V61": {
+      "path": "/pt/js/common/jquery.iexportData.v61",
+      "name": "平台管理基础功能_定义导入定义导出_平台6.1版本",
+      "dependencies": [
+        "dependencyAppBaseModule"
+      ]
+    },
+    "AppPtMgrCommons": {
+      "path": "/mgr-commons/AppPtMgrCommons",
+      "name": "平台管理_公共功能",
+      "dependencies": [
+        "jquery-form"
+      ]
+    }
+  },
+  "css": {}
+}

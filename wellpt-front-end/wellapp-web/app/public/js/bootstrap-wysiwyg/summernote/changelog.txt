@@ -1,0 +1,16 @@
+老版本
+
+1、第3969行Editor的currentStyle方法增加记录lastRange
+this.lastRange = rng;
+
+2、第1643行summernote增加insertText、insertHtml方法
+this.insertText = function(text) {
+	...
+};
+
+this.insertHtml = function(html) {
+	...
+};
+
+
+

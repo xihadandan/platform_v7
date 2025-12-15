@@ -1,0 +1,17 @@
+### Eclipse Workspace Patch 1.0
+#P WPP610
+Index: wellpt-root/wellpt-web/WebContent/resources/bootstrap-table/1.11.0/js/bootstrap-table.js
+===================================================================
+--- wellpt-root/wellpt-web/WebContent/resources/bootstrap-table/1.11.0/js/bootstrap-table.js	(revision 191270)
++++ wellpt-root/wellpt-web/WebContent/resources/bootstrap-table/1.11.0/js/bootstrap-table.js	(working copy)
+@@ -668,7 +668,9 @@
+         if (!$.isArray(this.options.columns[0])) {
+             this.options.columns = [this.options.columns];
+         }
+-        this.options.columns = $.extend(columns.length > 0, [], columns, this.options.columns);
++        if(columns.length > 0) {
++        	this.options.columns = $.extend(true, [], columns, this.options.columns);
++        }
+         this.columns = [];
+ 
+         setFieldIndex(this.options.columns);

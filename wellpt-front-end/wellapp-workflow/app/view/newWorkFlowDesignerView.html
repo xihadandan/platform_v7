@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+
+    {% for file in themeFiles %}
+    <link href="{{file}}" rel="stylesheet" />
+    {% endfor %}
+  </head>
+  <body id="WORKBODY" class="workflow-designer-iframe">
+    <div class="workflow-designer-tools-bar clear" style="display: none">
+      <!--<div class="wfd-tool" data-type="backout">-->
+      <!--<i class="iconfont icon-oa-chexiao"></i>-->
+      <!--<span>撤销</span>-->
+      <!--</div>-->
+      <!--<div class="wfd-tool right-border" data-type="reset">-->
+      <!--<i class="iconfont icon-oa-zhuanban"></i>-->
+      <!--<span>重做</span>-->
+      <!--</div>-->
+      <div class="wfd-tool" data-type="clear">
+        <i class="iconfont icon-xmch-qingkongqingchu"></i>
+        <span>清空</span>
+      </div>
+      <div class="wfd-tool" data-type="delete">
+        <i class="iconfont icon-ptkj-shanchu"></i>
+        <span>删除</span>
+      </div>
+      <div class="wfd-tool" data-type="copy">
+        <i class="iconfont icon-ptkj-fuzhi"></i>
+        <span>复制</span>
+      </div>
+      <div class="wfd-tool" data-type="cut">
+        <i class="iconfont icon-ptkj-jianqie"></i>
+        <span>剪切</span>
+      </div>
+      <div class="wfd-tool right-border" data-type="paste">
+        <i class="iconfont icon-ptkj-niantie"></i>
+        <span>粘贴</span>
+      </div>
+      <div class="wfd-tool" data-type="grid">
+        <i class="iconfont icon-ptkj-wangge"></i>
+        <span>网格</span>
+      </div>
+      <div class="wfd-tool right-border" data-type="fullScreen">
+        <i class="iconfont icon-ptkj-quanping"></i>
+        <span>全屏</span>
+      </div>
+      <div class="wfd-tool" data-type="checkError">
+        <i class="iconfont icon-ptkj-cuowujiancha"></i>
+        <span>错误检查</span>
+      </div>
+      <div class="wfd-tool" data-type="downloadWorkflow">
+        <i class="iconfont icon-ptkj-xiazai"></i>
+        <span>下载流程图</span>
+      </div>
+    </div>
+    <div id="ID_WORKAROUND" class="designer-canvas">
+      <img src="/static/themes/images/workflow/wl_begin.gif" name="img_begin" width="48" height="48" style="display: none" />
+      <img src="/static/themes/images/workflow/wl_condition.png" name="img_condition" width="144" height="48" style="display: none" />
+      <img src="/static/themes/images/workflow/wl_end.gif" name="img_end" width="48" height="48" style="display: none" />
+      <img src="/static/themes/images/workflow/wl_freetask.gif" name="img_freetask" width="144" height="48" style="display: none" />
+      <img src="/static/themes/images/workflow/wl_subflow.gif" name="img_subflow" width="144" height="48" style="display: none" />
+      <img src="/static/themes/images/workflow/wl_task.gif" name="img_task" width="144" height="48" style="display: none" />
+      <img src="/static/themes/images/workflow/wl_task_timer.gif" name="img_task_timer" width="144" height="48" style="display: none" />
+      <img
+        src="/static/themes/images/workflow/wl_task_timer_alarm.gif"
+        name="img_task_timer_alarm"
+        width="144"
+        height="48"
+        style="display: none"
+      />
+      <img
+        src="/static/themes/images/workflow/wl_task_timer_due.gif"
+        name="img_task_timer_due"
+        width="144"
+        height="48"
+        style="display: none"
+      />
+      <img src="/static/themes/images/workflow/wl_label.gif" name="img_label" width="144" height="48" style="display: none" />
+      <img src="/static/themes/images/workflow/wl_line.gif" name="img_line" width="160" height="20" style="display: none" />
+      <div id="ID_LABELVALUEDIV" style="display: none; position: absolute">
+        <textarea id="ID_LABELVALUE" onclick="event.cancelBubble=true;" ondblclick="event.cancelBubble=true;"></textarea>
+      </div>
+    </div>
+    <div class="no-flow" style="display: none">
+      <img src="/static/themes/images/workflow/empty_draw.png" />
+      <p>请选择节点开始设计</p>
+    </div>
+    <div class="zoom-control">
+      <div class="zoom-item zoom-large">
+        <i class="iconfont icon-ptkj-fangda"></i>
+      </div>
+      <div class="zoom-item zoom-small">
+        <i class="iconfont icon-ptkj-suoxiao"></i>
+      </div>
+      <div class="zoom-item zoom-reset">
+        <i class="iconfont icon-ptkj-100"></i>
+      </div>
+    </div>
+    <script src="/static/js/jquery/jquery.js?v={{helper.resVer()}}"></script>
+    <script src="/static/js/utils/json2.js?v={{helper.resVer()}}"></script>
+    <script src="/static/js/pt/js/global.js?v={{helper.resVer()}}"></script>
+    <script src="/static/workflow/js/designer/JSConstant.js?v={{helper.resVer()}}"></script>
+    <script src="/static/workflow/js/designer/graphics.js?v={{helper.resVer()}}"></script>
+    <script src="/static/workflow/js/designer/jquery.workflow.js?v={{helper.resVer()}}"></script>
+    <script src="/static/workflow/js/designer/newWorkflow.js?v={{helper.resVer()}}"></script>
+    <script src="/static/workflow/js/designer/dragdropNew.js?v={{helper.resVer()}}"></script>
+    <script src="/static/workflow/js/designer/x2js.min.js?v={{helper.resVer()}}"></script>
+    <script src="/static/js/jquery.nicescroll/jquery.nicescroll.min.js?v={{helper.resVer()}}"></script>
+    <script src="/static/js/dom-to-image/dom-to-image.min.js?v={{helper.resVer()}}"></script>
+    <script>
+      $(function () {
+        loadEvent();
+      });
+      SET_DHTML(
+        CURSOR_MOVE,
+        RESIZABLE,
+        'img_begin',
+        'img_condition',
+        'img_end',
+        'img_freetask',
+        'img_subflow',
+        'img_task',
+        'img_task_timer',
+        'img_task_timer_alarm',
+        'img_task_timer_due',
+        'img_label',
+        'img_line'
+      );
+      for (var i = 0; i < dd.elements.length; i++) {
+        dd.elements[i].hide();
+      }
+      $('#ID_WORKAROUND')
+        .on('mousemove', mouseMove)
+        .on('mouseover', mouseOver)
+        .on('mouseout', mouseOut)
+        .on('click', mouseClick)
+        .on('mousedown', mouseDown)
+        .on('mouseup', mouseUp)
+        .on('dblclick', mouseDblClick)
+        .on('contextmenu', function (e) {
+          //阻止鼠标右键默认事件
+          e.preventDefault();
+        });
+
+      $('.no-flow').on('mouseenter', function () {
+        if (goWorkFlow.curAddObject) {
+          $(this).hide();
+        }
+      });
+      document.onselectstart = Function('return false;');
+    </script>
+    <script src="/static/js/contextmenu/jquery.contextmenu.r2.js"></script>
+    <script>
+      $('body').contextMenu('ID_MENU_FLOW', {
+        bindings: {
+          flowProperty: function (t) {
+            setFlowProperty();
+            disabledInputs(500);
+          },
+          showLineName: function (t) {
+            showLineName(true);
+          },
+          hideLineName: function (t) {
+            showLineName(false);
+          },
+          showLabel: function (t) {
+            showLabel(true);
+          },
+          hideLabel: function (t) {
+            showLabel(false);
+          }
+        },
+        menuStyle: {
+          width: '150px'
+        },
+        onKeyDown: function (e) {},
+        onShowMenu: function (e, menu) {
+          // 右键点击切换到鼠标画图状态
+          if (parent.gaTools) {
+            for (var i = 0; i < parent.gaTools.length; i++) {
+              //if(i != 0 && parent.gaTools[i].className === "ToolInset"){
+              $(parent.gaTools[0], parent).trigger('mousedown');
+              //}
+            }
+          }
+          if (goWorkFlow.copyObject == null) {
+            $('#paste', menu).remove();
+          }
+          return menu;
+        }
+      });
+
+      $(document).ready(function () {
+        // $(document).on("dblclick",function(e){
+        //     disabledInputs(500);
+        // });
+        // $("#taskProperty").on("click",function(e){
+        //     disabledInputs(500);
+        // });
+        // $("#directionProperty").on("click",function(e){
+        //     disabledInputs(500);
+        // });
+        // disabledInputs(7000);
+        var onlyGraphics = Browser.getQueryString('onlyGraphics');
+        var body = onlyGraphics ? $('body') : top.$('body');
+        body.niceScroll({
+          cursorcolor: '#ccc', //滚动条的颜色
+          cursoropacitymax: 0.9, //滚动条的透明度，从0-1
+          touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备 true滚动条拖动不可用
+          cursorwidth: '6px', //滚动条的宽度  单位默认px
+          cursorborder: '0', // 游标边框css定义
+          cursorborderradius: '3px', //滚动条两头的圆角
+          autohidemode: true, //是否隐藏滚动条  true的时候默认不显示滚动条，当鼠标经过的时候显示滚动条
+          zindex: 'auto', //给滚动条设置z-index值
+          railvalign: 'defaul',
+          railpadding: {
+            top: 0,
+            right: -6,
+            left: 0,
+            bottom: 0
+          }
+        });
+      });
+
+      function disabledInputs(timeout) {
+        setTimeout(function () {
+          $('input', $(window.parent.document)).attr('disabled', true);
+          $('select', $(window.parent.document)).attr('disabled', true);
+          $('button', $(window.parent.document)).attr('disabled', true);
+          $('textarea', $(window.parent.document)).attr('disabled', true);
+        }, timeout);
+      }
+    </script>
+  </body>
+</html>

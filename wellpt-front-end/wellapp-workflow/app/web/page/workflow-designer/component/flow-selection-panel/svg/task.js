@@ -1,0 +1,6 @@
+
+export default `
+<svg class="icon" style="width: 100%;height: 100%;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="826">
+<path d="M960 800H64c-35.346 0-64-28.654-64-64V288c0-35.346 28.654-64 64-64h896c35.346 0 64 28.654 64 64v448c0 35.346-28.654 64-64 64z" fill="#FFFFFF" p-id="827"></path>
+<path d="M960.001 288v448H256V288h704.001m0-64H63.999C28.653 224 0 252.654 0 288v448c0 35.346 28.653 64 63.999 64h896.002c35.346 0 63.999-28.654 63.999-64V288c0-35.346-28.653-64-63.999-64z" fill="#1677FF" p-id="828"></path>
+</svg>`

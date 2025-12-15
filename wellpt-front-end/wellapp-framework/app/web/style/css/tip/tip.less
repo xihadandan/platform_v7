@@ -1,0 +1,60 @@
+body {
+  // icon变量
+  --w-tip-icon-color: var(--w-text-color-light);
+  --w-tip-icon-color-hover: var(--w-text-color-base);
+  --w-tip-icon-font-size: var(--w-font-size-base);
+  // tip变量
+  // 边框
+  --w-tip-border-color: var(--w-border-color-base);
+  --w-tip-border-style: var(--w-border-style-base);
+  --w-tip-border-width: none;
+  // 圆角
+  --w-tip-border-radius: var(--w-border-radius-base);
+  // 文字
+  --w-tip-color: #fff;
+  --w-tip-font-size: var(--w-font-size-base);
+  --w-tip-font-weight: var(--w-font-weight-regular);
+  // 填充
+  --w-tip-background-color: rgba(0, 0, 0, 0.75);
+  // 边距
+  --w-tip-lr-padding: var(--w-padding-2xs);
+  // 阴影
+  --w-tip-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+  .widget-tooltip {
+
+    // 图标
+    .anticon-info-circle {
+      color: var(--w-tip-icon-color);
+      font-size: var(--w-tip-icon-font-size);
+    }
+
+    .anticon-info-circle:hover {
+      color: var(--w-tip-icon-color-hover);
+    }
+
+    &-overlay {
+
+      // 提示气泡
+      .ant-tooltip-inner {
+        background: var(--w-tip-background-color);
+        border: var(--w-tip-border-width) var(--w-tip-border-style) var(--w-tip-border-color);
+        border-radius: var(--w-tip-border-radius);
+        color: var(--w-tip-color);
+        font-size: var(--w-tip-font-size);
+        font-weight: var(--w-tip-font-weight);
+        padding-left: var(--w-tip-lr-padding);
+        padding-right: var(--w-tip-lr-padding);
+        box-shadow: var(--w-tip-box-shadow);
+      }
+
+      .ant-tooltip-arrow::before {
+        background-color: var(--w-tip-background-color);
+      }
+    }
+  }
+}
+
+.bubble-group {
+  padding: 10px;
+}

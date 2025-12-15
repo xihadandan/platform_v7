@@ -1,0 +1,38 @@
+{
+  "js": {
+    "AppNoticeDocumentViewDevelopment": {
+      "path": "notice/AppNoticeDocumentViewDevelopment",
+      "name": "平台应用_通知公告_数据管理表单二开",
+      "dependencies": ["DmsDyformDocumentView"]
+    },
+    "AppNoticeDmsFileManagerDyformDocumentViewDevelopment": {
+      "path": "notice/AppNoticeDmsFileManagerDyformDocumentViewDevelopment",
+      "name": "平台应用_通知公告_文件库表单二开",
+      "dependencies": ["DmsFileManagerDyformDocumentView"]
+    },
+    "AppNoticeDmsDyformEditAction": {
+      "path": "notice/AppNoticeDmsDyformEditAction",
+      "name": "平台应用_通知公告_数据管理表单二开",
+      "dependencies": ["DmsDyformActionBase"]
+    },
+    "AppNoticeDocumentViewFragment1": {
+      "path": "notice/AppNoticeDocumentViewFragment1",
+      "name": "平台应用_通知公告_数据管理表单二开片断1"
+    },
+    "AppNoticeHeaderWidgetDevelopment": {
+      "path": "notice/AppNoticeHeaderWidgetDevelopment",
+      "name": "平台应用_通知公告_头部组件二开",
+      "dependencies": ["HeaderWidgetDevelopment"]
+    },
+    "AppNoticeLeftSidebarWidgetDevelopment": {
+      "path": "notice/AppNoticeLeftSidebarWidgetDevelopment",
+      "name": "平台应用_通知公告_左导航组件二开",
+      "dependencies": ["LeftSidebarWidgetDevelopment"]
+    },
+    "AppNoticeDmsDataManagementViewDevelopment": {
+      "path": "notice/AppNoticeDmsDataManagementViewDevelopment",
+      "name": "数据管理_视图二开_平台应用_通知公告",
+      "dependencies": ["DmsDataManagementViewDevelopment"]
+    }
+  }
+}

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="checkUserLoginNameQuery">
+        <![CDATA[
+        select  a.id as id,a.loginName as loginName,a.userName as userName,a.loginNameLowerCase as loginNameLowerCase,a.loginNameZh as loginNameZh,
+        t.mobilePhone as mobilePhone,t.idNumber as idNumber,t.englishName as englishName,t.mainEmail as mainEmail,t.employeeNumber as employeeNumber
+            from MultiOrgUserAccount a , MultiOrgUserInfo t WHERE a.id = t.userId
+            <if isNotBlank(userUuid)>
+            and a.uuid != :userUuid
+            </if>
+            and (a.loginNameLowerCase in (:checkValue)
+            <if accountZhEnable == 1 >
+                or LOWER(a.loginNameZh) in (:checkValue)
+             </if>
+            <if tellEnable == 1 >
+                or LOWER(t.mobilePhone) in (:checkValue)
+            </if>
+            <if identifierCodeEnable == 1 >
+                or LOWER(t.idNumber) in (:checkValue)
+            </if>
+            <if nameEnEnable == 1 >
+                or LOWER(t.englishName) in (:checkValue)
+            </if>
+            <if emailEnable == 1 >
+                or LOWER(t.mainEmail) in (:checkValue)
+            </if>
+            <if empCodeEnable == 1 >
+                or LOWER(t.employeeNumber) in (:checkValue)
+            </if>
+            )
+        ]]>
+    </sql-query>
+
+    <!--清空重复登录名临时表-->
+    <sql-query name="deleteReduplicate">
+        <![CDATA[delete from user_name_reduplicate_temp ]]>
+    </sql-query>
+    <!--插入重复登录名临时表-->
+    <sql-query name="insertReduplicate">
+        <![CDATA[
+            insert into user_name_reduplicate_temp select reduplicate from (
+            select distinct reduplicate,id from (
+           select LOWER(login_name) reduplicate , id from user_login_name_view
+            <if accountZhEnable == 1 >
+                union all select  LOWER(login_name_zh) reduplicate , id from user_login_name_view
+             </if>
+            <if tellEnable == 1 >
+                union all select  LOWER(mobile_phone) reduplicate, id  from user_login_name_view
+            </if>
+            <if identifierCodeEnable == 1 >
+              union all select  LOWER(ID_NUMBER) reduplicate , id from user_login_name_view
+            </if>
+            <if nameEnEnable == 1 >
+                union all select  LOWER(English_Name) reduplicate , id from user_login_name_view
+            </if>
+            <if emailEnable == 1 >
+                union all select  LOWER(main_email) reduplicate , id from user_login_name_view
+            </if>
+            <if empCodeEnable == 1 >
+                union all select  LOWER(EMPLOYEE_NUMBER) reduplicate , id from user_login_name_view
+            </if>
+            ) a WHERE reduplicate !=' '
+          ) b group by reduplicate having count(reduplicate)>1
+        ]]>
+    </sql-query>
+    <sql-query name="checkUserLoginDoubleQuery">
+        <![CDATA[
+           select reduplicate from user_name_reduplicate_temp
+	    ]]>
+    </sql-query>
+
+    <sql-query name="userLoginDoubleInfo">
+        <![CDATA[
+            select * from (
+                select /*+ leading(t) use_hash(u)*/t.id,t.login_name,t.user_name,t.account_name,t.reduplicate,u.name system_unit_name from
+                (select a.id,login_name,user_name,system_unit_id,'账户' account_name,a.login_name reduplicate from MULTI_ORG_USER_ACCOUNT a WHERE a.login_name_lower_case in (select reduplicate from user_name_reduplicate_temp) and is_forbidden = 0) t
+                ,multi_org_system_unit u  where t.system_unit_id = u.id
+                <if accountZhEnable == 1 >
+                    union all
+                    select /*+ leading(t) use_hash(u)*/t.id,t.login_name,t.user_name,t.account_name,t.reduplicate,u.name system_unit_name from
+                    (select a.id,login_name,user_name,system_unit_id,'中文账户' account_name,a.login_name_zh reduplicate from MULTI_ORG_USER_ACCOUNT a WHERE LOWER(a.login_name_zh) in (select reduplicate from user_name_reduplicate_temp) and is_forbidden = 0)t
+                    ,multi_org_system_unit u  where t.system_unit_id = u.id
+                </if>
+                <if tellEnable == 1 >
+                    union all
+                    select /*+ leading(t) use_hash(u)*/a.id,a.login_name,a.user_name,t.account_name,t.reduplicate,u.name system_unit_name from
+                    (select a.user_id,'手机号' account_name,a.mobile_phone reduplicate from MULTI_ORG_USER_INFO a WHERE LOWER(a.mobile_phone) in (select reduplicate from user_name_reduplicate_temp))t,MULTI_ORG_USER_ACCOUNT a,multi_org_system_unit u
+                     WHERE a.id = t.user_id and a.system_unit_id = u.id and is_forbidden = 0
+                </if>
+                <if identifierCodeEnable == 1 >
+                  union all
+                  select /*+ leading(t) use_hash(u)*/a.id,a.login_name,a.user_name,t.account_name,t.reduplicate,u.name system_unit_name from
+                  (select a.user_id,'身份证' account_name,a.ID_NUMBER reduplicate from MULTI_ORG_USER_INFO a WHERE LOWER(a.ID_NUMBER) in (select reduplicate from user_name_reduplicate_temp))t,MULTI_ORG_USER_ACCOUNT a,multi_org_system_unit u
+                    WHERE a.id = t.user_id and a.system_unit_id = u.id and is_forbidden = 0
+                </if>
+                <if nameEnEnable == 1 >
+                   union all
+                   select /*+ leading(t) use_hash(u)*/a.id,a.login_name,a.user_name,t.account_name,t.reduplicate,u.name system_unit_name from
+                   (select a.user_id,'英文名' account_name,a.English_Name reduplicate from MULTI_ORG_USER_INFO a WHERE LOWER(a.English_Name) in (select reduplicate from user_name_reduplicate_temp))t,MULTI_ORG_USER_ACCOUNT a,multi_org_system_unit u
+                    WHERE a.id = t.user_id and a.system_unit_id = u.id and is_forbidden = 0
+                </if>
+                <if emailEnable == 1 >
+                    union all
+                    select /*+ leading(t) use_hash(u)*/a.id,a.login_name,a.user_name,t.account_name,t.reduplicate,u.name system_unit_name from
+                    (select a.user_id,'邮箱' account_name,a.main_email reduplicate from MULTI_ORG_USER_INFO a WHERE LOWER(a.main_email) in (select reduplicate from user_name_reduplicate_temp))t,MULTI_ORG_USER_ACCOUNT a,multi_org_system_unit u
+                        WHERE a.id = t.user_id and a.system_unit_id = u.id and is_forbidden = 0
+                </if>
+                <if empCodeEnable == 1 >
+                    union all
+                     select /*+ leading(t) use_hash(u)*/a.id,a.login_name,a.user_name,t.account_name,t.reduplicate,u.name system_unit_name from
+                    (select a.user_id,'员工编号' account_name,a.EMPLOYEE_NUMBER reduplicate from MULTI_ORG_USER_INFO a WHERE LOWER(a.EMPLOYEE_NUMBER) in (select reduplicate from user_name_reduplicate_temp))t,MULTI_ORG_USER_ACCOUNT a,multi_org_system_unit u
+                        WHERE a.id = t.user_id and a.system_unit_id = u.id and is_forbidden = 0
+                </if>
+            ) a order by reduplicate
+	]]>
+    </sql-query>
+</hibernate-mapping>

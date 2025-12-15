@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="orgListKeywordQuery">
+        <![CDATA[
+		from OrganizationEntity o
+		 where 1=1
+ 		 <if isNotBlank( system )>
+		    and o.system = :system
+ 		 </if>
+ 		  <if isNotBlank( systemIsNull )>
+		    and o.system is null
+ 		 </if>
+
+		 <if isNotBlank( tenant )>
+ 		    and o.tenant = :tenant
+		 </if>
+		 <if isNotBlank( keyword )>
+		   and (
+               o.name like '%' || :keyword || '%'
+               or o.id like '%' || :keyword || '%'
+               or o.code like '%' || :keyword || '%'
+               or o.remark like '%' || :keyword || '%'
+		   )
+		 </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+          <if isNotBlank(existUserManager)>
+            and ${existUserManager}
+          </if>
+		 <if isNotBlank( orderBy )>
+			 ${orderBy}
+		 </if>
+	]]>
+    </sql-query>
+
+    <sql-query name="bizOrgListKeywordQuery">
+        <![CDATA[
+		from BizOrganizationEntity
+		 where 1=1
+ 		 <if isNotBlank( system )>
+		    and system = :system
+ 		 </if>
+ 		  <if isNotBlank( systemIsNull )>
+		    and system is null
+ 		 </if>
+
+		 <if isNotBlank( tenant )>
+ 		    and tenant = :tenant
+		 </if>
+		 <if isNotBlank( keyword )>
+		   and (
+               name like '%' || :keyword || '%'
+               or remark like '%' || :keyword || '%'
+		   )
+		 </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+		 <if isNotBlank( orderBy )>
+			 ${orderBy}
+		 </if>
+	]]>
+    </sql-query>
+
+
+    <sql-query name="orgVersionListQuery">
+        <![CDATA[
+		from OrgVersionEntity
+		 where 1=1
+		 <if isNotBlank( orgUuid )>
+		    and orgUuid = :orgUuid
+		 </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+		 <if isNotBlank( orderBy )>
+			 ${orderBy}
+		 </if>
+	]]>
+    </sql-query>
+</hibernate-mapping>

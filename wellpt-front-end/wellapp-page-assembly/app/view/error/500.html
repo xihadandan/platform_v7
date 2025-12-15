@@ -1,0 +1,52 @@
+{% if helper.isMobileDevice() %}
+
+    <!DOCTYPE html>
+    <html class="ui-page-error">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+            <meta http-equiv="Pragma" content="no-cache">
+            <meta http-equiv="Cache-Control" content="no-cache">
+            <meta http-equiv="Expires" content="0">
+            <title>系统忙</title>
+            <link href="{{helper.staticPrefix()}}/mobile/mui/css/mui.min.css" rel="stylesheet"/>
+            <script src="{{helper.staticPrefix()}}/mobile/mui/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+
+        </head>
+        <body style="text-align:center;background:#d5eaed">
+            <div id="" class="panel panel-default">
+                <header class="mui-bar mui-bar-nav">
+                    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+                    <h1 class="mui-title">系统忙</h1>
+                </header>
+                <div class="mui-content">
+                    <div class="error-img" style="padding-top:30%;background: #d5eaed;"><img src="{{helper.staticPrefix()}}/mobile/mui/images/m404.jpg" width="100%"></div>
+                    <h4 class="mui-h4" style="background: #d5eaed;margin:0;padding-top:30px;">不好意思，系统忙，请稍后再试.</h4>
+                    <button class="mui-btn mui-btn-primary mui-btn mui-btn-primary mui-btn-outlined mui-btn-block" onclick="javascript:mui.back();" ontap="javascript:mui.back();" style="position: absolute; left: 10%; bottom: 30px; width: 80%; padding: 7.5px 0">返回</button>
+                </div>
+            </div>
+        </body>
+
+    </html>
+{% else %}
+
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+            <title>系统忙</title>
+        </head>
+        <body style="text-align:center;background:#d5eaed">
+            <div>
+                <div>
+                    <h1 style="padding-top: 10%; font-size: 200px; color: #0aacc3; margin: 0; line-height: 1;">500</h1>
+                    <p style="font-size: 50px; margin: 0; color: #adc6ca">SERVER IS TOO BUSY !</p>
+                    <h1 style="color: #404040">不好意思，系统忙，请稍候再试.</h1>
+                </div>
+                <div style="padding:30px">
+                    <a href="/web/app/security_homepage" target="_top" style="display:inline-block;padding:10px 15px;text-decoration:none;border:1px solid #0aacc3;border-radius:30px; color:#0aacc3;margin:0 15px;">返回首页</a>
+                </div>
+
+            </div>
+        </body>
+    </html>
+{% endif %}

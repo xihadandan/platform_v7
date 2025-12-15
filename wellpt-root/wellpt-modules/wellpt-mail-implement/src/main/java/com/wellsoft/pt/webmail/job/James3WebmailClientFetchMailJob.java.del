@@ -1,0 +1,112 @@
+/*
+ * @(#)2016年6月4日 V1.0
+ *
+ * Copyright 2016 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.webmail.job;
+
+import com.wellsoft.context.annotation.Description;
+import com.wellsoft.context.config.Config;
+import com.wellsoft.context.jdbc.support.QueryItem;
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.mail.service.James3MailService;
+import com.wellsoft.pt.mail.support.James3MailId;
+import com.wellsoft.pt.security.util.IgnoreLoginUtils;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+import com.wellsoft.pt.webmail.entity.WmMailUserEntity;
+import com.wellsoft.pt.webmail.facade.service.James3WebmailClientService;
+import com.wellsoft.pt.webmail.service.WmMailUserService;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.quartz.DisallowConcurrentExecution;
+import org.quartz.JobExecutionContext;
+import org.quartz.PersistJobDataAfterExecution;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+/**
+ * Description: 如何描述该类
+ *
+ * //废弃！使用com.wellsoft.pt.webmail.job.DefaultWebmailClientSyncInboxMailJob支持jamesmail以及coremail的同步
+ *
+ * @author zhulh
+ * @version 1.0
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2016年6月4日.1	zhulh		2016年6月4日		Create
+ * </pre>
+ * @date 2016年6月4日
+ */
+@Deprecated
+@PersistJobDataAfterExecution
+@DisallowConcurrentExecution
+public class James3WebmailClientFetchMailJob extends Job {
+    private static Logger logger = Logger.getLogger(James3WebmailClientFetchMailJob.class);
+
+    @Override
+    protected void execute(JobExecutionContext jobExecutionContext, JobData jobData) {
+        fetchEmail(null);
+    }
+
+    public static void fetchEmail(String fetchUserId) {
+        James3MailService jamesMailService = ApplicationContextHolder.getBean(
+                James3MailService.class);
+        WmMailUserService wmMailUserService = ApplicationContextHolder.getBean(
+                WmMailUserService.class);
+        James3WebmailClientService james3WebmailClientService = ApplicationContextHolder
+                .getBean(James3WebmailClientService.class);
+        List<QueryItem> queryItems = jamesMailService.getTodoAsyncJames3Mail();
+        Map<String, List<James3MailId>> itemMap = groupByUserName(queryItems);
+        for (Entry<String, List<James3MailId>> entry : itemMap.entrySet()) {
+            String mailAddress = entry.getKey();
+            WmMailUserEntity example = new WmMailUserEntity();
+            example.setMailAddress(mailAddress);
+            List<WmMailUserEntity> wmMailUsers = wmMailUserService.findByExample(example);
+            if (wmMailUsers.isEmpty() || (StringUtils.isNotBlank(fetchUserId) && !wmMailUsers.get(
+                    0).getUserId().equals(fetchUserId))) {//如果指定了用户id，则只同步该用的
+                continue;
+            }
+            WmMailUserEntity mailUser = wmMailUsers.get(0);
+
+            String userId = mailUser.getUserId();
+            String tenantId = Config.DEFAULT_TENANT;
+            if (StringUtils.isBlank(tenantId)) {
+                continue;
+            }
+            try {
+                IgnoreLoginUtils.login(tenantId, userId);
+                // 邮件数据收取
+                james3WebmailClientService.fetchWebmail(mailUser, entry.getValue());
+            } catch (Exception e) {
+                logger.error(e.getMessage(), e);
+            } finally {
+                IgnoreLoginUtils.logout();
+            }
+        }
+    }
+
+    /**
+     * @param queryItems
+     * @return
+     */
+    private static Map<String, List<James3MailId>> groupByUserName(List<QueryItem> queryItems) {
+        Map<String, List<James3MailId>> map = new HashMap<String, List<James3MailId>>();
+        for (QueryItem item : queryItems) {
+            String username = item.getString("userName");
+            if (!map.containsKey(username)) {
+                map.put(username, new ArrayList<James3MailId>());
+            }
+            map.get(username).add(
+                    new James3MailId(item.getLong("mailboxId"), item.getLong("mailUid")));
+        }
+        return map;
+    }
+
+}

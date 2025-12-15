@@ -1,0 +1,92 @@
+@import '../../mixin/mixin.less';
+.ui-wHeader{
+    .ui-wHeader-mainNavbar{
+        position: relative;
+        min-height: 70px;
+        margin-bottom: 0;
+        border: 0;
+        border-radius:0;
+        .ui-wHeader-baseInfo{
+            >.ui-wHeader-logo{
+                padding: 10px 5px;
+                margin-left: 15px;
+                height:70px;
+                img{
+                    height: 50px;
+                }
+            }
+        }
+        .navbar-nav{
+            margin:0;
+            >li{
+                height:70px; 
+                text-align:center;
+                position: relative;
+                display:inline-block;
+                .badge {
+                    display: inline-block;
+                    min-width: 10px;
+                    padding: 2px 5px;
+                    font-size: 12px;
+                    font-weight: normal;
+                    line-height: 1;
+                    text-align: center;
+                    vertical-align: middle;
+                    border-radius: 10px; 
+                    position:absolute; 
+                    top:10px; 
+                    left:53px; 
+                }
+                >a{
+                    padding: 10px;
+                    .text-overflow() ;
+                }
+                .ui-wIcon{     
+                    font-size: 22px;
+                }
+            }         
+        }
+        .wHeaderNavMoreUL{
+            .nav-menu-item{
+                a{
+                    line-height:30px;
+                    >span{
+                        display:inline-block;
+                        font-size:16px;
+                        &:before{
+                            font-size:16px;
+                        }
+                    }
+                }
+            } 
+        } 
+    }
+    &.wHeader-default{
+        .navbar-nav{
+            >li{
+                width:95px; 
+                .ui-wIcon{
+                    display: block; 
+                    margin:3px auto;    
+                    width: 25px;   
+                }
+            }
+        }
+    }
+    &.wheader-type1{
+        .navbar-nav{
+            >li{
+                width:auto; 
+                >a{
+                    line-height: 50px;
+                }
+                .ui-wIcon{
+                    display: inline-block; 
+                    margin-right: 10px;
+                    vertical-align: text-bottom; 
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}

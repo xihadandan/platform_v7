@@ -1,0 +1,83 @@
+package com.wellsoft.pt.webmail.job;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.message.facade.service.MessageClientApiFacade;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+import com.wellsoft.pt.webmail.entity.WmMailConfigEntity;
+import com.wellsoft.pt.webmail.entity.WmMailUserEntity;
+import com.wellsoft.pt.webmail.service.WmMailConfigService;
+import com.wellsoft.pt.webmail.service.WmMailUserService;
+import com.wellsoft.pt.webmail.support.WebmailUseCapacityDataStoreRender;
+import org.quartz.JobExecutionContext;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Description: 平台邮件——用户空间不足提醒
+ *
+ * @author chenq
+ * @date 2019/7/20
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本	    修改人		修改日期			修改内容
+ * 2019/7/20    chenq		2019/7/20		Create
+ * </pre>
+ */
+public class WebmailCapacityLimitWarnJob extends Job {
+
+    @Override
+    protected void execute(JobExecutionContext context, JobData data) {
+        WmMailUserService wmMailUserService = ApplicationContextHolder.getBean(
+                WmMailUserService.class);
+        List<WmMailUserEntity> userEntityList = wmMailUserService.listAll();
+        Map<String, WmMailConfigEntity> userMailConfigs = Maps.newHashMap();
+        WmMailConfigService wmMailConfigService = ApplicationContextHolder.getBean(
+                WmMailConfigService.class);
+        MessageClientApiFacade messageClientApiFacade = ApplicationContextHolder.getBean(
+                MessageClientApiFacade.class);
+
+        for (WmMailUserEntity userEntity : userEntityList) {
+            if (userEntity.getIsInnerUser()) {
+                try {
+                    WmMailConfigEntity configEntity = userMailConfigs.get(
+                            userEntity.getSystemUnitId());
+                    if (configEntity == null) {
+                        configEntity = wmMailConfigService.getBySystemUnitId(
+                                userEntity.getSystemUnitId());
+                        userMailConfigs.put(userEntity.getSystemUnitId(), configEntity);
+                    }
+                    if (userEntity.getLimitCapacity() != null && configEntity.getDeadlineCapacity() != null
+                            //邮箱占用空间达到一定百分比的情况下发送消息提醒
+                            && new BigDecimal(
+                            (/*userEntity.getLimitCapacity() * 1024 * 1024 -*/ userEntity.getUsedCapacity()) /
+                                    (userEntity.getLimitCapacity() * 1024 * 1024.00d)).doubleValue() >= (configEntity.getDeadlineCapacity() / 100.00d)) {
+                        userEntity.setUsedCapacityReadable(
+                                WebmailUseCapacityDataStoreRender.mailCapacityReadableFormate(
+                                        userEntity.getUsedCapacity()));
+                        userEntity.setLimitCapacityReadable(
+                                WebmailUseCapacityDataStoreRender.mailCapacityReadableFormate(
+                                        (long) userEntity.getLimitCapacity()));
+                        userEntity.setRemainCapacityReadable(
+                                WebmailUseCapacityDataStoreRender.mailCapacityReadableFormate(
+                                        userEntity.getLimitCapacity() - userEntity.getUsedCapacity()));
+                        //有容量限制且剩余空间不足的情况下，提醒用户
+                        messageClientApiFacade.send("WEBMAIL_USE_CAPACITY_LIMIT_WARN", userEntity,
+                                Lists.newArrayList(userEntity.getUserId()));
+                    }
+                } catch (Exception e) {
+                    logger.error("检测用户邮件剩余空间异常：", e);
+                }
+
+
+            }
+        }
+
+
+    }
+}

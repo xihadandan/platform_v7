@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="queryDemoStudentTable">
+        <![CDATA[
+        select t.uuid                 as uuid,
+		       t.create_time          as create_time,
+		       t.creator              as creator,
+		       t.modifier             as modifier,
+		       t.modify_time          as modify_time,
+		       t.rec_ver              as rec_ver,
+		       t.test_stu_name        as test_stu_name,
+		       t.t_stu_teacher        as t_stu_teacher,
+		       t.t_stu_address        as t_stu_address,
+		       t.t_stu_tel            as t_stu_tel,
+		       t.t_stu_remark         as t_stu_remark,
+		       t.photo_file           as photo_file,
+		       t.t_std_sex            as t_std_sex
+
+		  from UF_TEST_STUDENT_TABLE t
+
+		 where  1 = 1
+		  <if isNotBlank(keyword)>
+            and (t.name like '%' || :keyword || '%'  )
+          </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+		  <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+    ]]>
+    </sql-query>
+</hibernate-mapping>

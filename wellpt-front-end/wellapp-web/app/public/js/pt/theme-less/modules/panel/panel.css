@@ -1,0 +1,82 @@
+body > div.ui-wPage {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  padding-bottom: 45px;
+  box-sizing: border-box;
+}
+.ui-wPanel {
+  border: 0;
+}
+.ui-wPanel .panel-heading {
+  padding: 7.5px 15px;
+  height: 50px;
+}
+.ui-wPanel .panel-heading .panel-title {
+  display: inline-block;
+  line-height: 35px;
+}
+.ui-wPanel .panel-heading .panel-title .panel-icon {
+  padding-right: 5px;
+  vertical-align: middle;
+  top: -1px;
+}
+.ui-wPanel .panel-heading .badge {
+  margin-left: 5px;
+}
+.ui-wPanel .panel-heading .panel-view-more a {
+  line-height: 35px;
+}
+.ui-wPanel .panel-heading .panel-view-more a:hover {
+  text-decoration: none;
+}
+.ui-wPanel .panel-heading .panel-heading-query {
+  width: 100px;
+  margin-left: 0;
+  padding: 0;
+}
+.ui-wPanel .panel-heading .panel-heading-query .input-group {
+  width: 200px;
+}
+.ui-wPanel .panel-heading .panel-heading-query .form-control {
+  width: 120px;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  transition: 500ms;
+}
+.ui-wPanel .panel-heading .panel-heading-query .btn-default {
+  transition: 500ms;
+}
+.ui-wPanel .panel-heading .hover .form-control {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+.ui-wPanel .panel-heading .panel-heading-query:hover .btn-default,
+.ui-wPanel .panel-heading .panel-heading-query.hover .btn-default {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+.ui-wPanel .panel-heading .panel-heading-query:hover .form-control,
+.ui-wPanel .panel-heading .panel-heading-query.hover .form-control {
+  visibility: visible;
+}
+.ui-wPanel .panel-body {
+  padding: 0 15px;
+}
+.ui-wPanel.container-box {
+  padding: 0;
+  margin: 0 15px;
+  background: none;
+}
+.ui-wPanel.container-box > .panel-body {
+  background: none;
+  padding: 0;
+  min-height: 568px;
+}
+.ui-wPanel.no-padding {
+  background: none;
+}
+.ui-wPanel.no-padding > .panel-body {
+  padding: 0;
+  background: none;
+}

@@ -1,0 +1,29 @@
+{
+  "name": "well-init-config",
+  "version": "1.0.1-rc",
+  "description": "wellsoft初始化项目模板配置",
+  "files": [
+    "index.js"
+  ],
+  "config": {
+    "boilerplate": {
+      "simple": {
+        "package": "well-boilerplate-simple",
+        "description": "wellsoft应用的web模板"
+      },
+      "plugin": {
+        "package": "well-boilerplate-plugin",
+        "description": "wellsoft应用的web插件模板(模块模板)"
+      }
+    }
+  },
+  "keywords": [
+    "wellsoft",
+    "well-init",
+    "well-init-config"
+  ],
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "author": "wellsoft"
+}

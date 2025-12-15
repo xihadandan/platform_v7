@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="getAllSystems">
+        <![CDATA[
+		select 	t1.uuid 			as pi_uuid,
+				t1.data_id	 		as id,
+				t1.data_name 		as name,
+				t2.title	 		as title,
+				t1.app_product_uuid	as product_uuid,
+				t2.system_unit_id   as system_unit_id
+		from app_product_integration t1
+			left join app_system t2
+				on t1.data_uuid = t2.uuid
+			where t1.data_type = :dataType
+		    order by t2.code asc, t2.create_time asc
+	]]>
+    </sql-query>
+
+    <sql-query name="getPiSystem">
+        <![CDATA[
+		select 	t1.uuid 			as pi_uuid,
+				t1.data_id	 		as id,
+				t1.data_name 		as name,
+				t2.title	 		as title,
+				t1.app_product_uuid	as product_uuid,
+				t2.system_unit_id   as system_unit_id
+		from app_product_integration t1
+			left join app_system t2
+				on t1.data_uuid = t2.uuid
+			where t1.data_type = :dataType
+			<if isNotBlank(piUuid)>
+			and t1.uuid=:piUuid
+			</if>
+	]]>
+    </sql-query>
+
+    <sql-query name="getAllModules">
+        <![CDATA[
+		select 	t1.uuid 		as piUuid,
+				t1.data_id 		as id,
+				t1.data_name 	as name,
+				t2.title 		as title
+		from app_product_integration t1
+			left join app_module t2
+				on t1.data_uuid = t2.uuid
+			where t1.data_type = :dataType
+	]]>
+    </sql-query>
+
+    <sql-query name="getPiModule">
+        <![CDATA[
+		select 	t1.uuid 		as piUuid,
+				t1.data_id 		as id,
+				t1.data_name 	as name,
+				t2.title 		as title
+		from app_product_integration t1
+			left join app_module t2
+				on t1.data_uuid = t2.uuid
+			where t1.data_type = :dataType
+			<if isNotBlank(piUuid)>
+			and t1.uuid=:piUuid
+			</if>
+	]]>
+    </sql-query>
+
+
+    <sql-query name="getModuleApps">
+        <![CDATA[
+		select 	t1.uuid 				as pi_uuid,
+				t1.data_id 				as id,
+				t1.data_name 			as name,
+				t2.title	 			as title,
+				t1.data_path			as path,
+				t2.correlative_function	as cf_uuid
+		from app_product_integration t1
+			left join app_application t2
+				on t1.data_uuid = t2.uuid
+			where t1.data_type = :dataType
+				and t1.parent_uuid = :piUuid
+			order by t1.sort_order
+	]]>
+    </sql-query>
+
+
+    <sql-query name="getAllApplications">
+        <![CDATA[
+		select 	t1.uuid 				as pi_uuid,
+				t1.data_id 				as id,
+				t1.data_name 			as name,
+				t2.title				as title,
+				t1.data_path			as path,
+				t2.correlative_function	as cf_uuid
+		from app_product_integration t1
+			left join app_application t2
+		    	on t1.data_uuid = t2.uuid
+			where t1.data_type = :dataType
+	]]>
+    </sql-query>
+
+
+    <sql-query name="getPiApplication">
+        <![CDATA[
+		select 	t1.uuid 				as pi_uuid,
+				t1.data_id 				as id,
+				t1.data_name 			as name,
+				t2.title				as title,
+				t1.data_path			as path,
+				t2.correlative_function	as cf_uuid
+		from app_product_integration t1
+			left join app_application t2
+		    	on t1.data_uuid = t2.uuid
+			where t1.data_type = :dataType
+			<if isNotBlank(piUuid)>
+			and t1.uuid=:piUuid
+			</if>
+	]]>
+    </sql-query>
+
+    <sql-query name="getAppFunctions">
+        <![CDATA[
+		select 	t1.data_id			as	id,
+				t1.data_name		as	name,
+				t1.data_path		as	path,
+				t2.definition_json	as	definition_json
+		from app_product_integration t1
+			left join app_function t2
+		    	on t1.data_uuid = t2.uuid
+			where t1.data_type = :dataType
+				and t1.parent_uuid = :piUuid
+			order by t1.sort_order
+	]]>
+    </sql-query>
+
+    <sql-query name="getAllFunctions">
+        <![CDATA[
+		select 	t.dataId 	as id,
+				t.dataName 	as name
+		from AppProductIntegration t
+			where t.dataType = :dataType
+	]]>
+    </sql-query>
+
+    <sql-query name="getAllAnonymousFunctionUuids">
+        <![CDATA[
+		select t2.uuid as uuid
+          from app_function t1
+          left join app_product_integration t2
+            on t1.uuid = t2.data_uuid
+           and t2.data_type = 4
+         where t2.is_protected = 0
+        union all
+        select 'funcref_page_' || t4.app_pi_uuid || '_' || t4.app_page_uuid || '_' || t3.uuid as uuid
+          from app_function t3
+          left join app_page_resource t4
+            on t3.uuid = t4.app_function_uuid
+         where t4.is_protected = 0
+	]]>
+    </sql-query>
+
+
+    <sql-query name="getPiFunction">
+        <![CDATA[
+        select *
+			  from (select t1.uuid            as uuid,
+			               t1.data_id         as id,
+			               t1.data_name       as name,
+			               t1.data_path       as path,
+			               t1.data_type       as data_type,
+			               t2.definition_json as definition_json,
+			               t2.type            as type
+			          from app_product_integration t1
+			          left join app_function t2
+			            on t1.data_uuid = t2.uuid
+			        union all
+			        select t2.uuid            as uuid,
+					       t2.data_id         as id,
+					       t2.data_name       as name,
+					       t2.data_path       as path,
+					       t2.data_type       as data_type,
+					       t2.definition_json as definition_json,
+					       t2.type            as type
+					  from (select 'page_' || t1.app_pi_uuid || '_' || t1.uuid as uuid,
+					               t1.id as data_id,
+					               t1.name as data_name,
+					               t2.data_path || '/' || t1.id as data_path,
+					               '4' as data_type,
+					               '{"type":"URL","category":"URL","url":"/web/app' || t2.data_path ||
+					               '.html?pageUuid=' || t1.uuid || '"}' as definition_json,
+					               'URL' as type
+					          from app_page_definition t1
+					         inner join app_product_integration t2
+					            on t1.app_pi_uuid = t2.uuid
+					        union all
+					        select 'pageref_' || t3.app_pi_uuid || '_' || t1.uuid as uuid,
+							       t1.id as data_id,
+							       t1.name as data_name,
+							       t2.data_path || '/' || t1.id as data_path,
+							       '4' as data_type,
+							       '{"type":"URL","category":"URL","url":"/web/app' || t2.data_path ||
+							       '.html?pageUuid=' || t1.uuid || '"}' as definition_json,
+							       'URL' as type
+							  from app_page_definition t1
+							 inner join app_page_definition_ref t3
+							    on t1.uuid = t3.ref_uuid
+							 inner join app_product_integration t2
+							    on t3.app_pi_uuid = t2.uuid) t2
+			        union all
+			        select t3.uuid            as uuid,
+			               t3.data_id         as id,
+			               t3.data_name       as name,
+			               t3.data_path       as path,
+			               t3.data_type       as data_type,
+			               t3.definition_json as definition_json,
+			               t3.type            as type
+			          from (select 'funcref_page_' || t1.app_pi_uuid || '_' ||
+			                       t1.app_page_uuid || '_' || t1.app_function_uuid as uuid,
+			                       t1.app_function_uuid as data_uuid,
+			                       t4.name as data_name,
+			                       t4.id as data_id,
+			                       '4' as data_type,
+			                       t4.type as type,
+			                       t4.definition_json as definition_json,
+			                       t2.data_path || '/' || t3.id || '/' || t4.id as data_path,
+			                       'page_' || t1.app_pi_uuid || '_' || t1.app_page_uuid as parent_uuid,
+			                       t2.app_product_uuid as app_product_uuid,
+			                       t2.app_system_uuid as app_system_uuid,
+			                       t2.app_page_uuid as app_page_uuid
+			                  from app_page_resource t1
+			                 inner join app_product_integration t2
+			                    on t1.app_pi_uuid = t2.uuid
+			                 inner join app_page_definition t3
+			                    on t1.app_page_uuid = t3.uuid
+			                 inner join app_function t4
+			                    on t1.app_function_uuid = t4.uuid
+			                union all
+			                select 'funcref_pageref_' || t5.app_pi_uuid || '_' || t1.app_page_uuid || '_' ||
+							       t1.app_function_uuid as uuid,
+							       t1.app_function_uuid as data_uuid,
+							       t4.name as data_name,
+							       t4.id as data_id,
+							       '4' as data_type,
+							       t4.type as type,
+							       t4.definition_json as definition_json,
+							       t2.data_path || '/' || t3.id || '/' || t4.id as data_path,
+							       'pageref_' || t5.app_pi_uuid || '_' || t1.app_page_uuid as parent_uuid,
+							       t2.app_product_uuid as app_product_uuid,
+							       t2.app_system_uuid as app_system_uuid,
+							       t2.app_page_uuid as app_page_uuid
+							  from app_page_resource t1
+							 inner join app_page_definition t3
+							    on t1.app_page_uuid = t3.uuid
+							 inner join app_function t4
+							    on t1.app_function_uuid = t4.uuid
+							 inner join app_page_definition_ref t5
+							    on t3.uuid = t5.ref_uuid
+							 inner join app_product_integration t2
+							    on t5.app_pi_uuid = t2.uuid) t3) t1
+			 	where t1.data_type = :dataType
+			   	 and t1.uuid = :piUuid
+	]]>
+    </sql-query>
+
+    <sql-query name="getFunctions">
+        <![CDATA[
+		select t1.data_id         as id,
+		       t1.data_name       as name,
+		       t1.data_path       as path,
+		       t2.definition_json as definition_json
+		  from app_product_integration t1
+		  left join app_function t2
+		    on t1.data_uuid = t2.uuid
+		 where t1.data_type = :dataType
+		   and t1.app_product_uuid = :productUuid
+		   and t2.type = :functionType
+		   and exists (select t3.uuid
+		          from app_system t3
+		         where t3.id = :systemId
+		           and t3.uuid = t1.app_system_uuid)
+	]]>
+    </sql-query>
+
+    <sql-query name="getAllItems">
+        <![CDATA[
+		  select t1.uuid        as uuid,
+		       t1.data_uuid   as data_uuid,
+		       t1.data_name   as name,
+		       t1.data_id     as id,
+		       t1.data_type   as type,
+		       t1.data_path   as path,
+		       t1.parent_uuid as parent_uuid,
+		       t1.app_product_uuid as product_uuid,
+		       t1.app_system_uuid as system_uuid,
+		       t1.app_page_uuid as page_uuid
+		      from app_product_integration t1
+		  union all
+		  select   t2.uuid             as uuid,
+                   t2.data_uuid        as data_uuid,
+                   t2.data_name        as name,
+                   t2.data_id          as id,
+                   t2.data_type        as data_type,
+                   t2.data_path        as path,
+                   t2.parent_uuid      as parent_uuid,
+                   t2.app_product_uuid as app_product_uuid,
+                   t2.app_system_uuid  as app_system_uuid,
+                   t2.app_page_uuid    as page_uuid
+			  from (select 'page_' || t1.app_pi_uuid || '_' || t1.uuid as uuid,
+			               t1.code as code,
+			               t1.create_time as create_time,
+			               t1.uuid as data_uuid,
+			               t1.id as data_id,
+			               t1.name as data_name,
+			               t2.data_path || '/' || t1.id as data_path,
+			               '4' as data_type,
+			               t2.uuid as parent_uuid,
+			               t2.app_product_uuid as app_product_uuid,
+			               t2.app_system_uuid as app_system_uuid,
+			               t1.uuid as app_page_uuid
+			          from app_page_definition t1
+			         inner join app_product_integration t2
+			            on t1.app_pi_uuid = t2.uuid
+			        union all
+			        select 'pageref_' || t3.app_pi_uuid || '_' || t1.uuid as uuid,
+					       t1.code as code,
+					       t1.create_time as create_time,
+					       t1.uuid as data_uuid,
+					       t1.id as data_id,
+					       t1.name as data_name,
+					       t2.data_path || '/' || t1.id as data_path,
+					       '4' as data_type,
+					       t2.uuid as parent_uuid,
+					       t2.app_product_uuid as app_product_uuid,
+					       t2.app_system_uuid as app_system_uuid,
+					       t1.uuid as app_page_uuid
+					  from app_page_definition t1
+					 inner join app_page_definition_ref t3
+					    on t1.uuid = t3.ref_uuid
+					 inner join app_product_integration t2
+					    on t3.app_pi_uuid = t2.uuid) t2
+	      union all
+	      select   t3.uuid             as uuid,
+                   t3.data_uuid        as data_uuid,
+                   t3.data_name        as name,
+                   t3.data_id          as id,
+                   t3.data_type        as data_type,
+                   t3.data_path        as path,
+                   t3.parent_uuid      as parent_uuid,
+                   t3.app_product_uuid as app_product_uuid,
+                   t3.app_system_uuid  as app_system_uuid,
+                   t3.app_page_uuid    as page_uuid
+          from (
+	           select 'funcref_page_' || t1.app_pi_uuid || '_' || t1.app_page_uuid || '_' ||
+		               t1.app_function_uuid as uuid,
+		               t1.app_function_uuid as data_uuid,
+		               t4.name as data_name,
+		               t4.id as data_id,
+		               '4' as data_type,
+		               t2.data_path || '/' || t3.id || '/' || t4.id as data_path,
+		               'page_' || t1.app_pi_uuid || '_' || t1.app_page_uuid as parent_uuid,
+		               t2.app_product_uuid as app_product_uuid,
+		               t2.app_system_uuid as app_system_uuid,
+		               t2.app_page_uuid as app_page_uuid
+		          from app_page_resource t1
+		         inner join app_product_integration t2
+		            on t1.app_pi_uuid = t2.uuid
+		         inner join app_page_definition t3
+		            on t1.app_page_uuid = t3.uuid
+		         inner join app_function t4
+		            on t1.app_function_uuid = t4.uuid
+		        union all
+		        select 'funcref_pageref_' || t5.app_pi_uuid || '_' || t1.app_page_uuid || '_' ||
+				       t1.app_function_uuid as uuid,
+				       t1.app_function_uuid as data_uuid,
+				       t4.name as data_name,
+				       t4.id as data_id,
+				       '4' as data_type,
+				       t2.data_path || '/' || t3.id || '/' || t4.id as data_path,
+				       'pageref_' || t5.app_pi_uuid || '_' || t1.app_page_uuid as parent_uuid,
+				       t2.app_product_uuid as app_product_uuid,
+				       t2.app_system_uuid as app_system_uuid,
+				       t2.app_page_uuid as app_page_uuid
+				  from app_page_resource t1
+				 inner join app_page_definition t3
+				    on t1.app_page_uuid = t3.uuid
+				 inner join app_function t4
+				    on t1.app_function_uuid = t4.uuid
+				 inner join app_page_definition_ref t5
+				    on t3.uuid = t5.ref_uuid
+				 inner join app_product_integration t2
+				    on t5.app_pi_uuid = t2.uuid
+	      ) t3
+	]]>
+    </sql-query>
+
+    <sql-query name="getPiItem">
+        <![CDATA[
+		select * from (
+			select t1.uuid        as uuid,
+	               t1.data_uuid   as data_uuid,
+	               t1.data_name   as name,
+	               t1.data_id     as id,
+	               t1.data_type   as type,
+	               t1.data_path   as path,
+	               t1.parent_uuid as parent_uuid,
+	               t1.app_product_uuid as product_uuid,
+	               t1.app_system_uuid as system_uuid,
+	               t1.app_page_uuid as page_uuid
+	              from app_product_integration t1
+	          union all
+	          select   t2.uuid             as uuid,
+                       t2.data_uuid        as data_uuid,
+                       t2.data_name        as name,
+                       t2.data_id          as id,
+                       t2.data_type        as data_type,
+                       t2.data_path        as path,
+                       t2.parent_uuid      as parent_uuid,
+                       t2.app_product_uuid as app_product_uuid,
+                       t2.app_system_uuid  as app_system_uuid,
+                       t2.app_page_uuid    as page_uuid
+	              from (select 'page_' || t1.app_pi_uuid || '_' || t1.uuid as uuid,
+	                           t1.code as code,
+	                           t1.create_time as create_time,
+	                           t1.uuid as data_uuid,
+	                           t1.id as data_id,
+	                           t1.name as data_name,
+	                           t2.data_path || '/' || t1.id as data_path,
+	                           '4' as data_type,
+	                           t2.uuid as parent_uuid,
+	                           t2.app_product_uuid as app_product_uuid,
+	                           t2.app_system_uuid as app_system_uuid,
+	                           t1.uuid as app_page_uuid
+	                      from app_page_definition t1
+	                     inner join app_product_integration t2
+	                        on t1.app_pi_uuid = t2.uuid
+	                    union all
+	                    select 'pageref_' || t3.app_pi_uuid || '_' || t1.uuid as uuid,
+						       t1.code as code,
+						       t1.create_time as create_time,
+						       t1.uuid as data_uuid,
+						       t1.id as data_id,
+						       t1.name as data_name,
+						       t2.data_path || '/' || t1.id as data_path,
+						       '4' as data_type,
+						       t2.uuid as parent_uuid,
+						       t2.app_product_uuid as app_product_uuid,
+						       t2.app_system_uuid as app_system_uuid,
+						       t1.uuid as app_page_uuid
+						  from app_page_definition t1
+						 inner join app_page_definition_ref t3
+						    on t1.uuid = t3.ref_uuid
+						 inner join app_product_integration t2
+						    on t3.app_pi_uuid = t2.uuid) t2
+	          union all
+	          select   t3.uuid             as uuid,
+	                   t3.data_uuid        as data_uuid,
+	                   t3.data_name        as name,
+	                   t3.data_id          as id,
+	                   t3.data_type        as data_type,
+	                   t3.data_path        as path,
+	                   t3.parent_uuid      as parent_uuid,
+	                   t3.app_product_uuid as app_product_uuid,
+	                   t3.app_system_uuid  as app_system_uuid,
+	                   t3.app_page_uuid    as page_uuid
+	          from (
+	               select 'funcref_page_' || t1.app_pi_uuid || '_' || t1.app_page_uuid || '_' ||
+	                       t1.app_function_uuid as uuid,
+	                       t1.app_function_uuid as data_uuid,
+	                       t4.name as data_name,
+	                       t4.id as data_id,
+	                       '4' as data_type,
+	                       t2.data_path || '/' || t3.id || '/' || t4.id as data_path,
+	                       'page_' || t1.app_pi_uuid || '_' || t1.app_page_uuid as parent_uuid,
+	                       t2.app_product_uuid as app_product_uuid,
+	                       t2.app_system_uuid as app_system_uuid,
+	                       t2.app_page_uuid as app_page_uuid
+	                  from app_page_resource t1
+	                 inner join app_product_integration t2
+	                    on t1.app_pi_uuid = t2.uuid
+	                 inner join app_page_definition t3
+	                    on t1.app_page_uuid = t3.uuid
+	                 inner join app_function t4
+	                    on t1.app_function_uuid = t4.uuid
+	                union all
+	                select 'funcref_pageref_' || t5.app_pi_uuid || '_' || t1.app_page_uuid || '_' ||
+					       t1.app_function_uuid as uuid,
+					       t1.app_function_uuid as data_uuid,
+					       t4.name as data_name,
+					       t4.id as data_id,
+					       '4' as data_type,
+					       t2.data_path || '/' || t3.id || '/' || t4.id as data_path,
+					       'pageref_' || t5.app_pi_uuid || '_' || t1.app_page_uuid as parent_uuid,
+					       t2.app_product_uuid as app_product_uuid,
+					       t2.app_system_uuid as app_system_uuid,
+					       t2.app_page_uuid as app_page_uuid
+					  from app_page_resource t1
+					 inner join app_page_definition t3
+					    on t1.app_page_uuid = t3.uuid
+					 inner join app_function t4
+					    on t1.app_function_uuid = t4.uuid
+					 inner join app_page_definition_ref t5
+					    on t3.uuid = t5.ref_uuid
+					 inner join app_product_integration t2
+					    on t5.app_pi_uuid = t2.uuid
+	          ) t3
+		) t1
+		 where t1.uuid = :uuid
+	]]>
+    </sql-query>
+
+    <sql-query name="getPiItemsByDataUuidAndType">
+        <![CDATA[
+		select * from (
+            select t1.uuid        as uuid,
+                   t1.data_uuid   as data_uuid,
+                   t1.data_name   as name,
+                   t1.data_id     as id,
+                   t1.data_type   as type,
+                   t1.data_path   as path,
+                   t1.parent_uuid as parent_uuid,
+                   t1.app_product_uuid as product_uuid,
+                   t1.app_system_uuid as system_uuid,
+                   t1.app_page_uuid as page_uuid
+                  from app_product_integration t1
+              union all
+              select   t2.uuid             as uuid,
+                       t2.data_uuid        as data_uuid,
+                       t2.data_name        as name,
+                       t2.data_id          as id,
+                       t2.data_type        as data_type,
+                       t2.data_path        as path,
+                       t2.parent_uuid      as parent_uuid,
+                       t2.app_product_uuid as app_product_uuid,
+                       t2.app_system_uuid  as app_system_uuid,
+                       t2.app_page_uuid    as page_uuid
+                  from (select 'page_' || t1.app_pi_uuid || '_' || t1.uuid as uuid,
+                               t1.code as code,
+                               t1.create_time as create_time,
+                               t1.uuid as data_uuid,
+                               t1.id as data_id,
+                               t1.name as data_name,
+                               t2.data_path || '/' || t1.id as data_path,
+                               '4' as data_type,
+                               t2.uuid as parent_uuid,
+                               t2.app_product_uuid as app_product_uuid,
+                               t2.app_system_uuid as app_system_uuid,
+                               t1.uuid as app_page_uuid
+                          from app_page_definition t1
+                         inner join app_product_integration t2
+                            on t1.app_pi_uuid = t2.uuid
+                        union all
+                        select 'pageref_' || t3.app_pi_uuid || '_' || t1.uuid as uuid,
+						       t1.code as code,
+						       t1.create_time as create_time,
+						       t1.uuid as data_uuid,
+						       t1.id as data_id,
+						       t1.name as data_name,
+						       t2.data_path || '/' || t1.id as data_path,
+						       '4' as data_type,
+						       t2.uuid as parent_uuid,
+						       t2.app_product_uuid as app_product_uuid,
+						       t2.app_system_uuid as app_system_uuid,
+						       t1.uuid as app_page_uuid
+						  from app_page_definition t1
+						 inner join app_page_definition_ref t3
+						    on t1.uuid = t3.ref_uuid
+						 inner join app_product_integration t2
+						    on t3.app_pi_uuid = t2.uuid) t2
+              union all
+              select   t3.uuid             as uuid,
+                       t3.data_uuid        as data_uuid,
+                       t3.data_name        as name,
+                       t3.data_id          as id,
+                       t3.data_type        as data_type,
+                       t3.data_path        as path,
+                       t3.parent_uuid      as parent_uuid,
+                       t3.app_product_uuid as app_product_uuid,
+                       t3.app_system_uuid  as app_system_uuid,
+                       t3.app_page_uuid    as page_uuid
+              from (
+                   select 'funcref_page_' || t1.app_pi_uuid || '_' || t1.app_page_uuid || '_' ||
+                           t1.app_function_uuid as uuid,
+                           t1.app_function_uuid as data_uuid,
+                           t4.name as data_name,
+                           t4.id as data_id,
+                           '4' as data_type,
+                           t2.data_path || '/' || t3.id || '/' || t4.id as data_path,
+                           'page_' || t1.app_pi_uuid || '_' || t1.app_page_uuid as parent_uuid,
+                           t2.app_product_uuid as app_product_uuid,
+                           t2.app_system_uuid as app_system_uuid,
+                           t2.app_page_uuid as app_page_uuid
+                      from app_page_resource t1
+                     inner join app_product_integration t2
+                        on t1.app_pi_uuid = t2.uuid
+                     inner join app_page_definition t3
+                        on t1.app_page_uuid = t3.uuid
+                     inner join app_function t4
+                        on t1.app_function_uuid = t4.uuid
+                    union all
+                    select 'funcref_pageref_' || t5.app_pi_uuid || '_' || t1.app_page_uuid || '_' ||
+					       t1.app_function_uuid as uuid,
+					       t1.app_function_uuid as data_uuid,
+					       t4.name as data_name,
+					       t4.id as data_id,
+					       '4' as data_type,
+					       t2.data_path || '/' || t3.id || '/' || t4.id as data_path,
+					       'pageref_' || t5.app_pi_uuid || '_' || t1.app_page_uuid as parent_uuid,
+					       t2.app_product_uuid as app_product_uuid,
+					       t2.app_system_uuid as app_system_uuid,
+					       t2.app_page_uuid as app_page_uuid
+					  from app_page_resource t1
+					 inner join app_page_definition t3
+					    on t1.app_page_uuid = t3.uuid
+					 inner join app_function t4
+					    on t1.app_function_uuid = t4.uuid
+					 inner join app_page_definition_ref t5
+					    on t3.uuid = t5.ref_uuid
+					 inner join app_product_integration t2
+					    on t5.app_pi_uuid = t2.uuid
+              ) t3
+        ) t1
+		 where t1.data_uuid = :dataUuid
+		 	and t1.type = :dataType
+	]]>
+    </sql-query>
+
+    <sql-query name="getPiUuidByPath">
+        <![CDATA[
+		select t.uuid as uuid
+			  from (select t1.uuid as uuid, t1.data_path as path
+			          from app_product_integration t1
+			        union all
+			        select t2.uuid as uuid, t2.data_path as path
+					  from (select 'page_' || t1.app_pi_uuid || '_' || t1.uuid as uuid,
+					               t2.data_path || '/' || t1.id || decode(t1.version,'1.0','','/'||t1.version) as data_path
+					          from app_page_definition t1
+					         inner join app_product_integration t2
+					            on t1.app_pi_uuid = t2.uuid
+					        union all
+					        select 'pageref_' || t3.app_pi_uuid || '_' || t1.uuid as uuid,
+							       t2.data_path || '/' || t1.id || decode(t1.version,'1.0','','/'||t1.version) as data_path
+							  from app_page_definition t1
+							 inner join app_page_definition_ref t3
+							    on t1.uuid = t3.ref_uuid
+							 inner join app_product_integration t2
+							    on t3.app_pi_uuid = t2.uuid) t2
+			        union all
+			        select t3.uuid as uuid, t3.data_path as path
+			          from (select 'funcref_page_' || t1.app_pi_uuid || '_' ||
+			                       t1.app_page_uuid || '_' || t1.app_function_uuid as uuid,
+			                       t2.data_path || '/' || t3.id || '/' || t4.id as data_path
+			                  from app_page_resource t1
+			                 inner join app_product_integration t2
+			                    on t1.app_pi_uuid = t2.uuid
+			                 inner join app_page_definition t3
+			                    on t1.app_page_uuid = t3.uuid
+			                 inner join app_function t4
+			                    on t1.app_function_uuid = t4.uuid
+			                union all
+			                select 'funcref_pageref_' || t5.app_pi_uuid || '_' || t1.app_page_uuid || '_' ||
+							       t1.app_function_uuid as uuid,
+							       t2.data_path || '/' || t3.id || '/' || t4.id as data_path
+							  from app_page_resource t1
+							 inner join app_page_definition t3
+							    on t1.app_page_uuid = t3.uuid
+							 inner join app_function t4
+							    on t1.app_function_uuid = t4.uuid
+							 inner join app_page_definition_ref t5
+							    on t3.uuid = t5.ref_uuid
+							 inner join app_product_integration t2
+							    on t5.app_pi_uuid = t2.uuid) t3) t
+			 where t.path = :dataPath
+	]]>
+    </sql-query>
+</hibernate-mapping>

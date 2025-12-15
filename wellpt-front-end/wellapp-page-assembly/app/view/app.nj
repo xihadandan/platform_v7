@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=10">
+    <meta name="renderer" content="webkit">
+    <title>{{ title }}</title>
+    {% for c in css %}
+      <link href="{{c.path}}?v={{helper.resVer()}}" rel="stylesheet">
+    {% endfor %}
+  </head>
+  <body>
+
+    {{ html | safe }}
+
+  </body>
+
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/requirejs/require.min.js?v={{helper.resVer()}}"></script>
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/requirejs-config.autobuild.js?v={{helper.resVer()}}"></script>
+  <script>
+    window.staticPrefix = '{{helper.staticPrefix()}}';
+    window.ctx = "";
+    window.backendUrl = '{{helper.backendUrl()}}';
+    var WebApp = window.WebApp || {};
+
+    requirejs.onError = function (error) {
+      throw error;
+    }
+
+    WebApp.environment = {
+      "app_version": "7.0"
+    };
+    WebApp.currentUserAppData = {{ userAppDataJson | safe }}
+    WebApp.pageDefinition = WebApp.pageDefiniton = {{ definitionJson | safe}};
+
+    WebApp.errorRequireModules = WebApp.errorRequireModules || [];
+    WebApp.requestInfo = {{ requestInfoJson | safe}};
+    WebApp.jsTemplates = {};
+    require({{ javascriptsJson | safe }}, function () {
+      appContext.init(WebApp.currentUserAppData);
+      require(["js/app"]);
+    });
+  </script>
+
+</html>

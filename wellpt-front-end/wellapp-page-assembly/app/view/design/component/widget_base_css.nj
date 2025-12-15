@@ -1,0 +1,75 @@
+
+<div class="widget_base_css">
+
+	<table style="width: 100%" class="table">
+	
+		<tr><td>
+			<fieldset>
+			    <legend>CLASS</legend>
+			   	<div class="row">
+			    	<div class="col-md-2">class</div>
+			  		<div class="col-md-10"><input type="text" class="form-control w-configurer-option" name="class"></div>
+			  	</div>
+		  	</fieldset>
+	  	</td></tr>
+	  	
+		<tr><td>
+			<fieldset>
+			    <legend>文字</legend>
+			   	<div class="row">
+			    	<div class="col-md-2">字体</div>
+			  		<div class="col-md-10"><input type="text" class="form-control w-configurer-option" name="cssStyle.fontFamily"></div>
+			  	</div>
+			   	<div class="row">
+			    	<div class="col-md-2">字号</div>
+			  		<div class="col-md-10"><input type="text" class="form-control w-configurer-option" name="cssStyle.fontSize"></div>
+			  	</div>
+		  	</fieldset>
+	  	</td></tr>
+	  	
+	  	<tr><td>
+		  	<fieldset>
+				<legend>背景</legend>
+			   	<div class="row">
+			    	<div class="col-md-2">背景色</div>
+			  		<div class="col-md-10"><input type="text" class="form-control w-configurer-option" name="cssStyle.backgroundColor"></div>
+			  	</div>
+			   	<div class="row">
+			    	<div class="col-md-2">背景图</div>
+			  		<div class="col-md-10"><input type="text" class="form-control w-configurer-option" name="cssStyle.backgroundImage"></div>
+			  	</div>
+		  	</fieldset>
+		</td></tr>
+		
+		<tr><td>
+		  	<fieldset>
+				<legend>文本</legend>
+			</fieldset>
+		</td></tr>
+
+		<tr><td>
+			<fieldset>
+				<legend>定位</legend>
+			</fieldset>
+		</td></tr>
+		
+		<tr><td>
+			<fieldset>
+				<legend>布局</legend>
+			</fieldset>
+		</td></tr>
+
+		<tr><td>
+			<fieldset>
+				<legend>边距与填充属性</legend>
+			</fieldset>
+		</td></tr>
+		
+		<tr><td>
+			<fieldset>
+				<legend>滤镜属性</legend>
+			</fieldset>
+		</td></tr>
+	</table>
+	
+</div>

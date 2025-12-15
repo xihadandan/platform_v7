@@ -1,0 +1,11 @@
+{
+  "WidgetIconLib": {
+    "copy": "Copy",
+    "style": "Style",
+    "shape": "Shape",
+    "color": "Color",
+    "themesColor": "Built-in Color Variables",
+    "delete": "Delete",
+    "copySuccess": "Copied"
+  }
+}

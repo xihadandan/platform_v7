@@ -1,0 +1,65 @@
+<!-- 图表数据的定义内容 -->
+
+<div
+  role="tabpanel"
+  class="tab-pane report_type_panel"
+  id="widget_chart_data_info"
+>
+  <div class="form-group">
+    <label for="dataSourceType" class="col-sm-2 control-label"
+      >数据集类型</label
+    >
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="dataSourceType"
+        id="dataSourceType"
+      />
+      <input
+        type="hidden"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="dataSourceTypeName"
+        id="dataSourceTypeName"
+      />
+    </div>
+  </div>
+
+  <div class="form-group dataSourceType" id="dataSourceType_json">
+    <label for="defineJsonDataEditor" class="col-sm-2 control-label"
+      >自定义JSON数据</label
+    >
+    <div class="col-sm-10">
+      <div id="defineJsonDataEditor" style="width: 100%; height: 400px"></div>
+      <textarea
+        class="form-control w-configurer-option"
+        name="defineJsonData"
+        id="defineJsonData"
+        style="display: none"
+      ></textarea>
+    </div>
+  </div>
+  <div class="form-group dataSourceType" id="dataSourceType_interface">
+    <label for="dataInterface" class="col-sm-2 control-label"
+      >数据集服务接口</label
+    >
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="dataInterface"
+        id="dataInterface"
+      />
+      <input
+        type="hidden"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="dataInterfaceName"
+        id="dataInterfaceName"
+      />
+    </div>
+  </div>
+</div>

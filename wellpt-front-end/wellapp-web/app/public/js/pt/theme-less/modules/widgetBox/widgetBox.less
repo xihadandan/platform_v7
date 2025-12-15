@@ -1,0 +1,227 @@
+.widget-box{
+    padding:0;
+    margin: 5px 0;
+    .widget-header-fill-top {
+        position: fixed;
+        top: 0;
+        z-index: 100;
+        background-color: #fff;
+        height: 4px;
+        width: 100%;
+    }
+    .widget-header-fill-bottom {
+        position: absolute;
+        z-index: 100;
+        background-color: #fff;
+        height: 4px;
+        width: 100%;
+    }
+    .widget-footer-fill-top {
+        position: absolute;
+        background-color: #fff;
+        width: 1px;
+        height: 13em;
+        display: none;
+    }
+    .widget-header-fill-top,.widget-header-fill-bottom{
+        display: none;
+    }
+    .widget-header:before, .widget-header:after {
+        content: "";
+        display: table;
+        line-height: 0;
+        clear: both;
+    }
+    >.widget-header{
+        width:100%;
+        min-height: 60px;
+        >.widget-title{
+            line-height:60px;
+            font-size:18px;
+            max-width: 40%;
+            display: inline-block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            padding-left: 15px;
+            >.ace-icon {
+                margin-right: 5px;
+                font-weight: normal;
+                display: inline-block;
+            }
+        }
+        >.widget-toolbar{
+            position: relative;
+            line-height:36px; 
+            font-size:18px; 
+            margin-right:20px;
+            padding:12px;
+            float: right;
+            display: inline-block; 
+            label {
+                display: inline-block;
+                vertical-align: middle;
+                margin-bottom: 0;
+            }           
+            button{ 
+                font-size:14px; 
+                padding:0 14px;   
+                border: 0;
+                margin:0 3px 
+            }
+            button:before{
+                font-size: 16px;
+            }
+        }
+    }
+    .widget-header.fixed {
+        position: fixed;
+        top: 0;
+        z-index: 90;
+        border-top: 0;
+    }
+    .row{ 
+        padding:0; 
+        margin:0
+    }
+    .widget-body{
+        padding: 65px 30px 30px;
+        .widget-main{ 
+            >form {
+                margin-bottom: 1.2em;
+            }  
+            .tab-content{
+                padding:15px;
+            }         
+        }
+    }
+    .footer.fixed{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 90;
+        border-top: none;
+        -moz-box-shadow: 0px -3px 5px #ddd; /* 老的 Firefox */
+        box-shadow: 0px -3px 5px #ddd; 
+        background:#fff;
+        padding: 10px 0px 10px 0px;
+        .form-control{
+            height: 54px;    
+            padding: 5px 4px 6px; 
+            //background:url(images/qianshu-bg.jpg) left center no-repeat; 
+            padding-left:210px;
+            -moz-border-radius: 3px;      /* Gecko browsers */
+            -webkit-border-radius: 3px;   /* Webkit browsers */
+            border-radius:3px;      
+            -webkit-box-sizing: inherit; 
+            -moz-box-sizing: inherit;
+            box-sizing: inherit;
+        }
+        .row-sign-opinion-text{
+            .opinion-box{
+                position: relative;
+                .sign_opinion_text{
+                    position: absolute;
+                    left:0;
+                    top:0;
+                    display: inline-block;
+                    width: 195px;
+                    margin-left: 15px;
+                    padding: 0 15px;
+                    text-align: center;
+                    font-size: 18px;
+                    line-height: 54px;
+                    border-top-left-radius: 3px;
+                    border-bottom-left-radius: 3px;
+                }
+                .sign-inner-text{
+                    padding-left:30px;
+                    background: url("images/pencil_03.png") no-repeat left;
+                }
+            }
+            .wf-opinion-recent-snapshop{
+                max-height: 54px;
+                .list-group-item{
+                    line-height: 6px;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    word-wrap: normal;
+                    white-space: nowrap;
+                    border:0;
+                    margin-bottom: 0px;  
+                    border-radius: 0;
+                }
+            }
+            .wf-opinion-recent-snapshop.only-one-item{
+                overflow: hidden;
+                .list-group-item{
+                    line-height: 30px;
+                }
+            }
+        }
+        .wf-opinion{
+            padding:10px;
+            >div{
+              padding:0 5px;  
+            }
+            .note-editor.note-frame{
+                border:1px #ddd solid
+            }
+            .list-group{
+                border: 1px solid #ddd; 
+                min-height:212px;
+                a{
+                    border:0;                  
+                    margin-bottom: 0px;  
+                }
+            }
+        }
+        .tabs-container{
+            .tabs-left>.nav-tabs,.tabs-right>.nav-tabs{width:6.5em;}
+            .tabs-right{
+                .nav:first-child{
+                    border:0;
+                }
+                .nav-tabs{
+                    position: absolute;
+                    bottom: 2px;
+                    right: 0px;
+                    margin-left:0px;
+                    li{
+                        a{
+                            margin-bottom: 0px;
+                            color:#404040;
+                            border-color: #cfcfcf #cfcfcf #cfcfcf transparent !important;     
+                        }
+                        
+                    }
+                   
+                    li.wf-opinion-fixed{
+                        position: absolute;
+                        right: 0px;
+                        bottom: 180px;
+                        width: 32px;
+                        height: 32px;
+                        display: block;
+                        background-repeat: no-repeat;
+                        background-image : url("./images/dz1.png");
+                        cursor: pointer;
+                    }
+                    li.wf-opinion-fixed.fixed{
+                        background-image : url("./images/dz.png");
+                    }
+                }
+                .tab-content{
+                    margin-right: 85px;
+                }
+            }
+        }
+    }  
+}
+
+.widget-box.widget-box-by-dialog{
+    .widget-body{
+        padding: 0 30px 30px;
+    }
+}

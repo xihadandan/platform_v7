@@ -1,0 +1,436 @@
+.bootstrap-table .table {
+  margin-bottom: 0 !important;
+  border-bottom: @border-default-dark;
+  border-collapse: collapse !important;
+  border-radius: 1px;
+
+  &:not(.table-condensed) {
+    padding: 8px;
+
+    >tbody>tr>th,
+    >tfoot>tr>th,
+    >thead>tr>td,
+    >tbody>tr>td,
+    >tfoot>tr>td {
+      padding: 8px;
+    }
+  }
+
+  &.table-no-bordered>thead>tr>th,
+  &.table-no-bordered>tbody>tr>td {
+    border-right: 2px solid transparent;
+  }
+
+  &.table-no-bordered>tbody>tr>td:last-child {
+    border-right: 0;
+  }
+
+  th,
+  td {
+    vertical-align: middle;
+    box-sizing: border-box;
+  }
+
+  >thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: @border-default-dark;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+// 表格内部复选框
+.bootstrap-table .fixed-table-container .bs-checkbox {
+  input[type='checkbox'] {
+    display: none;
+
+    +label {
+      vertical-align: baseline;
+      margin-bottom: 0;
+      float: initial;
+      font-size: @table-checkbox-size;
+      color: @table-checkbox-color;
+      font-family: iconfont !important;
+      font-weight: normal;
+
+      &:before {
+        content: '\e8f2';
+        margin-right: 0;
+      }
+    }
+
+    &:checked+label:before {
+      content: '\e8de';
+      color: @table-checkbox-checked-color;
+      margin-right: 0;
+    }
+
+    &:disabled+label:before {
+      color: @table-checkbox-disabled-color  !important;
+    }
+  }
+
+  .th-inner {
+    width: unset !important;
+  }
+}
+
+.fixed-table-container {
+  position: relative;
+  clear: both;
+  border: @border-default-dark;
+  border-radius: @border-radius-base;
+
+  &.table-no-bordered {
+    border: 1px solid transparent;
+  }
+
+  table {
+    width: 100%;
+
+    thead th .th-inner,
+    tbody td .th-inner {
+      .text-overflow();
+
+      padding: 8px;
+      line-height: 24px;
+      vertical-align: top;
+    }
+
+    thead th {
+      height: 0;
+      padding: 0;
+      margin: 0;
+      border-left: @border-default-dark;
+
+      &:focus {
+        outline: 0 solid transparent;
+      }
+
+      &:first-child {
+        border-left: none;
+      }
+
+      .sortable {
+        cursor: pointer;
+        background-position: right;
+        background-repeat: no-repeat;
+        padding-right: 30px;
+      }
+
+      .both {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAQAAADYWf5HAAAAkElEQVQoz7XQMQ5AQBCF4dWQSJxC5wwax1Cq1e7BAdxD5SL+Tq/QCM1oNiJidwox0355mXnG/DrEtIQ6azioNZQxI0ykPhTQIwhCR+BmBYtlK7kLJYwWCcJA9M4qdrZrd8pPjZWPtOqdRQy320YSV17OatFC4euts6z39GYMKRPCTKY9UnPQ6P+GtMRfGtPnBCiqhAeJPmkqAAAAAElFTkSuQmCC');
+      }
+
+      .asc {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAZ0lEQVQ4y2NgGLKgquEuFxBPAGI2ahhWCsS/gDibUoO0gPgxEP8H4ttArEyuQYxAPBdqEAxPBImTY5gjEL9DM+wTENuQahAvEO9DMwiGdwAxOymGJQLxTyD+jgWDxCMZRsEoGAVoAADeemwtPcZI2wAAAABJRU5ErkJggg==');
+      }
+
+      .desc {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAZUlEQVQ4y2NgGAWjYBSggaqGu5FA/BOIv2PBIPFEUgxjB+IdQPwfC94HxLykus4GiD+hGfQOiB3J8SojEE9EM2wuSJzcsFMG4ttQgx4DsRalkZENxL+AuJQaMcsGxBOAmGvopk8AVz1sLZgg0bsAAAAASUVORK5CYII=');
+      }
+
+      .detail {
+        width: 30px;
+      }
+    }
+
+    tbody td {
+      border-left: @border-default-dark;
+
+      &:first-child {
+        border-left: none;
+      }
+    }
+  }
+
+  .bs-checkbox {
+    cursor: pointer;
+    text-align: center;
+    width: 36px !important;
+
+    label {
+      cursor: pointer;
+    }
+
+    .th-inner {
+      padding: 8px 0;
+    }
+  }
+
+  input[type='radio'],
+  input[type='checkbox'] {
+    margin: 0 auto !important;
+  }
+
+  .no-records-found {
+    text-align: center;
+  }
+}
+
+.hide-no-records-picture .fixed-table-container .no-records-found {
+  visibility: hidden;
+}
+
+.fixed-table-footer,
+.fixed-table-header {
+  overflow: hidden;
+}
+
+.fixed-table-footer {
+  border-top: @border-default-dark;
+
+  .table {
+    border-bottom: 0;
+    border-radius: 0;
+    padding: 0 !important;
+
+    tbody>tr>td {
+      padding: 0 !important;
+    }
+  }
+}
+
+.fixed-table-body-container {
+  height: 100%;
+  z-index: 9;
+  position: relative;
+
+  .fixed-table-body {
+    overflow-x: auto;
+    /** FIXME: 表格设置高度时错误 */
+    overflow-y: auto;
+    // height: 100%;
+
+    thead th .th-inner {
+      box-sizing: border-box;
+    }
+
+    .card-view {
+      display: flex;
+
+      .title {
+        font-weight: bold;
+        display: inline-block;
+        width: 30%;
+        text-align: left !important;
+        padding-right: 16px;
+        align-self: start;
+      }
+
+      .value {
+        width: 70%;
+        display: inline-block;
+        padding-left: 16px;
+        align-self: center;
+      }
+    }
+  }
+}
+
+.fixed-table-pagination {
+  padding: 5px 0;
+
+  // 每页条数选择下拉框
+  .page-list {
+    display: inline-block;
+
+    .btn-group {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .dropup .dropdown-menu {
+      margin-bottom: 0;
+      min-width: 90px !important;
+    }
+  }
+
+  // 分页描述区域
+  .pagination-detail {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    .pagination-info {
+      line-height: 34px;
+      margin-right: 5px;
+    }
+  }
+
+  div.pagination {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    // 分页按钮区域
+    .pagination {
+      margin: 0 !important;
+
+      .page-number {
+        a {
+          padding: 6px 12px;
+          line-height: @line-height-base;
+        }
+
+        &.disabled a,
+        &.disabled span {
+          pointer-events: auto !important;
+          cursor: not-allowed !important;
+
+          color: @gray-7  !important;
+          background-color: transparent !important;
+          border-color: @gray-6  !important;
+        }
+      }
+    }
+  }
+}
+
+.fixed-table-pagination .pagination-detail .pagination li>a.page-pre,
+.fixed-table-pagination .pagination-detail .pagination li>a.page-next {
+  padding: 5px 8px !important;
+  height: auto !important;
+  line-height: normal !important;
+  border-radius: 4px !important;
+}
+
+.fixed-table-pagination .pagination-detail .pagination li>a.page-next {
+  margin-left: 8px !important;
+}
+
+.fixed-table-toolbar {
+  .columns-left {
+    margin-right: 5px;
+  }
+
+  .columns-right {
+    margin-left: 5px;
+  }
+
+  .bs-bars,
+  .search,
+  .columns {
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    line-height: 34px;
+  }
+
+  .columns label {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+  }
+
+  .dropdown-menu {
+    text-align: left;
+    max-height: 300px;
+    overflow: auto;
+  }
+
+  .btn-group>.btn-group {
+    display: inline-block;
+    margin-left: -1px !important;
+
+    >.btn {
+      border-radius: 0;
+    }
+
+    &:first-child>.btn {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+
+    &:last-child>.btn {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+  }
+}
+
+.fixed-table-loading {
+  // .absolute(42px 0 0 0);
+
+  z-index: 99;
+  background-color: transparent;
+  text-align: center;
+
+  &:not(.display-none)~table {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+// 多行
+.bootstrap-table {
+
+  tr th>.th-inner.multiple-rows-wrapper,
+  tr td>span.multiple-rows-wrapper {
+    min-height: 34px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-all;
+    white-space: normal !important;
+  }
+
+  .card-view {
+
+    .title>span.multiple-rows-wrapper,
+    .value>span.multiple-rows-wrapper {
+      min-height: 34px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-break: break-all;
+      white-space: normal !important;
+    }
+  }
+}
+
+// ************************************
+//
+.pull-right .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+.pull-center {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p.fixed-table-scroll-inner {
+  width: 100%;
+  height: 200px;
+}
+
+div.fixed-table-scroll-outer {
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  width: 200px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.show-columns-wrap .columns-btn-style {
+  height: 35px;
+  font-size: 14px;
+  padding: 5px 13px 5px 13px !important;
+}
+
+.bootstrap-table .th-inner:not(.sortable) {
+  padding-right: 4px !important;
+}
+
+.bootstrap-table .bs-checkbox .th-inner:not(.sortable) {
+  padding-right: inherit !important;
+}
+
+.bootstrap-table .bs-checkbox label {
+  margin: 0 !important;
+}

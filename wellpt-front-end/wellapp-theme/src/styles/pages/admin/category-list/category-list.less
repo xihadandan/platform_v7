@@ -1,0 +1,429 @@
+/**
+ * 配置表格组件使用的分类选择框
+ * - 基础数据管理 - 消息格式 -消息分类
+ * - 流程管理 - 流程定义 - 流程分类
+ */
+
+.msg-content-list {
+  clear: both;
+
+  .panel-body .tab-content {
+    padding: 0;
+  }
+
+  .ui-wHtml {
+    float: left;
+    width: 230px;
+  }
+
+  .ui-wBootstrapTable {
+    float: left;
+    width: calc(100% - 250px);
+    margin-left: 20px;
+    overflow: hidden !important;
+  }
+}
+
+.msg-category-content {
+  .size(220px 100%);
+
+  border-right: @border-default-dark;
+  padding-top: 10px;
+  position: relative;
+
+  // 分类框
+  .msg-category-wrap {
+    height: calc(100% - 45px);
+
+    // 分类搜索框
+    .input-box {
+      position: relative;
+      width: calc(100% - 20px);
+      margin: 0 auto 10px;
+
+      input {
+        padding-right: 45px;
+      }
+
+      i {
+        .absolute(9px 7px false false);
+
+        line-height: 1;
+        color: @text-color-light;
+        cursor: pointer;
+
+        &:hover {
+          color: @text-color-primary;
+        }
+
+        +i {
+          display: none;
+          right: 30px;
+          top: 9px;
+          font-size: @font-size-lg;
+        }
+      }
+    }
+
+    // 分类列表
+    .msg-category-list {
+      margin-top: 15px;
+
+      // 分类列表标题
+      .msg-category-title {
+        line-height: 30px;
+        color: @text-color;
+        position: relative;
+        font-size: 0;
+        height: 30px;
+
+        span {
+          font-size: @font-size-base;
+          vertical-align: middle;
+          cursor: pointer;
+        }
+
+        // 添加分类按钮
+        .add-msg-category {
+          .absolute(3px 10px false false);
+          .square(24px);
+
+          font-size: @font-size-2xl;
+          color: @text-color-primary;
+          display: block;
+          border: @border-default-dark;
+          line-height: 22px;
+          border-radius: 50%;
+          box-sizing: border-box;
+          text-align: center;
+          cursor: pointer;
+        }
+
+        .icon-folders {
+          color: @text-color-lighter;
+          font-size: @font-size-base;
+          vertical-align: middle;
+          cursor: not-allowed;
+
+          &.hasList {
+            color: @text-color-light;
+            cursor: pointer;
+            padding: 2px 6px;
+          }
+
+          +i {
+            color: @text-color-primary;
+            margin: 0 5px 0 2px;
+            font-size: 18px;
+            vertical-align: middle;
+          }
+        }
+      }
+
+      .msg-category-item {
+        position: relative;
+        padding: 5px 5px 5px @padding-xl;
+        transition: all @animation-duration-fast;
+        cursor: pointer;
+
+        span {
+          vertical-align: middle;
+          font-size: @font-size-base;
+          color: @text-color;
+
+          &.msg-category-text {
+            .text-overflow();
+
+            width: calc(100% - 46px);
+            display: inline-block;
+          }
+
+          &:first-of-type {
+            .square(24px);
+
+            display: inline-block;
+            line-height: 24px;
+            margin-right: 8px;
+            border-radius: 50%;
+            color: @text-color-inverse;
+            text-align: center;
+          }
+        }
+
+        &:hover .icon-operate {
+          display: inline-block;
+        }
+
+        &.msg-category-subject span {
+          .text-overflow();
+
+          display: inline-block;
+          max-width: 120px;
+        }
+
+        &.hasSelectCate,
+        &:hover {
+          background: @item-hover-background;
+        }
+
+        .msg-badge {
+          float: right;
+          min-width: 20px;
+          height: 20px;
+          margin-top: 2px;
+          vertical-align: middle;
+          border-radius: 10px;
+          color: @text-color-inverse;
+          background: @danger-color;
+          text-align: center;
+          padding: 0 4px;
+          box-sizing: border-box;
+        }
+
+        .icon-operate {
+          display: none;
+          float: right;
+          height: 34px;
+          font-size: @font-size-base;
+          color: @text-color-primary;
+          cursor: pointer;
+          vertical-align: middle;
+        }
+
+        .category-item-operate {
+          .absolute(34px 0 false false);
+          .size(110px 90px);
+
+          display: none;
+          background: @component-background;
+          box-shadow: @shadow-popup-default;
+          color: @text-color-primary;
+          padding: 5px 0;
+          z-index: 10;
+
+          li {
+            padding: 10px 0 10px 15px;
+            font-size: @font-size-base;
+            cursor: pointer;
+
+            i {
+              margin-right: 5px;
+            }
+
+            &:hover {
+              background: @item-hover-background;
+            }
+          }
+
+          &:before {
+            .absolute(-8px 5px false false);
+
+            content: '';
+            display: block;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #fff;
+          }
+        }
+
+        &.detail-up .category-item-operate {
+          top: -90px;
+
+          &:before {
+            top: initial;
+            bottom: -8px;
+            border-top: 8px solid #fff;
+            border-bottom: 0;
+          }
+        }
+
+        .icon-operate:hover+.category-item-operate,
+        .category-item-operate:hover {
+          display: block;
+        }
+
+        .icon-folders {
+          &.hasChild {
+            color: @text-color-light;
+            cursor: pointer;
+            padding: 2px 6px;
+          }
+        }
+      }
+    }
+  }
+
+  // 展开折叠按钮
+  .msg-category-folder {
+    .absolute(250px -12px false false);
+    .size(12px 40px);
+
+    line-height: 40px;
+    text-align: center;
+    background: @gray-5;
+    border-radius: 0px 12px 12px 0px;
+
+    i {
+      font-size: 10px;
+      color: @text-color;
+      cursor: pointer;
+    }
+  }
+}
+
+/*打印模板*/
+.print-content-list {
+
+  // 列表
+  .ui-wBootstrapTable {
+    float: left;
+    width: calc(100% - 670px);
+    margin-left: 10px;
+    overflow: hidden !important;
+  }
+
+  // 详细信息
+  .ui-wHtml-detail {
+    float: left;
+    width: 418px;
+    margin-left: 10px;
+  }
+}
+
+// 分类项
+#flow_category_content {
+  .msg-category-item {
+    padding-left: @padding-xl;
+
+    .msg-category-text {
+      .text-truncate();
+      display: inline-block;
+      width: calc(100% - 70px) !important;
+    }
+
+    .icon-operate {
+      height: 24px;
+    }
+  }
+
+  .msg-category-item-1 {
+    padding-left: 46px;
+  }
+
+  .msg-category-item-2 {
+    padding-left: 76px;
+  }
+
+  .msg-category-item-3 {
+    padding-left: 106px;
+  }
+
+  .msg-category-item-4 {
+    padding-left: 136px;
+  }
+
+  .msg-category-item-5 {
+    padding-left: 166px;
+  }
+}
+
+/*套打*/
+// 套打弹窗
+.choose-print-template-box {
+  border: @border-default;
+
+  .input-box {
+    background-color: @gray-3;
+    padding: 8px 200px 8px 10px;
+    position: relative;
+
+    i {
+      .absolute(16px 207px false false);
+
+      font-size: @font-size-2xl;
+      line-height: 1;
+      color: @text-color-light;
+      cursor: pointer;
+
+      &+i {
+        display: none;
+        .absolute(18px 237px false false);
+        font-size: @font-size-lg;
+      }
+    }
+  }
+
+  #choose_print_template {
+    .size(100%; 340px);
+    border: none;
+    padding-top: 6px;
+
+    .msg-category-item {
+      padding-left: 24px;
+
+      span.button.ico_close {
+        .square(16px);
+
+        display: inline-block;
+        border-radius: 0;
+        background-image: url('@{image-url-prefix}/well_tree_icon.png');
+        background-repeat: no-repeat;
+        background-position: -143px 0;
+        margin-right: 8px;
+        margin-left: 8px;
+      }
+
+      .slide_icon {
+        color: @text-color-light;
+        font-size: @font-size-base;
+        cursor: pointer;
+        line-height: @height-md;
+      }
+
+      .slide_icon .iconfont {
+        font-size: @font-size-base;
+      }
+
+      .msg-category-text {
+        width: calc(100% - 80px);
+        color: @text-color;
+        text-align: left;
+        border-radius: unset;
+      }
+    }
+
+    .msg-category-item-1 {
+      padding-left: 68px;
+    }
+
+    .msg-category-item-2 {
+      padding-left: 90px;
+    }
+
+    .msg-category-item-3 {
+      padding-left: 112px;
+    }
+
+    .msg-category-item-4 {
+      padding-left: 134px;
+    }
+
+    .msg-category-item-5 {
+      padding-left: 156px;
+    }
+
+    // 操作按钮
+    .form_operate {
+      margin: 0px;
+      padding: 0px 0px 0px 10px;
+      height: @height-md;
+      line-height: @height-md;
+      background-color: @gray-3;
+      border-top: @border-default;
+
+      button {
+        color: @text-color-primary;
+      }
+    }
+  }
+}

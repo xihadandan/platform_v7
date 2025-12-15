@@ -1,0 +1,320 @@
+@import './default-vars.less';
+@import './input/input.less';
+@import './input/radio.less';
+@import './input/checkbox.less';
+@import './link/link.less';
+@import './spin/index.less';
+@import './layout/index.less';
+@import './menu/menu.less';
+@import './select/select.less';
+@import './tip/tip.less';
+@import './date-picker/date-picker.less';
+@import './switch/switch.less';
+@import './tag/tag.less';
+@import './upload/picture.less';
+@import './upload/files.less';
+@import './org-select/org-select.less';
+@import './rich-text/rich-text.less';
+@import './pagination/pagination.less';
+@import './table/table.less';
+@import './tabs/tabs.less';
+@import './tree/tree.less';
+@import './dropdown/dropdown.less';
+@import './progress/progress.less';
+@import './anchor/anchor.less';
+@import './input/input-number.less';
+@import './button/button.less';
+@import './common/scroll.less';
+@import './card/card.less';
+@import './drawer/drawer.less';
+@import './steps/steps.less';
+@import './common/pt.less';
+@import './topWindow/index.less';
+
+@ant-prefix: ant;
+@ant-iconfont-css-prefix: anticon;
+
+body {
+  /*
+      -------------------------
+              定义默认样式变量
+      -------------------------
+   */
+
+  --w-color-white: #fff;
+  --w-color-black: #000;
+  --w-color-dark: #091933;
+  --w-color-light: #fff;
+
+  --w-filter: none; //grayscale(1) 变灰 （特殊日子）
+
+  /* 字体 */
+  --w-font-size: 14px;
+  --w-text-color: fade(#000, 65%);
+
+  /* 布局样式*/
+  --w-layout-body-background: var(--w-gray-color-3); // #f0f2f5;
+  --w-layout-header-background: var(--w-primary-color);
+  --w-layout-header-color: #fff;
+  --w-layout-footer-background: #fff;
+  --w-layout-trigger-color: #fff;
+  --w-layout-trigger-background: #002140;
+
+  --w-layout-zero-trigger-width: 36px;
+  --w-layout-zero-trigger-height: 42px;
+  --w-layout-sider-background: var(--w-layout-header-background);
+  --w-layout-zero-trigger-hover-background: tint(#488cee, 10%);
+
+  --w-widget-page-block-border-radius: var(--w-border-radius-base);
+  --w-widget-page-layout-bg-color: var(--w-bg-color-layout);
+  --w-widget-block-bg-color: var(--w-fill-color-base);
+
+  --w-form-item-label-color: var(--w-text-color-dark);
+  --w-modal-title-font-size: var(--w-font-size-lg);
+  --w-modal-title-text-color: var(--w-text-color-dark);
+
+  --w-empty-description-color: var(--w-text-color-light);
+  --w-empty-description-font-size: var(--w-font-size-base);
+}
+
+// 默认主题
+body {
+  font-family: var(--w-font-family), var(--w-code-family);
+
+  filter: var(--w-filter);
+
+  .ant-layout {
+    // background: var(--w-layout-body-background);
+
+    &-header {
+      background: transparent; //  （避免服务端渲染时候会有采用ant默认颜色导致的变化情况）
+      color: var(--w-layout-header-color);
+    }
+
+    &-footer {
+      color: var(--w-text-color);
+      font-size: var(--w-font-size);
+      background: var(--w-layout-footer-background);
+    }
+
+    &-content {
+    }
+
+    &-sider {
+      &-trigger {
+        color: var(--w-layout-trigger-color);
+        background: var(--w-layout-trigger-background);
+        width: var(--w-layout-zero-trigger-width);
+        height: var(--w-layout-zero-trigger-height);
+      }
+
+      &-zero-width {
+        &-trigger {
+          color: var(--w-layout-trigger-color);
+          width: var(--w-layout-zero-trigger-width);
+          height: var(--w-layout-zero-trigger-height);
+          font-size: var(--w-layout-zero-trigger-width / 2);
+          line-height: var(--w-layout-zero-trigger-height);
+          background: var(--w-layout-sider-background);
+
+          &:hover {
+            background: var(--w-layout-zero-trigger-hover-background);
+          }
+        }
+      }
+    }
+
+    // &-footer {
+    //   color: @text-color;
+    //   font-size: @font-size-base;
+    //   background: @layout-footer-background;
+    // }
+  }
+
+  // 树节点图标为空则不展示
+  .ant-select-tree-iconEle:empty {
+    display: none !important;
+  }
+
+  .ant-form,
+  .ant-form label,
+  .ant-collapse,
+  .ant-alert,
+  .ant-table,
+  .ant-popover,
+  .ant-tooltip,
+  .ant-notification-notice,
+  .ant-notification-notice .ant-notification-notice-description,
+  .ant-modal-body,
+  .ant-dropdown,
+  .ant-dropdown-menu-item {
+    font-size: var(--w-font-size-base);
+  }
+
+  .ant-modal-title {
+    font-size: var(--w-modal-title-font-size);
+    color: var(--w-modal-title-text-color);
+  }
+
+  .ant-modal-body {
+    padding: var(--w-padding-xs) var(--w-padding-md);
+  }
+
+  .ant-form-item-label > label {
+    color: var(--w-form-item-label-color);
+  }
+
+  .ant-menu-vertical .ant-menu-item,
+  .ant-menu-vertical-left .ant-menu-item,
+  .ant-menu-vertical-right .ant-menu-item,
+  .ant-menu-inline .ant-menu-item,
+  .ant-menu-vertical .ant-menu-submenu-title,
+  .ant-menu-vertical-left .ant-menu-submenu-title,
+  .ant-menu-vertical-right .ant-menu-submenu-title,
+  .ant-menu-inline .ant-menu-submenu-title {
+    font-size: var(--w-font-size-base);
+  }
+
+  .ant-avatar {
+    > i {
+      font-size: inherit;
+    }
+  }
+
+  // 时间轴
+  .ant-timeline-item-head-blue {
+    color: var(--w-primary-color);
+  }
+
+  // 空提示语
+  .ant-empty-description {
+    color: var(--w-empty-description-color);
+    font-size: var(--w-empty-description-font-size);
+  }
+
+  .flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+  }
+
+  .f_wrap {
+    flex-wrap: wrap;
+  }
+
+  .f_nowarp,
+  .ant-row-flex.f_nowrap {
+    flex-wrap: nowrap;
+  }
+
+  /* 垂直排列 */
+  .flex_co {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+  }
+
+  /*  垂直水平居中 */
+  .f_xy_c {
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+
+  .f_y_c {
+    -webkit-align-items: center;
+    align-items: center;
+  }
+
+  .f_x_c {
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
+
+  /* 存在剩余空间放大 */
+  .f_g_1 {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+  }
+
+  /* 空间不够也不缩小 */
+  .f_s_0 {
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+  }
+
+  .f_x_s {
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+  }
+
+  .f_x_sa {
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+  }
+
+  .f_x_e {
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+  }
+
+  .f_y_s {
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+  }
+
+  /* 文本溢出隐藏 */
+  .w-ellipsis {
+    /* #ifndef APP-NVUE */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    /* #endif */
+    /* #ifdef APP-NVUE */
+    lines: 1;
+    /* #endif */
+  }
+
+  .w-ellipsis-1 {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal !important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+  }
+
+  .w-ellipsis-2 {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal !important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .w-ellipsis-3 {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal !important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .w-user-select-none {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .ant-message {
+    z-index: 10000000 !important;
+  }
+}

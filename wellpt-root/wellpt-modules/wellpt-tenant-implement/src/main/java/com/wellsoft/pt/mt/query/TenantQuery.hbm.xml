@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="tenantQuery">
+        <![CDATA[
+		from Tenant tenant where 1=1 and status <> 4
+		<if isNotBlank(status)>
+			and  tenant.status like '%' || :status || '%'
+		</if>
+		<if isNotBlank(name) || isNotBlank(code) || isNotBlank(account)>
+			and (1 = 2
+				<if isNotBlank(name)>
+					or tenant.name like '%' || :name || '%'
+				</if>
+				<if isNotBlank(code)>
+					or tenant.code like '%' || :code || '%'
+				</if>
+				<if isNotBlank(account)>
+					or tenant.account like '%' || :account || '%'
+				</if>
+			)
+		</if>
+		order by ${orderBy}
+	]]>
+    </sql-query>
+</hibernate-mapping>

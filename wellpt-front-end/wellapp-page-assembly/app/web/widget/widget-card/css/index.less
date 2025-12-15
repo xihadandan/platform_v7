@@ -1,0 +1,36 @@
+.widget-card {
+  > .ant-card-body {
+    > .ps {
+      > div:first-child {
+        height: 100%;
+        > * {
+          &:first-child {
+            margin-top: 0px;
+          }
+
+          &:last-child {
+            margin-bottom: 0px;
+          }
+        }
+      }
+    }
+  }
+  &.grid-dividing-line {
+    margin-bottom: 0px;
+    --w-card-body-padding-tb: 1px;
+    --w-card-body-padding-l-dividing-line: 0px;
+    --w-card-body-padding-r-dividing-line: 0px;
+    &.hide_left_col {
+      --w-card-body-padding-l-dividing-line: 0px;
+    }
+    &.hide_right_col {
+      --w-card-body-padding-r-dividing-line: 0px;
+    }
+    > .ant-card-body {
+      padding: var(--w-card-body-padding-tb) var(--w-card-body-padding-r-dividing-line) var(--w-card-body-padding-tb)
+        var(--w-card-body-padding-l-dividing-line);
+    }
+  }
+
+  margin-bottom: var(--w-margin-xs);
+}

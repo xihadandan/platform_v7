@@ -1,0 +1,28 @@
+{
+  "loginComponent": {
+    "acctLogin": "账号登录",
+    "acctInputPlaceholder": "请输入账号",
+    "pwdInputPlaceholder": "请输入密码",
+    "rememberAcct": "记住账号",
+    "rememberPwd": "记住密码",
+    "forgetPwd": "忘记密码",
+    "register": "注册",
+    "login": "登录",
+    "error": {
+      "Bad credentials": "用户名或密码错误",
+      "captchaExpired": "验证码已失效",
+      "captchaError": "验证码错误",
+      "Missing credentials": "请输入用户名与密码",
+      "failed": "登录失败"
+    },
+    "feishuQrLogin": "飞书扫码登录",
+    "feishuConfigError": "飞书接入未启用或未配置应用ID",
+    "sso": {
+      "logining": "单点登录中",
+      "success": "单点登录成功",
+      "failed": "单点登录失败"
+    },
+    "dingtalkQrLogin": "钉钉扫码登录",
+    "weixinQrLogin": "企业微信扫码登录"
+  }
+}

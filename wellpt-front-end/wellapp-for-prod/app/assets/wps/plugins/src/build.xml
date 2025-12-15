@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="dist-all">
+	<property name="version" value="4.1" />
+	<property name="src.dir" location="." />
+	<property name="encodeing" value="UTF-8" />
+	<property name="dest.dir" location="../v${version}/" />
+
+	<target name="clean">
+		<delete dir="${dest.dir}" />
+	</target>
+
+	<target name="init">
+		<mkdir dir="${dest.dir}" />
+		<copy encoding="${encodeing}" includeemptydirs="false" todir="${dest.dir}">
+			<fileset file="${src.dir}/jsplugins.xml">
+			</fileset>
+		</copy>
+	</target>
+	<!--打包-->
+	<target name="zip-etoa">
+		<!--
+			destfile	目标文件
+			duplicate	打包方式(一般使用preserve)
+			zipfileset	打包那些文件
+			prefix		增加前缀(使用最佳实践)
+		-->
+		<zip destfile="${dest.dir}/etoa.7z" duplicate="preserve">
+			<zipfileset dir="${src.dir}/etoa_2.1" includes="**/*.*" prefix="etoa_${version}" />
+		</zip>
+	</target>
+	<!--打包-->
+	<target name="zip-oaassist">
+		<!--
+				destfile	目标文件
+				duplicate	打包方式(一般使用preserve)
+				zipfileset	打包那些文件
+				prefix		增加前缀(使用最佳实践)
+			-->
+		<zip destfile="${dest.dir}/oaassist.7z" duplicate="preserve">
+			<zipfileset dir="${src.dir}/oaassist_3.1" includes="**/*.*" prefix="oaassist_${version}" />
+		</zip>
+	</target>
+	<!--打包-->
+	<target name="zip-wppoa">
+		<!--
+				destfile	目标文件
+				duplicate	打包方式(一般使用preserve)
+				zipfileset	打包那些文件
+				prefix		增加前缀(使用最佳实践)
+			-->
+		<zip destfile="${dest.dir}/wppoa.7z" duplicate="preserve">
+			<zipfileset dir="${src.dir}/wppoa_2.1" includes="**/*.*" prefix="wppoa_${version}" />
+		</zip>
+	</target>
+	<!-- 替换jsplugins -->
+	<target name="replace-jsplugins">
+		<replace file="${dest.dir}/jsplugins.xml">
+			<replacefilter token="${wpsVersion}" value="${version}" />
+		</replace>
+		<echo>replace success</echo>
+	</target>
+	<path id="wellpt-ant.libraryclasspath">
+		<fileset dir="C:\wellspace\workspace\wellpt-ant\lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	<taskdef name="mycopy" classname="com.wellpt.pt.ant.MyCopy" classpathref="wellpt-ant.libraryclasspath" />
+	<target name="file-copy">
+		<copy includeemptydirs="false" todir="${dest.dir}">
+			<fileset dir="${src.dir}" excludes="**/*.js,**/*.css,**/*.xml,**/*.html">
+			</fileset>
+		</copy>
+		<echo>file-copy success</echo>
+	</target>
+	<target name="file-change">
+		<mycopy includeemptydirs="false" todir="${dest.dir}" encoding="auto" outputencoding="${encodeing}">
+			<fileset dir="${src.dir}" includes="**/*.js,**/*.css,**/*.xml,**/*.html">
+			</fileset>
+		</mycopy>
+		<echo>file-change success</echo>
+	</target>
+	<target name="file-copy-change-encoding" depends="clean,init,file-change,file-copy">
+		<echo>file-copy-change-encoding success</echo>
+	</target>
+
+	<target name="dist-all" depends="clean,init,zip-etoa,zip-oaassist,zip-wppoa,replace-jsplugins">
+		<echo>build success</echo>
+	</target>
+</project>

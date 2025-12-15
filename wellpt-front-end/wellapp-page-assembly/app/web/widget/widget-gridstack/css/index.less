@@ -1,0 +1,102 @@
+.widget-gridstack {
+  position: relative;
+  overflow-x: hidden;
+  .gridstack-affix {
+    right: -100px;
+    z-index: 10001;
+    transition: right 0.3s ease-in-out;
+    > div {
+      padding: 8px 12px;
+      background-color: #00000038;
+      border-radius: 4px 0px 0px 4px;
+      height: auto !important;
+      > div {
+        width: 90px;
+
+        > div {
+          width: 100%;
+          text-align: center;
+          margin-bottom: 8px;
+          &:last-child {
+            margin-bottom: 0px;
+          }
+        }
+      }
+    }
+    &.swapping {
+      right: 0px;
+    }
+    &:hover {
+      right: 0px;
+    }
+  }
+  .grid-stack-toolbar {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 10000;
+    background: #9e9e9e;
+    border-radius: 5px;
+    padding: 4px;
+    color: #fff;
+    > i {
+      font-size: 18px;
+    }
+  }
+  .grid-stack-item-drag-cover {
+    position: absolute;
+    z-index: 500;
+    width: 100%;
+    height: 100%;
+
+    &:hover {
+      border: 3px solid var(--w-primary-color);
+      cursor: pointer;
+      &::after {
+        content: '点击区域进行拖动';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--w-primary-color);
+        text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  .grid-stack-item-content {
+    // overflow: hidden !important;
+    > div {
+      height: 100%;
+      > [w-id] {
+        // height: 100%;
+        &:last-child {
+          margin-bottom: 0px !important;
+        }
+      }
+
+      > * {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+
+        &:last-child {
+          margin-bottom: 0px !important;
+          padding: 0px !important;
+          &.widget-refrence {
+            > *:last-child {
+              margin-bottom: 0px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .grid-stack-item {
+    &[gs-x='0'] {
+      > .grid-stack-item-content {
+        inset: 0px 0px 12px 0px !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+/*
+ * @(#)2021-09-24 V1.0
+ *
+ * Copyright 2018 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.bpm.engine.facade.service;
+
+
+import com.wellsoft.context.service.Facade;
+
+/**
+ * Description: 数据库表WF_TASK_INSTANCE_TODO_USER的门面服务接口，提供给其他模块以及前端调用的业务接口
+ *
+ * @author zenghw
+ * @version 1.0
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2021-09-24.1	zenghw		2021-09-24		Create
+ * </pre>
+ * @date 2021-09-24
+ */
+public interface WfTaskInstanceTodoUserFacadeService extends Facade {
+
+
+}

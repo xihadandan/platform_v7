@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <!--模块权限菜单资源查询-->
+    <sql-query name="appModuleMenuResManagerQuery">
+        <![CDATA[
+    select t1.uuid as uuid,
+           t1.create_time as create_time,
+           t1.creator as creator,
+           t1.modifier as modifier,
+           t1.modify_time as modify_time,
+           t1.rec_ver as rec_ver,
+           t1.name as name,
+           t1.code as code,
+           t1.module_id as module_id,
+           t1.parent_uuid as parent_uuid
+      from audit_resource t1
+     where type='MENU'
+        <if parentUuidIsNull ??> and t1.parent_uuid is null </if>
+        <if parentUuidIsNotNull ??> and t1.parent_uuid is not null </if>
+        <if parentUuid ??> and t1.parent_uuid =:parentUuid </if>
+        <if moduleId??>
+        and t1.module_id=:moduleId
+		 </if>
+		 <if uuid??>
+        and t1.uuid=:uuid
+		 </if>
+        <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+    ]]>
+
+    </sql-query>
+
+
+</hibernate-mapping>

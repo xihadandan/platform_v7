@@ -1,0 +1,69 @@
+<form action="" id="system_config_form" style="margin-top: 15px;">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#sys-tabs-1" aria-controls="sys-tabs-1" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+        </li>
+        <li role="presentation">
+            <a href="#sys-tabs-2" aria-controls="sys-tabs-2" role="tab" data-toggle="tab" aria-expanded="true">服务信息</a>
+        </li>
+        <li role="presentation">
+            <a href="#sys-tabs-3" aria-controls="sys-tabs-3" role="tab" data-toggle="tab" aria-expanded="true">授权服务</a>
+        </li>
+    </ul>
+    <input type="hidden" id="uuid" name="uuid" />
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="sys-tabs-1" style="padding: 20px;">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label for="systemName" class="well-form-label control-label">系统名称</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="systemName" name="systemName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="systemCode" class="well-form-label control-label">系统编码</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="systemCode" name="systemCode">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="sys-tabs-2" style="padding: 20px;">
+            <div class="row" >
+                <div class="col-sm-12">
+                    <button type="button" class="well-btn w-btn-primary" id="service_btn_add">新增</button>
+                    <button type="button" class="well-btn w-btn-danger" id="service_btn_del">删除</button>
+                </div>
+            </div>
+            <table id="service_list"></table>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="sys-tabs-3" style="padding:20px;">
+            <div class="row">
+                <div class="col-xs-5">
+                    <h3 class="title">api白名单（外部系统允许调用）</h3>
+                    <div class="row">
+                        <button type="button" class="well-btn w-btn-primary authroze_table_add_btn" id="authroze_btn_add">新增</button>
+                        <button type="button" class="well-btn w-btn-danger authroze_table_del_btn" id="authroze_btn_del">删除</button>
+                    </div>
+                    <table id="authroze_list"></table>
+                </div>
+                <div class="col-xs-5 col-xs-offset-2">
+                    <h3 class="title">api黑名单（外部系统无法调用）</h3>
+                    <div class="row" >
+                        <button type="button" class="well-btn w-btn-primary authroze_table_add_btn" id="unauthroze_btn_add">新增</button>
+                        <button type="button" class="well-btn w-btn-danger authroze_table_del_btn" id="unauthroze_btn_del">删除</button>
+                    </div>
+                    <table id="unauthroze_list"></table>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:30px;">
+            <div class="col-sm-12 text-center">
+                <button type="button" class="well-btn w-btn-primary" id="conf_sys_btn_save">保存</button>
+                <button type="button" class="well-btn w-btn-success" id="btn_generate_token">创建TOKEN</button>
+            </div>
+        </div>
+    </div>
+</form>
+

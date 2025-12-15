@@ -1,0 +1,112 @@
+/* Tabs开始 */
+.tabs-container{
+    .panel-body {
+        background: #fff;
+        border: 1px solid #e7eaec;
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+    }
+    .nav-tabs{
+        li{
+            float: none; 
+            >a{
+                min-width: 74px;
+                margin-right: 0;
+                margin-bottom: 3px; 
+                margin-right: -1px;
+                -webkit-border-radius: 4px 0 0 4px;
+                -moz-border-radius: 4px 0 0 4px;
+                border-radius: 4px 0 0 4px;
+                .badge{
+                    display: inline-block;
+                    min-width: 10px;
+                    padding: 2px 5px;
+                    font-size: 12px;
+                    font-weight: normal;
+                    line-height: 1;
+                    text-align: center;
+                    vertical-align: middle;
+                    border-radius: 10px;
+                }
+            }
+        }
+        .active>a,.active>a:hover,.active>a:focus{
+            border-color: #e7eaec transparent #e7eaec #e7eaec;
+            *border-right-color: #ffffff;
+        }
+    }
+    .tabs-left{
+        .nav-tabs{
+            float: left;
+	        margin-right: 19px;
+            width: 20%;  
+        }
+        .panel-body {
+            position: static;
+            width: 80%;
+            margin-left: 20%;
+        }
+    }
+    .tabs-right{
+        .nav-tabs{
+            float: right;
+	        margin-left: 19px;
+            width: 20%;
+        }
+        .panel-body {
+            width: 80%;
+            margin-right: 20%;
+        }
+    }
+    .tab-content>.tab-pane,.pill-content>.pill-pane {
+        display: none;
+    }
+    .tab-content>.active,.pill-content>.active {
+        display: block;
+    }
+    .tabs-below{
+        >.nav-tabs {
+            border-top: 1px solid #e7eaec;
+            >li {
+                margin-top: -1px;
+                margin-bottom: 0;
+                >a {
+                    -webkit-border-radius: 0 0 4px 4px;
+                    -moz-border-radius: 0 0 4px 4px;
+                    border-radius: 0 0 4px 4px;
+                }
+                >a:hover,>a:focus{
+                    border-top-color: #e7eaec;
+	                border-bottom-color: transparent;
+                }
+            }
+        }
+    }
+    .nav-tabs {
+        border-bottom: 1px solid #e7eaec;
+        >li {
+            float: left;
+            margin-bottom: -1px;
+            a:hover {
+                background: transparent;
+                border-color: transparent;
+            }
+        }
+        >li.active>a,>li.active>a:hover,>li.active>a:focus{
+            border: 1px solid #e7eaec;
+            border-bottom-color: transparent;
+            background-color: #fff;
+        }
+    }
+}
+@media ( max-width : 767px) {
+	.tabs-container .nav-tabs>li {
+		float: none !important;
+	}
+	.tabs-container .nav-tabs>li.active>a {
+		border-bottom: 1px solid #e7eaec !important;
+		margin: 0;
+	}
+}
+/* Tabs结束*/

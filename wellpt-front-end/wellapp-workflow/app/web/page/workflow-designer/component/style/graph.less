@@ -1,0 +1,908 @@
+body {
+  --workflow-tool-bar-height: 40px;
+  --workflow-edge-container-width: 10px;
+  --workflow-edge-stroke-width: 2px;
+  --workflow-edge-selected-width: 4px;
+  --workflow-edge-stroke: var(--w-primary-color);
+  --workflow-edge-selected-stroke: var(--w-primary-color);
+  // --workflow-edge-marker-height: 10px;
+  --workflow-node-height: 56px;
+  --workflow-node-subflow-circle-width: 56px;
+  --workflow-edge-undo-width: 2px;
+  --workflow-edge-undo-stroke: var(--w-border-color-dark);
+
+  --workflow-swimlane-border-color: #e5e5e5;
+  --workflow-swimlane-border-width: 1px;
+  --workflow-swimlane-td-height: 56px;
+  --workflow-swimlane-td-padding: 10px;
+
+  --workflow-edge-dash-stroke: var(--w-border-color-dark);
+  --workflow-edge-stroke-dash-array: 5;
+  --workflow-node-left-width: 32px;
+}
+
+.btn-tool-active() {
+  > i {
+    color: var(--w-primary-color);
+  }
+  border-radius: 4px;
+  background-color: var(--w-primary-color-1);
+}
+.tool-bar-right-normal() {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin-left: 8px;
+  margin-right: 8px;
+  > i {
+    font-size: var(--w-font-size-lg);
+    color: var(--w-text-color-darker);
+  }
+}
+.tool-bar-right-line() {
+  position: absolute;
+  content: '';
+  width: 1px;
+  height: 24px;
+  top: 4px;
+  right: -10px;
+  background-color: var(--w-gray-color-5);
+}
+
+.graph-tool-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--workflow-tool-bar-height);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--w-color-white);
+
+  > button {
+    > span {
+      font-size: var(--w-font-size);
+    }
+  }
+  .tool-bar-left {
+    display: flex;
+  }
+  .tool-bar-right {
+    display: flex;
+    align-items: center;
+    .ant-select-focused {
+      .ant-select-selection {
+        box-shadow: none;
+      }
+    }
+    .ant-select-selection {
+      border: none;
+      &:hover,
+      &:focus,
+      &:active {
+        box-shadow: none;
+      }
+    }
+
+    > .ant-btn {
+      .tool-bar-right-normal();
+
+      &.btn-scale-reduce {
+        margin-right: 0;
+        &::after {
+          .tool-bar-right-line();
+          left: -10px;
+        }
+      }
+      &.btn-scale-add {
+        margin-left: 0;
+        &::after {
+          .tool-bar-right-line();
+        }
+      }
+      &.btn-svg-position,
+      &.tool-mini-map-btn {
+        &::after {
+          .tool-bar-right-line();
+        }
+      }
+      &.btn-tool-active {
+        .btn-tool-active();
+      }
+
+      &:not(.tool-mini-map-btn) {
+        &:focus {
+          .btn-tool-active();
+        }
+      }
+    }
+    .btn-open-global {
+      .tool-bar-right-normal();
+      &::after {
+        .tool-bar-right-line();
+      }
+      &.btn-tool-active {
+        .btn-tool-active();
+      }
+    }
+    .tool-node-tree-btn {
+      .tool-bar-right-normal();
+      &.btn-tool-active {
+        .btn-tool-active();
+      }
+    }
+  }
+}
+.tool-search-popover {
+  .ant-popover-inner-content {
+    width: 240px;
+    padding: 12px;
+  }
+}
+.tool-scale-select-dropdown {
+  .ant-select-dropdown-menu {
+    max-height: 270px;
+  }
+  .ant-select-dropdown-menu-item {
+    min-height: 32px;
+    line-height: 14px;
+    padding: 9px 12px;
+  }
+}
+.tool-position-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 136px;
+  padding-top: 4px;
+  padding-left: 4px;
+  border-radius: 4px;
+  background-color: var(--w-color-white);
+  .position-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+    background-color: var(--w-gray-color-2);
+    .icon-zuo-01 {
+      display: inline;
+      font-size: 32px;
+      color: var(--w-gray-color-9);
+    }
+    .position-item-center {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--w-gray-color-9);
+    }
+    .svg-icon {
+      width: 24px;
+      height: 24px;
+      path {
+        fill: var(--w-gray-color-9);
+      }
+    }
+    &.position-item-active {
+      background-color: var(--w-primary-color-1);
+      .icon-zuo-01 {
+        color: var(--w-primary-color);
+      }
+      .position-item-center {
+        background-color: var(--w-primary-color);
+      }
+      .svg-icon {
+        path {
+          fill: var(--w-primary-color);
+        }
+      }
+    }
+  }
+}
+.tool-position-popover {
+  .ant-popover-inner-content {
+    padding: 0;
+  }
+}
+.minimap-container {
+  position: absolute;
+  right: 10px;
+  top: 50px;
+  z-index: 1;
+  box-shadow: 0 0 4px 0 var(--w-border-color-darker);
+  border-radius: 4px;
+  overflow: hidden;
+  #minimap {
+    width: 100%;
+    height: 100%;
+  }
+  .x6-graph {
+    box-shadow: none;
+  }
+  .x6-widget-minimap-viewport {
+    border-radius: 4px;
+    border-color: var(--w-primary-color);
+  }
+  .x6-widget-minimap-viewport-zoom {
+    border-color: var(--w-primary-color);
+  }
+}
+.tool-node-tree-drawer {
+  .ant-drawer-header {
+    height: 45px;
+    padding: 12px 12px 0;
+  }
+  .ant-drawer-body {
+    padding: 0;
+    > div {
+      &:first-child {
+        padding: 0 12px 12px;
+        // margin-bottom: e('calc(-1 * var(--workflow-tool-bar-height))');
+      }
+    }
+  }
+}
+.tool-node-tree {
+  .ant-tree-switcher-icon {
+    color: var(--w-gray-color-9);
+  }
+
+  .ant-tree-icon__customize {
+    .icon-liucheng-huanjieshu-huanjie {
+      color: var(--w-primary-color-4);
+    }
+    .icon-liucheng-huanjieshu-panduan-01 {
+      color: var(--w-warning-color-4);
+    }
+    .icon-liucheng-huanjieshu-ziliucheng-01 {
+      color: var(--w-success-color-4);
+    }
+    .icon-ptkj-danxuan-weixuan {
+      color: var(--w-info-color-4);
+    }
+  }
+
+  .ant-tree-node-selected {
+    .ant-tree-icon__customize {
+      .icon-liucheng-huanjieshu-huanjie {
+        color: var(--w-primary-color);
+      }
+      .icon-liucheng-huanjieshu-panduan-01 {
+        color: var(--w-warning-color);
+      }
+      .icon-liucheng-huanjieshu-ziliucheng-01 {
+        color: var(--w-success-color);
+      }
+      .icon-ptkj-danxuan-weixuan {
+        color: var(--w-info-color);
+      }
+    }
+  }
+}
+
+.graph-full {
+  position: relative;
+  height: e('calc(100% - var(--workflow-tool-bar-height))');
+
+  .equal-flow-mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--w-color-white);
+    z-index: 3;
+  }
+
+  .flow-graph-empty {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .design-empty-img {
+    width: 460px;
+  }
+}
+
+.graph-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.node-task-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: var(--w-text-color-dark);
+  border: 1px solid var(--w-primary-color);
+  border-left-width: 8px;
+  border-radius: 4px;
+  background-color: var(--w-color-white);
+  overflow: hidden;
+
+  // &::before {
+  //   position: absolute;
+  //   content: '';
+  //   left: 0;
+  //   top: 0;
+  //   width: 8px;
+  //   height: 100%;
+  //   background-color: var(--w-primary-color);
+  // }
+}
+
+.node-circle-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 8px;
+  border: solid 2px var(--w-primary-color);
+  color: var(--w-text-color-dark);
+  background-color: var(--w-color-white);
+
+  .node-circle-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: solid 1px var(--w-primary-color-4);
+  }
+}
+
+.node-condition-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--w-text-color-dark);
+
+  .node-condition-svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    polygon {
+      stroke: var(--w-primary-color);
+    }
+
+    &.shadow {
+      z-index: 1;
+      opacity: 0.2;
+    }
+  }
+
+  .node-condition-name {
+    height: 20px;
+    padding: 0 28px;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .node-diamond-container {
+    position: absolute;
+    height: 84px;
+    width: 84px;
+    transform: rotateZ(45deg) skew(-28deg, -28deg);
+    background-color: var(--w-color-white);
+    border: 2px solid var(--w-primary-color);
+    border-radius: 1px 4px;
+  }
+}
+
+.node-subflow-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--w-primary-color);
+  border-radius: e('calc(var(--workflow-node-height)/2)');
+  background-color: var(--w-color-white);
+  overflow: hidden;
+
+  .node-subflow-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--workflow-node-subflow-circle-width);
+    height: 100%;
+    border: 1px solid var(--w-primary-color);
+    border-radius: 50%;
+    margin-left: -1px;
+
+    .icon-oa-banliguocheng {
+      font-size: 24px;
+      color: var(--w-primary-color);
+    }
+  }
+
+  .node-subflow-name {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--w-text-color-dark);
+  }
+}
+
+.node-robot-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--w-primary-color);
+  border-left-width: var(--workflow-node-left-width);
+  border-radius: 4px;
+  background-color: var(--w-color-white);
+  overflow: hidden;
+
+  .node-robot-left-rect {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--workflow-node-left-width);
+    height: 100%;
+    background-color: transparent;
+
+    .icon-jiqi-01 {
+      font-size: 20px;
+      color: var(--w-color-white);
+    }
+  }
+
+  .node-robot-name {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--w-text-color-dark);
+  }
+}
+
+.node-collab-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--w-primary-color);
+  border-left-width: var(--workflow-node-left-width);
+  border-radius: 4px;
+  background-color: var(--w-color-white);
+  overflow: hidden;
+
+  .node-collab-left-rect {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--workflow-node-left-width);
+    height: 100%;
+    background-color: transparent;
+
+    .icon-xiezuo-01 {
+      font-size: 20px;
+      color: var(--w-color-white);
+    }
+  }
+
+  .node-collab-name {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--w-text-color-dark);
+  }
+}
+
+.node-timer-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 0px 3px 0px 8px;
+  color: var(--w-color-white);
+  text-align: center;
+  line-height: 24px;
+  background-color: #74c042;
+}
+
+.node-guide-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 14px 17px;
+  // border: dashed 1px var(--workflow-edge-dash-stroke);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--w-color-white);
+  .node-guide-svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+  .node-condition-subflow {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .node-guide-close {
+    position: absolute;
+    right: 17px;
+    top: 17px;
+    font-size: 20px;
+  }
+  .node-task-container,
+  .node-condition-container,
+  .node-subflow-container,
+  .node-robot-container,
+  .node-collab-container,
+  .node-guide-close {
+    cursor: pointer;
+  }
+  .node-collab-left-rect {
+    left: 188px;
+  }
+}
+
+.x6-graph-svg {
+  .x6-node {
+    [magnet='true'] {
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  // 流向默认颜色
+  path.edge-direction {
+    stroke: var(--workflow-edge-stroke);
+  }
+  //  高亮选中流向
+  .x6-edge-selected {
+    path.edge-direction {
+      stroke-width: var(--workflow-edge-selected-width);
+      marker-end: url('#marker-v0-2470568975');
+    }
+    .x6-edge-labels {
+      .v-line {
+        fill: var(--workflow-edge-selected-stroke);
+      }
+    }
+  }
+
+  path.edge-direction-dash {
+    // stroke-dasharray: var(--workflow-edge-stroke-dash-array);
+  }
+  // 高亮选中节点
+  .x6-node-selected {
+    body {
+      > .node-task-container {
+        &:not([class$='-undo']) {
+          border-left-width: 1px;
+          color: var(--w-color-white);
+          padding-left: 7px;
+          background-color: var(--w-primary-color);
+          &::before {
+            content: '';
+            position: absolute;
+            left: 1px;
+            top: 1px;
+            width: 6px;
+            height: e('calc(100% - 2px)');
+            border-radius: 3px 0px 0px 3px;
+            background-color: var(--w-color-white);
+          }
+        }
+      }
+      > .node-subflow-container {
+        &:not([class$='-undo']) {
+          background-color: var(--w-primary-color);
+          .node-subflow-circle {
+            background-color: var(--w-color-white);
+          }
+          .node-subflow-name {
+            color: var(--w-color-white);
+          }
+        }
+      }
+      > .node-robot-container {
+        &:not([class$='-undo']) {
+          border-left-width: 2px;
+          padding-left: e('calc(var(--workflow-node-left-width) - 2px)');
+          background-color: var(--w-primary-color);
+          .node-robot-left-rect {
+            .icon-jiqi-01 {
+              color: var(--w-primary-color);
+            }
+          }
+          .node-robot-name {
+            color: var(--w-color-white);
+          }
+          &::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            width: e('calc(var(--workflow-node-left-width) - 2px)');
+            height: e('calc(100% - 4px)');
+            border-radius: 3px 0px 0px 3px;
+            background-color: var(--w-color-white);
+          }
+        }
+      }
+      > .node-collab-container {
+        &:not([class$='-undo']) {
+          border-left-width: 2px;
+          padding-left: e('calc(var(--workflow-node-left-width) - 2px)');
+          background-color: var(--w-primary-color);
+          .node-collab-left-rect {
+            .icon-xiezuo-01 {
+              color: var(--w-primary-color);
+            }
+          }
+          .node-collab-name {
+            color: var(--w-color-white);
+          }
+          &::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            width: e('calc(var(--workflow-node-left-width) - 2px)');
+            height: e('calc(100% - 4px)');
+            border-radius: 3px 0px 0px 3px;
+            background-color: var(--w-color-white);
+          }
+        }
+      }
+      > .node-task-container,
+      > .node-circle-container,
+      > .node-subflow-container,
+      > .node-robot-container,
+      > .node-collab-container {
+        &:not([class$='-undo']) {
+          box-shadow: 0 0 0 6px var(--w-primary-color-3);
+        }
+      }
+      > .node-condition-container {
+        &:not([class$='-undo']) {
+          .node-diamond-container {
+            background-color: var(--w-primary-color);
+          }
+          .node-condition-name {
+            color: var(--w-color-white);
+          }
+        }
+      }
+      > .node-condition-container {
+        &:not([class$='-undo']) {
+          .node-diamond-container {
+            box-shadow: 0 0 0 8px var(--w-primary-color-3);
+          }
+        }
+      }
+    }
+  }
+
+  g[data-shape='EdgeDirection'] {
+    &.x6-edge {
+      cursor: default;
+      .x6-edge-label {
+        cursor: default;
+      }
+      path.edge-direction-undo {
+        // 流向未办状态
+        stroke: var(--workflow-edge-undo-stroke);
+        stroke-width: var(--workflow-edge-undo-width);
+        + g {
+          text {
+            fill: var(--w-text-color-light);
+          }
+        }
+      }
+    }
+  }
+  // 环节状态
+  .node-task-container,
+  .node-collab-container,
+  .node-robot-container {
+    &.node-task-undo {
+      border-color: var(--w-gray-color-5);
+      color: var(--w-text-color-light);
+      &::before {
+        background-color: var(--w-gray-color-5);
+      }
+      .node-collab-name,
+      .node-robot-name {
+        color: var(--w-text-color-light);
+      }
+    }
+    &.node-task-todo {
+      border-style: dashed;
+      border-left-style: solid;
+    }
+  }
+
+  // 开始、结束状态
+  .node-circle-container {
+    &.node-circle-undo {
+      border-color: var(--w-gray-color-5);
+      .node-circle-content {
+        border-color: var(--w-gray-color-5);
+        color: var(--w-text-color-light);
+      }
+    }
+  }
+
+  // 子流程状态
+  .node-subflow-container {
+    &.node-subflow-undo {
+      border-color: var(--w-gray-color-5);
+      .node-subflow-circle {
+        border-color: var(--w-gray-color-5);
+        .icon-oa-banliguocheng {
+          color: var(--w-text-color-light);
+        }
+      }
+      .node-subflow-name {
+        color: var(--w-text-color-light);
+      }
+    }
+    &.node-subflow-todo {
+      border-style: dashed;
+    }
+  }
+
+  // 判断点状态
+  .node-condition-container {
+    &.node-condition-undo {
+      .node-diamond-container {
+        border-color: var(--w-gray-color-5);
+      }
+      .node-condition-name {
+        color: var(--w-text-color-light);
+      }
+    }
+  }
+
+  // 注释
+  .node-lable-container {
+    width: 100%;
+    height: 100%;
+    > div,
+    > textarea {
+      border: dashed 1px var(--w-gray-color-9);
+      border-radius: 4px;
+    }
+    > div {
+      height: 100%;
+    }
+    > textarea {
+      resize: none;
+      min-height: 100%;
+      box-shadow: none;
+    }
+    &.node-lable-has-label {
+      overflow: hidden;
+      > div {
+        border: none;
+      }
+    }
+  }
+  .x6-node-selected {
+    .node-lable-container {
+      > div,
+      > textarea {
+        border-color: var(--w-danger-color);
+      }
+    }
+  }
+
+  // 泳道高亮
+  .node-swimlane-highlight() {
+    .node-swimlane-icon {
+      border-color: var(--w-primary-color);
+    }
+    .icon-yongdao-01 {
+      color: var(--w-primary-color);
+    }
+    .node-swimlane-content {
+      border-color: var(--w-primary-color);
+    }
+  }
+  .node-swimlane-container {
+    .node-swimlane-icon {
+      width: 32px;
+      height: 32px;
+      border: solid var(--workflow-swimlane-border-width) var(--workflow-swimlane-border-color);
+      border-radius: 4px;
+      text-align: center;
+      line-height: 30px;
+    }
+    .icon-yongdao-01 {
+      font-size: 17px;
+      color: var(--w-gray-color-13);
+    }
+    .node-swimlane-content {
+      position: absolute;
+      top: 42px;
+      // width: 224px;
+      // height: 392px;
+      pointer-events: none;
+      border: solid var(--workflow-swimlane-border-width) var(--workflow-swimlane-border-color);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .node-swimlane-table {
+      table-layout: fixed;
+      width: 100%;
+    }
+    tr {
+      &:last-child {
+        td {
+          border-bottom: none;
+        }
+      }
+      &.layout-columns-thead {
+        .selection {
+          display: none;
+        }
+      }
+    }
+    th,
+    td {
+      border-right: solid var(--workflow-swimlane-border-width) var(--workflow-swimlane-border-color);
+      border-bottom: solid var(--workflow-swimlane-border-width) var(--workflow-swimlane-border-color);
+      &:last-child {
+        border-right: none;
+      }
+    }
+    th {
+      height: var(--workflow-swimlane-td-height);
+      padding: var(--workflow-swimlane-td-padding);
+      text-align: center;
+      font-weight: normal;
+      color: var(--w-gray-color-13);
+      background-color: var(--w-gray-color-3);
+    }
+    td {
+      padding: var(--workflow-swimlane-td-padding);
+    }
+    &:hover {
+      .node-swimlane-highlight();
+    }
+  }
+  .x6-node-selected {
+    .node-swimlane-highlight();
+    .node-swimlane-content {
+      box-shadow: 0 0 0 6px var(--w-primary-color-3);
+    }
+  }
+}

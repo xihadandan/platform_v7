@@ -1,0 +1,9 @@
+.content-icon(@icon) when (length(@icon) = 1) {
+  font-family: 'iconfont';
+  content: extract(@icon, 1);
+}
+
+.content-icon(@icon) when (length(@icon) = 2) {
+  font-family: extract(@icon, 1);
+  content: extract(@icon, 2);
+}

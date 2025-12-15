@@ -1,0 +1,71 @@
+{
+  "WidgetTable": {
+    "selectAll": "Select All",
+    "noData": "No Data Available",
+    "notFoundData": "No Data Found",
+    "column": {
+      "serialNumber": "Serial Number",
+      "operation": "Operation"
+    },
+    "switchToCardView": "Switch to Card View",
+    "switchToTableView": "Switch to Table View",
+    "loadMore": "Load More",
+    "selectExportColumn": "Select Export Columns",
+    "clickOrDragToUpload": "Click or Drag Files Here to Upload",
+    "importModal": {
+      "downloadImportTemplate": "Download Template",
+      "uploadFinished": "Uploaded",
+      "importResultText": "Import Result",
+      "importSuccessText": "Success",
+      "importFailText": "Failure",
+      "importModalTitle": "Data Import",
+      "importModalOkText": "Import",
+      "importErrorTitle": "Import Error",
+      "importErrorContent": "The imported file is encrypted or the format is incorrect. Please check and import again."
+    },
+    "exportModal": {
+      "pleaseSelectExportRow": "Please Select Rows to Export",
+      "exportingTip": "Data is being exported",
+      "exportFileTitleHead": "Export Data"
+    },
+    "message": {
+      "totalPageContent": "Total {totalPages} pages / {total} records",
+      "totalCountContent": "Total {total} records",
+      "uploadFileFormatError": "Only xls or xlsx file formats are allowed",
+      "errorWorkflowIdExplain": "Process analysis error, please confirm the correctness of the data process configuration"
+    },
+    "search": {
+      "keywordPlaceholder": "Keyword",
+      "searchAllOption": "All",
+      "searchButtonText": "Search",
+      "more": "More",
+      "resetButtonText": "Reset",
+      "collapse": "Collapse"
+    },
+    "customTable": {
+      "sort": "Drag to sort",
+      "title": "Customize Table",
+      "freezeTableLabel": "Freeze Table",
+      "freezeBeforeLabel": "Before",
+      "freezeAfterLabel": "After",
+      "columnLabel": "Columns",
+      "tip1": "Set frozen columns, which will not be affected by horizontal scrolling",
+      "tip2": "Setting frozen columns to 0 means no columns are frozen",
+      "tip3": "Enable frozen columns, default freeze operation column",
+      "tip4": "When freezing n columns after, n does not include the operation column",
+      "tip5": "When freezing n columns before, n does not include the serial number column",
+      "tip6": "Columns within the header group are arranged in the order of the header group configuration",
+      "tip7": "In grouped display columns, the foremost column position is the group insertion position",
+      "fixedColumnLabel": "Fixed Columns",
+      "cancelButtonText": "Cancel",
+      "resetButtonText": "Reset to Default",
+      "okButtonText": "OK",
+      "nameColumn": "Name",
+      "savingTip": "Saving...",
+      "saveServerError": "Custom table data service error"
+    },
+    "pleaseSelectRecord": "Please select a record!",
+    "time": "Time",
+    "size": "Size"
+  }
+}

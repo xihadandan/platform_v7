@@ -1,0 +1,504 @@
+<div id="propertiesDialog" title="字段属性列表窗口">
+  <div style="max-height: 80vh">
+    <!-- <div class="dyform">  -->
+    <div>
+      <div class="post-sign">
+        <div class="post-detail" id="cpropertiesDialog">
+          <div class="panel">
+            <h3 class="panel-title">
+              <i class="iconfont toggle-switcher icon-ptkj-shixinjiantou-xia"></i>
+              <span class="panel-title-text">主表字段信息</span>
+            </h3>
+            <table id="columnstbl" style="margin: 0px"></table>
+          </div>
+
+          <div class="panel">
+            <h3 class="panel-title">
+              <i class="iconfont toggle-switcher icon-ptkj-shixinjiantou-xia"></i>
+              <span class="panel-title-text">从表信息</span>
+            </h3>
+            <table id="subformtbl"></table>
+          </div>
+
+          <div id="templatesArea"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var propertiesDialog = {};
+  propertiesDialog.deletedField = [];
+  propertiesDialog.deletedSubform = [];
+  propertiesDialog.deletedTemplates = [];
+
+  propertiesDialog.groupFields = function (fields) {
+    var $cloneForm = $(formDefinition.html);
+    var forms = { main: {} };
+
+    for (var field in fields) {
+      var $field = $cloneForm.find('.field .value[name=' + field + ']');
+      if (!$field.length) {
+        continue;
+      }
+
+      var $template = $field.closest('.template-wrapper');
+      if ($template.length) {
+        var templateUuid = $template.attr('templateuuid');
+        if (!forms[templateUuid]) {
+          forms[templateUuid] = {};
+        }
+        forms[templateUuid][field] = fields[field];
+      } else {
+        forms.main[field] = fields[field];
+      }
+    }
+    return forms;
+  };
+
+  propertiesDialog.init = function (editor) {
+    cleanUselessDefinition(editor.getData()); //删除无效的定义
+    propertiesDialog.editor = editor;
+    // $(".cke_reset_all").removeClass("cke_reset_all");//删除ckeditor内部的局css
+
+    //初始化窗口布局
+    // this.layout();
+
+    var _this = this;
+
+    window.setTimeout(function () {
+      var fields = formDefinition.fields;
+      var groupFields = _this.groupFields(fields);
+      var mainFormFields = groupFields.main;
+      _this.fillMainFormDefinition(mainFormFields);
+
+      var subforms = formDefinition.subforms;
+      _this.fillSubformDefinition(subforms);
+
+      _this.fillTemplatesDefinition(groupFields);
+
+      _this.setEvents();
+    }, 100);
+  };
+
+  propertiesDialog.layout = function () {
+    var widthHeight = getWidthAndHeight();
+    $('#cpropertiesDialog').css('width', widthHeight.width - 250);
+    $('#cpropertiesDialog').css('height', widthHeight.height - 250);
+    //$("#cpropertiesDialog").css("padding", 80);
+    $('#cpropertiesDialog').layout({
+      north: { size: 100, spacing_open: 15 },
+      north: { size: 300, spacing_open: 15 }
+    });
+    $('.panel ui-layout-center').css('width', '');
+    window.setTimeout(function () {
+      $('.ui-layout-toggler-south-open').trigger('click');
+    }, 100);
+  };
+
+  propertiesDialog.fillSubformDefinition = function (subforms) {
+    var subformtbl = $('#subformtbl');
+    var newSubforms = [];
+    for (var i in subforms) {
+      newSubforms.push(subforms[i]);
+    }
+    subformtbl.bootstrapTable('destroy').bootstrapTable({
+      data: newSubforms,
+      idField: 'uuid',
+      striped: true,
+      width: 500,
+      onEditableHidden: function (field, row, $el, reason) {
+        $el.closest('table').bootstrapTable('resetView');
+      },
+      onClickRow: function (row, $element) {
+        if ($(window.event.target).is('.table-handle .well-btn')) {
+          appModal.confirm({
+            message: '确定要删除吗？',
+            callback: function (result) {
+              if (!result) {
+                return;
+              }
+
+              $element.remove();
+              var isExistPlaceHolder = isPlaceholder(row.formUuid, 'subform');
+              deleteSubform(row.formUuid, $element, isExistPlaceHolder);
+            }
+          });
+        }
+      },
+      columns: [
+        {
+          field: 'uuid',
+          title: 'UUID',
+          visible: false
+        },
+        {
+          field: 'name',
+          title: '表名'
+        },
+        {
+          field: 'displayName',
+          title: '显示名称'
+        },
+        {
+          field: 'tableOpen',
+          title: '展示/折叠',
+          formatter: function (value) {
+            return value == dySubFormTableOpen.open ? '展开' : '折叠';
+          }
+        },
+        {
+          field: 'editMode',
+          title: '编辑模式',
+          formatter: function (value) {
+            return (value = dySubFormEdittype.rowEdit ? '行内编辑' : '新窗口');
+          }
+        },
+        {
+          field: 'hideButtons',
+          title: '展示操作按钮',
+          formatter: function (value) {
+            return value == dySubFormHideButtons.show ? '展示' : '隐藏';
+          }
+        },
+        {
+          field: 'groupShowTitle',
+          title: '分组字段'
+        },
+        {
+          field: 'fields',
+          title: '字段信息',
+          formatter: function (value) {
+            console.log(value);
+            var res = '';
+            for (var j in value) {
+              res += j + ';';
+            }
+            return res;
+          }
+        },
+        // {
+        //   field: 'necessary',
+        //   title: '必要字段',
+        //   class: Browser.getQueryString('cFormUuid') ? 'necessary-field' : '',
+        //   editable: {
+        //     type: 'select',
+        //     mode: 'inline',
+        //     showbuttons: false,
+        //     source: [
+        //       { value: '1', text: '是' },
+        //       { value: '0', text: '否' }
+        //     ]
+        //   }
+        // },
+        {
+          field: 'applyTo',
+          title: '操作',
+          class: 'table-handle',
+          formatter: function (value) {
+            return '<div class="well-btn w-btn-primary w-line-btn">删除</div>';
+          }
+        }
+      ]
+    });
+  };
+
+  propertiesDialog.setEvents = function () {
+    $('#cpropertiesDialog .panel-title .toggle-switcher.iconfont')
+      .off('click')
+      .on('click', function () {
+        var $this = $(this);
+        var isOpen = $this.hasClass('icon-ptkj-shixinjiantou-xia');
+        if (isOpen) {
+          $this.closest('.panel-title').next('.bootstrap-table').slideUp();
+          $this.removeClass('icon-ptkj-shixinjiantou-xia').addClass('icon-ptkj-shixinjiantou-you');
+        } else {
+          $this.closest('.panel-title').next('.bootstrap-table').slideDown();
+          $this.removeClass('icon-ptkj-shixinjiantou-you').addClass('icon-ptkj-shixinjiantou-xia');
+        }
+      });
+
+    $('#cpropertiesDialog #templatesArea .panel .del-template-btn')
+      .off('click')
+      .on('click', function (e) {
+        e.stopPropagation();
+
+        var $this = $(this);
+        var $panel = $this.closest('.panel');
+
+        appModal.confirm({
+          message: '确定要删除子表单吗？',
+          callback: function (result) {
+            if (!result) {
+              return;
+            }
+
+            var templateUuid = $panel.attr('templateUuid');
+            deleteTemplate(templateUuid, $panel);
+          }
+        });
+      });
+  };
+
+  propertiesDialog.fillTemplatesDefinition = function (groupFields) {
+    var $templatesArea = $('#templatesArea');
+    for (var templateUuid in groupFields) {
+      if (templateUuid === 'main') {
+        continue;
+      }
+      var template = formDefinition.templates[templateUuid];
+      var templateName = '子表单字段信息 - ' + template.templateName;
+
+      var templateFields = [];
+      for (var field in groupFields[templateUuid]) {
+        templateFields.push(groupFields[templateUuid][field]);
+      }
+
+      var $panel = $('<div class="panel"></div>').attr('templateUuid', templateUuid);
+      var $panelTitle = $('<h3 class="panel-title"></h3>')
+        .append('<i class="iconfont toggle-switcher icon-ptkj-shixinjiantou-xia"></i>')
+        .append('<span class="panel-title-text">' + templateName + '</span>')
+        .append('<button class="well-btn w-btn-primary w-line-btn del-template-btn">删除</button>');
+
+      var $panelTable = $('<table style="margin: 0px"></table>');
+      $panel.append($panelTitle).append($panelTable);
+      $templatesArea.append($panel);
+
+      $panelTable.bootstrapTable('destroy').bootstrapTable({
+        data: templateFields,
+        idField: 'uuid',
+        striped: true,
+        width: 500,
+        onEditableHidden: function (field, row, $el, reason) {
+          $el.closest('table').bootstrapTable('resetView');
+        },
+        columns: [
+          { field: 'uuid', title: 'UUID', visible: false },
+          { field: 'name', title: '字段名' },
+          { field: 'displayName', title: '显示名称' },
+          {
+            field: 'applyTo',
+            title: '应用于',
+            formatter: function (value) {
+              return getApplyToName(value);
+            }
+          },
+          {
+            field: 'dbDataType',
+            title: '数据库类型',
+            formatter: function (value) {
+              return getDbDataTypeName(value || '');
+            }
+          },
+          { field: 'length', title: '长度' },
+          { field: 'defaultValue', title: '默认值' },
+          {
+            field: 'inputMode',
+            title: '控件类型',
+            formatter: function (value) {
+              return getControlName(value);
+            }
+          },
+          {
+            field: 'valueCreateMethod',
+            title: '值计算方式',
+            formatter: function (value) {
+              return getValueCreateMethod(value);
+            }
+          },
+          {
+            field: 'showType',
+            title: '编辑模式',
+            formatter: function (value) {
+              return getShowType(value);
+            }
+          }
+        ]
+      });
+    }
+  };
+
+  propertiesDialog.fillMainFormDefinition = function (fields) {
+    var columnstbl = $('#columnstbl');
+    var newFields = [];
+    for (var i in fields) {
+      newFields.push(fields[i]);
+    }
+    columnstbl.bootstrapTable('destroy').bootstrapTable({
+      data: newFields,
+      idField: 'uuid',
+      striped: true,
+      width: 500,
+      onEditableHidden: function (field, row, $el, reason) {
+        $el.closest('table').bootstrapTable('resetView');
+      },
+      onClickRow: function (row, $element, field) {
+        if ($(window.event.target).is('.table-handle .well-btn')) {
+          //操作栏按钮阻止冒泡
+
+          appModal.confirm({
+            message: '确定要删除吗？',
+            callback: function (result) {
+              if (!result) {
+                return;
+              }
+
+              $element.remove();
+              deleteField(row.name);
+            }
+          });
+        }
+      },
+      columns: [
+        { field: 'uuid', title: 'UUID', visible: false },
+        { field: 'name', title: '字段名' },
+        { field: 'displayName', title: '显示名称' },
+        {
+          field: 'applyTo',
+          title: '应用于',
+          formatter: function (value) {
+            return getApplyToName(value);
+          }
+        },
+        {
+          field: 'dbDataType',
+          title: '数据库类型',
+          formatter: function (value) {
+            return getDbDataTypeName(value || '');
+          }
+        },
+        { field: 'length', title: '长度' },
+        { field: 'defaultValue', title: '默认值' },
+        {
+          field: 'inputMode',
+          title: '控件类型',
+          formatter: function (value) {
+            return getControlName(value);
+          }
+        },
+        {
+          field: 'valueCreateMethod',
+          title: '值计算方式',
+          formatter: function (value) {
+            return getValueCreateMethod(value);
+          }
+        },
+        {
+          field: 'showType',
+          title: '编辑模式',
+          formatter: function (value) {
+            return getShowType(value);
+          }
+        },
+        // {
+        //   field: 'necessary',
+        //   title: '必要字段',
+        //   class: Browser.getQueryString('cFormUuid') ? 'necessary-field' : '',
+        //   editable: {
+        //     type: 'select',
+        //     mode: 'inline',
+        //     showbuttons: false,
+        //     source: [
+        //       { value: '1', text: '是' },
+        //       { value: '0', text: '否' }
+        //     ]
+        //   }
+        // },
+        {
+          field: 'applyTo',
+          title: '操作',
+          class: 'table-handle',
+          formatter: function (value) {
+            return '<div class="well-btn w-btn-primary w-line-btn">删除</div>';
+          }
+        }
+      ]
+    });
+  };
+
+  function deleteTemplate(templateUuid, $panel) {
+    $panel.remove();
+    propertiesDialog.deletedTemplates.push(templateUuid);
+  }
+
+  function deleteField(fieldName, tag, isPlaceHolder) {
+    $(tag).parent().parent().remove(); //删除字段属性行
+    propertiesDialog.deletedField.push(fieldName);
+  }
+
+  function deleteSubform(formUuid, tag) {
+    $(tag).parent().parent().remove(); //删除从表属性行
+    propertiesDialog.deletedSubform.push(formUuid);
+  }
+
+  function getPlaceHolder(fieldName, type) {
+    if (type === 'subform') {
+      return propertiesDialog.editor.document.find("table[formUuid='" + fieldName + "']");
+    } else if (type === 'template') {
+      return propertiesDialog.editor.document.find(".template-wrapper[templateUuid='" + fieldName + "']");
+    } else {
+      return propertiesDialog.editor.document.find("img[name='" + fieldName + "'][class='value']");
+    }
+  }
+
+  function isPlaceholder(fieldName, type) {
+    // alert(propertiesDialog.editor.document.find);
+    var elems = getPlaceHolder(fieldName, type);
+    if (elems.count() > 0) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * 收集数据
+   */
+  propertiesDialog.collectData = function () {
+    //删除字段
+    for (var i = 0; i < propertiesDialog.deletedField.length; i++) {
+      var fieldName = propertiesDialog.deletedField[i];
+
+      var isExistPlaceHolder = isPlaceholder(fieldName); //是否有占位符
+
+      var fields = formDefinition.fields;
+      var field = fields[fieldName];
+
+      if (isExistPlaceHolder) {
+        //删除占位符
+        var elems = getPlaceHolder(fieldName);
+        var elem = elems.getItem(0);
+        elem.remove();
+      }
+      formDefinition.deleteField(fieldName);
+    }
+
+    //删除从表
+    for (var i = 0; i < propertiesDialog.deletedSubform.length; i++) {
+      var formUuid = propertiesDialog.deletedSubform[i];
+      var isExistPlaceHolder = isPlaceholder(formUuid, 'subform'); //是否有占位符
+      if (isExistPlaceHolder) {
+        //删除占位符
+        var subforms = getPlaceHolder(formUuid, 'subform');
+        var subform = subforms.getItem(0);
+        subform.remove();
+      }
+
+      formDefinition.deleteSubform(formUuid);
+    }
+
+    // 删除子表单
+    for (var i = 0; i < propertiesDialog.deletedTemplates.length; i++) {
+      var templateUuid = propertiesDialog.deletedTemplates[i];
+
+      var isExistPlaceHolder = isPlaceholder(templateUuid, 'template'); //是否有占位符
+
+      if (isExistPlaceHolder) {
+        //删除占位符
+        var elems = getPlaceHolder(templateUuid, 'template');
+        var elem = elems.getItem(0);
+        elem.remove();
+      }
+      formDefinition.deleteTemplate(templateUuid);
+    }
+  };
+</script>

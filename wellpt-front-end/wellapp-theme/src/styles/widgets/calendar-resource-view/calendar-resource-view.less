@@ -1,0 +1,609 @@
+/** 日历资源视图 (新版+旧版) */
+
+.resource-view {
+  position: absolute;
+  top: 80px;
+  left: 0px;
+}
+
+.resource-view .toolbar {
+  text-align: center;
+  padding: 10px;
+}
+
+.resource-view .toolbar .left-tools,
+.resource-view .toolbar .center-tools,
+.resource-view .toolbar .right-tools {
+  text-align: center;
+  display: inline-block;
+}
+
+.resource-view .toolbar .left-tools h2,
+.resource-view .toolbar .center-tools h2,
+.resource-view .toolbar .right-tools h2 {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.resource-view .table-wrapper {
+  overflow-x: auto;
+  position: relative;
+  padding-bottom: 10px;
+
+  .current-line {
+    position: absolute;
+    height: calc(100% - 8px);
+    width: 10px;
+    top: 0;
+    border-top: @border-default-primary;
+    border-bottom: @border-default-primary;
+    z-index: 5;
+
+    &::after {
+      content: " ";
+      left: 4px;
+      height: 100%;
+      position: absolute;
+      width: 1px;
+      background: @primary-color;
+    }
+  }
+}
+
+.resource-view .table-wrapper .prevMonthWeek,
+.resource-view .table-wrapper .nextMonthWeek {
+  background: #efefef;
+}
+
+.resource-view .table-wrapper .today {
+  background: @background-primary-lighter;
+}
+
+.resource-view .table-wrapper .table thead tr td .resourse-type {
+  width: 100px;
+}
+
+.resource-view .table-wrapper .table {
+  border-collapse: collapse;
+  margin-bottom: 0;
+}
+
+.resource-view .table-wrapper .table thead tr td .month-date-num {
+  width: 55px;
+}
+
+.resource-view .table-wrapper .table thead tr td .day-date-num {
+  padding: 8px;
+  min-width: 80px;
+}
+
+.resource-view .table-wrapper .table thead tr:first-child>td {
+  border-bottom: 0;
+}
+
+.resource-view .table-wrapper .table thead tr td.day {
+  padding: 0;
+  border: 0;
+  border-right: @border-default;
+}
+
+.resource-view .table-wrapper .table tbody tr td {
+  padding: 0;
+  cursor: pointer;
+}
+
+.resource-view .table-wrapper .table tbody tr td .resource-name,
+.resource-view .table-wrapper .table tbody tr td .day-count,
+.resource-view .table-wrapper .table tbody tr td .month-count,
+.resource-view .table-wrapper .table tbody tr td .week-count {
+  padding: 15px 5px;
+  color: @text-color;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.resource-view .table-wrapper .table tbody tr td .resource-name {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100px;
+  overflow: hidden;
+}
+
+.resource-view .table-wrapper .table tbody tr td .month-count,
+.resource-view .table-wrapper .table tbody tr td .week-count {
+  color: @text-color;
+}
+
+.resource-view .table-wrapper .table tbody tr td.day,
+.resource-view .table-wrapper .table tbody tr td.week,
+.resource-view .table-wrapper .table tbody tr td.month {
+  position: relative;
+}
+
+.resource-view .table-wrapper .table tbody tr td.day::before,
+.resource-view .table-wrapper .table tbody tr td.week::before,
+.resource-view .table-wrapper .table tbody tr td.month::before {
+  background: #ffffff;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 3px;
+  opacity: 0.8;
+  mix-blend-mode: screen;
+  box-shadow: -1px 0px 6px 0px rgba(0, 0, 0, 0.15);
+}
+
+.resource-view .table-wrapper .table tbody tr td.day:hover::before,
+.resource-view .table-wrapper .table tbody tr td.week:hover::before,
+.resource-view .table-wrapper .table tbody tr td.month:hover::before {
+  background: #ffffff;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 3px;
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}
+
+.resource-view .table-wrapper .event-box {
+  position: absolute;
+  top: 38px;
+  right: 0;
+  width: 100%;
+  padding-left: 120px;
+}
+
+.resource-view .table-wrapper .event-box .type-event {
+  position: relative;
+  height: 51px;
+}
+
+.resource-view .table-wrapper .event-box .type-event:after {
+  content: '';
+  display: table;
+  visibility: hidden;
+  height: 0;
+  clear: both;
+}
+
+.resource-view .table-wrapper .event-box .day-event {
+  position: absolute;
+  top: 0;
+  height: 50px;
+  margin-bottom: 1px;
+  background: @background-primary;
+  color: @text-color-inverse;
+  float: left;
+}
+
+.resource-view .table-wrapper .event-box .across-day-event {
+  position: absolute;
+  top: 0;
+  height: 50px;
+  margin-bottom: 1px;
+  background: @background-primary;
+  color: @text-color-inverse;
+  float: left;
+  font-size: 10px;
+}
+
+.resource-view .table-wrapper .event-box .allday-event {
+  width: 100%;
+}
+
+/* 资源日历组件用到的css*/
+.ui-wFullCalendar .calendar-panel {
+  position: relative;
+}
+
+.fc-time-grid-event.fc-short .fc-time:before {
+  content: attr(data-full);
+}
+
+.fc-agendaWeek-view {
+  .fc-time-grid-event {
+    &:hover {
+      z-index: 100 !important;
+      right: 0 !important;
+      left: 0 !important;
+      transition: all 0.5s cubic-bezier(.645, .045, .355, 1);
+    }
+  }
+}
+
+
+.ui-wFullCalendar .fc-event {
+  border-left: 2px @border-color-primary solid;
+}
+
+.tab-max-height-500 .tab-content {
+  max-height: 500px;
+  overflow: auto;
+}
+
+#div_event_list {
+  max-height: 360px;
+  overflow: auto;
+}
+
+.fc-view .fc-header.panel-heading {
+  line-height: 39px;
+  height: 39px;
+  background: linear-gradient(0deg, #FAFAFA 0%, #FFFFFF 100%);
+  box-shadow: 0px 1px 0px 0px #F1F2F3;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.fc-time-grid-event .fc-time {
+  font-size: 0.85em;
+  // white-space: normal !important;
+}
+
+td.fc-sat,
+td.fc-sun {
+  background: @background-lighter;
+}
+
+#div_calendar_item_form,
+#div_calendar_view_form {
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#div_calendar_item_form .form-group,
+#div_calendar_view_form .form-group {
+  margin: 0px;
+}
+
+#div_calendar_item_form .form-group .controls,
+#div_calendar_view_form .form-group .controls {
+  margin: 0px;
+  padding: 10px !important;
+  // border-top: 1px #ccc solid;
+  // border-right: 1px #ccc solid;
+  height: 56px;
+}
+
+#div_calendar_item_form .label-filed,
+#div_calendar_view_form .control-label {
+  width: 10%;
+  min-width: 120px;
+  padding: 15px 15px;
+  // background: @background-lighter;
+  text-align: right;
+  margin: 0px;
+  height: 56px;
+  // border-left: 1px #ccc solid;
+  // border-top: 1px #ccc solid;
+  // border-right: 1px #ccc solid;
+}
+
+// #div_calendar_item_form .row:last-child .label-filed,
+// #div_calendar_item_form .row:last-child .controls {
+//   border-bottom: 1px #ccc solid;
+// }
+
+// #div_calendar_view_form .row:last-child .control-label,
+// #div_calendar_view_form .row:last-child .controls {
+//   border-bottom: 1px #ccc solid;
+// }
+
+#div_calendar_view_form .form-group .controls span:first-child {
+  display: inline-block;
+  // padding-top: 5px;
+}
+
+#div_calendar_item_form .form-group,
+#div_calendar_view_form .form-group {
+  padding-left: 140px;
+}
+
+#div_calendar_item_form .form-group .control-label,
+#div_calendar_view_form .form-group .control-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 140px !important;
+  height: auto;
+}
+
+#div_calendar_item_form .form-group .control-label .label-span,
+#div_calendar_view_form .form-group .control-label .label-span {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  height: 20px;
+  margin-top: -10px;
+  line-height: 20px;
+  text-align: right;
+}
+
+#div_calendar_item_form .form-group .controls,
+#div_calendar_view_form .form-group .controls {
+  width: 100% !important;
+  height: auto;
+}
+
+.fc-event-container .fc-event {
+  padding-left: 8px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 14px;
+  min-height: 15px;
+  box-shadow: -1px 0px 6px 0px rgba(0, 0, 0, 15%);
+}
+
+.fc-event-container .fc-event::before {
+  background: @white;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 3px;
+  opacity: 0.8;
+  mix-blend-mode: screen;
+}
+
+.fc-event-container .fc-event:hover::before {
+  background: @white;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 3px;
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}
+
+.fc-day-grid-event {
+  margin-bottom: 10px;
+}
+
+.fc-day-grid-event .fc-time {
+  font-weight: 400;
+}
+
+.fc-day-grid-event .fc-title {
+  color: @text-color-dark;
+}
+
+.fc-event {
+  box-shadow: none;
+}
+
+.fc-day-number {
+  color: @text-color;
+}
+
+.fc-other-month .fc-day-number {
+  color: #ccc;
+}
+
+.fc-day-header.fc-sat,
+.fc-day-header.fc-sun {
+  background-color: @background-lighter;
+}
+
+.fc-content-skeleton .fc-more {
+  float: right;
+  margin: 8px 8px 3px;
+  border: @border-default-primary-light;
+  border-radius: 18px;
+  padding: 0px 8px;
+  line-height: 22px;
+}
+
+.fc-agendaDay-view .fc-head {
+  display: none;
+}
+
+#div_event_list .event-box {
+  border-top: @border-default;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+#div_event_list .event-box:first-child {
+  margin-top: 0;
+  border-top: none;
+}
+
+#div_event_list .event-box table {
+  margin-bottom: 2px;
+}
+
+#div_event_list .event-box .table>tbody>tr>td {
+  border-color: transparent;
+}
+
+.ui-dialog .resource-view .view-table .day-count,
+.ui-dialog .resource-view .view-table .week-count,
+.ui-dialog .resource-view .view-table .month-count {
+  display: none;
+}
+
+.ui-wMyCalendar .resource-view .available::before,
+.ui-wMyCalendar .resource-view .outdate::before {
+  left: 0 !important;
+}
+
+.ui-dialog .ui-wMyCalendar .resource-view .selected {
+  background-color: @danger-color;
+  opacity: 0.15;
+}
+
+.ui-dialog .ui-wMyCalendar .resource-view .selected::before {
+  content: unset !important;
+}
+
+.ui-dialog .ui-wMyCalendar .resource-view .occupied {
+  border-left-color: #ffb3bc;
+  border-right-color: #ffb3bc;
+}
+
+.ui-dialog .ui-wMyCalendar .resource-view .occupied+ :not(.occupied) {
+  border-left-color: #e8e8e8;
+  border-right-color: #e8e8e8;
+}
+
+.ui-dialog .ui-wMyCalendar .resource-view .occupied+.occupied::before {
+  left: 0px;
+}
+
+.ui-dialog .resource-view {
+  top: 52px !important;
+}
+
+.ui-dialog .resource-view .view-table thead {
+  background: @background-light;
+}
+
+.ui-dialog .resource-view .view-table thead td {
+  border-bottom: 0;
+  border-right: @border-default  !important;
+  text-align: center;
+}
+
+.ui-dialog .ui-wMyCalendar {
+  padding: 0;
+}
+
+.ui-dialog .resource-view .resource-events .resource-event .occupied {
+  z-index: 2;
+  background-color: @danger-color;
+  color: transparent;
+}
+
+.ui-dialog .resource-view .resource-events .resource-event .occupied::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 3px;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-wMyCalendar .calendar-panel {
+
+  .no-records-found {
+    position: absolute;
+    top: 50px;
+    margin: 50px auto;
+    width: 100%;
+
+    .well-table-no-data-text {
+      text-align: center;
+      padding-top: 20px;
+    }
+  }
+
+  // 面板 - 标题行 - 右侧操作区域 - 搜索框
+  .search-wrapper {
+    @panel-header-search-wrapper-height: 34px;
+    .size(@panel-header-title-search-box-width, @panel-header-search-wrapper-height);
+
+    position: relative;
+    line-height: @panel-header-search-wrapper-height;
+    overflow: hidden;
+
+    // 面板 - 标题行 - 右侧操作区域 - 搜索框(展开)
+    .panel-heading-query {
+      .size(@panel-header-title-search-box-width, @panel-header-search-wrapper-height);
+
+      display: none;
+      position: relative;
+      padding-right: 60px;
+      border: @border-default-dark;
+      border-radius: @border-radius-base;
+      width: @panel-header-title-search-box-width;
+
+      // 面板 - 标题行 - 右侧操作区域 - 搜索框(展开) - 输入框
+      .form-control {
+        @panel-header-search-input-box-height: @panel-header-search-wrapper-height - @border-width-base * 2;
+        .size(100%, @panel-header-search-input-box-height);
+
+        line-height: @panel-header-search-input-box-height;
+        border: none;
+        outline: none;
+        background: transparent;
+        transition: all @animation-duration-base;
+        display: block;
+
+        &:hover {
+          box-shadow: none !important;
+        }
+      }
+
+      // 面板 - 标题行 - 右侧操作区域 - 搜索框(展开) - 清除按钮
+      .search-clear-icon {
+        @panel-header-clear-icon-height: 18px;
+
+        .square(@panel-header-clear-icon-height);
+        .absolute(@padding-3xs 35px false false);
+
+        display: none;
+        line-height: @panel-header-clear-icon-height;
+        background: @panel-header-title-view-more-icon-background;
+        color: @panel-header-title-view-more-icon-color;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 50%;
+
+        i {
+          font-size: @panel-header-title-clear-icon-size;
+          line-height: @panel-header-clear-icon-height;
+        }
+
+        &:hover {
+          color: @panel-header-title-view-more-icon-hover-color;
+          background-color: @panel-header-title-view-more-icon-hover-background;
+        }
+      }
+    }
+
+    // 面板 - 标题行 - 右侧操作区域 - 搜索框(搜索图标)
+    .panel-search-icon {
+      .absolute(0 0 false false);
+      .square(32px);
+
+      text-align: center;
+      cursor: pointer;
+
+      i {
+        font-size: 18px;
+        line-height: 32px;
+        color: @panel-header-title-search-icon-color;
+      }
+    }
+
+    // 面板 - 标题行 - 右侧操作区域  - 搜索框 **焦点状态**
+    &.search-wrap-focus {
+      border-radius: @border-radius-base;
+      border: @border-default-primary;
+      box-shadow: @shadow-active-default;
+
+      .panel-heading-query .input-group {
+        box-shadow: none;
+        border: none;
+      }
+
+      .panel-search-icon {
+        top: -1px;
+        right: -1px;
+      }
+    }
+  }
+}

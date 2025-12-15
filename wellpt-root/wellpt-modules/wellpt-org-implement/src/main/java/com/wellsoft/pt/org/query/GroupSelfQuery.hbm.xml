@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="groupSelfQuery">
+        <![CDATA[
+		from Group g where  g.itype='1'
+		<if isNotBlank(code) ||isNotBlank(name) || isNotBlank(remark)|| isNotBlank(category) || isNotBlank(userName)  >
+			and (1 = 2
+				<if isNotBlank(code)>
+					or lower(g.code) like '%${code?lower_case}%'
+				</if>
+				<if isNotBlank(name)>
+					or lower(g.name) like '%${name?lower_case}%'
+				</if>
+				<if isNotBlank(remark)>
+					or lower(g.remark) like '%${remark?lower_case}%'
+				</if>
+				<if isNotBlank(category)>
+					or lower(g.category) like '%${category?lower_case}%'
+				</if>
+
+			<if isNotBlank(userName)>
+			or g.uuid in (
+				select group.uuid from User user ,Group group
+				where group.itype='1' and group in elements(user.groups) and user.userName like  '%${userName?lower_case}%'
+			)
+			</if>
+			<if isNotBlank(name)>
+			or g.uuid in (
+				select group.uuid from Department dept ,Group group
+				where  group.itype='1' and group in elements(dept.groups) and dept.name like  '%${name?lower_case}%'
+			)
+			</if>
+			<if isNotBlank(name)>
+			or g.uuid in (
+				select group.uuid from Job job ,Group group
+				where group.itype='1' and group in elements(job.groups) and job.name like  '%${name?lower_case}%'
+			)
+			</if>
+			<if isNotBlank(name)>
+			or g.uuid in (
+				select group.uuid from Duty duty ,Group group
+				where  group.itype='1' and group in elements(duty.groups) and duty.name like  '%${name?lower_case}%'
+			)
+			</if>
+			)
+		</if>
+		<if tenantId != cisTenantId>
+			and tenantId = :tenantId
+		</if>
+		order by ${orderBy}
+	]]>
+    </sql-query>
+</hibernate-mapping>

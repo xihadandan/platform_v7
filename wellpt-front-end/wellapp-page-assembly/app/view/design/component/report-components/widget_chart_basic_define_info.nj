@@ -1,0 +1,171 @@
+<!-- 图表的基础信息定义 -->
+
+<div role="tabpanel" class="tab-pane active" id="widget_chart_base_info">
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label required">名称</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        name="name"
+        id="name"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="jsModule"
+        id="jsModule"
+      />
+      <input
+        type="hidden"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="jsModuleName"
+        id="jsModuleName"
+      />
+    </div>
+  </div>
+
+  <fieldset>
+    <legend>全局样式</legend>
+    <div class="form-group">
+      <label for="name" class="col-sm-2 control-label">宽度</label>
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          name="width"
+          id="width"
+        />
+      </div>
+      <label for="name" class="col-sm-2 control-label">高度</label>
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          name="height"
+          id="height"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="textStyle_color" class="col-sm-2 control-label"
+        >字体颜色</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option w-chart-option"
+          height="34px"
+          name="textStyle_color"
+          id="textStyle_color"
+        />
+      </div>
+      <label for="textStyle_fontStyle" class="col-sm-2 control-label"
+        >字体风格</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option w-chart-option"
+          height="34px"
+          name="textStyle_fontStyle"
+          id="textStyle_fontStyle"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="textStyle_fontFamily" class="col-sm-2 control-label"
+        >字体</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option w-chart-option"
+          height="34px"
+          name="textStyle_fontFamily"
+          id="textStyle_fontFamily"
+        />
+      </div>
+      <label for="textStyle_fontWeight" class="col-sm-2 control-label"
+        >字体粗细</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option w-chart-option"
+          height="34px"
+          name="textStyle_fontWeight"
+          id="textStyle_fontWeight"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="textStyle_fontSize" class="col-sm-2 control-label"
+        >字体大小</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option w-chart-option"
+          height="34px"
+          name="textStyle_fontSize"
+          id="textStyle_fontSize"
+        />
+      </div>
+      <label for="textStyle_lineHeight" class="col-sm-2 control-label"
+        >行高</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option w-chart-option"
+          height="34px"
+          name="textStyle_lineHeight"
+          id="textStyle_lineHeight"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="backgroundColor" class="col-sm-2 control-label">背景色</label>
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option w-chart-option"
+          name="backgroundColor"
+          id="backgroundColor"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">调色盘</label>
+      <div class="col-sm-10">
+        <button
+          title="添加颜色"
+          type="button"
+          class="btn btn-success glyphicon glyphicon-plus"
+          id="addColor"
+          style="float: left"
+        ></button>
+        <button
+          title="删除颜色"
+          type="button"
+          class="btn btn-danger glyphicon glyphicon-minus"
+          id="minusColor"
+          style="float: left"
+        ></button>
+      </div>
+    </div>
+  </fieldset>
+</div>

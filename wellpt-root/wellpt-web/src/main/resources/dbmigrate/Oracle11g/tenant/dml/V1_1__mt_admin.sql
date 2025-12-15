@@ -1,0 +1,2 @@
+insert into MT_ADMIN (UUID, CREATE_TIME, CREATOR, MODIFIER, MODIFY_TIME, REC_VER, ENABLED, LOGIN_NAME, PASSWORD, USERNAME)
+values ('12212343243232432432434', '', '', '', '', null, 1, 'admin', '2edbc0bfeef2dffb720cd80824f0111c', 'admin');

@@ -1,0 +1,405 @@
+// 表格区域下的样式
+.widget-table {
+  // 定义表格组件区域使用的css变量
+  --w-widget-table-thead-th-bg-color: var(--w-fill-color-light);
+  --w-widget-table-thead-th-text-color: var(--w-text-color-dark);
+  --w-widget-table-thead-td-text-color: var(--w-text-color-darker);
+  --w-widget-table-thead-text-size: var(--w-font-size-base);
+  --w-widget-table-td-border-color: var(--w-border-color-light);
+  --w-widget-table-td-padding: var(--w-padding-xs) var(--w-padding-md) var(--w-padding-xs) var(--w-padding-xs);
+  --w-widget-table-td-margin: unset;
+
+  background: var(--w-fill-color-base);
+  border-radius: var(--w-widget-page-block-border-radius);
+
+  // margin: 0 var(--w-margin-md);
+  .ant-table-thead > tr > th {
+    background: var(--w-widget-table-thead-th-bg-color);
+    color: var(--w-widget-table-thead-th-text-color);
+
+    .ant-table-filter-icon,
+    .anticon-filter {
+      position: relative;
+      color: var(--w-text-color-light);
+      height: 20px;
+      width: 20px;
+      margin-left: var(--w-margin-3xs);
+
+      &.ant-table-filter-open {
+        color: var(--w-text-color-light) !important;
+        background: transparent !important;
+      }
+
+      &:hover {
+        color: var(--w-text-color-dark);
+        background: var(--w-fill-color-light);
+      }
+    }
+  }
+
+  // 筛选下拉框
+  .ant-dropdown .ant-table-filter-dropdown {
+    .ant-dropdown-menu {
+      &-item,
+      &-submenu-title {
+        &,
+        & > a {
+          .ant-checkbox-wrapper + span {
+            color: var(--w-checkbox-text-color);
+          }
+
+          &:hover {
+            background-color: transparent;
+          }
+        }
+      }
+
+      &-item-selected,
+      &-submenu-title-selected {
+        &,
+        & > a {
+          color: var(--w-primary-color);
+          background-color: transparent;
+
+          .ant-checkbox-wrapper + span {
+            color: var(--w-checkbox-text-color);
+          }
+        }
+      }
+    }
+
+    .ant-table-filter-dropdown-link {
+      color: var(--w-primary-color);
+    }
+  }
+
+  // 展开收起
+  .ant-table-row-expand-icon {
+    width: 14px;
+    height: 14px;
+    border-radius: var(--w-border-radius-2);
+    border-color: var(--w-border-color-light);
+    line-height: 11px;
+
+    &:focus,
+    &:hover {
+      color: var(--w-primary-color-5);
+    }
+
+    &:active {
+      color: var(--w-primary-color-7);
+    }
+  }
+
+  // 行点击开启，出现手势
+  .row-click-enable {
+    .ant-table-tbody > tr > td {
+      cursor: pointer;
+    }
+  }
+
+  .ant-table-tbody > tr > td {
+    color: var(--w-widget-table-thead-td-text-color);
+  }
+
+  .ant-table-tbody > tr > td,
+  .ant-table-thead > tr > th {
+    font-size: var(--w-widget-table-thead-text-size);
+    padding: var(--w-widget-table-td-padding);
+    border-bottom-color: var(--w-widget-table-td-border-color);
+    border-right-color: var(--w-widget-table-td-border-color);
+    margin: var(--w-widget-table-td-margin);
+  }
+
+  // 火狐浏览器，设置固定头和列时
+  @-moz-document url-prefix() {
+    .ant-table-fixed-header.ant-table-layout-fixed {
+      // 左右两边固定列会计算thead>tr高度，该值会比原表头高
+      .ant-table-fixed-left,
+      .ant-table-fixed-right {
+        .ant-table-thead > tr {
+          height: auto !important;
+        }
+      }
+
+      // 主表格表头底部padding-bottom会丢失背景色和边框
+      // .ant-table-scroll {
+      //   .ant-table-thead>tr>th {
+      //     border-bottom-width: var(--w-padding-xs);
+
+      //     &::after {
+      //       content: "";
+      //       height: e('calc(var(--w-padding-xs) - 1)');
+      //       visibility: hidden;
+      //       display: block;
+      //     }
+      //   }
+      // }
+    }
+  }
+
+  .ant-table-bordered {
+    .ant-table-body > table,
+    .ant-table-fixed-left .ant-table-body-inner > table,
+    .ant-table-fixed-right .ant-table-body-inner > table,
+    .ant-table-header > table {
+      border-color: var(--w-widget-table-td-border-color);
+    }
+
+    .ant-table-fixed-left,
+    .ant-table-fixed-right {
+      .ant-table-body-outer {
+        .ant-table-body-inner > table {
+          border-top: 1px solid var(--w-widget-table-td-border-color);
+        }
+      }
+
+      .ant-table-header + .ant-table-body-outer {
+        .ant-table-body-inner > table {
+          border-top: 0;
+        }
+      }
+    }
+  }
+
+  margin-bottom: var(--w-margin-xs);
+  // padding: 0px var(--w-padding-xs);
+
+  .cell-title {
+    color: #999;
+    margin-bottom: 8px;
+  }
+
+  td:has(.cell-title) {
+    vertical-align: baseline;
+  }
+
+  .ant-table-row-cell-ellipsis {
+    .cell-render {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      word-break: break-word;
+    }
+  }
+
+  .resize-table-th {
+    position: relative;
+
+    .table-draggable-handle {
+      height: 100% !important;
+      bottom: 0;
+      left: auto !important;
+      right: 0px;
+      cursor: col-resize;
+      touch-action: none;
+      position: absolute;
+    }
+
+    .table-draggable-dragging {
+      background-color: #e8e8e8;
+    }
+  }
+
+  .widget-table-search {
+    .widget-table-search-form-row {
+      // padding: 0 0 var(--w-padding-xs) 0;
+      // margin-bottom: var(--w-margin-xs);
+
+      .ant-form-item {
+        margin-bottom: var(--w-padding-2xs);
+      }
+
+      &.advance-form {
+        .ant-form-item {
+          display: flex;
+          flex-wrap: nowrap;
+
+          .ant-form-item-control-wrapper {
+            // flex: 1 1 auto;
+            padding-right: var(--w-padding-2xs);
+
+            .org-select-component {
+              vertical-align: middle;
+              display: inline-block;
+              width: 100%;
+            }
+
+            .ant-calendar-picker {
+              width: 100% !important;
+            }
+          }
+
+          .ant-form-item-label {
+            line-height: 40px;
+            min-width: 60px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-right: var(--w-padding-3xs);
+
+            & > label {
+              &::after {
+                content: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .widget-table-header-button {
+    margin-bottom: var(--w-margin-xs);
+  }
+
+  .ant-pagination-options {
+    > .ant-pagination-options-size-changer {
+      .ant-select-selection-selected-value {
+        padding-right: 7px;
+      }
+    }
+  }
+
+  .table-hide-pagination-total {
+    .ant-pagination-total-text {
+      display: none;
+    }
+  }
+
+  .table-hide-footer {
+    .ant-table-footer {
+      display: none;
+    }
+  }
+
+  .ant-list-item,
+  td.ant-descriptions-item {
+    .ant-descriptions-item-no-label {
+      width: 0px !important;
+    }
+
+    .ant-descriptions-item-no-label + .ant-descriptions-item-content {
+      width: 100%;
+    }
+  }
+
+  .waterfall-page-table {
+    .ant-table-pagination {
+      display: none;
+    }
+  }
+
+  .waterfall-pagination {
+    text-align: center;
+    padding: 10px 0px;
+  }
+
+  .waterfall-list {
+    .ant-list-pagination {
+      display: none;
+    }
+  }
+
+  .widget-table-card-list {
+    .ant-spin-container {
+      > .ant-row {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  .widget-table-card-list-container {
+    margin-bottom: 2px; // 防止出现滚动条
+    // 第 1, 4, 7... 个孩子 (3n+1)
+    .widget-table-card-list {
+      .ant-spin-container {
+        > .ant-row {
+          & > .ant-col-8:nth-child(3n + 1) {
+            padding-left: 0 !important;
+          }
+          // 第 3, 6, 9... 个孩子 (3n+3 或直接 3n)
+          & > .ant-col-8:nth-child(3n) {
+            padding-right: 0 !important;
+          }
+          & > .ant-col-12:nth-child(2n + 1) {
+            padding-left: 0 !important;
+          }
+          & > .ant-col-12:nth-child(2n) {
+            padding-right: 0 !important;
+          }
+          & > .ant-col-24:nth-child(n + 1) {
+            padding-left: 0 !important;
+          }
+          & > .ant-col-24:nth-child(n) {
+            padding-right: 0 !important;
+          }
+          & > .ant-col-6:nth-child(4n + 1) {
+            padding-left: 0 !important;
+          }
+          & > .ant-col-6:nth-child(4n) {
+            padding-right: 0 !important;
+          }
+          & > .ant-col-4:nth-child(6n + 1) {
+            padding-left: 0 !important;
+          }
+          & > .ant-col-4:nth-child(6n) {
+            padding-right: 0 !important;
+          }
+          & > .ant-col-3:nth-child(8n + 1) {
+            padding-left: 0 !important;
+          }
+          & > .ant-col-3:nth-child(8n) {
+            padding-right: 0 !important;
+          }
+        }
+      }
+    }
+  }
+
+  .export-col-checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+
+    > .ant-checkbox-wrapper {
+      width: 180px;
+
+      > span:last-child {
+        max-width: 160px;
+        display: inline-block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        text-align: right;
+        vertical-align: bottom;
+      }
+    }
+  }
+  > ._header-title {
+    margin-bottom: var(--w-margin-xs);
+    color: var(--w-primary-color);
+    font-weight: 700;
+    font-size: var(--w-font-size-base);
+    line-height: 32px;
+  }
+}
+
+// 大屏下的表格样式
+.bigscreen {
+  .widget-table {
+    --w-widget-table-thead-th-bg-color: rgb(35, 40, 50);
+    --w-widget-table-thead-th-text-color: #fff;
+    --w-widget-table-thead-td-text-color: #fff;
+    background: transparent;
+    .ant-table-placeholder {
+      background: transparent;
+      border: unset;
+    }
+
+    .ant-table-tbody > tr > td,
+    .ant-table-thead > tr > th {
+      border: unset;
+    }
+  }
+}

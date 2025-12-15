@@ -1,0 +1,89 @@
+/* 加载动画 */
+.well-loading-wrapper {
+  .box();
+
+  background: @component-background;
+  z-index: 999;
+}
+
+.well-loading {
+  text-align: center;
+}
+.well-loading,
+.fixed-table-loading {
+  z-index: 1000;
+
+  .absolute(50% false false 50%);
+  .square(@loading-size);
+
+  @loading-translate: -@loading-size / 2;
+  transform: translate(calc(@loading-translate), calc(@loading-translate));
+
+  .loader {
+    position: relative;
+    .square(@loading-inner-point-radius * 2);
+
+    top: calc(50% - @loading-inner-point-radius);
+    left: calc(50% - @loading-inner-point-radius);
+    background-color: @loading-inner-point-color;
+    border-radius: 50%;
+
+    &:before {
+      content: '';
+      .square(@loading-outer-circle-radius);
+
+      position: absolute;
+      top: -@loading-outer-circle-radius + @loading-outer-circle-border-width;
+      border-top: solid @loading-outer-circle-border-width @loading-outer-circle-border-color;
+      border-right: solid @loading-outer-circle-border-width @loading-outer-circle-border-color;
+      border-radius: 0 500px 0px 0;
+      z-index: -1;
+      background-color: @loading-outer-circle-area-color;
+      transform-origin: 0% 100%;
+      animation: Circular @loading-duration-time linear infinite;
+    }
+
+    &:after {
+      content: '';
+      .square(@loading-outer-circle-radius);
+      .absolute(@loading-outer-circle-border-width @loading-outer-circle-border-width false false);
+
+      border-bottom: solid @loading-outer-circle-border-width @loading-outer-circle-border-color;
+      border-left: solid @loading-outer-circle-border-width @loading-outer-circle-border-color;
+      border-radius: 0 0px 0px 500px;
+      z-index: -1;
+      background-color: @loading-outer-circle-area-color;
+      transform-origin: 100% 0%;
+      animation: Circular @loading-duration-time linear infinite;
+    }
+  }
+
+  .loading-msg {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: @loading-message-margin-top;
+    color: @loading-message-color;
+    font-size: @loading-message-font-size;
+  }
+
+  .well-loading-msg {
+    .absolute(false -50px 0 -50px);
+  }
+}
+
+.fixed-table-loading .fixed-table-loading-msg {
+  top: (@loading-size / 2) + @loading-outer-circle-radius + @loading-message-margin-top;
+  position: relative;
+  color: @loading-message-color;
+  font-size: @loading-message-font-size;
+}
+
+@keyframes Circular {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

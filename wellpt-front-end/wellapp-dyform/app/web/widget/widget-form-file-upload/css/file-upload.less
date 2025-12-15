@@ -1,0 +1,270 @@
+.file-rename-modal .ant-descriptions-item-label {
+  width: 100px;
+}
+.file-rename-modal .ant-descriptions-item-content {
+  width: 360px;
+}
+.file-history-tips {
+  padding-bottom: 14px;
+}
+.file-history-table {
+  .ant-table {
+    > .ant-table-content {
+      > .ant-table-body {
+        margin: 0;
+      }
+      .local-history-path {
+        word-break: break-all;
+        white-space: pre-line;
+      }
+    }
+  }
+}
+.picture-for-lib {
+  .ant-upload.ant-upload-disabled {
+    cursor: pointer;
+  }
+}
+.picture-add-dialog {
+  .ant-modal-body {
+    padding-top: 10px;
+  }
+  .panel-head {
+    height: 34px;
+  }
+  .picture-categories-ps {
+    height: 380px;
+  }
+  .picture-local-upload-ps {
+    height: 350px;
+  }
+  .category-imgs-ps {
+    height: 380px;
+  }
+  .picture-category-item {
+    display: flex;
+    padding: 6px 4px;
+    cursor: pointer;
+    .category-name {
+      flex: 1;
+      padding: 0 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    span {
+      float: right;
+    }
+  }
+  .picture-category-active {
+    background-color: var(--w-primary-color-1);
+  }
+  .picture-item-card {
+    position: relative;
+    margin-bottom: 16px;
+    .ant-card-cover {
+      img {
+        height: 120px;
+      }
+    }
+    .ant-card-body {
+      padding: 10px;
+    }
+    .ant-card-meta-detail {
+      text-align: center;
+    }
+    .ant-card-meta-description {
+      font-size: 12px;
+      p {
+        margin-bottom: 0;
+      }
+    }
+    &::before {
+      position: absolute;
+      right: 3px;
+      bottom: -2px;
+      content: '✔';
+      z-index: 1;
+      color: #ffffff;
+    }
+    &::after {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      content: '';
+      border-bottom: 12px solid #e8e8e8;
+      border-right: 15px solid #e8e8e8;
+      border-top: 12px solid transparent;
+      border-left: 15px solid transparent;
+    }
+    &.picture-item-selected-card {
+      &::after {
+        border-bottom-color: var(--w-primary-color);
+        border-right-color: var(--w-primary-color);
+        right: -1px;
+      }
+    }
+  }
+  .pic-upload-panel {
+    height: 380px;
+    .ant-descriptions-item-label {
+      width: 130px;
+      &:has(.pic-upload-label) {
+        vertical-align: top;
+      }
+
+      .pic-upload-label {
+        &::after {
+          content: '';
+          height: 310px;
+          visibility: hidden;
+          display: block;
+        }
+
+        &.save-to-lib {
+          &::after {
+            height: 260px;
+          }
+        }
+      }
+    }
+    .ant-descriptions-item-content {
+      width: 620px;
+    }
+  }
+}
+
+.widget-file-upload-container {
+  .picture-clear-both {
+    .ant-upload-list-picture-card {
+      &::after {
+        display: block;
+      }
+    }
+  }
+  .ant-upload-list-item {
+    position: relative;
+    &.ant-upload-list-item-active {
+      // 卡片||列表选中
+      border-color: var(--w-danger-color-5);
+      border-width: 3px;
+    }
+  }
+  .ant-upload-list-item-list-type-picture-card {
+    &:hover {
+      .picture-card-checkbox {
+        z-index: 20;
+      }
+    }
+    .picture-card-checkbox {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      z-index: -1;
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background-color: transparent;
+      color: var(--w-text-color-lighter);
+      border-radius: var(--w-border-radius-base);
+      text-align: center;
+      cursor: pointer;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: var(--w-text-color-inverse);
+      }
+      &.picture-card-checkbox-select {
+        color: var(--w-primary-color);
+        z-index: 20;
+        &::before {
+          content: '\e8de';
+        }
+      }
+    }
+  }
+  // .ant-upload-list-item-actions {
+  //   // 卡片操作区域
+  //   .picture-card-checkbox {
+  //     cursor: pointer;
+  //     &.picture-card-checkbox-select {
+  //       &::before {
+  //         content: '\e8de';
+  //       }
+  //     }
+  //   }
+  // }
+  .picture-view-type-picture {
+    display: flex;
+    align-items: center;
+    > span {
+      margin-right: var(--w-margin-xs);
+    }
+  }
+  .picture-view-picture-list {
+    .picture-view-picture-item {
+      height: 66px;
+      padding: 8px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      margin-top: 8px;
+      &.ant-upload-list-item-error {
+        border-color: var(--w-danger-color-5);
+      }
+    }
+
+    .picture-view-picture-info {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      .picture-view-picture-thumbnail {
+        width: 48px;
+        height: 48px;
+        text-align: center;
+        img {
+          display: block;
+          width: 48px;
+          height: 48px;
+          overflow: hidden;
+          max-width: 100%;
+        }
+        > .icon-ptkj-tupian {
+          font-size: 30px;
+          line-height: 48px;
+        }
+      }
+      .picture-view-item-name {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding-left: 8px;
+        line-height: 48px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .picture-view-item-actions {
+        // max-width: 84px;
+      }
+    }
+  }
+  .ant-upload-list-item-card-actions {
+    // 列表操作区域
+    > .icon-wsbs-xianshi {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 6px;
+      color: rgba(0, 0, 0, 0.45);
+    }
+  }
+}
+
+.picture-card-tips {
+  display: flex;
+  height: 120px;
+  align-items: center;
+  margin-left: 12px;
+  color: var(--w-gray-color-9);
+  font-size: var(--w-font-size-sm);
+}

@@ -1,0 +1,126 @@
+/** 搜索组件 */
+
+.keyword_search_toolbar {
+  position: relative;
+  padding: 0 @padding-xs;
+
+  // 搜索组件 - 输入框
+  .keyword-search-wrap {
+    position: relative;
+    width: 300px;
+
+    // 搜索组件 - 输入框 - 搜索图标
+    .search-icon {
+      .size(@keyword-search-height, 100%);
+      .absolute(false false false 0);
+
+      line-height: @keyword-search-height;
+      font-size: @font-size-lg;
+      color: @text-color-light;
+      text-align: center;
+
+      .iconfont {
+        font-size: @font-size-2xl;
+        line-height: @keyword-search-height;
+      }
+    }
+
+    // 搜索组件 - 输入框 - 输入控件
+    input {
+      width: 100%;
+      height: @keyword-search-height;
+      padding: 0 @padding-2xl;
+    }
+
+    // 搜索组件 - 输入框 - 清除输入图标
+    .close-icon {
+      .size(@keyword-search-height, 100%);
+      .absolute(0 0 false false);
+
+      z-index: 1;
+      line-height: @keyword-search-height;
+      cursor: pointer;
+      text-align: center;
+    }
+  }
+
+  // 搜索组件 - 搜索按钮
+  .btn-query {
+    margin-left: @margin-sm;
+  }
+
+  // 搜索组件 - “更多”按钮
+  .more-search {
+    margin-left: @margin-sm;
+    line-height: @keyword-search-height;
+    color: @text-color-primary;
+    cursor: pointer;
+
+    .iconfont {
+      font-size: @font-size-sm;
+    }
+  }
+}
+
+// 高级搜索样式，用于:
+// - 表格组件
+// - 日历组件
+.keyword_search_toolbar.multiKeyword_search .dropdown {
+  position: relative;
+
+  // 搜索组件 - 输入框
+  input {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  // 搜索组件 - 搜索按钮
+  button {
+    position: relative;
+    min-width: 80px;
+    height: @keyword-search-height;
+    padding-right: @padding-lg !important;
+    font-size: @font-size-base;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    .caret {
+      .absolute(@margin-md @margin-sm false false);
+    }
+  }
+
+  // 搜索组件 - 弹出层
+  .dropdown-menu li {
+    min-width: 100px;
+    padding: 0 @padding-xs;
+    line-height: 30px;
+    cursor: pointer;
+
+    &:hover {
+      color: @dropdown-hover-item-font-color;
+      background: @dropdown-hover-item-background;
+    }
+  }
+}
+
+.fixed-table-toolbar .hide-query-fields,
+.fixed-table-search-toolbar .hide-query-fields {
+  float: right;
+  margin-left: 10px;
+  line-height: @keyword-search-height;
+  color: @text-color-primary;
+  cursor: pointer;
+
+  i {
+    font-size: @font-size-sm;
+  }
+}
+
+.search-tool-bar button {
+  height: @keyword-search-height;
+  font-size: @font-size-base;
+
+  .btn-primary {
+    background: @primary-color;
+  }
+}

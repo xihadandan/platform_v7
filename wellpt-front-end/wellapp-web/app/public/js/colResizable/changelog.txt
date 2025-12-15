@@ -1,0 +1,17 @@
+1、311行的
+t.removeClass(SIGNATURE);
+改为
+$(t).removeClass(SIGNATURE);
+
+2、322行的
+syncGrips(t.addClass(SIGNATURE));
+改为
+syncGrips($(t).addClass(SIGNATURE));
+
+3、162行的
+t.gc.width(t.w);
+改为
+if(t.gc) {
+	t.gc.width(t.w);		
+}
+	

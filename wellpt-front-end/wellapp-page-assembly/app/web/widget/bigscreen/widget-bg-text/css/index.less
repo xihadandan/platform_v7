@@ -1,0 +1,18 @@
+.widget-bg-text {
+  > div {
+    white-space: nowrap; /* 防止文本换行 */
+    overflow: hidden; /* 隐藏超出容器的部分 */
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  /* 定义@keyframes动画 */
+  @keyframes marquee {
+    from {
+      transform: translateX(100%); /* 从右向左开始 */
+    }
+    to {
+      transform: translateX(-100%); /* 向左滚动，直到完全不可见 */
+    }
+  }
+}

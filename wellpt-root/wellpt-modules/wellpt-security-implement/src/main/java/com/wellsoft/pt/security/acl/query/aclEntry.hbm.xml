@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <sql-query name="queryGrantAclEntryByAclObjectIdentityAndMask">
+        select a
+        FROM
+        AclEntry a,
+        AclObjectIdentity ao
+        WHERE
+        ao.objectIdIdentity = :objectIdIdentity
+        AND ao.uuid = a.aclObjectIdentity.uuid
+        AND a.granting = 1
+        AND a.mask = :mask
+
+    </sql-query>
+
+
+    <sql-query name="deleteGrantAclByAclObjIdentityAndMask">
+        DELETE
+        FROM
+        acl_entry ae
+        WHERE
+        ae.granting = 1
+        AND ae.mask = :mask
+        AND EXISTS (
+        SELECT
+        1
+        FROM
+        acl_object_identity ao
+        WHERE
+        ao.object_id_identity = :objectIdIdentity
+        AND ao.uuid = ae.acl_object_identity
+        )
+
+    </sql-query>
+
+
+    <sql-query name="deleteAclEntryBySid">
+        <![CDATA[
+		DELETE
+		FROM
+		acl_entry ae
+		WHERE
+		ae.granting = 1
+		AND ae.mask = :mask
+		AND EXISTS (
+		SELECT
+		1
+		FROM acl_sid asi
+		WHERE
+		asi.sid = :sid
+		AND asi.uuid = ae.sid
+		AND asi.principal =:principal
+		)
+		]]>
+
+    </sql-query>
+
+
+    <sql-query name="deleteAclEntryBySidAndObjIdIdentity">
+        <![CDATA[
+		DELETE
+		FROM
+		acl_entry ae
+		WHERE
+		EXISTS (
+		SELECT
+		1
+		FROM acl_sid asi,acl_object_identity ao
+		WHERE
+	 	ao.object_id_identity = :objectIdIdentity
+		AND ao.uuid = ae.acl_object_identity
+		<if isNotBlank(granting)>
+		AND ae.granting = :granting
+		</if>
+		<if isNotBlank(mask)>
+		AND ae.mask = :mask
+		</if>
+		AND asi.sid = :sid
+		AND asi.uuid = ae.sid
+		AND asi.principal =:principal
+		)
+		]]>
+
+    </sql-query>
+
+    <sql-query name="deleteAclEntryBySidsAndObjIdIdentity">
+        <![CDATA[
+		DELETE
+		FROM
+		acl_entry ae
+		WHERE
+		EXISTS (
+		SELECT
+		1
+		FROM acl_sid asi,acl_object_identity ao
+		WHERE
+	 	ao.object_id_identity = :objectIdIdentity
+		AND ao.uuid = ae.acl_object_identity
+		AND ae.mask in :masks
+		AND asi.sid in (:sids)
+		AND asi.uuid = ae.sid
+		)
+		]]>
+    </sql-query>
+
+    <sql-query name="deleteAclEntryByObjectIdIdentity">
+        <![CDATA[
+		delete from AclEntry  where objectIdIdentity = :objectIdIdentity
+		]]>
+    </sql-query>
+
+
+    <sql-query name="basicAclEntityDataQuery">
+        <![CDATA[
+		<if isNotBlank(selections)>
+		select ${selections}
+		</if>
+		from ${entityName} o
+		<if isNotBlank(innerjoinHql)>
+		${innerjoinHql}
+		</if>
+		where 1=1
+		<if isNotBlank(whereHql)>
+		${whereHql}
+		</if>
+		and exists (
+		SELECT
+			acl_object_identity.objectIdIdentity
+		FROM
+			AclObjectIdentity acl_object_identity
+			INNER JOIN acl_object_identity.aclSid AS acli_sid
+			INNER JOIN acl_object_identity.aclClass AS acl_class
+			INNER JOIN acl_object_identity.aclEntries AS acl_entry
+			INNER JOIN acl_entry.aclSid AS acl_sid
+		WHERE
+			o.uuid = acl_object_identity.objectIdIdentity
+			<if isNotBlank(objectIdIdentity)>
+			AND ( acl_object_identity.objectIdIdentity = :objectIdIdentity )
+			</if>
+			AND ( acl_class.cls = :cls AND acl_entry.granting = :granting AND acl_entry.mask IN ( :masks ) )
+			<if isNotBlank(principal)>
+			AND acl_sid.principal = :principal
+			</if>
+			<if isNotBlank(sid)>
+			AND acl_sid.sid = :sid
+			</if>
+			<if sids?? && (sids?size > 0) >
+			AND acl_sid.sid IN ( :sids )
+			</if>
+           )
+           <if isNotBlank(orderBy)>
+           ${orderBy}
+           </if>
+		]]>
+
+    </sql-query>
+
+
+    <sql-query name="basicAclTaskEntityDataQuery">
+        <![CDATA[
+		<if isNotBlank(selections)>
+		select ${selections}
+		</if>
+		from ${entityName} o
+		<if isNotBlank(innerjoinHql)>
+		${innerjoinHql}
+		</if>
+		where 1=1
+		<if isNotBlank(whereHql)>
+		${whereHql}
+		</if>
+		and exists (
+		SELECT
+			acl_object_identity.objectIdIdentity
+		FROM
+			AclObjectIdentity acl_object_identity
+			INNER JOIN acl_object_identity.aclSid AS acli_sid
+			INNER JOIN acl_object_identity.aclClass AS acl_class
+			INNER JOIN acl_object_identity.aclEntries AS acl_entry
+			INNER JOIN acl_entry.aclSid AS acl_sid
+		WHERE
+			o.uuid = acl_object_identity.objectIdIdentity
+			<if isNotBlank(objectIdIdentity)>
+			AND ( acl_object_identity.objectIdIdentity = :objectIdIdentity )
+			</if>
+			AND ( acl_class.cls = :cls AND acl_entry.granting = :granting AND acl_entry.mask IN ( :masks ) )
+			<if isNotBlank(principal)>
+			AND acl_sid.principal = :principal
+			</if>
+			<if isNotBlank(sid)>
+			AND acl_sid.sid = :sid
+			</if>
+			<if sids?? && (sids?size > 0) >
+			AND acl_sid.sid IN ( :sids )
+			</if>
+           )
+           <if isNotBlank(orderBy)>
+           ${orderBy}
+           </if>
+		]]>
+
+    </sql-query>
+
+
+    <sql-query name="checkAclGranted">
+        <![CDATA[
+		SELECT
+			count( 1 )
+		FROM
+			acl_entry a
+		WHERE 1=1
+			<if masks?? && (masks?size>0)>
+		    and a.mask in (:masks)
+		    </if>
+		    <if sids?? && (sids?size>0)>
+			and EXISTS ( SELECT 1 FROM acl_sid asi WHERE asi.uuid = a.sid AND asi.sid IN ( :sids ) )
+			</if>
+			<if isNotBlank(objectIdIdentity)>
+			and object_id_identity =:objectIdIdentity
+			</if>
+		]]>
+
+    </sql-query>
+
+
+    <!-- 判断成员在moduleId中的所有SID中是否具有指定权限 -->
+    <sql-query name="checkAclPermissionByModuleId">
+        <![CDATA[
+
+		SELECT
+			count( 1 )
+		FROM
+			acl_entry a,
+			acl_object_identity aoi,
+			acl_sid asi
+		WHERE
+			aoi.object_id_identity =:objectIdIdentity
+			AND a.mask =:mask
+			AND EXISTS ( SELECT 1 FROM acl_sid_member asm WHERE asm.owner_sid = asi.uuid AND asm.member =:member AND asm.module_id =:moduleId )
+
+		]]>
+
+    </sql-query>
+
+    <!--更新ACL权限对象标识-->
+    <sql-query name="updateAclObjectIdIdentity">
+        update AclEntry t
+        set t.objectIdIdentity = :objectIdIdentity
+        where t.aclObjectIdentity.uuid = :aclObjectIdentityUuid
+    </sql-query>
+    <sql-query name="getConsultListByUserId">
+        <![CDATA[
+
+		SELECT
+			AE.*
+		FROM
+			acl_entry ae,
+			acl_object_identity aoi,
+			ACL_SID asid
+		WHERE
+			ae.granting = 1
+		AND ae.mask = 1
+		AND AE.ACL_OBJECT_IDENTITY = aoi.uuid
+		AND aoi.owner_sid = asid.uuid
+		AND asid.SID = :userId
+		]]>
+
+    </sql-query>
+
+
+</hibernate-mapping>

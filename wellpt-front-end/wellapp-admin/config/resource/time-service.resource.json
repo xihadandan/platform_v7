@@ -1,0 +1,112 @@
+{
+  "js": {
+    "AppHolidayArrangementWidgetDevelopment": {
+      "path": "/timeservice-mgr/AppHolidayArrangementWidgetDevelopment",
+      "name": "平台应用_基础数据管理_节假日安排二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "bootstrap-datetimepicker",
+        "layDatePro",
+        "bootstrapTable",
+        "bootstrapTable_editable",
+        "global",
+        "system-admin",
+        "HolidayArragement"
+      ]
+    },
+    "AppHolidayManagementListDevelopment": {
+      "path": "/timeservice-mgr/AppHolidayManagementListDevelopment",
+      "name": "平台应用_基础数据管理_节假日管理_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppHolidayManagementWidgetDevelopment": {
+      "path": "/timeservice-mgr/AppHolidayManagementWidgetDevelopment",
+      "name": "平台应用_基础数据管理_节假日管理_详情二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "wSelect2", "jquery-chained", "global", "system-admin"]
+    },
+    "AppTimeServiceListDevelopment": {
+      "path": "/timeservice-mgr/AppTimeServiceListDevelopment",
+      "name": "平台应用_基础数据管理_计时服务_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppTimeServiceWidgetDevelopment": {
+      "path": "/timeservice-mgr/AppTimeServiceWidgetDevelopment",
+      "name": "平台应用_基础数据管理_计时服务_详情二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "bootstrap-datetimepicker",
+        "layDatePro",
+        "wSelect2",
+        "global",
+        "system-admin"
+      ]
+    },
+    "AppWorkTimeServiceListDevelopment": {
+      "path": "/timeservice-mgr/AppWorkTimeServiceListDevelopment",
+      "name": "平台应用_基础数据管理_计时服务用于流程_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppTimeServiceCategoryDevelopment": {
+      "path": "/timeservice-mgr/AppTimeServiceCategoryDevelopment",
+      "name": "平台应用_基础数据管理_计时服务分类二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "ztree",
+        "global",
+        "system-admin",
+        "wCommonPictureLib",
+        "minicolors",
+        "dependencyBootstrapTableModule"
+      ]
+    },
+    "AppWorkingTimePlanListDevelopment": {
+      "path": "/timeservice-mgr/AppWorkingTimePlanListDevelopment",
+      "name": "平台应用_基础数据管理_工作时间方案_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppWorkTimeHistoryListDevelopment": {
+      "path": "/timeservice-mgr/AppWorkTimeHistoryListDevelopment",
+      "name": "平台应用_基础数据管理_历史工作时间_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppWorkTimeVersionListDevelopment": {
+      "path": "/timeservice-mgr/AppWorkTimeVersionListDevelopment",
+      "name": "平台应用_基础数据管理_版本历史_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppWorkingTimePlanWidgetDevelopment": {
+      "path": "/timeservice-mgr/AppWorkingTimePlanWidgetDevelopment",
+      "name": "平台应用_基础数据管理_工作时间方案_详情二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "bootstrap-datetimepicker",
+        "layDatePro",
+        "bootstrapTable",
+        "bootstrapTable_editable",
+        "wSelect2",
+        "global",
+        "system-admin",
+        "HolidayArragement"
+      ]
+    },
+    "HolidayArragement": {
+      "path": "/timeservice-mgr/HolidayArragement",
+      "name": "平台应用_基础数据管理_节假日安排公共部分",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "bootstrap-datetimepicker",
+        "layDatePro",
+        "wSelect2",
+        "global",
+        "system-admin"
+      ]
+    }
+  },
+  "template": {},
+  "css": {}
+}

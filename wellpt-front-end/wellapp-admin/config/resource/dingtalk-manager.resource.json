@@ -1,0 +1,75 @@
+{
+  "js": {
+    "AppDingtalkMemberListDevelopment": {
+      "path": "dingtalk-mgr/AppDingtalkMemberListDevelopment",
+      "name": "平台应用_系统设置_人员更新列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppDingtalkRegisterWidgetDevelopment": {
+      "path": "dingtalk-mgr/AppDingtalkRegisterWidgetDevelopment",
+      "name": "平台应用_系统设置_业务事件注册列表二开",
+      "dependencies": ["dependencyBootstrapTableModule", "HtmlWidgetDevelopment", "wSelect2", "global", "system-admin"]
+    },
+    "AppDingtalkSetWidgetDevelopment": {
+      "path": "dingtalk-mgr/AppDingtalkSetWidgetDevelopment",
+      "name": "平台应用_系统设置_钉钉接入设置",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "wSelect2", "global", "system-admin"]
+    },
+    "AppDingtalkOrgSyncConfigWidgetDevelopment": {
+      "path": "dingtalk-mgr/AppDingtalkOrgSyncConfigWidgetDevelopment",
+      "name": "平台应用_系统设置_钉钉接入_人员同步设置",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "wSelect2", "global", "system-admin"]
+    },
+    "AppDingtalkPushListDevelopment": {
+      "path": "dingtalk-mgr/AppDingtalkPushListDevelopment",
+      "name": "平台应用_系统设置_待办推送的待处理日志二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppDingtalkOrgSyncSetDevelpment": {
+      "path": "dingtalk-mgr/AppDingtalkOrgSyncSetDevelopment",
+      "name": "平台应用_系统设置_钉钉接入_组织同步设置二开",
+      "dependencies": ["HtmlWidgetDevelopment"]
+    },
+    "AppDingtalkOrgSyncLogListDevelopment": {
+      "path": "dingtalk-mgr/AppDingtalkOrgSyncLogListDevelopment",
+      "name": "平台应用_系统设置_钉钉接入_组织同步日志列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppDingtalkOrgSyncInfoDevelpment": {
+      "path": "dingtalk-mgr/AppDingtalkOrgSyncInfoDevelopment",
+      "name": "平台应用_系统设置_钉钉接入_组织同步日志详情二开",
+      "dependencies": ["HtmlWidgetDevelopment"]
+    },
+    "AppDingtalkLogTabDevelopment": {
+      "path": "dingtalk-mgr/AppDingtalkLogTabDevelopment",
+      "name": "平台应用_系统设置_钉钉接入_组织同步日志详情tab页二开",
+      "dependencies": ["BootstrapTabsWidgetDevelopment"]
+    },
+    "AppDingtalkBusinessTabDevelopment": {
+      "path": "dingtalk-mgr/AppDingtalkBusinessTabDevelopment",
+      "name": "平台应用_系统设置_钉钉接入_业务事件同步日志详情Tab二开",
+      "dependencies": ["BootstrapTabsWidgetDevelopment"]
+    },
+    "AppDingtalkOrgSyncInfoOrgDevelpment": {
+      "path": "dingtalk-mgr/AppDingtalkOrgSyncInfoOrgDevelopment",
+      "name": "平台应用_系统设置_钉钉接入_组织同步日志详情_钉钉部门同步二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppDingtalkBusinessEventSyncLogDevelopment": {
+      "path": "dingtalk-mgr/AppDingtalkBusinessEventSyncLogDevelopment",
+      "name": "平台应用_系统设置_钉钉接入_业务事件同步列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppDingtalkBusinessEventSyncInfoDevelopment": {
+      "path": "dingtalk-mgr/AppDingtalkBusinessEventSyncInfoDevelopment",
+      "name": "平台应用_系统设置_钉钉接入_业务事件同步日志详情二开",
+      "dependencies": ["HtmlWidgetDevelopment"]
+    },
+
+    "AppMuldepPersonAuditListDevelopment": {
+      "path": "dingtalk-mgr/AppMuldepPersonAuditListDevelopment",
+      "name": "平台应用_系统设置_钉钉接入_多部门人员审核列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    }
+  }
+}

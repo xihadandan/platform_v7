@@ -1,0 +1,46 @@
+<!-- 图表的系列列表定义 -->
+<fieldset>
+    <legend>数据定义</legend>
+    <div class="form-group">
+        <label for="datafromCheck" class="col-sm-2 control-label">数据来源</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control w-configurer-option" height="34px" name="datafromCheck"
+                   id="datafromCheck">
+
+        </div>
+
+        <div class="col-sm-6 datafrom datafrom-dataset" style="display: none;">
+            <input type="text" class="form-control w-configurer-option" height="34px" name="datasetIndex"
+                   id="datasetIndex"/>
+
+        </div>
+
+        <div class="col-sm-6 datafrom datafrom-seriesdata" style="display: none;">
+            <input type="text" class="form-control w-configurer-option" height="34px"
+                   name="seriesDataType" id="seriesDataType">
+        </div>
+    </div>
+
+    <div class="form-group datafrom seriesDataType seriesDataType-json">
+        <label for="dataJson" class="col-sm-2 control-label">自定义JSON数据</label>
+        <div class="col-sm-10">
+            <div id="dataJsonEditor" style="width: 100%; height: 400px;"></div>
+            <textarea class="form-control w-configurer-option" height="34px" name="dataJson"
+                      id="dataJson" style="display: none;"/>
+        </div>
+    </div>
+
+    <div class="form-group datafrom seriesDataType seriesDataType-dataInterface">
+        <label for="seriesDataInterface" class="col-sm-2 control-label">数据内容接口</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control w-configurer-option" height="34px" name="seriesDataInterface"
+                   id="seriesDataInterface"/>
+        </div>
+    </div>
+
+
+</fieldset>
+
+
+
+

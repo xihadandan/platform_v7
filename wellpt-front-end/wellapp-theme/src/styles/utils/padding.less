@@ -1,0 +1,101 @@
+.padding-positions() {
+  pt: padding-top;
+  pb: padding-bottom;
+  pl: padding-left;
+  pr: padding-right;
+}
+
+.padding-size() {
+  lg: padding-lg;
+  md: padding-md;
+  sm: padding-sm;
+  xs: padding-xs;
+  xss: padding-2xs;
+}
+
+// 生成4个方向 * 5种尺寸的内边距 `padding`
+each(.padding-positions(), .(@position, @key){
+  each(.padding-size(), .(@value, @size){
+    .@{key}-@{size} {
+      @{position}: @@value;
+    };
+  });
+});
+
+// 兼容旧样式 来源于 'default-less'
+// @deprecated
+.pb5 {
+  padding-bottom: 5px;
+}
+
+// 兼容旧样式 来源于 'base-less'
+// @deprecated
+.padding-l-0 {
+  padding-left: 0;
+}
+.padding-r-0 {
+  padding-right: 0;
+}
+.padding-t-0 {
+  padding-top: 0;
+}
+.padding-b-0 {
+  padding-bottom: 0;
+}
+.padding-20 {
+  padding: 20px;
+}
+.padding-15 {
+  padding: 15px;
+}
+.padding-10 {
+  padding: 10px;
+}
+.padding-5 {
+  padding: 5px;
+}
+.padding-0 {
+  padding: 0px;
+}
+.padding-0-15 {
+  padding: 0px 15px;
+}
+.padding-0-10 {
+  padding: 0px 10px;
+}
+.padding-0-5 {
+  padding: 0px 5px;
+}
+.padding-10-15 {
+  padding: 10px 15px;
+}
+.padding-5-15 {
+  padding: 5px 15px;
+}
+.padding-15-0 {
+  padding: 15px 0px;
+}
+.padding-15-10 {
+  padding: 15px 10px;
+}
+.padding-15-5 {
+  padding: 15px 5px;
+}
+.padding-10-0 {
+  padding: 10px 0px;
+}
+.padding-10-5 {
+  padding: 10px 5px;
+}
+.padding-10-15 {
+  padding: 10px 15px;
+}
+.padding-5-0 {
+  padding: 5px 0px;
+}
+.padding-5-10 {
+  padding: 5px 10px;
+}
+.padding-5-15 {
+  padding: 5px 15px;
+}

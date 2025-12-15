@@ -1,0 +1,298 @@
+<form id="org_user_form" action="" class="form-widget" style="margin-top: 15px">
+  <div class="row">
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#org-user-tabs-1" aria-controls="org-user-tabs-1" role="tab" data-toggle="tab" aria-expanded="true">账号信息</a>
+      </li>
+      <li role="presentation">
+        <a href="#org-user-tabs-2" aria-controls="org-user-tabs-2" role="tab" data-toggle="tab" aria-expanded="true">个人信息</a>
+      </li>
+      <li role="presentation">
+        <a href="#org-user-tabs-3" aria-controls="org-user-tabs-3" role="tab" data-toggle="tab" aria-expanded="true">工作信息</a>
+      </li>
+      <!-- <li role="presentation">-->
+      <!-- <a href="#org-user-tabs-4" aria-controls="org-user-tabs-4" role="tab" data-toggle="tab" aria-expanded="true">角色信息(tbd)</a>-->
+      <!-- </li>-->
+      <li role="presentation">
+        <a href="#org-user-tabs-6" aria-controls="org-user-tabs-6" role="tab" data-toggle="tab" aria-expanded="true">角色信息</a>
+      </li>
+      <li role="presentation">
+        <a href="#org-user-tabs-5" aria-controls="org-user-tabs-5" role="tab" data-toggle="tab" aria-expanded="true">权限信息</a>
+      </li>
+      <li role="presentation">
+        <a href="#org-user-tabs-7" aria-controls="org-user-tabs-7" role="tab" data-toggle="tab" aria-expanded="true">工作台信息</a>
+      </li>
+    </ul>
+    <div class="tab-content" style="border: 1px solid #e8e8e8; margin-top: 15px; margin-bottom: 15px">
+      <input type="hidden" id="uuid" name="uuid" />
+      <input type="hidden" id="type" name="type" value="0" />
+      <input type="hidden" id="systemUnitId" name="systemUnitId" />
+      <div role="tabpanel" class="tab-pane active clearfix" id="org-user-tabs-1">
+        <div class="well-form form-horizontal">
+          <div class="form-group">
+            <label for="loginName" class="well-form-label control-label required">账号名</label>
+            <div class="well-form-control">
+              <input type="text" class="form-control" id="loginName" name="loginName" />
+              <button type="button" class="userResetPwdBtn well-btn w-btn-primary">重置密码</button>
+            </div>
+          </div>
+          <div class="form-group login-name-zh">
+            <label for="loginNameZh" class="well-form-label control-label">中文账号名</label>
+            <div class="well-form-control">
+              <input type="text" class="form-control" id="loginNameZh" name="loginNameZh" />
+            </div>
+          </div>
+          <div class="form-group user-detail-add">
+            <label for="password" class="well-form-label control-label required">登录密码</label>
+            <div class="well-form-control">
+              <input type="password" class="form-control" id="password" name="password" />
+              <label class="error iconfont icon-ptkj-wentiziduantishi" style="text-align: left; display: none"></label>
+            </div>
+          </div>
+          <div class="form-group user-detail-add">
+            <label for="confirmPwd" class="well-form-label control-label required">确认密码</label>
+            <div class="well-form-control">
+              <input type="password" class="form-control" id="confirmPwd" name="confirmPwd" placeholder="请再次输入登录密码" />
+              <label class="error iconfont icon-ptkj-wentiziduantishi" style="text-align: left; display: none"></label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="userName" class="well-form-label control-label required">姓名</label>
+            <div class="well-form-control">
+              <input type="text" id="userName" name="userName" autocomplete="off" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ID" class="well-form-label control-label">ID</label>
+            <div class="well-form-control">
+              <input type="text" id="userId" name="id" readonly="readonly" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="code" class="well-form-label control-label required">编号</label>
+            <div class="well-form-control">
+              <input type="text" id="code" name="code" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="remark" class="well-form-label control-label">备注</label>
+            <div class="well-form-control">
+              <textarea type="text" class="form-control" id="remark" name="remark"></textarea>
+            </div>
+          </div>
+          <div class="form-group user-detail-edit">
+            <label for="isForbidden" class="well-form-label control-label">最后登录时间</label>
+            <div id="lastLoginTime" class="well-form-control" style="margin-top: 7px; color: #666"></div>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane clearfix" id="org-user-tabs-2">
+        <div class="well-form form-horizontal">
+          <div class="form-group">
+            <label for="user_photo" class="well-form-label control-label">照片</label>
+            <div class="well-form-control">
+              <img id="user_photo" src="#" style="width: 80px; height: 80px; display: none" />
+              <span
+                id="user_default_photo"
+                style="display: inline-block; padding: 0 6px; border: 1px solid #8e8181; height: 80px; line-height: 80px"
+              >
+                <i class="ui-wIcon iconfont icon-ptkj-morentouxiang" style="font-size: 7rem"></i>
+              </span>
+              <span>
+                <input type="file" id="upload" name="upload" accept=".jpeg,.jpg,.png" style="visibility: hidden; height: 0" />
+                <input type="button" id="btn_upload" value="上传照片" class="well-btn w-btn-primary" />
+                <input type="button" id="btn_delete" value="删除" class="well-btn w-btn-danger" />
+                <input id="photoUuid" name="photoUuid" type="hidden" />
+              </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="englishName" class="well-form-label control-label">英文名</label>
+            <div class="well-form-control">
+              <input type="text" class="form-control" id="englishName" name="englishName" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="well-form-label control-label">性别</label>
+            <div class="well-form-control">
+              <input type="radio" name="sex" value="0" id="sex_0" />
+              <label for="sex_0">女</label>
+              <input type="radio" name="sex" value="1" id="sex_1" />
+              <label for="sex_1">男</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="idNumber" class="well-form-label control-label">身份证号</label>
+            <div class="well-form-control">
+              <input type="text" id="idNumber" name="idNumber" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mobilePhone" class="well-form-label control-label">手机号</label>
+            <div class="well-form-control">
+              <input type="text" id="mobilePhone" name="mobilePhone" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="homePhone" class="well-form-label control-label">家庭电话</label>
+            <div class="well-form-control">
+              <input type="text" class="form-control" id="homePhone" name="homePhone" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="officePhone" class="well-form-label control-label">办公电话</label>
+            <div class="well-form-control">
+              <input type="text" class="form-control" id="officePhone" name="officePhone" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mainEmail" class="well-form-label control-label">邮箱</label>
+            <div class="well-form-control">
+              <input type="text" class="form-control" id="mainEmail" name="mainEmail" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane clearfix" id="org-user-tabs-3">
+        <div class="well-form form-horizontal">
+          <div class="form-group">
+            <label for="employeeNumber" class="well-form-label control-label">员工编号</label>
+            <div class="well-form-control">
+              <input type="text" id="employeeNumber" name="employeeNumber" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mainJobNamePath" class="well-form-label control-label">主职</label>
+            <div class="well-form-control">
+              <div class="job-item">
+                <div class="main-job">
+                  <input type="hidden" class="form-control" id="mainJobId" name="mainJobId" />
+                  <input type="text" class="form-control modal-input" id="mainJobNamePath" name="mainJobNamePath" readonly="readonly" />
+                </div>
+                <div class="main-job job-rank" style="display: none">
+                  <input class="form-control" type="text" name="jobRank" id="jobRank" />
+                  <input class="form-control" type="hidden" name="jobRankId" id="jobRankId" />
+                </div>
+                <div class="main-job job-level" style="display: none">
+                  <input class="form-control" type="text" name="jobLevel" id="jobLevel" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="otherJobNamePaths" class="well-form-label control-label">其他职位</label>
+            <div class="well-form-control">
+              <div class="job-item" data-index="0" style="margin-bottom: 10px">
+                <div class="main-job">
+                  <input type="hidden" name="otherJobIds" id="otherJobIds0" />
+                  <input id="otherJobNamePaths0" class="modal-input" name="otherJobNamePaths" type="text" readonly="readonly" />
+                </div>
+                <div class="main-job job-rank" style="display: none">
+                  <input class="form-control" type="text" name="jobRank" id="jobRank0" />
+                  <input class="form-control" type="hidden" name="jobRankId" id="jobRankId0" />
+                </div>
+                <div class="main-job job-level" style="display: none">
+                  <input class="form-control" type="text" name="jobLevel" id="jobLevel0" />
+                </div>
+                <span class="del-job-level">-</span>
+              </div>
+              <button type="button" class="well-btn w-btn-primary w-noLine-btn add-job-level">
+                <i class="iconfont icon-ptkj-jiahao"></i>
+                添加
+              </button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="directLeaderNamePaths" class="well-form-label control-label">直属上级领导</label>
+            <div class="well-form-control">
+              <input type="hidden" name="directLeaderIds" id="directLeaderIds" />
+              <input id="directLeaderNamePaths" class="modal-input" name="directLeaderNamePaths" type="text" readonly="readonly" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane clearfix" id="org-user-tabs-5">
+        <div class="row">
+          <div class="col-xs-5" style="border-right: 1px solid #e8e8e8; height: 500px; overflow-y: auto; overflow-x: hidden">
+            <div id="user_privilege_result_tree-none-data-placeholder">
+              <div class="well-table-no-data"></div>
+              <div style="text-align: center">没有找到匹配的记录</div>
+            </div>
+            <ul id="user_privilege_result_tree" class="ztree"></ul>
+          </div>
+          <div class="col-xs-7" style="padding: 8px; height: 500px; overflow-y: auto; overflow-x: hidden" id="user_resource_tree">
+            <div class="title-row">
+              <span class="title">权限-产品集成信息</span>
+              <span class="title-role" style="display: none">
+                <span class="horizontal-line-gray"></span>
+                <span
+                  class="iconfont icon-ptkj-quanxianguanli"
+                  style="color: #7994bb; margin-left: 9px; top: 2px; position: relative"
+                ></span>
+                <span class="title-role-name"></span>
+              </span>
+            </div>
+            <div class="title-tip">
+              <span class="iconfont icon-ptkj-tishishuoming"></span>
+              <span class="title-tip-message">点击左侧权限后，显示该权限的产品集成信息</span>
+            </div>
+            <div id="user-role-integrate-info" style="margin-top: 16px">
+              <div id="user-role-integrate-info-search" style="display: none">
+                <div class="input-box">
+                  <input type="text" placeholder="搜索" id="user-role-integrate-info-search-input" />
+                  <i class="iconfont icon-ptkj-sousuochaxun" id="user-role-integrate-info-search-btn"></i>
+                </div>
+              </div>
+              <div>
+                <div id="user-role-integrate-info-none-data-placeholder" style="display: none">
+                  <div class="well-table-no-data"></div>
+                  <div style="text-align: center">没有找到匹配的记录</div>
+                </div>
+                <ul class="ztree" id="user-role-integrate-tree"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane clearfix" id="org-user-tabs-6" style="margin-top: 15px">
+        <div style="border-bottom: 1px solid #e8e8e8; padding-bottom: 8px">
+          <input type="hidden" id="roleSourceId" name="roleSourceId" />
+          <input type="text" id="roleSource" name="roleSource" />
+          <div class="user-search-box">
+            <input id="roleKeyword" class="form-control" type="text" placeholder="名称/编号/ID关键字搜索" style="width: 350px" />
+            <i class="user-search-clear iconfont icon-ptkj-dacha"></i>
+          </div>
+          <button id="roleSearchBtn" type="button" class="well-btn w-btn-primary">查询</button>
+        </div>
+        <div style="margin-top: 8px">
+          <button id="setUserRolesBtn" type="button" class="well-btn w-btn-primary">配置用户角色</button>
+          <i class="iconfont icon-ptkj-tishishuoming text-primary"></i>
+          <span style="font-size: smaller">
+            仅配置来源为【用户】的角色，弹窗中点击确定配置完成后，必须点击保存按钮才会生效（同步更新权限信息、工作台信息）
+          </span>
+        </div>
+        <div id="div_all_role">
+          <table id="all_role_list" style="width: 100%" data-height="350"></table>
+        </div>
+      </div>
+
+      <div role="tabpanel" class="tab-pane clearfix" id="org-user-tabs-7" style="margin-top: 15px">
+        <div class="form-group">
+          <input type="hidden" id="originId" name="originId" />
+          <input type="text" id="originName" name="originName" />
+          <div class="user-search-box">
+            <input id="keyword" class="form-control" type="text" placeholder="关键字搜索，可查系统名称" style="width: 350px" />
+            <i class="user-search-clear iconfont icon-ptkj-dacha"></i>
+          </div>
+          <button id="userSearchBtn" type="button" class="well-btn w-btn-primary">查询</button>
+        </div>
+        <table id="userWorkBenchInfo" data-height="350"></table>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="row" style="background-color: #fafafa; border-top: 1px solid #e8e8e8; margin: 0 -15px">
+  <div class="col-sm-12 text-center" style="margin: 15px">
+    <button type="button" class="well-btn w-btn-primary" id="org_user_btn_save">保存</button>
+  </div>
+</div>

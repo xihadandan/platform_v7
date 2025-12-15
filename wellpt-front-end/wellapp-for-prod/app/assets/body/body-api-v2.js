@@ -1,0 +1,1051 @@
+/**
+ * change logs:
+ * 1、body-api.js第一版，金山已经不支持
+ * 2、wps_sdk升级，jsapi支持国产化的操作系统，且不再依赖jquery和base64
+ * */
+var wpsSupport = {
+  npdebug: null,
+  requireJsName: 'wps-sdk'
+};
+var _auth = window.getCookie && getCookie('_auth');
+var _backendUrl = window.getBackendUrl && getBackendUrl();
+_backendUrl = _backendUrl && _backendUrl.replace(/\/$/, '');
+var getCtx = function getCtx() {
+  return window.ctx || '';
+};
+
+function appendBackendUrl(url) {
+  var orig = window.location.origin + getCtx();
+  if ($.trim(_backendUrl).length > 0) {
+    if (url.indexOf(orig) === 0) {
+      return url.replace(orig, _backendUrl);
+    } else {
+      return _backendUrl + url;
+    }
+  }
+  if (url.indexOf(orig) === 0) {
+    return url;
+  }
+  return orig + url;
+}
+
+function appendBackendJwt(url) {
+  if (_auth) {
+    return url + (url.indexOf('?') > -1 ? '&' : '?') + _auth + '=' + getCookie(_auth);
+  }
+  return url;
+}
+
+function appendBackendParams(url) {
+  return appendBackendUrl(appendBackendJwt(url));
+}
+
+// location.origin polyfill
+if (window.location.origin == null) {
+  window.location.origin =
+    window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+}
+
+/**
+ * wps-api实现
+ *
+ */
+(function (root, wpsOaAssistFactory, wellOfficeFactory) {
+  'use strict';
+  var ocxUrl = getCtx() + '/static/body/npWebOffice.dll';
+  var $attachOCX = $(
+    '<object type="application/weboffice-plugin" codebase="' + ocxUrl + '"  id="attachOCX" width="100%" height="0" ></OBJECT>'
+  );
+  $attachOCX.appendTo(document.body);
+  var attachOCX = $attachOCX[0],
+    welloffice;
+  if (window.SystemParams && SystemParams.getValue) {
+    welloffice = SystemParams.getValue('app.fileupload.welloffice.enable');
+  }
+  if (welloffice == 'true') {
+    return (root.bodyApi = wellOfficeFactory($, attachOCX)); // welloffice开发模式
+  }
+  var disableWellOffice = navigator.mimeTypes['application/weboffice-plugin'] == null && attachOCX.init == null;
+  if (welloffice == 'auto' && false == disableWellOffice) {
+    root.bodyApi = wellOfficeFactory($, attachOCX);
+  } else {
+    // 默认或则不支持weboffice
+    $attachOCX.remove();
+    if (typeof define === 'function' && define.amd) {
+      define(['jquery', 'commons', 'server', wpsSupport.requireJsName], wpsOaAssistFactory);
+    } else if (typeof exports === 'object') {
+      module.exports = wpsOaAssistFactory(require('jquery'), require('commons'), require('server'), require(wpsSupport.requireJsName));
+    } else {
+      root.bodyApi = wpsOaAssistFactory(root.jQuery, root.commons, root.server, root.WpsInvoke);
+    }
+  }
+})(
+  this,
+  function initWpsOaAssist($, commons, server, WpsInvoke) {
+    WpsInvoke = WpsInvoke.WpsInvoke || WpsInvoke;
+    var bodyApi = {};
+    $.extend(bodyApi, {
+      params: {},
+      guid: function () {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+          var r = (Math.random() * 16) | 0,
+            v = c == 'x' ? r : (r & 0x3) | 0x8;
+          return v.toString(16);
+        });
+      },
+      checkWPSProtocol: function (once) {
+        var self = this;
+        var def = $.Deferred();
+
+        function scb() {
+          def.resolveWith(self, ['Support WPS']);
+        }
+
+        function fcb(msg) {
+          def.rejectWith(self, msg ? [msg] : ['您的WPS版本未集成OA助手']);
+        }
+
+        // 启动WPS
+        function startWPSProtocol(uri, successcb, failcb) {
+          jQuery.support.cors = true;
+          window.location.href = uri;
+          setTimeout(function () {
+            checkWPSProtocolByHttp(successcb, failcb, 16);
+          }, 1000);
+        }
+
+        // 安装加载项，如果需要
+        function instanceWPSPluginIfNeed(successcb, failcb) {
+          if (bodyApi.pluginsInstanced) {
+            return successcb();
+          }
+
+          function installSuccess() {
+            bodyApi.pluginsInstanced = true;
+            successcb();
+          }
+
+          $.ajax({
+            type: 'get',
+            dataType: 'xml',
+            url: ctx + '/static/wps/oaassist/jsplugins.xml'
+          })
+            .then(function success(doc) {
+              var $doc = $(doc);
+              $.ajax({
+                type: 'get',
+                timeout: 1000,
+                dataType: 'json',
+                beforeSend: null,
+                crossDomain: true,
+                url: 'http://127.0.0.1:58890/publishlist'
+              })
+                .then(function success(publishlist) {
+                  // console.log("publishlist:", publishlist);
+                  function findPlugin(publishlist, plugin) {
+                    if (false === $.isArray(publishlist)) {
+                      return -1;
+                    }
+                    for (var i = 0; i < publishlist.length; i++) {
+                      var temp = publishlist[i];
+                      if (temp.url === plugin.url) {
+                        return i;
+                      }
+                    }
+                    return -1;
+                  }
+
+                  var deferreds = [],
+                    baseURL = window.location.origin + ctx; // 异步安装
+                  $doc.find('jsplugins>jspluginonline,jsplugins>jsplugin').each(function (idx, element) {
+                    var $element = $(element);
+                    var plugin = {
+                      name: $element.attr('name'),
+                      addonType: $element.attr('type'),
+                      online: $element.is('jspluginonline'),
+                      url: $element.attr('url').replace('${requestURL}', baseURL)
+                    };
+                    // 只比较url，url中包含type和name。覆盖安装
+                    if (findPlugin(publishlist, plugin) < 0) {
+                      deferreds.push(deployPlugins(plugin));
+                    }
+                  });
+                  $.when.apply(this, deferreds).then(installSuccess).fail(failcb);
+                })
+                .fail(function () {
+                  // 404?
+                  // wps不存在接口时，会处于pedding状态，通过超时来判断是否支持publish模式(WPS开发回复没有版本检测接口)
+                  failcb.apply(this, ['publish not support']);
+                });
+            })
+            .fail(failcb);
+
+          function deployPlugins(plugin) {
+            var cmd = $.extend(
+              {
+                cmd: 'enable'
+              },
+              plugin
+            );
+            var xhr = $.ajax({
+              type: 'post',
+              beforeSend: null,
+              crossDomain: true,
+              data: WpsInvoke.encode(JSON.stringify(cmd)),
+              url: 'http://127.0.0.1:58890/deployaddons/runParams',
+              success: function (data) {
+                console.log('deployPlugin success:', plugin);
+              },
+              error: function (xhr, status, error) {
+                console.log('deployPlugin fail:', error);
+              }
+            });
+            return xhr;
+          }
+
+          function checkPlugins(plugin) {
+            return true; // 本地服务器，都返回true
+          }
+        }
+
+        // 检测本地是否支持WPS协议
+        function checkWPSProtocolByHttp(successcb, failcb, i) {
+          var userAgent = navigator.userAgent.toLowerCase();
+          if (userAgent.toLowerCase().indexOf('windows') > -1) {
+            checkWindowsWPSProtocolByHttp(successcb, failcb, i);
+          } else if (userAgent.toLowerCase().indexOf('linux') > -1) {
+            checkLinuxWPSProtocolByHttp(successcb, failcb, i);
+          } else {
+            checkWindowsWPSProtocolByHttp(successcb, failcb, i);
+          }
+        }
+
+        // 检测windows系统是否支持WPS协议
+        function checkWindowsWPSProtocolByHttp(successcb, failcb, i) {
+          $.ajax({
+            type: 'get',
+            url: 'http://127.0.0.1:58890/kso/protocolcheck?protocol=KsoWebStartupWPS',
+            cache: false,
+            async: true,
+            timeout: 1000,
+            dataType: 'json',
+            beforeSend: null,
+            crossDomain: true,
+            success: function (data) {
+              try {
+                if (data.result == 'true') {
+                  instanceWPSPluginIfNeed(successcb, failcb); // successcb();
+                } else {
+                  failcb();
+                }
+              } catch (e) {
+                console.error('checkWPSProtocolByHttp error:', e);
+                failcb();
+              }
+            },
+            error: function (xhr, status, error) {
+              i--;
+              if (i > 0) {
+                checkWPSProtocolByHttp(successcb, failcb, i);
+              } else {
+                failcb();
+              }
+            }
+          });
+        }
+
+        // 检测国产操作系统是否支持WPS协议
+        function checkLinuxWPSProtocolByHttp(successcb, failcb, i) {
+          $.ajax({
+            type: 'get',
+            url: 'http://127.0.0.1:58890/version',
+            cache: false,
+            async: true,
+            timeout: 1000,
+            dataType: 'text',
+            beforeSend: null,
+            crossDomain: true,
+            success: function (data) {
+              try {
+                instanceWPSPluginIfNeed(successcb, failcb); // successcb();
+              } catch (e) {
+                console.error('checkWPSProtocolByHttp error:', e);
+                failcb();
+              }
+            },
+            error: function (xhr, status, error) {
+              i--;
+              if (i > 0) {
+                checkWPSProtocolByHttp(successcb, failcb, i);
+              } else {
+                failcb();
+              }
+            }
+          });
+        }
+
+        // 直接调用AJAX检测，防止弹出打开WPS确认框，提升体验
+        checkWPSProtocolByHttp(
+          scb,
+          once
+            ? fcb
+            : function (msg) {
+              if ('publish not support' == msg) {
+                return fcb.apply(this, arguments);
+              }
+              startWPSProtocol('ksoWPSCloudSvr://start=RelayHttpServer', scb, fcb); // 二层检测,防止手动退出WPS守护进程
+            },
+          1
+        );
+        return def.promise();
+      },
+      getSid: function () {
+        var self = this;
+        var sid = self.sid;
+        if (sid == null || typeof sid === 'undefined') {
+          sid = self.sid = $.Deferred();
+          // 建立webSocket连接
+          if ('WebSocket' in window) {
+            var ctx = getCtx(),
+              wsUrl = null;
+            if ($.trim(_backendUrl).length) {
+              wsUrl = appendBackendJwt(
+                (_backendUrl.indexOf('https://') == 0 ? 'wss://' : 'ws://') +
+                _backendUrl.replace('https://', '').replace('http://', '') +
+                '/newFileFromWPS'
+              );
+            } else {
+              wsUrl = (_backendUrl.indexOf('https://') == 0 ? 'wss://' : 'ws://') + window.location.host + ctx + '/newFileFromWPS';
+            }
+            var transport = (self.transport = new WebSocket(wsUrl));
+            transport.onopen = function (event) {
+              console.log('webSocket连接建立');
+            };
+            transport.onmessage = function (event) {
+              var result = $.parseJSON(event.data);
+              if (sid.state() === 'pending') {
+                // 第一个消息为会话消息
+                sid.resolveWith(self, [result.data]);
+              } else if (result.code === 0 && result.msg) {
+                self.retMessage(result);
+              }
+              // console.log("webSocket返回消息：" + event.data);
+            };
+            transport.onerror = function (event) {
+              if (sid.state() === 'pending') {
+                sid.rejectWith(self, [event]);
+              }
+              console.log('webSocket连接出错');
+            };
+            transport.onclose = function (event) {
+              if (sid.state() === 'pending') {
+                sid.rejectWith(self, [event]);
+              } else {
+                self.sid = null; // 服务器主动关闭时，重新连接
+              }
+              console.log('webSocket连接关闭');
+            };
+
+            setInterval(function () {
+              transport.send('ping');
+            }, 30000);
+          } else {
+            sid.resolveWith(self, [-1]); // 传统模式，"不支持回调"
+          }
+        }
+        return sid.promise();
+      },
+      retMessage: function (result) {
+        var self = this;
+        var params = self.params[result.msg] || {};
+        if (result.success && params.success) {
+          params.success.apply(self, [result]);
+        } else if (result.success === false || params.error) {
+          params.error.apply(self, [result]);
+        }
+        // delete self.params[result.msg]; // 删除回调?多次保存回写
+      }
+    });
+    // hook InvokeAsHttp, InvokeAsHttps(处理参数、会话、回调)
+    (function (bodyApi, WpsInvoke) {
+      function hookWpsInvokeApi(invokeAs, wpsFunction) {
+        return function (clientType, jsApiName, func, info, callback, jsPluginsXml) {
+          var self = this;
+          var args = arguments;
+          self
+            .checkWPSProtocol()
+            .then(function (msg) {
+              // 检测WPS协议
+              self
+                .getSid()
+                .then(function (sid) {
+                  // 建立会话
+                  $.each(info.funcs, function (idx, internalFuncObj) {
+                    var name, params;
+                    for (name in internalFuncObj) {
+                      // 空值处理，不允许传空值
+                      params = internalFuncObj[name] || (internalFuncObj[name] = {});
+                      params.docId = params.docId || self.guid();
+                      self.params[params.docId] = params; // 保存回调
+                      if (params.fileName && params.fileName.indexOf('http') === 0) {
+                        params.fileName += (params.fileName.indexOf('?') > -1 ? '&' : '?') + 'sId=' + sid;
+                        params.fileName = appendBackendParams(params.fileName);
+                      }
+                      // 上传设置会话
+                      if (params.uploadPath && params.uploadPath.indexOf('http') === 0) {
+                        params.uploadPath += (params.uploadPath.indexOf('?') > -1 ? '&' : '?') + 'sId=' + sid;
+                        params.uploadPath += params.uploadPath.indexOf('fileID=') > -1 ? '' : '&fileID=' + params.docId;
+                        params.uploadPath += params.uploadPath.indexOf('bsMode=') > -1 ? '' : '&bsMode=' + params.bsMode || '';
+                        params.uploadPath = appendBackendParams(params.uploadPath);
+                      }
+                      // 套红设置会话
+                      if (params.insertFileUrl && params.insertFileUrl.indexOf('http') === 0) {
+                        params.insertFileUrl = params.insertFileUrl.replace('/repository/file/mongo', '/office/wps');
+                        params.insertFileUrl = params.insertFileUrl + (params.insertFileUrl.indexOf('?') > -1 ? '&' : '?') + 'sId=' + sid;
+                        params.insertFileUrl = appendBackendParams(params.insertFileUrl);
+                      }
+                      var openType = params.openType,
+                        protectTypes = [0, 1, 2, 3];
+                      if (openType && openType.password == null && $.inArray(openType.protectType, protectTypes) > -1) {
+                        // 123456 保护模式需要设置密码
+                        openType.password = '________________';
+                      }
+                    }
+                  });
+                  // console.log(args);
+                  return wpsFunction.apply(this, args); // 发起请求
+                })
+                .fail(function (data) {
+                  alert('WPS会话建立失败');
+                  console.log(data);
+                });
+            })
+            .fail(function (msg) {
+              var confirmMsg;
+              if ('publish not support' === msg) {
+                confirmMsg = '有新版本,请先升级WPS';
+              } else {
+                confirmMsg = '请先安装WPS OA助手';
+              }
+              if (confirm(confirmMsg + ',点击“确认”下载')) {
+                return window.open(
+                  'ftp://wellsoft:anonymous@ftp.well-soft.com/office/wps/setup_CN_2052_11.8.2.8875_Professional_VBA.exe',
+                  '_blank'
+                );
+              }
+            });
+        };
+      }
+
+      $.each(['InvokeAsHttp', 'InvokeAsHttps'], function (idx, name) {
+        bodyApi[name] = hookWpsInvokeApi(name, WpsInvoke[name]);
+      });
+    })(bodyApi, WpsInvoke);
+    // hook jsapi(导出OaAssist的api到bodyApi)
+    (function (bodyApi, WpsInvoke) {
+      function buildJsApi(name, type) {
+        return function (params, funcs) {
+          var funcName = name;
+          var info = {funcs: [{}]};
+          info.funcs[0][funcName] = params;
+          if ($.isArray(funcs) && funcs.length > 0) {
+            info.funcs = info.funcs.concat(funcs);
+          }
+          var callback = function () {
+            console.log('jsapi callback:', arguments);
+          };
+          return bodyApi.InvokeAsHttp(type, getPluginNameByType(type), 'dispatcher', info, callback);
+        };
+      }
+
+      var jsApis = {};
+      jsApis[WpsInvoke.ClientType.et] = ['NewDoc', 'OpenDoc', 'OnlineEditDoc'];
+      jsApis[WpsInvoke.ClientType.wpp] = ['NewDoc', 'OpenDoc', 'OnlineEditDoc'];
+      jsApis[WpsInvoke.ClientType.wps] = [
+        'NewDoc',
+        'OpenDoc',
+        'OnlineEditDoc',
+        'UseTemplate',
+        'InsertRedHead',
+        'ExitWPS',
+        'GetDocStatus',
+        'NewOfficialDocument'
+      ];
+
+      function getPluginNameByType(type) {
+        var pluginName;
+        if (type === WpsInvoke.ClientType.wps) {
+          pluginName = 'WpsOAAssist';
+        } else if (type === WpsInvoke.ClientType.et) {
+          pluginName = 'EtOAAssist';
+        } else if (type === WpsInvoke.ClientType.wpp) {
+          pluginName = 'WppOAAssist';
+        }
+        return pluginName;
+      }
+
+      $.each(jsApis, function (type, funcs) {
+        var apis = (bodyApi[type] = bodyApi[type] || {});
+        $.each(funcs, function (idx, name) {
+          apis[name] = buildJsApi(name, type);
+        });
+      });
+      // 兼容旧jsapi处理
+      bodyApi.newDoc = bodyApi.wps.NewDoc;
+      bodyApi.openDoc = bodyApi.wps.OpenDoc;
+      bodyApi.fillTemplate = bodyApi.wps.UseTemplate;
+      bodyApi.onlineEditDoc = bodyApi.wps.OnlineEditDoc;
+      bodyApi.openET = bodyApi.et.OpenDoc;
+      bodyApi.openWpp = bodyApi.wpp.OpenDoc;
+      bodyApi.insertRedHeadDocFromWeb = function (params, templateURL, replaceBookMark) {
+        params.insertFileUrl = templateURL;
+        params.bkInsertFile = replaceBookMark;
+        return bodyApi.wps.OpenDoc.call(this, params);
+      };
+    })(bodyApi, WpsInvoke);
+    // ofd处理（npapi方式）
+    (function (bodyApi, WpsInvoke) {
+      var winObjs = (wpsSupport.winObjs = {});
+      var getNormal = function getNormal(type) {
+        if (type === 'wpp') {
+          type = 'dps';
+        } else if (type === 'suwell' || type === 'ofd') {
+          type = 'ofd';
+        }
+        return location.origin + ctx + ('/static/wps/newfile.' + type);
+      };
+      var availWidth = window.screen.availWidth - 10;
+      var availHeight = window.screen.availHeight - 30;
+      var winFuture =
+        'width=' + availWidth + ',height=' + availHeight + ',top=0,left=0,toolbar=0,menubar=0,scrollbars=0,resizable=0,location=0,status=0';
+
+      function buildNpApi(name, type) {
+        var type = type || 'wps'; // 默认为wps
+        return function _runParams(params, funcs) {
+          var docId, codes, url, wpsCallback, title;
+          var args = Array.prototype.slice.call(arguments);
+          // 获取WPS窗体
+          var winObj = winObjs[(docId = params.docId || '_blank')];
+
+          function doSendMessage() {
+            return winObj.postMessage(
+              {
+                fName: name,
+                fArgs: JSON.stringify(args)
+              },
+              location.origin
+            );
+          }
+
+          // 文件已近打开，直接发送
+          if (winObj && winObj.postMessage) {
+            return doSendMessage();
+          }
+          winObj = window.open('about:blank', docId, winFuture);
+          // 在WPS实例中注册回调
+          wpsCallback = winObj.wpsCallback = {};
+          wpsCallback.onload = function (event) {
+            // 初始化成功
+            // console.log(event);
+            return doSendMessage(event);
+          };
+          wpsCallback.onerror = function (event) {
+            delete winObjs[docId];
+            return alert('初始化失败');
+          };
+          wpsCallback.onbeforeunload = function (event) {
+            // WPS退出
+            delete winObjs[docId];
+          };
+          // 组织WPS展示HTML的内容
+          codes = [];
+          title = params.newFileName || '新建';
+          url = window.location.origin + getCtx() + '/static/body/np-api.js';
+          codes.push(
+            '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'
+          );
+          // https://developer.mozilla.org/en-US/docs/Web/API/Window/open#Note_on_security_issues_of_the_status_bar_presence
+          codes.push('<html style="width:100%;height:calc(100% - 20px);padding:0px;margin:0px;border-width:0px;">');
+          codes.push('<head>');
+          codes.push('<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />');
+          codes.push('<title>' + title + '</title>');
+          if (type === 'suwell' || type === 'ofd') {
+            url = window.location.origin + getCtx() + '/static/ofd/ofd-api.js';
+            codes.push(
+              '<script type="text/javascript" src="' + window.location.origin + getCtx() + '/static/ofd/suwell_ofdReader.js"></script>'
+            );
+          }
+          codes.push(
+            '<script type="text/javascript" src="' +
+            url +
+            '" onload="wpsCallback.onload(event);" onerror="wpsCallback.onerror(event);"></script>'
+          );
+          codes.push('</head>');
+          if (type === 'suwell' || type === 'ofd') {
+            codes.push('<body id="webwps_id" style="width:100%;height:100%;padding:0px;margin:0px;border-width:0px;">');
+          } else {
+            codes.push('<body style="width:100%;height:100%;padding:0px;margin:0px;border-width:0px;">');
+            codes.push(
+              "<object type='application/x-" +
+              type +
+              "' data-newfile='" +
+              getNormal(type) +
+              "' name='webwps' id='webwps_id' width='100%' height='100%' wpsshieldbutton=\"false\" >"
+            );
+            codes.push("<param name='Enabled' value='1' />");
+            codes.push('<param name="quality" value="high" />');
+            codes.push('<param name="bgcolor" value="#ffffff" />');
+            codes.push('<param name="allowFullScreen" value="true" />');
+            codes.push('</object>');
+          }
+          codes.push('</body>');
+          codes.push('</html>');
+          winObj.document.write(codes.join('\n'));
+          // win.document.write('<h1>HelloWorld</h1>');
+          winObjs[docId] = winObj;
+        };
+      }
+
+      var npApis = {};
+      npApis['ofd'] = ['openOfd'];
+      $.each(npApis, function (type, funcs) {
+        var apis = (bodyApi[type] = bodyApi[type] || {});
+        $.each(funcs, function (idx, name) {
+          apis[name] = buildNpApi(name, type);
+        });
+      });
+      // 兼容旧npapi处理
+      bodyApi.openOfd = bodyApi.ofd.openOfd;
+    })(bodyApi, WpsInvoke);
+    // 导出全局getBodyApi
+    window.getBodyApi = function () {
+      return bodyApi;
+    };
+    return bodyApi;
+  },
+  function initWellOffice($, attachOCX) {
+    var bodyApi = {
+      checkWPSProtocol: function () {
+        var def = $.Deferred();
+        def.rejectWith(this, ['welloffice模式']);
+        return def.promise();
+      }
+    };
+    var ocxeventmap = {};
+
+    function loadFileByFileID(fileID) {
+      var fileResult = null;
+      $.ajax({
+        async: false,
+        url: ctx + '/repository/file/mongo/getNonioFiles',
+        type: 'POST',
+        data: {fileID: fileID},
+        dataType: 'json',
+        success: function (result) {
+          fileResult = result;
+          $.each(result.data || [], function (idx, file) {
+            if (file.filename) {
+              file.fileName = file.filename;
+            } else if (file.fileName) {
+              file.filename = file.fileName;
+            }
+          });
+        },
+        error: function (data) {
+          console.error(JSON.stringify(data));
+        }
+      });
+      return fileResult;
+    }
+
+    function addEvent(obj, name, func) {
+      if (ocxeventmap[name]) {
+        removeEvent(ocxeventmap[name].obj, name, ocxeventmap[name].func);
+        delete ocxeventmap[name];
+      }
+
+      ocxeventmap[name] = {};
+      ocxeventmap[name].func = func;
+      ocxeventmap[name].obj = obj;
+      if (obj.attachEvent) {
+        obj.attachEvent('on' + name, func);
+      } else {
+        obj.addEventListener(name, func, false);
+      }
+    }
+
+    function removeEvent(obj, name, func) {
+      if (obj.detachEvent) {
+        obj.detachEvent('on' + name, func);
+      } else {
+        obj.removeEventListener(name, func, false);
+      }
+    }
+
+    var bInit = false,
+      iFail = 0,
+      localPaths = {},
+      tid;
+    var noSupport = navigator.mimeTypes['application/weboffice-plugin'] == null && attachOCX.init == null;
+    var defaultDownloadLocalPath = 'c:\\temp4attachocx\\';
+    var url = appendBackendParams('/ocxFileupload');
+
+    // var cookie = JSON.stringify(document.cookie);
+    function initOffice() {
+      try {
+        attachOCX.init('admin', url, defaultDownloadLocalPath, '');
+        if (attachOCX.init === undefined) {
+          //FIXME：不知原因的初始化失败
+          //初始化失败
+          console.log('application/weboffice-plugin 初始化失败，重试');
+          var ocxUrl = '/static/body/npWebOffice.dll?t=' + new Date().getTime();
+          $('#attachOCX').remove();
+          var $attachOCX = $(
+            '<OBJECT type="application/weboffice-plugin" codebase="' + ocxUrl + '"  id="attachOCX" width="100%" height="0" ></OBJECT>'
+          );
+          $attachOCX.appendTo(document.body);
+          attachOCX = $attachOCX[0];
+          return initOffice();
+        }
+        return (bInit = true);
+      } catch (ex) {
+        console.log('控件初始化失败', ex);
+        if (
+          noSupport &&
+          confirm(
+            '点击“确定”下载welloffice，安装后，仅在支持的浏览器中可以使用。\n支持浏览器列表：\n1、360浏览器：360极速浏览器（推荐使用）、360安全浏览器\n2、IE浏览器：IE11（32位）\n3、chromium浏览器：版本号小于45，操作系统不支持windows10\n安装注意事项：\n1、安装前，先关闭浏览器，并退出安全防护软件。\n2、将本网站加入到您的信任站点中。\n3、对于IE8浏览器，需要在浏览器上方允许运行脚本。\n4、对于IE8以上版本的IE浏览器，请根据浏览器下方的提示安装控件。'
+          )
+        ) {
+          window.open(location.origin + ctx + '/static/js/pt/js/fileupload/ocx/welloffice.exe', '_blank');
+        }
+        return false;
+      }
+    }
+
+    function wrapperInit(fn) {
+      return function () {
+        if (!bInit && initOffice.apply(this, arguments) === false) {
+          return; // 初始化失败
+        }
+        return fn.apply(this, arguments);
+      };
+    }
+
+    function openFile(options) {
+      var bDown, bNew;
+      var psFileModified = null;
+      var docId = options.docId;
+      var origId = options.origId;
+      var fileExt = options.fileExt;
+      var fileName = options.newFileName;
+      // 未刷新页面，使用已经下载的文件重新打开
+      var localPath = options.localPath || localPaths[docId];
+      if (null == localPath) {
+        localPath = localPaths[docId] = defaultDownloadLocalPath + (origId || docId) + '\\' + new Date().getTime() + '\\' + fileName;
+      }
+      if (attachOCX.isLocalFileExist(localPath)) {
+        bDown = 1;
+      } else if (options.fileName) {
+        psFileModified = new Date().format('yyyy-MM-dd HH:mm:ss');
+        var url = appendBackendUrl(fileServiceURL.downloadOcx + docId);
+        bDown = attachOCX.download(url, psFileModified, localPath, -1, false);
+      } else {
+        bNew = true;
+        psFileModified = new Date().format('yyyy-MM-dd HH:mm:ss');
+        var durl = window.location.origin + getCtx() + '/static/wps/newfile.';
+        var userAgent = navigator.userAgent.toLowerCase();
+        if (userAgent.toLowerCase().indexOf('linux') > -1) {
+          durl = window.location.origin + getCtx() + '/static/wps/wps/newfile.';
+        }
+        if (fileExt == 'xls') {
+          durl += 'et';
+        } else if (fileExt == 'doc') {
+          durl += 'wps';
+        } else if (fileExt == 'ppt') {
+          durl += 'dps';
+        } else if (fileExt == 'ofd') {
+          durl += 'ofd';
+        }
+        bDown = attachOCX.download(durl, psFileModified, localPath, -1, false);
+      }
+      if (!bDown) {
+        console.log('附件下载失败');
+        return;
+      }
+      var openType = options['openType'] || options['_openType'],
+        protectTypes = [0, 1, 2, 3];
+      var isReadonly = !!(openType && protectTypes.indexOf(openType.protectType) > -1);
+      if (!bNew && 1 == attachOCX.isLocalFileOpen(localPath)) {
+        // 编辑，且文件已打开，那就不需要再进行打开的操作了
+        appModal.alert('已打开相同的OA文件，请关闭之前的文件，再次打开。');
+        return;
+      }
+      var bOpen = attachOCX.openLocalFile(localPath, isReadonly === true ? 0 : 1, -1);
+      if (!bOpen || !fileName) {
+        console.log('附件打开失败');
+        return;
+      } else if (isReadonly) {
+        return; // 只读打开
+      }
+      // attachOCX.focusLocalFile(localPath);
+      options.userName && attachOCX.setEditUser(localPath, options.userName);
+      var revisionCtrl = options.revisionCtrl || {};
+      var bOpenRevision = !!revisionCtrl.bOpenRevision;
+      var bShowRevision = !!revisionCtrl.bShowRevision;
+      var bEnabledRevision = !!revisionCtrl.bEnabledRevision;
+      // 先解除保护，在操作
+      if (bEnabledRevision) {
+        attachOCX.setRevisionEnabled(localPath, true);
+      }
+      attachOCX.setRevision(localPath, bOpenRevision, bShowRevision);
+      if (typeof revisionCtrl.showRevisionsMode === 'number') {
+        // JSAPI(WPS)支持showRevisionsMode
+        console.error('welloffice不支持showRevisionsMode');
+        // WPS Office支持，MS Office会奔溃
+        // attachOCX.showRevisionsMode(localPath, revisionCtrl.showRevisionsMode || 1);
+      }
+      if (revisionCtrl.bAcceptRevision) {
+        attachOCX.acceptRevision(localPath);
+      }
+      if (revisionCtrl.bRejectRevision) {
+        attachOCX.rejectRevision(localPath);
+      }
+      // 操作后，保护起来
+      if (false === bEnabledRevision) {
+        attachOCX.setRevisionEnabled(localPath, false);
+      }
+
+      function uploadFile(tipText) {
+        appModal.confirm(tipText || '请确认编辑完成并关闭Office后，点击“确定”上传文件。', function (res) {
+          var bFIleOpen = attachOCX.isLocalFileOpen(localPath);
+          if (res) {
+            needUpload = true;
+            if (needUpload && bFIleOpen) {
+              uploadFile('请先关闭Office！关闭后，点击“确定”上传文件。');
+              return;
+            }
+
+            if (needUpload && !bFIleOpen) {
+              // 上传
+              window.appModal && appModal.showMask();
+              setTimeout(function () {
+                try {
+                  var source = '编辑';
+                  if (typeof options.uploadPath === 'string') {
+                    var reg = new RegExp('(^|&|\\?)source=([^&]*)(&|$)');
+                    var values = options.uploadPath.match(reg);
+                    if (values != null && values[2]) {
+                      source = decodeURIComponent(values[2]);
+                    }
+                  }
+                  var fileParams = {
+                    source: source,
+                    fileId: docId,
+                    bsMode: options.bsMode,
+                    fileName: encodeURI(fileName)
+                  };
+                  var msg = attachOCX.uploadFile(localPath, 'fileParams://' + JSON.stringify(fileParams), 1000000000, false);
+                  // console.log(msg);// {success:1, fileID:"aed5db9b20194c62b1dbad2cf623353c"}
+                  if (msg && msg.indexOf('{') > -1) {
+                    msg = eval('(' + msg + ')');
+                  }
+                  var fileResult = null;
+                  if (msg.fileID && (fileResult = loadFileByFileID(msg.fileID))) {
+                    delete localPaths[docId]; // bug#43911
+                    $.isFunction(options.success) && options.success(fileResult);
+                    // attachOCX.deleteLocalFile(localPath);// 支持本地历史，不删除
+                  } else {
+                    $.isFunction(options.error) && options.error('文件上传失败');
+                  }
+                } catch (ex) {
+                  console.error(ex);
+                  $.isFunction(options.error) && options.error(ex.message || '附件保存失败');
+                } finally {
+                  window.appModal && appModal.hideMask();
+                }
+              }, 0);
+            } else if (bNew && !bFIleOpen) {
+              // 新增的，就删除掉
+              attachOCX.deleteLocalFile(localPath);
+            }
+          }
+        });
+      }
+
+      // 异步执行（Office获取焦点）
+      setTimeout(uploadFile, 2000);
+    }
+
+    function pasteFile(options) {
+      var paths = attachOCX.getLocalCopyFiles(),
+        localFiles = [];
+      // console.log(paths);// C:\Users\admin\Desktop\正文.doc|C:\Users\admin\Desktop\谷物.doc|
+      if ($.trim(paths).length <= 0) {
+        alert('没有粘贴附件，请先复制附件');
+        return;
+      }
+      paths = paths.split('|');
+      for (var i = 0; i < paths.length; i++) {
+        var path = $.trim(paths[i]);
+        if (path.length <= 0) {
+          continue;
+        }
+        var fileName = path.substr(path.lastIndexOf('\\') + 1);
+        if (fileName.length > 80) {
+          alert('附件文件名称超长(不得超过80个字)[' + fileName + ']');
+          return;
+        } else if (/[\/\\:\*\?"%<>\|\n]/gi.test(fileName)) {
+          alert('文件名不得含有字符:"/ \\ : * ? " % < > |"及"换行符"');
+          return;
+        } else if (attachOCX.isLocalFileOpen(path)) {
+          alert('文件[' + fileName + ']占用，请先解除占用后重试');
+          return;
+        }
+        localFiles.push({
+          path: path,
+          name: fileName,
+          size: attachOCX.getLocalFileSize(path)
+        });
+      }
+      if (options.validate && false === options.validate(localFiles)) {
+        return;
+      }
+      for (var i = 0; i < localFiles.length; i++) {
+        var fileObj = localFiles[i];
+        var path = fileObj.path;
+        var fileParams = {
+          source: '粘贴附件',
+          fileName: encodeURI(fileObj.name)
+        };
+        var msg = attachOCX.uploadFile(path, 'fileParams://' + JSON.stringify(fileParams), 1000000000, false);
+        // console.log(msg);// {success:1, fileID:"aed5db9b20194c62b1dbad2cf623353c"}
+        if (msg && msg.indexOf('{') > -1) {
+          msg = eval('(' + msg + ')');
+        }
+        var fileResult = null;
+        if (msg.fileID && (fileResult = loadFileByFileID(msg.fileID))) {
+          $.isFunction(options.success) && options.success(fileResult);
+        } else {
+          $.isFunction(options.error) && options.error('文件[' + fileObj.name + ']上传失败');
+        }
+      }
+    }
+
+    function saveAsFile(options) {
+      var $attachOCX = $(attachOCX);
+
+      function downloadFromRemoteForSaveAs(localPath, options) {
+        var _this = this;
+        // 删除临时文件
+        var localPathTmp = localPath + '.tmp';
+        if (attachOCX.isLocalFileExist(localPathTmp)) {
+          attachOCX.deleteLocalFile(localPathTmp);
+        }
+        // 提示覆盖
+        if (attachOCX.isLocalFileExist(localPath)) {
+          // 用户选择下载时，需要提示已存在
+          if (!confirm(options.filename + '已存在,是否覆盖?')) {
+            return false;
+          }
+        }
+        // 关闭打开文件
+        if (attachOCX.isLocalFileOpen(localPath)) {
+          attachOCX.closeLocalFile(localPath, false);
+        }
+        // 异步下载, 通过监听事件来回调通知调用者
+        window.appModal && appModal.showMask('正在下载中', 'body', 86400 * 1000);
+        addEvent(attachOCX, 'downloadFile', function (msg) {
+          // console.log('下载完成---->结果为:' + msg);
+          var isDownloadOk = msg != '下载成功' ? false : true;
+          window.appModal && appModal.hideMask();
+          try {
+            if (isDownloadOk) {
+              options.success && options.success(msg);
+            } else {
+              options.error && options.error(msg);
+            }
+          } finally {
+            options.complete && options.complete(isDownloadOk, msg);
+          }
+        });
+        var psFileModified = new Date().format('yyyy-MM-dd HH:mm:ss');
+        options.url = appendBackendUrl(options.url);
+        attachOCX.downloadFile(options.url, psFileModified, localPath, -1, true);
+      }
+
+      addEvent(attachOCX, 'selectLocalSavePath', function (path) {
+        if ($.trim(path).length == 0) {
+          return;
+        }
+        downloadFromRemoteForSaveAs(path, options);
+      });
+      attachOCX.selectLocalSavePath(options.filename);
+    }
+
+    function queryLocalFileHistory(options) {
+      var result = [],
+        docId,
+        subDirs;
+      if ((docId = options.origId || options.docId)) {
+        var localFolder = defaultDownloadLocalPath + docId;
+        var subDirStr = attachOCX.getLocalDir(localFolder);
+        if (subDirStr && (subDirs = subDirStr.split('|')).length) {
+          for (var i = 0; i < subDirs.length; i++) {
+            var fileName = attachOCX.getLocalDir(subDirs[i]);
+            if ($.trim(fileName).length > 0) {
+              var fileName = fileName.split('|')[0];
+              if (typeof fileName === 'string' && fileName.substr(fileName.lastIndexOf('.')) === '.tmp') {
+                continue;
+              }
+              var filePath = subDirs[i] + fileName;
+              var timestampFolder = subDirs[i].replace(localFolder, '').replace(/\\/g, '');
+              var timestamp = new Date(parseInt(timestampFolder, 10));
+              result.push({
+                source: 'local',
+                url: filePath,
+                name: fileName,
+                size: attachOCX.getLocalFileSize(filePath),
+                timestamp: timestamp.format ? timestamp.format('yyyy-MM-dd HH:mm:ss') : timestamp
+              });
+            }
+          }
+        }
+      }
+      result.sort(function (a, b) {
+        return a.timestamp > b.timestamp ? -1 : 1;
+      });
+      options.success && options.success(result);
+      return result;
+    }
+
+    var wrapperOpenFile = wrapperInit(openFile);
+    bodyApi.openET = function (options) {
+      options.fileExt = 'xls';
+      return wrapperOpenFile.call(this, options);
+    };
+    bodyApi.openDoc = function (options) {
+      options.fileExt = 'doc';
+      return wrapperOpenFile.call(this, options);
+    };
+    bodyApi.openWpp = function (options) {
+      options.fileExt = 'ppt';
+      return wrapperOpenFile.call(this, options);
+    };
+    bodyApi.openOfd = function (options) {
+      options.fileExt = 'ofd';
+      return wrapperOpenFile.call(this, options);
+    };
+    bodyApi.pasteFile = wrapperInit(pasteFile);
+    bodyApi.saveAsFile = wrapperInit(saveAsFile);
+    bodyApi.queryLocalFileHistory = wrapperInit(queryLocalFileHistory);
+    // 导出全局getBodyApi
+    window.getWpsApi = function () {
+      console.error('getWpsApi废弃，请使用getBodyApi');
+      return bodyApi;
+    };
+    window.getBodyApi = function () {
+      return bodyApi;
+    };
+    return bodyApi;
+  }
+);

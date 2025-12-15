@@ -1,0 +1,14 @@
+{
+  "js": {
+    "DmsNewDocumentDevelopment": {
+      "path": "js/dms/dev-demo/DmsNewDocumentDevelopment",
+      "name": "DMS_新建文档二开_Demo",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "DmsFeedbackDevelopment": {
+      "path": "js/dms/dev-demo/DmsFeedbackDevelopment",
+      "name": "DMS_反馈弹窗二开_Demo",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    }
+  }
+}

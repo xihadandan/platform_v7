@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!-- 通过单位ID获取组织的历史版本 -->
+    <sql-query name="queryHistoryVersionOfOrg">
+        <![CDATA[
+		select * from MULTI_ORG_VERSION
+		where system_unit_id = :systemUnitId and version < :version and function_type = :functionType
+		and root_version_id = :rootVersionId
+		order by version desc
+	]]>
+    </sql-query>
+
+    <!-- 获取每个组织的最大版本 -->
+    <sql-query name="queryMaxVersionOfAllOrg">
+        <![CDATA[ select * from(
+			select r.*, row_number() over( partition by r.system_unit_id, r.function_type, r.root_version_id order by r.version desc ) rn
+			from MULTI_ORG_VERSION r
+		) a where rn = 1
+		]]>
+    </sql-query>
+
+    <!-- 数据仓库接口 -->
+    <sql-query name="queryVersionOfOrgTotree">
+        <![CDATA[
+			select * from MULTI_ORG_VERSION
+				where system_unit_id = :systemUnitId
+		]]>
+    </sql-query>
+
+
+    <!-- 获取所有单位的当前使用版本
+    <sql-query name="queryCurrentActiveVersionListOfAllUnit">
+        select * from(
+            select r.*, row_number() over( partition by r.system_unit_id, r.function_type order by r.version desc ) rn
+            from MULTI_ORG_VERSION r where status = 1
+
+        ) a where rn = 1
+    </sql-query>
+    -->
+
+    <!-- 获取指定单位的当前使用版本
+    <sql-query name="queryCurrentActiveVersionListOfSystemUnit">
+        select * from(
+            select r.*, row_number() over( partition by r.system_unit_id, r.function_type order by r.version desc ) rn
+            from MULTI_ORG_VERSION r where status = 1 and r.system_unit_id = :systemUnitId
+
+        ) a where rn = 1
+    </sql-query>
+    -->
+
+
+    <sql-query name="getMaxVersionOfOrgBySystemUnitIdAndRootVersionId">
+        <![CDATA[
+		select * from multi_org_version  where system_unit_id = :systemUnitId and root_version_id = :rootVersionId
+		order by version desc
+	]]>
+    </sql-query>
+
+    <sql-query name="queryCurrentActiveVersionListOfUnitAndRootVersionId">
+        <![CDATA[
+		select * from multi_org_version  where system_unit_id = :systemUnitId and root_version_id = :rootVersionId
+		and status = 1
+		order by version desc
+	]]>
+    </sql-query>
+
+</hibernate-mapping>

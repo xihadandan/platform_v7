@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="listEventCallBackByConditions">
+        <![CDATA[
+			SELECT
+				*
+			FROM
+				PT_T_EVENT_CALL_BACK t
+			WHERE
+				t.STATUS = :status
+			ORDER BY
+				t.CREATE_TIME
+		]]>
+    </sql-query>
+
+    <sql-query name="getWorkRecordByPage">
+        <![CDATA[
+			from WorkRecord t where t.recVer < 16 and t.recordStatus in (1,2,3,4) order by t.createTime asc
+		]]>
+    </sql-query>
+
+</hibernate-mapping>

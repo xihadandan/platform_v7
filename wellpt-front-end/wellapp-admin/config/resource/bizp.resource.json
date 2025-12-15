@@ -1,0 +1,41 @@
+{
+  "js": {
+    "Raphael": {
+      "path": "/bizp/raphael/raphael",
+      "name": "Raphael绘图工具"
+    },
+    "BizpProcessDesigner": {
+      "path": "/bizp/BizpProcessDesigner",
+      "name": "业务流程设计器",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "Raphael"
+      ]
+    }
+  },
+  "template": {
+    "bizp-designer-process-property": {
+      "path": "/bizp/tpl/bizp-designer-process-property.html",
+      "name": "业务流程设计器_过程属性"
+    },
+    "bizp-designer-task-property": {
+      "path": "/bizp/tpl/bizp-designer-task-property.html",
+      "name": "业务流程设计器_环节属性"
+    },
+    "bizp-designer-flow-property": {
+      "path": "/bizp/tpl/bizp-designer-flow-property.html",
+      "name": "业务流程设计器_流程属性"
+    },
+    "bizp-designer-connection-property": {
+      "path": "/bizp/tpl/bizp-designer-connection-property.html",
+      "name": "业务流程设计器_连接属性"
+    }
+  },
+  "css": {
+    "BizpProcessDesigner": {
+      "path": "/bizp/bizp_process_designer.css",
+      "name": "业务流程设计器样式",
+      "order": 302
+    }
+  }
+}

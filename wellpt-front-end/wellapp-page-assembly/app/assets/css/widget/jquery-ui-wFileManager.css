@@ -1,0 +1,440 @@
+/* FILE MANAGER */
+.ui-wFileManager {
+	height: 100%;
+}
+
+.file-manager-toolbar .columns-left {
+	margin-right: 5px;
+}
+
+.file-manager-toolbar .columns-right {
+	margin-left: 5px;
+}
+
+.file-manager-toolbar .columns label {
+	display: block;
+	padding: 3px 20px;
+	clear: both;
+	font-weight: normal;
+	line-height: 1.428571429;
+}
+
+.file-manager-toolbar .bs-bars, .file-manager-toolbar .search, .file-manager-toolbar .columns {
+	position: relative;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	line-height: 34px;
+}
+
+.file-manager-toolbar .dropdown-menu {
+	text-align: left;
+	max-height: 300px;
+	overflow: auto;
+}
+
+.file-manager-toolbar .btn-group>.btn-group {
+	display: inline-block;
+	margin-left: -1px !important;
+}
+
+.file-manager-toolbar .btn-group>.btn-group>.btn {
+	border-radius: 0;
+}
+
+.file-manager-toolbar .btn-group>.btn {
+	margin: 0 5px;
+	border-radius: 4px !important;
+}
+/* .file-manager-toolbar .btn-group>.btn-group:first-child>.btn {
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.file-manager-toolbar .btn-group>.btn-group:last-child>.btn {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+} */
+.file-manager-toolbar .btn-query>i, .file-manager-toolbar .btn-reset>i {
+	margin-right: 5px;
+	vertical-align: -1px;
+}
+
+.folder-tree-container {
+	width: 265px;
+	overflow-y: auto;
+	height: 100%;
+}
+.file-manager-container .form-inline{
+	background: #F6F6F6;
+	padding: 15px 0;
+	margin-bottom: 25px;
+}
+.file-manager-container .fm-checkbox {
+	margin-left: 15px;
+}
+.file-boxes{
+	padding-bottom: 40px;
+}
+.file-box {
+	float: left;
+	width: 130px;
+	height: 130px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	padding-top: 28px;
+	position: relative;
+	transition:  all 0.3s;
+}
+
+.file-box-hover{
+	background: rgba(72,140,238,0.05);
+}
+
+.file-manager h5 {
+	text-transform: uppercase;
+}
+
+.file-manager {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	position: relative;
+}
+
+.file-manager-nav, .file-manager-view {
+	height: 100%;
+	overflow-y: auto;
+	background: #fff;
+}
+.file-manager-view .file-manager-toolbar{
+	padding:10px 0;
+}
+
+.file-manager-nav {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 250px;
+	overflow: hidden;
+}
+
+.file-manager-view {
+	margin-left: 250px;
+	padding: 0 15px;
+}
+
+.folder-list li a {
+	color: #666666;
+	display: block;
+	padding: 5px 0;
+}
+
+.folder-list li {
+	border-bottom: 1px solid #e7eaec;
+	display: block;
+}
+
+.folder-list li i {
+	margin-right: 8px;
+	color: #3d4d5d;
+}
+
+.category-list li a {
+	color: #666666;
+	display: block;
+	padding: 5px 0;
+}
+
+.category-list li {
+	display: block;
+}
+
+.category-list li i {
+	margin-right: 8px;
+	color: #3d4d5d;
+}
+
+.category-list li a .text-navy {
+	color: #1ab394;
+}
+
+.category-list li a .text-primary {
+	color: #1c84c6;
+}
+
+.category-list li a .text-info {
+	color: #23c6c8;
+}
+
+.category-list li a .text-danger {
+	color: #EF5352;
+}
+
+.category-list li a .text-warning {
+	color: #F8AC59;
+}
+
+.file-manager h5.tag-title {
+	margin-top: 20px;
+}
+
+.tag-list li {
+	float: left;
+}
+
+.tag-list li a {
+	font-size: 10px;
+	background-color: #f3f3f4;
+	padding: 5px 12px;
+	color: inherit;
+	border-radius: 2px;
+	border: 1px solid #e7eaec;
+	margin-right: 5px;
+	margin-top: 5px;
+	display: block;
+}
+
+.file {
+	padding: 0;
+	position: relative;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+
+.file-manager .hr-line-dashed {
+	margin: 15px 0;
+}
+
+.file .icon, .file .image {
+	height: 100px;
+	overflow: hidden;
+}
+
+.file .icon {
+	text-align: center;
+}
+
+.file .icon .thumbnail {
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+	margin: 10px 7.5px;
+	float: left;
+}
+
+.file-control {
+	color: inherit;
+	font-size: 11px;
+	margin-right: 10px;
+}
+
+.file-control.active {
+	text-decoration: underline;
+}
+
+.file .icon i {
+	font-size: 50px;
+	color: #069dd5;
+	line-height: 50px;
+}
+.file .icon i.folder-color{
+	color:#F1B755;
+}
+.file .icon i.excel-color{
+	color:#207245;
+}
+.file .icon i.word-color{
+	color:#2A5699;
+}
+.file .icon i.ppt-color{
+	color:#D24625;
+}
+.file .icon i.other-color{
+	color:#5D80BB;
+}
+.file .icon i.pdf-color{
+	color:#F06966;
+}
+.file .file-information {
+	width: 100%;
+	text-align: center;
+	margin-top: 10px;
+	font-size: 14px;
+	color:#666;
+}
+
+.file .file-information .file-name {
+	line-height: 18px;
+	margin: 0;
+	max-width: 100px;
+	vertical-align: middle;
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	word-break: break-all;
+}
+
+.file .file-information p.file-type, .file .file-information p.creat-time {
+	color: #999;
+}
+
+.file-name small {
+	color: #676a6c;
+}
+
+.file .file-name-editable {
+	height: 40px;
+	margin-top: -45px;
+}
+
+.file .file-name-editable input {
+	width: 100px;
+}
+
+.file .file-checkbox {
+	position: absolute;
+	top: -20px;
+	left: -4px;
+}
+.fm-checkbox input[type="checkbox"]{
+	display: none;
+}
+.fm-checkbox input[type="checkbox"] + label:before,
+.file .file-checkbox input[type="checkbox"] + label:before{
+	margin-right: 5px;
+	font-weight: normal;
+	font-size: 14px;
+	font-family: "iconfont" !important;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.fm-checkbox input[type="checkbox"]:checked + label:before,
+.file .file-checkbox input[type="checkbox"]:checked + label:before{
+	content:'\e8de';
+	color:#488CEE;
+}
+.fm-checkbox input[type="checkbox"] + label:before,
+.file .file-checkbox input[type="checkbox"] + label:before{
+	content:'\e8f2';
+	color:#999;
+}
+.file-box .popover {
+	display: none;
+	top: -24px;
+	left: -15px;
+	width:400px;
+	transform: translateY(-100%);
+	transition:  all 0.3s;
+}
+.file-box .popover.showPopover {
+	display: block;
+	opacity: 1;
+	width: 400px;
+	transition:  all 0.3s;
+}
+
+.file-box .popover .arrow {
+	position: absolute;
+	left: 40px;
+	bottom: -9px;
+	border-left: 8px transparent solid;
+	border-right: 8px transparent solid;
+	border-top: 10px solid #fff;
+}
+
+.file-box .popover p span.file-name{
+	color:#666;
+}
+.file-box .popover p{
+	color:#333;
+	font-size: 14px;
+	line-height: 20px;
+	margin: 0 0 8px;
+}
+.file-box .popover p span{
+	color:#999;
+	word-break: break-all;
+	width:calc(100% - 72px);
+}
+.file-box .popover p.file-name span{
+	color:#666;
+	display: inline-block;
+	vertical-align: top;
+}
+a.compose-mail {
+	padding: 8px 10px;
+}
+
+.mail-search {
+	max-width: 300px;
+}
+
+.modal-dialog  .folder-tree-container {
+	height: 200px;
+	overflow: auto;
+	width: 100%;
+}
+
+.folder-tree-container .folder-tree {
+	margin-right: 0px;
+}
+
+.folder-tree-container .folder-search-bar {
+	margin-right: 5px;
+	margin-left: 5px;
+}
+.folder-tree-container .no-records-found {
+	margin-left: 5px;
+}
+/* 新建标签 */
+.modal-dialog .tag-dialog .minicolors {
+	top: 6px;
+	left: 3px;
+}
+
+.file-box .dms-file-tags {
+	display: inline-block;
+}
+
+.dms-file-tags .dms-tag {
+	color: #fff;
+	vertical-align: top;
+	margin-left: 5px;
+	border-radius: 3px 0 0 3px;
+	width: 37px;
+	height: 20px;
+	line-height: 20px;
+	display: inline-block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.file-manager-view .folder-fold{
+	position: absolute;
+	top:300px;
+	left:250px;
+	width:12px;
+	height:40px;
+	line-height:40px;
+	text-align: center;
+	border-radius: 0 12px 12px 0;
+	background: #ddd;
+	color:#333;
+	transition: all 0.2s;
+	cursor: pointer;
+}
+.file-manager-view .folder-fold.foldUp{
+	left:0px;
+}
+.file-manager-view .folder-fold:hover{
+	background: #ccc;
+	color:#666;
+}
+.file-manager-view .folder-fold i{
+	font-size: 10px;
+}

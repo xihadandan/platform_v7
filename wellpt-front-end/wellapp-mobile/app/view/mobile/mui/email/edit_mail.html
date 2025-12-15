@@ -1,0 +1,83 @@
+<div class="mail-wrapper">
+  <section>
+    <form class="mui-input-group" id="webmail_form">
+      <input id="mailboxUuid" name="mailboxUuid" value="" type="hidden" />
+      <input id="replyToUserName" name="replyToUserName" value="" type="hidden" />
+      <input id="replyToMailAddress" name="replyToMailAddress" value="" type="hidden" />
+      <input id="transfer" name="transfer" value="" type="hidden" />
+      <input id="reply" name="reply" value="" type="hidden" />
+      <input id="replyAll" name="replyAll" value="" type="hidden" />
+      <div class="mui-input-row">
+        <label for="toUserName">收件人</label>
+        <input
+          type="text"
+          class="mui-input-clear"
+          id="toUserName"
+          name="toUserName"
+          placeholder="请输入收件人邮箱"
+          value-field="toMailAddress"
+          label-field="toUserName"
+          title="添加收件人"
+          readonly="readonly"
+        />
+        <input type="hidden" class="mui-input-clear" id="toMailAddress" name="toMailAddress" />
+      </div>
+      <div class="mui-input-row">
+        <label for="ccUserName">抄送</label>
+        <input
+          type="text"
+          class="mui-input-clear"
+          id="ccUserName"
+          name="ccUserName"
+          placeholder="请输入抄送人邮箱"
+          value-field="ccMailAddress"
+          label-field="ccUserName"
+          title="添加抄送人"
+          readonly="readonly"
+        />
+        <input type="hidden" class="mui-input-clear" id="ccMailAddress" name="ccMailAddress" />
+      </div>
+      <div class="mui-input-row">
+        <label for="bccUserName">密送</label>
+        <input
+          type="text"
+          class="mui-input-clear"
+          id="bccUserName"
+          name="bccUserName"
+          placeholder="请输入密送人邮箱"
+          value-field="ccMailAddress"
+          label-field="bccUserName"
+          title="添加密送人"
+          readonly="readonly"
+        />
+        <input type="hidden" class="mui-input-clear" id="bccMailAddress" name="bccMailAddress" />
+      </div>
+      <div class="mui-input-row">
+        <label>主题</label>
+        <input type="text" id="subject" name="subject" class="mui-input-clear" placeholder="请输入主题" />
+      </div>
+      <div class="mui-textarea-row" style="padding: 0px 15px">
+        <div
+          id="content"
+          name="content"
+          contenteditable="true"
+          style="min-height: 280px; border: 2px dashed #ccc; background: #f1f1f1"
+          placeholder="请输入邮件内容"
+        ></div>
+      </div>
+      <div class="mui-input-row" style="display: none">
+        <label>发件人</label>
+        <select id="fromMailAddress" name="fromMailAddress" class="mui-input-clear"></select>
+      </div>
+    </form>
+    <button class="fileUpload-btn">
+      <span class="mui-icon mui-icon-paperclip"></span>
+      <span class="file-num"></span>
+      <input type="file" id="upload-input" />
+    </button>
+    <div class="file-list-wrapper">
+      <p>附件</p>
+      <ul class="file-list mui-table-view"></ul>
+    </div>
+  </section>
+</div>

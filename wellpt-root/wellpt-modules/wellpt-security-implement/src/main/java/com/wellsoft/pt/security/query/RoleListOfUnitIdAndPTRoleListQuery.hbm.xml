@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="queryRoleList">
+        <![CDATA[
+        from Role r where r.systemUnitId = :unitId and r.systemDef = 0
+        <if appIds?? && (appIds?size > 0)>
+            and r.appId in (:appIds)
+        </if>
+        order by r.systemUnitId , r.name asc
+    ]]>
+    </sql-query>
+</hibernate-mapping>

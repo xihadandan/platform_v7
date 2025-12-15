@@ -1,0 +1,4 @@
+1、jquery.i18n.properties.js支持amd模块化
+2、添加getMessage方法
+3、默认参数mode的值由vars改为map
+4、默认参数cache的值由false改为true

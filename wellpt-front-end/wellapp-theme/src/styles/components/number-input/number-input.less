@@ -1,0 +1,99 @@
+input[type='number'] {
+  -moz-appearance: textfield;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.well-number-input {
+  display: inline-block;
+
+  .input-group-addon {
+    &.minus,
+    &.plus {
+      position: relative;
+      color: @text-color-light;
+      border: @border-default-dark;
+      display: inline-block;
+      height: @number-input-height;
+      line-height: @number-input-height;
+      padding: 0;
+
+      &:hover {
+        color: @text-color-primary;
+        border-color: @border-color-primary;
+        box-shadow: @shadow-active-default;
+      }
+
+      &.disabled {
+        color: @disabled-text-color;
+        background: @background-light;
+        border-color: @border-color-dark;
+        box-shadow: 0px 0px 1px 0px @border-color-dark;
+        cursor: not-allowed !important;
+      }
+    }
+
+    &.minus {
+      border-right-color: transparent;
+
+      &.disabled {
+        border-right: none;
+      }
+    }
+
+    &.plus {
+      border-left-color: transparent;
+
+      &.disabled {
+        border-right: none;
+      }
+    }
+  }
+
+  .well-number-input-control {
+    .size(100% @number-input-height);
+    position: relative;
+    display: inline-block;
+    border: @border-default-dark;
+    vertical-align: middle;
+    border-radius: @border-radius-base;
+
+    &:hover {
+      border: @border-default-primary;
+      box-shadow: @shadow-active-default;
+    }
+
+    &.rightNoRadius {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      width: calc(100% - @number-input-height);
+    }
+
+    &.leftNoRadius {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      width: calc(100% - @number-input-height);
+    }
+
+    &.rightNoRadius.leftNoRadius {
+      width: calc(100% - (@number-input-height * 2));
+    }
+  }
+
+  .form-control {
+    border: none;
+    z-index: 0;
+    border-radius: @border-radius-base !important;
+    outline: none !important;
+
+    &:hover,
+    &:focus {
+      border: none;
+      outline: none !important;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.module-assemble-center {
+  >.ant-layout>.ant-layout-content {
+    padding: 15px;
+    background-color: #f0f2f5;
+  }
+
+  .layout-content-scroll {
+    height: e('calc(100vh - 30px)');
+
+    .ant-list {
+      // padding: 0 15px;
+    }
+  }
+
+  >.ant-layout-has-sider {
+    >.left-sider {
+      >.ant-layout-sider-children {
+
+        >.ant-menu-root {
+          padding: var(--w-padding-2xs);
+        }
+      }
+    }
+  }
+}

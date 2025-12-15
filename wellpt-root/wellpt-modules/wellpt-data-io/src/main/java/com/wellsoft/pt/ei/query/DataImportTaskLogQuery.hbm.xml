@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="importChildCount">
+        <![CDATA[
+		select log.data_child_type   as name,
+		       count(1) as count
+		  from DATA_IMPORT_TASK_LOG log, DATA_IMPORT_TASK task
+		  where log.task_uuid =:taskUuid
+		    <if isNotBlank(isRepeat)>
+			    and log.is_repeat = :isRepeat
+			</if>
+			<if isNotBlank(importStatus)>
+			and log.import_status = :importStatus
+			</if>
+			<if isNotBlank(import)>
+			and (
+			    ((log.is_repeat is null or log.is_repeat != 1) and log.import_status = 1)
+			    or
+			    (log.is_repeat = 1 and log.import_status = 1 and (
+			        select repeat_strategy from data_import_record where uuid = (
+			            select record_uuid from data_import_task where uuid = :taskUuid
+			        )
+			    ) = 1)
+			)
+			</if>
+		  and log.task_uuid = task.uuid
+          and log.import_time >= task.reimport_time
+		  group by log.data_child_type
+	]]>
+    </sql-query>
+</hibernate-mapping>

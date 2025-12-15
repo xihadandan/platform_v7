@@ -1,0 +1,56 @@
+<form class="form-widget" id="index_set_form" style="margin-top: 15px">
+    <div class="well-form form-horizontal">
+        <div class="form-group">
+            <label for="name" class="well-form-label control-label required">数据类型名称</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="name" name="name" value="流程">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="titleExps" class="well-form-label control-label required">索引标题</label>
+            <div class="well-form-control">
+                <div id="titleExps"  style="display: inline-block;max-width: calc(100% - 85px);word-break: break-all;">${流程标题}${流程名称}${发起人姓名}</div>
+                <div class="well-btn w-btn-primary w-noLine-btn indexSetBtn">设置</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="contentExps" class="well-form-label control-label required">索引摘要</label>
+            <div class="well-form-control">
+                <div id="contentExps" style="display: inline-block;max-width: calc(100% - 85px);word-break: break-all;">${流程标题}${流程名称}${流程ID}${流程编号}${发起人姓名}${发起人所在部门名称}</div>
+                <div class="well-btn w-btn-primary w-noLine-btn indexSetBtn">设置</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="creatorExps" class="well-form-label control-label required">创建人</label>
+            <div class="well-form-control">
+                <div id="creatorExps" style="display: inline-block;max-width: calc(100% - 85px);word-break: break-all;">${发起人姓名}</div>
+                <div class="well-btn w-btn-primary w-noLine-btn indexSetBtn">设置</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="createTimeField" class="well-form-label control-label required">创建时间</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="createTimeField" name="createTimeField">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="modifyTimeField" class="well-form-label control-label required">修改时间</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="modifyTimeField" name="modifyTimeField">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="url" class="well-form-label control-label required">文档链接</label>
+            <div class="well-form-control">
+                <textarea type="text" class="form-control" id="url" name="url" rows="5" placeholder="请输入内容"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin:30px 0;">
+        <div class="col-sm-12 text-center">
+            <button type="button" class="well-btn w-btn-primary" id="indexSetSave">保存</button>
+        </div>
+    </div>
+    </div>
+</form>
+

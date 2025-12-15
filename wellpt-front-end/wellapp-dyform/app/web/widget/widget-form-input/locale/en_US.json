@@ -1,0 +1,9 @@
+{
+  "WidgetFormInput": {
+    "validateMessage": {
+      "required": "This field is required",
+      "dataFormateError": "Data format is incorrect",
+      "dataExistError": "Data already exists"
+    }
+  }
+}

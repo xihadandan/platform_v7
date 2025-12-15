@@ -1,0 +1,14 @@
+{
+  "WidgetLayout": {
+    "home": "บ้าน",
+    "more": "เพิ่มเติม",
+    "expand": "ขยาย",
+    "collapse": "พับเก็บ",
+    "closeLeftTabs": "ปิดแท็บด้านซ้าย",
+    "closeRightTabs": "ปิดแท็บด้านขวา",
+    "refresh": "รีเฟรช",
+    "close": "ปิดแท็บ",
+    "closeOtherTabs": "ปิดแท็บอื่นๆ",
+    "closeAllTabs": "ปิดแท็บทั้งหมด"
+  }
+}

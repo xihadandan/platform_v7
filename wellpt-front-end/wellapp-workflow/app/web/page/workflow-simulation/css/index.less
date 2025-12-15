@@ -1,0 +1,205 @@
+.workflow-simulation {
+  background-color: var(--w-primary-color);
+
+  .workflow-simulation-header {
+    height: 52px;
+    line-height: 52px;
+    padding: 0 12px;
+    background-color: var(--w-primary-color);
+
+    .title {
+      font-weight: bold;
+      font-size: var(--w-font-size-lg);
+      line-height: 24px;
+    }
+    .header-buttons button {
+      height: 50px;
+      opacity: 0.9;
+      border-radius: 0px;
+      color: white;
+
+      &.selected {
+        background-color: var(--w-primary-color-7);
+      }
+    }
+  }
+
+  .workflow-simulation-content {
+    background-color: white;
+    width: 100%;
+    height: e('calc(100vh - 52px)');
+    overflow: hidden;
+    position: relative;
+
+    .configuration-drawer-container {
+      overflow: hidden;
+
+      .task-configuration-drawer-wrap {
+        .ant-drawer-wrapper-body {
+          overflow: hidden;
+        }
+
+        .ant-form-item {
+          display: flex;
+          padding-left: 20px;
+          padding-right: 20px;
+          margin-bottom: 5px;
+
+          .ant-form-item-label {
+            flex-shrink: 0;
+            min-width: 65px;
+          }
+
+          .ant-form-item-control-wrapper {
+            flex-grow: 1;
+            width: 0; // 防止内部元素超出范围
+          }
+
+          &.item-lh {
+            .ant-form-item-label,
+            .ant-form-item-control {
+              line-height: 32px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .workflow-simulation-sider {
+    border-left: 1px solid var(--w-border-color-light);
+    height: e('calc(100vh - 52px)');
+    overflow: auto;
+
+    .sider-tabs {
+      min-width: 378px;
+
+      // 禁止tab动画以及滚动效果
+      &.ant-tabs-top.ant-tabs-line {
+        > .ant-tabs-bar {
+          --w-tab-color: var(--w-text-color-dark);
+          padding: 0 20px;
+          margin-bottom: 0;
+          .ant-tabs-tab {
+            line-height: 32px;
+            font-size: var(--w-font-size-base);
+            font-weight: bold;
+            padding: 4px 0;
+          }
+        }
+
+        .ant-tabs-nav.ant-tabs-nav-animated {
+          transform: none !important;
+        }
+
+        .ant-tabs-nav-container-scrolling {
+          padding: 0px;
+
+          .ant-tabs-tab-arrow-show {
+            display: none;
+          }
+        }
+      }
+
+      > .ant-tabs-bar.ant-tabs-top-bar {
+        margin: 0;
+      }
+
+      > .ant-tabs-content {
+        padding: 0px;
+        position: relative;
+
+        .ant-collapse-borderless {
+          background-color: #ffffff;
+          .ant-collapse-header {
+            padding: 4px 0px 4px 20px;
+            line-height: 32px;
+            font-weight: bold;
+            color: var(--w-text-color-darker);
+            font-size: var(--w-font-size-base);
+          }
+          > .ant-collapse-item {
+            border-color: var(--w-border-color-light);
+
+            .ant-collapse-content {
+              .ant-collapse-content-box {
+                padding: 0 0 4px;
+
+                .ant-table-wrapper {
+                  margin: 0 20px;
+                }
+              }
+            }
+          }
+          > .ant-collapse-item:first-child {
+            border-top: none;
+          }
+          > .ant-collapse-item:last-child {
+            border-bottom: 0px;
+          }
+        }
+      }
+
+      .ant-form-item {
+        display: flex;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 5px;
+
+        .ant-form-item-label {
+          flex-shrink: 0;
+          min-width: 65px;
+        }
+
+        .ant-form-item-control-wrapper {
+          flex-grow: 1;
+          width: 0; // 防止内部元素超出范围
+        }
+
+        &.item-lh {
+          .ant-form-item-label,
+          .ant-form-item-control {
+            line-height: 32px;
+          }
+        }
+      }
+    }
+
+    .right-collapse {
+      right: 378px;
+      position: fixed;
+      top: 50%;
+      z-index: 100;
+      margin-left: -1px;
+      border-radius: 4px 0px 0px 4px;
+      height: 48px;
+      width: 20px;
+      line-height: 48px;
+      text-align: center;
+      margin-left: -1px;
+      background-color: var(--w-fill-color-base);
+      color: var(--w-text-color-dark);
+      border: 1px solid var(--w-border-color-light);
+      border-right: 0;
+      font-size: 10px;
+      opacity: 0;
+      cursor: pointer;
+      transition: opacity 0.3s linear;
+    }
+
+    .right-collapse.collapsed {
+      transform: rotate(180deg);
+      right: 0;
+      opacity: 1;
+      border-right: 1px solid var(--w-border-color-light);
+      border-left: 0;
+      border-radius: 0px 4px 4px 0px;
+    }
+
+    :hover {
+      .right-collapse {
+        opacity: 1;
+      }
+    }
+  }
+}

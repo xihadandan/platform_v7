@@ -1,0 +1,69 @@
+[
+    [
+        {
+            "title": "一级标题",
+            "align": "center",
+            "colspan": 8,
+            "rowspan": 1
+        }
+    ],
+    [
+        {
+            "title": "全选",
+        	"field": "rowCheckItem",
+            "valign": "middle",
+            "colspan": 1,
+            "rowspan": 2
+        },
+        {
+            "title": "序号",
+        	"field": "seqNO",
+            "valign": "middle",
+            "colspan": 1,
+            "rowspan": 2
+        },
+        {
+            "title": "二级标题",
+            "align": "center",
+            "colspan": 5,
+            "rowspan": 1
+        },
+        {
+            "title": "操作",
+        	"field": "_inline_operate",
+            "valign": "middle",
+            "colspan": 1,
+            "rowspan": 2
+        }
+    ],
+    [
+        {
+            "field": "eee",
+            "colspan": 1,
+            "rowspan": 1
+        },
+        {
+            "field": "jlkj2",
+            "colspan": 1,
+            "rowspan": 1
+        }
+        ,
+        {
+            "field": "zz",
+            "colspan": 1,
+            "rowspan": 1
+        }
+        ,
+        {
+            "field": "lbfj",
+            "colspan": 1,
+            "rowspan": 1
+        }
+        ,
+        {
+            "field": "tpfj",
+            "colspan": 1,
+            "rowspan": 1
+        }
+    ]
+]

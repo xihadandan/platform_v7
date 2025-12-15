@@ -1,0 +1,51 @@
+/*
+ * @(#)2013-5-26 V1.0
+ * 
+ * Copyright 2013 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.bpm.engine.timer.job;
+
+import org.apache.commons.lang.StringUtils;
+import org.quartz.JobExecutionContext;
+
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.bpm.engine.timer.service.TaskTimerService;
+import com.wellsoft.pt.bpm.engine.timer.service.impl.TaskOverDueSendRepeatMessageServiceImpl;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+
+/**
+ * Description: 流程任务逾期消息重复发送处理类JOB
+ *  
+ * @author zhulh
+ * @date 2013-5-26
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2013-5-26.1	zhulh		2013-5-26		Create
+ * </pre>
+ *
+ */
+public class TaskOverDueSendRepeatMessageJob extends Job {
+
+	/** 
+	 * (non-Javadoc)
+	 * @see com.wellsoft.pt.task.job.Job#execute(com.wellsoft.pt.task.job.JobData)
+	 */
+	@Override
+	protected void execute(JobExecutionContext context, JobData data) {
+		logger.debug("WorkFlowTaskDueHanlderJob execute");
+		String taskTimerUuid = data.getString("taskTimerUuid");
+		if (StringUtils.isBlank(taskTimerUuid)) {
+			logger.warn("WorkFlowTaskDueHanlderJob execute, but taskTimerUuid is blank");
+			return;
+		}
+
+		TaskTimerService taskTimerService = ApplicationContextHolder
+				.getBean(TaskOverDueSendRepeatMessageServiceImpl.class);
+		taskTimerService.handler(taskTimerUuid);
+	}
+
+}

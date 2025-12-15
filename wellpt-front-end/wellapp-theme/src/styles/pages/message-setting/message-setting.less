@@ -1,0 +1,82 @@
+/** 头部组件 消息设置弹窗 */
+
+.msg-set-wrap {
+  width: 100%;
+  border: @border-default;
+  margin-bottom: @margin-lg;
+
+  > li:not(:last-of-type) {
+    border-bottom: @border-default;
+  }
+
+  // 非第一级
+  ul {
+    > li {
+      border-top: @border-width-base dashed @border-color-base;
+    }
+
+    &.hasClassify > li > div {
+      padding-left: 65px;
+    }
+  }
+
+  li > div {
+    padding: @padding-2xs @padding-md;
+  }
+
+  // 标题
+  .msg-set-title {
+    color: @text-color-dark;
+    background: @background-light;
+    font-size: @font-size-base;
+
+    > div {
+      padding: @padding-md;
+
+      .new-msg-tip {
+        color: @text-color-light;
+        margin-left: padding;
+      }
+    }
+  }
+
+  // 展开/折叠按钮
+  .msg-set-folder {
+    font-size: 10px;
+    color: @text-color-light;
+    cursor: pointer;
+
+    + i {
+      .square(24px);
+
+      display: inline-block;
+      border-radius: 50%;
+      line-height: 24px;
+      margin: 0 8px 0 10px;
+      font-size: @font-size-base;
+      text-align: center;
+      color: @text-color-inverse;
+    }
+  }
+
+  // 开关
+  .switch-wrap {
+    float: right;
+
+    &.msg-no-operate {
+      opacity: 0.3;
+    }
+
+    &.msg-no-operate:before {
+      .size(@switch-width, @switch-height);
+      .absolute(0 false false 0);
+
+      content: '';
+      display: block;
+      border-radius: (@switch-height / 2);
+      // background: @switch-disabled-background;
+      cursor: not-allowed;
+      z-index: 10;
+    }
+  }
+}

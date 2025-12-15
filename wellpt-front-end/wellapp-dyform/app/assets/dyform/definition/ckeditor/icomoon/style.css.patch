@@ -1,0 +1,65 @@
+Index: style.css
+===================================================================
+--- style.css	(revision 174745)
++++ style.css	(working copy)
+@@ -24,6 +24,9 @@
+   -moz-osx-font-smoothing: grayscale;
+ }
+ 
++.icon-control4timeEmploy:before {
++	content: "\e970";
++}
+ .icon-control4btn:before {
+   content: "\e900";
+ }
+@@ -48,34 +51,29 @@
+ .icon-control4dialog2:before {
+   content: "\e907";
+ }
++.icon-control4embedded:before {
++	content: "\e908";
++}
+ .icon-control4embedded .path1:before {
+   content: "\e908";
+-  color: rgb(0, 0, 0);
+ }
+ .icon-control4embedded .path2:before {
+   content: "\e909";
+-  margin-left: -1em;
+-  color: rgb(0, 0, 0);
+ }
+ .icon-control4embedded .path3:before {
+   content: "\e90a";
+-  margin-left: -1em;
+-  color: rgb(0, 0, 0);
+ }
+ .icon-control4embedded .path4:before {
+   content: "\e90b";
+-  margin-left: -1em;
+-  color: rgb(0, 0, 0);
+ }
+ .icon-control4embedded .path5:before {
+   content: "\e90c";
+-  margin-left: -1em;
+-  color: rgb(255, 255, 255);
+ }
+ .icon-control4embedded .path6:before {
+   content: "\e90d";
+-  margin-left: -1em;
+-  color: rgb(255, 255, 255);
++}
++.icon-control4fileupload:before {
++  content: "\e90e";
+ }
+ .icon-control4fileupload4icon:before {
+   content: "\e90e";
+@@ -101,6 +99,9 @@
+ .icon-control4serialnumber:before {
+   content: "\e915";
+ }
++.icon-control4label:before {
++  content: "\e916";
++}
+ .icon-control4tag:before {
+   content: "\e916";
+ }

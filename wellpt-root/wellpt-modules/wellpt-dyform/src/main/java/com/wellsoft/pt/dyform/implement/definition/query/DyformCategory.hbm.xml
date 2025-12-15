@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="dyformCategoryQuery">
+        <![CDATA[
+		  from DyformCategoryEntity t
+		  where 1 = 1
+		     <if isNotBlank(name) || isNotBlank(code) || isNotBlank(remark)>
+                and (1 = 2
+                  <if isNotBlank(name)>
+                    or t.name like '%' || :name || '%'
+                  </if>
+                  <if isNotBlank(code)>
+                    or t.code like '%' || :code || '%'
+                  </if>
+                  <if isNotBlank(remark)>
+                    or t.remark like '%' || :remark || '%'
+                  </if>
+                )
+             </if>
+             <if isNotBlank(moduleId)>
+                and t.moduleId = :moduleId
+             </if>
+             <if isNotBlank(orderBy)>
+                order by ${orderBy}
+             </if>
+             <if isBlank(orderBy)>
+                order by code asc
+             </if>
+	]]>
+    </sql-query>
+</hibernate-mapping>

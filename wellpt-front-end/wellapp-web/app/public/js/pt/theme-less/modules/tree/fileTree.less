@@ -1,0 +1,92 @@
+.panel-default.tree-panel{
+    .panel-body{
+        overflow:auto
+    }
+} 
+.folder-tree.ztree{
+    li {
+        line-height:30px; 
+        position:relative;
+        a {
+            height:30px;
+            padding:0 15px 0 20px; 
+            border:1px solid #ddd;
+            width: 100%; 
+            min-width:80px;     
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            &:hover{
+                text-decoration:none; 
+                background-color: #E7E7E7;
+            }
+            span.button.switch {
+                visibility:hidden
+            }
+            span:first-child{
+                display:none;
+                padding-left:10px;
+            }
+            &.curSelectedNode {
+                border:0;
+                height:30px;
+                span{
+                    font-weight:normal;
+                    font-size:120%
+                }
+            }
+        }
+        span {
+            line-height:30px;
+            font-size: 14px;
+            &.button {
+                margin-top: -7px;
+                background:none;
+            }
+        }
+        span.button.center_close,span.button.bottom_close,span.button.root_close {
+            background-image:url("./images/menu-ico-close_03.png"); 
+            *background-image:url("./images/menu-ico-close_03.png");
+            background-size: contain; 
+            background-repeat: no-repeat;
+        }
+        span.button.bottom_open,span.button.center_open,span.button.root_open{
+            background-position: 0 0; 
+            background-image:url("./images/menu-ico_03.png");
+            background-size: contain; 
+            background-repeat: no-repeat;
+        }
+        span.button.switch.level0,span.button.switch.level1,span.button.switch{
+            width: 15px; 
+            height:15px;
+            position:absolute;
+            left:5px;
+            top:15px;
+        }
+        span.button.noline_open {
+            background-position: 0 0;
+        }
+        span.button.noline_close {
+            background-position: -18px 0;
+        }
+        span.button.noline_open.level0 {
+            background-position: 0 -18px;
+        }
+        span.button.noline_close.level0 {
+            background-position: -18px -18px;
+        }
+        ul{ 
+            margin:0; 
+            padding:0 0 0 18px;
+        }
+    }
+    &.showIcon{
+        li{
+            a{
+                span.button.switch {
+                    visibility:visible
+                }
+            }
+        }
+    }
+} 

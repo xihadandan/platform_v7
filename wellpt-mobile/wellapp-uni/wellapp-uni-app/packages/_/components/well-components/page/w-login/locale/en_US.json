@@ -1,0 +1,57 @@
+{
+  "loginComponent": {
+    "logoTitle": "Integrated Office Assistant",
+    "acctLogin": "Account Login",
+    "acctText": "account",
+    "acctInputPlaceholder": "Please enter your account",
+    "pwdText": "password",
+    "pwdInputPlaceholder": "Please enter your password",
+    "phoneNo": "phoneNo.",
+    "phoneNoInputPlaceholder": "Please enter your phone number",
+    "verificationCode": "CAPTCHA",
+    "verificationCodeInputPlaceholder": "Please enter CAPTCHA",
+    "SendVerificationCode": "Send CAPTCHA",
+    "rememberAcct&Pwd": "Remember Account&Password",
+    "rememberAcct": "Remember Account",
+    "rememberPwd": "Remember Password",
+    "forgetPwd": "Forgot Password",
+    "register": "Register",
+    "login": "Login",
+    "loginSettings": "Login Settings",
+    "changeLoginType": "Login method",
+    "selectLoginType": "Select Login method",
+    "selectLanguage": "Select Language",
+    "usrPwd": "Account Password login",
+    "usrPhonePwd": "Account PhoneNo Password login",
+    "sms": "SMS verification code login",
+    "unLogin": "Not logged in",
+    "loginAgain": "Please log in again",
+    "logout": "Log out",
+    "error": {
+      "Bad credentials": "Incorrect username or password",
+      "captchaExpired": "The verification code has expired",
+      "captchaError": "Verification code error",
+      "phoneError": "Invalid phone number!",
+      "durationRetry": "Please retry after ${duration} seconds",
+      "vcodeSendSuccess": "Verification code sent successfully, please check",
+      "vcodeSendFail": "Failed to send verification code",
+      "passwordunEmpty": "Password cannot be empty!",
+      "pcodeErroe": "Invalid graphic verification code!",
+      "phoneMultiple": "The phone number is associated with multiple user accounts",
+      "phoneNoUser": "No user information found for the provided phone number",
+      "systemIdUndefined": "Please configure the system ID in the login settings"
+    },
+    "setting": {
+      "address": "Server Address",
+      "port": "Server Port",
+      "ssl": "Enable SSL",
+      "systemId": "System"
+    },
+    "sso": {
+      "logining": "SSO logining",
+      "success": "SSO login success",
+      "failed": "SSO login failed",
+      "weixinDomainFailed": "WeCom single sign on requires the use of application trusted domain"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+<form action="" id="server_details_form" style="margin-top: 15px">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#server_details_basic_info" aria-controls="server_details_basic_info" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+        </li>
+    </ul>
+    <input type="hidden" id="uuid" name="uuid" />
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="server_details_basic_info" style="padding-top: 10px;">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label for="server_details_name" class="well-form-label control-label">应用名称</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="server_details_name" name="name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="server_details_ip" class="well-form-label control-label">IP</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="server_details_ip" name="ip">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="server_details_port" class="well-form-label control-label">端口</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="server_details_port" name="port">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="server_details_machine" class="well-form-label control-label">服务器名</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="server_details_machine" name="machine">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="server_details_remark" class="well-form-label control-label">备注</label>
+                    <div class="well-form-control">
+                        <textarea class="form-control" id="server_details_remark" name="remark"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

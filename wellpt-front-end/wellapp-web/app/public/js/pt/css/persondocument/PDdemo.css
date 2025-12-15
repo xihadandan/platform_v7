@@ -1,0 +1,246 @@
+.tab-content{
+	background-color:#fff; 
+}
+.document{
+	
+}	  	
+.document_cate {
+    margin: 3px;
+    float: left;
+    width: 240px;
+}
+
+
+.document_title {
+    background-color: #18b3e1;
+    height: 35px;
+}
+
+.document_title_text {
+    color: #fff;
+    font-size: 17px;
+    padding: 6px;
+}
+
+.document_content {
+    float: left;
+    margin: 3px;
+    width: 940px;
+}
+
+.document_content_content .document_top{
+	background-color: #f7f7f7;
+    border: 1px solid #c5cacd;
+    height: 45px;
+    margin-top: 1px;
+    padding: 0 15px;
+}
+
+.document_button {
+    float: left;
+    margin-top: 10px;
+}
+
+.document_view {
+    float: right;
+    height: 29px;
+    width: 65px;
+    cursor: pointer;
+    margin-top: 7px;
+    background: transparent url("../../../theme/images/btn_icon.gif") no-repeat scroll  -66px -268px;
+}
+
+.document_button button,.document_data button {
+    background: transparent url("../../../theme/images/v1_icon.png") no-repeat scroll 0 -165px;
+    border: 1px solid #dee1e2;
+    color: #0f599c;
+    display: block;
+    float: left;
+    font-size: 12px;
+    height: 22px;
+    margin: 0 5px;
+    padding: 0 8px;
+}
+
+.document_button .upload {
+		    background: transparent url("../../../theme/images/v1_icon.png") no-repeat scroll 0 -165px;
+		    border: 1px solid #dee1e2;
+		    color: #0f599c;
+		    display: block;
+		    float: left;
+		    font-size: 12px;
+		    height: 24px;
+		    margin: 0 5px;
+		    padding: 0 8px;
+		}
+		
+.document_button span{
+	color: #ff7200;
+}		
+.document_button span:hover{
+	color: #ff7200;
+}
+
+.document_button button:hover,.document_data button:hover{
+	color: #ff7200;
+}
+
+.document_tool {
+    height: 20px;
+    padding: 10px;
+}
+
+.document_tool_back {
+    float: left;
+}
+
+.document_tool_newfolder {
+    float: left;
+}
+
+.document_tool_third {
+    float: left;
+}
+
+.document_tool_map {
+    float: left;
+}
+
+.document_data .title{
+	color: #888;
+	background-color: #f7f7f7;
+}
+.document_data tr{
+	cursor: pointer;
+}
+.document_data tr:hover{
+	background-color: #f7f7f7;
+/* 	margin: 0; */
+/* 	padding: 0; */
+}
+.document_data .title td{
+	border: 1px solid #c5cacd;
+	border-left: none;
+}
+.document_data > table {
+    width: 100%;
+}
+.document_data {
+	font-size: 15px;
+	padding: 5px 10px;
+	overflow: auto;
+	height: 500px;
+}
+.document_content a{
+	cursor: pointer;
+}
+.document_data td{
+	border-bottom: 1px solid #c5cacd;
+	padding: 10px 5px;
+}
+.document_data td.checkAll{
+	border-left: 1px solid #c5cacd;
+	border-right: none;
+}
+.document_data td.datafirst{
+	border-left:none;
+}
+.document_data td input[type="checkbox"] {
+	margin: 0;
+	padding: 0;
+}
+.document_icon{
+	width: 20px;
+	height: 18px;
+  		margin-top: 2px;
+	float: left;
+	background: transparent url("../../../theme/images/sprite_list_icon.gif") no-repeat scroll  -421px -83px;
+}
+.document_folder{
+	background-position: -5px -3px;
+}
+.document_txt{
+	background-position: -165px -83px;
+}
+.document_rar{
+	background-position: -357px -83px;
+}
+.document_rar{
+	background-position: -357px -83px;
+}
+.document_img{
+	background-position: -5px -83px;
+}
+.document_doc{
+	background-position: -101px -83px;
+}
+.document_excel{
+	background-position: -133px -83px;
+
+}
+.document_pdf{
+	background-position: -69px -83px;
+}
+.document_ppt{
+	background-position: -261px -83px;
+}
+.document_ps{
+	background-position: -517px -83px;
+}
+.document_audio{
+	 background-position: -229px -83px;
+}
+.document_video{
+	 background-position: -197px -83px;
+}
+
+.document_cate_content_item {
+    border-bottom: 1px solid #c5cacd;
+    color: #888;
+    font-size: 16px;
+    height: 20px;
+    margin: 0 auto;
+    padding: 10px;
+    width: 80%;
+    cursor: pointer;
+}
+
+.document_cate_content_item:hover{
+	background-color: #ff7200;
+}
+.document_cata_icon{
+	height: 22px;
+    margin-right: 10px;
+    width: 24px;
+	float: left;
+	background: transparent url("../../../theme/images/btn_icon.gif") no-repeat scroll  -228px 0px;
+}
+.document_cata_icon.all_file{
+	background-position: -205px 0;
+}
+.document_cata_icon.my_share{
+	background-position: -205px -130px;
+}
+.document_cata_icon.us_share{
+	background-position: -205px -109px;
+}
+.document_cata_icon.recycle_station{
+	background-position: -205px -151px;
+}	
+.document_td_value{
+	float: left;
+}
+.document_td_value .renameDiv{
+	display:none;
+}
+.document_td_value .box{
+	background: #fff none repeat scroll 0 0;
+    border: 1px solid #d2d2d2;
+    height: 18px;
+    padding: 2px 3px;
+    vertical-align: middle;
+    width: 200px;
+}
+.document_right{
+	float: right;
+}

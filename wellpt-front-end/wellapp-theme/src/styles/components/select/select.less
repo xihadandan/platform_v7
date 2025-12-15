@@ -1,0 +1,1082 @@
+// 下拉框
+.well-select {
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+  vertical-align: middle;
+  color: @select-text-color;
+  font-size: @select-font-size;
+  line-height: normal;
+
+  &:focus {
+    outline-width: 0px;
+  }
+
+  // 控件
+  .well-select-selection {
+    display: block;
+    box-sizing: border-box;
+    outline: 0;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    background-color: @select-background;
+    transition: all @animation-duration-base ease-in-out;
+    border-radius: @border-radius-base;
+    border: @border-default-dark;
+    &.well-select-selection-focused,
+    &:hover {
+      border-color: @border-color-primary;
+      box-shadow: @shadow-active-default;
+    }
+  }
+  .well-select-clear {
+    .absolute(50% @margin-sm false false);
+    top: 0;
+    margin-top: 6px;
+    right: 40px;
+    font-size: 20px;
+    color: #999;
+  }
+
+  // 下拉选择框 - 箭头
+  .well-select-arrow {
+    .absolute(50% @margin-sm false false);
+
+    line-height: 1;
+    transform: translateY(-50%);
+    color: @text-color-light;
+    vertical-align: middle;
+    transition: all @animation-duration-base ease-in-out;
+    display: inline-block;
+
+    i {
+      font-size: @font-size-sm !important;
+    }
+  }
+
+  // 弹出层
+  .well-select-dropdown {
+    display: none;
+    width: auto;
+
+    .well-select-search {
+      position: relative;
+      margin-top: -6px;
+      padding: 8px;
+      background: @background-light;
+
+      .well-select-input {
+        padding-right: 30px;
+        background-color: @select-background;
+        border-radius: @border-radius-base;
+      }
+
+      .search-icon {
+        .absolute(8px 10px 8px false);
+
+        width: 30px;
+        color: @text-color-primary;
+        text-align: center;
+
+        i {
+          .absolute(50% 8px false false);
+
+          line-height: 1;
+          font-size: 20px;
+          transform: translateY(-50%);
+        }
+      }
+    }
+
+    .well-select-dropdown-list {
+      .scrollbar();
+
+      max-height: 200px;
+      overflow-x: hidden;
+      width: 100%;
+      list-style: none;
+
+      .well-select-item {
+        .text-overflow();
+      }
+    }
+
+    .well-select-not-found {
+      color: @disabled-text-color;
+      text-align: center;
+      cursor: pointer;
+
+      li:not([class^='well-']) {
+        margin-bottom: 0;
+      }
+    }
+
+    .well-select-loading {
+      text-align: center;
+      color: @disabled-text-color;
+    }
+  }
+
+  .well-select-input {
+    display: inline-block;
+    width: 100%;
+    height: @select-height;
+    line-height: @select-height;
+    padding: 0 24px 0 8px;
+    font-size: @select-font-size;
+    outline: 0;
+    box-sizing: border-box;
+    color: @select-text-color;
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+
+    &:focus {
+      outline: 0;
+      border-color: @border-default;
+      box-shadow: @shadow-active-default;
+    }
+
+    &[disabled] {
+      cursor: not-allowed;
+      color: @disabled-text-color;
+    }
+
+    &::-moz-placeholder,
+    &::-webkit-input-placeholder,
+    &::-webkit-input-placeholder {
+      color: @select-placeholder-color;
+      opacity: 1;
+    }
+  }
+
+  // 下拉框弹出层打开状态
+  &.well-select-visible {
+    .well-select-selection {
+      outline: 0;
+      border-color: @border-color-primary;
+      box-shadow: @shadow-active-default;
+    }
+
+    .well-select-arrow {
+      transform: translateY(-50%) rotate(180deg);
+      display: inline-block;
+    }
+
+    .well-select-dropdown {
+      display: block;
+    }
+  }
+
+  // 禁用状态
+  &.well-select-disabled .well-select-selection {
+    background-color: #f3f3f3;
+    opacity: 1;
+    cursor: not-allowed;
+    color: @disabled-text-color;
+
+    &:hover {
+      border-color: #dcdee2;
+      box-shadow: none;
+    }
+  }
+
+  // 错误状态
+  &.error-style:not(.editableClass) .well-select-selection {
+    border: @border-default-danger;
+    box-shadow: @shadow-error-default;
+  }
+}
+
+// 单选框
+.well-select.well-select-single {
+  .well-select-selection {
+    height: @select-height;
+    position: relative;
+
+    .well-select-placeholder,
+    .well-select-selected-value {
+      display: block;
+      .text-overflow();
+
+      height: @select-height;
+      line-height: @select-height;
+
+      padding-left: 8px;
+      padding-right: 24px;
+    }
+
+    .well-select-placeholder {
+      color: @select-placeholder-color;
+    }
+  }
+
+  &.well-select-large .well-select-selection {
+    height: @select-large-height;
+
+    .well-select-placeholder,
+    .well-select-selected-value {
+      height: @select-large-height;
+      line-height: @select-large-height;
+      font-size: @select-large-font-size;
+    }
+  }
+
+  &.well-select-small .well-select-selection {
+    height: @select-small-height;
+
+    .well-select-placeholder,
+    .well-select-selected-value {
+      height: @select-small-height;
+      line-height: @select-small-height;
+      font-size: @select-small-font-size;
+    }
+  }
+}
+
+// 多选框
+.well-select.well-select-multiple {
+  .well-select-selection {
+    padding: 0 30px 0 4px;
+    min-height: @height-md;
+
+    .well-select-placeholder {
+      .text-overflow();
+
+      display: block;
+      height: @height-md;
+      line-height: @height-md;
+      color: @select-placeholder-color;
+
+      padding-left: 4px;
+      padding-right: 22px;
+    }
+  }
+
+  &.well-select-large .well-select-selection {
+    min-height: @select-large-height;
+
+    .well-select-placeholder,
+    .well-select-selected-value {
+      height: @select-large-height;
+      line-height: @select-large-height;
+      font-size: @select-small-font-size;
+    }
+  }
+
+  &.well-select-small .well-select-selection {
+    min-height: @select-small-height;
+
+    .well-select-placeholder,
+    .well-select-selected-value {
+      height: @select-small-height;
+      line-height: @select-small-height;
+      font-size: @select-small-font-size;
+    }
+  }
+}
+
+// ----------------------------------------------------
+.well-select-large .well-select-input {
+  font-size: 14px;
+  height: 36px;
+}
+
+.well-select-small .well-select-input {
+  height: 22px;
+  line-height: 22px;
+}
+
+.well-select-multiple .well-select-input {
+  height: 30px;
+  line-height: 32px;
+  padding: 0 0 0 4px;
+}
+// ----------------------------------------------------
+
+.well-select {
+  .well-tag {
+    display: inline-block;
+    height: 22px;
+    max-width: 200px;
+    line-height: 22px;
+    margin: 2px 4px 2px 0;
+    padding: 0 8px;
+    border: @border-default;
+    border-radius: @border-radius-base;
+    background: @background-light;
+    font-size: @font-size-sm;
+    vertical-align: middle;
+    opacity: 1;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  &.well-select-multiple .well-tag {
+    height: @select-tag-height;
+    line-height: 25px;
+    margin: 3px 4px 3px 0;
+    max-width: 200px;
+    position: relative;
+    color: #515a6e;
+
+    .well-tag-text {
+      line-height: 25px;
+
+      &:not(.well-select-max-tag) {
+        .text-overflow();
+        display: block;
+        margin-right: 14px;
+      }
+    }
+
+    i {
+      .absolute(0 4px false false);
+
+      display: block;
+      font-size: 12px;
+      line-height: 25px;
+      transform: scale(0.8);
+    }
+  }
+
+  &.well-select-multiple.well-select-large .well-tag {
+    height: 28px;
+    line-height: 26px;
+    font-size: 14px;
+
+    i {
+      top: 6px;
+    }
+  }
+
+  &.well-select-multiple.well-select-small .well-tag {
+    height: 17px;
+    line-height: 15px;
+    font-size: 12px;
+    padding: 0 6px;
+    margin: 3px 4px 2px 0;
+
+    .well-tag-text {
+      margin-right: 14px;
+    }
+
+    i {
+      top: 1px;
+      right: 2px;
+    }
+  }
+}
+
+input[disabled] + .well-select-multiple .well-tag i {
+  display: none;
+}
+
+input[disabled] + .well-select {
+  &.well-select-multiple .well-tag {
+    i.tag-close {
+      display: none;
+    }
+  }
+}
+
+.well-select .well-select-prefix {
+  display: inline-block;
+  vertical-align: middle;
+
+  i {
+    vertical-align: top;
+  }
+}
+
+.well-select .well-select-head-with-prefix {
+  display: inline-block !important;
+  vertical-align: middle;
+}
+
+.well-select .well-select-single .well-select-prefix {
+  padding-left: 4px;
+}
+
+.well-select-multiple .well-select-head-with-prefix,
+.well-select-single .well-select-head-with-prefix {
+  padding-left: 0 !important;
+}
+
+.well-select .well-select-head-flex {
+  display: flex;
+  align-items: center;
+}
+
+.well-select-multiple .well-select-head-flex .well-select-prefix {
+  margin-right: 4px;
+}
+
+.well-select .well-select-item {
+  margin: 0;
+  line-height: normal;
+  padding: 7px 20px 7px 16px;
+  clear: both;
+  color: @text-color;
+  font-size: 14px;
+  white-space: nowrap;
+  list-style: none;
+  cursor: pointer;
+  width: 100%;
+
+  &:first-child > span:empty {
+    display: inline-block;
+  }
+
+  .well-select-item-content-with-description {
+    max-width: calc(100% - 50px);
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .well-select-item-description {
+    float: right;
+    color: #ccc;
+    max-width: 50px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+.well-select .well-select-item.well-select-controllable {
+  padding-right: 35px;
+}
+
+.well-select .well-select-item-focus,
+.well-select .well-select-item:hover {
+  background: @item-hover-background;
+}
+
+.well-select .well-select-item-disabled,
+.well-select .well-select-item-disabled:hover,
+.well-select .well-select-item.well-select-item-disabled::after {
+  color: @disabled-text-color;
+  cursor: not-allowed;
+}
+
+.well-select .well-select-item-disabled:hover {
+  background-color: @select-background;
+}
+
+.well-select .well-select-item-selected,
+.well-select .well-select-item-selected:hover {
+  color: @text-color;
+  background: @item-hover-background;
+}
+
+.well-select.well-select-multiple .well-select-item-selected {
+  background: none;
+}
+.well-select.well-select-multiple .well-select-item-selected:hover {
+  background: @item-hover-background;
+}
+
+.well-select .well-select-item-divided {
+  margin-top: 5px;
+  border-top: @border-default;
+
+  &:before {
+    position: relative;
+    top: -7px;
+    content: '';
+    height: 5px;
+    display: block;
+    margin: 0 -16px;
+    background-color: @select-background;
+  }
+}
+
+.well-select-large .well-select-item {
+  padding: 7px 16px 8px;
+  font-size: 14px !important;
+}
+
+.well-select-multiple .well-select-item {
+  position: relative;
+  padding: 7px 20px 7px 30px;
+}
+
+.well-select-multiple .well-default-add .well-select-item {
+  padding-left: 16px;
+}
+
+.well-select-multiple .well-select-item::after,
+.well-select .well-select-dropdown .well-select-choose-all::after {
+  display: inline-block;
+  font-family: iconfont !important;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  vertical-align: middle;
+  font-size: 14px;
+  content: '\e8f2';
+  color: @text-color-light;
+  position: absolute;
+  top: 10px;
+  left: 8px;
+}
+
+.well-select-multiple .well-select-item-selected::after,
+.well-select .well-select-dropdown .well-select-choose-all.checked::after {
+  content: '\e8de';
+  color: @text-color-primary;
+}
+
+.well-select .well-select-group,
+.well-select ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.well-select .well-select-group-title {
+  padding-left: 8px;
+  font-size: 12px;
+  color: @text-color-light;
+  height: 30px;
+  line-height: 30px;
+}
+
+.well-form-item-error .well-select-selection {
+  border: 1px solid #ed4014;
+}
+
+.well-form-item-error .well-select-arrow {
+  color: #ed4014;
+}
+
+.well-form-item-error .well-select-visible .well-select-selection {
+  border-color: #ed4014;
+  outline: 0;
+  box-shadow: 0 0 0 2px rgba(237, 64, 20, 0.2);
+}
+
+.well-select .well-select-dropdown {
+  width: inherit;
+  overflow: auto;
+  padding: 5px 0;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-radius: @border-radius-base;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  z-index: 9009;
+}
+
+.well-select .well-select-dropdown-transfer {
+  z-index: 1060;
+  width: auto;
+}
+
+.well-select .well-select-dropdown.well-transfer-no-max-height {
+  max-height: none;
+}
+
+.well-modal .well-select-dropdown {
+  position: absolute !important;
+}
+
+.well-select.well-select-multiple .well-tag i:hover {
+  color: @text-color-primary;
+}
+
+.well-select .well-select-dropdown .well-select-tags-input {
+  position: relative;
+  margin-top: -6px;
+  padding: 8px 10px;
+  background: @background-light;
+
+  input {
+    padding-right: 70px;
+  }
+
+  .well-select-tags-ok {
+    .absolute(8px 0 10px false);
+    .size(60px 32px);
+
+    line-height: 32px;
+    color: @text-color-inverse;
+    background: @primary-color;
+    text-align: center;
+    border-radius: @border-radius-base;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.well-select .well-select-dropdown .well-select-choose-all {
+  position: relative;
+  line-height: normal;
+  padding: 7px 30px;
+  color: @text-color;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.well-select .well-select-item {
+  position: relative;
+}
+
+.well-select .well-select-control {
+  .absolute(0 0 false false);
+  .size(auto 30px);
+
+  display: none;
+  font-family: iconfont !important;
+  vertical-align: middle;
+  font-size: 14px;
+  color: @text-color-light;
+  line-height: 32px;
+  text-align: center;
+}
+
+.well-select-item-focus .well-select-control,
+.well-select-item:hover .well-select-control {
+  display: inline-block;
+}
+
+.well-select .well-select-control:hover {
+  color: @text-color-primary;
+}
+
+.well-select .well-select-control2 {
+  display: none;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  vertical-align: middle;
+  font-size: 14px;
+  color: @text-color-light;
+}
+
+.well-select-item-focus .well-select-control2,
+.well-select-item:hover .well-select-control2 {
+  display: inline-block;
+}
+
+.well-select .well-select-control2 .iconfont {
+  font-size: 18px;
+  padding: 0 2px;
+
+  &:hover {
+    color: @text-color-primary;
+  }
+}
+
+.well-select .well-select-control-element,
+.ztree-diy-control .well-select-control-element {
+  z-index: 10000000;
+  position: fixed;
+  margin: 0;
+  padding: 10px;
+  background: @select-background;
+  box-sizing: border-box;
+  border-radius: @border-radius-base;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  width: 340px;
+
+  .control-area {
+    .absolute(-15px false false 0);
+    .size(100% 15px);
+  }
+
+  &.drop-top .control-area {
+    .absolute(auto false -15px 0);
+    .size(100% 15px);
+  }
+
+  &::before {
+    .absolute(-10px 5px false false);
+
+    content: '';
+    margin-left: 0;
+    border-left: 10px transparent solid;
+    border-right: 10px transparent solid;
+    border-bottom: 10px rgba(0, 0, 0, 0.2) solid;
+  }
+
+  &::after {
+    .absolute(-8px 7px false false);
+
+    content: '';
+
+    margin-left: 0;
+    border-left: 8px transparent solid;
+    border-right: 8px transparent solid;
+    border-bottom: 8px #fff solid;
+  }
+
+  &.arrow-right::before {
+    right: 0;
+    left: auto;
+  }
+
+  &.arrow-right::after {
+    right: 2px;
+    left: auto;
+  }
+}
+
+.well-select-control-element {
+  .well-select-control-element-event {
+    color: @text-color;
+
+    .event-item {
+      display: inline-block;
+      margin-bottom: 10px;
+
+      &.left-border-radius {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+      }
+
+      &.right-border-radius {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+    }
+
+    .event-add {
+      .size(88px 32px);
+
+      line-height: 30px;
+      border: @border-default-dark;
+      border-radius: @border-default;
+      font-size: @font-size-base;
+      color: @text-color;
+      text-align: center;
+      box-sizing: border-box;
+      cursor: pointer;
+
+      &:hover,
+      &.active {
+        color: @text-color-primary;
+        border: @border-default-primary;
+      }
+    }
+
+    .event-sort {
+      padding-top: 7px;
+
+      span {
+        font-size: 14px;
+        color: @text-color-light;
+        margin-left: 10px;
+        cursor: pointer;
+
+        &:hover {
+          color: @text-color-primary;
+        }
+      }
+    }
+
+    .event-del {
+      padding-top: 7px;
+      margin-left: 10px;
+
+      &:hover {
+        color: @text-color-primary;
+      }
+    }
+  }
+
+  .event-field {
+    position: relative;
+
+    input {
+      padding: 6px 82px 6px 12px;
+      box-shadow: none;
+
+      &:focus {
+        border: @border-default-primary;
+        box-shadow: @shadow-active-default;
+      }
+    }
+
+    .add-node {
+      .absolute(0 0 0 false);
+
+      width: 70px;
+      text-align: center;
+      line-height: 34px;
+      border-top-right-radius: @border-radius-base;
+      border-bottom-right-radius: @border-radius-base;
+      color: @text-color-inverse;
+      background: @primary-color;
+      cursor: pointer;
+
+      &:hover {
+        background-color: @primary-4;
+        border-color: @primary-4;
+      }
+
+      &:active {
+        background-color: @primary-3;
+        border-color: @primary-2;
+      }
+    }
+  }
+}
+
+.form-field-tag-wrap {
+  position: relative;
+
+  .form-field-tag {
+    display: inline-block;
+    margin: 3px;
+    padding: 0 8px;
+    line-height: 22px;
+    background: @background-light;
+    border: @border-default-dark;
+    border-radius: @border-radius-base;
+  }
+}
+
+.form-field-tag-control .control-btn {
+  .absolute(0 0 0 false);
+
+  width: 30px;
+  font-size: @font-size-base;
+  color: @text-color-primary;
+  line-height: 1;
+  border-left: @border-default-dark;
+  text-align: center;
+  cursor: pointer;
+
+  span {
+    .absolute(50% false false 50%);
+
+    display: inline-block;
+    transform: translate(-50%, -50%);
+  }
+
+  i {
+    font-size: 12px;
+  }
+}
+
+.well-select .well-select-group .well-select-group-label {
+  position: relative;
+  font-size: @font-size-base;
+  color: @text-color-light;
+  padding: 7px 0 7px 16px;
+
+  span {
+    z-index: 1;
+    position: relative;
+    display: inline-block;
+    padding: 0 6px 0 0;
+    background: @select-background;
+  }
+
+  &::before {
+    .square(4px);
+    .absolute(50% false false 5px);
+
+    content: '';
+    margin-top: -2px;
+    border-radius: 50%;
+    background: @text-color-light;
+  }
+
+  &::after {
+    .absolute(50% 0 false 30px);
+
+    content: '';
+    height: 1px;
+    background: @border-color-base;
+  }
+}
+
+.well-select-multiple .well-select-group-list .well-select-item {
+  padding-left: 40px;
+
+  &::after {
+    left: 20px;
+  }
+}
+
+.well-select-multiple .well-default-add li::after {
+  display: none;
+}
+
+.well-default-add .well-select-control {
+  .square(20px);
+
+  display: block !important;
+  top: 6px;
+  right: 8px;
+  bottom: 6px;
+  line-height: 20px;
+  border-radius: 50%;
+  background: rgba(240, 240, 240, 0.1);
+  box-shadow: 0 0 8px 0 rgba(153, 153, 153, 0.85);
+  animation: blink 1.5s linear infinite;
+}
+
+@keyframes blink {
+  0% {
+    box-shadow: 0 0 4px 0 rgba(51, 51, 51, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 12px 0 rgba(51, 51, 51, 0.65);
+    background: @gray-1;
+  }
+
+  100% {
+    box-shadow: 0 0 4px 0 rgba(51, 51, 51, 0);
+  }
+}
+
+.wellSelect-container-disabled .well-select-selection {
+  color: #515a6e;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: @gray-2;
+
+  &:hover {
+    border-color: @border-color-dark;
+    box-shadow: none;
+  }
+}
+
+.well-select-multiple.wellSelect-container-disabled .well-tag .well-tag-text {
+  max-width: 200px;
+  margin-right: 0px;
+}
+
+.well-select-multiple .well-tag-text {
+  max-width: 200px;
+}
+
+.well-select-multiple.wellSelect-container-disabled .well-tag .icon-ptkj-dacha {
+  display: none;
+}
+
+.expand-and-collapse,
+#ztree_check_all_div {
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.expand-and-collapse {
+  position: relative;
+  top: -3px;
+}
+
+#ztree_check_all_div label {
+  line-height: 1;
+  font-size: 14px;
+  color: @text-color;
+}
+
+.tree-event + .ztree {
+  margin-top: -7px !important;
+}
+
+.expand-and-collapse {
+  .item {
+    position: relative;
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 14px;
+    line-height: 1;
+    color: @text-color;
+    cursor: pointer;
+
+    &:hover,
+    &.active {
+      color: @text-color-primary;
+    }
+  }
+
+  .expand-btn::after {
+    .absolute(5px 0 5px false);
+
+    content: '';
+    width: 1px;
+    background: #999;
+  }
+
+  .collapse-btn {
+    margin-right: -1px;
+  }
+}
+
+.well-select .well-tag-list {
+  max-height: 100px;
+  overflow-y: auto;
+  padding-right: 35px;
+  .scrollbar();
+}
+
+// 复选框
+.dyform .field .well-select ~ .w-zTree-content .ztree,
+.dyform .field .well-select ~ .w-zTree-content .ztree [treenode] {
+  overflow-x: hidden;
+}
+
+.dyform .field .well-select ~ .w-zTree-content .ztree .ztree-row {
+  width: auto;
+  padding-right: 25px;
+}
+
+.dyform .field .well-select ~ .w-zTree-content .ztree .ztree-row [treenode_check] + [treenode_a] {
+  /* 仅包含复选框， 复选框24px */
+  width: calc(100% - 24px);
+  position: relative;
+}
+
+.dyform .field .well-select ~ .w-zTree-content .ztree .ztree-row [treenode_switch] + [treenode_check] + [treenode_a] {
+  /* 包含复选框和展开折叠按钮， 展开折叠按钮26px，复选框24px */
+  width: calc(100% - 24px - 26px);
+}
+
+.dyform .field .well-select ~ .w-zTree-content .ztree .ztree-row [treenode_switch] + [treenode_a],
+.dyform .field .well-select ~ .w-zTree-content .ztree .ztree-row [treenode_check][style*='display:none'] + [treenode_a] {
+  /* 仅包含展开折叠按钮， 展开折叠按钮26px */
+  width: calc(100% - 26px);
+  position: relative;
+}
+
+.dyform .field .well-select ~ .w-zTree-content .ztree .ztree-row [treenode_a] .node_name {
+  .text-overflow();
+  .absolute(0 0 0 24px);
+
+  display: inline-block;
+}
+
+.cke_reset_all .well-select {
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+  vertical-align: middle;
+  color: @text-color;
+  font-size: @font-size-base;
+  line-height: normal;
+
+  &:focus {
+    outline-width: 0px;
+  }
+}
+
+// 树形下拉可选，级联不可选样式
+.well-select.wellSelect-container-disabled .well-select-selection,
+input[disabled] + .well-select .well-select-selection {
+  background-color: @background-light;
+  cursor: not-allowed;
+}
+
+// 下拉不可选、分组不可选样式
+div.well-select.wellSelect-container-disabled {
+  cursor: not-allowed;
+}

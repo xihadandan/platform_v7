@@ -1,0 +1,39 @@
+{
+  "uni-datetime-picker": {
+    "selectMonth": "เลือกเดือนและปี",
+    "selectDate": "เลือกวันที่",
+    "selectTime": "เลือกเวลา",
+    "selectDateTime": "เลือกวันที่และเวลา",
+    "startDate": "วันที่เริ่มต้น",
+    "endDate": "วันที่สิ้นสุด",
+    "startTime": "เวลาเริ่มต้น",
+    "endTime": "เวลาสิ้นสุด",
+    "ok": "ตกลง",
+    "clear": "ล้าง",
+    "cancel": "ยกเลิก",
+    "year": "ปี",
+    "month": "เดือน",
+    "day": "วัน",
+    "hour": "ชั่วโมง",
+    "minute": "นาที",
+    "second": "วินาที"
+  },
+  "uni-calender": {
+    "SUN": "อา",
+    "MON": "จ",
+    "TUE": "อ",
+    "WED": "พ",
+    "THU": "พฤ",
+    "FRI": "ศ",
+    "SAT": "ส",
+    "confirm": "ยืนยัน"
+  },
+  "uni-w-picker": {
+    "year": "ปี",
+    "month": "เดือน",
+    "day": "วัน",
+    "hour": "ชั่วโมง",
+    "minute": "นาที",
+    "second": "วินาที"
+  }
+}

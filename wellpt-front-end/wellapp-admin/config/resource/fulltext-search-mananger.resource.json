@@ -1,0 +1,9 @@
+{
+  "js": {
+    "AppIndexSetWidgetDevelopment": {
+      "path": "fulltext-search-mgr/AppIndexSetWidgetDevelopment",
+      "name": "平台应用_系统设置_索引配置二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "jquery-validate", "global", "system-admin", "niceScroll"]
+    }
+  }
+}

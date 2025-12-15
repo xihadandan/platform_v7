@@ -1,0 +1,28 @@
+/*
+ * @(#)5/16/24 V1.0
+ *
+ * Copyright 2024 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.dms.support;
+
+/**
+ * Description: 如何描述该类
+ *
+ * @author zhulh
+ * @version 1.0
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 5/16/24.1	zhulh		5/16/24		Create
+ * </pre>
+ * @date 5/16/24
+ */
+public interface FolderType {
+
+    // 文件库
+    int LIBRARY = 0;
+    // 文件夹
+    int FOLDER = 1;
+
+}

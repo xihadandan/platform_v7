@@ -1,0 +1,334 @@
+//baseElement css
+
+/*reset*/
+//CSS reset part
+
+//base reset
+
+html,body,h1,h2,h3,h4,h5,h6,hr,p,iframe,dl,dt,dd,ul,ol,li,pre,form,button,input,textarea,th,td,fieldset{
+    margin:0;
+    padding:0;
+}
+ul,ol,dl{
+    list-style-type:none;
+}
+html,body{
+    *position:static;
+}
+html{
+    font-family: sans-serif;
+    -webkit-text-size-adjust:100%;
+    -ms-text-size-adjust:100%;
+}
+address,caption,cite,code,dfn,em,th,var{
+    font-style:normal;
+    font-weight:400;
+}
+input,button,textarea,select,optgroup,option{
+    font-family:inherit;
+    font-size:inherit;
+    font-style:inherit;
+    font-weight:inherit
+}
+input,button{
+    overflow: visible;
+    vertical-align:middle;
+    outline:none;
+    height:35px;
+}
+input[type="checkbox"],input[type="radio"]{
+    height: auto;
+    outline:none
+}
+input[type="submit"],input[type="reset"],input[type="button"],input[type="text"],input[type="password"]{
+    -webkit-appearance:none;
+    outline:none
+}
+/* 搜索input出现x图标开始 */
+input[type="search"]::-webkit-search-cancel-button {
+	-webkit-appearance: searchfield-cancel-button;
+}
+/* 搜索input出现x图标结束 */
+body,th,td,button,input,select,textarea{
+    font-family:"Microsoft Yahei","Hiragino Sans GB","Helvetica Neue",Helvetica,tahoma,arial,"WenQuanYi Micro Hei",Verdana,sans-serif,"\5B8B\4F53";
+    font-size:@fontBaseSize;
+    color: @fontBaseColor;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing:grayscale
+}
+@media ( max-width : 767px) {
+	html{ 
+        overflow-y:auto
+    }
+	body,th,td,button,input,select,textarea{ 
+        font-size:@fontBaseSize
+    }
+}
+body{
+    position:relative;
+    background:@bodybg;
+}
+h1,h2,h3,h4,h5,h6{
+    font-size:100%
+}
+a{
+    text-decoration:none;
+    cursor: pointer;
+    &:hover{
+        text-decoration:underline;        
+    }
+    &:focus,&:hover,&:active{
+        outline:none
+    }
+}
+sub,sup{
+    vertical-align:baseline
+}
+button,input[type="button"], input[type="submit"] {
+    line-height:1.4;
+}
+/*img*/
+img{
+    border:0;
+    vertical-align:middle
+}
+a img,img{
+    -ms-interpolation-mode:bicubic
+}
+
+//html5 reset
+
+header,footer,section,aside,details,menu,article,section,nav,address,hgroup,figure,figcaption,legend{
+    display:block;
+    margin:0;
+    padding:0
+}
+time{
+    display:inline
+}
+audio,canvas,video{
+    display:inline-block;
+    *display:inline;
+    *zoom:1
+}
+legend{
+    width:100%;
+    margin-bottom:20px;
+    font-size:21px;
+    line-height:40px;
+    border:0;
+    border-bottom:1px solid #e5e5e5
+}
+legend small{
+    font-size:15px;
+    color:#999
+}
+fieldset {
+    border-width:0;
+    padding: 0.35em 0.625em 0.75em;
+    margin: 0 2px;
+    border: 1px solid #c0c0c0
+}
+input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button {
+    height: auto
+}
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none
+}
+
+/*reset*/
+
+h1,h2,h3,h4,h5,h6{
+    font-weight:500;
+    line-height:1.1;
+    color:@titleColor;
+    small,.small{
+        font-weight:400;
+        line-height:1;
+        color:@descColor
+    }
+}
+
+h1,h2,h3{
+    small,.small{
+        font-size: 65%;
+    }
+}
+
+h4,h5,h6{
+    small,.small{
+        font-size: 75%;
+    }
+}
+
+h1{
+    font-size:36px
+}
+h2{
+    font-size:30px
+}
+h3{
+    font-size:24px
+}
+h4{
+    font-size:18px
+}
+h5{
+    font-size:14px
+}
+h6{
+    font-size:12px
+}
+
+p{
+    margin-bottom:10px
+}	
+/*小型文本*/
+small{
+    font-size:85%
+}
+/*重要的文本，加粗*/	
+b,strong {
+    font-weight: bold
+}	
+/*被强调的文本*/
+em{
+    font-style:italic
+}	
+/*引用*/
+cite{
+    font-style:normal
+}
+/*突出显示文本*/
+mark{
+    color:@fontBaseColor;
+    background:#ff0
+}
+/*预格式化的文本*/
+pre{
+    white-space: pre-wrap
+}
+
+/*文本输入框*/
+input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"],
+input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"],
+input[type="search"], input[type="tel"], input[type="color"],select,select[multiple],select.form-control[multiple]{
+	color: #858585;
+	background-color: #ffffff;
+	border: 1px solid #d5d5d5;
+	padding: 5px 10px;
+	font-size: 14px;
+	font-family: inherit;
+	-webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    resize: none !important;
+	-webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height:35px;
+    width: 100%;
+    border-radius:3px;
+}
+
+input,textarea,select{
+	box-sizing:border-box;
+	border:solid 1px #ddd;
+    -webkit-transition:all 0.2s linear 0s;
+    -moz-transition:all 0.2s linear 0s;
+    -o-transition:all 0.2s linear 0s;
+	transition:all 0.2s linear 0s;
+    outline: none;
+    &:hover{
+        border: solid 1px @primary
+    }
+    &:focus{
+        border:solid 1px @primary;
+        box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6)
+    }
+    &[disabled]{
+        background-color:#e6e6e6; cursor:default
+    }
+}
+textarea{ 
+    height:100px; 
+    resize:none; 
+    font-size:14px; 
+    padding:4px
+}
+
+input[type="radio"],input[type="checkbox"] {
+    line-height: normal; 
+    margin-top:-4px;
+    margin-right:5px;
+    width: auto;
+}
+
+input[readonly] {
+	color: #939192;
+	background: #f5f5f5 !important;
+	cursor: default;
+}
+
+input.Wdate{
+    background-position: 99.5%;
+}
+
+.radio-inline,.checkbox-inline {
+	input,input[type=radio],input[type=checkbox]{
+		position: relative;
+		margin-right: 5px;
+	}
+}
+
+.modal.ui-front {
+	z-index: 1050;
+}
+
+/* tabs */
+.tabs-left, .tabs-right {
+    border-bottom: none;
+    padding-top: 2px;
+  }
+  .tabs-left {
+    border-right: 1px solid #ddd;
+  }
+  .tabs-right {
+    border-left: 1px solid #ddd;
+  }
+  .tabs-left>li, .tabs-right>li {
+    float: none;
+    margin-bottom: 2px;
+  }
+  .tabs-left>li {
+    margin-right: -1px;
+  }
+  .tabs-right>li {
+    margin-left: -1px;
+  }
+  .tabs-left>li.active>a,
+  .tabs-left>li.active>a:hover,
+  .tabs-left>li.active>a:focus {
+    border-bottom-color: #ddd;
+    border-right-color: transparent;
+  }
+  
+  .tabs-right>li.active>a,
+  .tabs-right>li.active>a:hover,
+  .tabs-right>li.active>a:focus {
+    border-bottom: 1px solid #ddd;
+    border-left-color: transparent;
+  }
+  .tabs-left>li>a {
+    border-radius: 4px 0 0 4px;
+    margin-right: 0;
+    display:block;
+  }
+  .tabs-right>li>a {
+    border-radius: 0 4px 4px 0;
+    margin-right: 0;
+  }

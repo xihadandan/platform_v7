@@ -1,0 +1,112 @@
+/* jquery-ui-dialog overwrite */
+.ui-dialog {
+  padding: 0;
+}
+
+.ui-dialog.ui-widget-content {
+  border: none;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  box-shadow: @shadow-popup-default;
+
+  > .ui-corner-all {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+  }
+
+  /* 关闭按钮开始 */
+  .ui-dialog.ui-widget-content .icon-ptkj-dacha {
+    font-size: @font-size-sm;
+    opacity: 65%;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.ui-dialog .ui-widget-header {
+  background: @background-primary;
+  color: @text-color-inverse;
+
+  border: @border-default-primary;
+  height: 42px;
+  line-height: 29px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+
+  .ui-dialog-title {
+    font-size: @font-size-lg;
+    font-weight: 500;
+  }
+
+  .ui-button,
+  .ui-button:hover {
+    background: none;
+    border: 0;
+  }
+
+  .UnitTreeMask {
+    .absolute(-1px -1px 0 -1px);
+
+    margin: 0 auto;
+    z-index: 999999999999;
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+  text-align: center;
+
+  .ui-dialog-buttonset {
+    float: none;
+
+    button {
+      font-size: @font-size-base;
+      padding: 0 35px;
+      border: none;
+      border-radius: @border-radius-base;
+      float: right;
+      height: 34px;
+      line-height: 34px;
+      min-width: 70px;
+      margin-left: 10px;
+      margin-right: 0px;
+
+      // 确定按钮 (主题色 - 主要按钮)
+      &:first-child {
+        background: @btn-primary-background-color;
+        color: @btn-primary-font-color;
+
+        &:hover {
+          background: @btn-primary-hover-background-color;
+          color: @btn-primary-hover-font-color;
+        }
+      }
+
+      // 取消按钮  (主题色 -线按钮)
+      &:last-child {
+        background: @btn-primary-line-hover-background-color;
+        color: @btn-primary-line-font-color;
+        border: @border-width-base solid @btn-primary-line-border-color;
+
+        &:hover {
+          color: @btn-primary-line-hover-font-color;
+          border: @border-default-primary;
+        }
+      }
+    }
+  }
+
+  .UnitTreeMask {
+    .absolute(-1px 0 0 0);
+
+    margin: 0 auto;
+    z-index: 999999999999;
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.ui-dialog .ui-resizable-handle {
+  display: none !important;
+}

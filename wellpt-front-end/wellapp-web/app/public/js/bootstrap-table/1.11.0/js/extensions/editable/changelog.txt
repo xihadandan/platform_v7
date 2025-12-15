@@ -1,0 +1,2 @@
+1、在bootstrap table行编辑初始化时，将其直接转换为json字符串，使其支持json型值。
+

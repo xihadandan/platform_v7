@@ -1,0 +1,4 @@
+JS模板命名规则——模块ID-模块功能
+
+模板文档
+https://github.com/shinvdu/Juicer

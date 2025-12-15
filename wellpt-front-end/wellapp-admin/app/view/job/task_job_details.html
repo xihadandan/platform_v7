@@ -1,0 +1,269 @@
+<style>
+  .datetimepicker .label-formbuilder {
+    padding-right: 15px !important;
+    font-weight: bold;
+  }
+</style>
+<div class="container-fluid">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#job_basic_info" aria-controls="job_basic_info" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="job_basic_info" style="padding-top: 10px">
+      <form id="job_basic_info_form">
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label required">名称</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="name" name="name" />
+              <input type="hidden" id="uuid" name="uuid" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id" class="col-sm-2 control-label required">ID</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="id" name="id" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="code" class="col-sm-2 control-label required">编号</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="code" name="code" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="starter" class="col-sm-2 control-label">发起人</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="starterName" name="starterName" readonly="readonly" />
+              <input type="hidden" class="form-control" id="starter" name="starter" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="assignIp" class="col-sm-2 control-label">指定IP执行</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="assignIp" name="assignIp" />
+              <span class="help-block">
+                支持IP表达式，例如：
+                <code>192.168.0.1</code>
+                ，或者
+                <code>192.168.0.1-10</code>
+                ，或者
+                <code>192.168.0.*</code>
+                ，或者
+                <code>192.168.0.1,192.168.0.2</code>
+              </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="starter" class="col-sm-2 control-label required">类名</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="form-control" id="jobClassName" name="jobClassName" />
+              <span class="help-block">
+                定时任务调度类需要继承
+                <code>com.wellsoft.pt.task.job.Job</code>
+                ，且位于
+                <code>job</code>
+                包下，命名规范以
+                <code>Job</code>
+                结尾
+              </span>
+            </div>
+          </div>
+          <!--<div class="form-group"> <label for="moduleId" class="col-sm-2 control-label">所属模块</label> <div class="col-sm-10"> <input type="hidden" class="form-control" id="moduleId" name="moduleId" readonly> </div> </div>-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label">定时方式</label>
+            <div class="col-sm-10">
+              <input type="radio" name="timingMode" id="timingMode_day" value="1" />
+              <label for="timingMode_day">每天</label>
+              <input type="radio" name="timingMode" id="timingMode_week" value="2" />
+              <label for="timingMode_week">每周</label>
+              <input type="radio" name="timingMode" id="timingMode_month" value="3" />
+              <label for="timingMode_month">每月</label>
+              <input type="radio" name="timingMode" id="timingMode_season" value="4" />
+              <label for="timingMode_season">每季</label>
+              <input type="radio" name="timingMode" id="timingMode_year" value="5" />
+              <label for="timingMode_year">每年</label>
+              <input type="radio" name="timingMode" id="timingMode_interval" value="6" />
+              <label for="timingMode_interval">间隔时间</label>
+            </div>
+          </div>
+
+          <div class="form-group timingMode timingMode_month" style="display: none">
+            <label class="col-sm-2 control-label">重复日期</label>
+            <div class="col-sm-10" id="timingMode_month_repeat_day">
+              <input type="checkbox" id="repeatDay_LW" name="repeatDayOfMonth" value="LW" style="margin-top: 4px" />
+              <label for="repeatDay_LW">每月最后一天</label>
+            </div>
+          </div>
+
+          <div class="form-group timingMode timingMode_week" style="display: none">
+            <label class="col-sm-2 control-label">重复日期</label>
+            <div class="col-sm-10">
+              <input type="checkbox" id="repeatDay_SUN" name="repeatDayOfWeek" value="SUN" style="margin-top: 4px" />
+              <label for="repeatDay_SUN">星期日</label>
+              <input type="checkbox" id="repeatDay_MON" name="repeatDayOfWeek" value="MON" style="margin-top: 4px" />
+              <label for="repeatDay_MON">星期一</label>
+              <input type="checkbox" id="repeatDay_TUE" name="repeatDayOfWeek" value="TUE" style="margin-top: 4px" />
+              <label for="repeatDay_TUE">星期二</label>
+              <input type="checkbox" id="repeatDay_WED" name="repeatDayOfWeek" value="WED" style="margin-top: 4px" />
+              <label for="repeatDay_WED">星期三</label>
+              <input type="checkbox" id="repeatDay_THU" name="repeatDayOfWeek" value="THU" style="margin-top: 4px" />
+              <label for="repeatDay_THU">星期四</label>
+              <input type="checkbox" id="repeatDay_FRI" name="repeatDayOfWeek" value="FRI" style="margin-top: 4px" />
+              <label for="repeatDay_FRI">星期五</label>
+              <input type="checkbox" id="repeatDay_SAT" name="repeatDayOfWeek" value="SAT" style="margin-top: 4px" />
+              <label for="repeatDay_SAT">星期六</label>
+            </div>
+          </div>
+
+          <div class="form-group timingMode timingMode_season" style="display: none">
+            <label class="col-sm-2 control-label">重复日期</label>
+            <div class="col-sm-10 form-inline">
+              <label>季度第</label>
+              <select class="form-control" id="repeatDayOfSeason_month" name="repeatDayOfSeason_month">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+              <label>月</label>
+              <select id="repeatDayOfSeason_day" class="form-control" name="repeatDayOfSeason_day">
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+                <option value="7">07</option>
+                <option value="8">08</option>
+                <option value="9">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="L">最后一天</option>
+              </select>
+              <label>日</label>
+            </div>
+          </div>
+
+          <div class="form-group timingMode timingMode_year" style="display: none">
+            <label class="col-sm-2 control-label">重复日期</label>
+            <div class="col-sm-10 form-inline">
+              <label>季度第</label>
+              <select class="form-control" id="repeatDayOfYear_month" name="repeatDayOfYear_month">
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+                <option value="7">07</option>
+                <option value="8">08</option>
+                <option value="9">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <label>月</label>
+              <select id="repeatDayOfYear_day" class="form-control" name="repeatDayOfYear_day">
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+                <option value="7">07</option>
+                <option value="8">08</option>
+                <option value="9">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="L">最后一天</option>
+              </select>
+              <label>日</label>
+            </div>
+          </div>
+
+          <div id="datetimepicker_timePoint" class="datetimepicker timingMode timingMode_day" style="display: none"></div>
+
+          <div id="datetimepicker_repeatIntervalTime" class="datetimepicker timingMode timingMode_interval" style="display: none"></div>
+
+          <div id="datetimepicker_startTime" class="datetimepicker"></div>
+          <div id="datetimepicker_endTime" class="datetimepicker"></div>
+
+          <div class="timingMode timingMode_interval form-group" style="display: none">
+            <label class="col-sm-2 control-label">
+              重复次数
+              <span class="wtooltip icon iconfont icon-ptkj-mianxingwenxintishi">
+                <span class="wtooltiptext" style="width: 450px">重复次数:<=-1(永远重复执行)、0(不重复执行)、>=1...n(重复执行1至n次)</span>
+              </span>
+            </label>
+
+            <div class="col-sm-10">
+              <input type="text" id="repeatCount" name="repeatCount" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lastExecuteInstance" class="col-sm-2 control-label">最近执行实例</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="lastExecuteInstance" name="lastExecuteInstance" readonly="readonly" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">备注</label>
+            <div class="col-sm-10">
+              <textarea rows="3" class="form-control" id="remark" name="remark"></textarea>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="row" style="margin-top: 80px">
+      <div class="col-sm-12 text-center">
+        <button class="btn btn-primary" id="btn_save_task_job">保存</button>
+        <button class="btn btn-primary" id="btn_task_job_trigger_his" style="display: none">查看触发历史</button>
+      </div>
+    </div>
+  </div>
+</div>

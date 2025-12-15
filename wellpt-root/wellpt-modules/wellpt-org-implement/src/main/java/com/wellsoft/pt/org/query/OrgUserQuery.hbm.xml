@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="orgVersionUserListKeywordQuery">
+        <![CDATA[
+		 select u.* ,
+         a.isEnabled,a.isAccountNonExpired,a.isAccountNonLocked,a.isCredentialsNonExpired,a.expiredTime
+		from UserInfoEntity u , UserAccount a
+		 where 1=1
+		  <if isNotBlank( orgElementId )>
+           and  ( exist (
+                select 1 from OrgElementUserRelaEntity r
+                where r.orgVersionUuid=:orgVersionUuid and r.userId = u.userId and r.orgElementId=:orgElementId
+           ) or exist (
+                select 1 from OrgElementUserRelaEntity r , OrgElementPathChainEntity c
+                where r.orgVersionUuid=:orgVersionUuid and r.userId = u.userId and c.orgElementId=:orgElementId
+                and c.subOrgElementId = r.orgElementId
+               )
+           )
+        </if>
+        <if isBlank( orgElementId )>
+           and exist (
+            select 1 from OrgElementUserRelaEntity  r
+               where r.orgVersionUuid=:orgVersionUuid and r.userId = u.userId
+          )
+        </if>
+
+
+		 <if isNotBlank( keyword )>
+		   and (
+               u.userName like '%' || :keyword || '%'
+               or u.loginName like '%' || :keyword || '%'
+		   )
+		 </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+		 <if isNotBlank(orderBy)>
+			 ${orderBy}
+		 </if>
+	]]>
+    </sql-query>
+
+    <sql-query name="listUserInfoByElementIdsQuery">
+        <![CDATA[
+            from UserInfoEntity u
+                where
+                    exists (select o.userId from OrgUserEntity o
+                        where u.userId = o.userId
+                        and (
+                            o.orgElementId in(:eleIds)
+                            or
+                            exists (select c.subOrgElementId from OrgElementPathChainEntity c where c.orgElementId in(:eleIds)
+                                        and c.subOrgElementId = o.orgElementId
+                                        and c.orgVersionUuid in(select uuid from OrgVersionEntity v where v.id in(:orgVersionIds))
+                            )
+                        )
+                        and o.orgVersionUuid in(select uuid from OrgVersionEntity v where v.id in(:orgVersionIds))
+                    )
+        ]]>
+    </sql-query>
+
+    <sql-query name="listUserIdAndNameByElementIdsQuery">
+        <![CDATA[
+            select u.userId as userId, u.userName as userName from UserInfoEntity u
+                where
+                    u.userId in (select o.userId from OrgUserEntity o
+                        where (
+                            o.orgElementId in(:eleIds)
+                            or
+                            exists (select c.subOrgElementId from OrgElementPathChainEntity c where c.orgElementId in(:eleIds)
+                                        and c.subOrgElementId = o.orgElementId
+                                        and c.orgVersionUuid in(select v.uuid from OrgVersionEntity v where v.id in(:orgVersionIds))
+                            )
+                        )
+                        and o.orgVersionUuid in(select v.uuid from OrgVersionEntity v where v.id in(:orgVersionIds))
+                    )
+        ]]>
+    </sql-query>
+
+    <sql-query name="listBizOrgUserIdAndNameByElementIdsQuery">
+        <![CDATA[
+            select u.userId as userId, u.userName as userName from UserInfoEntity u
+                where
+                    u.userId in (select o.memberId from BizOrgElementMemberEntity o
+                        where (
+                            o.bizOrgElementId in(:eleIds)
+                            or
+                            exists (select c.subId from BizOrgElementPathChainEntity c where c.id in(:eleIds)
+                                        and c.subId = o.bizOrgElementId
+                                        <if bizOrgIds?? && (bizOrgIds?size > 0)>
+                                            and c.bizOrgUuid in(select b.uuid from BizOrganizationEntity b where b.id in(:bizOrgIds))
+                                        </if>
+                                        <if orgVersionIds?? && (orgVersionIds?size > 0)>
+                                            and c.bizOrgUuid in(
+                                                select b.uuid from BizOrganizationEntity b where exists (
+                                                    select v.orgUuid from OrgVersionEntity v where v.id in(:orgVersionIds) and b.orgUuid = v.orgUuid
+                                                )
+                                            )
+                                        </if>
+                            )
+                        )
+                        <if bizRoleIds?? && (bizRoleIds?size > 0)>
+                            and o.bizOrgRoleId in(:bizRoleIds)
+                        </if>
+                        <if bizOrgIds?? && (bizOrgIds?size > 0)>
+                            and o.bizOrgUuid in(select b.uuid from BizOrganizationEntity b where b.id in(:bizOrgIds))
+                        </if>
+                        <if orgVersionIds?? && (orgVersionIds?size > 0)>
+                            and o.bizOrgUuid in(
+                                select b.uuid from BizOrganizationEntity b where exists (
+                                    select v.orgUuid from OrgVersionEntity v where v.id in(:orgVersionIds) and b.orgUuid = v.orgUuid
+                                )
+                            )
+                        </if>
+                    )
+        ]]>
+    </sql-query>
+
+    <sql-query name="listBizOrgUserIdAndNameByElementIdAndBizRoleIdQuery">
+        <![CDATA[
+            select u.userId as userId, u.userName as userName from UserInfoEntity u
+                where
+                    u.userId in (select o.memberId from BizOrgElementMemberEntity o
+                        where o.bizOrgElementId = :eleId
+                            and o.bizOrgRoleId = :bizRoleId
+                            <if isNotBlank(bizOrgId)>
+                                and o.bizOrgUuid in(select b.uuid from BizOrganizationEntity b where b.id = :bizOrgId)
+                            </if>
+                            <if bizOrgIds?? && (bizOrgIds?size > 0)>
+                                and o.bizOrgUuid in(select b.uuid from BizOrganizationEntity b where b.id in(:bizOrgIds))
+                            </if>
+                            <if orgVersionIds?? && (orgVersionIds?size > 0)>
+                                and o.bizOrgUuid in(
+                                    select b.uuid from BizOrganizationEntity b where exists (
+                                        select v.orgUuid from OrgVersionEntity v where v.id in(:orgVersionIds) and b.orgUuid = v.orgUuid
+                                    )
+                                )
+                            </if>
+                    )
+        ]]>
+    </sql-query>
+
+    <sql-query name="listBizOrgUserIdAndNameByBizRoleIdsQuery">
+        <![CDATA[
+            select u.userId as userId, u.userName as userName from UserInfoEntity u
+                where
+                    u.userId in (select o.memberId from BizOrgElementMemberEntity o
+                        where o.bizOrgRoleId in(:bizRoleIds)
+                        and o.bizOrgUuid in(select b.uuid from BizOrganizationEntity b where b.id in(:bizOrgIds))
+                    )
+        ]]>
+    </sql-query>
+</hibernate-mapping>

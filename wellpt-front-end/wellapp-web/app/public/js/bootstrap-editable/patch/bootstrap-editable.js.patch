@@ -1,0 +1,14 @@
+getRecord的在收集从表数据时，_this.get$PlaceHolder().trigger("click.editable");触发无效提交
+Index: WebContent/resources/bootstrap-editable/js/bootstrap-editable.js
+===================================================================
+--- WebContent/resources/bootstrap-editable/js/bootstrap-editable.js	(revision 197172)
++++ WebContent/resources/bootstrap-editable/js/bootstrap-editable.js	(working copy)
+@@ -1287,7 +1287,7 @@
+                 if(ec.options.onblur === 'cancel') {
+                     $el.data('editableContainer').hide('onblur');
+                 } else if(ec.options.onblur === 'submit') {
+-                    $el.data('editableContainer').tip().find('form').submit();
++                    $el.data('editableContainer').tip().find('form:visible').submit();
+                 }
+             });
+ 

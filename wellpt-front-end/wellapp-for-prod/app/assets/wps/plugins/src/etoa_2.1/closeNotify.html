@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+    <title>Document</title>
+    <style>
+        html,
+        body,
+        div,
+        span,
+        applet,
+        object,
+        iframe,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        blockquote,
+        pre,
+        a,
+        abbr,
+        acronym,
+        address,
+        big,
+        cite,
+        code,
+        del,
+        dfn,
+        em,
+        font,
+        img,
+        ins,
+        kbd,
+        q,
+        s,
+        samp,
+        small,
+        strike,
+        strong,
+        sub,
+        sup,
+        tt,
+        var,
+        b,
+        u,
+        i,
+        center,
+        dl,
+        dt,
+        dd,
+        ol,
+        ul,
+        li,
+        fieldset,
+        form,
+        label,
+        legend,
+        table,
+        caption,
+        tbody,
+        tfoot,
+        thead,
+        tr,
+        th,
+        td,
+        textarea,
+        input {
+            margin: 0;
+            padding: 0;
+        }
+        
+        address,
+        cite,
+        dfn,
+        em,
+        var,
+        i {
+            font-style: normal;
+        }
+        
+        body {
+            font-size: 16px;
+            line-height: 1.5;
+            font-family: 'Microsoft Yahei', 'simsun', 'arial', 'tahoma';
+            color: #222;
+            background: #eee;
+        }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        th {
+            font-size: 100%;
+            font-weight: normal;
+        }
+        
+        button,
+        input,
+        select,
+        textarea {
+            font-size: 100%;
+        }
+        
+        fieldset,
+        img {
+            border: 0;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #666;
+            background: none
+        }
+        
+        ul,
+        ol {
+            list-style: none;
+        }
+        
+         :focus {
+            outline: none;
+        }
+        
+        .clearfix {
+            clear: both;
+            content: "";
+            display: block;
+            overflow: hidden
+        }
+        
+        .clear {
+            clear: both;
+        }
+        
+        .fl {
+            float: left;
+        }
+        
+        .fr {
+            float: right;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+    
+        
+        .tkBox {
+            width: 99.5%;
+            height: 99.1%;
+            background: #fff;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid #9d9d9d;
+        }
+        
+        .titleBox {
+            padding: 0 10px;
+            background: #fff;
+        }
+        
+        .titleBox p {
+            padding: 5px 0;
+            border-bottom: 1px solid #dbdbdb;
+        }
+        
+        .content {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .contentBox {
+            position: absolute;
+            left: 50%;
+            top: 20%;
+            transform: translateX(-50%);
+            width: 100%;
+            text-align: center;
+        }
+        
+        .isSure {
+            margin-top: 10%;
+        }
+        
+        .isSure button {
+            border: 1px solid #9d9d9d;
+            padding: 3px 25px;
+            background: #fff;
+        }
+        
+        .isSure button:hover {
+            background: #2291ff
+        }
+        
+        .isSure button:nth-child(2) {
+            margin: 0 20px;
+        }
+    </style>
+</head>
+<script type="text/javascript" src='./js/monitor.js'></script>
+<script type="text/javascript" src='./js/common.js'></script>
+<script type="text/javascript" src='./js/module/oastart.js'></script>
+<script type="text/javascript" src='./js/wpsenum/et_enum.js'></script>
+<script type="text/javascript" src='./js/wpsenum/kso_enum.js'></script>
+
+
+<script>
+    // function unload(){
+    //     alert("123")
+    //     wps.ApiEvent.AddApiEventListener("WorkbookBeforeClose", OnWorkbookBeforeClose);
+    // }
+    window.onload=function(){
+        wps.ExecFunc('editNotify()')
+    }
+    function editNotify(){
+        var name = wps.EtApplication().ActiveWorkbook.Name;
+        document.getElementById("notify").innerText = '是否保存对"'+name+'"的修改'
+    }
+    // window.onbeforeunload  = function(){
+    //     alert("345")
+    //     wps.ExecFunc('unload()')
+    //     alert("567")
+    // }
+
+
+
+    function cancel(){
+        window.close();
+    }
+
+    function notSave(){
+        propAddDefault(wps.EtApplication().ActiveWorkbook.CustomDocumentProperties, "notSave", "true");
+        // wps.ApiEvent.RemoveApiEventListener("WorkbookBeforeClose", OnWorkbookBeforeClose);
+        var book = wps.EtApplication().ActiveWorkbook
+        book.Close(0)
+        cancel()
+    }
+
+    function save(){
+        // wps.ApiEvent.RemoveApiEventListener("WorkbookBeforeClose", OnWorkbookBeforeClose);
+        propAddDefault(wps.EtApplication().ActiveWorkbook.CustomDocumentProperties, "notSave", "false");
+        var book = wps.EtApplication().ActiveWorkbook
+        book.Close(2)
+        cancel()
+    }
+</script>
+<body>
+        <div class="tkBox">
+            <!-- <div class="titleBox">
+                <p>WPS 文字</p>
+            </div> -->
+            <div class="content">
+                <div class="contentBox">
+                    <p id= "notify">是否保存对“文字文稿1”的修改</p>
+                    <div class="isSure">
+                        <button onClick="wps.ExecFunc('save()')">是 (Y)</button>
+                        <button onClick="wps.ExecFunc('notSave()')">否 (N)</button>
+                        <button onClick="wps.ExecFunc('cancel()')">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

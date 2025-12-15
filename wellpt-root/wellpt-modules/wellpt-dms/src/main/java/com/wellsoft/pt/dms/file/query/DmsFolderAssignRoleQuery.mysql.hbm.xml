@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="dmsFolderAssignRoleQuery">
+        <![CDATA[
+        select fc.folder_uuid   as folder_uuid,
+               far.role_uuid    as role_uuid,
+               far.permit       as permit,
+               far.deny         as deny
+          from dms_folder_configuration fc
+        inner join (
+            select oar.object_identity_uuid,
+                    r.uuid as role_uuid,
+                    oar.permit ,
+                    oar.deny
+                from dms_object_assign_role oar,
+                     dms_object_assign_role_item oari,
+                     dms_role r
+                     <if sids?? && (sids?size > 1000)>,
+                        (${userOrgIdsTemplate}) u_ -- 用户相关ID
+                     </if>
+                where oar.uuid = oari.assign_role_uuid
+                      and oar.role_uuid = r.uuid
+                      <if sids?? && (sids?size > 1000)>
+                        and oari.org_id = u_.org_id
+                      <else>
+                        and oari.org_id in(:sids)
+                      </if>
+        ) far on fc.ref_object_identity_uuid = far.object_identity_uuid
+        where fc.folder_uuid = :folderUuid
+	    ]]>
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <sql-query name="getCategoryListByUuids">
+        <![CDATA[
+		select *
+		from CD_PRINT_TEMPLATE_CATEGORY
+		where uuid in ( :uuidList)
+		 order by code asc, name asc
+	]]>
+    </sql-query>
+
+    <sql-query name="getChildNodeListByUuidsRecursive">
+        <![CDATA[
+		select *
+		from CD_PRINT_TEMPLATE_CATEGORY
+		where parent_uuid in ( :uuidList)
+		 order by code asc, name asc
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

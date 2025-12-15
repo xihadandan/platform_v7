@@ -1,0 +1,71 @@
+<div class="wf-opinion sidebar-tab-opinion">
+  <div class="tabs-right" style="overflow: hidden; width: auto; height: 100%">
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a href="#wf-opinion-recent" data-toggle="tab">最近使用</a>
+      </li>
+      <li>
+        <a href="#wf-opinion-common" data-toggle="tab">常用意见</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <span class="pull-right wf-opinion-mgr">
+        <i class="iconfont icon-ptkj-shezhi"></i>
+      </span>
+      <div class="tab-pane in active opinion-recent" id="wf-opinion-recent">
+        <div class="list-group">
+          {@each recents as recent,index}
+          <a class="list-group-item">
+            <span class="item-text opinion-recent-item-text" title="$${recent.content}">$${recent.content}</span>
+            <!--<i class="iconfont icon-rfq sign-with-submit pull-right hide" title="签署并提交"></i>-->
+            <button type="button" class="sign-btn sign-with-submit pull-right hide">签署并提交</button>
+          </a>
+          {@/each}
+        </div>
+      </div>
+      <div class="tab-pane opinion-common" id="wf-opinion-common">
+        <div class="list-group">
+          {@if commonOpinions.length == 0}
+          <div class="item-text-tip">未添加常用意见</div>
+          {@/if} {@each commonOpinions as commonOpinion,index}
+          <a class="list-group-item">
+            <span class="item-text opinion-common-item-text" title="$${commonOpinion.content}">$${commonOpinion.content}</span>
+            <!--<i class="iconfont icon-rfq sign-with-submit pull-right hide" title="签署并提交"></i>-->
+            <button type="button" class="sign-btn sign-with-submit pull-right hide">签署并提交</button>
+          </a>
+          {@/each}
+        </div>
+      </div>
+    </div>
+  </div>
+  <p />
+  <p />
+  <p />
+  <div class="panel panel-default sign-opinion-container" style="max-height: 280px">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <span class="sign-inner-text">签署意见</span>
+        <i title="全屏" class="full-open iconfont icon-ptkj-quanping pull-right"></i>
+      </h3>
+    </div>
+    <div class="panel-body">
+      {@if enableOpinionPosition && opinions != null && opinions.length > 0}
+      <div class="sign_opinion_radio">
+        {@each opinions as opinion,index}
+        <button name="btn_opinion" type="button" value="$${opinion.code}" class="well-btn btn-primary-radio" data-color="$${opinion.color}">
+          <i class="iconfont"></i>
+          <span title="$${opinion.content}">$${opinion.content}</span>
+        </button>
+        {@/each}
+      </div>
+      {@/if}
+      <textarea name="sign_opinion_text" class="form-control" rows="5" />
+      <span id="sign_opinion_text_count" style="display: none; float: right">1000</span>
+    </div>
+  </div>
+  <div class="row">
+    {# {@if opinions == null || opinions.length == 0} #}
+    <button name="btn_ok" type="button" class="btn btn-primary pull-right">确定提交</button>
+    {# {@/if} #}
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="getDepartmentIdsByUserId">
+        <![CDATA[
+		/* 用户所在部门ID查询 */
+		select t1.id
+		  from org_department t1
+		  left join org_department_user_job t2
+		    on t1.uuid = t2.department_uuid
+		  left join org_user t3
+		    on t2.user_uuid = t3.uuid
+		 where t3.id = :userId
+		 	<if isNotBlank(orgId)>
+		   		and t1.org_id = :orgId
+		  	</if>
+	]]>
+    </sql-query>
+
+    <sql-query name="getParentDepartmentIdsByUserId">
+        <![CDATA[
+		/* 用户所在部门的上级部门ID查询 */
+		select t.id
+		  from org_department t
+		 where exists (select 1
+		          from org_department t1
+		          left join org_department_user_job t2
+		            on t1.uuid = t2.department_uuid
+		          left join org_user t3
+		            on t2.user_uuid = t3.uuid
+		         where t3.id = :userId
+		           and t1.parent_uuid = t.uuid
+		      		<if isNotBlank(orgId)>
+						and t1.org_id = :orgId
+					</if>
+					)
+	]]>
+    </sql-query>
+
+    <sql-query name="getParentDepartmentIdByDepartmentId">
+        <![CDATA[
+		/* 根据部门ID获取上级部门ID查 */
+		select t1.id
+		  from org_department t1
+		  left join org_department t2
+		    on t1.uuid = t2.parent_uuid
+		 where t2.id = :departmentId
+	]]>
+    </sql-query>
+</hibernate-mapping>

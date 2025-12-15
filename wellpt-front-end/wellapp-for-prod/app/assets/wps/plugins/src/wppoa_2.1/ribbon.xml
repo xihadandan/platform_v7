@@ -1,0 +1,12 @@
+<customUI xmlns="http://schemas.microsoft.com/office/2006/01/customui" onLoad="OnOATabLoad" >
+  <ribbon startFromScratch="false">
+    <tabs>
+      <tab id="WPSExtOfficeTab" label="OA助手">
+        <group id="OAEntryGroup" label="OA常用功能">
+          <button id="btnSaveFile" label="保存到OA" getLabel="OnGetLabel" getEnabled="OnGetEnabled" getVisible="OnGetVisible" onAction="OnAction" getImage="GetImage" size="large"/>
+          <button id="btnSaveAsLocal" label="另存文件" getLabel="OnGetLabel" onAction="OnAction" getEnabled="OnGetEnabled" getVisible="OnGetVisible" getImage="GetImage" size="large"/>
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>

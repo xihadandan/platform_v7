@@ -1,0 +1,384 @@
+{
+  "css": {},
+  "jsTemplate": {
+    "pt-mobile-workflow-flow-distribute-info": {
+      "path": "/workflow/tpl/mobile-wf-flow-distribute-info.html",
+      "name": "工作流程_流程共享数据"
+    },
+    "pt-workflow-flow-share-datas": {
+      "path": "/workflow/tpl/wf-flow-share-datas.html",
+      "name": "工作流程_流程共享数据_承办信息"
+    },
+    "pt-mobile-workflow-flow-share-datas": {
+      "path": "/workflow/tpl/mobile-wf-flow-share-datas.html",
+      "name": "工作流程_流程共享数据_承办信息"
+    },
+    "pt-workflow-flow-distribute-info": {
+      "path": "/workflow/tpl/wf-flow-distribute-info.html",
+      "name": "工作流程_流程共享数据"
+    },
+    "pt-workflow-flow-task-operation": {
+      "path": "/workflow/tpl/wf-flow-task-operation.html",
+      "name": "工作流程_流程共享数据"
+    },
+    "pt-mobile-workflow-flow-task-operation": {
+      "path": "/workflow/tpl/mobile-wf-flow-task-operation.html",
+      "name": "工作流程_流程共享数据"
+    },
+    "pt-workflow-sidebar-tab-user-opinions": {
+      "path": "/workflow/tpl/wf-sidebar-tab-user-opinions.html",
+      "name": "工作流程_侧边tab_用户签署意见"
+    },
+    "pt-workflow-user-opinions": {
+      "path": "/workflow/tpl/wf-user-opinions.html",
+      "name": "工作流程_用户签署意见"
+    },
+    "pt-workflow-user-opinion-mgr": {
+      "path": "/workflow/tpl/wf-user-opinion-mgr.html",
+      "name": "工作流程_侧边tab_用户签署意见"
+    },
+    "app-workflow-set-flow-simulation-params": {
+      "path": "/workflow/tpl/set_flow_simulation_params.html",
+      "name": "平台应用_工作流程_设置流程仿真"
+    },
+    "app-workflow-start-new-work": {
+      "path": "/workflow/tpl/start_new_work",
+      "name": "平台应用_工作流程_发起工作"
+    }
+  },
+  "js": {
+    "WorkFlowTodoViewDevelopment": {
+      "path": "workflow/js/WorkFlowTodoViewDevelopment",
+      "name": "平台应用_工作流程_工作待办_视图组件二开",
+      "dependencies": ["WorkFlowListViewWidgetDevelopmentBase"]
+    },
+    "WorkFlowDoneListViewWidgetDevelopment": {
+      "path": "workflow/js/WorkFlowDoneListViewWidgetDevelopment",
+      "name": "平台应用_工作流程_工作已办_视图组件二开",
+      "dependencies": ["WorkFlowListViewWidgetDevelopmentBase"]
+    },
+    "WorkFlowSuperviseListViewWidgetDevelopment": {
+      "path": "workflow/js/WorkFlowSuperviseListViewWidgetDevelopment",
+      "name": "平台应用_工作流程_工作督办_视图组件二开",
+      "dependencies": ["WorkFlowListViewWidgetDevelopmentBase"]
+    },
+    "WorkFlowDraftListViewWidgetDevelopment": {
+      "path": "workflow/js/WorkFlowDraftListViewWidgetDevelopment",
+      "name": "平台应用_工作流程_工作草稿_视图组件二开",
+      "dependencies": ["WorkFlowListViewWidgetDevelopmentBase"]
+    },
+    "WorkFlowDyformListViewWidgetDevelopment": {
+      "path": "workflow/js/WorkFlowDyformListViewWidgetDevelopment",
+      "name": "平台应用_公共功能_表单数据查看工作_视图组件二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "WorkFlowOverListViewWidgetDevelopment": {
+      "path": "workflow/js/WorkFlowOverListViewWidgetDevelopment",
+      "name": "平台应用_工作流程_工作办结_视图组件二开",
+      "dependencies": ["WorkFlowListViewWidgetDevelopmentBase"]
+    },
+    "WorkFlowViewerListViewWidgetDevelopment": {
+      "path": "workflow/js/WorkFlowViewerListViewWidgetDevelopment",
+      "name": "平台应用_工作流程_工作查看_视图组件二开",
+      "dependencies": ["WorkFlowListViewWidgetDevelopmentBase"]
+    },
+    "WorkFlowCopyToListViewWidgetDevelopment": {
+      "path": "workflow/js/WorkFlowCopyToListViewWidgetDevelopment",
+      "name": "平台应用_工作流程_工作抄送_视图组件二开",
+      "dependencies": ["WorkFlowTodoViewDevelopment"]
+    },
+    "WorkFlowApprove": {
+      "path": "workflow/js/WorkFlowApprove",
+      "name": "平台应用_工作流程_送审批",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "WorkFlowInteraction", "WorkFlowErrorHandler"]
+    },
+    "WorkViewApproveFragment": {
+      "path": "workflow/js/WorkViewApproveFragment",
+      "name": "平台应用_工作流程_送审批_流程片段二开"
+    },
+    "WorkFlowMonitorListViewWidgetDevelopment": {
+      "path": "workflow/js/WorkFlowMonitorListViewWidgetDevelopment",
+      "name": "平台应用_工作流程_工作监控_视图组件二开",
+      "dependencies": ["WorkFlowListViewWidgetDevelopmentBase"]
+    },
+    "WorkFlowListViewWidgetDevelopmentBase": {
+      "path": "workflow/js/WorkFlowListViewWidgetDevelopmentBase",
+      "name": "平台应用_工作流程_二开基础_视图组件二开",
+      "dependencies": ["ListViewWidgetDevelopment", "WorkFlow", "WorkFlowErrorHandler"]
+    },
+    "app-workflow-start-new-work": {
+      "path": "workflow/js/start_new_work",
+      "name": "平台应用_工作流程_发起工作",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "slimScroll", "muuri"]
+    },
+    "app-workflow-start-flow-simulation": {
+      "path": "workflow/js/start_flow_simulation",
+      "name": "平台应用_工作流程_发起流程仿真",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "WorkFlowSimulation"]
+    },
+    "WorkFlowReadListViewWidgetDevelopment": {
+      "path": "workflow/js/WorkFlowReadListViewWidgetDevelopment",
+      "name": "平台应用_工作流程_工作已阅_视图组件二开",
+      "dependencies": ["WorkFlowListViewWidgetDevelopmentBase"]
+    },
+    "WorkFlowDelegationDataListViewWidgetDevelopment": {
+      "path": "workflow/js/WorkFlowDelegationDataListViewWidgetDevelopment",
+      "name": "平台应用_工作委托_委托数据_视图组件二开",
+      "dependencies": ["WorkFlowListViewWidgetDevelopmentBase"]
+    },
+    "WorkFlowDelegationSettingsSelfListViewWidgetDevelopment": {
+      "path": "workflow/js/WorkFlowDelegationSettingsSelfListViewWidgetDevelopment",
+      "name": "平台应用_工作委托_委托设置_我的委托_视图组件二开",
+      "dependencies": ["WorkFlowListViewWidgetDevelopmentBase"]
+    },
+    "WorkFlowUnreadListViewWidgetDevelopment": {
+      "path": "workflow/js/WorkFlowUnreadListViewWidgetDevelopment",
+      "name": "平台应用_工作流程_工作未阅_视图组件二开",
+      "dependencies": ["WorkFlowListViewWidgetDevelopmentBase"]
+    },
+    "WorkFlowAttentionListViewWidgetDevelopment": {
+      "path": "workflow/js/WorkFlowAttentionListViewWidgetDevelopment",
+      "name": "平台应用_工作流程_工作关注_视图组件二开",
+      "dependencies": ["WorkFlowListViewWidgetDevelopmentBase"]
+    },
+    "app-workflow-send-to-approve": {
+      "path": "workflow/js/send_to_approve",
+      "name": "平台应用_工作流程_送审批_JS模块",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "WorkFlowApprove"]
+    },
+    "WorkFlowDesignerWidgetDevelopment": {
+      "path": "workflow/js/WorkFlowDesignerWidgetDevelopment",
+      "name": "平台管理_流程定义设计器二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "multiOrg",
+        "comboTree",
+        "bootstrapTable",
+        "bootstrapTable_editable",
+        "wCommonPictureLib",
+        "wellBtnLib",
+        "ace_binder",
+        "layer",
+        "iexportData_V61"
+      ]
+    },
+    "WorkFlowSimulation": {
+      "path": "workflow/js/WorkFlowSimulation",
+      "name": "平台应用_工作流程_流程仿真",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "WorkFlowInteraction", "WorkFlowErrorHandler"]
+    },
+    "WorkFlowDelegationSettingsOtherListViewWidgetDevelopment": {
+      "path": "workflow/js/WorkFlowDelegationSettingsOtherListViewWidgetDevelopment",
+      "name": "平台应用_工作委托_委托设置_他人委托_视图组件二开",
+      "dependencies": ["WorkFlowListViewWidgetDevelopmentBase"]
+    },
+
+    "WorkViewFragmentTest2": {
+      "path": "/workflow/js/work/WorkViewFragmentTest2",
+      "name": "WorkView二开片段测试2",
+      "dependencies": ["WorkViewFragment"]
+    },
+    "WorkFlowErrorHandler": {
+      "path": "/workflow/js/work/WorkFlowErrorHandler",
+      "name": "流程单据开发WorkFlowErrorHandler",
+      "dependencies": ["jquery", "formBuilder", "multiOrg"]
+    },
+    "WorkViewFragmentTest1": {
+      "path": "/workflow/js/work/WorkViewFragmentTest1",
+      "name": "WorkView二开片段测试1",
+      "dependencies": ["WorkViewFragment"]
+    },
+    "workflowException": {
+      "path": "/workflow/js/work/jquery.workflowException",
+      "name": "workflowException流程异常处理",
+      "dependencies": ["dependencyJQueryModule", "chosen-jquery"]
+    },
+    "WorkFlowOpinionManage": {
+      "path": "/workflow/js/work/WorkFlowOpinionManage",
+      "name": "流程签署意见管理WorkFlowOpinionManage",
+      "dependencies": ["jquery"]
+    },
+    "WorkFlowDevelopment": {
+      "path": "/workflow/js/work/WorkFlowDevelopment",
+      "name": "流程单据开发WorkFlowDevelopment",
+      "dependencies": [
+        "WorkFlow",
+        "WorkFlowToolbar",
+        "WorkFlowWorkProcessViewer",
+        "WorkFlowSidebarTabWorkProcessViewer",
+        "WorkFlowOpinionEditor",
+        "WorkFlowSidebarTabOpinionEditor",
+        "WorkFlowErrorHandler",
+        "WorkFlowLXQP"
+      ]
+    },
+    "jquery-workView": {
+      "path": "/workflow/js/work/jquery.workView",
+      "name": "工作流jquery插件workView",
+      "dependencies": ["jquery"]
+    },
+    "WorkFlowToolbar": {
+      "path": "/workflow/js/work/WorkFlowToolbar",
+      "name": "流程单据开发WorkFlowToolbar",
+      "dependencies": ["jquery"]
+    },
+    "WorkFlowShareDataViewer": {
+      "path": "/workflow/js/work/WorkFlowShareDataViewer",
+      "name": "流程单据开发WorkFlowShareDataViewer",
+      "dependencies": ["jquery", "multiOrg", "wellPagination"]
+    },
+    "WorkFlowSidebarTabWorkProcessViewer": {
+      "path": "/workflow/js/work/WorkFlowSidebarTabWorkProcessViewer",
+      "name": "办理过程侧边tab查看器WorkFlowSidebarTabWorkProcessViewer",
+      "dependencies": ["jquery", "ProcessViewer"]
+    },
+    "WorkFlowLXQP": {
+      "path": "/workflow/js/work/WorkFlowLXQP",
+      "name": "WorkView流程连续签批",
+      "dependencies": ["jquery", "vue"]
+    },
+    "WorkViewSnapshotFragment": {
+      "path": "/workflow/js/work/WorkViewSnapshotFragment",
+      "name": "流程数据快照开发片段",
+      "dependencies": ["jquery"]
+    },
+    "work_view": {
+      "path": "/workflow/js/work/work_view",
+      "name": "work_view流程组件",
+      "dependencies": ["dependencyJQueryModule", "cmsWindown", "dyform_explain", "dyform_excel", "workflowOpinion", "workflowException"]
+    },
+    "WorkView": {
+      "path": "/workflow/js/work/WorkView",
+      "name": "WorkView流程单据默认实现",
+      "dependencies": ["WorkFlowDevelopment", "ztree", "printtemplateUtils"]
+    },
+    "WorkViewFragment": {
+      "path": "/workflow/js/work/WorkViewFragment",
+      "name": "WorkViewFragment流程单据片段二开接口"
+    },
+    "WorkFlow": {
+      "path": "/workflow/js/work/WorkFlow",
+      "name": "WorkFlow前台接口对象",
+      "dependencies": ["dependencyAppBaseModule", "WorkFlowInteraction"]
+    },
+    "workflowOpinion": {
+      "path": "/pt/js/common/jquery.workflowOpinion",
+      "name": "workflowOpinion流程签署意见",
+      "dependencies": ["dependencyJQueryModule", "chosen-jquery"]
+    },
+    "WorkFlowInteraction": {
+      "path": "/workflow/js/work/WorkFlowInteraction",
+      "name": "流程前后台交互",
+      "dependencies": ["dependencyAppBaseModule"]
+    },
+    "WorkFlowOpinionEditor": {
+      "path": "/workflow/js/work/WorkFlowOpinionEditor",
+      "name": "流程签署意见编辑器WorkFlowOpinionEditor",
+      "dependencies": ["jquery", "OpinionEditor"]
+    },
+    "ProcessViewer": {
+      "path": "/workflow/js/work/ProcessViewer",
+      "name": "流程单据开发ProcessViewer",
+      "dependencies": ["jquery"]
+    },
+    "WorkFlowUndertakeSituationFragment": {
+      "path": "/workflow/js/work/WorkFlowUndertakeSituationFragment",
+      "name": "分支流、子流程添加承办子表单片段处理WorkFlowUndertakeSituationFragment",
+      "dependencies": ["jquery", "DmsDataServices"]
+    },
+    "TestWidgetWorkViewDevelopment": {
+      "path": "TestWidgetWorkViewDevelopment",
+      "name": "测试流程二开",
+      "dependencies": ["WorkView"]
+    },
+    "WorkViewTest1": {
+      "path": "/workflow/js/work/WorkViewTest1",
+      "name": "WorkView二开测试1",
+      "dependencies": ["WorkView"]
+    },
+    "WorkViewTestSubflow1": {
+      "path": "/workflow/js/work/WorkViewTestSubflow1",
+      "name": "WorkView二开测试子流程添加子流程1",
+      "dependencies": ["WorkView"]
+    },
+    "WorkViewTestSubflow2": {
+      "path": "/workflow/js/work/WorkViewTestSubflow2",
+      "name": "WorkView二开测试子流程添加子流程2",
+      "dependencies": ["WorkView"]
+    },
+    "WorkViewTestSubflow3": {
+      "path": "/workflow/js/work/WorkViewTestSubflow3",
+      "name": "WorkView二开测试子流程添加子流程3",
+      "dependencies": ["WorkView"]
+    },
+    "WorkFlowSidebarTabOpinionEditor": {
+      "path": "/workflow/js/work/WorkFlowSidebarTabOpinionEditor",
+      "name": "流程侧边tab签署意见编辑器WorkFlowSidebarTabOpinionEditor",
+      "dependencies": ["jquery", "AppTabs", "OpinionEditor"]
+    },
+    "WorkFlowSnapshotViewer": {
+      "path": "/workflow/js/work/WorkFlowSnapshotViewer",
+      "name": "流程数据快照查看器",
+      "dependencies": ["jquery"]
+    },
+    "WorkFlowWorkProcessViewer": {
+      "path": "/workflow/js/work/WorkFlowWorkProcessViewer",
+      "name": "流程单据开发WorkFlowWorkProcessViewer",
+      "dependencies": ["jquery", "ProcessViewer"]
+    },
+    "OpinionEditor": {
+      "path": "/workflow/js/work/OpinionEditor",
+      "name": "流程签署意见编辑器接口OpinionEditor",
+      "dependencies": ["jquery"]
+    },
+    "jqueryWorkflow": {
+      "path": "/workflow/js/designer/jquery.workflow",
+      "name": "jquery.workflow",
+      "dependencies": ["jquery"]
+    },
+    "workflowCommon": {
+      "path": "/workflow/js/designer/workflowCommon",
+      "name": "workflowCommon",
+      "dependencies": ["jquery"]
+    },
+    "x2js": {
+      "path": "/workflow/js/designer/x2js.min",
+      "name": "x2js"
+    },
+    "workflowProperties": {
+      "path": "/workflow/js/designer/workflowProperties",
+      "name": "workflowProperties"
+    },
+    "subflowProperties": {
+      "path": "/workflow/js/designer/subflowProperties",
+      "name": "subflowProperties"
+    },
+    "wellEasyTable": {
+      "path": "/workflow/js/designer/wellEasyTable",
+      "name": "wellEasyTable",
+      "dependencies": ["jquery"]
+    },
+    "linkProperties": {
+      "path": "/workflow/js/designer/linkProperties",
+      "name": "linkProperties"
+    },
+    "conditionProperties": {
+      "path": "/workflow/js/designer/conditionProperties",
+      "name": "conditionProperties"
+    },
+    "flowDirectProperties": {
+      "path": "/workflow/js/designer/flowDirectProperties",
+      "name": "flowDirectProperties"
+    },
+    "WorkFlowCustomerOpinionDevelopment": {
+      "path": "/workflow/js/WorkFlowCustomerOpinionDevelopment",
+      "name": "流程签署意见编辑器WorkFlowCustomerOpinionDevelopment",
+      "dependencies": ["jquery", "AppTabs", "OpinionEditor"]
+    },
+    "WorkFlowCustomerWorkProcessViewer": {
+      "path": "/workflow/js/WorkFlowCustomerWorkProcessViewer",
+      "name": "流程办理过程WorkFlowCustomerWorkProcessViewer",
+      "dependencies": ["jquery", "ProcessViewer"]
+    }
+  }
+}

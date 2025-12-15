@@ -1,0 +1,347 @@
+{
+  "wAbsoluteLayout": {
+    "name": "绝对布局",
+    "category": "layout",
+    "layoutType": "grid",
+    "configurable": false,
+    "defaultOptions": {
+      "width": "100%",
+      "height": "250"
+    },
+    "defineJs": "layout_absolute"
+  },
+  "wBootgrid_Custom": {
+    "name": "自定义布局",
+    "category": "layout",
+    "layoutType": "grid",
+    "configurable": true,
+    "explainJs": "wBootgrid",
+    "defaultOptions": {
+      "configuration": {
+        "columns": []
+      }
+    },
+    "defineJs": "layout_bootstrap_grid",
+    "previewHtml": "<div class=\"row-fluid bootgrid clearfix\"></div>"
+  },
+  "wBootgrid_12": {
+    "name": "一行一列布局",
+    "category": "layout",
+    "layoutType": "grid",
+    "configurable": false,
+    "explainJs": "wBootgrid",
+    "defaultOptions": {
+      "configuration": {
+        "columns": [
+          {
+            "index": "1",
+            "colspan": "12"
+          }
+        ]
+      }
+    },
+    "defineJs": "layout_bootstrap_grid",
+    "previewHtml": "<div class=\"row-fluid bootgrid clearfix\"></div>"
+  },
+  "wBootgrid_444": {
+    "name": "一行三列布局",
+    "category": "layout",
+    "layoutType": "grid",
+    "configurable": false,
+    "explainJs": "wBootgrid",
+    "defaultOptions": {
+      "configuration": {
+        "columns": [
+          {
+            "index": "1",
+            "colspan": "4"
+          },
+          {
+            "index": "2",
+            "colspan": "4"
+          },
+          {
+            "index": "3",
+            "colspan": "4"
+          }
+        ]
+      }
+    },
+    "defineJs": "layout_bootstrap_grid",
+    "previewHtml": "<div class=\"row-fluid bootgrid clearfix\"></div>"
+  },
+  "wBootgrid_66": {
+    "name": "一行两列布局",
+    "category": "layout",
+    "layoutType": "grid",
+    "configurable": false,
+    "explainJs": "wBootgrid",
+    "defaultOptions": {
+      "configuration": {
+        "columns": [
+          {
+            "index": "1",
+            "colspan": "6"
+          },
+          {
+            "index": "2",
+            "colspan": "6"
+          }
+        ]
+      }
+    },
+    "defineJs": "layout_bootstrap_grid",
+    "previewHtml": "<div class=\"row-fluid bootgrid clearfix\"></div>"
+  },
+  "wLayoutCustomPage": {
+    "name": "自定义页面布局",
+    "category": "layout",
+    "layoutType": "grid",
+    "configurable": false,
+    "defaultOptions": {
+      "configuration": {
+        "columns": [
+          {
+            "index": "0",
+            "colspan": "12",
+            "class": "well-header"
+          },
+          {
+            "index": "1",
+            "colspan": "3",
+            "class": "well-left-nav",
+            "width": "260"
+          },
+          {
+            "index": "2",
+            "colspan": "9",
+            "class": "well-content"
+          },
+          {
+            "index": "3",
+            "colspan": "12",
+            "class": "well-footer"
+          }
+        ]
+      }
+    },
+    "defineJs": "layout_custom_page",
+    "previewHtml": "<div class=\"row-fluid bootgrid clearfix\"></div>"
+  },
+
+  "wSecondPageLayout": {
+    "name": "二级页面容器布局",
+    "category": "layout",
+    "layoutType": "grid",
+    "configurable": false,
+    "defaultOptions": {
+      "configuration": {
+        "columns": [
+          {
+            "index": "0",
+            "colspan": "3",
+            "width": "260"
+          },
+          {
+            "index": "1",
+            "colspan": "9"
+          }
+        ]
+      }
+    },
+    "defineJs": "layout_secondPage",
+    "previewHtml": "<div class=\"row-fluid bootgrid clearfix\"></div>"
+  },
+
+  "wPage": {
+    "name": "默认页面容器",
+    "scope": "none",
+    "defineJs": "container_page",
+    "css": [
+      "bootstrap",
+      "jquery-ui",
+      "ztree",
+      "select2",
+      "font-awesome",
+      "jsonview",
+      "app-base",
+      "iconfont",
+      "wellsoft-iconfont",
+      "pt-iconfont",
+      "jsoneditor",
+      "fileuploadcss"
+    ]
+  },
+  "wLayoutit": {
+    "name": "默认页面容器",
+    "scope": "none",
+    "defineJs": "container_page",
+    "css": [
+      "bootstrap",
+      "jquery-ui",
+      "ztree",
+      "select2",
+      "font-awesome",
+      "jsonview",
+      "app-base",
+      "iconfont",
+      "wellsoft-iconfont",
+      "pt-iconfont",
+      "jsoneditor",
+      "fileuploadcss"
+    ]
+  },
+  "wUnitTree": {
+    "name": "通用树组件",
+    "css": ["ztree"],
+    "appType": "techComponent",
+    "componentType": "unit"
+  },
+  "wSuspendedFrame": {
+    "name": "悬浮框组件",
+    "css": ["wNavBlock"],
+    "appType": "techComponent",
+    "componentType": "unit"
+  },
+  "wNavTab": {
+    "name": "多标签导航组件",
+    "css": ["wNavTab"],
+    "layoutType": "specific"
+  },
+  "wHtml": {
+    "name": "Html组件",
+    "css": ["summernote"],
+    "appType": "techComponent",
+    "componentType": "unit"
+  },
+  "wFooter": {
+    "name": "底部组件",
+    "appType": "techComponent",
+    "componentType": "unit"
+  },
+  "wFileLibrary": {
+    "name": "文件夹目录维护组件",
+    "appType": "techComponent",
+    "componentType": "unit",
+    "css": [
+      "select2",
+      "bootstrapTable",
+      "bootstrap-editable",
+      "bootstrap-datetimepicker",
+      "bootstrap-table-label-mark",
+      "bootstrap-table-fixed-columns",
+      "wellBtnLib",
+      "minicolors"
+    ]
+  },
+  "wCarousel": {
+    "name": "轮播图组件",
+    "appType": "techComponent",
+    "componentType": "unit"
+  },
+  "wButton": {
+    "name": "按钮组件",
+    "category": "basic"
+  },
+  "wUnifiedPortal": {
+    "name": "统一门户",
+    "css": ["wUnifiedPortal"]
+  },
+  "wMobilePage": {
+    "name": "默认手机页面容器",
+    "scope": "none",
+    "defineJs": "container_mobile_page",
+    "supportsWysiwyg": false,
+    "css": [
+      "bootstrap",
+      "bootstrapTable",
+      "bootstrap-editable",
+      "bootstrap-table-label-mark",
+      "bootstrap-table-fixed-columns",
+      "jquery-ui",
+      "ztree",
+      "select2",
+      "font-awesome",
+      "jsonview",
+      "app-base",
+      "iconfont",
+      "wellsoft-iconfont",
+      "pt-iconfont",
+      "jsoneditor",
+      "fileuploadcss",
+      "default",
+      "mui"
+    ],
+    "explainCss": ["pt-iconfont", "mui", "mui-app", "mui-app-uxd", "mui-dtpicker"],
+    "explainJs": ["mui"]
+  },
+  "wMobileButton": {
+    "name": "手机按钮组件",
+    "defineJs": "widget_mobile_button",
+    "scope": ["wMobilePage"],
+    "category": "basic"
+  },
+  "wMobileHtml": {
+    "name": "Html组件",
+    "css": ["summernote"],
+    "scope": ["wMobilePage"]
+  },
+  "wTagTree": {
+    "name": "标签树",
+    "appType": "techComponent",
+    "componentType": "unit"
+  },
+  "wMobileSlider": {
+    "name": "轮播图",
+    "scope": ["wMobilePage"],
+    "category": "basic"
+  },
+  "wMobileDataManagementViewer": {
+    "name": "手机数据管理查看器",
+    "scope": ["wMobilePage"],
+    "previewHtml": "<div class=\"panel panel-default\"><div class=\"panel-body ui-sortable\"></div></div>",
+    "category": "basic"
+  },
+  "wMobileFileManager": {
+    "name": "文件管理",
+    "scope": ["wMobilePage"],
+    "css": ["wMobileFileManager"],
+    "previewHtml": "<div class=\"panel panel-default\"><div class=\"panel-body ui-sortable\"></div></div>"
+  },
+  "wPieChart": {
+    "name": "饼图组件",
+    "category": "report",
+    "appType": "techComponent",
+    "componentType": "report"
+  },
+  "wLineChart": {
+    "name": "折线图组件",
+    "category": "report",
+    "appType": "techComponent",
+    "componentType": "report"
+  },
+  "wTableReport": {
+    "name": "表格报表组件",
+    "category": "report",
+    "appType": "techComponent",
+    "componentType": "report"
+  },
+  "wBareChart": {
+    "name": "空图表组件",
+    "category": "report",
+    "appType": "techComponent",
+    "componentType": "report"
+  },
+  "wBarChart": {
+    "name": "柱状图组件",
+    "category": "report",
+    "appType": "techComponent",
+    "componentType": "report"
+  },
+  "wDocExchanger": {
+    "name": "文档交换器",
+    "appType": "techComponent",
+    "componentType": "unit",
+    "previewHtml": "<div class=\"panel panel-default\"><div class=\"panel-body ui-sortable\"></div></div>"
+  }
+}

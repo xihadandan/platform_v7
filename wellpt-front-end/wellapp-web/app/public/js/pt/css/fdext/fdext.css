@@ -1,0 +1,302 @@
+\table.fdext {
+	font: 12px/1.5 Microsoft YaHei;
+}
+
+table.fdext {
+	padding: 10px 15px 5px 15px;
+	width: 100%;
+	background: #fff;
+}
+
+table.fdext  table {
+	width: 100%;
+	margin-top: 10px;
+	border-collapse: collapse;
+}
+
+.autocomplete  table {
+	width: 100%;
+	margin-top: 10px;
+	border-collapse: collapse;
+}
+
+.autocomplete  td {
+	height: 25px;
+	padding: 0 15px;
+	border: 1px dotted #d3d3d3;
+	word-break: break-all;
+}
+
+table.fdext td {
+	height: 29px;
+	padding: 0 15px;
+	border: 1px solid #ddd;
+	word-break: break-all;
+}
+
+table.fdext  .Label {
+	width: 110px;
+}
+
+table.fdext   input, select, textarea {
+	width: 100%;
+	border-radius: 0 0 0 0;
+	margin-top: 5px;
+	transform: none;
+	font-family: microsoft yahei;
+}
+
+table.fdext .tab input, select {
+	border-radius: 0;
+	font-family: microsoft yahei;
+	margin-top: 5px;
+	transform: none;
+	width: 98%;
+}
+
+table.fdext  .Wdate {
+	width: 200px;
+}
+
+table.fdext .tab .Wdate {
+	width: 200px;
+}
+
+table.fdext   input[type="radio"] {
+	padding: 0;
+	width: 20px;
+	margin: -3px 0 0;
+}
+
+table.fdext   input[type="checkbox"] {
+	margin: -3px 0 0;
+	padding: 0;
+	width: 20px;
+}
+
+table.fdext   label {
+	font-size: 12px;
+	display: inline;
+}
+
+table.fdext  .odd input {
+	float: left;
+	margin-top: 5px;
+}
+
+table.fdext  .odd td {
+	background: #f7f7f7;
+}
+
+table.fdext  .odd label {
+	float: left;
+	font-size: 12px;
+	margin-top: 2px;
+}
+
+table.fdext  .odd td select {
+	padding: 4px;
+	margin: 3px;
+	width: 33%;
+	font-family: microsoft yahei;
+}
+
+table.fdext  .field:nth-child(2n) {
+	background: #f7f7f7;
+}
+
+table.fdext .tr_td_div_left {
+	float: left;
+	margin-right: 5px;
+}
+
+table.fdext .title {
+	background: none repeat scroll 0 0 #18b3e1;
+	color: #fff;
+}
+
+table.fdext button {
+	background: url("../../images/icon.png") no-repeat scroll 0 -165px transparent;
+	border: 1px solid #DEE1E2;
+	color: #0F599C;
+	font-family: "Microsoft YaHei";
+	font-size: 12px;
+	height: 22px;
+	margin-left: 4px;
+	padding: 0 5px;
+}
+
+table.fdext button:hover {
+	color: #FF7200;
+	background: url(../../images/icon.png) no-repeat scroll 0 -165px transparent;
+}
+
+.tab-content {
+	overflow: -moz-hidden-unscrollable;
+}
+
+.body_foot {
+	background: url("../../../theme/images/v1_bg_bottom.png") repeat-x scroll 0 0 transparent;
+	height: 33px;
+	margin: 0 auto;
+	width: 95%;
+}
+
+table.fdext .defineSpan {
+	display: block;
+	float: left;
+	padding-top: 9px;
+	text-align: left;
+	width: 100px;
+}
+
+table.fdext  .subTable input {
+	width: auto;
+	background: url("../../images/icon.png") no-repeat scroll 0 -165px transparent;
+	border: 1px solid #DEE1E2;
+	color: #0F599C;
+	font-family: "Microsoft YaHei";
+	font-size: 12px;
+	height: 22px;
+	margin-left: 4px;
+	padding: 0 5px;
+}
+
+table.fdext  .subTable input:hover {
+	width: auto;
+	color: #FF7200;
+	background: url(../../images/icon.png) no-repeat scroll 0 -165px transparent;
+}
+
+table.fdext .ui-state-default th {
+	background: #c9c9c9;
+}
+
+table.fdext .subcolorCss {
+	background: url("../../../theme/images/v1_icon3.png") no-repeat scroll 0 -263px transparent;
+	cursor: pointer;
+	float: left;
+	height: 20px;
+	margin-left: 4px;
+	margin-top: 8px;
+	position: relative;
+	width: 20px;
+}
+
+table.fdext .colors {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #DDDDDD;
+	position: absolute;
+	top: 18px;
+	width: 58px;
+}
+
+table.fdext .selectcolor {
+	display: block;
+	float: left;
+	height: 15px;
+	margin: 2px;
+	width: 15px;
+}
+
+table.fdext .fontColorCss {
+	background-color: #000000;
+	display: block;
+	float: left;
+	height: 11px;
+	margin-left: 10px;
+	margin-top: 12px;
+	width: 11px;
+}
+
+table.fdext .highlight {
+	background-color: #9ACCFB;
+}
+
+table.fdext .tab-design {
+	border: 1px dotted red;
+	padding: 10px;
+}
+
+table.fdext .subtab-design {
+	border: 1px dotted green;
+	padding: 10px;
+}
+
+table.fdext #bubble_tooltip {
+	width: 180px;
+	position: absolute;
+	top: 100px;
+	right: 3px;
+	display: none;
+	background-color: white;
+	border: 1px solid #0f599c;
+}
+
+table.fdext #bubble_tooltip .bubble_top {
+	background-repeat: no-repeat;
+	height: 22px;
+	text-align: left;
+	font-weight: bold;
+	color: red;
+	border-bottom: 1px solid #0f599c;
+	background: url("../../images/icon.png") repeat-x scroll 0 -53px transparent;
+	color: #fff;
+	padding-left: 20px;
+}
+
+table.fdext #bubble_tooltip .bubble_middle {
+	background-repeat: repeat-y;
+	background-position: bottom left;
+	padding-left: 7px;
+	padding-right: 7px;
+	padding-bottom: 7px;
+}
+
+table.fdext #bubble_tooltip .bubble_middle span {
+	position: relative;
+	top: -8px;
+	font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;
+	font-size: 11px;
+}
+
+table.fdext #bubble_tooltip .bubble_bottom {
+	background-repeat: no-repeat;
+	background-repeat: no-repeat;
+	height: 5px;
+	position: relative;
+	top: -6px;
+}
+
+table.fdext #bubble_tooltip_content {
+	list-style: outside none none;
+	margin-left: 0;
+	margin-bottom: 2px;
+	margin-top: 4px;
+	padding-left: 20px;
+}
+
+table.fdext #bubble_tooltip_content a:HOVER {
+	cursor: pointer;
+}
+
+table.fdext .labelclass {
+	-webkit-user-select: text;
+}
+
+table.fdext .sub_form {
+	border: 1px dotted green;
+	padding: 10px;
+}
+
+table.fdext .sub_form input, select, textarea {
+	width: 100%;
+	border-radius: 0 0 0 0;
+	margin-top: 5px;
+	transform: none;
+	font-family: microsoft yahei;
+}
+
+table.fdext .subtab {
+	width: 100%;
+}

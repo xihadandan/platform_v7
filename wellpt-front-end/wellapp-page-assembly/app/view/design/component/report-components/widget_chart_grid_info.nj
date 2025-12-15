@@ -1,0 +1,172 @@
+<!-- 图表的直角坐标系信息定义 -->
+
+<div role="tabpanel" class="tab-pane" id="widget_chart_grid_info">
+  <div class="form-group">
+    <div id="div_grid_info_toolbar" class="btn-group btn_grid_info">
+      <button id="btn_add_grid" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+      </button>
+      <button id="btn_delete_grid" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+      </button>
+      <button id="btn_row_up_grid" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span
+        >上移
+      </button>
+      <button id="btn_row_down_grid" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span
+        >下移
+      </button>
+    </div>
+    <table
+      id="table_grid_info"
+      class="definition_info"
+      data-height="430"
+    ></table>
+  </div>
+
+  <!-- 定义详情页面 -->
+  <div id="grid_define_detail_template" style="display: none">
+    <div id="template">
+      <div class="form-group">
+        <label for="containLabel" class="col-sm-2 control-label">
+          是否显示网格
+        </label>
+        <div class="col-sm-4 checkbox-inline">
+          <input
+            type="checkbox"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="show"
+            id="showGrid"
+          />
+          <label for="showGrid"></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="left" class="col-sm-2 control-label">网格宽度</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="width"
+            id="width"
+          />
+        </div>
+        <label for="top" class="col-sm-2 control-label">网格高度</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="height"
+            id="height"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="left" class="col-sm-2 control-label">左偏移量</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="left"
+            id="left"
+          />
+        </div>
+        <label for="top" class="col-sm-2 control-label">上偏移量</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="top"
+            id="top"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="right" class="col-sm-2 control-label">右偏移量</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="right"
+            id="right"
+          />
+        </div>
+        <label for="bottom" class="col-sm-2 control-label">底部偏移量</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="bottom"
+            id="bottom"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="backgroundColor" class="col-sm-2 control-label"
+          >网格背景色</label
+        >
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="backgroundColor"
+            id="backgroundColor"
+          />
+        </div>
+        <label for="borderColor" class="col-sm-2 control-label"
+          >网格边框颜色</label
+        >
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="borderColor"
+            id="borderColor"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="borderWidth" class="col-sm-2 control-label"
+          >网格边框线宽</label
+        >
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="borderWidth"
+            id="borderWidth"
+          />
+        </div>
+        <label for="containLabel" class="col-sm-2 control-label"
+          >是否包含刻度标签</label
+        >
+        <div class="col-sm-4 checkbox-inline">
+          <input
+            type="checkbox"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="containLabel"
+            id="containLabel"
+          />
+          <label for="containLabel"></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

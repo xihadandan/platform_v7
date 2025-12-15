@@ -1,0 +1,291 @@
+@tabs-prefix-cls: ~'ant-tabs';
+
+.widget-tabs-container {
+  --w-widget-tab-pane-container-padding: var(--w-padding-xs) var(--w-padding-md);
+  --w-widget-tab-nav-tab-max-width: 200px;
+  background: var(--w-fill-color-base);
+  > .widget-tab {
+    background: var(--w-fill-color-base);
+
+    > .ant-tabs-bar {
+      margin-top: 1px;
+      margin-bottom: 1px;
+    }
+
+    .ant-tabs-nav {
+      .ant-tabs-tab {
+        max-width: var(--w-widget-tab-nav-tab-max-width);
+
+        .iconfont {
+          font-size: var(--w-tab-font-size);
+        }
+
+        .ant-dropdown-trigger {
+          display: inline-flex;
+          width: e('calc(100% - 14px)');
+          align-items: center;
+        }
+
+        .ant-tabs-tab-unclosable {
+          .ant-dropdown-trigger {
+            width: 100%;
+          }
+        }
+
+        .widget-tab-title {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        &.ant-tabs-tab-active {
+          .widget-tab-title {
+            color: var(--w-tab-color-active);
+          }
+        }
+
+        .widget-tab-badge {
+          padding-left: var(--w-padding-2xs);
+        }
+      }
+    }
+
+    .ant-tabs-left-content {
+      padding-left: 0;
+    }
+
+    .ant-tabs-right-content {
+      padding-right: 0;
+    }
+
+    .tab-pane-container {
+      > div {
+        padding: var(--w-widget-tab-pane-container-padding);
+
+        // >div[w-id] {
+        //   padding: 0px;
+        // }
+        // tab标签内，直接使用页面，要去除页面给表格等组件额外加的内边距
+        > .widget-vpage {
+          .widget-vpage-content {
+            > .widget-table,
+            > .widget-button,
+            > div > .widget-tree,
+            > .widget-data-manager-view > .widget-table {
+              // 页面直接套表格，表格增加内边距
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
+
+    &.@{tabs-prefix-cls}-card {
+      color: var(--w-tab-color);
+      > .ant-tabs-bar {
+        &.ant-tabs-small-bar .ant-tabs-nav-container,
+        .ant-tabs-nav-container,
+        & {
+          .ant-tabs-tab {
+            font-size: var(--w-tab-font-size);
+          }
+        }
+
+        &.ant-tabs-large-bar .ant-tabs-nav-container {
+          --w-tab-font-size: var(--w-font-size-lg);
+        }
+
+        .@{tabs-prefix-cls}-nav {
+          .@{tabs-prefix-cls}-tab {
+            margin: 0 var(--w-padding-3xs) 0 0;
+
+            &:hover {
+              color: var(--w-tab-color-active);
+            }
+          }
+        }
+      }
+
+      > .@{tabs-prefix-cls}-card-bar {
+        .@{tabs-prefix-cls}-tab {
+          background-color: var(--w-tab-card-background);
+        }
+
+        .@{tabs-prefix-cls}-tab-active {
+          background-color: var(--w-tab-card-background-active);
+          color: var(--w-tab-color-active);
+        }
+      }
+
+      &.@{tabs-prefix-cls}-left {
+        > .@{tabs-prefix-cls}-card-bar {
+          margin-right: -1px;
+        }
+      }
+
+      &.@{tabs-prefix-cls}-right {
+        > .@{tabs-prefix-cls}-card-bar {
+          margin-left: -1px;
+        }
+      }
+
+      &.@{tabs-prefix-cls}-top,
+      &.@{tabs-prefix-cls}-bottom {
+        > .ant-tabs-bar {
+          .@{tabs-prefix-cls}-nav {
+            .@{tabs-prefix-cls}-tab {
+              margin: 0 var(--w-margin-3xs) 0 0;
+            }
+          }
+        }
+      }
+
+      &.@{tabs-prefix-cls}-left,
+      &.@{tabs-prefix-cls}-right {
+        > .ant-tabs-bar {
+          .@{tabs-prefix-cls}-nav {
+            .@{tabs-prefix-cls}-tab {
+              margin: 0 0 var(--w-margin-3xs) 0;
+            }
+          }
+        }
+      }
+    }
+
+    // 线性
+    &.@{tabs-prefix-cls}-line {
+      color: var(--w-tab-color);
+      --w-tab-font-size: var(--w-font-size-base);
+      > .ant-tabs-bar {
+        &.ant-tabs-small-bar .ant-tabs-nav-container,
+        .ant-tabs-nav-container,
+        & {
+          .ant-tabs-tab {
+            font-size: var(--w-tab-font-size);
+
+            .widget-tab-badge {
+              margin-top: -4px;
+            }
+          }
+        }
+
+        &.ant-tabs-large-bar .ant-tabs-nav-container {
+          --w-tab-font-size: var(--w-font-size-xl);
+        }
+
+        .@{tabs-prefix-cls}-nav {
+          .@{tabs-prefix-cls}-tab {
+            &:hover {
+              color: var(--w-tab-color-active);
+            }
+          }
+        }
+
+        .ant-tabs-ink-bar {
+          background-color: var(--w-tab-color-active);
+          height: 3px;
+        }
+      }
+
+      &.@{tabs-prefix-cls}-top,
+      &.@{tabs-prefix-cls}-bottom {
+        > .ant-tabs-bar {
+          .@{tabs-prefix-cls}-nav {
+            padding: 0 var(--w-padding-md);
+            .@{tabs-prefix-cls}-tab {
+              font-weight: var(--w-font-weight-bold);
+              margin: 0 var(--w-margin-lg) 0 0;
+              padding-left: 0;
+              padding-right: 0;
+              line-height: 25px;
+            }
+          }
+        }
+      }
+
+      &.@{tabs-prefix-cls}-left {
+        > .ant-tabs-left-bar {
+          margin-right: -1px;
+        }
+      }
+
+      &.@{tabs-prefix-cls}-right {
+        > .ant-tabs-right-bar {
+          margin-left: -1px;
+        }
+      }
+
+      &.@{tabs-prefix-cls}-left,
+      &.@{tabs-prefix-cls}-right {
+        > .ant-tabs-bar {
+          .@{tabs-prefix-cls}-nav {
+            .@{tabs-prefix-cls}-tab {
+              font-weight: var(--w-font-weight-regular);
+              // margin: 0 0 var(--w-margin-md) 0;
+            }
+          }
+
+          .ant-tabs-ink-bar {
+            width: 3px;
+          }
+        }
+      }
+    }
+  }
+  > .tab-pane-container {
+    padding: var(--w-widget-tab-pane-container-padding);
+  }
+
+  &.current_iframe_tab {
+    &.tab_left,
+    &.tab_right {
+      display: flex;
+      flex-wrap: nowrap;
+      > .widget-tab {
+        flex-shrink: 0;
+        > .ant-tabs-content {
+          width: 1px;
+        }
+      }
+      > .tab-pane-container {
+        flex-grow: 1;
+      }
+    }
+    &.tab_right {
+      flex-direction: row-reverse;
+    }
+
+    &.tab_bottom {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+  &.widget-tabs-bordered {
+    border: solid 1px var(--w-border-color-light);
+  }
+  &.grid-dividing-line {
+    --w-tab-padding-l-dividing-line: 0px;
+    --w-tab-padding-r-dividing-line: 0px;
+    &.hide_left_col {
+      --w-tab-padding-l-dividing-line: 0px;
+    }
+    &.hide_right_col {
+      --w-tab-padding-r-dividing-line: 0px;
+    }
+    > .widget-tab {
+      --w-widget-tab-pane-container-padding: 0 var(--w-tab-padding-r-dividing-line) 0 var(--w-tab-padding-l-dividing-line);
+      > .ant-tabs-content > .ant-tabs-tabpane > .tab-pane-container > div {
+        // &:first-child:not(.widget-grid) {
+        //   margin-top: var(--w-padding-xs);
+        // }
+        > .widget-table,
+        > .widget-button,
+        > div > .widget-tree,
+        > .widget-data-manager-view > .ant-layout,
+        > .widget-data-manager-view > .widget-table {
+          // 页面直接套表格，表格增加内边距
+          padding: var(--w-padding-xs) var(--w-padding-md);
+        }
+      }
+    }
+  }
+}

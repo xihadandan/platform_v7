@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="getNameQueryTestSql">
+        <![CDATA[
+		select t1.uuid   as uuid,
+		       t1.id     as id,
+		       t1.name   as name,
+		       t1.code   as code,
+		       t1.remark as remark
+		  from app_function t1
+		 inner join app_product_integration t2
+		    on t1.uuid = t2.data_uuid
+		 where t1.id = t2.data_id
+		   and t1.name <> t2.data_name
+	]]>
+    </sql-query>
+</hibernate-mapping>

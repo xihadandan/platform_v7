@@ -1,0 +1,52 @@
+package com.wellsoft.pt.di.job;
+
+import com.wellsoft.context.annotation.Description;
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.di.entity.DiConfigEntity;
+import com.wellsoft.pt.di.service.DiConfigService;
+import com.wellsoft.pt.di.util.CamelContextUtils;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+import org.apache.commons.lang.StringUtils;
+import org.quartz.JobExecutionContext;
+
+import java.util.List;
+
+/**
+ * Description:
+ *
+ * @author chenq
+ * @date 2018/11/17
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本	    修改人		修改日期			修改内容
+ * 2018/11/17    chenq		2018/11/17		Create
+ * </pre>
+ */
+@Description("数据交换路由执行任务")
+public class DiExecuteJob extends Job {
+
+    @Override
+    protected void execute(JobExecutionContext context, JobData data) {
+        String jobUuid = data.getJobUuid();
+        if (StringUtils.isNotBlank(jobUuid)) {
+            //获取所有挂载该定时任务的数据交换配置
+            DiConfigService configService = ApplicationContextHolder.getBean(DiConfigService.class);
+            List<DiConfigEntity> configEntityList = configService.listByJobUuid(jobUuid);
+            for (DiConfigEntity entity : configEntityList) {
+                try {
+                    if (CamelContextUtils.context().getRouteStatus(entity.getUuid()).isStarting()) {
+                        continue;
+                    }
+                    CamelContextUtils.context().startRoute(entity.getUuid());//启动路由，路由执行完毕，会再次挂起路由
+                } catch (Exception e) {
+                    logger.error("数据交换定时任务启动路由[]失败：", entity.getUuid(), e);
+                }
+            }
+
+        }
+    }
+
+
+}

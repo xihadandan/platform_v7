@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="dyFormDefinitionTreeQuery4new">
+        <![CDATA[
+		select form_def.uuid as uuid,
+			form_def.tableName as tableName,
+			form_def.name as name,
+			form_def.version as version,
+			form_def.id as id,
+			form_def.code as code,
+			form_def.formType as formType
+		from FormDefinition form_def where form_def.uuid != :parentUuid and form_def.id = :id
+		<if isNotBlank(tableName) || isNotBlank(name) || isNotBlank(version) || isNotBlank(moduleName) || isNotBlank(moduleId) || isNotBlank(id) || isNotBlank(code)>
+			and (1 = 2
+				<if isNotBlank(tableName)>
+					or lower(form_def.tableName) like '%${tableName?lower_case}%'
+				</if>
+				<if isNotBlank(name)>
+					or lower(form_def.name) like '%${name?lower_case}%'
+				</if>
+				<if isNotBlank(version)>
+					or lower(form_def.version) = lower(:version)
+				</if>
+				<if isNotBlank(id)>
+					or lower(form_def.id) like '%${id?lower_case}%'
+				</if>
+				<if isNotBlank(code)>
+					or lower(form_def.code) like '%${code?lower_case}%'
+				</if>
+			)
+		</if>
+		<if isNotBlank(tableName)>
+				and (form_def.tableName = :tableName  )
+		</if>
+		order by form_def.version desc
+	]]>
+    </sql-query>
+
+    <sql-query name="getDyformsByParentAndOuterId4new">
+        <![CDATA[
+		select form_def.uuid
+		from FormDefinition form_def
+		where
+		<if isNotBlank(parentUuid)>
+			form_def.uuid != :parentUuid
+			and form_def.id = :id
+		<else>
+			 exists(
+				select id,max(version) from DyFormDefinition o
+				group by id
+				having o.id = form_def.id and max(version) = form_def.version
+			)
+		</if>
+	]]>
+    </sql-query>
+
+
+    <!-- 根据输入值，搜索id或者名称或者表名匹配的存储单据定义 -->
+    <sql-query name="queryByNameOrIdOrTableName4new">
+        <![CDATA[
+		from FormDefinition fd
+		where  1=1
+		<if formTypes??>
+		and fd.formType in (:formTypes)
+		</if>
+
+		<if isNotBlank(searchValue)>
+			 and ( fd.id like :searchValue or fd.name like :searchValue or fd.tableName like :searchValue  )
+	 	</if>
+	 	<if excludeUuids??>
+			 and fd.uuid not in (:excludeUuids)
+	 	</if>
+	 	<if systemUnitIds??>
+			 and fd.systemUnitId in (:systemUnitIds)
+	 	</if>
+	 	<if isNotBlank(currentSystem) && isNotBlank(tenantId)>
+			 and (
+                exists (
+                    select pm.moduleId from AppProdModuleEntity pm, AppSystemInfoEntity si
+                        where pm.prodVersionUuid = si.prodVersionUuid
+                        and fd.moduleId = pm.moduleId and si.system = :currentSystem and si.tenant = :tenantId
+                )
+                or fd.system = :currentSystem
+            )
+	 	</if>
+	 	 order by fd.modifyTime desc
+	]]>
+    </sql-query>
+
+    <sql-query name="queryAllFormDefinition">
+        <![CDATA[
+		from FormDefinition fd
+		where  1=1
+		<if moduleId??>
+		and fd.moduleId =:moduleId
+		</if>
+		<if excludeModuleIds??>
+		and fd.moduleId not in (:excludeModuleIds)
+		</if>
+		<if systemUnitId??>
+		and fd.systemUnitId =:systemUnitId
+		</if>
+	 	 order by fd.modifyTime desc
+	]]>
+    </sql-query>
+
+
+    <!-- 根据输入值，搜索id或者名称或者表名匹配的母版单据定义 -->
+    <sql-query name="queryTypeByNameOrIdOrTableName4new">
+        <![CDATA[
+		from FormDefinition fd
+		where  fd.formType in (:formType)
+		<if isNotBlank(searchValue)>
+			 and ( fd.id like :searchValue or fd.name like :searchValue or fd.tableName like :searchValue  )
+	 	</if>
+		<if isNotBlank(pTableName)>
+			 and ( fd.tableName = :pTableName  )
+	 	</if>
+	 	 order by fd.modifyTime desc
+	]]>
+    </sql-query>
+
+    <sql-query name="topDyFormDefinitionTreeQuery4new">
+        <![CDATA[
+		select form_def.uuid as uuid,
+			form_def.tableName as tableName,
+			form_def.name as name,
+			form_def.version as version,
+			form_def.id as id,
+			form_def.code as code,
+			form_def.formType as formType
+		from FormDefinition form_def
+		 where  (form_def.id,form_def.version) in (
+			select oo.id,max(oo.version) from FormDefinition o,FormDefinition oo where o.id = oo.id
+			<if isNotBlank(tableName) || isNotBlank(name) || isNotBlank(version)  || isNotBlank(id) || isNotBlank(code)>
+				and (1 = 2
+					<if isNotBlank(tableName)>
+						or lower(o.tableName) like '%${tableName?lower_case}%'
+					</if>
+					<if isNotBlank(name)>
+						or lower(o.name) like '%${name?lower_case}%'
+					</if>
+					<if isNotBlank(version)>
+						or lower(o.version) = lower(:version)
+					</if>
+					<if isNotBlank(id)>
+						or lower(o.id) like '%${id?lower_case}%'
+					</if>
+					<if isNotBlank(code)>
+						or lower(o.code) like '%${code?lower_case}%'
+					</if>
+				)
+			</if>
+			<if isNotBlank(formType)>
+				and (  o.formType =  :formType  )
+			</if>
+			<if isNotBlank(pTableName)>
+				and (  o.tableName = :pTableName and o.formType in ('V','M'))
+			</if>
+			group by oo.id
+		)
+		order by form_def.modifyTime desc, form_def.version
+	]]>
+    </sql-query>
+
+    <sql-query name="dyFormDefinitionStore">
+        <![CDATA[
+        select uuid as uuid,
+            table_name as tableName,
+            name as name,
+            version as version,
+            id as id,
+            code as code,
+            form_type as formType,
+            decode(form_type,'P','存储单据','V','展现单据','M','手机单据','C','产品定义单据','模板单据') formTypeName
+        from dyform_form_definition
+         where 1 = 1
+            <if isNotBlank(keyword)>
+                and (lower(table_name) like '%${keyword?lower_case}%'
+                or lower(name) like '%${keyword?lower_case}%'
+                or lower(version) = lower(:keyword)
+                or lower(id) like '%${keyword?lower_case}%'
+                )
+            </if>
+             <if isNotBlank(formType)>
+                and form_type = '${formType}'
+            </if>
+            <if isNotBlank(formTypes)>
+                and formType in (:formTypes)
+            </if>
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            </if>
+    ]]>
+    </sql-query>
+
+    <sql-query name="dyFormDefinitionStore2">
+        <![CDATA[
+        select uuid as uuid,
+            table_name as tableName,
+            name as name,
+            version as version,
+            id as id,
+            code as code,
+            form_type as formType,
+            system_unit_id as systemUnitId,
+            decode(form_type,'P','存储单据','V','展现单据','M','手机单据','C','产品定义单据','模板单据') formTypeName
+        from dyform_form_definition form_def
+         where exists (
+		        select id,max(version) from dyform_form_definition o where 1 = 1
+	            <if isNotBlank(keyword)>
+	                and (lower(table_name) like '%${keyword?lower_case}%'
+	                or lower(name) like '%${keyword?lower_case}%'
+	                or lower(id) like '%${keyword?lower_case}%'
+	                or lower(code) like '%${keyword?lower_case}%'
+	                )
+	            </if>
+	            <if isNotBlank(formType)>
+	                and form_type = :formType
+	            </if>
+	            <if isNotBlank(formTypes)>
+	                and form_type in (:formTypes)
+	            </if>
+	            <if isNotBlank(whereSql)>
+	                and ${whereSql}
+	            </if>
+		        group by id
+		        having o.id = form_def.id and max(version) = form_def.version
+		     )
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            </if>
+    ]]>
+    </sql-query>
+
+    <sql-query name="isExistTable">
+        <![CDATA[
+			select count(1) from user_tables t where t.TABLE_NAME = upper(:tblName)
+		]]>
+    </sql-query>
+
+    <sql-query name="queryDatabaseCharacter">
+        <![CDATA[
+			SELECT value FROM nls_database_parameters WHERE parameter = 'NLS_CHARACTERSET'
+		]]>
+    </sql-query>
+
+    <!-- 根据输入值，搜索名称和表名匹配的存储单据定义 -->
+    <sql-query name="queryByNameAndTableName4new">
+        <![CDATA[
+		from FormDefinition fd
+		where  1=1
+		<if isNotBlank(searchValue)>
+			 and ( fd.name like :searchValue )
+	 	</if>
+	 	<if isNotBlank(tableName)>
+			 and fd.tableName =:tableName
+	 	</if>
+	 	 order by fd.modifyTime desc
+	]]>
+    </sql-query>
+
+    <sql-query name="queryFormDefinitionSelect">
+        <![CDATA[
+		select fd.uuid as uuid,fd.name as name,fd.version as version
+		from FormDefinition fd
+		where  1=1
+		<if isNotBlank(tableName)>
+			 and fd.tableName =:tableName
+	 	</if>
+		<if isNotBlank(value)>
+			 and ( fd.name like :value or fd.id like :value or fd.code like :value)
+	 	</if>
+	 	<if unitIds??> and fd.systemUnitId in (:unitIds)</if>
+	 	<if includeTypes??> and fd.formType in (:includeTypes)</if>
+	 	<if excludeTypes??> and fd.formType in (:excludeTypes)</if>
+	 	 order by fd.modifyTime desc
+	]]>
+    </sql-query>
+
+</hibernate-mapping>

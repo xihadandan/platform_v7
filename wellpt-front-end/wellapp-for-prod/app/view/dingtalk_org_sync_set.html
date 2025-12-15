@@ -1,0 +1,221 @@
+<div class="container dyform org-sync-set" id="org_sync_set">
+  <div class="warm-tip">
+    配置从钉钉同步至OA的规则，开关开启为同步，开关关闭为不同步
+    <div class="form-tooltip">
+      <i
+        class="iconfont icon-ptkj-xinxiwenxintishi"
+        style="margin-right: 5px; font-size: 20px; vertical-align: middle"
+        data-toggle="popover"
+        data-content=""
+      ></i>
+      <div class="tooltip-body show-down">
+        <span class="arrow"></span>
+        <div class="form-tooltip-content show-down">
+          <p>1、开关关闭：不同步，保留OA信息，适用无法满足OA功能的钉钉信息</p>
+          <p>2、开关开启：同步，以钉钉信息为准，适用完全满足OA功能的钉钉信息</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table>
+    <tbody>
+      <tr>
+        <td class="label-td">部门</td>
+        <td>
+          <p class="check-text float-right">
+            <input type="checkbox" class="form-control switch" id="org_sync_dept" name="org_sync_dept" />
+            <label for="org_sync_dept"></label>
+            <span class="proposal">
+              <span class="organge">建议：</span>
+              同步
+            </span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="8" class="label-td">人员</td>
+        <td>
+          <p class="sub-text float-left" style="width: 120px">姓名</p>
+          <p class="sub-text float-left">
+            <span class="gray">作为</span>
+            OA姓名
+          </p>
+          <p class="check-text float-right">
+            <input type="checkbox" class="form-control switch" id="name" name="name" checked="true" disabled="true" />
+            <label for="name"></label>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="sub-text float-left" style="width: 120px">头像</p>
+          <p class="sub-text float-left">
+            <span class="gray">作为</span>
+            OA照片
+          </p>
+          <p class="check-text float-right">
+            <input type="checkbox" class="form-control switch" id="org_sync_user_photo" name="org_sync_user_photo" />
+            <label for="org_sync_user_photo"></label>
+            <span class="proposal">
+              <span class="organge">建议：</span>
+              同步
+            </span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="sub-text float-left" style="width: 120px">证件号码</p>
+          <p class="sub-text float-left">
+            <span class="gray">作为</span>
+            OA身份证号
+          </p>
+          <p class="check-text float-right">
+            <input type="checkbox" class="form-control switch" id="org_sync_user_idnumber" name="org_sync_user_idnumber" />
+            <label for="org_sync_user_idnumber"></label>
+            <span class="proposal">
+              <span class="organge">建议：</span>
+              同步
+            </span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="sub-text float-left" style="width: 120px">手机</p>
+
+          <p class="sub-text float-left">
+            <span class="gray">作为</span>
+            OA手机号
+          </p>
+          <p class="check-text float-right">
+            <input type="checkbox" class="form-control switch" id="org_sync_user_mobile" name="org_sync_user_mobile" />
+            <label for="org_sync_user_mobile"></label>
+            <span class="proposal">
+              <span class="organge">建议：</span>
+              同步
+            </span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="sub-text float-left" style="width: 120px">分机号</p>
+          <p class="sub-text float-left">
+            <span class="gray">作为</span>
+            OA办公号码
+          </p>
+          <p class="check-text float-right">
+            <input type="checkbox" class="form-control switch" id="org_sync_user_telephone" name="org_sync_user_telephone" />
+            <label for="org_sync_user_telephone"></label>
+            <span class="proposal">
+              <span class="organge">建议：</span>
+              同步
+            </span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="sub-text float-left" style="width: 120px">邮箱</p>
+          <p class="sub-text float-left">
+            <span class="gray">作为</span>
+            OA邮箱
+          </p>
+          <p class="check-text float-right">
+            <input type="checkbox" class="form-control switch" id="org_sync_user_email" name="org_sync_user_email" />
+            <label for="org_sync_user_email"></label>
+            <span class="proposal">
+              <span class="organge">建议：</span>
+              同步
+            </span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="sub-text float-left" style="width: 120px">工号</p>
+          <p class="sub-text float-left">
+            <span class="gray">作为</span>
+            OA员工编号
+          </p>
+          <p class="check-text float-right">
+            <input type="checkbox" class="form-control switch" id="org_sync_user_jobno" name="org_sync_user_jobno" />
+            <label for="org_sync_user_jobno"></label>
+            <span class="proposal">
+              <span class="organge">建议：</span>
+              同步
+            </span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="sub-text float-left" style="width: 120px">备注</p>
+          <p class="sub-text float-left">
+            <span class="gray">作为</span>
+            OA备注
+          </p>
+          <p class="check-text float-right">
+            <input type="checkbox" class="form-control switch" id="org_sync_user_remark" name="org_sync_user_remark" />
+            <label for="org_sync_user_remark"></label>
+            <span class="proposal">
+              <span class="organge">建议：</span>
+              同步
+            </span>
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label-td">人员和职位的关系</td>
+        <td>
+          <div class="check-text float-right">
+            <input type="checkbox" class="form-control switch" id="org_sync_workinfo" name="org_sync_workinfo" />
+            <label for="org_sync_workinfo"></label>
+            <span class="proposal">
+              <span class="organge">建议：</span>
+              同步
+            </span>
+
+            <div class="form-tooltip">
+              <i
+                class="iconfont icon-ptkj-xinxiwenxintishi"
+                style="margin-right: 5px; font-size: 20px; vertical-align: middle"
+                data-toggle="popover"
+                data-content=""
+              ></i>
+              <div class="tooltip-body show-down">
+                <span class="arrow"></span>
+                <div class="form-tooltip-content show-down">
+                  <div>建议理由：满足企业人员较少【一人多岗】的通用场景</div>
+                  <ul>
+                    <li>人员在钉钉上的部门只有1个：同步后即为OA的主职位</li>
+                    <li>人员在钉钉上的部门有多个时：需要人工审核该人员在OA的职位，审核后才会在OA上生效</li>
+                  </ul>
+                  <div>钉钉和OA的职位存在以下差异</div>
+                  <div>1、钉钉</div>
+                  <ul>
+                    <li>部门：支持多个，属于组织架构</li>
+                    <li>职位：只有1个，不属于组织架构</li>
+                  </ul>
+                  <div>2、OA</div>
+                  <ul>
+                    <li>部门：职位归属的部门，属于组织架构</li>
+                    <li>职位：=主职位（只有1个）+其他职位（支持多个），有职位时，一定有主职位；属于组织架构</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row" style="margin-top: 30px">
+    <div class="col-sm-12 text-center">
+      <button type="button" class="well-btn w-btn-primary" id="dingtalk_sync_set_btn_save">保存</button>
+      <button type="button" class="well-btn w-btn-primary" id="dingtalk_sync_set_btn_sync">同步</button>
+    </div>
+  </div>
+</div>

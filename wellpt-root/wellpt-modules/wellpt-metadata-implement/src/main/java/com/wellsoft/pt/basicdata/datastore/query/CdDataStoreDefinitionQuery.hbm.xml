@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="queryAllCdDataStoreDefinition">
+        <![CDATA[
+		from CdDataStoreDefinition fd
+		where  1=1
+		<if moduleId??>
+		and fd.moduleId =:moduleId
+		</if>
+		<if moduleIds??>
+		and fd.moduleId in (:moduleIds)
+		</if>
+		<if excludeModuleIds??>
+		and (fd.moduleId not in (:excludeModuleIds) or fd.moduleId is null)
+		</if>
+		<if systemUnitId??>
+		and fd.systemUnitId =:systemUnitId
+		</if>
+		<if systemUnitIds??>
+		and fd.systemUnitId in (:systemUnitIds)
+		</if>
+	 	 order by fd.modifyTime desc
+	]]>
+    </sql-query>
+
+    <!--模块化的数据库查询，包含引用其他模块的数据参考-->
+    <sql-query name="cdDataStoreDefinitionIncludeRef">
+        <![CDATA[
+		from CdDataStoreDefinition t
+		where  1=1
+		<if moduleId??>
+		and t.moduleId =:moduleId
+		</if>
+		<if moduleIds??>
+		and t.moduleId in (:moduleIds)
+		</if>
+		<if piUuids??>
+		and (exists
+		(select 1
+		   from AppProductIntegration i
+		  where  (
+			(i.parentUuid in(:piUuids) and i.dataType = '2' and i.dataId = t.moduleId)
+			or  (i.uuid in(:piUuids) and i.dataType = '2' and i.dataId = t.moduleId )
+			or ( i.uuid in(:piUuids) and i.dataType='3' and exists (
+				 select 1 from AppProductIntegration p where p.uuid=i.parentUuid and p.dataType='2' and p.dataId=t.moduleId
+				))
+			)
+		)
+		or exists
+		(select 1
+		   from AppProductIntegration i, CdDatastoreDefinitionRefEntity f
+		  where i.dataType = '2'
+			and i.dataId = f.moduleId
+			and f.moduleId <> t.moduleId
+			and f.refUuid = t.uuid
+			and (i.parentUuid in(:piUuids))
+		 ))
+		</if>
+		<if systemUnitId??>
+		and t.systemUnitId =:systemUnitId
+		</if>
+	 	 order by t.modifyTime desc
+	]]>
+    </sql-query>
+
+    <sql-query name="cdDataStoreDefinitionSelect2Query2">
+        <![CDATA[
+			select o.uuid,
+		       o.creator,
+		       o.create_time,
+		       o.modifier,
+		       o.modify_time,
+		       o.id,
+		       o.code,
+		       o.name,
+		       o.type,
+		       o.module_id
+		  from cd_data_store_definition o
+		 where o.system_unit_id in (:systemUnitIds)
+		 <if isNotBlank(name) || isNotBlank(code) || isNotBlank(id)>
+				and (1 = 2
+				<if isNotBlank(name)>
+					or lower(o.name) like '%${name?lower_case}%'
+				</if>
+				<if isNotBlank(code)>
+					or lower(o.code) like '%${code?lower_case}%'
+				</if>
+				<if isNotBlank(id)>
+					or lower(o.id) like '%${id?lower_case}%'
+				</if>
+				)
+		  </if>
+	]]>
+    </sql-query>
+
+</hibernate-mapping>

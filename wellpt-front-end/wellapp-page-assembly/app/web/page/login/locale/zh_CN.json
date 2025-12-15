@@ -1,0 +1,7 @@
+{
+  "LoginRender": {
+    "error": "错误",
+    "sessionTimedOut": "用户会话已超时, 请重新登录",
+    "loginFailedAgain": "登录失效，请重新登录!"
+  }
+}

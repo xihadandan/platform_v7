@@ -1,0 +1,54 @@
+{
+  "js": {
+    "AppExchangeSystemDevelopment": {
+      "path": "/api-mgr/AppExchangeSystemDevelopment",
+      "name": "平台应用_数据交换_接入系统编辑二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "ztree",
+        "multiOrg",
+        "comboTree",
+        "wSelect2",
+        "global",
+        "system-admin"
+      ]
+    },
+    "AppConfigSysListDevelopment": {
+      "path": "/api-mgr/AppConfigSysListDevelopment",
+      "name": "平台应用_API管理_对接系统配置列表二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment",
+        "iexportData_V61"
+      ]
+    },
+    "AppApiDevelopment": {
+      "path": "/api-mgr/AppApiDevelopment",
+      "name": "平台应用_api指令_api指令列表二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment"
+      ]
+    },
+    "AppConfigSysWidgetDevelopment": {
+      "path": "/api-mgr/AppConfigSysWidgetDevelopment",
+      "name": "平台应用_API管理_对接系统配置编辑二开",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "wSelect2",
+        "global",
+        "system-admin"
+      ]
+    },
+    "AppExchangeSysListDevelopment": {
+      "path": "/api-mgr/AppExchangeSysListDevelopment",
+      "name": "平台应用_数据交换_接入系统列表二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment"
+      ]
+    }
+  },
+  "template": {},
+  "css": {}
+}

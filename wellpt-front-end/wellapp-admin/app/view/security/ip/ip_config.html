@@ -1,0 +1,68 @@
+<form action="" id="privilege_form" class="form-widget" style="margin-top: 15px; padding: 0 30px; box-sizing: border-box">
+  <ul class="form-table">
+    <li>
+      <h3 class="title">用户登录的设备限制</h3>
+      <div class="row">
+        <span>允许多台设备同时登录：</span>
+        <input type="hidden" id="isAllowMultiDeviceLogin" name="isAllowMultiDeviceLogin" value="1" />
+        <div id="isAllowMultiDeviceLoginSwitch" class="switch-button switch-wrap active">
+          <span class="switch-text switch-open"></span>
+          <span class="switch-radio"></span>
+          <span class="switch-text switch-close"></span>
+        </div>
+        <span>关闭时，只允许登录1台设备，登录其他设备时，之前登录设备会被强制退出</span>
+      </div>
+    </li>
+    <li>
+      <h3 class="title">用户登录时需要图形码校验的IP设置</h3>
+      <div class="row">
+        <button id="btn_login_verify_code_add" type="button" data-apply="1" class="well-btn w-btn-primary btn-add-rows">新增</button>
+        <button id="btn_login_verify_code_del" type="button" class="well-btn w-btn-danger btn-del-rows">删除</button>
+      </div>
+      <table id="login_verify_code_list" class="ip_config_list"></table>
+    </li>
+    <li>
+      <h3 class="title">允许登录本系统的用户</h3>
+      <div>
+        <textarea id="usernames" name="usernames" style="width: 100%; border-radius: 4px"></textarea>
+        <input id="userIds" name="userIds" type="hidden" />
+      </div>
+    </li>
+    <li>
+      <h3 class="title">用户登录的IP设置</h3>
+      <div class="row">
+        <button id="btn_ip_login_limit_add" type="button" data-apply="2" class="well-btn w-btn-primary btn-add-rows">新增</button>
+        <button id="btn_ip_login_limit_del" type="button" class="well-btn w-btn-danger btn-del-rows">删除</button>
+      </div>
+      <table id="ip_login_limit_list" class="ip_config_list"></table>
+    </li>
+    <li>
+      <h3 class="title">手机短信二次验证的IP设置</h3>
+      <div class="row">
+        <button id="btn_ip_sms_verify_add" type="button" data-apply="3" class="well-btn w-btn-primary btn-add-rows">新增</button>
+        <button id="btn_ip_sms_verify_del" type="button" class="well-btn w-btn-danger btn-del-rows">删除</button>
+      </div>
+      <table id="ip_sms_verify_list" class="ip_config_list"></table>
+      <div id="sms_valid_period" style="margin-top: 10px">
+        <label for="validPeriod" class="control-label">短信验证码有效期限：</label>
+        <input id="validPeriod" name="validPeriod" type="text" style="width: 50px" />
+        <label for="validPeriod" class="control-label">&nbsp;秒</label>
+      </div>
+    </li>
+    <li>
+      <h3 class="title">用户登录的域设置</h3>
+      <div class="row">
+        <button id="btn_domain_login_limit_add" type="button" data-apply="4" class="well-btn w-btn-primary btn-add-rows">新增</button>
+        <button id="btn_domain_login_limit_del" type="button" class="well-btn w-btn-danger btn-del-rows">删除</button>
+      </div>
+      <table id="domain_login_limit_list" class="ip_config_list"></table>
+    </li>
+  </ul>
+  <div class="row" style="margin-top: 20px">
+    <div class="col-sm-12 text-center">
+      <button type="button" class="well-btn w-btn-primary" id="ip_config_btn_save">保存</button>
+    </div>
+  </div>
+  <input type="hidden" id="userName" />
+  <input type="hidden" id="userId" />
+</form>

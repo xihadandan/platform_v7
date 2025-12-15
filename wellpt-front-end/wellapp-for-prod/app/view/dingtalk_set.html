@@ -1,0 +1,78 @@
+<form action="" class="form-widget" id="dingtalk_form" style="margin-top: 15px">
+  <input type="hidden" id="uuid" name="uuid" />
+  <div class="well-form form-horizontal">
+    <div class="form-group">
+      <label for="app_key" class="well-form-label control-label required">微应用key</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="app_key" name="app_key" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="app_secret" class="well-form-label control-label required">微应用secret</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="app_secret" name="app_secret" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="corp_id" class="well-form-label control-label required">企业ID</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="corp_id" name="corp_id" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="corp_domain_uri" class="well-form-label control-label required">企业回调域名</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="corp_domain_uri" name="corp_domain_uri" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="agent_id" class="well-form-label control-label required">企业代理ID</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="agent_id" name="agent_id" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="system_unit_name" class="well-form-label control-label required">系统单位</label>
+      <div class="well-form-control">
+        <input type="hidden" name="system_unit_name" id="system_unit_name" />
+        <input type="text" name="system_unit_Id" id="system_unit_id" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="org_version_name" class="well-form-label control-label required">组织版本</label>
+      <div class="well-form-control">
+        <input type="hidden" id="org_version_name" name="org_version_name" />
+        <input type="text" class="form-control" id="org_version_id" name="org_version_id" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="sns_app_id" class="well-form-label control-label required">授权信息appid</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="sns_app_id" name="sns_app_id" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="sns_app_secret" class="well-form-label control-label required">授权信息appsecret</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="sns_app_secret" name="sns_app_secret" />
+      </div>
+    </div>
+    {#
+    <div class="form-group">
+      <label class="well-form-label control-label">组织同步</label>
+      <div class="well-form-control">
+        <button type="button" class="well-btn w-btn-primary" id="dingtalk_sync">组织同步</button>
+        <span id="syncTime" style="color: #bc4762; text-decoration: underline; display: none; cursor: pointer"></span>
+        <span id="syncTimeTip" style="color: #bc4762"></span>
+      </div>
+    </div>
+    #}
+  </div>
+
+  <div class="row" style="margin-top: 30px">
+    <div class="col-sm-12 text-center">
+      <button type="button" class="well-btn w-btn-primary" id="dingtalk_btn_save">保存</button>
+    </div>
+  </div>
+</form>

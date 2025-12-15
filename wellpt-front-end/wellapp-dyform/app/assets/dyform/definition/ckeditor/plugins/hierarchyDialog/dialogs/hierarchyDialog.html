@@ -1,0 +1,28 @@
+<div id="propertiesDialog" title="字段属性列表窗口">
+  <div style="max-height: 80vh">
+    <div>
+      <div class="post-sign">
+        <div class="post-detail" id="cpropertiesDialog">
+          <div class="panel">
+            <div>
+              <ul id="form-tree" class="ztree"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var hierarchyDialog = {};
+
+  hierarchyDialog.init = function (editor) {
+    var _this = this;
+    var treeNodes = formDefinition.formTree;
+    hierarchyDialog.editor = editor;
+
+    var setting = {};
+    var formTree = $.fn.zTree.init($('#form-tree'), setting, treeNodes);
+    formTree.expandAll(true);
+  };
+</script>

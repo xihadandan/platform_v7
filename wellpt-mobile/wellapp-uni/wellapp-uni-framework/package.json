@@ -1,0 +1,47 @@
+{
+  "name": "wellapp-uni-framework",
+  "version": "70.1.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "acorn": "^8.15.0",
+    "astring": "^1.9.0",
+    "axios": "^0.21.4",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
+    "jmespath": "^0.16.0",
+    "jsonata": "^2.1.0",
+    "juicer": "^0.6.15",
+    "lodash": "^4.17.21",
+    "vue-i18n": "^8.28.2"
+  },
+  "devDependencies": {
+    "chokidar": "^3.6.0",
+    "fs-extra": "^9.0.1"
+  },
+  "browserslist": [
+    "Android >= 4.4",
+    "ios >= 9"
+  ],
+  "resolutions": {
+    "@babel/runtime": "~7.17.9"
+  },
+  "uni-app": {
+    "scripts": {}
+  },
+  "lint-staged": {
+    "../**/!(*.min).{html,js,css}": [
+      "./node_modules/.bin/prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  }
+}

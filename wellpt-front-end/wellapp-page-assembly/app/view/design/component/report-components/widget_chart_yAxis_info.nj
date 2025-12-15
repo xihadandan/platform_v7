@@ -1,0 +1,419 @@
+<!-- 图表的直角坐标系x轴信息定义 -->
+
+<div role="tabpanel" class="tab-pane" id="widget_chart_yAxis_info">
+  <div class="form-group">
+    <div id="div_yAxis_info_toolbar" class="btn-group btn_yAxis_info">
+      <button id="btn_add_yAxis" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+      </button>
+      <button id="btn_delete_yAxis" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+      </button>
+      <button id="btn_row_up_yAxis" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span
+        >上移
+      </button>
+      <button id="btn_row_down_yAxis" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span
+        >下移
+      </button>
+    </div>
+    <table
+      id="table_yAxis_info"
+      class="definition_info"
+      data-height="430"
+    ></table>
+  </div>
+
+  <!-- 定义详情页面 -->
+  <div id="yAxis_define_detail_template" style="display: none">
+    <div id="template">
+      <div class="form-group">
+        <label for="show" class="col-sm-2 control-label">是否显示y轴</label>
+        <div class="col-sm-4 checkbox-inline">
+          <input
+            type="checkbox"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="show"
+            id="show_y"
+            value="true"
+          />
+          <label for="show_y"></label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="gridIndex" class="col-sm-2 control-label"
+          >y轴所在的网格</label
+        >
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="gridIndex"
+            id="gridIndex"
+          />
+        </div>
+        <label for="yAxisType" class="col-sm-2 control-label">坐标轴类型</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="type"
+            id="yAxisType"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">坐标轴名称</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="name"
+            id="name"
+          />
+        </div>
+        <label for="nameLocation" class="col-sm-2 control-label"
+          >坐标轴名称显示位置</label
+        >
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="nameLocation"
+            id="nameLocation"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="yAxisPosition" class="col-sm-2 control-label"
+          >y轴的位置</label
+        >
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="position"
+            id="yAxisPosition"
+          />
+        </div>
+        <label for="offset" class="col-sm-2 control-label">y轴偏移量</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="offset"
+            id="offset"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="min" class="col-sm-2 control-label">坐标轴刻度最小值</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="min"
+            id="min"
+          />
+        </div>
+        <label for="max" class="col-sm-2 control-label">坐标轴刻度最大值</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="max"
+            id="max"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="interval" class="col-sm-2 control-label"
+          >坐标轴分割间隔值</label
+        >
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="interval"
+            id="interval"
+          />
+        </div>
+
+        <label for="nameGap" class="col-sm-2 control-label"
+          >坐标轴名称与轴线之间的距离</label
+        >
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control w-configurer-option"
+            height="34px"
+            name="nameGap"
+            id="nameGap"
+          />
+        </div>
+      </div>
+
+      {% include "./widget_chart_axis_category_data_info.nj" %}
+      <!-- <%@ include file="widget_chart_axis_category_data_info.jsp" %> -->
+
+      <fieldset>
+        <legend>坐标轴名称的文字样式</legend>
+
+        <div class="form-group">
+          <label for="nameTextStyle_color" class="col-sm-2 control-label"
+            >坐标轴名称颜色</label
+          >
+          <div class="col-sm-4">
+            <input
+              type="text"
+              class="form-control w-configurer-option"
+              height="34px"
+              name="nameTextStyle_color"
+              id="nameTextStyle_color"
+            />
+          </div>
+          <label for="nameTextStyle_fontStyle" class="col-sm-2 control-label"
+            >坐标轴名称字体风格</label
+          >
+          <div class="col-sm-4">
+            <input
+              type="text"
+              class="form-control w-configurer-option"
+              height="34px"
+              name="nameTextStyle_fontStyle"
+              id="nameTextStyle_fontStyle"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="nameTextStyle_fontFamily" class="col-sm-2 control-label"
+            >坐标轴名称字体</label
+          >
+          <div class="col-sm-4">
+            <input
+              type="text"
+              class="form-control w-configurer-option"
+              height="34px"
+              name="nameTextStyle_fontFamily"
+              id="nameTextStyle_fontFamily"
+            />
+          </div>
+          <label for="nameTextStyle_fontWeight" class="col-sm-2 control-label"
+            >坐标轴名称字体粗细</label
+          >
+          <div class="col-sm-4">
+            <input
+              type="text"
+              class="form-control w-configurer-option"
+              height="34px"
+              name="nameTextStyle_fontWeight"
+              id="nameTextStyle_fontWeight"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="nameTextStyle_fontSize" class="col-sm-2 control-label"
+            >坐标轴名称字体大小</label
+          >
+          <div class="col-sm-4">
+            <input
+              type="text"
+              class="form-control w-configurer-option"
+              height="34px"
+              name="nameTextStyle_fontSize"
+              id="nameTextStyle_fontSize"
+            />
+          </div>
+          <label for="nameTextStyle_lineHeight" class="col-sm-2 control-label"
+            >坐标轴名称行高</label
+          >
+          <div class="col-sm-4">
+            <input
+              type="text"
+              class="form-control w-configurer-option"
+              height="34px"
+              name="nameTextStyle_lineHeight"
+              id="nameTextStyle_lineHeight"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            for="nameTextStyle_backgroundColor"
+            class="col-sm-2 control-label"
+            >文字块背景颜色</label
+          >
+          <div class="col-sm-4">
+            <input
+              type="text"
+              class="form-control w-configurer-option"
+              height="34px"
+              name="nameTextStyle_backgroundColor"
+              id="nameTextStyle_backgroundColor"
+            />
+          </div>
+          <label for="nameTextStyle_borderColor" class="col-sm-2 control-label"
+            >文字块边框颜色</label
+          >
+          <div class="col-sm-4">
+            <input
+              type="text"
+              class="form-control w-configurer-option"
+              height="34px"
+              name="nameTextStyle_borderColor"
+              id="nameTextStyle_borderColor"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="nameTextStyle_borderWidth" class="col-sm-2 control-label"
+            >文字边框宽度</label
+          >
+          <div class="col-sm-4">
+            <input
+              type="text"
+              class="form-control w-configurer-option"
+              height="34px"
+              name="nameTextStyle_borderWidth"
+              id="nameTextStyle_borderWidth"
+            />
+          </div>
+          <label for="nameTextStyle_borderRadius" class="col-sm-2 control-label"
+            >文字边框圆角半径</label
+          >
+          <div class="col-sm-4">
+            <input
+              type="text"
+              class="form-control w-configurer-option"
+              height="34px"
+              name="nameTextStyle_borderRadius"
+              id="nameTextStyle_borderRadius"
+            />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>坐标轴刻度标签样式</legend>
+        <div class="form-group">
+          <label for="axisLabel_formatter" class="col-sm-2 control-label"
+            >刻度标签的内容格式化</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control w-configurer-option"
+              height="34px"
+              name="axisLabel_formatter"
+              id="axisLabel_formatter"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="axisLabel_formatter" class="col-sm-2 control-label"
+            >标签的显示间隔类型</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control w-configurer-option"
+              height="34px"
+              name="axisLabel_interval"
+              id="axisLabel_interval"
+              value="0"
+              placeholder="0: 强制显示所有标签; 1: 表示间隔一个标签显示标签; 以此类推。auto: 自适应"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="axisLabel_rotate" class="col-sm-2 control-label"
+            >刻度标签旋转角度</label
+          >
+          <div class="col-sm-4">
+            <input
+              type="text"
+              class="form-control w-configurer-option"
+              height="34px"
+              name="axisLabel_rotate"
+              id="axisLabel_rotate"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="axisLabel_fontSize" class="col-sm-2 control-label"
+            >刻度标签字体大小</label
+          >
+          <div class="col-sm-4">
+            <input
+              type="text"
+              class="form-control w-configurer-option"
+              height="34px"
+              name="axisLabel_fontSize"
+              id="axisLabel_fontSize"
+            />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>坐标轴轴线样式</legend>
+        <div class="form-group">
+          <label for="axisLine_show" class="col-sm-2 control-label"
+            >显示坐标轴轴线</label
+          >
+          <div class="col-sm-4 checkbox-inline">
+            <input
+              type="checkbox"
+              class="form-control w-configurer-option"
+              height="34px"
+              name="axisLine_show"
+              checked="checked"
+              id="axisLine_show"
+              value="true"
+            />
+            <label for="axisLine_show"></label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>坐标轴刻度样式</legend>
+        <div class="form-group">
+          <label for="axisTick_show" class="col-sm-2 control-label"
+            >显示坐标轴刻度</label
+          >
+          <div class="col-sm-4 checkbox-inline">
+            <input
+              type="checkbox"
+              class="form-control w-configurer-option"
+              height="34px"
+              name="axisTick_show"
+              checked="checked"
+              id="axisTick_show"
+              value="true"
+            />
+            <label for="axisTick_show"></label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>

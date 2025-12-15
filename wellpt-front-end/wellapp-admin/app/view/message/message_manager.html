@@ -1,0 +1,165 @@
+<form action="" id="mas_form" class="mas_form form-widget" enctype='multipart/form-data' method="post" style="margin-top: 15px;">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#msg-tabs-1" aria-controls="msg-tabs-1" role="tab" data-toggle="tab" aria-expanded="true">MAS设置(默认)</a></li>
+        <li role="presentation"><a href="#msg-tabs-2" aria-controls="msg-tabs-2" role="tab" data-toggle="tab" aria-expanded="true">S-MAS设置</a></li>
+        <li role="presentation"><a href="#msg-tabs-3" aria-controls="msg-tabs-3" role="tab" data-toggle="tab" aria-expanded="true">云MAS设置</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="msg-tabs-1" role="tabpanel" class="tab-pane active">
+            <input type="hidden" id="uuid" name="uuid"/>
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label class="well-form-label control-label ">移动代理服务器IP</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="imIp" name="imIp">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">接口登录名</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="loginName" name="loginName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">接口登录密码</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="loginPassword" name="loginPassword">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">接口编码</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="apiCode" name="apiCode">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">数据库名称</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="dbName" name="dbName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">重发时限（/天）</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="sendLimit" name="sendLimit">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">是否启用MAS</label>
+                    <div class="well-form-control">
+                        <input type="checkbox" id="isOpen" name="isOpen" >
+                        <label for="isOpen" class="control-label">是</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="msg-tabs-2" role="tabpanel" class="tab-pane">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label class="well-form-label control-label ">WebService地址</label>
+                    <div class="well-form-control">
+                        <textarea class="form-control" id="sWebService" name="sWebService"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">接口登录名</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="sLoginName" name="sLoginName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">接口登录密码</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="sLoginPassword" name="sLoginPassword">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">重发时限（/天）</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="sSendLimit" name="sSendLimit">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">WebService实现类</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="clientBeanName" name="clientBeanName">
+                        <input type="hidden" class="form-control" id="clientBean" name="clientBean">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">是否启用SMAS</label>
+                    <div class="well-form-control">
+                        <input type="checkbox" id="sIsOpen" name="sIsOpen">
+                        <label for="sIsOpen" class="control-label">是</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="msg-tabs-3" role="tabpanel" class="tab-pane">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label class="well-form-label control-label ">云MAS平台HTTP地址</label>
+                    <div class="well-form-control">
+                        <textarea  class="form-control" id="cloudMasHttp" name="cloudMasHttp"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">集团客户名称</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="ecName" name="ecName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">用户名</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="apId" name="apId">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">密码</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="secretKey" name="secretKey">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">网关签名编码</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="cloudSign" name="cloudSign">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">扩展码</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="addSerial" name="addSerial">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">重发时限（/天）</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="cloudSendLimit" name="cloudSendLimit">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">是否启用云MAS</label>
+                    <div class="well-form-control">
+                        <input type="checkbox" id="cloudIsOpen" name="cloudIsOpen">
+                        <label for="cloudIsOpen" class="control-label">是</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="well-form form-horizontal" style="margin-top: 0;padding-top:0;">
+            <div class="form-group">
+                <label class="well-form-label control-label">异步发送</label>
+                <div class="well-form-control">
+                    <input id="apiAsync" name="apiAsync" type="checkbox" value="true"/>
+                    <label for="apiAsync"></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <button id="message_btn_save" type="button" class="well-btn w-btn-primary">保存</button>
+        </div>
+    </div>
+</form>

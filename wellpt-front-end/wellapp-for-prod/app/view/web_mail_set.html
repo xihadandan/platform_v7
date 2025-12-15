@@ -1,0 +1,181 @@
+<form action="" id="wm_mail_config_form" class="form-widget" style="margin-top: 15px">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#email_basic_info" aria-controls="email_basic_info" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+    </li>
+    <li role="presentation">
+      <a href="#email_limit_set" aria-controls="email_limit_set" role="tab" data-toggle="tab" aria-expanded="true">限额设置</a>
+    </li>
+    <li role="presentation">
+      <a href="#others" aria-controls="email_limit_set" role="tab" data-toggle="tab" aria-expanded="true">其他</a>
+    </li>
+  </ul>
+  <input type="hidden" id="uuid" name="uuid" />
+  <input type="hidden" id="recVer" name="recVer" />
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="email_basic_info">
+      <div class="well-form form-horizontal">
+        <div class="form-group">
+          <label for="mailServerType" class="well-form-label control-label required">邮件服务：</label>
+          <div class="well-form-control">
+            <input class="form-control" id="mailServerType" name="mailServerType" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="domain" class="well-form-label control-label required">邮件域名：</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="domain" name="domain" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="pop3Server" class="well-form-label control-label required">接收邮件服务器(POP3)：</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="pop3Server" name="pop3Server" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="pop3Port" class="well-form-label control-label required">POP3端口：</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" name="pop3Port" id="pop3Port" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="smtpServer" class="well-form-label control-label required">发送邮件服务器(SMTP)：</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="smtpServer" name="smtpServer" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="smtpPort" class="well-form-label control-label required">SMPT端口：</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="smtpPort" name="smtpPort" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="imapServer" class="well-form-label control-label required">发送邮件服务器(IMAP)：</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="imapServer" name="imapServer" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="imapPort" class="well-form-label control-label required">IMAP端口：</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="imapPort" name="imapPort" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="well-form-label control-label">
+            是否公网邮箱
+            <div class="w-tooltip">
+              <i class="iconfont icon-ptkj-tishishuoming"></i>
+              <div class="w-tooltip-content">如果您希望邮件服务定位为公网邮箱，支持对外收发邮件，请选中！</div>
+            </div>
+            :
+          </label>
+          <div class="well-form-control">
+            <input type="checkbox" class="form-control" id="isPublicEmail" name="isPublicEmail" />
+            <label for="isPublicEmail"></label>
+          </div>
+        </div>
+        <div class="form-group form-mailServerType" mailserver="CoreMail">
+          <label for="apiPort" class="well-form-label control-label required">API端口：</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="apiPort" name="apiPort" />
+          </div>
+        </div>
+        <div class="form-group form-mailServerType" mailserver="JamesMail">
+          <label for="keepOnServer" class="well-form-label control-label">在服务器保留备份：</label>
+          <div class="well-form-control">
+            <input type="checkbox" class="form-control" id="keepOnServer" name="keepOnServer" />
+            <label for="keepOnServer"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="email_limit_set" style="padding-top: 10px">
+      <div class="well-form form-horizontal">
+        <div class="form-group">
+          <label for="mailCapacityLimit" class="well-form-label control-label" style="padding-top: 0">邮箱限额：</label>
+          <div class="well-form-control">
+            <input type="checkbox" id="mailCapacityLimit" name="mailCapacityLimit" style="vertical-align: middle; margin-top: 0" />
+            <label for="mailCapacityLimit">启用</label>
+          </div>
+        </div>
+        <div class="form-group defaultCapacity" style="display: none">
+          <label for="defaultCapacity" class="well-form-label control-label">默认限额(MB)：</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="defaultCapacity" name="defaultCapacity" style="width: 320px" />
+          </div>
+        </div>
+        <div class="form-group deadlineCapacity" style="display: none">
+          <label for="deadlineCapacity" class="well-form-label control-label">容量提醒：</label>
+          <div class="well-form-control">
+            邮箱已使用空间达到
+            <input id="deadlineCapacity" name="deadlineCapacity" type="text" style="width: 40px; margin: 0 3px" />
+            %时，提醒用户。(未设置时不提醒)
+          </div>
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="others">
+      <div class="well-form form-horizontal">
+        <div class="form-group">
+          <label for="allowOrgOptions" class="well-form-label control-label">收件组织选择：</label>
+          <div class="well-form-control">
+            <input class="form-control" id="allowOrgOptions" name="allowOrgOptions" type="text" />
+          </div>
+        </div>
+      </div>
+      <div class="well-form form-horizontal">
+        <div class="form-group">
+          <label for="attachmentSizeLimit" class="well-form-label control-label">允许的附件大小（M）：</label>
+          <div class="well-form-control">
+            <input
+              class="form-control"
+              id="attachmentSizeLimit"
+              name="attachmentSizeLimit"
+              type="text"
+              placeholder="为空时，表示不限制大小"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="well-form form-horizontal">
+        <div class="form-group">
+          <label class="well-form-label control-label">
+            阅读回执
+            <div class="w-tooltip">
+              <i class="iconfont icon-ptkj-tishishuoming"></i>
+              <div class="w-tooltip-content">发送人请求阅读回执时，收件人查看后自动发送阅读回执</div>
+            </div>
+            ：
+          </label>
+          <div class="well-form-control">
+            <input type="checkbox" id="sendReceipt" name="sendReceipt" style="vertical-align: middle; margin-top: 0" />
+            <label for="sendReceipt">自动发送阅读回执</label>
+          </div>
+        </div>
+      </div>
+      <div class="well-form form-horizontal">
+        <div class="form-group">
+          <label class="well-form-label control-label">操作“收邮件”后的页面：</label>
+          <div class="well-form-control">
+            <input type="radio" class="form-control" id="receiveMailAction_0" name="receiveMailAction" value="0" />
+            <label for="receiveMailAction_0">显示“收件箱”</label>
+            <input type="radio" class="form-control" id="receiveMailAction_1" name="receiveMailAction" value="1" />
+            <label for="receiveMailAction_1">维持不变</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 30px">
+      <div class="col-sm-12 text-center">
+        <button type="button" class="well-btn w-btn-primary" id="mail_btn_reset">重置用户邮箱账号</button>
+        <button type="button" class="well-btn w-btn-primary" id="mail_btn_save">保存</button>
+        <button type="button" class="well-btn w-btn-danger" id="mail_btn_del">删除</button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<item>
+    <!--认缴出资额 -->
+    <RJCZE/>
+    <!--其他文件 -->
+    <QTWJ isAttachment="1"/>
+    <!--住所 -->
+    <ZS/>
+    <!--联系电话 -->
+    <LXDH>13568902456</LXDH>
+    <!--注册号 -->
+    <ZCH>440108000024940</ZCH>
+    <!--联络人 -->
+    <LLRXX/>
+    <!--许可经营范围 -->
+    <XKJYHW/>
+    <!--主体状态 -->
+    <ZTZT>1</ZTZT>
+    <!--章程 -->
+    <ZC isAttachment="1"/>
+    <!--隶属商事主体名称 -->
+    <LSZTMC>厦门市中资源网络服务有限公司</LSZTMC>
+    <!--经营范围 -->
+    <JYHW/>
+    <!--法定代表人职务名称 -->
+    <FDDBRZWMC/>
+    <!--核准日期 -->
+    <HZRQ>2013-12-18</HZRQ>
+    <!--商事主体名称 -->
+    <ZTMC/>
+    <!--主体状态代码 -->
+    <ZTZTDM/>
+    <!--登记机关代码 -->
+    <DJJGDM/>
+    <!--商事主体类型 -->
+    <ZTLX>1</ZTLX>
+    <!--实缴出资额单位及币种 -->
+    <SJCZEDW/>
+    <!--null -->
+    <body_col/>
+    <!--登记机关 -->
+    <DJJG>市工商行政管理局</DJJG>
+    <!--年报情况 -->
+    <NBQK/>
+    <!--法定代表人(负责人) -->
+    <FDDBR>王元</FDDBR>
+    <!--法定代表人证件号码 -->
+    <FDDBRZJHM/>
+    <!--法定代表人职务代码 -->
+    <FDDBRZWDM/>
+    <!--商事主体类型代码 -->
+    <ZTLXDM/>
+    <!--认缴出资额单位及币种 -->
+    <RJCZEDW/>
+    <!--实缴出资额 -->
+    <SJCZE/>
+    <!--成立日期 -->
+    <CLRQ/>
+    <!--营业期限 -->
+    <YYQX>2015-12-24</YYQX>
+    <!--商事登记_主体的经营场所 -->
+    <userform_ssxx_jycs isList="1">
+        <item>
+            <!--经营场所 -->
+            <JYCS/>
+        </item>
+    </userform_ssxx_jycs>
+    <!--商事登记_主体的股东信息 -->
+    <userform_ssxx_gdxx isList="1">
+        <item>
+            <!--股东名称 -->
+            <GDMC/>
+            <!--股东类型 -->
+            <GDLX/>
+            <!--股东类型代码 -->
+            <GDLXDM/>
+            <!--国别 -->
+            <GB/>
+            <!--国别代码 -->
+            <GBDM/>
+            <!--认缴出资额 -->
+            <RJCZE/>
+            <!--认缴出资额单位及币种 -->
+            <RJCZEDW/>
+            <!--实缴出资额 -->
+            <SJCZE/>
+            <!--实缴出资额单位及币种 -->
+            <SJCZEDW/>
+            <!--出资比例 -->
+            <CZBL/>
+        </item>
+    </userform_ssxx_gdxx>
+    <!--商事登记_主体组织机构信息 -->
+    <userform_ssxx_zzjg isList="1">
+        <item>
+            <!--姓名 -->
+            <XM/>
+            <!--职务 -->
+            <ZW/>
+            <!--职务代码 -->
+            <ZWDM/>
+        </item>
+    </userform_ssxx_zzjg>
+    <!--商事登记_主体分支机构信息 -->
+    <userform_ssxx_fzjg isList="1">
+        <item>
+            <!--名称 -->
+            <MC/>
+            <!--经营场所 -->
+            <JYCS/>
+            <!--负责人 -->
+            <FZR/>
+            <!--备注 -->
+            <BZ/>
+        </item>
+    </userform_ssxx_fzjg>
+    <!--商事登记_相关许可单位 -->
+    <userform_ssxx_xgxk isList="1">
+        <item>
+            <!--许可经营项目名称 -->
+            <XKJYXMMC/>
+            <!--许可经营项目代码 -->
+            <XKJYXMDM/>
+            <!--单位名称 -->
+            <DWMC/>
+            <!--单位代码 -->
+            <DWDM/>
+        </item>
+    </userform_ssxx_xgxk>
+    <!--商事登记_主体清算信息 -->
+    <userform_ssxx_qsxx isList="1">
+        <item>
+            <!--清算组负责人 -->
+            <QSZFZR/>
+            <!--清算组人员姓名 -->
+            <QSZRY/>
+            <!--清算组联系地址 -->
+            <QSZDZ/>
+            <!--清算组联系电话 -->
+            <QSZDH/>
+            <!--清算组备案时间 -->
+            <QSZBARQ/>
+        </item>
+    </userform_ssxx_qsxx>
+</item>

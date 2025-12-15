@@ -1,0 +1,3 @@
+--建管已经执行
+--alter table TIG_COLUMN_DATA drop column DATA_CLOB;
+--alter table TIG_COLUMN_DATA add DATA_CLOB clob;

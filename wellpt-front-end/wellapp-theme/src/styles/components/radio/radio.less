@@ -1,0 +1,48 @@
+input[type='radio'] {
+  display: none;
+
+  + label {
+    padding-top: 0;
+    padding-left: 0;
+    color: @text-color;
+    font-weight: normal;
+    font-size: @font-size-base;
+    margin-bottom: 0;
+    margin-right: 8px;
+    font-family: 'iconfont' !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    &::before {
+      margin-right: 4px;
+      font-size: @font-size-base;
+      font-family: iconfont !important;
+      content: '\e8db';
+      color: @text-color-light;
+    }
+  }
+
+  &:checked {
+    + label:before {
+      content: '\e8d6';
+      color: @text-color-primary;
+    }
+  }
+
+  &:disabled {
+    + label::before {
+      color: @disabled-text-color;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// .cke_dialog_ui_html input[type='radio'],
+// .cke_dialog_ui_html input[type='chcekbox'] {
+//   display: unset !important;
+// }
+
+.switch-boxs input[type='radio'] + label::before {
+  display: none;
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="getAclObjectIdentityQueryItem">
+        <![CDATA[
+		select uuid               as uuid,
+		       entries_inheriting as entriesInheriting,
+		       object_id_identity as objectIdIdentity,
+		       object_id_class    as objectIdClass,
+		       parent_object      as parentObject,
+		       owner_sid          as ownerSid,
+		       create_time        as createTime,
+		       creator            as creator,
+		       modify_time        as modifyTime,
+		       modifier           as modifier,
+		       rec_ver            as recVer
+		  from acl_object_identity t
+		 where t.object_id_identity = :objectIdIdentity
+	]]>
+    </sql-query>
+
+    <sql-query name="aclEntryQueryItem">
+        <![CDATA[
+		select t.uuid                as uuid,
+		       t.granting            as granting,
+		       t.mask                as mask,
+		       t.acl_object_identity as aclObjectIdentity,
+		       t.sid                 as sid,
+		       t.object_id_identity  as objectIdIdentity,
+		       create_time           as createTime,
+		       creator               as creator,
+		       modify_time           as modifyTime,
+		       modifier              as modifier,
+		       rec_ver               as recVer
+		  from acl_entry t
+		 where t.object_id_identity = :objectIdIdentity
+	]]>
+    </sql-query>
+</hibernate-mapping>

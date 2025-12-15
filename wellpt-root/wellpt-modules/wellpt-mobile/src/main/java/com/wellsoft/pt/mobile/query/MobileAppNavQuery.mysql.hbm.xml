@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <sql-query name="mobileAppNavQuery">
+
+        <![CDATA[
+
+			<!--FIXME：需要传递指定的UUID-->
+			CALL Query_Dg ( 'CMS_CATEGORY',
+			'uuid,title,parent_uuid,input_url,resources,ecode,show_in_mobile,mobile_uri',
+			'parent_uuid asc',
+			'uuid',
+			'parent_uuid',
+			${uuid}, 0, 1 ,' and show_in_mobile=1');
+		]]>
+
+    </sql-query>
+</hibernate-mapping>

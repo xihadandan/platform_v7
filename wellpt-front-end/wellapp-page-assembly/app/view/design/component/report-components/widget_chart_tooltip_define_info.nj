@@ -1,0 +1,408 @@
+<!-- 图标工具栏定义信息 -->
+
+<div role="tabpanel" class="tab-pane" id="widget_chart_tooltip_info">
+  <div class="form-group">
+    <label for="show" class="col-sm-2 control-label">是否显示提示框</label>
+    <div class="col-sm-10 checkbox-inline">
+      <input
+        type="checkbox"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="show"
+        id="showTooltip"
+        value="false"
+      />
+      <label for="showTooltip"></label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="trigger" class="col-sm-2 control-label">触发类型</label>
+    <div class="col-sm-4">
+      <input
+        type="hidden"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="trigger"
+        id="trigger"
+      />
+    </div>
+    <label for="triggerOn" class="col-sm-2 control-label"
+      >提示框触发的条件</label
+    >
+    <div class="col-sm-4">
+      <input
+        type="hidden"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="triggerOn"
+        id="triggerOn"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="showContent" class="col-sm-2 control-label"
+      >是否显示提示框浮层</label
+    >
+    <div class="col-sm-4 checkbox-inline">
+      <input
+        type="checkbox"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="showContent"
+        id="showContent"
+      />
+      <label for="showContent"></label>
+    </div>
+    <label for="alwaysShowContent" class="col-sm-2 control-label"
+      >是否永远显示提示框内容</label
+    >
+    <div class="col-sm-4 checkbox-inline">
+      <input
+        type="checkbox"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="alwaysShowContent"
+        id="alwaysShowContent"
+      />
+      <label for="alwaysShowContent"></label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="enterable" class="col-sm-2 control-label"
+      >鼠标是否可进入提示框浮层中</label
+    >
+    <div class="col-sm-4 checkbox-inline">
+      <input
+        type="checkbox"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="enterable"
+        id="enterable"
+      />
+      <label for="enterable"></label>
+    </div>
+    <label for="confine" class="col-sm-2 control-label"
+      >是否将提示框限制在图表的区域内</label
+    >
+    <div class="col-sm-4 checkbox-inline">
+      <input
+        type="checkbox"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="confine"
+        id="confine"
+      />
+      <label for="confine"></label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="showDelay" class="col-sm-2 control-label"
+      >浮层显示的延迟(毫秒)</label
+    >
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="showDelay"
+        id="showDelay"
+      />
+    </div>
+    <label for="hideDelay" class="col-sm-2 control-label"
+      >浮层隐藏的延迟(毫秒)</label
+    >
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="hideDelay"
+        id="hideDelay"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="transitionDuration" class="col-sm-2 control-label"
+      >提示框浮层的移动动画过渡时间(秒)</label
+    >
+    <div class="col-sm-4">
+      <input
+        type="text"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="transitionDuration"
+        id="transitionDuration"
+      />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="formatter" class="col-sm-2 control-label"
+      >提示框浮层内容格式器</label
+    >
+    <div class="col-sm-10">
+      <select
+        class="form-control w-configurer-option"
+        name="formatterType"
+        id="formatterType"
+      >
+        <option value="0">&nbsp;</option>
+        <option value="function">回调函数代码</option>
+        <option value="stringTemplate">字符串模板</option>
+      </select>
+
+      <textarea
+        rows="6"
+        class="form-control w-configurer-option"
+        height="34px"
+        name="formatter"
+        id="formatter"
+      ></textarea>
+      <div id="stringTemplateDescription">
+        <a
+          role="button"
+          data-toggle="collapse"
+          href="#collapseOne"
+          aria-expanded="true"
+          aria-controls="collapseOne"
+        >
+          查看格式化说明
+        </a>
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel">
+          <div>
+            支持字符串模板，例如：<code>{a}: {b}&lt;br/&gt;{c}: {d}</code>
+          </div>
+          <div>
+            模板变量有<code>{a}</code>, <code>{b}</code>, <code>{c}</code>,
+            <code>{d}</code>,
+            <code>{e}</code>，分别表示系列名，数据名，数据值等。
+            在触发类型为坐标轴触发的时候，会有多个系列的数据，此时可以通过<code>{a0}</code>,
+            <code>{a1}</code>,
+            <code>{a2}</code>这种后面加索引的方式表示系列的索引。
+            不同图表类型下的：
+          </div>
+          <ul style="list-style-type: disc">
+            <li>
+              折线（区域）图、柱状（条形）图、K线图 :
+              <code>{a}</code>（系列名称）, <code>{b}</code>（类目值）,
+              <code>{c}</code>（数值）, <code>{d}</code>（无）
+            </li>
+            <li>
+              散点图（气泡）图 : <code>{a}</code>（系列名称）,
+              <code>{b}</code>（数据名称）, <code>{c}</code>（数值数组）,
+              <code>{d}</code>（无）
+            </li>
+            <li>
+              地图 : <code>{a}</code>（系列名称）, <code>{b}</code>（区域名称）,
+              <code>{c}</code>（合并数值）, <code>{d}</code>（无）
+            </li>
+            <li>
+              饼图、仪表盘、漏斗图: <code>{a}</code>（系列名称）,
+              <code>{b}</code>（数据项名称）, <code>{c}</code>（数值）,
+              <code>{d}</code>（百分比）
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id="formatterFunctionDescription">
+        <a
+          role="button"
+          data-toggle="collapse"
+          href="#collapseOneTooltip"
+          aria-expanded="false"
+          aria-controls="collapseOneTooltip"
+          class=""
+        >
+          查看回调函数代码说明
+        </a>
+        <div
+          id="collapseOneTooltip"
+          class="panel-collapse collapse"
+          role="tabpanel"
+          aria-expanded="false"
+        >
+          回调函数代码支持参数<code>params</code>格式如下：
+          <pre>
+                     {
+                        componentType: 'series',
+                        // 系列类型
+                        seriesType: string,
+                        // 系列在传入的 option.series 中的 index
+                        seriesIndex: number,
+                        // 系列名称
+                        seriesName: string,
+                        // 数据名，类目名
+                        name: string,
+                        // 数据在传入的 data 数组中的 index
+                        dataIndex: number,
+                        // 传入的原始数据项
+                        data: Object,
+                        // 传入的数据值
+                        value: number|Array,
+                        // 数据图形的颜色
+                        color: string,
+                    }
+                </pre
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <fieldset>
+    <legend>提示框样式</legend>
+
+    <div class="form-group">
+      <label for="backgroundColor" class="col-sm-2 control-label"
+        >提示框浮层的背景颜色</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="backgroundColor"
+          id="backgroundColor"
+        />
+      </div>
+      <label for="borderColor" class="col-sm-2 control-label"
+        >提示框浮层的边框颜色</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="borderColor"
+          id="borderColor"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="borderWidth" class="col-sm-2 control-label"
+        >提示框浮层的边框宽</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="borderWidth"
+          id="borderWidth"
+        />
+      </div>
+      <label for="padding" class="col-sm-2 control-label"
+        >提示框浮层内边距</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="padding"
+          id="padding"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="tooltip_textStyle_color" class="col-sm-2 control-label"
+        >提示文字颜色</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="textStyle_color"
+          id="tooltip_textStyle_color"
+        />
+      </div>
+      <label for="tooltip_textStyle_fontStyle" class="col-sm-2 control-label"
+        >提示字体风格</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="textStyle_fontStyle"
+          id="tooltip_textStyle_fontStyle"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="textStyle_fontFamily" class="col-sm-2 control-label"
+        >提示字体</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="textStyle_fontFamily"
+          id="textStyle_fontFamily"
+        />
+      </div>
+      <label for="tooltip_textStyle_fontWeight" class="col-sm-2 control-label"
+        >提示字体粗细</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="textStyle_fontWeight"
+          id="tooltip_textStyle_fontWeight"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="textStyle_fontSize" class="col-sm-2 control-label"
+        >提示字体大小</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="textStyle_fontSize"
+          id="textStyle_fontSize"
+        />
+      </div>
+      <label for="textStyle_lineHeight" class="col-sm-2 control-label"
+        >行高</label
+      >
+      <div class="col-sm-4">
+        <input
+          type="text"
+          class="form-control w-configurer-option"
+          height="34px"
+          name="textStyle_lineHeight"
+          id="textStyle_lineHeight"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="extraCssText" class="col-sm-2 control-label"
+        >额外附加到浮层的css样式</label
+      >
+      <div class="col-sm-10">
+        <textarea
+          class="form-control w-configurer-option"
+          height="34px"
+          name="extraCssText"
+          id="extraCssText"
+        ></textarea>
+      </div>
+    </div>
+  </fieldset>
+</div>

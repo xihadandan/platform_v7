@@ -1,0 +1,18 @@
+{
+  "extensionDescription": { "message": "@description@" },
+  "extensionName": { "message": "@name@" },
+
+  "about": { "message": "关于" },
+  "options": { "message": "选项" },
+  
+  "aboutMenu": { "message": "关于..." },
+  "advanced": { "message": "高级" },
+  "cancel": { "message": "取消" },
+  "delete": { "message": "删除" },
+  "general": { "message": "通用" },
+  "optionsMenu": { "message": "设置..." },
+  "resetPage": { "message": "刷新页面" },
+  "followOnTwitter": { "message": "访问首页" },
+  "displayOverlayWith": { "message": "页签风格" },
+  "webappAddress": { "message": "服务地址" }
+}

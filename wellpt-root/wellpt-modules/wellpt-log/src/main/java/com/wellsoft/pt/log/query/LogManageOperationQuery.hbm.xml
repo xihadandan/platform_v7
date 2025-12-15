@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!-- 获取一个组织版本的所有上下级领导关系 -->
+    <sql-query name="queryLogManageOperationList">
+        <![CDATA[
+		select *
+		from LOG_MANAGE_OPERATION
+		where  1 = 1
+		AND ( SYSTEM_UNIT_ID = :currentUserUnitId OR SYSTEM_UNIT_ID ='S0000000000')
+		<if isNotBlank( whereSql )>
+		AND ${whereSql}
+		</if>
+		<if isNotBlank( orderStr )>
+		    ${orderStr}
+		</if>
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

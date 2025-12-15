@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <!--
+        select * from WF_FLOW_INSTANCE where end_time is not null;
+
+         or uuid ='9be6d3a5-8874-4c38-a595-cf3af4ed1bb4'
+
+
+          and uuid = '65622268-8f8b-4a1c-8816-cb194badcb8a'
+    -->
+
+    <sql-query name="queryExportAllEndFlowInstance">
+        <![CDATA[
+			select * from WF_FLOW_INSTANCE where system_unit_id in (:systemUnitIdList) and end_time is not null
+		]]>
+    </sql-query>
+
+    <sql-query name="cuntExportEndFlowInstance">
+        <![CDATA[
+			select count(*) as count from WF_FLOW_INSTANCE where system_unit_id in (:systemUnitIdList) and end_time is not null
+		]]>
+    </sql-query>
+
+    <sql-query name="countDataByTableNameAndUuid">
+        <![CDATA[
+			select uuid from ${tableName} where uuid = :uuid
+		]]>
+    </sql-query>
+
+    <sql-query name="updateTableSystemUnitIdField">
+        <![CDATA[
+			update ${tableName} set system_unit_id = :systemUnitId where uuid = :uuid
+		]]>
+    </sql-query>
+
+</hibernate-mapping>

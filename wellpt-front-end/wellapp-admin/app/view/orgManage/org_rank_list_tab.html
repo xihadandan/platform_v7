@@ -1,0 +1,65 @@
+<div class="rank-mgr-tab">
+  <div class="rank-tab-wrap">
+    <div class="rank-tab">
+      <span class="rank-tab-item active" data-type="1">职务序列</span>
+      <span class="rank-tab-item" data-type="2">职等</span>
+      <span class="rank-tab-item" data-type="3">职级</span>
+    </div>
+  </div>
+  <div class="rank-tab-content rank-tab-content1">
+    <div class="rank-tab-search">
+      <input type="text" id="postInput" placeholder="搜索" class="" />
+      <i class="iconfont icon-ptkj-dacha-xiao rank-close"></i>
+      <i class="iconfont icon-ptkj-sousuochaxun rank-search"></i>
+    </div>
+    <div class="rank-content-body">
+      <div class="rank-cate-header">
+        <div class="rank-cate-header-left">
+          <i class="iconfont icon-ptkj-shixinjiantou-you arrow"></i>
+          {#
+          <i class="iconfont icon-ptkj-shixinjiantou-xia"></i>
+          #}
+          <i class="iconfont icon-ptkj-fenlei cate"></i>
+          <span class="rank-cate-name">职务序列</span>
+        </div>
+        <div class="rank-cate-header-right">
+          <i class="iconfont icon-ptkj-jiahao add" id="addPost"></i>
+        </div>
+      </div>
+      <ul class="post-list" id="postList"></ul>
+    </div>
+  </div>
+  <div class="rank-tab-content rank-tab-content2" style="display: none">
+    <div class="rank-tab-header">
+      <div class="rank-tab-header-left">
+        <span class="left-title">职等</span>
+        <span class="left-tip">由高到低</span>
+      </div>
+      <span class="rank-tab-header-set iconfont icon-ptkj-shezhi" id="addLevel"></span>
+    </div>
+    <div class="rank-tab-list" id="levelList"></div>
+  </div>
+  <div class="rank-tab-content rank-tab-content3" style="display: none">
+    <div class="rank-tab-search">
+      <input type="text" id="rankInput" placeholder="搜索" />
+      <i class="iconfont icon-ptkj-dacha-xiao rank-close"></i>
+      <i class="iconfont icon-ptkj-sousuochaxun rank-search"></i>
+    </div>
+    <div class="rank-content-body">
+      <div class="rank-cate-header">
+        <div class="rank-cate-header-left">
+          <i class="iconfont icon-ptkj-shixinjiantou-you arrow"></i>
+          {#
+          <i class="iconfont icon-ptkj-shixinjiantou-xia"></i>
+          #}
+          <i class="iconfont icon-ptkj-fenlei cate"></i>
+          <span class="rank-cate-name">全部</span>
+        </div>
+        <div class="rank-cate-header-right">
+          <i class="iconfont icon-ptkj-jiahao add" id="addRank"></i>
+        </div>
+      </div>
+      <ul class="post-list" id="rankList"></ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+CREATE TABLE "MULTI_ORG_TYPE" (
+"UUID" VARCHAR2(255 CHAR) NOT NULL ,
+"CREATE_TIME" TIMESTAMP(6)  NULL ,
+"CREATOR" VARCHAR2(255 CHAR) NULL ,
+"MODIFIER" VARCHAR2(255 CHAR) NULL ,
+"MODIFY_TIME" TIMESTAMP(6)  NULL ,
+"REC_VER" NUMBER(10) NULL ,
+"CODE" VARCHAR2(255 CHAR) NULL ,
+"ID" VARCHAR2(255 CHAR) NULL ,
+"NAME" VARCHAR2(255 CHAR) NULL ,
+"REMARK" VARCHAR2(255 CHAR) NULL ,
+"IS_FORBIDDEN" NUMBER(1) NULL ,
+"SYSTEM_UNIT_ID" VARCHAR2(255 CHAR) NULL 
+)
+NOLOGGING
+NOCOMPRESS
+NOCACHE
+
+;
+COMMENT ON COLUMN "MULTI_ORG_TYPE"."IS_FORBIDDEN" IS '是否禁用';
+
+-- ----------------------------
+-- Indexes structure for table MULTI_ORG_TYPE
+-- ----------------------------
+
+-- ----------------------------
+-- Checks structure for table MULTI_ORG_TYPE
+-- ----------------------------
+ALTER TABLE "MULTI_ORG_TYPE" ADD CHECK ("UUID" IS NOT NULL);
+
+-- ----------------------------
+-- Primary Key structure for table MULTI_ORG_TYPE
+-- ----------------------------
+ALTER TABLE "MULTI_ORG_TYPE" ADD PRIMARY KEY ("UUID");
+
+
+CREATE UNIQUE INDEX "idx_orgType_key"
+ON "MULTI_ORG_TYPE" ("SYSTEM_UNIT_ID" ASC, "ID" ASC);
+

@@ -1,0 +1,40 @@
+<div class="wf-task-operation">
+    {@each taskOperations as taskOperationData,batchIndex}
+    <div class="task-operation-header">
+		<span style="font-weight: bold; font-size: 15px;">
+			{@if taskOperationData.title != null && taskOperationData.title != ""}
+				${taskOperationData.title}
+			{@else}
+				操作记录
+			{@/if}
+			{@if taskOperations.length > 1}
+				${taskOperations.length - batchIndex}
+			{@/if}
+		</span>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="col-order">序号</th>
+            <th>操作人员</th>
+            <th>操作名称</th>
+            <th>操作对象</th>
+            <th>操作时间</th>
+            <th>详情</th>
+        </tr>
+        </thead>
+        <tbody>
+        {@each taskOperationData.operations as taskOperation,index}
+        <tr>
+            <td>${parseInt(index) + 1}</td>
+            <td>${taskOperation.assigneeName}</td>
+            <td>${taskOperation.action}</td>
+            <td>${taskOperation.userName}</td>
+            <td>${taskOperation.createTime}</td>
+            <td>${taskOperation.opinionText}</td>
+        </tr>
+        {@/each}
+        </tbody>
+    </table>
+    {@/each}
+</div>

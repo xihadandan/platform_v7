@@ -1,0 +1,23 @@
+{
+  "WidgetFormSerialNumber": {
+    "fillNumber": "Fill Number",
+    "clickToEdit": "Click to edit serial number",
+    "editable": "Editable Serial Number",
+    "serialNumberName": "Serial Number Name",
+    "selectable": "Optional Serial Number",
+    "serialNumber": "Serial Number",
+    "fieldName": "Field Name",
+    "isResubmit": "Do you want to resubmit",
+    "error": "Error failed",
+    "prompt": "prompt",
+    "selectDefinition": "Please select the serial number definition！",
+    "selectSerialNumber": "Please select the serial number!",
+    "enterPointer": "Please enter a valid pointer！",
+    "pointerOccupied": "The pointer is invalid or already occupied！",
+    "serialNumberOccupied": "The serial number has already been occupied!",
+    "requestException": "Service request exception！",
+    "enterValidPointer": "Please enter a valid pointer！",
+    "noUsableSerialNumber": "No usable serial number available",
+    "alreadyHasSerialNumber": "The specified pointer already has a serial number record!"
+  }
+}

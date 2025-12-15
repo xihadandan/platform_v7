@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jsplugins>
+	<jspluginonline name="EtOAAssist" type="et" url="${requestURL}/static/wps/oaassist/EtOAAssist/"/>
+	<jspluginonline name="WppOAAssist" type="wpp" url="${requestURL}/static/wps/oaassist/WppOAAssist/"/>
+	<jspluginonline name="WpsOAAssist" type="wps" url="${requestURL}/static/wps/oaassist/WpsOAAssist/"/>
+</jsplugins>

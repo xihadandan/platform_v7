@@ -1,0 +1,66 @@
+/* .ui-wHeader .navbar-success {
+	background-color: #5cb85c;
+	border-color: #4cae4c;
+}
+
+.ui-wHeader .navbar-inverse {
+	background-color: #222;
+	border-color: #080808;
+}
+
+.ui-wHeader .navbar-default {
+	background-color: #fff;
+	border-color: #ccc;
+}
+
+.ui-wHeader .navbar-warning {
+	background-color: #f0ad4e;
+	border-color: #eea236;
+}
+
+.ui-wHeader .navbar-danger {
+	background-color: #d9534f;
+	border-color: #d43f3a;
+}
+
+.ui-wHeader .navbar-info {
+	background-color: #5bc0de;
+	border-color: #46b8da;
+}
+
+.ui-wHeader .navbar-primary {
+	background-color: #337ab7;
+	border-color: #2e6da4;
+}
+
+.ui-wHeader .ui-wHeader-logo img {
+	max-width: 400px;
+	max-height: 40px;
+}
+
+.ui-wHeader>.ui-wHeader-mainNavbar .ui-wHeader-baseInfo>.ui-wHeader-logo {
+	padding: 5px 5px;
+	margin-left: 15px;
+}
+
+快捷操作开始
+.ui-wHeader .ui-wHeader-shortcut {
+	z-index: 9999;
+	position: fixed;
+	top: 140px;
+	right: 2em;
+	width: 1em;
+}
+
+.ui-wHeader .ui-wHeader-shortcut>li {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	float: left;
+	font-size: 1.4em;
+	line-height: 1.2em;
+	text-align: left;
+	position: relative;
+	border: 1px solid rgb(121, 118, 118);
+}
+快捷操作结束 */

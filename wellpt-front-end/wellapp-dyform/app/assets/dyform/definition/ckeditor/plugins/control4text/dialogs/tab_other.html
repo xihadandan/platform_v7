@@ -1,0 +1,86 @@
+<table>
+  <tr class="odd">
+    <td class="Label">是否关联本表数据</td>
+    <td class="value">
+      <div class="tr_td_div_left">
+        <input type="checkbox" name="toLinkFieldData" id="toLinkFieldData" value="1" />
+        <label for="toLinkFieldData">关联本表数据</label>
+      </div>
+    </td>
+  </tr>
+  <tr class="isPasswdInput">
+    <td class="Label">是否为密码输入框</td>
+    <td class="value">
+      <input id="isPasswdInputTrue" type="radio" value="true" name="isPasswdInput" />
+      <label for="isPasswdInputTrue">是</label>
+      <input id="isPasswdInputFalse" type="radio" value="false" name="isPasswdInput" checked />
+      <label for="isPasswdInputFalse">否</label>
+    </td>
+  </tr>
+  <tr class="isPasswdInput is-passwd">
+    <td class="Label">显示为文本时显示控件显示隐藏切换按钮</td>
+    <td class="value">
+      <input id="showPasswordEye" type="checkbox" value="showPasswordEye" name="showPasswordEye" />
+      <label for="showPasswordEye">显示</label>
+    </td>
+  </tr>
+  <tr class="addon not-passwd">
+    <td class="Label">额外元素</td>
+    <td class="value">
+      <input id="addonFront" class="addonFE" type="checkbox" value="addonFront" name="addon" />
+      <label for="addonFront">前置元素</label>
+      <input id="addonEnd" class="addonFE" type="checkbox" value="addonEnd" name="addon" />
+      <label for="addonEnd">后置元素</label>
+      <input id="addonIcon" type="checkbox" value="addonIcon" name="addon" />
+      <label for="addonIcon">图标</label>
+    </td>
+  </tr>
+  <tr class="addonFront not-passwd" style="display: none">
+    <td class="Label">前置元素</td>
+    <td class="value">
+      <input type="text" name="addonFrontValue" placeholder="请输入前置元素值,多个用英文逗号隔开" />
+    </td>
+  </tr>
+  <tr class="addonEnd not-passwd" style="display: none">
+    <td class="Label">后置元素</td>
+    <td class="value">
+      <input type="text" name="addonEndValue" placeholder="请输入后置元素值,多个用英文逗号隔开" />
+    </td>
+  </tr>
+  <tr class="realDisplay not-passwd" style="display: none">
+    <td class="Label">额外元素值关联字段</td>
+    <td class="value">
+      <select name="realDisplay_display" id="realDisplay_display">
+        <option value="">--请选择--</option>
+      </select>
+    </td>
+  </tr>
+  <tr class="addonIcon not-passwd" style="display: none">
+    <td class="Label">图标</td>
+    <td class="value">
+      <input id="addonFrontIcon" type="radio" value="front" name="addonIcon" />
+      <label for="addonFrontIcon">前置图标</label>
+      <input id="addonEndIcon" type="radio" value="end" name="addonIcon" />
+      <label for="addonEndIcon">后置图标</label>
+      <br />
+      <a class="chooseIcon cke_dialog_ui_button cke_dialog_ui_button_ok" style="margin-top: 10px">选择图标</a>
+      <i class="chooseAddonIcon"></i>
+      <input name="chooseAddonIcon" type="hidden" />
+    </td>
+  </tr>
+  <tr id="tr_onlyreadUrl">
+    <td class="Label">标识地址</td>
+    <td class="value">
+      <input type="text" id="onlyreadUrl" name="onlyreadUrl" />
+      <br />
+      参数格式${fieldName},fieldName为表单字段名称。示例：https://www.baidu.com?pa=${pa}
+    </td>
+  </tr>
+</table>
+<style>
+  .chooseAddonIcon {
+    margin-left: 10px;
+    font-size: 24px;
+    vertical-align: bottom;
+  }
+</style>

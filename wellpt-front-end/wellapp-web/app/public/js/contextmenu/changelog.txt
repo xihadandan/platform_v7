@@ -1,0 +1,2 @@
+ 1、增加onKeyDown左键点击回调方法
+ 2、新增jquery.contextmenu.js文件，作为开发中使用的js

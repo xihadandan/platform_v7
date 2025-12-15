@@ -1,0 +1,148 @@
+{
+  "js": {
+    "mui-MobliePersonalDocumentLatestFileManagerWidgetDevelopment": {
+      "path": "personal-doc/mui.MobliePersonalDocumentLatestFileManagerWidgetDevelopment",
+      "name": "个人文档_移动最新文档_数据管理_文件管理组件二开",
+      "dependencies": [
+        "MobileListDevelopmentBase"
+      ]
+    },
+    "PersonalDocumentShareWithMeFileManagerWidgetDevelopment": {
+      "path": "personal-doc/PersonalDocumentShareWithMeFileManagerWidgetDevelopment",
+      "name": "个人文档_与我分享_数据管理_文件管理组件二开",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "PersonalDocumentFileManagerWidgetDevelopment"
+      ]
+    },
+    "PersonalDocumentRecycleBinFileManagerWidgetDevelopment": {
+      "path": "personal-doc/PersonalDocumentRecycleBinFileManagerWidgetDevelopment",
+      "name": "个人文档_回收站_数据管理_文件管理组件二开",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "PersonalDocumentFileManagerWidgetDevelopment"
+      ]
+    },
+    "wPersonalDocument": {
+      "path": "/app/js/personal-document/widget/jquery-ui-wPersonalDocument",
+      "name": "数据管理_个人文档组件定义",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "wFileManager",
+        "metisMenu"
+      ]
+    },
+    "PersonalDocumentRecentVisitFileManagerWidgetDevelopment": {
+      "path": "personal-doc/PersonalDocumentRecentVisitFileManagerWidgetDevelopment",
+      "name": "个人文档_最近访问_数据管理_文件管理组件二开",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "PersonalDocumentFileManagerWidgetDevelopment"
+      ]
+    },
+    "PersonalDocumentMyTagManagerListViewWidgetDevelopment": {
+      "path": "personal-doc/PersonalDocumentMyTagManagerListViewWidgetDevelopment",
+      "name": "个人文档_我的标签_标签管理_视图组件二开",
+      "dependencies": [
+        "dependencyAppBaseModule",
+        "ListViewWidgetDevelopment",
+        "DmsTagFragment",
+        "minicolors"
+      ]
+    },
+    "PersonalDocumentMyShareInfoFileManagerWidgetDevelopment": {
+      "path": "personal-doc/PersonalDocumentMyShareInfoFileManagerWidgetDevelopment",
+      "name": "个人文档_我的分享_数据管理_文件管理组件二开",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "PersonalDocumentFileManagerWidgetDevelopment"
+      ]
+    },
+    "mui-MobliePersonalDocumentRecycleBinFileManagerWidgetDevelopment": {
+      "path": "personal-doc/mui.MobliePersonalDocumentRecycleBinFileManagerWidgetDevelopment",
+      "name": "个人文档_移动回收站_数据管理_文件管理组件二开",
+      "dependencies": [
+        "MobileListDevelopmentBase"
+      ]
+    },
+    "PersonalDocumentMyFolderFileManagerWidgetDevelopment": {
+      "path": "personal-doc/PersonalDocumentMyFolderFileManagerWidgetDevelopment",
+      "name": "个人文档_我的文件夹_数据管理_文件管理组件二开",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "PersonalDocumentFileManagerWidgetDevelopment",
+        "minicolors",
+        "DmsTagFragment"
+      ]
+    },
+    "mui-MobliePersonalDocumentMyFolderFileManagerWidgetDevelopment": {
+      "path": "personal-doc/mui.MobliePersonalDocumentMyFolderFileManagerWidgetDevelopment",
+      "name": "个人文档_移动我的文件夹_数据管理_文件管理组件二开",
+      "dependencies": [
+        "MobileListDevelopmentBase"
+      ]
+    },
+    "PersonalDocumentLatestFileManagerWidgetDevelopment": {
+      "path": "personal-doc/PersonalDocumentLatestFileManagerWidgetDevelopment",
+      "name": "个人文档_最新文档_数据管理_文件管理组件二开",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "PersonalDocumentFileManagerWidgetDevelopment",
+        "DmsTagFragment"
+      ]
+    },
+    "mui-MobileLabelFileList": {
+      "path": "personal-doc/mui.MobileLabelFileList",
+      "name": "个人文档_移动标签列表_数据管理_文件管理组件二开",
+      "dependencies": [
+        "mui-MobileDefaultFileList"
+      ]
+    },
+    "mui-MobliePersonalDocumentShareWithMeFileManagerWidgetDevelopment": {
+      "path": "personal-doc/mui.MobliePersonalDocumentShareWithMeFileManagerWidgetDevelopment",
+      "name": "个人文档_移动与我分享_数据管理_文件管理组件二开",
+      "dependencies": [
+        "MobileListDevelopmentBase"
+      ]
+    },
+    "widget_personal_document": {
+      "path": "/app/js/personal-document/component/widget_personal_document",
+      "name": "数据管理_个人文档组件定义",
+      "dependencies": [
+        "dependencyUIComponentModule"
+      ]
+    },
+    "PersonalDocumentMyTagFileManagerWidgetDevelopment": {
+      "path": "personal-doc/PersonalDocumentMyTagFileManagerWidgetDevelopment",
+      "name": "个人文档_我的标签_数据管理_文件管理组件二开",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "PersonalDocumentMyFolderFileManagerWidgetDevelopment",
+        "minicolors",
+        "DmsTagFragment"
+      ]
+    },
+    "mui-MobliePersonalDocumentRecentVisitFileManagerWidgetDevelopment": {
+      "path": "personal-doc/mui.MobliePersonalDocumentRecentVisitFileManagerWidgetDevelopment",
+      "name": "个人文档_移动最近访问_数据管理_文件管理组件二开",
+      "dependencies": [
+        "MobileListDevelopmentBase"
+      ]
+    },
+    "PersonalDocumentFileManagerWidgetDevelopment": {
+      "path": "personal-doc/PersonalDocumentFileManagerWidgetDevelopment",
+      "name": "个人文档_数据管理_文件管理组件二开",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "FileManagerWidgetDevelopment"
+      ]
+    },
+    "mui-MobliePersonalDocumentMyShareInfoFileManagerWidgetDevelopment": {
+      "path": "personal-doc/mui.MobliePersonalDocumentMyShareInfoFileManagerWidgetDevelopment",
+      "name": "个人文档_移动我的分享_数据管理_文件管理组件二开",
+      "dependencies": [
+        "MobileListDevelopmentBase"
+      ]
+    }
+  }
+}

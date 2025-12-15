@@ -1,0 +1,117 @@
+<table>
+  <tr class="odd">
+    <td class="Label" style="width: 100px">流水号生成方式</td>
+    <td class="value">
+      <div class="tr_td_div_left" style="padding-top: 9px">
+        <input type="radio" name="inputMode" value="7" checked="checked" id="inputMode_1"/>
+        <label for="inputMode_1">选择流水号规则</label>
+        <input type="radio" name="inputMode" value="29" id="inputMode_2"/>
+        <label for="inputMode_2">自动生成</label>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="Label">指定流水号</td>
+    <td class="value">
+      <input type="text" id="designated" name="designated"/>
+      <input type="hidden" id="designatedId" name="designatedId"/>
+    </td>
+  </tr>
+
+  <tr id="tr_designatedType" class="odd">
+    <td class="Label">流水号分类</td>
+    <td class="value">
+      <input type="text" id="designatedType" name="designatedType"/>
+      <input type="hidden" id="designatedTypeId" name="designatedTypeId"/>
+    </td>
+  </tr>
+
+  <tr id="tr_isOverride">
+    <td class="Label">覆盖指针</td>
+    <td class="value">
+      <select id="isOverride" name="isOverride">
+        <option value="0">不覆盖</option>
+        <option value="1">新指针大于当前指针才覆盖</option>
+        <option value="2">覆盖</option>
+      </select>
+    </td>
+  </tr>
+
+  <tr class="editDialogInputLabel">
+    <td class="Label">流水号补号</td>
+    <td class="value">
+      <span>
+        <input type="checkbox" id="serialNumberFill" name="serialNumberFill"/>
+        <label for="serialNumberFill">允许补号</label>
+      </span>
+      <span style="display: none">
+        <input type="checkbox" id="automaticNumberSupplement" name="automaticNumberSupplement"/>
+        <label for="automaticNumberSupplement">自动补最小流水号</label>
+        <div class="w-property-help show-type-help-popup">
+          <i class="iconfont icon-ptkj-xinxiwenxintishi"></i>
+          <div class="w-property-help-popup">
+            <p>1、选中，用户操作补号时，自动补最小流水号，也可选择其他流水号</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;● 补号流水号只有1个头部、尾部：直接自动补最小流水号</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;● 补号流水号存在多个头部、尾部：需要先选择1个头部、尾部，才会自动补最小流水号</p>
+            <p>2、未选中：用户操作补号时，需要选择流水号</p>
+          </div>
+        </div>
+      </span>
+    </td>
+  </tr>
+
+  <tr id="tr_isSaveDb">
+    <td class="Label">保存数据库</td>
+    <td class="value">
+      <select id="isSaveDb" name="isSaveDb">
+        <option value="0">是</option>
+        <option value="1">否</option>
+      </select>
+    </td>
+  </tr>
+
+  <tr id="tr_isCreateWhenSave">
+    <td class="Label">保存时占用</td>
+    <td class="value">
+      <select id="isCreateWhenSave" name="isCreateWhenSave">
+        <option value="0">否</option>
+        <option value="1">是</option>
+      </select>
+    </td>
+  </tr>
+
+  <tr class="editDialogInputLabel">
+    <td class="Label">弹窗标题</td>
+    <td class="value">
+      <input type="text" id="dialogTitle" name="dialogTitle"/>
+    </td>
+  </tr>
+
+  <tr class="editDialogInputLabel">
+    <td class="Label">流水号分类选择项标题</td>
+    <td class="value">
+      <input type="text" id="serialNumberTypeLabel" name="serialNumberTypeLabel"/>
+    </td>
+  </tr>
+
+  <tr class="editDialogInputLabel">
+    <td class="Label">流水号选择项标题</td>
+    <td class="value">
+      <input type="text" id="serialNumberSelLabel" name="serialNumberSelLabel"/>
+    </td>
+  </tr>
+
+  <tr class="editDialogInputLabel">
+    <td class="Label">流水号标题</td>
+    <td class="value">
+      <input type="text" id="serialNumberLabel" name="serialNumberLabel"/>
+    </td>
+  </tr>
+  <tr>
+    <td class="Label">流水号重复提示语</td>
+    <td class="value">
+      <input type="text" id="serialNumberTips" name="serialNumberTips"/>
+    </td>
+  </tr>
+</table>

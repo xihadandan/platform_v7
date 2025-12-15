@@ -1,0 +1,322 @@
+/** 流程设计器 */
+
+// 流程设计器
+.new-work-flow-designer {
+  .box(fixed);
+  .square(100%);
+
+  font-family: @font-family;
+
+  // 流程设计器 - 标题行
+  .designer-header {
+    .size(100%, 58px);
+
+    margin-bottom: 2px;
+    padding: 0 15px;
+    line-height: 58px;
+    background: @background-document-header;
+    box-shadow: 0 2px 0 0 fade(@primary-color, 65%);
+
+    .work-flow-title {
+      font-size: @font-size-lg;
+      color: @text-color-dark;
+    }
+  }
+
+  .designer-body {
+    .absolute(60px 0 0 0);
+    padding: 0 410px 0 150px;
+
+    // 流程设计器左侧操作区域
+    .designer-left {
+      .absolute(0 false false 0);
+      .size(149px, 100%);
+
+      z-index: 2;
+      padding: 0 15px;
+      background: @background-light;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1), 1px 0 0 0 #f9f9f9;
+      overflow-y: auto;
+
+      .designer-controls {
+        .designer-controls-title {
+          line-height: 54px;
+          font-size: @font-size-base;
+          font-weight: bold;
+          color: @text-color-dark;
+        }
+
+        ul {
+          width: 100%;
+
+          li {
+            .size(100% 34px);
+            position: relative;
+            margin-bottom: 10px;
+            padding: 0 10px 0 34px;
+            line-height: 32px;
+            font-size: @font-size-sm;
+            color: @text-color;
+            border: @border-default;
+            border-radius: @border-radius-base;
+            cursor: pointer;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            &.active,
+            &:hover {
+              background: @item-hover-background;
+              border: @border-default-primary;
+            }
+          }
+        }
+      }
+    }
+
+    // 流程设计器左侧操作区域完整视图/缩略视图的切换按钮
+    .left-view-mode {
+      .absolute(50% false false 149px);
+      .size(12px, 40px);
+
+      z-index: 10;
+      margin-top: -20px;
+      background: url('@{image-url-prefix}/workflow/shouqi_left.png') no-repeat;
+      background-size: cover;
+      cursor: pointer;
+
+      &:hover {
+        background: url('@{image-url-prefix}/workflow/shouqi_left_hover.png') no-repeat;
+      }
+
+      // 流程设计器左侧操作区域 缩略 时样式
+      &.pack {
+        left: 39px;
+        background: url('@{image-url-prefix}/workflow/zhankai_left.png') no-repeat;
+
+        &:hover,
+        &.hover {
+          background: url('@{image-url-prefix}/workflow/zhankai_left_hover.png') no-repeat;
+        }
+      }
+    }
+
+    // 流程设计器画布区域
+    .designer-main-wrap {
+      .square(100%);
+      position: relative;
+
+      iframe {
+        .square(100%);
+        border: none;
+      }
+    }
+
+    // 流程设计器右侧操作区域
+    .designer-right {
+      .absolute(0 0 false false);
+      .size(409px, 100%);
+
+      background: @component-background;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1), -1px 0 0 0 #e7e7e7;
+
+      .tab-content {
+        .absolute(46px 0 0 0);
+
+        .tab-pane {
+          .square(100%);
+        }
+      }
+
+      iframe {
+        .square(100%);
+        border: none;
+      }
+
+      .nav-tabs>li.tab-noborder:not(:first-of-type) {
+        margin-left: 0;
+      }
+    }
+
+    // 流程设计器右侧操作区域完整视图/缩略视图的切换按钮
+    .right-view-mode {
+      .absolute(50% 410px false false);
+      .size(12px 40px);
+
+      z-index: 10;
+      margin-top: -20px;
+      background: url('@{image-url-prefix}/workflow/shouqi_right.png') no-repeat;
+      background-size: cover;
+      cursor: pointer;
+
+      &:hover,
+      &.hover {
+        background: url('@{image-url-prefix}/workflow/shouqi_right_hover.png') no-repeat;
+      }
+
+      // 流程设计器右侧操作区域 缩略 时样式
+      &.pack {
+        right: 0;
+        background: url('@{image-url-prefix}/workflow/zhankai_right.png') no-repeat;
+
+        &:hover,
+        &.hover {
+          background: url('@{image-url-prefix}/workflow/zhankai_right_hover.png') no-repeat;
+        }
+      }
+    }
+
+    // 流程设计器左侧操作区域缩略时样式
+    &.left-simple-view {
+      padding-left: 40px;
+
+      .designer-left {
+        width: 39px;
+        padding: 5px 2px 0 3px;
+
+        .designer-controls {
+          .designer-controls-title {
+            display: none;
+          }
+
+          ul {
+            position: relative;
+            margin: 10px 0;
+
+            &::after {
+              .absolute(false false -5px 2px);
+              .size(30px 1px);
+
+              content: '';
+              background: @gray-6;
+            }
+
+            &:last-child::after {
+              display: none;
+            }
+
+            li {
+              padding: 0 0 0 32px;
+              border: @border-default-transparent;
+
+              &.active,
+              &:hover {
+                background: @background-primary-light;
+                border: @border-default-primary;
+              }
+
+              span {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // 流程设计器右侧操作区域缩略时样式
+    &.right-hide {
+      padding-right: 0;
+
+      .designer-right {
+        display: none;
+      }
+    }
+  }
+}
+
+// 流程设计器左侧操作区域 - 图标
+.new-work-flow-designer .designer-controls {
+  .icon {
+    .absolute(2px false false 1px);
+    .square(30px);
+  }
+
+  .choose-tool {
+    background: url('@{image-url-prefix}/workflow/choose.png') no-repeat;
+    background-size: cover;
+  }
+
+  .drag-tool {
+    background: url('@{image-url-prefix}/workflow/drag.png') no-repeat;
+    background-size: cover;
+  }
+
+  .lineFlow-tool {
+    background: url('@{image-url-prefix}/workflow/lineFlow.png') no-repeat;
+    background-size: cover;
+  }
+
+  .curveFlow-tool {
+    background: url('@{image-url-prefix}/workflow/curveFlow.png') no-repeat;
+    background-size: cover;
+  }
+
+  .start-node {
+    background: url('@{image-url-prefix}/workflow/start.png') no-repeat;
+    background-size: cover;
+  }
+
+  .link-node {
+    background: url('@{image-url-prefix}/workflow/node.png') no-repeat;
+    background-size: cover;
+  }
+
+  .computed-node {
+    background: url('@{image-url-prefix}/workflow/computed.png') no-repeat;
+    background-size: cover;
+  }
+
+  .end-node {
+    background: url('@{image-url-prefix}/workflow/end.png') no-repeat;
+    background-size: cover;
+  }
+
+  .subWorkFlow {
+    background: url('@{image-url-prefix}/workflow/sub_work_flow.png') no-repeat;
+    background-size: cover;
+  }
+
+  .horizontal_swimlane {
+    background: url('@{image-url-prefix}/workflow/horizontal_swimlane.png') no-repeat;
+    background-size: cover;
+  }
+
+  .vertical_swimlane {
+    background: url('@{image-url-prefix}/workflow/vertical_swimlane.png') no-repeat;
+    background-size: cover;
+  }
+
+  .annotation {
+    background: url('@{image-url-prefix}/workflow/annotation.png') no-repeat;
+    background-size: cover;
+  }
+}
+
+.work-bench-user-default {
+  .absolute(-2px -2px false false);
+
+  color: @text-color-primary;
+  font-size: 40px !important;
+  line-height: 40px;
+}
+
+.isDefaultTags {
+  .absolute(-2px -2px false false);
+
+  color: @text-color-primary;
+  font-size: 40px;
+  line-height: 40px;
+  display: none;
+}
+
+.fixed-tabs {
+  .fixed(0 false false 0);
+
+  width: 100%;
+  background: @component-background;
+  box-shadow: @shadow-tab-default;
+  z-index: 101;
+  font-size: 0;
+}

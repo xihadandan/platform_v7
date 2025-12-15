@@ -1,0 +1,29 @@
+package com.wellsoft.pt.app.dingtalk.job;
+
+import org.quartz.JobExecutionContext;
+
+import com.wellsoft.pt.app.dingtalk.utils.DingtalkApiUtils;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+
+/**
+ * Description: 定时钉钉事件回调任务 钉钉事件回调，解析结果数据，落地数据到对应数据表
+ *  
+ * @author Well
+ * @date 2020年5月29日
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2020年5月29日.1	Well		2020年5月29日		Create
+ * </pre>
+ *
+ */
+public class DingtalkWorkRecordJob extends Job {
+
+	@Override
+	protected void execute(JobExecutionContext context, JobData data) {
+		DingtalkApiUtils.executeWorkRecord();
+	}
+}

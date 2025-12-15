@@ -1,0 +1,502 @@
+.uni-w-editor-container {
+  color: var(--w-text-color-mobile);
+  word-break: break-all;
+
+  &.fullscreen {
+    position: fixed;
+    top: var(--status-bar-height);
+    left: 0;
+    z-index: 1000;
+    height: 100vh;
+    width: 100%;
+    background-color: #fff;
+  }
+
+  .ql-editor-toolbar {
+    display: flex;
+    border: 1px solid var(--w-border-color-mobile);
+    background-color: var(--w-bg-color-mobile-th);
+    justify-content: space-between;
+    .ql-editor-toolbar__block {
+      display: flex;
+      border-right: 1px solid var(--w-border-color-mobile);
+      &:last-child {
+        border-right: none;
+      }
+
+      .ql-editor-toolbar__btn {
+        padding: 4px 4px;
+        margin: 8px 4px;
+        border-radius: 4px;
+        white-space: nowrap;
+        color: var(--w-text-color-mobile);
+
+        &.ql-active {
+          background-color: var(--w-fill-color-base);
+          color: var(--w-primary-color);
+        }
+        &.ql-active-fontsize {
+          background-color: var(--w-primary-color-2);
+          color: var(--w-primary-color);
+        }
+        &.fullscreen {
+          color: var(--w-primary-color);
+        }
+      }
+    }
+    .ql-editor-toolbar-mask {
+      display: flex;
+      width: calc(100% - 35px);
+      overflow: hidden;
+      border-right: 1px solid var(--w-border-color-mobile);
+      position: relative;
+
+      &.disable::before,
+      &.readonly::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+    }
+  }
+  .quill-text-editor {
+    border-color: var(--w-border-color-mobile);
+    padding: 12px;
+  }
+
+  // 弹框
+  .select-popus-content {
+    text-align: center;
+    position: relative;
+
+    .select-popus-content__title {
+      font-size: var(--w-font-size-lg);
+      padding: 14px 5rem 8px;
+      line-height: 30px;
+      font-weight: bold;
+    }
+    .select-popus-content__item {
+      font-size: var(--w-font-size-base);
+      line-height: 48px;
+      &.ql-active {
+        color: var(--color-primary);
+        font-weight: bold;
+        font-size: var(--w-font-size-lg);
+        border-top: 1px solid var(--w-border-color-mobile);
+        border-bottom: 1px solid var(--w-border-color-mobile);
+      }
+    }
+    .closeBtn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+    }
+
+    .select-popus-content__colors {
+      display: flex;
+      flex-wrap: wrap;
+      // justify-content: space-between;
+      width: 100%;
+      padding: 20upx 10upx;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .select-popus-content__c-item {
+      margin-left: 10upx;
+      margin-top: 10upx;
+      width: calc((100% - 20upx) / 10);
+      height: 54upx;
+      border-radius: 10upx;
+      background-color: #fff;
+      // background-image: linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee),
+      //   linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee);
+      background-size: 36upx 36upx;
+      background-position: 0 0, 18upx 18upx;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .select-popus-content__c-item-content {
+      width: 50upx;
+      height: 50upx;
+      border: 1px #eee solid;
+      border-radius: 10upx;
+      margin: 0 auto;
+    }
+
+    .select-popus-content__btns {
+      display: flex;
+      flex-wrap: wrap;
+      // justify-content: space-between;
+      width: 100%;
+      padding: 20upx 10upx;
+      box-sizing: border-box;
+      text-align: center;
+
+      .select-popus-content__btn {
+        width: 25%;
+        padding: 12px 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .select-popus-content__btn-icon {
+          background-color: var(--w-bg-color-mobile-th);
+          border-radius: 16px;
+          width: 60px;
+          height: 60px;
+          line-height: 60px;
+          text-align: center;
+          > i {
+            font-size: 24px;
+          }
+        }
+        .select-popus-content__btn-title {
+          font-size: var(--w-font-size-base);
+          margin-top: 8px;
+        }
+
+        &.ql-active {
+          color: var(--w-primary-color);
+          .select-popus-content__btn-icon {
+            background-color: var(--w-primary-color-2);
+          }
+        }
+      }
+    }
+  }
+  .ql-editor img {
+    width: 100%;
+  }
+}
+
+// .quill-text-editor-container .custom {
+//   line-height: normal;
+//   padding-right: 5px;
+
+//   &.fullscreen {
+//     z-index: 2;
+//     position: absolute;
+//     right: 8px;
+//     bottom: 8px;
+//   }
+// }
+
+// .quill-text-editor-container {
+
+//   .ql-container.ql-snow {
+//     padding: 8px;
+//   }
+// }
+
+// .quill-text-editor-container .custom > i {
+//   // padding-top: 5px;
+//   cursor: pointer;
+//   color: #000;
+// }
+
+// .quill-text-editor-container .custom > .fullscreen {
+//   float: right;
+// }
+
+// .quill-text-editor-container.fullscreen {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   z-index: 1000;
+//   height: 100vh;
+//   width: 100%;
+//   background-color: #fff;
+// }
+
+// .ql-snow .ql-picker.ql-expanded .ql-picker-options {
+//   z-index: 3;
+// }
+
+// .qlBackground_left {
+//   .ql-snow .ql-background.ql-picker.ql-expanded .ql-picker-options {
+//     left: calc(100% - 152px);
+//   }
+// }
+// .qlColor_left {
+//   .ql-snow .ql-color.ql-picker.ql-expanded .ql-picker-options {
+//     left: calc(100% - 152px);
+//   }
+// }
+
+// .ql-picker-options {
+//   max-height: 260px;
+//   overflow-y: auto;
+// }
+
+// .ql-picker {
+//   line-height: normal;
+// }
+
+// .ql-snow .ql-picker.ql-font .ql-picker-item,
+// .ql-snow .ql-picker.ql-font .ql-picker-label {
+//   &::before {
+//     content: "默认字体";
+//   }
+//   &[data-value="songti"]::before {
+//     content: "宋体", "editor-songti";
+//   }
+//   &[data-value="heiti"]::before {
+//     content: "黑体";
+//   }
+//   &[data-value="fangsong"]::before {
+//     content: "仿宋";
+//   }
+//   &[data-value="kaiti"]::before {
+//     content: "楷体";
+//   }
+//   &[data-value="lishu"]::before {
+//     content: "隶书";
+//   }
+//   &[data-value="youyuan"]::before {
+//     content: "幼圆";
+//   }
+//   &[data-value="weiruanyahei"]::before {
+//     content: "微软雅黑";
+//   }
+// }
+
+// .quill-text-editor-container {
+//   position: relative;
+//   word-break: break-all;
+//   width: 100%;
+// }
+
+// .quill-text-editor-container .disable {
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   z-index: 1;
+//   background-color: #0000000f;
+// }
+
+// .quill-text-editor-container .readonly {
+//   position: absolute;
+//   width: 100%;
+//   height: 90px;
+//   z-index: 1;
+//   background-color: #00000000;
+// }
+
+// .ql-editor-toolbar {
+//   > * {
+//     margin: 4px;
+//   }
+//   .ql-active {
+//     color: var(--color-primary);
+//   }
+
+//   .w-eidtor-icon-text_color,
+//   .w-eidtor-icon-fontbgcolor {
+//     &::before {
+//       box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.05);
+//     }
+//   }
+// }
+
+// .ql-editor-toolbar .ql-font span[data-value="initial"]::before {
+//   font-family: initial;
+// }
+
+// .ql-font-initial {
+//   font-family: initial;
+// }
+
+// .ql-editor {
+//   min-height: 50px;
+// }
+
+// .ql-editor img {
+//   width: 100%;
+// }
+
+// .ql-editor-toolbar .ql-font span[data-value="fangsong"]::before {
+//   font-family: "仿宋_GB2312";
+// }
+
+// .ql-font-fangsong {
+//   font-family: "仿宋_GB2312";
+// }
+
+// .ql-editor-toolbar .ql-font span[data-value="songti"]::before {
+//   font-family: "宋体";
+// }
+
+// .ql-font-songti {
+//   font-family: "宋体";
+// }
+
+// .ql-editor-toolbar .ql-font span[data-value="heiti"]::before {
+//   font-family: "黑体";
+// }
+
+// .ql-font-heiti {
+//   font-family: "黑体";
+// }
+
+// .ql-editor-toolbar .ql-font span[data-value="kaiti"]::before {
+//   font-family: "楷体";
+// }
+
+// .ql-font-kaiti {
+//   font-family: "楷体";
+// }
+
+// .ql-editor-toolbar .ql-font span[data-value="lishu"]::before {
+//   font-family: "隶书";
+// }
+
+// .ql-font-lishu {
+//   font-family: "隶书";
+// }
+
+// .ql-editor-toolbar .ql-font span[data-value="youyuan"]::before {
+//   font-family: "幼圆";
+// }
+
+// .ql-font-youyuan {
+//   font-family: "幼圆";
+// }
+
+// .ql-editor-toolbar .ql-font span[data-value="weiruanyahei"]::before {
+//   font-family: "微软雅黑";
+// }
+
+// .ql-font-weiruanyahei {
+//   font-family: "微软雅黑";
+// }
+
+// $fontsize: 8px, 9px, 10x, 11px, 12px, 14px, 16px, 18px, 20px, 22px, 24px, 26px, 28px, 36px, 48px, 72px;
+// .ql-snow .ql-picker.ql-size .ql-picker-label,
+// .ql-snow .ql-picker.ql-size .ql-picker-item {
+//   ::before {
+//     content: "默认大小";
+//   }
+//   @each $i in $fontsize {
+//     &[data-value="#{$i}"]::before {
+//       content: "#{$i}";
+//     }
+//   }
+// }
+
+// .ql-editor .ql-size-8px {
+//   font-size: 8px;
+// }
+
+// .ql-editor .ql-size-9px {
+//   font-size: 9px;
+// }
+
+// .ql-editor .ql-size-10px {
+//   font-size: 10px;
+// }
+
+// .ql-editor .ql-size-11px {
+//   font-size: 11px;
+// }
+
+// .ql-editor .ql-size-12px {
+//   font-size: 12px;
+// }
+
+// .ql-editor .ql-size-14px {
+//   font-size: 14px;
+// }
+
+// .ql-editor .ql-size-16px {
+//   font-size: 16px;
+// }
+
+// .ql-editor .ql-size-18px {
+//   font-size: 18px;
+// }
+
+// .ql-editor .ql-size-20px {
+//   font-size: 20px;
+// }
+
+// .ql-editor .ql-size-22px {
+//   font-size: 22px;
+// }
+
+// .ql-editor .ql-size-24px {
+//   font-size: 24px;
+// }
+
+// .ql-editor .ql-size-26px {
+//   font-size: 26px;
+// }
+
+// .ql-editor .ql-size-8px {
+//   font-size: 8px;
+// }
+
+// .ql-editor .ql-size-28px {
+//   font-size: 28px;
+// }
+
+// .ql-editor .ql-size-36px {
+//   font-size: 36px;
+// }
+
+// .ql-editor .ql-size-48px {
+//   font-size: 48px;
+// }
+
+// .ql-editor .ql-size-72px {
+//   font-size: 72px;
+// }
+
+// .eidtor-iconfont {
+//   display: inline-block;
+//   width: 100%;
+//   height: 100%;
+//   cursor: pointer;
+//   font-size: 18px;
+//   position: relative;
+// }
+// .ql-snow.ql-toolbar uni-button,
+// .ql-snow .ql-toolbar uni-button {
+//   height: 24px;
+//   padding: 7px 5px;
+//   width: 26px;
+//   line-height: 18px;
+//   &::after {
+//     content: none;
+//   }
+//   .eidtor-iconfont {
+//     &::before {
+//       position: absolute;
+//       top: -100%;
+//       left: 0px;
+//     }
+//   }
+//   .w-icon {
+//     position: relative;
+//     display: inline-block;
+//     width: 100%;
+//     height: 100%;
+//     uni-text {
+//       &::before {
+//         position: absolute;
+//         top: -100%;
+//         left: 0px;
+//       }
+//     }
+//     uni-icon > i {
+//       &::before {
+//         position: absolute;
+//         top: 0;
+//         left: 0px;
+//       }
+//     }
+//   }
+// }
+// .ql-snow.ql-toolbar {
+//   position: relative;
+// }

@@ -1,0 +1,11 @@
+{
+  "js": {
+    "AppUreportList": {
+      "path": "/report-mgr/AppUreportList",
+      "name": "平台应用_报表管理_ureport报表列表二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment"
+      ]
+    }
+  }
+}

@@ -1,0 +1,36 @@
+/*
+ * @(#)2013-1-25 V1.0
+ *
+ * Copyright 2013 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.message.web;
+
+import com.wellsoft.context.web.controller.BaseController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/**
+ * Description: 消息模板定义
+ *
+ * @author zhulh
+ * @version 1.0
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2013-1-25.1	zhulh		2013-1-25		Create
+ * </pre>
+ * @date 2013-1-25
+ */
+@Controller
+@RequestMapping("/message/template")
+public class MessageTemplateController extends BaseController {
+
+    @RequestMapping(value = "")
+    public String template(Model model) {
+        model.addAttribute("isDebug", super.isDebug());
+        return forward("/message/template");
+    }
+
+}

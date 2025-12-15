@@ -1,0 +1,28 @@
+<div class="file-box col-lg-2 col-md-3">
+	<div class="file" data-index="${index}" uuid="${uuid}">
+		<div class="icon">
+			{@if contentType == "application/folder"}<i class="iconfont icon-ptkj-wenjianjia-guan folder-color"></i> {@else if isImage == true} <a href="#"
+																																				   class="thumbnail"> <img src="${ctx}/repository/file/mongo/download?fileID=${dataUuid}&preview=true" />
+		</a> {@else if contentType != "application/folder"} {@if iconClass != null} <i class="${iconClass}"></i> {@else} <i
+				class="iconfont icon-ptkj-tongyongfujian other-color"></i> {@/if} {@/if}
+			<div class="file-information">
+				<p class="file-name" >
+					${name}
+				</p>
+			</div>
+		</div>
+		<div class="popover fade" data-toggle="popover">
+			<div class="popover-content">
+				<div class="arrow"></div>
+				<p class="file-name">文件名称：<span>${name}</span></p>
+				<p class="file-type">文件类型：{@if contentType == "application/folder"}<span>文件夹</span>{@else}<span>${fileType}</span>{@/if}</p>
+				<p class="creat-time">创建时间：<span>${createTime}</span></p>
+				<p class="file-tags">所属标签：<span class="dms-file-tags"></span></p>
+			</div>
+		</div>
+		<div class="file-checkbox hide">
+			<input name="fileItem" id="fileItem${index}" type="checkbox" style="display: none"><label for="fileItem${index}"></label>
+		</div>
+
+	</div>
+</div>

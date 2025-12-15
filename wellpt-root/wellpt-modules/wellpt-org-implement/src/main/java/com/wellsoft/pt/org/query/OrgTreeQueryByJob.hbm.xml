@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="getHrDepmartByUuids">
+        <![CDATA[
+		select d from Department d where d.uuid in (:uuids)
+	]]>
+    </sql-query>
+    <!--通过name查找user-->
+    <sql-query name="getEmployeeDatasByName">
+        <![CDATA[
+		select u.* from org_user u
+		    where u.user_name like '%${name}%'
+
+	    union
+
+	    select a.* from org_user a
+		   where  exists(
+				   select b.entity_uuid from cd_pinyin b
+				   where b.entity_uuid=a.uuid and b.type='User'
+				   and b.pinyin like '%${name}%')
+	]]>
+    </sql-query>
+
+    <!--通过name查找user的上级职位下所有用户-->
+    <sql-query name="getHrSerchNameEmployeeDatas">
+        <![CDATA[
+		select d.* from org_user u
+	      inner join org_user_job uj on uj.user_uuid = u.uuid
+	      inner join org_job j on uj.job_uuid = j.uuid
+	      inner join org_department d on d.uuid = j.DEPARTMENT_UUID
+			where uj.uuid in(
+				select uj.uuid from org_user u
+				inner join org_user_job uj on uj.user_uuid = u.uuid
+			    where u.user_name like '%${name}%'
+			)
+	]]>
+    </sql-query>
+
+    <!--通过name查找user的上级职位下所有用户-->
+    <sql-query name="getSerchJobName2Depmart">
+        <![CDATA[
+		select d.* from  org_job j
+	      inner join org_department d on d.uuid = j.DEPARTMENT_UUID
+			    where j.name like '%${name}%'
+
+	]]>
+    </sql-query>
+
+    <!--通过name查找user的上级职位下所有用户(权限控制)-->
+    <sql-query name="getHrSerchNameEmployeeDatasWithAuth">
+        <![CDATA[
+		select d.* from org_user u
+	      inner join org_user_job uj on uj.user_uuid = u.uuid
+	      inner join org_job j on uj.job_uuid = j.uuid
+	      inner join org_department d on d.uuid = j.DEPARTMENT_UUID
+			where uj.uuid in(
+				select uj.uuid from org_user u
+				inner join org_user_job uj on uj.user_uuid = u.uuid
+			    where u.user_name like '%${name}%'
+			)
+			and d.uuid in
+			(  SELECT d1.uuid
+			    FROM org_department d1
+			  connect by prior d1.uuid = d1.parent_uuid
+			   start with exists (select 1
+			                 from org_dept_principal p
+			                where p.department_uuid = d1.uuid
+			                  and (p.org_id = :loginUserId or exists
+			                       (select 1
+			                          from org_user_job uj, org_user u, org_job j
+			                         where uj.job_uuid = j.uuid
+			                           and u.uuid = uj.user_uuid
+			                           and j.id = p.org_id
+			                           and u.id = :loginUserId))))
+	]]>
+    </sql-query>
+
+    <!--通过name查找user的上级职位下所有用户-->
+    <sql-query name="getSerchJobName2DepmartWithAuth">
+        <![CDATA[
+		select d.* from  org_job j
+	      inner join org_department d on d.uuid = j.DEPARTMENT_UUID
+			    where j.name like '%${name}%'
+			      and d.uuid in
+					(SELECT d1.uuid
+			    FROM org_department d1
+			  connect by prior d1.uuid = d1.parent_uuid
+			   start with exists (select 1
+			                 from org_dept_principal p
+			                where p.department_uuid = d1.uuid
+			                  and (p.org_id = :loginUserId or exists
+			                       (select 1
+			                          from org_user_job uj, org_user u, org_job j
+			                         where uj.job_uuid = j.uuid
+			                           and u.uuid = uj.user_uuid
+			                           and j.id = p.org_id
+			                           and u.id = :loginUserId))))
+
+	]]>
+    </sql-query>
+
+</hibernate-mapping>

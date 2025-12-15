@@ -1,0 +1,12 @@
+<div id="${dialogId}" class="mui-popover mui-popover-dialog mui-popover-action mui-popover-bottom" style="display: block;">
+	<ul class="mui-table-view">
+		{@if title != null}
+		<li class="mui-table-view-cell mui-popover-header mui-text-left"><a href="#">${title}</a></li> {@/if}
+		<li class="mui-table-view-cell mui-popover-content mui-text-left"><div id="${contentId}"></div></li>
+	</ul>
+	<ul class="mui-table-view mui-row mui-popover-footer">
+		{@each buttons as btn,index}
+		<li class="mui-table-view-cell mui-popover-button mui-col-xs-${btnColspan}" index="${index}"><a href="#"
+			class="${btn.className}">${btn.label}</a></li> {@/each}
+	</ul>
+</div>

@@ -1,0 +1,22 @@
+export const geocoderAddressParams = [
+  { value: 'formattedAddress', label: '完整地址' },
+  { value: 'lnglat', label: '经纬度' },
+  { value: 'addressComponent_province', label: '省份' },
+  { value: 'addressComponent_city', label: '城市' },
+  { value: 'addressComponent_district', label: '区县' },
+  { value: 'addressComponent_towncode', label: '乡镇代码' },
+  { value: 'addressComponent_township', label: '乡镇/街道' },
+  { value: 'addressComponent_adcode', label: '地区代码' },
+  { value: 'addressComponent_citycode', label: '城市区号' },
+  { value: 'addressComponent_adcode', label: '行政区划代码' },
+  { value: 'addressComponent_businessAreas', label: '商业区' },
+  { value: 'addressComponent_neighborhoodType', label: '小区类型' },
+  { value: 'addressComponent_neighborhood', label: '小区名称' },
+  { value: 'addressComponent_building', label: '建筑物名称' },
+  { value: 'addressComponent_buildingType', label: '建筑物类型' },
+  { value: 'addressComponent_street', label: '街道/道路' },
+  { value: 'addressComponent_streetNumber', label: '门牌号' },
+  // { value: 'roads', label: '道路信息' },
+  // { value: 'crosses', label: '交叉路口' },
+  // { value: 'pois', label: '兴趣点' }
+];

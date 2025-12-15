@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>Hello MUI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<!--标准mui.css-->
+<link rel="stylesheet" href="../css/mui.min.css">
+<!--App自定义的css-->
+<link rel="stylesheet" type="text/css" href="../css/app.css" />
+<link href="../css/mui.picker.css" rel="stylesheet" />
+<link href="../css/mui.poppicker.css" rel="stylesheet" />
+<link href="../css/mui.fileupload.css" rel="stylesheet" />
+</head>
+
+<style type="text/css">
+.mui-input-row label ~ul.attach-container {
+	float: right;
+	width: 65%;
+	margin-bottom: 0;
+	padding-left: 0;
+	border: 0;
+}
+</style>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">附件上传示例</h1>
+	</header>
+	<div class="mui-content">
+		<h5 class="mui-content-padded" style="margin: 35px 10px 15px 10px;">附件上传示例</h5>
+		<form class="mui-input-group">
+			<div class="mui-input-row mui-attach-row">
+				<label for="files">附件上传</label> <input type="file" id="files" name="files" class="attach-picker">
+			</div>
+			<div class="mui-button-row">
+				<div class="mui-switch mui-switch-blue" style="display: inline-block;" id="btn-autoupload">
+					<div class="mui-switch-handle"></div>
+				</div>
+				<button class="mui-btn mui-btn-primary" type="button" id="upload">上传</button>
+			</div>
+		</form>
+		<h5 class="mui-content-padded" style="margin: 35px 10px 15px 10px;">BODY附件</h5>
+		<form class="mui-input-group">
+			<div class="mui-input-row mui-attach-row">
+				<input type="file" id="files2" name="files2">
+				<ul class="mui-table-view attach-container">
+					<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">
+						<span class="attach-label">批文:</span><span class="attach-total">0</span>个附件
+					</a>
+						<div class="mui-collapse-content">
+							<div class="mui-button-row mui-clearfix attach-button-row">
+								<input type="file" name="files2" class="mui-btn mui-btn-blue attach-picker"/>
+								<buttom class="mui-btn mui-btn-blue btn-fileshowtype">图标/</buttom>
+								<buttom class="mui-btn mui-btn-blue btn-filedownall">下载</buttom>
+								<buttom class="mui-btn mui-btn-blue btn-filedelall">清空</buttom>
+							</div>
+							<ul class="mui-table-view attach-table-view">
+							</ul>
+						</div></li>
+				</ul>
+			</div>
+		</form>
+		<h5 class="mui-content-padded" style="margin: 35px 10px 15px 10px;">ICON附件</h5>
+		<form class="mui-input-group">
+			<div class="mui-input-row mui-attach-row">
+				<input type="file" id="files3" name="files3">
+				<ul class="mui-table-view attach-container">
+					<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">
+						<span class="attach-label">批文:</span><span class="attach-total">0</span>个附件
+					</a>
+						<div class="mui-collapse-content">
+							<div class="mui-button-row mui-clearfix attach-button-row">
+								<input type="file" name="files3" class="mui-btn mui-btn-blue attach-picker"/>
+<!-- 								<buttom class="mui-btn mui-btn-blue btn-fileshowtype">图标/</buttom> -->
+								<buttom class="mui-btn mui-btn-blue btn-filedownall">全部下载</buttom>
+								<buttom class="mui-btn mui-btn-blue btn-filedelall">清空</buttom>
+							</div>
+							<ul class="mui-table-view attach-table-view">
+							</ul>
+						</div></li>
+				</ul>
+			</div>
+		</form>
+		<h5 class="mui-content-padded" style="margin: 35px 10px 15px 10px;">图片附件</h5>
+		<form class="mui-input-group">
+			<div class="mui-input-row mui-attach-row">
+				<input type="file" id="files4" name="files4">
+				<ul class="mui-table-view attach-container">
+					<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">
+						<span class="attach-label">批文:</span><span class="attach-total">0</span>个图片
+					</a>
+						<div class="mui-collapse-content">
+							<div class="mui-button-row mui-clearfix attach-button-row">
+								<input type="file" name="files4" class="mui-btn mui-btn-blue attach-picker"/>
+								<buttom class="mui-btn mui-btn-blue btn-filedownall">全部下载</buttom>
+								<buttom class="mui-btn mui-btn-blue btn-filedelall">清空</buttom>
+							</div>
+							<ul class="mui-table-view attach-table-view">
+							</ul>
+						</div></li>
+				</ul>
+			</div>
+		</form>
+	</div>
+	<script src="../js/mui.js"></script>
+	<script src="../js/mui.picker.js"></script>
+	<script src="../js/mui.poppicker.js"></script>
+	<script src="../js/mui.listpicker.js"></script>
+	<script src="../js/mui.tableViewCollapseFix.js"></script>
+	<script src="../js/common/mui.fileupload.js"></script>
+	<script>
+		(function($, document) {
+
+			//创建 DOM
+			$.dom = function(str) {
+				if (typeof (str) !== 'string') {
+					if ((str instanceof Array) || (str[0] && str.length)) {
+						return [].slice.call(str);
+					} else {
+						return [ str ];
+					}
+				}
+				if (!$.__create_dom_div__) {
+					$.__create_dom_div__ = document.createElement('div');
+				}
+				$.__create_dom_div__.innerHTML = str;
+				return [].slice.call($.__create_dom_div__.childNodes);
+			};
+
+			$.show = function(element, display) {
+				element.style.display = display ? display : "block";
+			}
+
+			$.hide = function(element, display) {
+				element.style.display = display ? display : "none";
+			}
+
+		})(mui, document);
+
+		mui.init({
+			swipeBack : true
+		});
+		(function($) {
+			var options = {
+				multiple : false
+			};
+			$.extend(options, {
+				autoUpload : false,
+				files : null,
+				initXHRData : {
+					purpose : "fj",
+					folderID : "c75dcabb57f00001fbd7ce201700187a"
+				},
+				formData : {
+					signUploadFile : false
+				},
+				itemFormat : null/*function(file) {
+					return file.fileName ? file.fileName : file.name ? file.name : file;
+				}*/
+			})
+			var muiFileUpload = window.muiFileUpload = new $.MuiFileUpload($("input[name=files]")[0], options);
+
+			muiFileUpload.on("fileuploadsubmit", function(event, files) {
+				var self = this;
+				console.log("fileuploadsubmit");
+				console.log(event);
+				console.log(files);
+				return true;
+			})
+
+			$("#btn-autoupload")[0].addEventListener("toggle", function(event) {
+				if (event["detail"] && event["detail"]["isActive"]) {
+					muiFileUpload.setAutoUpload(true);
+					$("#upload")[0].style.display = "none";
+				} else {
+					muiFileUpload.setAutoUpload(false);
+					$("#upload")[0].style.display = "inline-block";
+				}
+			})
+
+			$("#upload")[0].addEventListener("tap", function(event) {
+				muiFileUpload.upload();
+			});
+
+			var options2 = {
+				multiple : true
+			};
+			$.extend(options2, {
+				showtype:true,
+				autoUpload : true,
+				files : null,
+				initXHRData : {
+					purpose : "fj",
+					folderID : "c75dcabb57f00001fbd7ce201700187a"
+				},
+				formData : {
+					signUploadFile : false
+				}
+			})
+			var muiBodyFileUpload = window.muiBodyFileUpload = new $.FileUploadFactory($("input[name=files2]")[0], options2);
+			
+			// icon
+			var options3 = {
+					
+			}
+			$.extend(options3, options2);
+			var muiIconFileUpload = window.muiIconFileUpload = new $.FileUploadFactory($("input[id=files3]")[0], options3, "icon");
+			
+			// image
+			var options4 = {
+					
+			}
+			$.extend(options4, options3);
+			var muiImageFileUpload = window.muiImageFileUpload = new $.FileUploadFactory($("input[id=files4]")[0], options4, "image");
+			
+
+			var userResult = document.getElementById('userResult');
+			$("form.mui-input-group").on('tap', 'ul.attach-container a.mui-slider-handle', function(event) {
+				var elem = this.parentNode;
+				setTimeout(function() {
+					$.swipeoutClose(elem);
+				}, 0);
+			}, false);
+
+			$(".attach-container").on($.COLLAPSE_BEFORE, "li.mui-collapse", function(event) {
+				// console.log("collapse.before");
+				// 				$.hide(this.getElementsByClassName("fileoperate")[0]);
+				// 				$.show(this.getElementsByClassName("filename")[0]);
+				this.classList.remove("fileoperate-active");
+			});
+
+			$(".attach-container").on($.EXPANDED_BEFORE, "li.mui-collapse", function(event) {
+				//console.log("expanded.before");
+				// 				$.show(this.getElementsByClassName("fileoperate")[0]);
+				// 				$.hide(this.getElementsByClassName("filename")[0]);
+				this.classList.add("fileoperate-active");
+			});
+
+			$(".attach-container").on("collapse.after", "li.mui-collapse", function(event) {
+				//console.log("collapse.after");
+			});
+
+			$(".attach-container").on("expanded.after", "li.mui-collapse", function(event) {
+				//console.log("expanded.after");
+			});
+
+		})(mui);
+	</script>
+</body>
+
+</html>

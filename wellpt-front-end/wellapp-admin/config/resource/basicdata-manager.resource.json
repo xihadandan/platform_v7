@@ -1,0 +1,159 @@
+{
+  "js": {
+    "AppExecuteSQLDefinitionSetDevelopment": {
+      "path": "/basicdata-mgr/AppExecuteSQLDefinitionSetDevelopment",
+      "name": "平台应用_公共资源_可执行SQL_编辑二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "jquery-validate", "global", "system-admin", "ace_binder", "formBuilder"]
+    },
+    "AppSysParamsListDevelopment": {
+      "path": "/basicdata-mgr/AppSysParamsListDevelopment",
+      "name": "平台应用_系统设置_参数设置_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppBusinessBookListDevelopment": {
+      "path": "/basicdata-mgr/AppBusinessBookListDevelopment",
+      "name": "平台应用_公共资源_业务通讯录_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment", "multiOrg"]
+    },
+    "AppWorkTimeWidgetDevelopment": {
+      "path": "/basicdata-mgr/AppWorkTimeWidgetDevelopment",
+      "name": "平台应用_系统设置_工作时间二开",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "formBuilder",
+        "layDate",
+        "global",
+        "system-admin"
+      ]
+    },
+    "AppBusinessSetWidgetDevelopment": {
+      "path": "/basicdata-mgr/AppBusinessSetWidgetDevelopment",
+      "name": "平台应用_系统设置_行业设置二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "jquery-validate", "global", "system-admin", "ztree", "comboTree"]
+    },
+    "AppCdScriptDefinitionListDevelopment": {
+      "path": "/basicdata-mgr/AppCdScriptDefinitionListDevelopment",
+      "name": "平台应用_公共资源_脚本定义_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment", "iexportData_V61"]
+    },
+    "AppFormAppListDevelopment": {
+      "path": "/basicdata-mgr/AppFormAppListDevelopment",
+      "name": "平台应用_公共资源_表单应用配置_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppPictureLibEditViewDevelopment": {
+      "path": "/basicdata-mgr/AppPictureLibEditViewDevelopment",
+      "name": "平台应用_数据管理_图片库配置_编辑二开",
+      "dependencies": ["HtmlWidgetDevelopment", "ListViewWidgetDevelopment", "system-admin", "wCommonPictureLib", "minicolors"]
+    },
+    "AppSysTableWidgetDevelopment": {
+      "path": "/basicdata-mgr/AppSysTableWidgetDevelopment",
+      "name": "平台应用_基础数据管理_系统表结构_编辑二开",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "wSelect2",
+        "global",
+        "system-admin"
+      ]
+    },
+    "AppExecuteSQLDefinitionListDevelopment": {
+      "path": "/basicdata-mgr/AppExecuteSQLDefinitionListDevelopment",
+      "name": "平台应用_公共资源_可执行SQL_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment", "iexportData_V61"]
+    },
+    "AppBusinessCategorySetDevelopment": {
+      "path": "/basicdata-mgr/AppBusinessCategorySetDevelopment",
+      "name": "平台应用_公共资源_业务类别_编辑二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "global",
+        "system-admin",
+        "multiOrg",
+        "formBuilder",
+        "bootstrapTable",
+        "bootstrapTable_editable",
+        "wBootstrapTable"
+      ]
+    },
+    "AppBusinessManageListDevelopment": {
+      "path": "/basicdata-mgr/AppBusinessManageListDevelopment",
+      "name": "平台应用_公共资源_业务管理_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment", "multiOrg"]
+    },
+    "AppSysParamsWidgetDevelopment": {
+      "path": "/basicdata-mgr/AppSysParamWidgetDevelopment",
+      "name": "平台应用_系统设置_参数设置_编辑二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "ztree",
+        "multiOrg",
+        "comboTree",
+        "global",
+        "system-admin"
+      ]
+    },
+    "AppSysTableListDevelopment": {
+      "path": "/basicdata-mgr/AppSysTableListDevelopment",
+      "name": "平台应用_基础数据管理_系统表结构_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment", "iexportData_V61"]
+    },
+    "AppFormAppSetDevelopment": {
+      "path": "/basicdata-mgr/AppFormAppSetDevelopment",
+      "name": "平台应用_公共资源_表单应用配置_编辑二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "jquery-validate", "global", "system-admin", "multiOrg"]
+    },
+    "AppBusinessManageSetDevelopment": {
+      "path": "/basicdata-mgr/AppBusinessManageSetDevelopment",
+      "name": "平台应用_公共资源_业务管理_编辑二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "global",
+        "system-admin",
+        "multiOrg",
+        "formBuilder",
+        "bootstrapTable",
+        "bootstrapTable_editable",
+        "wBootstrapTable"
+      ]
+    },
+    "AppBusinessBookSetDevelopment": {
+      "path": "/basicdata-mgr/AppBusinessBookSetDevelopment",
+      "name": "平台应用_公共资源_业务通讯录_编辑二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "jquery-validate", "global", "system-admin", "multiOrg", "clipboard", "formBuilder"]
+    },
+    "AppCdScriptDefinitionSetDevelopment": {
+      "path": "/basicdata-mgr/AppCdScriptDefinitionSetDevelopment",
+      "name": "平台应用_公共资源_脚本定义_编辑二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "ztree",
+        "multiOrg",
+        "comboTree",
+        "global",
+        "system-admin",
+        "bootstrapTable",
+        "bootstrapTable_editable",
+        "formBuilder"
+      ]
+    },
+    "AppBusinessCategoryListDevelopment": {
+      "path": "/basicdata-mgr/AppBusinessCategoryListDevelopment",
+      "name": "平台应用_公共资源_业务类别_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment", "iexportData_V61"]
+    }
+  },
+  "css": {}
+}

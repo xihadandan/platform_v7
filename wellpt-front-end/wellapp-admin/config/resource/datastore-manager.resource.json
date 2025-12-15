@@ -1,0 +1,20 @@
+{
+  "js": {
+    "AppDatastoreDetailsWidgetDevelopment": {
+      "path": "/datastore-mgr/AppDatastoreDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_数据仓库详情_HTML组件二开",
+      "dependencies": [
+        "AppPtMgrDetailsWidgetDevelopment",
+        "multiOrg"
+      ]
+    },
+    "AppDatastoreListViewWidgetDevelopment": {
+      "path": "/datastore-mgr/AppDatastoreListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_数据仓库列表_视图组件二开",
+      "dependencies": [
+        "AppPtMgrListViewWidgetDevelopment"
+      ]
+    }
+  },
+  "css": {}
+}

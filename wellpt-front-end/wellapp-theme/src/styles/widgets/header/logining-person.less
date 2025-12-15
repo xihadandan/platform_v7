@@ -1,0 +1,52 @@
+/*在线人员弹窗*/
+.logining-list-contain .searchable-block {
+  width: 100%;
+  padding-bottom: 20px;
+  position: relative;
+
+  .search-icon {
+    .size(34px 100%);
+
+    position: absolute;
+    line-height: 34px;
+    text-align: center;
+  }
+
+  input {
+    .size(332px 34px);
+
+    padding: 0 30px;
+    border-radius: @border-radius-base;
+  }
+
+  button {
+    margin-left: 10px;
+  }
+}
+
+.logining-list-contain {
+  .fixed-table-container {
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+
+    table th {
+      background-color: @gray-3;
+      border-left: 0;
+    }
+
+    table td {
+      border-left: 0;
+      border-top: 0;
+      border-bottom: 1px solid #dddddd;
+    }
+
+    table tbody tr {
+      background-color: @text-color-inverse;
+
+      &:hover {
+        background-color: rgba(72, 140, 238, 0.05);
+      }
+    }
+  }
+}

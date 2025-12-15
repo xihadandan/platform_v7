@@ -1,0 +1,265 @@
+/** 列表附件 */
+
+// 附件上传按钮
+.upload_div {
+  background: none repeat scroll 0 0 transparent;
+  padding-top: @padding-3xs;
+  display: inline-block;
+
+  .fileinput-button2 {
+    position: relative;
+  }
+
+  > span.tip {
+    color: @text-color-light;
+    margin-left: @margin-lg;
+    font-size: @font-size-sm;
+  }
+}
+
+.ui-image-container {
+  > span.tip {
+    color: @text-color-light;
+    margin-left: @margin-lg;
+    font-size: @font-size-sm;
+  }
+}
+
+#upload_div {
+  .fileupload_css {
+    .box();
+    opacity: 0;
+  }
+
+  .file_source_css {
+    .absolute();
+    .size(100% 28px);
+
+    cursor: pointer;
+    margin: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+
+  .file_icon {
+    .size(10px 20px);
+
+    background: url('@{image-url-prefix}/file-upload/v1_icon4.png') no-repeat scroll -63px 4px transparent;
+    display: block;
+    float: left;
+    margin-right: @margin-sm;
+  }
+
+  .add_icon {
+    margin-left: 4px;
+    cursor: pointer;
+  }
+}
+
+// 文件列表
+.file-list {
+  li {
+    height: @height-sm;
+    // background: @gray-2;
+
+    &:hover {
+      background: @item-hover-background;
+    }
+  }
+
+  .circle {
+    .square(@height-3xs);
+    .relative(2px false false false);
+
+    display: inline-block;
+    background: #ccc;
+    border-radius: 50%;
+  }
+
+  .pie_left,
+  .pie_right {
+    .square(@height-3xs);
+    .absolute(0 false false 0);
+  }
+
+  .left,
+  .right {
+    .square(100%);
+    .relative(0 false false 0);
+
+    border-radius: 50%;
+    background: @primary-color;
+    transform: rotate(-180deg);
+  }
+
+  .pie_left,
+  .left {
+    clip: rect(auto, 10px, auto, auto);
+  }
+
+  .pie_right,
+  .right {
+    clip: rect(0, auto, auto, 10px);
+  }
+
+  .mask {
+    .square(16px);
+    .absolute(2px false false 2px);
+
+    line-height: 16px;
+    font-size: @font-size-xl;
+    font-weight: 600;
+    border-radius: 50%;
+    background: @component-background;
+    text-align: center;
+
+    .fail {
+      .relative(-1px false false false);
+      font-size: @font-size-base;
+    }
+  }
+}
+
+.files_div {
+  line-height: normal;
+  display: inline-block;
+  clear: both;
+  background: none repeat scroll 0 0 @gray-6;
+  text-decoration: none;
+  width: calc(98%);
+  position: relative;
+
+  p {
+    display: inline-block;
+    font-size: @font-size-sm;
+    margin: 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: @text-color;
+  }
+
+  span {
+    cursor: pointer;
+  }
+
+  .file_icon {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    margin-right: 5px;
+  }
+
+  .upload_progress .tran_md5 {
+    .square(20px);
+
+    display: inline-block;
+    background: url('@{image-url-prefix}/file-upload/tran_md5_process.gif') no-repeat center;
+  }
+  .list-file-info{
+    display: none;
+    span{
+      line-height: @height-xs;
+      font-size: @font-size-sm;
+      color: @text-color-light;
+      margin-left: 10px;
+      &:first-child,&:last-child{
+        margin-left: 0;
+      }
+    }
+  }
+
+}
+
+.progress-div {
+  .size(10%, 10px);
+
+  float: left;
+  margin: 10px 0 0 10px;
+}
+
+#files .delete_input,
+.files .delete_input {
+  cursor: pointer;
+  border: 1px none;
+  width: 42px;
+  font-size: 12px;
+  margin-left: 0px;
+  background: none repeat scroll 0 0 transparent;
+  color: #4b9ad2;
+}
+
+#files .delete_input:hover {
+  color: #ff7200;
+}
+
+#progress .bar-div {
+  background: none repeat scroll 0 0 #87b5e7;
+  height: 11px;
+}
+
+.upload_div .btn-primary {
+  position: relative;
+}
+
+.file-list .sec_dev_btn {
+  height: @height-xs;
+  line-height: @height-xs;
+  display: inline;
+  margin: 0 0 0 4px;
+  padding: 3px 11px;
+  background: #fff;
+}
+.file-list .sec_dev_btn.w-btn-primary.w-line-btn:hover {
+  background: #fff;
+}
+
+.file-list .btn_span {
+  .size(auto, @height-xs);
+
+  color: @text-color-primary;
+  border: @border-default-primary;
+  border-radius: 10%;
+  padding: 0 10px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.file-list .icon {
+  line-height: @height-xs;
+  margin: 0 @margin-2xs;
+  font-size: @font-size-base;
+  cursor: pointer;
+}
+
+._delete_input,
+.download_input,
+button.filename {
+  cursor: pointer;
+  border: 1px none;
+  width: 42px;
+  font-size: @font-size-sm;
+  margin-left: 0px;
+  background: none repeat scroll 0 0 transparent;
+  color: @text-color-primary;
+  margin-top: 0px;
+}
+
+// 下载全部
+.downloadAll {
+  display: block;
+
+  .downloadallbtn {
+    cursor: pointer;
+    color: @text-color-primary;
+    text-decoration: none;
+
+    &:hover {
+      color: #f9622a;
+    }
+
+    i {
+      font-size: @font-size-base;
+      margin-right: 5px;
+    }
+  }
+}

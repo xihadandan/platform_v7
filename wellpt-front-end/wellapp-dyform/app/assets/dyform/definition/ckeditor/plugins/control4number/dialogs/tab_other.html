@@ -1,0 +1,106 @@
+<table>
+  <tr>
+    <td class="Label">数字类型</td>
+    <td class="value">
+      <select id="dbDataType" name="dbDataType" class="w100">
+        <option value="13">整数</option>
+        <option value="131">正整数</option>
+        <option value="132">负整数</option>
+        <option value="14">长整数</option>
+        <option value="15">浮点数</option>
+        <option value="12">双精度浮点数</option>
+        <option value="17">number类型</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="Label">千位分隔符 (,)</td>
+    <td class="value">
+      <input type="checkbox" name="formatNumber" id="formatNumber" class="switch" />
+      <label for="formatNumber"></label>
+    </td>
+  </tr>
+  <tr id="tr_decimal" style="display: none">
+    <td class="Label">小数位数</td>
+    <td class="value">
+      <input type="text" name="decimal" id="decimal" value="" style="width: 25px; float: left" />
+    </td>
+  </tr>
+  <!--<tr id="showStyle">-->
+  <!--<td class="Label">展示样式</td>-->
+  <!--<td class="value">-->
+  <!--<input id="numInputStyle1" type="radio" value="1" name="numInputStyle">-->
+  <!--<label for="numInputStyle1">样式1</label>-->
+  <!--<input id="numInputStyle2" type="radio" value="2" name="numInputStyle">-->
+  <!--<label for="numInputStyle2">样式2</label>-->
+  <!--</td>-->
+  <!--</tr>-->
+
+  <tr id="tr_plusminus" class="odd">
+    <td class="Label">加减功能</td>
+    <td class="value">
+      <label for="plusMark">加</label>
+      <input type="checkbox" name="plusMark" id="plusMark" value="" style="width: 50px" />
+      <label for="plusMark">单位:</label>
+      <input type="text" name="plusUnit" id="plusUnit" value="1" style="width: 50px" />
+      <label for="plusUnit">减</label>
+      <input type="checkbox" name="minusMark" id="minusMark" value="" style="width: 50px" />
+      <label for="minusMark" style="padding-left: 0">单位:</label>
+      <input type="text" name="minusUnit" id="minusUnit" value="1" style="width: 50px" />
+    </td>
+  </tr>
+
+  <tr>
+    <td class="Label">数字范围</td>
+    <td class="value">
+      可增加多区间的范围，但多区间时，不允许出现最大值和最小值都为空的区间，且不允许重叠！
+      <br />
+      <div id="number_range_content">
+        <div class="number_range">
+          <input type="number" placeholder="最小值" class="minNum" />
+          <select class="minOperator">
+            <option value="1" selected>≤</option>
+            <option value="2">＜</option>
+          </select>
+          <span class="number_text">数字</span>
+          <select class="maxOperator">
+            <option value="1" selected>≤</option>
+            <option value="2">＜</option>
+          </select>
+          <input type="number" placeholder="最大值" class="maxNum" />
+          <span class="iconfont icon-ptkj-jiahao"></span>
+          <span class="iconfont icon-ptkj-jianhao"></span>
+        </div>
+      </div>
+      <!-- <div class="tr_td_div_left">
+				<span>最小值:</span><input type="number" name="minNum" id="minNum" style="width: 200px;margin-right: 10px;float: left;" />
+			</div>
+			<div class="tr_td_div_left">
+				<span>最大值:</span><input type="number" name="maxNum" id="maxNum" style="width: 200px;margin-right: 10px;float: left;" />
+			</div> -->
+    </td>
+  </tr>
+
+  <tr id="tr_number" style="display: none">
+    <td class="Label">位数</td>
+    <td class="value">
+      <div class="tr_td_div_left">
+        <span>精度位(有效数):</span>
+        <input type="text" name="precision" id="precision" />
+      </div>
+      <div class="tr_td_div_left">
+        <span>小数位:</span>
+        <input type="text" name="scale" id="scale" />
+      </div>
+    </td>
+  </tr>
+
+  <tr id="tr_onlyreadUrl">
+    <td class="Label">标识地址</td>
+    <td class="value">
+      <input type="text" id="onlyreadUrl" name="onlyreadUrl" />
+      <br />
+      参数格式${fieldName},fieldName为表单字段名称。示例：https://www.baidu.com?pa=${pa}
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="bizCategoryAndBusinessQuery">
+        <![CDATA[
+        select t.* from (
+            select
+                t1.uuid         as uuid,
+                t1.create_time  as create_time,
+                t1.creator      as creator,
+                t1.modifier     as modifier,
+                t1.modify_time  as modify_time,
+                t1.rec_ver      as rec_ver,
+                t1.name         as name,
+                t1.id           as id,
+                t1.code         as code,
+                t1.parent_uuid  as parent_uuid,
+                t1.remark       as remark,
+                'category'      as type
+            from
+                biz_category t1
+            where
+                1 = 1
+        union all
+            select
+                t2.uuid             as uuid,
+                t2.create_time      as create_time,
+                t2.creator          as creator,
+                t2.modifier         as modifier,
+                t2.modify_time      as modify_time,
+                t2.rec_ver          as rec_ver,
+                t2.name             as name,
+                t2.id               as id,
+                t2.code             as code,
+                t2.category_uuid    as parent_uuid,
+                t2.remark           as remark,
+                'business'          as type
+            from
+                biz_business t2
+            where
+                1 = 1
+                and exists (select c.uuid from biz_category c where c.uuid = t2.category_uuid)
+        ) t
+        where 1 = 1
+          <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+          <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+        ]]>
+    </sql-query>
+</hibernate-mapping>

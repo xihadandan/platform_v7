@@ -1,0 +1,114 @@
+/*
+ * @(#)2016年6月4日 V1.0
+ *
+ * Copyright 2016 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.webmail.facade.service.impl;
+
+import com.google.common.collect.Maps;
+import com.sun.mail.imap.IMAPFolder;
+import com.wellsoft.context.util.UUIDGenerator;
+import com.wellsoft.context.util.UuidUtils;
+import com.wellsoft.pt.mail.support.James3MailId;
+import com.wellsoft.pt.webmail.entity.WmMailUserEntity;
+import com.wellsoft.pt.webmail.facade.service.James3WebmailClientService;
+import com.wellsoft.pt.webmail.facade.service.WmWebmailOutboxService;
+import com.wellsoft.pt.webmail.service.WmMailboxService;
+import com.wellsoft.pt.webmail.support.WmMailUtils;
+import com.wellsoft.pt.webmail.support.WmWebmailConstants;
+import org.apache.commons.lang3.ArrayUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Store;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Description: james3网络邮件客户端服务实现
+ *
+ * @author zhulh
+ * @version 1.0
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2016年6月4日.1	zhulh		2016年6月4日		Create
+ * </pre>
+ * @date 2016年6月4日
+ */
+@Service
+public class James3WebmailClientServiceImpl implements James3WebmailClientService {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    private WmWebmailOutboxService wmWebmailOutboxService;
+
+    @Resource
+    private WmMailboxService wmMailboxService;
+
+    /**
+     * (non-Javadoc)
+     *
+     * @throws MessagingException
+     * @see com.wellsoft.pt.webmail.facade.service.James3WebmailClientService#fetchWebmail(WmMailUserEntity, java.util.List)
+     */
+    @Override
+    public void fetchWebmail(WmMailUserEntity mailUser,
+                             List<James3MailId> james3MailIds) throws Exception {
+        Store store = WmMailUtils.getImapStore(mailUser);
+        IMAPFolder folder = WmMailUtils.getImapFolder(store, Folder.READ_ONLY);
+        int idCnt = james3MailIds.size();
+        Map<String, Long> mailUidMap = Maps.newHashMap();
+        Map<Long, Message> saveMessageMap = Maps.newHashMap();
+        for (int index = 0; index < idCnt; index++) {
+            James3MailId james3MailId = james3MailIds.get(index);
+            Message message = folder.getMessageByUID(james3MailId.getMailUid());// 获取邮件数据
+            if (message == null) {
+                continue;
+            }
+            String[] fromMailIds = message.getHeader(WmWebmailConstants.HEADER_FROM_MAIL_ID);
+            if (ArrayUtils.isNotEmpty(fromMailIds)) {
+                // 收件、密送、抄送同一个人，只要同步一封下来，只同步uid最大的邮件
+                if (mailUidMap.containsKey(fromMailIds[0])) {
+                    if (mailUidMap.get(fromMailIds[0]).compareTo(james3MailId.getMailUid()) < 0) {
+                        saveMessageMap.remove(mailUidMap.get(fromMailIds[0]));// 移除，不保存
+                        saveMessageMap.put(james3MailId.getMailUid(), message);
+                        mailUidMap.put(fromMailIds[0], james3MailId.getMailUid());// 保存最大值
+                    }
+                } else {
+                    mailUidMap.put(fromMailIds[0], james3MailId.getMailUid());
+                    saveMessageMap.put(james3MailId.getMailUid(), message);
+                }
+            } else {
+                saveMessageMap.put(james3MailId.getMailUid(), message);
+            }
+
+        }
+
+        for (int index = 0; index < idCnt; index++) {
+            James3MailId james3MailId = james3MailIds.get(index);
+            Map<String, Object> jamesMailAsync = Maps.newHashMap();
+            jamesMailAsync.put("uuid", UuidUtils.createUuid());
+            jamesMailAsync.put("mailUid", james3MailId.getMailUid().toString());
+            jamesMailAsync.put("mailboxId", james3MailId.getMailboxId().toString());
+            Message message = saveMessageMap.get(james3MailId.getMailUid());
+            try {
+                wmMailboxService.saveMailAndAsync(jamesMailAsync,
+                        message != null ? WmMailUtils.message2Mailbox(folder, message,mailUser) : null);
+            } catch (Exception e) {
+                logger.warn("保存同步邮件数据异常", e);
+            }
+        }
+
+        WmMailUtils.close(store, folder, true);
+    }
+
+}

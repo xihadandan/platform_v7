@@ -1,0 +1,52 @@
+<form action="" id="sys_param_item_form" style="margin-top:15px;">
+    <input type="hidden" id="uuid" name="uuid" />
+    <div class="well-form form-horizontal">
+        <div class="form-group">
+            <label for="name" class="well-form-label control-label required">名称</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="code" class="well-form-label control-label required">编号</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="code" name="code">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="key" class="well-form-label control-label required">键</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" name="key" id="key">
+            </div>
+        </div>
+        <div class="form-group" id="value_tr">
+            <label for="value" class="well-form-label control-label required">值</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="value" name="value">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="sourcetype" class="well-form-label control-label required">来源</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="sourcetype_name" name="sourcetype_name" style="display:none;" readonly="readonly">
+                <select id="sourcetype" name="sourcetype">
+                    <option value=0>数据库</option>
+                    <option value=1>JVM</option>
+                    <option value=2>配置文件</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="type" class="well-form-label control-label required">所属分类</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="type" name="type">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:30px;">
+        <div class="col-sm-12 text-center">
+            <button type="button" class="well-btn w-btn-primary" id="system_param_btn_save">保存</button>
+        </div>
+    </div>
+</form>
+

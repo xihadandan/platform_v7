@@ -1,0 +1,152 @@
+.myMsgSettingModal {
+  .ant-modal-header {
+    background: var(--w-primary-color);
+    padding-left: 14px;
+
+    .ant-modal-title {
+      color: #ffffff;
+    }
+
+    .title_tab {
+      color: var(--w-text-color-lighter);
+
+      .active {
+        color: #ffffff;
+      }
+
+      > div {
+        padding: 0 10px;
+        cursor: pointer;
+
+        &:hover {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+
+  .ant-modal-close {
+    color: #ffffff;
+  }
+
+  .msg-list-iframe {
+    width: 100%;
+    height: 690px;
+    border: 0;
+  }
+
+  /*消息设置弹窗*/
+
+  .msg-set-wrap {
+    width: 100%;
+    border: 1px solid #e8e8e8;
+    margin-bottom: 20px;
+    padding-inline-start: 0;
+  }
+
+  .msg-set-wrap > li:not(:last-of-type) {
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .msg-set-wrap ul > li {
+    border-top: 1px dashed #e8e8e8;
+  }
+
+  .msg-set-wrap ul.hasClassify {
+    list-style-type: none;
+  }
+
+  .msg-set-wrap li.msg-set-title {
+    color: #333;
+    background: #f6f6f6;
+    font-size: 14px;
+  }
+
+  .msg-set-wrap li > div {
+    padding: 8px 16px;
+  }
+
+  .msg-set-wrap li.msg-set-title > div {
+    padding: 15px;
+  }
+
+  .msg-set-wrap li.msg-set-title span.new-msg-tip {
+    color: #999;
+    margin-left: 5px;
+  }
+
+  .msg-set-wrap .switch-wrap {
+    float: right;
+  }
+
+  .msg-set-wrap .msg-set-folder {
+    font-size: 10px;
+    color: #999;
+    cursor: pointer;
+  }
+
+  .msg-set-wrap .msg-set-folder + span {
+    display: inline-block;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    margin: 0 8px 0 10px;
+    font-size: 14px;
+    text-align: center;
+    color: #fff;
+  }
+
+  .msg-set-wrap .switch-wrap.msg-no-operate:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 42px;
+    height: 20px;
+    border-radius: 10px;
+    background: rgba(204, 204, 204, 0.3);
+    cursor: not-allowed;
+    z-index: 10;
+  }
+
+  /*消息设置弹窗*/
+}
+
+.myMsgWrapModal {
+  .ant-modal-close-x {
+    line-height: 44px;
+  }
+
+  // 消息列表弹框
+  .list-container {
+    height: inherit;
+
+    .title_tabs {
+      height: 100%;
+      background-color: var(--w-primary-color);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: var(--w-font-size-sm);
+      padding: 0 6px;
+
+      > div {
+        padding-top: 30px;
+        cursor: pointer;
+
+        > i {
+          font-size: 20px;
+        }
+
+        &.active {
+          color: #ffffff;
+        }
+      }
+    }
+
+    .list-content {
+      padding: 0; // var(--w-padding-xs) var(--w-padding-md);
+    }
+  }
+}

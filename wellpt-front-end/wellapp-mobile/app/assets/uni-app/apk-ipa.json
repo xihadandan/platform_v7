@@ -1,0 +1,10 @@
+{
+  "versionName": "1.0",
+  "versionCode": "1",
+  "android": {
+    "url": "market://details?id=com.wellsoft.uniapp.hospital"
+  },
+  "ios": {
+    "url": "itms-apps://itunes.apple.com/cn/app/wellapp-uni-app/id1417078253"
+  }
+}

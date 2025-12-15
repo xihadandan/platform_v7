@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="getUserRangeListBygroupIds">
+        <![CDATA[
+		select UUID,GROUP_ID, USER_RANGE_REAL,USER_RANGE_DISPLAY
+		from MULTI_ORG_GROUP_USER_RANGE 
+		 where GROUP_ID IN (:groupIds)
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

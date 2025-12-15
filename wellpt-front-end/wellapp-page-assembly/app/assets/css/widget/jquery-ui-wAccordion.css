@@ -1,0 +1,116 @@
+.accordion {
+
+}
+
+.accordion.horizontal .accordion-item {
+    position: relative;
+    padding-left: 110px;
+    float: left;
+    height: 100%;
+    overflow: hidden;
+}
+
+.accordion.horizontal .accordion-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 110px;
+    height: 100%;
+}
+
+.accordion.horizontal .accordion-label .accordion-label-content {
+    width: 110px;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    background: orange;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.accordion.horizontal .accordion-label .accordion-label-content .badge-wrap {
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 30px;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.accordion.horizontal .accordion-label .accordion-label-content .icon {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.accordion.horizontal .accordion-content {
+    display: none;
+    height: 100%;
+    overflow: hidden;
+}
+
+.accordion .accordion-item.active .accordion-label .accordion-label-content .icon {
+    display: none;
+}
+
+.accordion .accordion-item.active .accordion-content {
+    display: block;
+}
+
+.accordion .accordion_table thead {
+    display: none!important;
+}
+
+
+
+
+.accordion.vertical .accordion-item {
+    position: relative;
+    overflow: hidden;
+    padding-top: 50px;
+}
+
+.accordion.vertical .accordion-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+}
+
+.accordion.vertical .accordion-label .accordion-label-content {
+    width: 100%;
+    height: 50px;
+    font-size: 22px;
+    color: #fff;
+    text-align: center;
+    background: orange;
+}
+
+.accordion.vertical .accordion-label .accordion-label-content .badge-wrap {
+    display: inline-block;
+    box-sizing: border-box;
+    font-size: 28px;
+}
+
+.accordion.vertical .accordion-label .accordion-label-content p {
+    display: inline-block;
+    margin: 0;
+    line-height: 50px;
+}
+
+.accordion.vertical .accordion-label .accordion-label-content .icon {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    height: 50px;
+    line-height: 50px;
+    transform: rotate(90deg);
+}
+
+.accordion.vertical .accordion-content {
+    display: none;
+    height: 300px;
+    overflow: hidden;
+}

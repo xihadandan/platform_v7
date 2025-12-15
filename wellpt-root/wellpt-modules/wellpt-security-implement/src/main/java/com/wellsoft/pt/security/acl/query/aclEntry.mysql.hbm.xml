@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="deleteGrantAclByAclObjIdentityAndMask">
+
+        delete
+        ae
+        FROM
+        acl_entry ae,
+        (
+        SELECT
+        aey.*
+        FROM
+        acl_entry aey,
+        acl_object_identity ao where ao.object_id_identity = :objectIdIdentity
+        AND ao.uuid = aey.acl_object_identity
+        AND aey.granting = 1
+        AND aey.mask = :mask
+        ) v
+        WHERE
+        v.uuid = ae.uuid
+
+    </sql-query>
+
+
+    <sql-query name="deleteAclEntryBySid">
+
+        DELETE ae
+        FROM
+        acl_entry ae,
+        (
+        SELECT
+        aey.uuid
+        FROM
+        acl_entry aey,acl_sid asi
+        WHERE
+        aey.granting = 1
+        AND aey.mask = :mask
+        AND asi.sid = :sid
+        AND asi.uuid = aey.sid
+        AND asi.principal = :principal
+        ) v
+        WHERE
+        v.uuid = ae.uuid
+
+    </sql-query>
+
+
+    <sql-query name="deleteAclEntryBySidAndObjIdIdentity">
+        <![CDATA[
+		DELETE ae
+		FROM
+		acl_entry ae,
+		(
+		SELECT
+		aey.uuid
+		FROM
+		acl_entry aey,acl_object_identity ao ,acl_sid asi
+		WHERE
+		ao.object_id_identity = :objectIdIdentity
+		AND ao.uuid = aey.acl_object_identity
+		<if isNotBlank(granting)>
+		AND aey.granting = :granting
+		</if>
+		<if isNotBlank(mask)>
+		AND aey.mask = :mask
+		</if>
+		AND asi.sid = :sid
+		AND asi.uuid = aey.sid
+		<if isNotBlank(principal)>
+		AND asi.principal = :principal
+		</if>
+		) v
+		WHERE
+		v.uuid = ae.uuid
+		]]>
+    </sql-query>
+
+
+</hibernate-mapping>

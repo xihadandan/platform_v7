@@ -1,0 +1,61 @@
+{@if navContentOnly != true}
+<div class="mui-app-nav" style="">
+    <!--
+    <div class="mui-table" style="">
+        <div class="mui-table-cell" style="width: auto;">
+         -->
+    <form class="mui-input-row mui-search" action="" onsubmit="return false;">
+        <input type="search" class="mui-input-clear" placeholder="搜索">
+    </form>
+    <!--
+    </div>
+    <div class="mui-table-cell div_search_btn"
+        style="width: 75px; position: relative; vertical-align: top; left: 10px; display: none;">
+        <button type="button" class="mui-btn mui-btn-outlined">搜索</button>
+    </div>
+</div>
+-->
+    <div class="mui-content mui-row mui-app-nav-content" style="">
+        {@/if}
+        <div class="mui-col-xs-3">
+            <div id="appNavSegmentedControls"
+                 class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical app-nav-controls">
+                {@each mainNavs as mainNav,index} <a class="mui-control-item" data-index="${index}"
+                                                     href="#appNavContent${index}">${mainNav.name}</a>
+                {@/each}
+            </div>
+        </div>
+        <div id="appNavSegmentedControlContents" class="mui-col-xs-9 app-nav-content">
+            {@each mainNavs as mainNav,index}
+            <div id="appNavContent${index}" class="mui-control-content">
+                {@each mainNav.children as subNav,subIndex}
+                <div class="mui-card">
+                    <div class="mui-card-header">${subNav.name}</div>
+                    <div class="mui-card-content">
+                        <div class="mui-card-content-inner mui-table-view">
+                            {@each subNav.children as leafNav,leafIndex}
+                            {@if (leafIndex) % 2 == 0}
+                            <div class="mui-row ">
+                                {@/if}
+                                <div class="mui-col-xs-12">
+                                    <li menuId="${leafNav.id}" class="mui-menu-item mui-table-view-cell"><a
+                                            class="mui-navigate-right">${leafNav.name}</a></li>
+                                </div>
+                                {@if (leafIndex) % 2 == 1}
+                            </div>
+                            {@/if}
+                            {@/each}
+                            {@if subNav.children.length % 2 != 0}
+                        </div>
+                        {@/if}
+                    </div>
+                </div>
+            </div>
+            {@/each}
+        </div>
+        {@/each}
+    </div>
+</div>
+{@if navContentOnly != true}
+</div>
+{@/if}

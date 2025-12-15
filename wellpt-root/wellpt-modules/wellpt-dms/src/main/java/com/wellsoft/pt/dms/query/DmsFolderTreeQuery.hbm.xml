@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="dmsFolderQuery">
+        <![CDATA[
+		from DmsFolderEntity t where 1=1
+		 <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+        <if isNotBlank(orderBy)>
+           ${orderBy}
+         </if>
+	]]>
+    </sql-query>
+
+    <sql-query name="topDmsFolderTreeQuery">
+        <![CDATA[
+		from DmsFolderEntity t where t.parentUuid is null and t.status = 1
+		<if isNotBlank(systemUnitId)>
+			and t.systemUnitId=:systemUnitId
+		</if>
+		order by code asc, name asc
+	]]>
+    </sql-query>
+
+    <sql-query name="dmsFolderTreeQuery">
+        <![CDATA[
+		from DmsFolderEntity t where t.status = 1
+		<if isNotBlank(dmsFolderUuids)>
+		and t.uuid=:dmsFolderUuids
+		</if>
+		<if isNotBlank(systemUnitId)>
+			and t.systemUnitId=:systemUnitId
+		</if>
+		<if isNotBlank(name) || isNotBlank(remark)>
+			and (1 = 2
+				<if isNotBlank(name)>
+					or lower(t.name) like '%${name?lower_case}%'
+				</if>
+				<if isNotBlank(remark)>
+					or lower(t.remark) like '%${remark?lower_case}%'
+				</if>
+			)
+		</if>
+		order by code asc, name asc
+	]]>
+    </sql-query>
+
+    <sql-query name="dmsFolderTreeByParentUuidQuery">
+        <![CDATA[
+		from DmsFolderEntity t where t.parentUuid = :parentUuid and t.status = 1
+		order by code asc, name asc
+	]]>
+    </sql-query>
+
+
+    <sql-query name="existsFileUnderFolerIncludeChildFolder">
+        <![CDATA[
+		select
+			count(1)
+		from
+			dms_file d
+		where
+			exists (
+			select
+				1
+			from
+				dms_folder f
+			where
+				f.uuid = d.folder_uuid
+				and f.uuid_path like '%${uuid?lower_case}%'
+				 )
+	]]>
+    </sql-query>
+
+</hibernate-mapping>

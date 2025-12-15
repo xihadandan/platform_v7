@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="mobileAppNavQuery">
+        <![CDATA[
+		select uuid           as uuid,
+		       title          as name,
+		       parent_uuid    as parent_uuid,
+		       mobile_uri     as uri,
+		       show_in_mobile as show_in_mobile,
+		       resources      as resources,
+		       ecode          as ecode
+		  from cms_category t
+		 where t.code = :rootNav
+
+		union all
+
+		select uuid           as uuid,
+		       title          as name,
+		       parent_uuid    as parent_uuid,
+		       mobile_uri     as uri,
+		       show_in_mobile as show_in_mobile,
+		       resources      as resources,
+		       ecode          as ecode
+		  from (select t1.uuid,
+		               t1.title,
+		               t1.parent_uuid,
+		               t1.input_url,
+		               t1.resources,
+		               t1.ecode,
+		               t1.show_in_mobile,
+		               t1.mobile_uri
+		          from cms_category t1
+		         start with uuid = (select uuid
+		                              from cms_category t2
+		                             where t2.code = :rootNav)
+		        connect by prior t1.uuid = t1.parent_uuid)
+		 where 1 = 1
+		   and show_in_mobile = 1
+		 order by ecode asc
+	]]>
+    </sql-query>
+</hibernate-mapping>

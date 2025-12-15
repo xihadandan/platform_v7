@@ -1,0 +1,14 @@
+logs/
+npm-debug.log
+node_modules/
+coverage/
+.idea/
+run/
+.DS_Store
+*.swp
+package-lock.json
+
+.github/
+.travis.yml
+appveyor.yml
+package-lock.json

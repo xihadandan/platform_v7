@@ -1,0 +1,91 @@
+{
+  "js": {
+    "AppSecurityCategoryTreeWidgetDevelopment": {
+      "path": "/securityresource-mgr/AppSecurityCategoryTreeWidgetDevelopment",
+      "name": "平台管理_产品集成_权限资源分类树_HTML组件二开",
+      "dependencies": [
+        "AppPtMgrListViewWidgetDevelopment",
+        "ztree"
+      ]
+    },
+    "AppSecurityPrivilegeDetailsWidgetDevelopment": {
+      "path": "/securityresource-mgr/AppSecurityPrivilegeDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_权限详情_HTML组件二开",
+      "dependencies": [
+        "AppPtMgrDetailsWidgetDevelopment",
+        "ztree"
+      ]
+    },
+    "AppSecurityMenuDetailsWidgetDevelopment": {
+      "path": "/securityresource-mgr/AppSecurityMenuDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_权限菜单资源详情_HTML组件二开",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "AppPtMgrDetailsWidgetDevelopment",
+        "formBuilder",
+        "design_commons"
+      ]
+    },
+    "AppSecurityRoleDetailsWidgetDevelopment": {
+      "path": "/securityresource-mgr/AppSecurityRoleDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_角色详情_HTML组件二开",
+      "dependencies": [
+        "AppPtMgrDetailsWidgetDevelopment",
+        "ztree",
+        "multiOrg"
+      ]
+    },
+    "AppSecurityRoleListViewWidgetDevelopment": {
+      "path": "/securityresource-mgr/AppSecurityRoleListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_角色列表_视图组件二开",
+      "dependencies": [
+        "AppPtMgrListViewWidgetDevelopment"
+      ]
+    },
+    "AppIpConfigWidgetDevelopment": {
+      "path": "/securityresource-mgr/AppIpConfigWidgetDevelopment",
+      "name": "平台应用_系统设置_IP安全设置",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "HtmlWidgetDevelopment",
+        "formBuilder",
+        "jquery-form",
+        "multiOrg",
+        "global"
+      ]
+    },
+    "AppSecurityPrivilegeListViewWidgetDevelopment": {
+      "path": "/securityresource-mgr/AppSecurityPrivilegeListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_权限列表_视图组件二开",
+      "dependencies": [
+        "AppPtMgrListViewWidgetDevelopment"
+      ]
+    },
+    "AppSecurityMenuTreeWidgetDevelopment": {
+      "path": "/securityresource-mgr/AppSecurityMenuTreeWidgetDevelopment",
+      "name": "平台管理_产品集成_权限菜单资源树形_HTML组件二开",
+      "dependencies": [
+        "AppPtMgrDetailsWidgetDevelopment",
+        "ztree"
+      ]
+    },
+    "AppLicenseDevelopment": {
+      "path": "/securityresource-mgr/AppLicenseDevelopment",
+      "name": "平台应用_系统设置_许可管理",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "global",
+        "ajaxFileUpload"
+      ]
+    },
+    "AppUserTypeRoleDetailsWidgetDevelopment": {
+      "path": "/securityresource-mgr/AppUserTypeRoleDetailsWidgetDevelopment",
+      "name": "互联网用户_角色配置",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "formBuilder"
+      ]
+    }
+  },
+  "css": {}
+}

@@ -1,0 +1,46 @@
+/*
+ * @(#)2015-4-22 V1.0
+ * 
+ * Copyright 2015 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.org.support.job;
+
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.org.service.DutyAgentService;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+import org.apache.commons.lang.StringUtils;
+import org.quartz.JobExecutionContext;
+
+/**
+ * Description: 如何描述该类
+ *  
+ * @author zhulh
+ * @date 2015-4-22
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2015-4-22.1	zhulh		2015-4-22		Create
+ * </pre>
+ *
+ */
+public class DutyAgentActiveStatusTraceJob extends Job {
+
+	public static final String KEY_DUTY_AGENT_UUID = "dutyAgentUuid";
+
+	/** 
+	 * (non-Javadoc)
+	 * @see com.wellsoft.pt.task.job.Job#execute(org.quartz.JobExecutionContext, com.wellsoft.pt.task.job.JobData)
+	 */
+	@Override
+	protected void execute(JobExecutionContext context, JobData data) {
+		String dutyAgentUuid = data.getString(KEY_DUTY_AGENT_UUID);
+		// 委托时间过时终止委托
+		if (StringUtils.isNotBlank(dutyAgentUuid)) {
+			DutyAgentService dutyAgentService = ApplicationContextHolder.getBean(DutyAgentService.class);
+			dutyAgentService.deactive(dutyAgentUuid);
+		}
+	}
+}

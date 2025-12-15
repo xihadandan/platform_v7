@@ -1,0 +1,119 @@
+define([ "constant", "commons", "server", "ListViewWidgetDevelopment" ],
+    function(constant, commons, server, ListViewWidgetDevelopment) {
+        // 视图组件二开基础
+        var AppDyformDesignerExtendListDevelopment = function() {
+            ListViewWidgetDevelopment.apply(this, arguments);
+        };
+        // 平台管理_表单管理扩展列表组件二开
+        commons.inherit(AppDyformDesignerExtendListDevelopment, ListViewWidgetDevelopment, {
+            init: function () {
+                var _self = this;
+                var queueTypeArr = [{
+                    id: 'all',
+                    text: '全部'
+                },{
+                    id: 'P',
+                    text: '存储单据'
+                },{
+                    id: 'V',
+                    text: '展现单据'
+                }];
+
+                var $search = _self.getWidget().element.find('.keyword-search-wrap');
+                var $typeSelect = $('<input>',{
+                    id: 'formType',
+                    "class": 'query-fields',
+                    style: 'width: 150px'
+                });
+                var $typeSelectWrap = $('<div>',{
+                    "class": 'pull-left',
+                    style: 'width: 150px'
+                });
+                $typeSelectWrap.append($typeSelect);
+                $search.before($typeSelectWrap);
+                $typeSelect.wellSelect({
+                    valueField: 'formType',
+                    searchable: false,
+                    style: {'height':'34px'},
+                    data: queueTypeArr
+                }).wellSelect('val','all');
+
+                $typeSelect.on('change',function() {
+                    var $this = $(this);
+                    var type = $this.val();
+                    if (StringUtils.isNotBlank(type)) {
+                        if(type === 'all') {
+                            type = '';
+                        }
+                        _self.widget.addParam('formType',type);
+                    }
+                    _self.widget.refresh(true);
+                });
+            },
+            btn_del: function(){
+                var self = this;
+                var uuids = self.getSelectionUuids();
+                var rowDatas = self.getSelections();
+                if (!uuids.length) {
+                    appModal.error("请选择记录!");
+                    return;
+                }
+
+                var ids = uuids.join(",");
+                appModal.confirm("确定要删除所选资源？",function(result){
+                    if(result){
+                        JDS.call({
+                            service : "dyFormFacade.dropForm",
+                            data : uuids,
+                            success : function(result) {
+                                appModal.success("删除成功!");
+                                self.refresh()
+                            },
+                            error : function(jqXHR){
+                                var faultData = JSON.parse(jqXHR.responseText);
+                                appModal.alert(faultData.msg);
+                            }
+                        });
+                    }
+                });
+            },
+            //定义导出
+            btn_export: function () {
+                this.onExport('formDefinition');
+            },
+            //定义导入
+            btn_import: function () {
+                this.onImport();
+            },
+            btn_preview: function (e,ui,rowData) {
+                var uuid = rowData.cFormUuid || rowData.uuid;
+                window.open('/pt/dyform/definition/open?formUuid=' + uuid,'_blank');
+            },
+            btn_copy: function (e,ui,rowData) {
+                var uuid = rowData.cFormUuid || rowData.uuid;
+                window.open('/pt/dyform/definition/form-copy?uuid=' + uuid,'_blank');
+            },
+            btn_del_lineEnd: function (e,ui,rowData) {
+                var self = this;
+                appModal.confirm("确定要删除所选资源？",function(result){
+                    if(result){
+                        JDS.call({
+                            service : "dyFormFacade.dropForm",
+                            data : rowData.uuid,
+                            success : function(result) {
+                                appModal.success("删除成功!");
+                                self.refresh()
+                            },
+                            error : function(jqXHR){
+                                var faultData = JSON.parse(jqXHR.responseText);
+                                appModal.alert(faultData.msg);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+        return AppDyformDesignerExtendListDevelopment;
+    });
+

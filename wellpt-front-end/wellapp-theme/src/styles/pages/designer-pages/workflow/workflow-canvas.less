@@ -1,0 +1,676 @@
+/**
+  * 流程设计器画布
+  * TODO: 由于画布的流程环节为带背景色的图片，暂时未将相关边框、背景、阴影更改未主题色, 以避免颜色不一致.
+  */
+
+.workflow-designer-iframe {
+  .box();
+  overflow: auto;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  // 流程设计器画布 - 顶部操作栏
+  .workflow-designer-tools-bar {
+    .fixed(0 false false 0);
+
+    z-index: 100;
+    width: 100%;
+    padding: 11px 7px;
+    background: #f7fbff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+    .wfd-tool {
+      position: relative;
+      float: left;
+      height: 26px;
+      padding: 0 9px;
+      line-height: 24px;
+      font-size: @font-size-sm;
+      color: @text-color-dark;
+      border: @border-default-transparent;
+      border-radius: @border-radius-base;
+      cursor: pointer;
+
+      i {
+        margin-right: 5px;
+        line-height: 24px;
+        font-size: @font-size-base;
+        color: @text-color-primary;
+      }
+
+      // 鼠标悬浮时的提示弹窗
+      .wfd-popover {
+        .absolute(32px false false 0);
+
+        padding: 10px 15px;
+        line-height: 20px;
+        font-size: @font-size-base;
+        background: @component-background;
+        border: @border-default;
+        box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+        border-radius: @border-radius-base;
+        white-space: nowrap;
+
+        .handle {
+          font-weight: bold;
+          color: @text-color;
+        }
+
+        .tip {
+          color: @text-color-light;
+        }
+      }
+
+      &:hover {
+        border: 1px solid rgba(72, 140, 238, 0.2);
+      }
+
+      &.right-border::after {
+        .absolute(4px false false 0);
+        .size(1px 18px);
+
+        content: '';
+        background: #ccc;
+      }
+
+      &.disabled {
+        color: #ccc;
+
+        i {
+          color: #ccc;
+        }
+      }
+    }
+  }
+
+  // 流程设计器画布 - 画布
+  .designer-canvas {
+    .absolute(0 false false 0);
+    .square(2016px);
+
+    background-color: #f7fbff;
+    background-image: url('@{image-url-prefix}/workflow/workflow_bg.png');
+
+    &.no-bg {
+      background-image: none;
+    }
+  }
+}
+
+/** from `flow.css` */
+.workflow-designer-iframe {
+  .img-shadow {
+    box-shadow: 0px 0px 4px 3px rgba(239, 227, 204, 0.8);
+    border-radius: 10px;
+  }
+
+  .img-begin,
+  .img-end {
+    border-radius: 30px;
+  }
+
+  .img-condition {
+    border-radius: 30px;
+  }
+
+  .task-todo {
+    border: 2px dashed transparent;
+    border-radius: 10px;
+    background: linear-gradient(white, white) padding-box, repeating-linear-gradient(-45deg, #5cc9c9 0, #5cc9c9 0.5em, white 0, white 1em);
+  }
+
+  table.StatusBar {
+    border-right: @border-default-darker;
+    border-bottom: @border-default-darker;
+  }
+
+  td.StatusBar {
+    border: 1px inset;
+    padding: 1px 5px;
+    font-size: 9pt;
+  }
+
+  table.MenuBar {
+    border-width: 1px;
+    border-style: outset;
+  }
+
+  .TBHandle {
+    .size(3px  21px);
+    top: 1px;
+    border-right: @border-default-darker;
+    border-top: @border-default-lighter;
+    border-left: @border-default-lighter;
+  }
+
+  .TBSep {
+    .size(1px 21px);
+    .absolute(1px false false false);
+
+    border-right: @border-default-lighter;
+    border-left: @border-default-darker;
+  }
+
+  td.Menu {
+    cursor: hand;
+    width: 60px;
+    text-align: center;
+    font-size: 9pt;
+  }
+
+  td.MenuOutset {
+    cursor: hand;
+    width: 58px;
+    text-align: center;
+    font-size: 9pt;
+    border-width: 1px;
+    border-style: outset;
+  }
+
+  td.MenuInset {
+    cursor: hand;
+    width: 58px;
+    text-align: center;
+    font-size: 9pt;
+    border-width: 1px;
+    border-style: inset;
+  }
+
+  td.Menu_Big {
+    cursor: hand;
+    width: 100px;
+    text-align: center;
+    font-size: 9pt;
+  }
+
+  td.MenuOutset_Big {
+    cursor: hand;
+    width: 98px;
+    text-align: center;
+    font-size: 9pt;
+    border-width: 1px;
+    border-style: outset;
+  }
+
+  td.MenuInset_Big {
+    cursor: hand;
+    width: 98px;
+    text-align: center;
+    font-size: 9pt;
+    border-width: 1px;
+    border-style: inset;
+  }
+
+  table.ToolBar {
+    border-width: 1px;
+    border-style: outset;
+    font-size: 9pt;
+  }
+
+  table.table {
+    border-collapse: collapse;
+
+    thead th {
+      padding: 5px;
+      text-align: left;
+
+      &.col-3 {
+        width: 33.33%;
+      }
+      &.col-4 {
+        width: 25%;
+      }
+
+      &.col-6 {
+        width: 50%;
+      }
+    }
+
+    tbody {
+      text-align: center;
+
+      &.text-left {
+        text-align: left;
+      }
+
+      td {
+        select,
+        input {
+          width: 96%;
+        }
+      }
+
+      .row-selected {
+        background-color: #ddd;
+      }
+    }
+  }
+
+  td.ToolBar {
+    cursor: default;
+    height: 25px;
+    font-size: 9pt;
+  }
+
+  td.ToolOutset {
+    border-width: 1px;
+    border-style: outset;
+    height: 25px;
+    font-size: 9pt;
+  }
+
+  td.ToolInset {
+    border-width: 1px;
+    border-style: inset;
+    height: 25px;
+    font-size: 9pt;
+  }
+
+  .flowControl > img {
+    display: none;
+  }
+
+  .flowControl.img_begin {
+    background: #e4f4e1;
+    border-radius: 50%;
+
+    &::before {
+      .absolute(0 false false 0);
+      .square(100%);
+
+      z-index: 1;
+      content: '';
+      border: 2px solid #4bb633;
+      border-radius: 50%;
+    }
+
+    &::after {
+      .absolute(5px false false 5px);
+      .square(calc(100% - 10px));
+
+      z-index: 1;
+      content: '';
+      border: 1px solid #4bb633;
+      border-radius: 50%;
+    }
+  }
+
+  .flowControl.img_task {
+    background: #88b4f4;
+    border: 1px solid #488cee;
+    border-radius: 10px;
+  }
+
+  .flowControl.img_subflow {
+    background: #88b4f4;
+    border: 1px solid #488cee;
+    border-radius: 10px;
+
+    .subflow-left {
+      .absolute(-1px false false -1px);
+      .square(48px);
+
+      z-index: 1;
+      border: 1px solid #488cee;
+      border-radius: 50%;
+      line-height: 48px;
+      color: #fff;
+      text-align: center;
+      background: #88b4f4;
+
+      i {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .flowControl.img_end {
+    background: #93d385;
+    border-radius: 50%;
+
+    &::before {
+      .absolute(0 false false 0);
+      .square(100%);
+
+      z-index: 1;
+      content: '';
+      border: 2px solid #4bb633;
+      border-radius: 50%;
+    }
+
+    &::after {
+      .absolute(5px false false 5px);
+      .square(calc(100% - 10px));
+
+      z-index: 1;
+      content: '';
+      border: 1px solid #4bb633;
+      border-radius: 50%;
+    }
+  }
+
+  .flowControl .flow-control-text-wrap {
+    .square(100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .flowControl.img_condition .flow-control-text-wrap {
+    background: url('@{image-url-prefix}/workflow/wl_condition.png') no-repeat;
+    background-position: center;
+  }
+
+  .flowControl.img_condition.flow-control-shadow .flow-control-text-wrap {
+    .square(calc(100% + 10px));
+
+    margin-left: -5px;
+    margin-top: -5px;
+    background: url('@{image-url-prefix}/workflow/wl_condition_hover.png') no-repeat;
+    background-position: center;
+  }
+
+  .flowControl.img_label {
+    background: rgba(72, 140, 238, 0);
+    border: 1px dashed #80889a !important;
+
+    &.no-border {
+      border: none !important;
+    }
+  }
+
+  #ID_LABELVALUE {
+    .square(100%);
+    border: @border-width-base dashed transparent !important;
+    outline: none !important;
+  }
+
+  #ID_LABELVALUE:focus {
+    border: @border-width-base dashed @border-color-primary !important;
+    resize: none;
+  }
+
+  .flowControl .flow-control-table {
+    .square(100%);
+    position: relative;
+    display: table;
+  }
+
+  .flowControl .flow-control-text {
+    display: table-cell;
+    color: #fff;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .flowControl.img_line {
+    padding-top: 10px;
+
+    .flow-control-text-wrap {
+      min-height: 20px;
+    }
+
+    .flow-control-text {
+      text-shadow: 1px 1px 0 #f7fbff, -1px -1px 0 #f7fbff, 2px 2px 0 #f7fbff, -2px -2px 0 #f7fbff, 3px 3px 0 #f7fbff, -3px -3px 0 #f7fbff;
+    }
+  }
+
+  .flowControl.img_begin .flow-control-text,
+  .flowControl.img_line .flow-control-text,
+  .flowControl.img_label .flow-control-text {
+    color: #808799;
+  }
+
+  .flowControl.img_line.flow-control-shadow .flow-control-text {
+    color: #076cff;
+  }
+
+  .flowControl.img_subflow .flow-control-text-wrap {
+    padding-left: 50px;
+  }
+
+  .flowControl.img_begin .flow-control-text-wrap,
+  .flowControl.img_end .flow-control-text-wrap {
+    border-radius: 50%;
+  }
+
+  .flowControl.img_begin.flow-control-shadow::before {
+    border: 2px solid #16d200;
+  }
+
+  .flowControl.img_end.flow-control-shadow::before {
+    border: 2px solid #11c40d;
+  }
+
+  .flowControl.img_begin.flow-control-shadow::after {
+    border: 1px solid #16d200;
+  }
+
+  .flowControl.img_end.flow-control-shadow::after {
+    border: 1px solid #11c40d;
+  }
+
+  .flowControl.img_begin.flow-control-shadow .flow-control-text-wrap {
+    box-shadow: 0 0 7px 3px rgba(22, 210, 0, 0.5);
+    background: #c5e4c2;
+  }
+  .flowControl.img_end.flow-control-shadow .flow-control-text-wrap {
+    background: #66d164;
+    box-shadow: 0 0 7px 3px rgba(17, 196, 13, 0.5);
+  }
+
+  .flowControl.img_task .flow-control-text-wrap {
+    border-radius: 10px;
+    padding: 5px;
+  }
+  .flowControl.img_task.flow-control-shadow,
+  .flowControl.img_subflow.flow-control-shadow {
+    border: 1px solid #076cff;
+  }
+
+  .flowControl.img_task.flow-control-shadow .flow-control-text-wrap,
+  .flowControl.img_subflow.flow-control-shadow .flow-control-text-wrap {
+    background: #428fff;
+    box-shadow: 0 0 7px 3px rgba(7, 108, 255, 0.5);
+  }
+
+  .flowControl.img_subflow.flow-control-shadow .subflow-left {
+    background: #428fff;
+    border: 1px solid #076cff;
+  }
+
+  .flowControl.img_subflow,
+  .flowControl.img_subflow .flow-control-text-wrap {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .flowControl.img_begin.flow-control-error .flow-control-text-wrap,
+  .flowControl.img_end.flow-control-error .flow-control-text-wrap {
+    box-shadow: 0 0 10px 3px rgba(227, 48, 51, 0.75);
+  }
+
+  .flowControl.img_task.flow-control-error .flow-control-text-wrap,
+  .flowControl.img_subflow.flow-control-error .flow-control-text-wrap {
+    box-shadow: 0 0 10px 3px rgba(227, 48, 51, 0.75);
+  }
+
+  .flowControl.img_line.flow-control-error .flow-control-text {
+    color: @danger-color;
+  }
+
+  .flow-line-error {
+    background-color: @danger-color !important;
+  }
+
+  .flowControl.img_task.task-todo::after,
+  .flowControl.img_subflow.task-todo::after {
+    .absolute(-3px false false -3px);
+    .square(calc(100% + 6px));
+
+    content: '';
+    border: @border-width-1 dashed @border-color-primary;
+    border-radius: 10px;
+  }
+
+  .flowControl.img_subflow.task-todo::after {
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+  }
+
+  .flowControl.img_task.task-undo,
+  .flowControl.img_subflow.task-undo,
+  .flowControl.img_subflow.task-undo .subflow-left {
+    background: #cdd4e2;
+    border: 1px solid #a3b0cf;
+    color: #777d99;
+  }
+
+  .flowControl.img_task.task-undo .flow-control-text,
+  .flowControl.img_subflow.task-undo .flow-control-text {
+    color: #777d99;
+  }
+
+  .flowControl.img_end.undo .flow-control-text-wrap {
+    background: #cdd4e2;
+  }
+
+  .flowControl.img_end.undo .flow-control-text {
+    color: #777d99;
+  }
+
+  .flowControl.img_end.undo::before {
+    border: 2px solid #a3b0cf;
+  }
+
+  .flowControl.img_end.undo::after {
+    border: 1px solid #a3b0cf;
+  }
+
+  .flowControl.img_task.flow-control-shadow.task-undo .flow-control-text-wrap,
+  .flowControl.img_subflow.flow-control-shadow.task-undo .flow-control-text-wrap,
+  .flowControl.img_subflow.flow-control-shadow.task-undo .subflow-left {
+    background: #b0b9cc;
+  }
+
+  .flowControl.img_end.flow-control-shadow.undo .flow-control-text-wrap,
+  .flowControl.img_task.flow-control-shadow.task-undo .flow-control-text-wrap,
+  .flowControl.img_subflow.flow-control-shadow.task-undo .flow-control-text-wrap {
+    box-shadow: 0 0 7px 3px rgba(126, 143, 185, 0.5);
+  }
+
+  .flowControl .flow-control-text-wrap .task-timer {
+    .absolute(-1px false -1px false);
+    .square(24px);
+    z-index: 1;
+  }
+
+  .flowControl .flow-control-text-wrap .task-timer.timeDefault {
+    background: url('@{image-url-prefix}/workflow/timeDefault.png') no-repeat;
+    background-size: cover;
+  }
+  .flowControl .flow-control-text-wrap .task-timer.isTimming {
+    background: url('@{image-url-prefix}/workflow/isTimming.png') no-repeat;
+    background-size: cover;
+  }
+  .flowControl .flow-control-text-wrap .task-timer.isAlarm {
+    background: url('@{image-url-prefix}/workflow/isAlarm.png') no-repeat;
+    background-size: cover;
+  }
+  .flowControl .flow-control-text-wrap .task-timer.isOverDue {
+    background: url('@{image-url-prefix}/workflow/isOverDue.png') no-repeat;
+    background-size: cover;
+  }
+
+  .no-flow {
+    .absolute(50% false false 50%);
+
+    width: 192px;
+    margin-top: -96px;
+    margin-left: -96px;
+
+    img {
+      display: block;
+      width: 192px;
+    }
+
+    p {
+      margin-top: 24px;
+      line-height: 1;
+      font-size: 14px;
+      color: #80889a;
+      text-align: center;
+    }
+  }
+
+  .flowControl.img_label.flow-control-shadow {
+    border: @border-width-base dashed @border-color-primary !important;
+  }
+
+  .flowControl.img_label.flow-control-error {
+    border: @border-width-base dashed @danger-color !important;
+  }
+
+  .zoom-control {
+    .size(44px 142px);
+    .fixed(false 20px 20px false);
+
+    display: none;
+    z-index: 1000000;
+    padding: 5px 0;
+    background: rgba(247, 251, 255, 0.85);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: @border-radius-base;
+
+    .zoom-item {
+      .square(44px);
+
+      text-align: center;
+      cursor: pointer;
+
+      i {
+        line-height: 44px;
+        font-size: 20px;
+        color: @text-color-primary;
+      }
+
+      &:hover {
+        background: rgba(72, 140, 238, 0.1);
+      }
+    }
+  }
+
+  .work-flow-download {
+    .size(120px 34px);
+
+    background: @primary-color;
+    border: @border-default-primary;
+    border-radius: @border-radius-base;
+    margin-top: 12px;
+    line-height: 32px;
+    color: @text-color-inverse;
+    text-align: center;
+    cursor: pointer;
+
+    i {
+      margin-right: 5px;
+      font-size: 14px;
+    }
+  }
+
+  .table > tbody > tr > td,
+  .table > tbody > tr > th,
+  .table > tfoot > tr > td,
+  .table > tfoot > tr > th,
+  .table > thead > tr > td,
+  .table > thead > tr > th {
+    vertical-align: middle;
+  }
+
+  .form-group td.bs-checkbox input[type='checkbox'] + label {
+    padding-top: 0;
+  }
+}

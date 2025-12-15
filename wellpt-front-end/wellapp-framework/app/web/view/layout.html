@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{$data.title}}</title>
+    <meta name="keywords" />
+    <meta name="description" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
+    <link rel="shortcut icon" :href="$data.favicon || '/favicon.ico'" type="image/x-icon" />
+    <script src="/static/js/less/less.min.js" data-env="production"></script>
+    <style type="text/css">
+      /* vue-ssr-inject-style */
+    </style>
+  </head>
+  <body :class="$data._CONTEXT_STATE_.SSR_BODY_CLASS">
+    <div id="app">
+      <!--vue-ssr-outlet-->
+    </div>
+  </body>
+</html>

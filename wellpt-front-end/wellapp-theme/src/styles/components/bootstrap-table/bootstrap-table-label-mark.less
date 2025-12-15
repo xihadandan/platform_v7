@@ -1,0 +1,143 @@
+.label_color_select_div {
+  .size(30px 31px);
+  .relative(false false 1px -1px);
+
+  z-index: 1;
+  display: inline-grid;
+}
+
+.open_label_ul {
+  overflow: initial !important;
+  max-height: 300px !important;
+}
+
+.label_li_more_icon {
+  float: right;
+}
+
+.label_li_more_icon_down {
+  float: right;
+  transform: rotate(90deg);
+}
+
+.label_li_more_icon_up {
+  float: right;
+  transform: rotate(-90deg);
+}
+
+.label_li_split {
+  border-top: @border-default-dark;
+}
+
+.label_name_input {
+  .absolute(58px false false 20px);
+
+  width: 258px !important;
+  padding-left: 35px !important;
+}
+
+.tr_label_div {
+  .relative(-1px false false false);
+
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  outline: 0;
+  margin-left: @margin-3xs;
+  zoom: 1;
+
+  &:hover {
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.tr_label_span {
+  cursor: pointer;
+  padding: 0 4px;
+  border-radius: @border-radius-base;
+  color: @text-color-inverse;
+  float: left;
+  overflow: hidden;
+  line-height: 15px;
+  height: 16px;
+}
+
+.tr_label_close {
+  .relative(0 0 false false);
+  .size(0 16px);
+
+  color: @text-color-inverse;
+  transition: width @animation-duration-base ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+  float: left;
+  overflow: hidden;
+  line-height: 15px;
+}
+
+.tr_label_close_x {
+  .relative(-3px false false 3px);
+
+  font-weight: 400;
+  text-align: center;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal !important;
+}
+
+.tr_label_div_hover .tr_label_span {
+  border-radius: @border-radius-base 0 0 @border-radius-base;
+}
+
+.tr_label_div_hover .tr_label_close {
+  border-radius: 0 @border-radius-base @border-radius-base 0;
+  width: 14px;
+}
+
+.li_label_div {
+  .relative(-34px false false 157px);
+}
+
+.li_label_div_vertical {
+  .relative(0 false false 0);
+}
+
+.li_label_div_vertical > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.42857143;
+  color: @text-color-dark;
+  white-space: nowrap;
+  outline: none;
+  text-decoration: none;
+}
+
+.li_label_div_vertical > li > a:hover {
+  color: @text-color-darker;
+  text-decoration: none;
+  background-color: @background-light;
+}
+
+.td-mark-icon-container {
+  display: inline-block;
+}
+
+.td-mark-icon {
+  margin-right: @margin-2xs;
+  font-size: @font-size-base !important;
+}
+
+.td-mark-icon-container:hover .td-mark-close-icon {
+  .relative(-9px false false -4px);
+
+  font-weight: bolder;
+  display: inline-block;
+  text-align: center;
+}
+
+.td-mark-close-icon {
+  display: none;
+}

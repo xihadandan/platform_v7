@@ -1,0 +1,44 @@
+.fixed-table-header-columns,
+.fixed-table-header-columns-right,
+.fixed-table-body-columns,
+.fixed-table-body-columns-right {
+  position: absolute;
+  background-color: #fff;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 8;
+}
+
+.fixed-table-header-columns,
+.fixed-table-header-columns-right {
+  z-index: 200;
+}
+
+.fixed-table-header-columns .table,
+.fixed-table-body-columns .table {
+  border-right: 1px solid #ddd;
+}
+
+.fixed-table-header-columns .table.table-no-bordered,
+.fixed-table-body-columns .table.table-no-bordered {
+  border-right: 1px solid transparent;
+}
+
+.fixed-table-body-columns table,
+.fixed-table-body-columns-right table {
+  position: absolute;
+  animation: none;
+}
+
+.fixed-table-body-columns table {
+  left: 0 !important;
+  max-width: unset !important;
+}
+.fixed-table-body-columns-right table {
+  right: 0 !important;
+  max-width: unset !important;
+}
+
+.fixed-table-header table {
+  table-layout: fixed !important;
+}

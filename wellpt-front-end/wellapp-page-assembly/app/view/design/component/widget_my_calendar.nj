@@ -1,0 +1,617 @@
+<div id="widget_fullcalendar">
+  <form id="widget_fullcalendar_form" class="form-horizontal">
+    <div id="widget_fullcalendar_tabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#widget_fullcalendar_tabs_base_info">基础信息</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_fullcalendar_tabs_calendar_info">日历视图</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_fullcalendar_tabs_resource_info">资源视图</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_fullcalendar_tabs_query_info">查询定义</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_fullcalendar_tabs_button_info">按钮定义</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_fullcalendar_tabs_column_info">详情定义</a>
+        </li>
+        <li role="presentation" style="display:none;">
+          <a href="#widget_fullcalendar_tabs_senior_info">高级配置</a>
+        </li>
+        <li role="presentation" style="display:none;">
+          <a href="#widget_fullcalendar_tabs_formhtml_info">事项表单模板</a>
+        </li>
+      </ul>
+
+      <div class="tab-content" style="height: 500px">
+        <div role="tabpanel" class="tab-pane active" id="widget_fullcalendar_tabs_base_info">
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">名称<font color="red">*</font>
+            </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" name="name" id="name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">组件应用</label>
+            <div class="col-sm-10 switch-boxs">
+              <input class="w-configurer-option" type="radio" value="standard" id="calendarType-standard" name="calendarType" checked="checked"/>
+              <label for="calendarType-standard" class="radio-inline">
+                标准视图
+              </label>
+              <input class="w-configurer-option" type="radio" value="simple" id="calendarType-simple" name="calendarType"/>
+              <label for="calendarType-simple" class="radio-inline">
+                简版视图
+              </label>
+              <input class="w-configurer-option" type="radio" value="panel" id="calendarType-panel" name="calendarType"/>
+              <label for="calendarType-panel" class="radio-inline">
+                选择面板
+              </label>
+            </div>
+          </div>
+          <div class="form-group notSimple">
+            <label for="enableView" class="col-sm-2 control-label">启用视图<font color="red">*</font>
+            </label>
+            <div class="col-sm-10 ">
+              <label class="checkbox-inline full-box">
+                <input class="w-configurer-option" type="checkbox" id="enableCalendarView" name="enableView" value="enableCalendarView" checked="checked">
+                <label for="enableCalendarView">日历视图</label>
+                <div class="col-xs-2">
+                  <label class="radio-inline">
+                    <input class="w-configurer-option" type="radio" value="enableCalendarView" name="defaultEnableView" id="defaultCalenderView">
+                    <label for="defaultCalenderView">默认</label>
+                  </label>
+                </div>
+              </label>
+              <label class="checkbox-inline full-box">
+                <input class="w-configurer-option" type="checkbox" id="enableResourceView" name="enableView" value="enableResourceView" checked="checked">
+                 <label for="enableResourceView">资源视图</label>
+                <div class="col-xs-2">
+                  <label class="radio-inline">
+                    <input class="w-configurer-option" type="radio" value="enableResourceView" name="defaultEnableView" id="defaultResourceView">
+                    <label for="defaultResourceView">默认</label>
+                  </label>
+                  <div></label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group hide">
+            <label for="categoryCode" class="col-sm-2 control-label">分类<font color="red">*</font>
+            </label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="categoryName" id="categoryName"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="categoryCode" name="categoryCode"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-sm-2 control-label">数据来源<font color="red">*</font>
+            </label>
+            <div class="col-sm-10">
+              <div class="black">
+                <div class="">
+                  <label for="resProviderId">资源</label>
+                  <i class="iconfont icon-ptkj-tishishuoming" title="资源"></i>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control w-configurer-option" height="34px" id="resProviderId" name="resProviderId"/>
+                </div>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control w-configurer-option " height="34px" name="resDefaultCondition" id="resDefaultCondition" placeholder="默认查询条件">
+                </div>
+              </div>
+              <div class="black">
+                <div class="">
+                  <label for="dataProviderId">事项</label>
+                  <i class="iconfont icon-ptkj-tishishuoming" title="事项"></i>
+                </div>
+                <div class="col-sm-4">
+                  <input type="hidden" class="form-control w-configurer-option" id="eventStatusFieldName" name="eventStatusFieldName"/>
+                  <input type="hidden" class="form-control w-configurer-option" id="eventResourceFieldName" name="eventResourceFieldName"/>
+                  <input type="text" class="form-control w-configurer-option" height="34px" id="dataProviderId" name="dataProviderId"/>
+                </div>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control w-configurer-option " height="34px" name="defaultCondition" id="defaultCondition" placeholder="默认查询条件">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" name="jsModule" id="jsModule">
+              <input type="hidden" class="form-control w-configurer-option" height="34px" name="jsModuleName" id="jsModuleName">
+            </div>
+          </div>
+
+          {% include "./widget_base_info.nj" %}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="widget_fullcalendar_tabs_calendar_info">
+          <div class="form-group">
+            <label for="enableCalendar" class="col-sm-2 control-label">启用日历视图<font color="red">*</font>
+            </label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline full-box">
+                <input class="w-configurer-option" type="checkbox" id="agendaDay" name="enableCalendar" value="agendaDay" checked="checked">
+                <label for="agendaDay">日视图</label>
+                <div class="col-xs-2">
+                  <label class="radio-inline">
+                    <input class="w-configurer-option" type="radio" value="agendaDay" name="defaultCalendarView"  id="defaultCalendarDayView" />
+                      <label for="defaultCalendarDayView">默认</label>
+                  </label>
+                </div>
+              </label>
+              <label class="checkbox-inline full-box">
+                <input class="w-configurer-option" type="checkbox" id="agendaWeek" name="enableCalendar" value="agendaWeek" checked="checked">
+                <label for="agendaWeek">周视图</label>
+                <div class="col-xs-2">
+                  <label class="radio-inline">
+                    <input class="w-configurer-option" type="radio" value="agendaWeek" name="defaultCalendarView" id="defaultCalendarWeekView">
+                    <label for="defaultCalendarWeekView">默认</label>
+                  </label>
+                </div>
+              </label>
+              <label class="checkbox-inline full-box">
+                <input class="w-configurer-option" type="checkbox" id="month" name="enableCalendar" value="month" checked="checked">
+                 <label for="month">月视图</label>
+                <div class="col-xs-2">
+                  <label class="radio-inline">
+                    <input class="w-configurer-option" type="radio" value="month" name="defaultCalendarView" id="defaultCalendarMonthView">
+                    <label for="defaultCalendarMonthView">默认</label>
+                  </label>
+                  <div></label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">日历视图设置</label>
+            <div class="col-sm-10">
+              <div>
+                <div class="">每日显示时间区间<i class="iconfont icon-ptkj-tishishuoming" title="每日显示时间区间"></i><br>
+                  <div class="col-sm-6">
+                    <input class="w-configurer-option" type="radio" value="custom" name="calendarDayTime" id="calendarDayTime_custom">
+                    <label for="calendarDayTime_custom">固定时间</label>
+                    <input class="w-configurer-option" type="radio" value="system" name="calendarDayTime" id="calendarDayTime_system">
+                    <label for="calendarDayTime_system">系统工作时间</label>
+                  </div>
+                  <div class="col-sm-6">
+                    <input class="w-configurer-option" type="checkbox" value="true" name="allowCustomCalendarDayTime" id="allowCustomCalendarDayTime">
+                    <label for="allowCustomCalendarDayTime">允许用户自定义</label>
+                  </div>
+                </div>
+                <div>
+                  <div class="col-sm-12 calendarDayTimeCustom" style="display:none;">
+                    <div id='calendarDayTimeArray_slider' style="width:60%;"></div>
+                    <div style='text-align: center' class='slidertext'></div>
+                    <input type="text" name="calendarDayTimeArray" id='calendarDayTimeArray_amount' class="w-configurer-option" readonly="readonly" style='width:60%;border:0; color:#f6931f; font-weight:bold; text-align: center; font-size: 16px;'>
+                  </div>
+                  <div class="col-sm-12 calendarDayTimeSystem" style="display:none;">
+                    日视图、周视图中的可见时间范围默认取自系统工作时间。（当前为
+                    <span class="currentWorkHour"></span>）
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="">时间刻度<i class="iconfont icon-ptkj-tishishuoming" title="时间刻度"></i><br>
+                  <div class="col-sm-6">
+                    <select name="calendarGradu" class="w-configurer-option col-sm-6">
+                      <option value="15">15分钟</option>
+                      <option value="30" selected="selected">30分钟</option>
+                      <option value="60">1小时</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-6">
+                    <input class="w-configurer-option" type="checkbox" value="true" name="allowCustomCalendarGradu" id="allowCustomCalendarGradu">
+                    <label for="allowCustomCalendarGradu">允许用户自定义</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="width" class="col-sm-2 control-label">事项标题</label>
+            <div class="col-sm-9">
+              <textarea class="form-control w-configurer-option" height="34px" name="calendarTitle" id="calendarTitle" readonly="readonly"></textarea>
+            </div>
+            <div class="col-sm-1">
+              <a type="button" href="javascript:void(0);" id="calendarTitleBtn">设置</a>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="width" class="col-sm-2 control-label">事项状态</label>
+            <div class="col-sm-10">
+              <div id="div_calendar_status_toolbar" class="btn-group" style="display:none;">
+                <button id="btn_add_calendar_status" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                </button>
+                <button id="btn_delete_calendar_status" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                </button>
+                <button id="btn_row_up_calendar_status" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+                </button>
+                <button id="btn_row_down_calendar_status" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+                </button>
+              </div>
+              <div id="div_calendar_status_toolbar2" class="btn-group" style="width:100%;">
+                <!--<div class="col-sm-4">
+                  <input type="hidden" class="w-configurer-option" name="dataStoreName" id="calendarDataStoreName">
+                  <input type="text" class="form-control w-configurer-option" height="34px" id="calendarDataStoreId" name="dataStoreId" placeholder="请选择数据仓库" style="display: none;">
+                </div>
+                <div class="col-sm-4">
+                  <select class="form-control w-configurer-option" height="34px" id="calendarStatusName" name="calendarStatusName"></select>
+                </div>
+                <div class="col-sm-4">
+                  <select class="form-control w-configurer-option" height="34px" id="calendarStatusId" name="calendarStatusId"></select>
+                </div>-->
+                <div class="col-sm-4">
+                  <select class="form-control w-configurer-option" height="34px" id="calendarStatusKey" name="calendarStatusKey"></select>
+                </div>
+                <div class="col-sm-4">
+                  <button id="calendar-status-color-setting-button" type="button" class="well-btn w-btn-primary w-line-btn">
+                    <i class="iconfont icon-ptkj-chakanbiaodanxiangqing"></i>状态颜色管理
+                  </button>
+                </div>
+              </div>
+              <table id="table_calendar_status_info" class="definition_info" data-height="250"></table>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="width" class="col-sm-2 control-label">事件设置</label>
+            <div class="col-sm-10">
+              <div id="div_calendar_events_toolbar" class="btn-group" style="display:none;">
+                <button id="btn_add_calendar_events" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                </button>
+                <button id="btn_delete_calendar_events" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                </button>
+                <button id="btn_row_up_calendar_events" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+                </button>
+                <button id="btn_row_down_calendar_events" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+                </button>
+              </div>
+              <table id="table_calendar_events_info" class="definition_info" data-height="200"></table>
+            </div>
+          </div>
+          <div class="form-group" style="display:none;">
+            <label for="width" class="col-sm-2 control-label">宽度</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" name="width" id="width">
+            </div>
+          </div>
+          <div class="form-group" style="display:none;">
+            <label for="height" class="col-sm-2 control-label">高度</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" name="height" id="height">
+            </div>
+          </div>
+          <div class="form-group" style="display:none;">
+            <label class="col-sm-2 control-label">简版日历视图宽度</label>
+            <div class="col-sm-10 ">
+              <input class="form-control w-configurer-option" id="simpleViewWidth" name="simpleViewWidth" placeholder="默认宽度100%（单位px）">
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="widget_fullcalendar_tabs_resource_info">
+          <div class="form-group">
+            <label for="enableResource" class="col-sm-2 control-label">启用资源视图<font color="red">*</font>
+            </label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline full-box">
+                <input class="w-configurer-option" type="checkbox" id="enableResource_agendaDay" name="enableResource" value="agendaDay" checked="checked">
+                <label for="enableResource_agendaDay">日视图</label>
+                <div class="col-xs-2">
+                  <label class="radio-inline">
+                    <input class="w-configurer-option" type="radio" value="agendaDay" name="defaultResourceView" id="defaultResourceView_agendaDay" />
+                    <label for="defaultResourceView_agendaDay">默认</label>
+                  </label>
+                </div>
+              </label>
+              <label class="checkbox-inline full-box">
+                <input class="w-configurer-option" type="checkbox" id="enableResource_agendaWeek" name="enableResource" value="agendaWeek" checked="checked">
+                <label for="enableResource_agendaWeek">周视图</label>
+                <div class="col-xs-2">
+                  <label class="radio-inline">
+                    <input class="w-configurer-option" type="radio" value="agendaWeek" name="defaultResourceView" id="defaultResourceView_agendaWeek" />
+                    <label for="defaultResourceView_agendaWeek">默认</label>
+                  </label>
+                </div>
+              </label>
+              <label class="checkbox-inline full-box">
+                <input class="w-configurer-option" type="checkbox" id="enableResource_month" name="enableResource" value="month" checked="checked">
+                 <label for="enableResource_month">月视图</label>
+                <div class="col-xs-2">
+                  <label class="radio-inline">
+                    <input class="w-configurer-option" type="radio" value="month" name="defaultResourceView" id="defaultResourceView_month" >
+                    <label for="defaultResourceView_month">默认</label>
+                  </label>
+                  <div></label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">资源视图设置</label>
+            <div class="col-sm-10">
+              <div>
+                <div class="">每日显示时间区间<i class="iconfont icon-ptkj-tishishuoming" title="每日显示时间区间"></i><br>
+                  <div class="col-sm-6">
+                    <input class="w-configurer-option" type="radio" value="custom" name="resourceDayTime" id="resourceDayTime_custom">
+                    <label for="resourceDayTime_custom">固定时间</label>
+                    <input class="w-configurer-option" type="radio" value="system" name="resourceDayTime" id="resourceDayTime_system">
+                    <label for="resourceDayTime_system">系统工作时间</label>
+                  </div>
+                  <div class="col-sm-6">
+                    <input class="w-configurer-option" type="checkbox" value="true" name="allowCustomResourceDayTime" id="allowCustomResourceDayTime">
+                    <label for="allowCustomResourceDayTime">允许用户自定义</label>
+                  </div>
+                </div>
+                <div>
+                  <div class="col-sm-12 resourceDayTimeCustom" style="display:none;">
+                    <div id='resourceDayTimeArray_slider' style="width:60%;"></div>
+                    <div style='text-align: center' class='slidertext'></div>
+                    <input type="text" name="resourceDayTimeArray" id='resourceDayTimeArray_amount' class="w-configurer-option" readonly="readonly" style='width:60%;border:0; color:#f6931f; font-weight:bold; text-align: center; font-size: 16px;'>
+                  </div>
+                  <div class="col-sm-12 resourceDayTimeSystem" style="display:none;">
+                    日视图、周视图中的可见时间范围默认取自系统工作时间。（当前为
+                    <span class="currentWorkHour"></span>）
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="">时间刻度<i class="iconfont icon-ptkj-tishishuoming" title="时间刻度"></i><br>
+                  <div class="col-sm-6">
+                    <select name="resourceGradu" class="w-configurer-option col-sm-6">
+                      <option value="15">15分钟</option>
+                      <option value="30" selected="selected">30分钟</option>
+                      <option value="60">1小时</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-6">
+                    <input class="w-configurer-option" type="checkbox" value="true" name="allowCustomResourceGradu" id="allowCustomResourceGradu">
+                    <label for="allowCustomResourceGradu">允许用户自定义</label>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="col-sm-12">资源占用展示<i class="iconfont icon-ptkj-tishishuoming" title="资源占用展示"></i><br>
+                  <div class="">
+                    <input class="w-configurer-option" type="radio" value="1" name="resourceTimeType" checked="checked" id="resourceTimeType_1">
+                    <label for="resourceTimeType_1">以视图刻度为最小单位展示</label>
+                    <input class="w-configurer-option" type="radio" value="2" name="resourceTimeType" id="resourceTimeType_2">
+                    <label for="resourceTimeType_2">以实际占用时间展示</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="width" class="col-sm-2 control-label">资源占用标题</label>
+            <div class="col-sm-9">
+              <textarea class="form-control w-configurer-option" height="34px" name="resourceTitle" id="resourceTitle" readonly="readonly"></textarea>
+            </div>
+            <div class="col-sm-1">
+              <a type="button" href="javascript:void(0);" id="resourceTitleBtn">设置</a>
+            </div>
+          </div>
+          <div id="div_enableResourceView" class="">
+            <div class="form-group">
+              <label for="resourceGroupName" class="col-sm-2 control-label">资源名称字段<font color="red">*</font>
+              </label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control w-configurer-option" height="34px" id="resourceGroupName" name="resourceGroupName"/>
+              </div>
+              <label for="resourceGroupId" class="col-sm-2 control-label">资源ID字段<i class="iconfont icon-ptkj-tishishuoming" title="资源ID字段"></i>
+                <font color="red">*</font>
+              </label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control w-configurer-option" height="34px" id="resourceGroupId" name="resourceGroupId"/>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+              <input type="checkbox" id="showResourceDetails" name="showResourceDetails" class="w-configurer-option" value="true">
+              <label for="showResourceDetails" class="control-label">启用资源详情查看</label>
+              <div id="div_resource_details" style="width:100%;">
+                <div id="div_resource_details_toolbar" class="btn-group" style="">
+                  <button id="btn_add_resource_details" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                  </button>
+                  <button id="btn_delete_resource_details" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                  </button>
+                  <button id="btn_row_up_resource_details" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+                  </button>
+                  <button id="btn_row_down_resource_details" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+                  </button>
+                </div>
+                <table id="table_resource_details_info" class="definition_info" style="min-height: 120px;"></table>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="width" class="col-sm-2 control-label">资源状态</label>
+            <div class="col-sm-10">
+              <div id="div_resource_status_toolbar" class="btn-group" style="display:none;">
+                <button id="btn_add_resource_status" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                </button>
+                <button id="btn_delete_resource_status" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                </button>
+                <button id="btn_row_up_resource_status" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+                </button>
+                <button id="btn_row_down_resource_status" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+                </button>
+              </div>
+              <div id="div_resource_status_toolbar2" class="btn-group" style="width:100%;">
+                <!--<div class="col-sm-4">
+                  <input type="hidden" class="w-configurer-option" name="dataStoreName" id="resourceDataStoreName">
+                  <input type="text" class="form-control w-configurer-option" height="34px" id="resourceDataStoreId" name="dataStoreId" placeholder="请选择数据仓库" style="display: none;">
+                </div>
+                <div class="col-sm-4">
+                  <select class="form-control w-configurer-option" height="34px" id="resourceStatusName" name="resourceStatusName"></select>
+                </div>
+                <div class="col-sm-4">
+                  <select class="form-control w-configurer-option" height="34px" id="resourceStatusId" name="resourceStatusId"></select>
+                </div>-->
+                <div class="col-sm-4">
+                  <select class="form-control w-configurer-option" height="34px" id="resourceStatusKey" name="resourceStatusKey"></select>
+                </div>
+                <div class="col-sm-4">
+                  <button id="resource-status-color-setting-button" type="button" class="well-btn w-btn-primary w-line-btn">
+                    <i class="iconfont icon-ptkj-chakanbiaodanxiangqing"></i>状态颜色管理
+                  </button>
+                </div>
+              </div>
+              <table id="table_resource_status_info" class="definition_info" data-height="175"></table>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="width" class="col-sm-2 control-label">事件设置</label>
+            <div class="col-sm-10">
+              <div id="div_resource_events_toolbar" class="btn-group" style="display:none;">
+                <button id="btn_add_resource_events" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                </button>
+                <button id="btn_delete_resource_events" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                </button>
+                <button id="btn_row_up_resource_events" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+                </button>
+                <button id="btn_row_down_resource_events" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+                </button>
+              </div>
+              <table id="table_resource_events_info" class="definition_info" data-height="175"></table>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="widget_fullcalendar_tabs_query_info">
+          <div class="form-group">
+            <div class="col-sm-10 ">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" value="true" id="keyword" name="keyword">
+                <label for="keyword">关键字查询</label>
+              </label>
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" value="true" id="fieldSearch" name="fieldSearch">
+                <label for="fieldSearch">字段查询</label>
+              </label>
+              <label class="checkbox-inline hidden">
+                <input class="w-configurer-option" type="checkbox" value="true" id="allowSaveTemplate" name="allowSaveTemplate">
+                <label for="allowSaveTemplate">允许保存为模板</label>
+              </label>
+            </div>
+          </div>
+          <div id="div_field_search_info" class="form-group" style="padding-left: 10px; padding-right: 10px;">
+            <div class="form-group">
+              <div class="col-sm-3">
+                <label class="checkbox-inline">
+                  <input class="w-configurer-option" type="checkbox" value="true" id="expandFieldSearch" name="expandFieldSearch">
+                  <label for="expandFieldSearch">默认展开字段查询</label>
+                </label>
+              </div>
+              <div class="col-sm-5">
+                <label style="font-weight: normal">每行列数:</label>
+                <input type="number" class="form-control w-configurer-option" name="fieldRowColumns" id="fieldRowColumns" value="3" min="1" max="4" style="display: inline-block; width: 100px;">
+              </div>
+            </div>
+            <div class="btn-group btn_field_search_info" id="div_field_search_info_toolbar">
+              <button id="btn_add_field" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+              </button>
+              <button id="btn_delete_field" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+              </button>
+              <button id="btn_row_up_field" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+              </button>
+              <button id="btn_row_down_field" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+              </button>
+            </div>
+            <table id="table_field_search_info" class="definition_info" data-height="430"></table>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="widget_fullcalendar_tabs_column_info">
+          <div id="div_column_toolbar" class="btn-group btn_column_info">
+            <button id="btn_add_column" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+            <button id="btn_delete_column" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+            </button>
+            <button id="btn_row_up_column" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+            </button>
+            <button id="btn_row_down_column" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+            </button>
+          </div>
+          <table id="table_column_info" class="definition_info" data-height="430"></table>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="widget_fullcalendar_tabs_button_info">
+          <div id="div_button_info_toolbar" class="btn-group btn_button_info">
+            <button id="btn_add_button" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+            <button id="btn_delete_button" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+            </button>
+            <button id="btn_row_up_button" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+            </button>
+            <button id="btn_row_down_button" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+            </button>
+          </div>
+          <table id="table_button_info" class="definition_info " data-height="400"></table>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="widget_fullcalendar_tabs_senior_info">
+          <div class="form-group">
+            <label for="customSetting" class="col-sm-2 control-label">自定义参数(JSON)</label>
+            <div class="col-sm-10">
+              <textarea type="text" class="form-control w-configurer-option" style="height:100px" name="customSetting" id="customSetting" placeholder='示例：{ "{key1}": "{value2}", "{key2}": false }'></textarea>
+              <!-- <span style='color:blue'>示例：{ "{key1}": "{value2}", "{key2}": false }</span> -->
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="widget_fullcalendar_tabs_formhtml_info">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="enableCustomForm" name="enableCustomForm" value="true">启用自定义模板
+              </label>
+            </div>
+          </div>
+          <div id="div_wHtml_content">
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div id='wHtml_content' name='wHtml_content' cols='50' rows='10'></div>
+                <p>备注：字段控件的占位符为 \${column.field_name}，field_name为列定义字段名</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

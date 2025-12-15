@@ -1,0 +1,37 @@
+
+<div id="widget_tab">
+	<form id="widget_tab_form" class="form-horizontal">
+		<div id="widget_tab_tabs"></div>
+	</form>
+	<div class="btn-group">
+		<button type="button" class="btn btn-primary" id="add_tab">
+			<i class="glyphicon glyphicon-plus-sign"></i>添加
+		</button>
+		<button type="button" class="btn btn-primary" id="del_tab">
+			<i class="glyphicon glyphicon-remove-sign"></i>删除
+		</button>
+	</div>
+</div>
+<script type="text/javascript">
+	wRequire([ "jquery", "server", "commons", "design_commons", "appContext", "wCommonPictureLib" ], function($,
+			server, commons, DesignUtils, appContext) {
+		window.beforeSaveConfig = function(helper) {
+			$.extend(helper.json, opt);
+			console && console.log(helper);
+		};
+
+		window.afterSaveConfig = function(helper) {
+			// debugger;
+		};
+
+		window.beforeInitConfig = function(helper) {
+			// debugger;
+		};
+
+		window.afterInitConfig = function(helper) {
+			// debugger;
+		};
+
+		return null;
+	});
+</script>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="queryRecentUseList">
+        <![CDATA[
+		select distinct
+			   <#list properties as property>
+		           t.${property.propertyAccessorName} as ${property.name},
+		       </#list>
+		       r.use_time as use_time
+		  from ${tableName} t
+		 inner join cd_recent_use r
+		    on t.${objectIdInItemProperty} = r.object_id_identity
+		 where r.user_id = :userId
+		   and r.module_id = :moduleId
+		 order by r.use_time desc
+	]]>
+    </sql-query>
+</hibernate-mapping>

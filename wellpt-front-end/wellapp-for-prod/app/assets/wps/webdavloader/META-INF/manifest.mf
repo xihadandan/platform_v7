@@ -1,0 +1,57 @@
+Manifest-Version: 1.0
+
+Name: install.rdf
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: yQsjazzuWpC6JjCBQngnKA==
+SHA1-Digest: BW+OVF7Ct8tMH6vtXcnk9hOiXFw=
+
+Name: chrome.manifest
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 14MoJ4uBzSFYlmCbnTio8g==
+SHA1-Digest: 6iVgzm2nN3DQVL9m4YYvx1rd/GM=
+
+Name: components/nsIUrlOpener.xpt
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: vFv4nVQmbqfWeLBO6SVpQQ==
+SHA1-Digest: rSGcbQ27NwWONSm8ejXJFtpLnbA=
+
+Name: components/URLLauncher.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: uCWUpraRTqyXC9MHRSVHHQ==
+SHA1-Digest: lX7sV4XiF4d4F4HRNrLveEd4tm8=
+
+Name: content/.DS_Store
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: GUV3p+IL3Mevu3GPUCwTTA==
+SHA1-Digest: 3y++sUAKzaCQmjLBz2v0kvESHgc=
+
+Name: content/chrome-script.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: FjPWgQ+mT/91PYlbgCu+xQ==
+SHA1-Digest: PdsVLVTNdsGNaEdhlMvt5wvNHDI=
+
+Name: content/frame-script.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: /iyV8bSLlLxNGpBf7qzAHQ==
+SHA1-Digest: 4ighBwq82kOwTh7hT08spaeszQg=
+
+Name: content/page-script.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: UZWQhICYa/YT/CXiUtTCUw==
+SHA1-Digest: 7GeQSteAqXIpHW1aaz7FFFSOMKM=
+
+Name: content/urlLoader.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: j4uz7ZwHcsM6u1NUGm4vpg==
+SHA1-Digest: Dm4jAgU/YGk5Hv3V1OxurF3fe2M=
+
+Name: content/urlLoaderOverlay.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: U4wijj5Wd5yMvOqWLGz9UA==
+SHA1-Digest: QRQnpEdO9TrV+sUDeLfkg85HY9c=
+
+Name: content/urlLoadPref.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: lD/7NpgK0UM0DYhetzKTkA==
+SHA1-Digest: g5vuFIajvDMJwKegn+HHTVCXzCA=
+

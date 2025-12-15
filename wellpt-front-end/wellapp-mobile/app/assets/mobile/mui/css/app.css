@@ -1,0 +1,1865 @@
+@charset "UTF-8";
+
+/* -----------------------------外部ICON开始------------------------------------ */
+@import url('calendar.css');
+
+@import url('mui.custom.css');
+
+@import url('mui.floatbutton.css');
+
+@import url('mui.imageviewer.css');
+
+@import url('mui.indexedlist.css');
+
+@import url('qing.css');
+
+@import url('wechat.css');
+
+@import url('colors.css');
+
+@import url('../customfont/style.css');
+
+@import url('/static/css/font-awesome/4.6.3/css/font-awesome.css');
+
+@import url('/static/css/pt-iconfont/iconfont.css');
+
+/* -----------------------------外部ICON结束------------------------------------ */
+
+::-webkit-input-placeholder {
+  color: #ccc;
+}
+.mui-toast-container > .mui-toast-message {
+  word-break: break-all;
+}
+/* 表单字段开始 */
+.dyform-field-editable {
+}
+
+.dyform-field-label {
+}
+
+.dyform-field-error {
+}
+
+.mui-input-row > label {
+  padding: 11px 15px;
+  width: auto;
+}
+.mui-table-view-cell .mui-input-row > label:first-child {
+  width: auto;
+}
+.mui-input-row > .addressBook-tags {
+  float: left;
+  display: block;
+  padding: 11px 5px;
+  width: 44px;
+  text-align: center;
+  border-radius: 100%;
+  background: #3cbaff;
+  color: #fff;
+}
+/****通讯录面包屑导航********/
+.mui-content .bread-nav {
+  padding: 0px 15px 10px 15px;
+  margin-bottom: 15px;
+  background: #fff;
+  overflow-x: auto;
+  white-space: nowrap;
+  font-size: 16px;
+  line-height: 16px;
+}
+.mui-content .bread-nav span {
+  color: #999;
+}
+.mui-content .bread-nav .div_unit_node {
+  color: #3cbaff;
+}
+.mui-content .bread-nav .mui-icon {
+  font-size: 14px;
+  color: #999;
+  line-height: 16px;
+  vertical-align: top;
+}
+
+/****通讯录面包屑导航********/
+.mui-input-row > label.dyform-field-label {
+  width: 65%;
+}
+
+.mui-input-row > textarea ~ label.dyform-field-label,
+.mui-input-row > input ~ label.dyform-field-label {
+  width: 100%;
+  padding-left: 15px;
+}
+
+.mui-input-row > label:first-child {
+  width: 35%;
+}
+
+.mui-input-row > label.dyform-field-label {
+  opacity: 0.64;
+  padding-left: 0px;
+  font-size: 14px;
+}
+
+.mui-input-row > a.dyform-field-embedd {
+  display: block;
+  padding: 9px 15px;
+}
+
+.mui-checkbox > label:first-child,
+.mui-radio > label:first-child {
+  width: 100%;
+}
+
+/* -----------------------------视图开始------------------------------------ */
+.mui-bar-nav ~ .mui-content .table-view-container > .mui-pull-top-pocket {
+  top: 0px;
+}
+
+/* -----------------------------表单开始------------------------------------ */
+.mui-dyform button.mui-btn[id],
+.mui-dyform .dyform-btn {
+  width: 100%;
+  color: white;
+  border: 1px solid #fff;
+  background-color: #3cbaff;
+}
+
+.mui-dyform .mui-fullscreen .mui-top-tab-group {
+  height: 100%;
+  background-color: #e9ecf1;
+}
+
+.mui-bar-nav ~ .mui-content .mui-dyform.mui-scroll-wrapper {
+  top: 44px;
+}
+
+.mui-dyform > .mui-off-canvas-wrap .mui-content,
+.mui-dyform.mui-scroll-wrapper {
+  background-color: #e9ecf1;
+}
+/* 策划 */
+.mui-dyform > .mui-off-canvas-wrap .mui-content .mui-slider-group {
+  background-color: white;
+}
+/* 上标签 */
+.mui-dyform .mui-top-tab-group .mui-block-content {
+  background-color: white;
+}
+/* 下标签 */
+.mui-dyform .mui-bottom-tab-content > .mui-scroll-wrapper > .mui-scroll {
+  background-color: white;
+}
+
+.mui-dyform .mui-bottom-tab-content > .mui-scroll-wrapper > .mui-scroll.mui-input-group:before {
+  height: 0px;
+}
+/* 顶部滑动 */
+.mui-dyform .layout-slider .mui-slider-item > .mui-scroll-wrapper > .mui-scroll {
+  background-color: white;
+}
+
+.mui-dyform .mui-fullscreen .mui-top-tab-content {
+  height: 100%;
+}
+
+.mui-dyform .mui-fullscreen .mui-bottom-tab-content {
+  height: 100%;
+}
+
+.mui-dyform input,
+.mui-dyform select,
+.mui-dyform textarea {
+  font-size: 15px;
+}
+
+.mui-dyform .mui-input-group .mui-input-row {
+  height: auto;
+  padding: 5px;
+}
+
+.mui-dyform .mui-input-row > .dyform-field-editable {
+  height: 37px;
+  border-radius: 2px;
+  padding-top: 7px;
+  padding-bottom: 8px;
+}
+
+.mui-dyform .mui-input-row > textarea.dyform-field-editable {
+  height: auto;
+}
+
+.mui-dyform-select-option .mui-input-group .mui-input-row {
+  height: auto;
+}
+
+.dyform-tab-view {
+  margin-top: 10px;
+}
+
+.dyform-tab-view:after {
+  height: 0px;
+}
+
+.dyform-tab-view > .mui-table-view-cell {
+  padding: 0px;
+  margin: 0px 10px 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.dyform-tab-view > .mui-table-view-cell > .mui-navigate-right {
+  margin: 0px;
+  padding: 11px 15px;
+  background-color: white;
+}
+
+.dyform-tab-view > .mui-table-view-cell > .mui-collapse-content {
+  padding: 0px;
+  margin: 0px;
+}
+
+.mui-dyform .mui-input-row label ~ input,
+.mui-dyform .mui-input-row label ~ select,
+.mui-dyform .mui-input-row label ~ textarea {
+  float: left;
+}
+
+.mui-dyform .mui-input-group .mui-input-row:last-child:after {
+  height: 1px;
+}
+
+.mui-dyform .mui-input-group > div:last-child .mui-input-row:after {
+  height: 0px;
+}
+
+.mui-dyform .mui-input-group .mui-input-row.input-row-odd:after {
+  height: 0px;
+}
+
+.mui-dyform .input-row-odd > label {
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 0px;
+}
+
+.mui-dyform .input-row-odd ~ .mui-input-row > .dyform-field-editable {
+  padding: 0px 15px 4px;
+  width: 100%;
+}
+
+.mui-dyform .input-row-odd ~ .mui-input-row > input.dyform-field-editable,
+.mui-dyform .input-row-odd ~ .mui-input-row > .mui-numbox {
+  height: 37px;
+  padding-top: 7px;
+  padding-bottom: 4px;
+}
+
+.mui-dyform .mui-checkbox input[type='checkbox'],
+.mui-dyform .mui-radio input[type='radio'] {
+  width: 22px;
+  height: 20px;
+}
+
+.mui-dyform .mui-checkbox input[type='checkbox']:before,
+.mui-dyform .mui-radio input[type='radio']:before {
+  font-size: 22px;
+}
+
+.mui-dyform.dyform-no-bottom .mui-bar ~ .mui-content {
+  bottom: 0px !important;
+}
+
+/* -----------------------------表单结束------------------------------------ */
+
+/* -----------------------------MUI开始------------------------------------ */
+.mui-fixed {
+  position: fixed;
+  background: #fff;
+}
+.mui-table-view-cell.mui-collapse.mui-active > .mui-collapse-content,
+.mui-table-view-cell.mui-collapse.mui-active > .mui-table-view {
+  display: block !important; /* 多层嵌套问题 */
+}
+
+.mui-table-view-cell.mui-collapse > .mui-collapse-content {
+  display: none !important;
+}
+/* -----------------------------MUI开始------------------------------------ */
+
+/* -----------------------------复选与单选开始------------------------------------ */
+.mui-input-row label + input[disabled],
+input[disabled],
+textarea[disabled] {
+  background-color: #eee;
+  cursor: default;
+}
+input.select-box {
+  width: 100%;
+  position: relative;
+  bottom: -9999px;
+}
+
+input.select-box:after {
+  content: attr(text);
+  position: relative;
+  left: 10px;
+  bottom: 9999px;
+}
+
+input.select-box {
+  color: #888;
+}
+
+input.select-box:checked:after {
+  color: black;
+}
+
+.mui-poppicker-body > .mui-search > input {
+  margin: 0px;
+}
+
+.mui-poppicker-body > .mui-search > input[type='search'] {
+  margin-bottom: 15px;
+}
+
+.mui-poppicker-body > .mui-search ~ .mui-listpicker > .mui-scroll-wrapper {
+  top: 42px;
+}
+
+.mui-poppicker-body > .mui-listpicker > .mui-listpicker-inner > .mui-table-view {
+  padding-top: 5px;
+  padding-bottom: 12px;
+}
+
+.checkbox-table-view,
+.radio-table-view {
+  margin: 0px !important;
+}
+
+.checkbox-table-view > .mui-table-view-cell,
+.radio-table-view > .mui-table-view-cell {
+  font-size: 15px;
+  padding: 0px !important;
+}
+
+.checkbox-table-view > .mui-table-view-cell > a,
+.radio-table-view > .mui-table-view-cell > a {
+  margin: 0px !important; /* 防止选中时标签漂移 */
+  padding: 0px !important;
+}
+
+.checkbox-table-view .mui-table-view-cell > label,
+.radio-table-view .mui-table-view-cell > label {
+  line-height: 1;
+}
+
+.checkbox-table-view > .mui-table-view-cell .mui-collapse-content,
+.radio-table-view > .mui-table-view-cell .mui-collapse-content {
+  padding: 0px;
+  margin: 0px;
+}
+
+.checkbox-table-view .mui-collapse-content .mui-table-view,
+.radio-table-view .mui-collapse-content .mui-table-view {
+  margin: 0px;
+}
+
+.checkbox-table-view .mui-collapse-content .mui-table-view .mui-table-view-cell,
+.radio-table-view .mui-collapse-content .mui-table-view .mui-table-view-cell {
+  border-radius: 0px;
+  padding: 0px;
+  background-position: 6px 100%;
+}
+
+/* -----------------------------复选与单选结束------------------------------------ */
+
+/* -----------------------------数字开始------------------------------------ */
+.checkbox-table-view,
+.radio-table-view {
+  margin: 0px !important;
+}
+
+/* -----------------------------数字结束------------------------------------ */
+.mui-dyform .mui-input-row .mui-numbox {
+  border: none;
+  width: 100%;
+  margin: 0px 8px;
+  padding: 0 30px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+}
+
+.mui-dyform .mui-input-row .mui-numbox > input {
+  text-align: left;
+  border: none !important;
+  padding: 0px !important;
+}
+
+.mui-dyform .mui-input-row label.mui-ellipsis ~ .mui-numbox {
+  float: right;
+  width: 65%;
+}
+
+.mui-numbox [class*='btn-numbox'],
+.mui-numbox [class*='numbox-btn'] {
+  width: 30px;
+}
+
+/* -----------------------------附件开始------------------------------------ */
+.mui-input-group .mui-attach-row {
+  height: auto;
+  min-height: 38px;
+}
+
+.attach-container .attach-label {
+  width: auto;
+  line-height: 1;
+  font-size: 14px;
+  color: #555;
+}
+
+.attach-container:before,
+.attach-container:after {
+  height: 0px;
+}
+
+.attach-container .attach-label > label.mui-ellipsis {
+  width: 35%;
+  padding: 0px;
+}
+
+.attach-container > .mui-table-view-cell > a {
+  margin: 0px !important; /* 防止选中时标签漂移 */
+  padding: 0px !important;
+}
+
+.attach-container,
+.mui-table-view-cell.mui-collapse .attach-container.mui-table-view {
+  margin: 0px;
+}
+
+.attach-container > .mui-table-view-cell,
+.mui-table-view-cell.mui-collapse .attach-container.mui-table-view > .mui-table-view-cell {
+  padding: 0px;
+}
+
+.attach-container > .mui-table-view-cell > a {
+  margin: 0px;
+  height: 37px;
+  line-height: 37px;
+}
+
+.attach-container > .mui-table-view-cell .mui-collapse-content {
+  padding: 0px;
+  margin: 0px;
+}
+
+.attach-container .mui-button-row {
+  height: auto;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 7px;
+}
+
+.attach-button-row .mui-btn {
+  width: auto;
+  padding: 5px 7px;
+  margin: 0px 0px 0px 6px;
+}
+
+.attach-button-row label.attach-picker {
+  float: left;
+  padding: 5px 7px;
+}
+
+.attach-button-row label.attach-picker > input.attach-picker {
+  width: 50px;
+  margin-top: -5px;
+  margin-left: -7px;
+}
+
+.mui-table-view-cell.mui-collapse .attach-table-view.mui-table-view {
+  margin: 0px;
+}
+
+.mui-table-view-cell.mui-collapse .attach-body-view.mui-table-view,
+.mui-table-view-cell.mui-collapse .attach-icon-view.mui-table-view {
+  padding-left: 12px;
+}
+
+.mui-table-view-cell.mui-collapse .attach-table-view.mui-table-view .mui-table-view-cell {
+  padding: 0px;
+}
+
+.attach-table-view .attach-handler {
+  width: 80%;
+  height: auto;
+  /* 	color: #007aff; */
+  font-size: 12px;
+  word-break: break-word;
+}
+
+.attach-table-view .attach-handler > h4 {
+  margin: 0px;
+  color: black;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.attach-table-view .attach-handler > h5 {
+  margin: 0px;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.attach-table-view .attach-handler > h5 > .filesize {
+  float: right;
+}
+
+ul.attach-table-view > .mui-selected > .mui-badge {
+  display: none;
+}
+
+.attach-table-view .mui-btn.btn-filedel {
+  width: auto;
+  padding: 0px;
+  border: none;
+  color: #007aff;
+  font-size: 24px;
+}
+
+ul.attach-icon-view > li > .attach-handler:before {
+  content: '';
+  width: 38px;
+  height: 34px;
+  display: block;
+  float: left;
+  background-size: 100% 100%;
+  background: url('/static/js/pt/images/file_type/unknown.gif') no-repeat;
+}
+
+ul.attach-icon-view > li[data-filename$='.pdf'] > .attach-handler:before {
+  background: url('/static/js/pt/images/file_type/pdf.gif') no-repeat;
+}
+
+ul.attach-icon-view > li[data-filename$='.txt'] > .attach-handler:before {
+  background: url('/static/js/pt/images/file_type/txt.gif') no-repeat;
+}
+
+ul.attach-icon-view > li[data-filename$='.rar'] > .attach-handler:before {
+  background: url('/static/js/pt/images/file_type/rar.gif') no-repeat;
+}
+
+ul.attach-icon-view > li[data-filename$='.zip'] > .attach-handler:before {
+  background: url('/static/js/pt/images/file_type/zip.gif') no-repeat;
+}
+
+ul.attach-icon-view > li[data-filename$='.doc'] > .attach-handler:before,
+ul.attach-icon-view > li[data-filename$='.docx'] > .attach-handler:before {
+  background: url('/static/js/pt/images/file_type/doc.gif') no-repeat;
+}
+
+ul.attach-icon-view > li[data-filename$='.xls'] > .attach-handler:before,
+ul.attach-icon-view > li[data-filename$='.xlsx'] > .attach-handler:before {
+  background: url('/static/js/pt/images/file_type/xls.gif') no-repeat;
+}
+
+ul.attach-icon-view > li[data-filename$='.ppt'] > .attach-handler:before,
+ul.attach-icon-view > li[data-filename$='.pptx'] > .attach-handler:before {
+  background: url('/static/js/pt/images/file_type/ppt.gif') no-repeat;
+}
+
+label.attach-picker {
+  width: auto;
+  margin: 6px;
+  padding: 6px 15px;
+  line-height: 100%;
+  background: #3cbaff;
+  border-radius: 3px;
+  color: #fff;
+  display: inline-block;
+  cursor: pointer;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+label.attach-picker > input.attach-picker {
+  padding: 0px;
+  margin-top: -6px;
+  margin-left: -15px;
+  width: inherit;
+  height: inherit;
+  line-height: inherit;
+  display: inline-block;
+}
+/* -----------------------------附件结束------------------------------------ */
+
+/* -----------------------------视图开始------------------------------------ */
+
+.mui-dyform .card-viewdisplay {
+  margin: 0px;
+  box-shadow: none;
+}
+
+.mui-dyform .card-viewdisplay .mui-table-view:after {
+  height: 1px;
+}
+
+.mui-viewdisplay-view .mui-table-view-cell {
+  padding: 9px 15px;
+}
+
+.mui-viewdisplay-view .mui-table-view-cell > .mui-collapse-content {
+  padding: 0px;
+}
+
+.table-view-picker .mui-checkbox.mui-left input[type='checkbox'],
+.table-view-picker .mui-radio.mui-left input[type='radio'] {
+  left: 0px;
+}
+
+.table-view-picker .mui-checkbox.mui-left label,
+.table-view-picker .mui-radio.mui-left label {
+  padding-right: 0px;
+  padding-left: 24px;
+}
+
+.table-view-picker .mui-table-view-cell {
+  font-size: 14px;
+  padding-bottom: 0px;
+}
+
+.table-view-picker .mui-checkbox input[type='checkbox'],
+.table-view-picker .mui-radio input[type='radio'] {
+  top: 0px;
+  width: 20px;
+  height: 18px;
+}
+
+.table-view-picker .mui-checkbox input[type='checkbox']:before,
+.table-view-picker .mui-radio input[type='radio']:before {
+  font-size: 20px;
+}
+
+/* -----------------------------视图件结束------------------------------------ */
+.mui-popover-dialog .mui-dyform-select-option {
+  position: relative;
+  max-height: 450px;
+}
+
+.iframe-scroll-wrapper .mui-scroll-wrapper {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+}
+
+.iframe-scroll-wrapper .mui-scroll-wrapper > iframe {
+  /* 你自己指定的样式 */
+  border: none;
+  width: 100%;
+  height: 101%;
+}
+
+/* -----------------------------校验开始------------------------------------ */
+.bubble-tip {
+  width: auto;
+  position: fixed;
+  bottom: 60px;
+  left: 10px;
+  right: 10px;
+}
+
+.bubble-touch {
+  width: 48px;
+  height: 48px;
+  position: fixed;
+  top: 60px;
+  left: auto;
+  right: 10px;
+  bottom: auto;
+  border-radius: 12px;
+  background-color: rgba(185, 74, 72, 0.2);
+}
+
+.bubble-mask.mui-backdrop {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.bubble-touch .bubble-touch-inner {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  position: relative;
+  top: 8px;
+  left: 8px;
+  border-radius: 16px;
+  background-color: rgba(185, 74, 72, 0.2);
+}
+
+.bubble-touch.active {
+  background-color: rgba(185, 74, 72, 0.6);
+}
+
+.bubble-touch.active .bubble-touch-inner {
+  background-color: rgba(185, 74, 72, 0.6);
+}
+
+.bubble-tip .bubble-header {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.bubble-tip .bubble-content > .bubble-view {
+  color: #3cbaff;
+}
+
+.bubble-tip .bubble-content span.bubble-error {
+  float: right;
+  color: rgba(221, 82, 77, 0.8);
+}
+
+.bubble-mask.mui-backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.bubble-tip .bubble-header,
+.bubble-tip .mui-popover-arrow:after {
+  color: #fff;
+  border: 1px solid black;
+  background-color: rgba(221, 82, 77, 0.9);
+}
+
+.error > input.dyform-field-editable,
+.error > select.dyform-field-editable,
+.error > textarea.dyform-field-editable {
+  border: 1px solid red;
+}
+
+.error > span.dyform-field-error {
+  /* 	display : none; */
+  z-index: auto;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 22px;
+  font-weight: 600;
+  max-width: 200px;
+  padding: 2px 4px;
+  position: relative;
+  border-radius: 3px;
+  background: none repeat scroll 0 0 #b94a48;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.error > span.dyform-field-error:after {
+  position: absolute;
+  left: 7px;
+  top: -4px;
+  content: '';
+  display: block;
+  border-bottom: 6px solid #b94a48;
+  border-left: 6px solid rgba(0, 0, 0, 0);
+  border-right: 6px solid rgba(0, 0, 0, 0);
+}
+
+.bubble-tip .bubble-view .tip-item {
+  padding: 10px;
+  color: #444;
+}
+
+/* -----------------------------校验结束------------------------------------ */
+
+/* -----------------------------日期开始------------------------------------ */
+.mui-dtpicker-header .dt-btn-ok:focus,
+.mui-dtpicker-header .dt-btn-ok:active {
+  border-color: #0062cc;
+}
+
+.mui-input-row label + .Wdate,
+.Wdate {
+  /* background: #fff url(../images/datePicker.gif) no-repeat right; */
+}
+
+/* -----------------------------日期结束------------------------------------ */
+
+/* -----------------------------组织选择框开始------------------------------------ */
+.mui-unit-content {
+  margin-bottom: 100px;
+}
+
+.mui-unit-content span.div_unit_node {
+  color: #007aff;
+}
+
+.div_unit_node.mui-checkbox input[type='checkbox'],
+.div_unit_node.mui-radio input[type='radio'] {
+  top: 8px;
+}
+
+.div_unit_node.mui-checkbox input[type='checkbox']:before,
+.div_unit_node.mui-radio input[type='radio']:before {
+  font-size: 22px;
+}
+
+.unit-selected-content > .mui-table-view {
+  /* 	margin-top: 15px !important; */
+}
+
+.unit-selected-content > .mui-table-view > .mui-table-view-cell {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.unit-selected-content > .mui-table-view > .mui-table-view-cell > label {
+  width: 85%;
+  font-size: 14px;
+}
+
+.mui-unit-content .mui-left > label.unit-label {
+  padding-left: 44px;
+}
+
+.mui-unit-content .unit-label:before {
+  content: '';
+  margin: 0;
+  width: 14px;
+  height: 14px;
+  line-height: 0;
+  border: 0 none;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.mui-unit-content .unit-label.unit-type-D:before {
+  background: url('/static/themes/images/department.png') no-repeat;
+  background-size: contain;
+}
+
+.mui-unit-content .unit-label.unit-type-U:before {
+  background: url('/static/themes/images/person.png') no-repeat;
+  background-size: contain;
+}
+
+.mui-unit-content .unit-label.unit-type-B:before {
+  background: url('/static/themes/images/company.png') no-repeat;
+  background-size: contain;
+}
+
+.mui-unit-content .unit-label.unit-type-J:before {
+  background: url('/static/themes/images/job.png') no-repeat;
+  background-size: contain;
+}
+
+.mui-unit-content .unit-label.unit-type-O:before,
+.mui-unit-content .unit-label.unit-type-V:before {
+  background: url('/static/themes/images/orgtree.png') no-repeat;
+  background-size: contain;
+}
+
+.mui-unit-search-form .btn-group {
+  border-top: 1px solid #f0f2f6;
+  border-bottom: 1px solid #f0f2f6;
+  float: right;
+  border-radius: 3px;
+  height: 34px;
+  line-height: 34px;
+}
+
+.mui-unit-search-form input[type='search'] {
+  font-size: 12px;
+  width: calc(100% - 16em);
+}
+
+.mui-unit-search-form .btn-group > button.mui-btn {
+  float: none;
+  width: 5em;
+  font-size: 12px;
+  padding: 7px 6px;
+  line-height: normal;
+  margin-left: -6px;
+  background: #f0f2f6;
+  border-color: #f0f2f6;
+}
+
+.mui-unit-search-form .btn-group > button:first-child {
+  margin-left: 0px;
+}
+
+.mui-unit-search-form .btn-group > button.active {
+  background: white;
+}
+
+/* -----------------------------组织选择框结束------------------------------------ */
+
+/* -----------------------------富文本开始------------------------------------ */
+.mui-row-textarea {
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+/* -----------------------------富文本结束------------------------------------ */
+
+/* 表单字段结束 */
+
+/* -----------------------------遮罩层开始------------------------------------ */
+.mui-mask {
+  bottom: 55%;
+}
+/* -----------------------------遮罩层结束------------------------------------ */
+
+/* -----------------------------弹出框开始------------------------------------ */
+.mui-popover-dialog .mui-popover-content {
+  padding: 0px;
+  margin: 0px;
+}
+
+.mui-popover-dialog .mui-table-view {
+  max-height: 500px;
+}
+
+.mui-popover.mui-popover-action .mui-popover-footer {
+  position: relative;
+  height: 44px;
+}
+
+.mui-popover.mui-popover-action .mui-popover-footer .mui-table-view-cell:not(:last-of-type):before {
+  z-index: 1;
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  right: 0;
+  width: 1px;
+  height: 34px;
+  color: #ddd;
+  content: '';
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  background-color: #c8c7cc;
+}
+
+.mui-popover.mui-popover-action .mui-popover-footer .mui-table-view-cell {
+  font-size: 14px;
+  font-weight: 700;
+  background: #fff;
+}
+.mui-popover.mui-popover-action .mui-popover-footer .mui-table-view-cell::after {
+  display: none;
+}
+
+.mui-popover-dialog .mui-table-view-cell .btn-primary {
+  font-weight: 700;
+  color: #3bbaff;
+  line-height: 22px;
+}
+
+.mui-popover-dialog .mui-table-view-cell .btn-default {
+  font-weight: 700;
+  color: #c7c7cc;
+  line-height: 22px;
+}
+
+.mui-popover-dialog .mui-input-group > .mui-input-row > label {
+  font-size: 14px;
+  color: #555;
+}
+
+.mui-popover-dialog .mui-checkbox input[type='checkbox'],
+.mui-popover-dialog .mui-radio input[type='radio'] {
+  top: 6px;
+  width: 22px;
+  height: 20px;
+}
+
+.mui-popover-dialog .mui-checkbox input[type='checkbox']:before,
+.mui-popover-dialog .mui-radio input[type='radio']:before {
+  font-size: 20px;
+}
+/* -----------------------------弹出框结束------------------------------------ */
+/* -----------------------------从表开始------------------------------------ */
+.card-subform.mui-card {
+  margin: 0px;
+  box-shadow: none;
+}
+
+.card-subform.mui-card .mui-table-view.mui-subform-view {
+  margin: 0px;
+}
+
+.card-subform.mui-card .mui-table-view.mui-subform-view > .mui-table-view-cell {
+  padding-left: 0px;
+  background-position: 0px 100%;
+}
+
+.mui-subform-view > .mui-table-view-cell {
+  padding: 0px;
+}
+
+.mui-subform-view > .mui-table-view-cell > a.mui-navigate-right {
+  margin: 0px !important;
+  padding: 0px 0px 0px 15px !important;
+  line-height: 37px;
+}
+
+.mui-subform-view > .mui-table-view-cell > .mui-collapse-content {
+  margin: 0px 4px 4px;
+  padding: 0px;
+}
+
+.mui-subform-view > .mui-table-view-cell > .mui-navigate-right:after {
+  right: 6px;
+}
+
+.mui-subform-view > .mui-table-view-cell > .mui-navigate-right > .mui-badge {
+  right: 15px;
+}
+
+/* -----------------------------从表结束------------------------------------ */
+
+/* -----------------------------流程办理过程开始------------------------------------ */
+.mui-wf-off-canvas-wrap.mui-off-canvas-wrap.mui-active .mui-off-canvas-backdrop {
+  box-shadow: -4px 0 4px rgba(0, 0, 0, 0), 4px 0 4px rgba(0, 0, 0, 0);
+}
+
+.mui-off-canvas-left,
+.mui-off-canvas-right {
+  width: 80%;
+}
+
+.work-process-viewer {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+}
+
+.work-process-viewer .title {
+  position: relative;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 44px;
+  transform: translate3d(0, 0, 0);
+  padding-left: 0.5em;
+  width: 100%;
+  background-color: #f7f7f7;
+}
+
+.work-process-viewer .work-process-viewer-content {
+  position: relative;
+  min-height: 100%;
+}
+
+.work-process-viewer .work-process-viewer-content .ibox-content {
+  display: block;
+  overflow: auto;
+  padding-bottom: 2em;
+}
+
+.work-process-tab-pane {
+  /* 	height: 100%; */
+}
+
+.work-process-tab-pane .inspinia-timeline {
+  height: 100%;
+}
+
+.timeline-item .date i {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0px;
+  width: 30px;
+  text-align: center;
+  border-top: 1px solid #e7eaec;
+  border-bottom: 1px solid #e7eaec;
+  border-left: 1px solid #e7eaec;
+  background: #f8f8f8;
+}
+
+.timeline-item .date {
+  text-align: right;
+  width: 110px;
+  position: relative;
+  padding-top: 30px;
+}
+
+.timeline-item .content {
+  border-left: 1px solid #e7eaec;
+  border-top: 1px solid #e7eaec;
+  padding-top: 10px;
+  min-height: 100px;
+}
+
+.timeline-item .content:hover {
+  background: #f6f6f6;
+}
+/* -----------------------------流程办理过程结束------------------------------------ */
+
+/* -----------------------------流程内容底部点位区开始------------------------------------ */
+
+.mui-top-tabs.mui-fullscreen {
+  bottom: 51px;
+}
+
+.wui-scroll-bottom .mui-top-tabs.mui-fullscreen > .mui-top-tab-group {
+  padding-bottom: 40px;
+}
+
+.mui-bottom-tabs.mui-fullscreen {
+  bottom: 51px;
+}
+
+.wui-scroll-bottom .mui-bottom-tabs.mui-fullscreen > .mui-top-tab-group {
+  padding-bottom: 40px;
+}
+
+.panel > header.mui-bar-nav ~ .mui-content .mui-fullscreen {
+  top: 45px;
+}
+
+.wf-work-view .mui-dyform.mui-scroll-wrapper {
+  /* 	top: 45px; */
+  /* 	bottom: 50px; */
+  overflow-y: auto;
+}
+.wf-work-view .mui-dyform.mui-scroll-wrapper::-webkit-scrollbar {
+  width: 2px;
+  border-radius: 1px;
+  background: #ccc;
+  height: 0;
+}
+
+.wf-work-view-footer {
+  height: 50px;
+}
+
+.wf-work-view-dyform-tab-bar {
+  margin-bottom: 50px;
+}
+
+.wf-work-view .mui-bar-nav ~ .mui-content .mui-slider.mui-fullscreen {
+  bottom: 48px;
+}
+
+.choose-rollback-task .mui-input-group .mui-radio {
+  line-height: 42px;
+}
+/* -----------------------------程内容底部点位区结束------------------------------------ */
+
+/* -----------------------------流程操作按钮开始------------------------------------ */
+.wf-tab-bar .mui-bar {
+  /* 	position: fixed !important; */
+}
+.mui-bar .mui-btn-link {
+  color: #fff;
+}
+/* -----------------------------流程操作按钮结束------------------------------------ */
+
+/* -----------------------------9宫格开始------------------------------------ */
+.mobile-grid-view .mui-bar {
+  position: fixed !important;
+}
+.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body {
+  font-size: 12px;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell {
+  border: 0;
+}
+/* -----------------------------9宫格结束------------------------------------ */
+.w-mobile-grid-view .mui-grid-view.mui-grid-9 .mui-table-view-cell {
+  height: 106px;
+}
+@media screen and (max-width: 320px) {
+  .w-mobile-grid-view .mui-grid-view.mui-grid-9 .mui-table-view-cell {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 375px) {
+  .w-mobile-grid-view .mui-grid-view.mui-grid-9 .mui-table-view-cell {
+    font-size: 23px;
+  }
+}
+/* -----------------------------流程签署意见开始------------------------------------ */
+.mui-bar-tab .mui-sign-opinion {
+  padding-left: 14px;
+  width: 2.5%;
+}
+
+.mui-bar-tab .mui-sign-opinion.mui-active {
+  color: #000;
+}
+
+.mui-bar-tab .mui-sign-opinion > input {
+  margin-bottom: 0;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  height: 35px;
+  font-size: 14px;
+  border-radius: 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+}
+
+.mui-popover-dialog .wf-opinion-view {
+  max-height: 150px;
+  overflow: auto;
+  background: #fff;
+}
+
+.mui-popover-dialog .mui-scroll-wrapper {
+  margin: 0px;
+}
+
+.wf-opinion textarea {
+  font-size: 14px;
+  color: #333;
+  border-radius: 4px;
+}
+
+.wf-opinion .mui-card {
+  margin-bottom: 0px;
+}
+
+.wf-opinion .mui-table-view-cell.wf-opinion-content {
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+  background: #fff;
+}
+
+.mui-bar-tab .mui-tab-item .iconfont {
+  font-size: 16px;
+  color: #488cee;
+  line-height: 24px;
+  text-align: center;
+}
+
+.mui-bar-tab .mui-tab-item .iconfont ~ .mui-tab-label {
+  font-size: 12px;
+  color: #666;
+}
+/* -----------------------------流程签署意见结束------------------------------------ */
+
+/* -----------------------------列表开始------------------------------------ */
+.table-view-container .table-view-content {
+  margin: 0px;
+  padding: 0px;
+  border-width: 0px;
+}
+
+.table-view-container .table-view-content > .mui-table-view-cell {
+  margin: 0px;
+  padding: 0px;
+  border-width: 0px;
+}
+
+.table-view-container .table-view-content > .mui-table-view-cell:after {
+  height: 0px;
+}
+
+.table-view-container .table-view-content > .mui-table-view-cell > .mui-table {
+  padding: 11px 15px;
+}
+
+.table-view-container .table-view-content > .mui-table-view-cell > .mui-table:after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0px;
+  height: 1px;
+  content: '';
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  background-color: #c8c7cc;
+}
+
+.table-view-content > .mui-table-view-cell.unread h4.mui-ellipsis,
+.table-view-content > .mui-table-view-cell.unread .title {
+  color: black;
+  font-weight: bold;
+}
+
+.mui-pull-top-pocket.mui-visibility ~ .mui-scroll .mui-pull-caption-nomore {
+  display: none;
+}
+/* -----------------------------列表结束------------------------------------ */
+
+/* -----------------------------工作导航开始------------------------------------ */
+.app-nav-page {
+  overflow-y: hidden;
+}
+
+.mui-app-nav.mui-row.mui-fullscreen > [class*='mui-col-'] {
+  height: 100%;
+}
+
+.mui-app-nav-panel.mui-fullscreen {
+  top: 44px;
+  padding-top: 0px;
+}
+
+.mui-app-nav-panel.mui-fullscreen .mui-app-nav-content {
+  margin-bottom: 10px;
+}
+
+.mui-app-nav,
+.mui-app-nav > .mui-app-nav-content,
+.mui-app-nav > .mui-app-nav-content > .mui-col-xs-3,
+.mui-app-nav > .mui-app-nav-content > .mui-col-xs-9 {
+  -webkit-overflow-scrolling: auto; /* 当手指从触摸屏上移开，滚动会立即停止 */
+  overflow-y: auto;
+  height: 100%;
+}
+
+.mui-app-nav .mui-segmented-control .mui-control-item {
+  line-height: 50px;
+  width: 100%;
+}
+
+.mui-app-nav .mui-control-content {
+  display: block;
+}
+
+.mui-app-nav .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+  background-color: #fff;
+}
+/* -----------------------------工作导航结束------------------------------------ */
+
+/* -----------------------------消息开始------------------------------------ */
+.message-detail {
+  margin: 0px;
+}
+
+.message-detail > .mui-input-row > .body {
+  width: 100%;
+  padding: 0px 15px 11px;
+}
+.message-detail > label {
+  /* 	color: rgb(169,169,169); */
+}
+.message-detail .mui-input-row {
+  /* 	height: auto; */
+}
+
+.message-detail .mui-input-row > p {
+  /* 	height: auto; */
+  /* 	padding-left: 20px; */
+  /* 	color: rgb(63,63,63); */
+}
+
+/* -----------------------------消息结束------------------------------------ */
+
+/* -----------------------------手机设置-侧滑菜单栏布局 开始------------------------------------ */
+span.drag-icon {
+  left: -5px;
+  top: 50%;
+  position: fixed;
+  z-index: 999999;
+  color: #007aff;
+}
+
+li.menu-seleccted {
+  background-color: #efeff4;
+  color: #007aff;
+}
+
+/* -----------------------------手机附件预览-侧滑菜单栏布局 开始------------------------------------ */
+
+.filepreview,
+.mui-android .filepreview-body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1030;
+  word-wrap: break-word;
+  background-color: #fff;
+}
+
+.mui-ios .filepreview {
+  width: auto;
+  height: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow: scroll;
+}
+
+.mui-ios .filepreview-body {
+  width: 100%;
+  height: 100%;
+}
+.filepreview {
+  overflow: hidden !important;
+}
+.filepreview-body {
+  border: 0;
+}
+.filepreview-title-close {
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  left: 14px;
+  top: 14px;
+  z-index: 1031;
+}
+.filepreview-close {
+  line-height: 45px;
+  position: fixed;
+  right: 30px;
+  top: 80px;
+  height: 45px;
+  width: 45px;
+  border-radius: 50px;
+  background-color: #1890ff;
+  z-index: 1031;
+  text-align: center;
+  padding-top: 1px;
+}
+
+.filepreview-close > .pt-info {
+  font-size: 40px;
+  color: #ffffff;
+}
+/* -----------------------------手机附件预览-侧滑菜单栏布局 结束------------------------------------ */
+
+/* 表格开始 */
+.mui-display-as-table .mui-table-view-cell {
+  padding: 0px;
+}
+.mui-popup-table .mui-table-view:first-child {
+  margin-top: 0px;
+}
+.mui-popup-table .mui-table-view-cell {
+  padding: 0px;
+  overflow: scroll;
+}
+.mui-popup-table .column-index {
+  width: 60px;
+  text-align: center;
+}
+.mui-popup-table .column-12 {
+  width: 120px;
+}
+.mui-popup-table .column-15 {
+  width: 150px;
+}
+.mui-popup-table .column-20 {
+  width: 200px;
+}
+.mui-popup-table .column-25 {
+  width: 250px;
+}
+.mui-table {
+  width: 100%;
+  max-width: 100%;
+}
+.mui-table.mui-header-table {
+  margin-bottom: 0px;
+}
+
+.mui-table > thead > tr > th,
+.mui-table > tbody > tr > th,
+.mui-table > tfoot > tr > th,
+.mui-table > thead > tr > td,
+.mui-table > tbody > tr > td,
+.mui-table > tfoot > tr > td {
+  font-size: 12px;
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  min-width: 100px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.mui-table > thead > tr > th {
+  font-size: 13px;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 2px solid #ddd;
+}
+.mui-table > tbody > tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+.mui-table > tbody > tr:hover {
+  background-color: #f5f5f5;
+}
+/* 表格结束 */
+
+/* 解决搜索框需要点击两次才能弹出键盘开始 */
+.mui-search .mui-placeholder {
+  pointer-events: none;
+}
+/* 解决搜索框需要点击两次才能弹出键盘结束 */
+/*自定义button样式*/
+.mui-btn-default {
+  background-color: grey;
+}
+/*自定义button样式*/
+
+/*导航列表标题样式*/
+
+.mui-nav > .mui-collapse {
+  padding: 0px;
+}
+
+.mui-nav > .mui-collapse > .mui-navigate-right {
+  margin: 0px;
+  padding: 11px 15px;
+}
+
+.mui-nav > .mui-collapse > .mui-collapse-content {
+  margin: 0px;
+  padding: 0px;
+}
+
+.mui-nav .mui-collapse-content > .mui-table-view {
+  margin: 0px;
+}
+
+.mui-nav .mui-collapse-content > .mui-table-view > .mui-table-view-cell {
+  padding-left: 20px;
+  background-position: 20px 100%;
+}
+
+.mui-nav .mui-table-view-cell.mui-collapse.mui-active .mui-table-view-cell > a:not(.mui-btn).mui-active {
+  margin-left: -15px;
+  padding-left: 15px;
+}
+
+.wui-scroll-top.mui-scroll-wrapper {
+  top: 44px;
+}
+
+/* 滚动底部添加便宜 */
+.wui-scroll-bottom.mui-scroll-wrapper {
+  bottom: 55px;
+}
+
+.ui-wMobileTabs .ui-wMobileTabs .wui-scroll-bottom.mui-scroll-wrapper {
+  bottom: 0px;
+}
+
+/* 页签工具栏 */
+.wui-bar-tab .mui-tab-item {
+  color: #3cbaff;
+}
+
+.mui-bar-tab .mui-tab-item.mui-active,
+.mui-popover-action .mui-table-view-cell.mui-active {
+  color: #3cbaff;
+}
+
+.mui-bar-tab .mui-tab-item.btn-primary,
+.mui-popover-action .mui-table-view-cell.btn-primary {
+  color: #0062cc;
+}
+
+.mui-bar-tab .mui-tab-item.btn-inverse,
+.mui-popover-action .mui-table-view-cell.btn-inverse {
+  color: #333;
+}
+
+.mui-bar-tab .mui-tab-item.btn-default,
+.mui-popover-action .mui-table-view-cell.btn-default {
+  color: #3cbaff;
+}
+
+.mui-bar-tab .mui-tab-item.btn-success,
+.mui-popover-action .mui-table-view-cell.btn-success {
+  color: #4cd964;
+}
+
+.mui-bar-tab .mui-tab-item.btn-info,
+.mui-popover-action .mui-table-view-cell.btn-info {
+  color: #4cd964;
+}
+
+.mui-bar-tab .mui-tab-item.btn-warning,
+.mui-popover-action .mui-table-view-cell.btn-warning {
+  color: #f0ad4e;
+}
+
+.mui-bar-tab .mui-tab-item.btn-danger,
+.mui-popover-action .mui-table-view-cell.btn-danger {
+  color: #dd524d;
+}
+
+/*轮播图开始*/
+.ui-wSlider .mui-slider-indicator {
+  text-align: right;
+  bottom: 44px;
+  padding-right: 13px;
+}
+.mui-slider-indicator .mui-indicator {
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: none;
+  margin: 1px 2px;
+}
+.mui-slider-indicator .mui-active.mui-indicator {
+  width: 18px;
+  border-radius: 6px;
+  background: #fff;
+}
+.ui-wSlider .desc-text {
+  position: absolute;
+  bottom: 6px;
+  padding-left: 8px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  line-height: 1.6;
+  display: none;
+}
+
+/*轮播图结束*/
+
+/* 日程开始 */
+.calendar-list .mui-table-view-cell p {
+  padding: 0px;
+}
+
+.calendar-list .mui-table-view-cell h4 {
+  line-height: 22px;
+}
+
+/* 日程结束 */
+
+/* formbuilder start */
+.mui-bar-nav ~ .mui-content.mui-scroll-wrapper {
+  padding-bottom: 18px;
+}
+
+.form-content.mui-content {
+  background-color: #fff;
+}
+
+.formbuilder .mui-col-xs-12 {
+  width: 100%;
+}
+
+.formbuilder .mui-col-xs-11 {
+  width: 91.66666667%;
+}
+
+.formbuilder .mui-col-xs-10 {
+  width: 83.33333333%;
+}
+
+.formbuilder .mui-col-xs-9 {
+  width: 75%;
+}
+
+.formbuilder .mui-col-xs-8 {
+  width: 66.66666667%;
+}
+
+.formbuilder .mui-col-xs-7 {
+  width: 58.33333333%;
+}
+
+.formbuilder .mui-col-xs-6 {
+  width: 50%;
+}
+
+.formbuilder .mui-col-xs-5 {
+  width: 41.66666667%;
+}
+
+.formbuilder .mui-col-xs-4 {
+  width: 33.33333333%;
+}
+
+.formbuilder .mui-col-xs-3 {
+  width: 25%;
+}
+
+.formbuilder .mui-col-xs-2 {
+  width: 16.66666667%;
+}
+
+.formbuilder .mui-col-xs-1 {
+  width: 8.33333333%;
+}
+
+.formbuilder.mui-table-view-cell {
+  padding: 0px;
+  margin: 0px;
+}
+
+.formbuilder.form-group-seperate {
+  height: 7px;
+}
+
+.formbuilder.form-group-seperate:after {
+  height: 9px;
+  background-color: #eee;
+}
+
+.formbuilder > .control-label {
+  padding: 0px;
+  margin: 0px;
+}
+
+.formbuilder > .mui-navigate-right:not(.mui-btn),
+.formbuilder > .mui-table-view-cell:not(.mui-btn) {
+  padding: 0px;
+  margin: 0px;
+}
+
+.formbuilder > .mui-navigate-right > .control-label,
+.formbuilder > .mui-table-view-cell > .control-label {
+  display: inline-block;
+  padding: 11px 15px;
+}
+
+.formbuilder > .mui-navigate-right > .form-control {
+  text-align: right;
+  display: inline-block;
+  padding: 0px 45px 0px 0px;
+  border-width: 0px;
+  margin: 0px;
+}
+
+.formbuilder > .mui-table-view-cell > .form-control {
+  text-align: right;
+  display: inline-block;
+  padding: 0px 15px 0px 0px;
+  border-width: 0px;
+  margin: 0px;
+}
+
+.formbuilder > .inline-editable > .form-control {
+  border-width: 1px;
+  padding-right: 15px;
+}
+
+.formbuilder > .mui-navigate-right > .form-control:focus,
+.formbuilder > .mui-table-view-cell > .form-control:focus {
+  text-align: left;
+}
+
+.formbuilder input[readonly],
+.formbuilder textarea[readonly] {
+  /* 	background: #eee; */
+}
+
+/* formbuilder end */
+
+/* 页签展示开始 */
+.wui-tab-segmented {
+  padding: 5px;
+}
+
+.wui-tab-segmented-content > .mui-control-content {
+  position: absolute;
+  top: 90px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+}
+
+.wui-tab-segmented-content > .mui-control-content > .panel > .mui-bar-nav {
+  top: 47px;
+}
+
+.wui-tab-segmented-content > .mui-control-content > .panel > .mui-bar-nav ~ .mui-content {
+  padding-top: 0px;
+}
+
+.wui-tab-segmented-content > .mui-control-content > .panel > .mui-bar-nav > .mui-action-back {
+  display: none;
+}
+
+.wui-bar-tab-content > .mui-control-content {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  bottom: 50px;
+  left: 0;
+  overflow-y: auto;
+}
+
+.wui-bar-tab-content > .mui-control-content > .panel > .mui-bar-nav ~ .mui-content {
+  padding-top: 0px;
+}
+
+.wui-bar-tab-content > .mui-control-content > .panel > .mui-bar-nav > .mui-action-back {
+  display: none;
+}
+
+.wui-off-canvas-content > .mui-control-content {
+  background-color: #efeff4;
+  position: absolute;
+  top: 44px;
+  right: 0;
+  bottom: 0px;
+  left: 0;
+  overflow-y: auto;
+}
+
+.ui-wMobileTabs .mui-off-canvas-left {
+  /* 	display: none; */
+}
+
+.ui-wMobileTabs .mui-off-canvas-left.mui-active {
+}
+
+.wui-off-canvas .title {
+  margin: 35px 15px 10px;
+}
+
+.wui-off-canvas .mui-off-canvas-left {
+  color: #fff;
+}
+
+.mui-icon.mui-pull-left ~ .mui-icon.mui-pull-left {
+  margin-left: 10px;
+}
+
+.ui-wMobileTabs .mui-off-canvas-left .title {
+  font-size: 24px;
+}
+
+.ui-wMobileTabs .mui-off-canvas-left .mui-table-view ~ .content {
+  margin: 10px 15px 35px;
+  color: #bbb;
+  text-indent: 1em;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+/* 根据wui-action-dragging处理侧滑背景透视问题 */
+.mui-off-canvas-wrap aside.mui-off-canvas-left,
+.mui-off-canvas-wrap aside.mui-off-canvas-right {
+  opacity: 0;
+}
+
+.mui-off-canvas-wrap.wui-off-canvas-active aside.mui-off-canvas-left,
+.mui-off-canvas-wrap.wui-off-canvas-active aside.mui-off-canvas-right {
+  opacity: 1;
+}
+
+.ui-wMobileTabs .ui-wMobileTabs > .wui-tab-segmented {
+  padding: 0px;
+}
+
+.ui-wMobileTabs .ui-wMobileTabs > .wui-tab-segmented-content > .mui-control-content {
+  top: 44px;
+}
+
+/* 页签展示结束 */
+.mui-content .mui-table-view-cell .mui-navigate-right {
+  height: 35px;
+}

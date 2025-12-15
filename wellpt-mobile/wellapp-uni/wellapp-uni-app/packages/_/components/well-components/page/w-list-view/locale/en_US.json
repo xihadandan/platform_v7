@@ -1,0 +1,12 @@
+{
+  "WidgetListView": {
+    "select": "Search",
+    "filter": "Filter",
+    "multiple": "Multiple selection",
+    "defaultSort": "Default sorting",
+    "sort": "Sort",
+    "ascSort": "Sort {name} in ascending order",
+    "descSort": "Sort {name} in descending order",
+    "errorWorkflowIdExplain": "Process analysis error, please confirm the correctness of the data process configuration"
+  }
+}

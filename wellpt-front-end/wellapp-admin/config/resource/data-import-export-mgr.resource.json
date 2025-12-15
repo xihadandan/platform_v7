@@ -1,0 +1,93 @@
+{
+  "js": {
+    "AppDataImportExportCommon": {
+      "path": "/data-import-export-mgr/AppDataImportExportCommon",
+      "name": "平台应用_数据导入导出管理_公共JS二开",
+      "dependencies": ["bootstrap-datetimepicker", "layDatePro", "wSelect2", "global", "system-admin"]
+    },
+    "AppDataExportWidgetDevelopment": {
+      "path": "/data-import-export-mgr/AppDataExportWidgetDevelopment",
+      "name": "平台应用_数据导入导出管理_数据导出页二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "bootstrap-datetimepicker",
+        "layDatePro",
+        "wSelect2",
+        "global",
+        "system-admin",
+        "AppDataImportExportCommon"
+      ]
+    },
+    "AppDataImportWidgetDevelopment": {
+      "path": "/data-import-export-mgr/AppDataImportWidgetDevelopment",
+      "name": "平台应用_数据导入导出管理_数据导入页二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "bootstrap-datetimepicker",
+        "layDatePro",
+        "wSelect2",
+        "global",
+        "system-admin",
+        "AppDataImportExportCommon"
+      ]
+    },
+    "AppImportLogWidgetDevelopment": {
+      "path": "/data-import-export-mgr/AppImportLogWidgetDevelopment",
+      "name": "平台应用_数据导入导出管理_数据导入记录详情页_HTML二开",
+      "dependencies": ["HtmlWidgetDevelopment", "global", "system-admin",
+        "AppDataImportExportCommon"
+      ]
+    },
+    "AppExportLogWidgetDevelopment": {
+      "path": "/data-import-export-mgr/AppExportLogWidgetDevelopment",
+      "name": "平台应用_数据导入导出管理_数据导出记录详情页_HTML二开",
+      "dependencies": ["HtmlWidgetDevelopment", "global", "system-admin",
+        "AppDataImportExportCommon"
+      ]
+    },
+    "AppDataExportRecordListDevelopment": {
+      "path": "/data-import-export-mgr/AppDataExportRecordListDevelopment",
+      "name": "平台应用_数据导入导出管理_数据导出记录_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment",
+        "AppDataImportExportCommon"
+      ]
+    },
+    "AppDataImportRecordListDevelopment": {
+      "path": "/data-import-export-mgr/AppDataImportRecordListDevelopment",
+      "name": "平台应用_数据导入导出管理_数据导入记录_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment",
+        "AppDataImportExportCommon"
+      ]
+    },
+    "AppDataExportTaskListDevelopment": {
+      "path": "/data-import-export-mgr/AppDataExportTaskListDevelopment",
+      "name": "平台应用_数据导入导出管理_数据导出任务_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment",
+        "AppDataImportExportCommon"
+      ]
+    },
+    "AppDataImportTaskListDevelopment": {
+      "path": "/data-import-export-mgr/AppDataImportTaskListDevelopment",
+      "name": "平台应用_数据导入导出管理_数据导入任务_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment",
+        "AppDataImportExportCommon"
+      ]
+    },
+    "AppDataTaskLogListDevelopment": {
+      "path": "/data-import-export-mgr/AppDataTaskLogListDevelopment",
+      "name": "平台应用_数据导入导出管理_任务页查看日志列表_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment",
+        "AppDataImportExportCommon"
+      ]
+    },
+    "AppExportLogSourceWidgetDevelopment": {
+      "path": "/data-import-export-mgr/AppExportLogSourceWidgetDevelopment",
+      "name": "平台应用_数据导入导出管理_数据源详情页_HTML二开",
+      "dependencies": ["HtmlWidgetDevelopment", "global", "system-admin","AppDataImportExportCommon"]
+    }
+  },
+  "template": {},
+  "css": {}
+}

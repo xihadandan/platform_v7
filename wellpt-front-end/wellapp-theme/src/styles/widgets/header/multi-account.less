@@ -1,0 +1,514 @@
+.account{
+	width: 100%;
+}
+
+.account ul{
+	list-style: none;
+	margin: 0;
+	padding: 0 37px;
+}
+
+.account ul li{
+	display: inline-block;
+	//width: 100%;
+	text-align: left;
+	padding: 0;
+	margin: 0;
+	padding-top: 24px;
+	margin-left: 100px;
+	// border-bottom: 1px solid #cccccc;
+}
+.account ul li>label{
+	position: absolute;
+	padding-top: 8px;
+  left: 18px;
+}
+.account ul .select{
+	// border-bottom: 1px solid #0078d7;
+}
+
+.account ul .username-li, .account ul .password-li, .account ul .image-verify-li, .account ul .sms-verify-li{
+	padding : 7px 3px 7px 3px;
+}
+
+.account ul .username-li label {
+	left: 70px;
+}
+.account ul .password-li label {
+	left: 97px;
+}
+.account ul .image-verify-li label {
+	left: 55px;
+}
+.account ul .sms-verify-li label {
+	left: 55px;
+}
+
+.account ul li input[type="text"], .account ul li input[type="password"]{
+	height: 36px;
+	background:transparent;
+	// border:none;
+	font-size: 14px;
+	color: #212121;
+	// padding-left: 34px;
+}
+input:focus { 
+	outline: none;
+}
+
+.account ul .username-li input[type="text"]{
+	width: 389px;
+	// background : url(/static/js/pt/login/right/imgs/username.svg) no-repeat 0 0;
+	// background-size : 24px 24px;
+	// background-position: 0 center;
+}
+
+.account ul .username-li input[type="text"]:focus{
+	// background : url(/static/js/pt/login/right/imgs/username-select.svg) no-repeat 0 0;
+	// background-size : 24px 24px;
+	// background-position: 0 center;
+}
+
+.account ul .password-li input[type="password"], .account ul .password-li input[type="text"]{
+	width: 389px;
+	// background : url(/static/js/pt/login/right/imgs/password.svg) no-repeat 0 0;
+	// background-size : 24px 24px;
+	// background-position: 0 center;
+}
+
+.account ul .password-li input[type="password"]:focus, .account ul .password-li input[type="text"]:focus{
+	// background : url(/static/js/pt/login/right/imgs/password-select.svg) no-repeat 0 0;
+	// background-size : 24px 24px;
+	// background-position: 0 center;
+}
+
+.account ul .password-li a{
+	text-decoration: none;
+	display: inline-block;
+	vertical-align:middle;
+	width: 24px;
+	height: 24px;
+	margin: 0;
+	padding: 0;
+	background : url(/static/js/pt/login/right/imgs/password2.svg) no-repeat 0 0;
+	background-size : 24px 24px;
+}
+
+.account ul .password-li a:hover{
+	background : url(/static/js/pt/login/right/imgs/password3.svg) no-repeat 0 0;
+	background-size : 24px 24px;
+}
+
+.account ul .password-li .aA{
+	background : url(/static/js/pt/login/right/imgs/password4.svg) no-repeat 0 0;
+	background-size : 24px 24px;
+}
+
+.account ul .password-li .aA:hover{
+	background : url(/static/js/pt/login/right/imgs/password5.svg) no-repeat 0 0;
+	background-size : 24px 24px;
+}
+
+
+.account ul .image-verify-li input[type="text"]{
+	width: 310px;
+	// background : url(/static/js/pt/login/right/imgs/image-verify.svg) no-repeat 0 0;
+	// background-size : 24px 24px;
+	// background-position: 0 center;
+	margin-bottom: 20px;
+}
+
+.account ul .image-verify-li input[type="text"]:focus{
+	// background : url(/static/js/pt/login/right/imgs/image-verify-select.svg) no-repeat 0 0;
+	// background-size : 24px 24px;
+	// background-position: 0 center;
+	margin-bottom: 20px;
+}
+
+.account ul .image-verify-li span{
+	cursor: pointer;
+	display: inline-block;
+	height: 36px;
+	line-height:36px;
+	margin: 0;
+	padding: 0;
+}
+
+.account ul .image-verify-li span img{
+	display: inline-block;
+	vertical-align:middle;
+	width: 74px;
+	height: 24px;
+}
+
+.account ul .sms-verify-li input[type="text"]{
+	width: 316px;
+	// background : url(/static/js/pt/login/right/imgs/sms-verify.svg) no-repeat 0 0;
+	// background-size : 24px 24px;
+	// background-position: 0 center;
+}
+
+.account ul .sms-verify-li input[type="text"]:focus{
+	// background : url(/static/js/pt/login/right/imgs/sms-verify-select.svg) no-repeat 0 0;
+	// background-size : 24px 24px;
+	// background-position: 0 center;
+}
+
+.account ul .sms-verify-li span{
+	cursor: pointer;
+	display: inline-block;
+	height: 16px;
+	line-height: 16px;
+	color: #0078d7;
+	font-size: 14px;
+}
+
+.account ul .sms-verify-li .spanA{
+	color: #9e9e9e;
+}
+
+.account ul .sms-verify-li span:hover, .account ul .sms-verify-li span:active{
+	color: #4da1e3;
+}
+
+.account ul .button-li{
+	border:0;
+	padding-top: 42px;
+	height: 36px;
+}
+
+.account ul .button-li button{
+	width:100%;
+	height: 100%;
+	background-color:#0078d7;
+	border: 1px solid #0078d7;
+	font-size: 16px;
+	color : #fff;
+	display : inline-block;
+	text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    letter-spacing:8px;
+}
+
+.account ul .button-li button:hover{
+	background-color:#4da1e3;
+	border: 1px solid #4da1e3;
+}
+
+.account ul .button-li button:active{
+	background-color:#0070bc;
+	border: 1px solid #0070bc;
+}
+
+.account ul .operating-li{
+	border:0;
+	padding : 20px 0 6px 0;
+}
+
+.account ul .operating-li a{
+	float: left;
+	display : inline-block;
+	width:auto;
+	height:16px;
+	background : url(/static/js/pt/login/right/imgs/uncheck.svg) no-repeat 0 0;
+	background-size : 16px 16px;
+	background-position: 0 center;
+	cursor: pointer;
+	padding-left: 24px;
+	font-size: 12px;
+	padding-right: 16px;
+	text-decoration: none;
+}
+
+.account ul .operating-li .check{
+	background : url(/static/js/pt/login/right/imgs/check.svg) no-repeat 0 0;
+	background-size : 16px 16px;
+	background-position: 0 center;
+}
+
+.account ul .operating-li .forget-password{
+	background:#fff;
+	font-size: 12px;
+	float: right;
+	color:#0078d7;
+	padding : 0;
+}
+
+.account ul .operating-li .forget-password:hover, .account ul .operating-li .forget-password:active{
+	color:#4da1e3;
+}
+
+.error-div{
+	padding : 0 37px;
+	line-height:32px;
+	background-color: #ffebec;
+	font-size: 12px;
+	color: #e80000;
+	vertical-align: middle;
+}
+
+.hardware ul{
+	list-style: none;
+	margin: 0;
+	padding: 0 37px;
+}
+
+.hardware ul li{
+	display: inline-block;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.hardware ul .image-li{
+	margin-top: 12px;
+	height: 100px;
+	background : url(/static/js/pt/login/right/imgs/hardware.png) no-repeat 0 0;
+	background-size : 100px 100px;
+	background-position: center 0;
+}
+
+.hardware ul .desc-li{
+	padding-top: 10px;
+	color: #9e9e9e;
+	font-size: 12px;
+	text-align: center;
+}
+
+.hardware ul .button-li{
+	padding : 25px 0 0 0;
+	height: 36px;
+}
+
+.hardware ul .button-li button{
+	width:100%;
+	height: 100%;
+	background-color:#0078d7;
+	border: 1px solid #0078d7;
+	font-size: 16px;
+	color : #fff;
+	display : inline-block;
+	text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    letter-spacing:8px;
+}
+
+.hardware ul .button-li button:hover{
+	background-color:#4da1e3;
+	border: 1px solid #4da1e3;
+}
+
+.hardware ul .button-li button:active{
+	background-color:#0070bc;
+	border: 1px solid #0070bc;
+}
+
+.code ul{
+	list-style: none;
+	margin: 0;
+	padding: 0 37px;
+}
+
+.code ul li{
+	display: inline-block;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.code ul .image-li{
+	margin-top: 12px;
+	height: 126px;
+	line-height : 126px;
+	text-align:center;
+	background : url(/static/js/pt/login/right/imgs/code.png) no-repeat 0 0;
+	background-size : 126px 126px;
+	background-position: center 0;
+}
+
+.code ul .image-li img{
+	display: inline-block;
+	vertical-align: middle;
+	width: 90px;
+	height: 90px;
+	
+}
+
+.code ul .desc-li{
+	padding-top: 10px;
+	color: #9e9e9e;
+	font-size: 12px;
+	text-align: center;
+}
+
+.code ul .download-li{
+	padding : 21px 0 6px 0;
+	text-align: center;
+}
+
+.code ul .download-li a{
+	display : inline-block;
+	width:auto;
+	color:#0078d7;
+	cursor: pointer;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.code ul .download-li a:hover, .code ul .download-li a:active{
+	color:#4da1e3;
+}
+
+.bootbox .modal-default:not(.modal-lg) .bootbox-body {
+	.dlg_bind_account_list {
+		table tr td {
+			border-top: 0px;
+			padding: 0 0 16px 0;
+		}
+		table tr td.normal-padding {
+			padding-bottom: 0px;
+			div {
+				padding: 8px;
+				border: 1px dashed #ccc;
+				button {
+					font-size: @font-size-base;
+					color: rgb(102, 102, 102);
+				}
+			}
+		}
+		table tr td .accout-row {
+			height: 80px;
+			padding: 5px 0 5px 10px;
+			border: 1px solid #ccc;
+			border-left: 5px solid #ccc;
+
+			&:hover {
+				border: 1px solid @primary-color;
+				border-left: 5px solid @primary-color;
+			}
+		}
+
+		i.ui-wIcon {
+			color: @primary-color;
+		}
+
+		img {
+			line-height: 21px;
+			width: 21px;
+			height: 21px;
+			border-radius: 50%;
+		}
+
+		.account-name-container {
+			position: relative;
+			top: -4px;
+			display: inline-block;
+		}
+	
+		.master-account-flag {
+			width: 50px;
+			min-width: 50px;
+			height: 26px;
+			line-height: 26px;
+			font-size: 12px;
+			padding: 0;
+		}
+	
+		.set-master-account {
+			margin-right: 1em;
+		}
+
+		.unbind-account {
+			margin-right: 0.5em;
+		}
+	
+		.copy-addr {
+			color: @primary-color;
+		}
+
+		.account-binding-demo {
+			width: 100%;
+			height: 200px;
+			background : url(/static/images/multi-account/account-binding-demo.png) no-repeat 0 0;
+			background-size: 100% 200px;
+		}
+	}
+
+	.dlg_add_bind_account {
+		// 标题设置弹窗 - 顶部提示信息
+		.tip {
+			.size(100%, 42px);
+
+			margin-bottom: 15px;
+			padding: 0 10px;
+			line-height: 40px;
+			font-size: @font-size-base;
+			color: @text-color;
+			background: @background-primary-light;
+			border: @border-default-primary-light;
+			border-radius: @border-radius-base;
+
+			i {
+				margin-right: 10px;
+				line-height: 40px;
+				font-size: @font-size-xl;
+				color: @text-color-primary;
+			}
+
+			i.icon-ptkj-dacha {
+				font-size: 14px;
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+.modal-dialog .dlg_add_bind_account .formbuilder .label-formbuilder {
+	text-align: right;
+	padding-right: 20px;
+}
+
+.ui-wHeader .ui-wHeader-mainNavbar .navbar-nav > li {
+	.switchAccountWrap {
+		position: absolute;
+    top: 80;
+    right: 0;
+    width: 200px;
+    z-index: 1000;
+    display: none;
+    background: #fff;
+		box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 10px 0px;
+
+		.account-info-list {
+			max-height: 523px;
+			overflow-x: auto;
+			overflow-y: auto;
+
+			li {
+				border-bottom: @border-default-light;
+				&:hover {
+					background: @dropdown-hover-item-background;
+				}
+			}
+			i.ui-wIcon {
+				color: @primary-color;
+			}
+			img {
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+			}
+			.account-info {
+				width: 150px;
+				text-align: left;
+
+				i.current-user-icon {
+					color: @primary-color;
+				}
+			}
+		}
+	}
+	 
+}

@@ -1,0 +1,37 @@
+.widget-form.ant-form-horizontal {
+  .ant-row.ant-form-item[w-id] {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 0px var(--w-padding-xs);
+    margin-bottom: 19px;
+    &:last-child {
+      margin-bottom: 0px;
+    }
+    &.ant-form-item-with-help {
+      margin-bottom: 0px;
+    }
+    .ant-form-item-label {
+      align-self: center;
+      line-height: normal;
+      white-space: normal;
+      > label {
+        > button:has(.anticon-info-circle) {
+          color: var(--w-tip-icon-color);
+          margin-left: -5px;
+        }
+      }
+    }
+  }
+}
+
+.ant-form-item.widget-input,
+.ant-form-item.widget-input-number,
+.ant-form-item.widget-select,
+.ant-form-item.widget-switch,
+.ant-form-item.widget-datepicker,
+.ant-form-item.widget-checkbox,
+.ant-form-item.widget-radio {
+  .ant-form-item-label {
+    text-overflow: ellipsis;
+  }
+}

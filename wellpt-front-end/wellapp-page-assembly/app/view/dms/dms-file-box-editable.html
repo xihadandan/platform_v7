@@ -1,0 +1,17 @@
+<div class="file-box col-lg-2 col-md-3 file-box-editable">
+	<div class="file" uuid="${uuid}">
+		<div class="icon">
+			{@if contentType == "application/folder"}<i class="iconfont icon-ptkj-wenjianjia-guan folder-color"></i> {@else if isImage == true} <a href="#"
+																																				   class="thumbnail"> <img src="${ctx}/repository/file/mongo/download?fileID=${dataUuid}&preview=true" />
+		</a> {@else if contentType != "application/folder"} {@if iconClass != null} <i class="${iconClass}"></i> {@else} <i
+				class="iconfont icon-ptkj-tongyongfujian other-color"></i> {@/if} {@/if}
+		</div>
+		<div class="file-name-editable">
+			<div>
+				<div class="pull-left">
+					<input type="text" name="file-name-editable" value="${basename}" ext="${extension}" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

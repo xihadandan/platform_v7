@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="orgGroupListKeywordQuery">
+        <![CDATA[
+		from OrgGroupEntity
+		 where 1=1
+		 <if isNotBlank( system )>
+		    and system = :system
+		 </if>
+		  <if isNotBlank( tenant )>
+		    and tenant = :tenant
+		 </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+		 <if isNotBlank( orderBy )>
+			 ${orderBy}
+		 </if>
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

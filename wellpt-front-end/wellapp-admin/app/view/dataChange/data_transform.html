@@ -1,0 +1,46 @@
+<form action="" id="trans_module_form" style="margin-top: 15px;">
+    <input type="hidden" id="uuid" name="uuid" />
+    <div class="well-form form-horizontal">
+        <div class="form-group">
+            <label class="well-form-label control-label">名称</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">ID</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="id" name="id">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">编号</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="code" name="code">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">源数据类型</label>
+            <div class="well-form-control">
+                <input type="text" id="sourceId" name="sourceId"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">目标数据类型</label>
+            <div class="well-form-control">
+                <input type="text" id="destinationId" name="destinationId"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">规则XSL</label>
+            <div class="well-form-control">
+                <textarea class="form-control" id="xsl" name="xsl" style="width: 100%" rows="10"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:30px;">
+        <div class="col-sm-12 text-center">
+            <button type="button" class="well-btn w-btn-primary" id="transform_btn_save">保存</button>
+        </div>
+    </div>
+</form>

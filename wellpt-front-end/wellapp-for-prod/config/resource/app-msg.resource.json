@@ -1,0 +1,68 @@
+{
+  "js": {
+    "AppMsgHeaderWidgetDevelopment": {
+      "path": "message/AppMsgHeaderWidgetDevelopment",
+      "name": "平台应用_头部组件二开_消息模块",
+      "dependencies": ["HeaderWidgetDevelopment"]
+    },
+    "AppFrontMsgListDevelopment": {
+      "path": "message/AppFrontMsgListDevelopment",
+      "name": "平台应用_消息管理_前端消息列表_二开",
+      "dependencies": ["dependencyBootstrapTableModule", "PanelWidgetDevelopment", "global", "system-admin", "multiOrg"]
+    },
+    "QuickSendMsgDialog": {
+      "path": "message/QuickSendMsgDialog",
+      "name": "平台应用_平台消息_发送消息弹窗",
+      "dependencies": ["layer", "ckeditor", "multiOrg", "wellfileupload"]
+    },
+    "AppOutboxMsgViewDevelopment": {
+      "path": "message/AppOutboxMsgViewDevelopment",
+      "name": "平台应用_视图组件二开_消息发件箱",
+      "dependencies": ["ViewDevelopmentBase", "ckeditor", "multiOrg", "wellfileupload", "alerts", "global", "appContext"]
+    },
+    "AppMsgCategoryDevelopment": {
+      "path": "message/AppMsgCategoryDevelopment",
+      "name": "平台应用_消息管理_消息分类_二开",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "ztree",
+        "global",
+        "system-admin",
+        "wCommonPictureLib",
+        "minicolors"
+      ]
+    },
+    "mui.EditMessage": {
+      "path": "message/mui.EditMessage",
+      "name": "平台应用_新建消息",
+      "dependencies": ["mui.AppOutboxMsgViewDevelopment", "mui-unit"]
+    },
+    "PopSendMsgDialog": {
+      "path": "message/PopSendMsgDialog",
+      "name": "平台应用_平台消息_立即弹窗发送消息弹窗",
+      "dependencies": ["QuickSendMsgDialog"]
+    },
+    "mui.AppOutboxMsgViewDevelopment": {
+      "path": "message/mui.AppOutboxMsgViewDevelopment",
+      "name": "平台应用_视图组件二开_手机消息发件箱",
+      "dependencies": ["MobileListDevelopmentBase", "mui-unit", "mui-filepreview", "mui-fileupload"]
+    },
+    "AppFrontMsgCategoryDevelopment": {
+      "path": "message/AppFrontMsgCategoryDevelopment",
+      "name": "平台应用_消息管理_前端消息分类_二开",
+      "dependencies": ["dependencyBootstrapTableModule", "HtmlWidgetDevelopment", "global", "system-admin"]
+    },
+    "mui.AppInboxMsgViewDevelopment": {
+      "path": "message/mui.AppInboxMsgViewDevelopment",
+      "name": "平台应用_视图组件二开_手机消息收件箱",
+      "dependencies": ["MobileListDevelopmentBase", "mui.AppOutboxMsgViewDevelopment", "mui-unit"]
+    },
+    "AppInboxMsgViewDevelopment": {
+      "path": "message/AppInboxMsgViewDevelopment",
+      "name": "平台应用_视图组件二开_消息收件箱",
+      "dependencies": ["AppOutboxMsgViewDevelopment"]
+    }
+  }
+}

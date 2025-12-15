@@ -1,0 +1,11 @@
+{
+  "js": {
+    "AppLoginPageConfigWidgetDevelopment": {
+      "path": "/login-conf-mgr/AppLoginPageConfigWidgetDevelopment",
+      "name": "平台应用_基础数据管理_登录页配置二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "summernote", "global", "system-admin"]
+    }
+  },
+  "template": {},
+  "css": {}
+}

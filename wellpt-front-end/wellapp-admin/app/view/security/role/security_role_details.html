@@ -1,0 +1,108 @@
+<div class="container-fluid">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#role_basic_info" aria-controls="role_basic_info" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+    </li>
+    <li role="presentation">
+      <a href="#role_privilege_info" aria-controls="role_privilege_info" role="tab" data-toggle="tab" aria-expanded="true">角色/权限</a>
+    </li>
+    <li role="presentation">
+      <a href="#privilege_result_info" aria-controls="privilege_result_info" role="tab" data-toggle="tab" aria-expanded="true">权限结果</a>
+    </li>
+    <li role="presentation" id="role_used_info_li">
+      <a href="#role_used_info" aria-controls="role_used_info" role="tab" data-toggle="tab" aria-expanded="true">分配信息</a>
+    </li>
+  </ul>
+
+  <div class="tab-content" style="padding: 15px 0px">
+    <div role="tabpanel" class="tab-pane active" id="role_basic_info" style="padding-top: 10px">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label required">名称</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" name="name" />
+            <input type="hidden" id="uuid" name="uuid" />
+            <input type="hidden" id="recVer" name="recVer" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id" class="col-sm-2 control-label required">ID</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="id" name="id" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="code" class="col-sm-2 control-label required">编号</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="code" name="code" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="appId" class="col-sm-2 control-label">归属</label>
+          <div class="col-sm-10">
+            <input type="hidden" class="form-control" id="appId" name="appId" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="appId" class="col-sm-2 control-label">角色成员</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="memberNames" name="memberNames" />
+            <input type="hidden" class="form-control" id="memberIds" name="memberIds" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">备注</label>
+          <div class="col-sm-10">
+            <textarea rows="3" class="form-control" id="remark" name="remark"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="role_privilege_info" role="tabpanel" class="tab-pane form-horizontal">
+      <div class="col-sm-6" style="border-right: 1px solid #ededed">
+        <p>选择角色/权限：</p>
+        <div class="keyword_search_toolbar">
+          <div class="keyword-search-wrap pull-left">
+            <span class="search-icon">
+              <i class="iconfont icon-ptkj-sousuochaxun"></i>
+            </span>
+            <input class="form-control" type="text" placeholder="关键字" id="searchRolePrivilegeTree" />
+            <div class="close-icon" style="display: none">
+              <i class="iconfont icon-ptkj-dacha"></i>
+            </div>
+          </div>
+          <button class="well-btn w-btn-primary btn-query" id="searchRolePrivilegeTreeBtn">查询</button>
+        </div>
+
+        <ul class="ztree role_privilege_tree"></ul>
+      </div>
+      <div class="col-sm-6">
+        <p>已选角色/权限：</p>
+        <ul id="selectedRolePrivilege"></ul>
+      </div>
+    </div>
+
+    <div id="privilege_result_info" role="tabpanel" class="tab-pane" style="padding-top: 10px">
+      <div class="form-group">
+        <div class="col-sm-offset-1 col-sm-11">
+          <ul class="ztree privilege_result_tree"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="role_used_info" role="tabpanel" class="tab-pane" style="padding-top: 10px">
+      <div class="form-group">
+        <div class="col-sm-12">
+          <table id="table_role_used_info"></table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 text-center" style="margin-top: 10px">
+      <button type="button" class="btn btn-primary" id="btn_save_role">保存</button>
+    </div>
+  </div>
+</div>

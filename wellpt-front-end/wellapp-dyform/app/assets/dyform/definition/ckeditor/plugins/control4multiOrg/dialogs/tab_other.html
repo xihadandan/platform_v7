@@ -1,0 +1,365 @@
+<table>
+  <tr>
+    <td class="Label">关联角色</td>
+    <td class="value bootstrap-switch">
+      <p>
+        <span style="margin: auto">
+          <input type="checkbox" value="1" name="relativeRoleNamesSwitcher" id="relativeRoleNamesSwitcher" class="switch" />
+          <label for="relativeRoleNamesSwitcher"></label>
+        </span>
+        <span id="relativeRoleNamesInput" style="display: inline-block; width: 70%; margin-left: 16px">
+          <input type="text" name="relativeRoleNames" id="relativeRoleNames" />
+          <input type="hidden" name="relativeRoleUuids" id="relativeRoleUuids" />
+        </span>
+      </p>
+      <p style="font-size: 8px; margin-top: 8px">
+        开启关联角色后(必须从后台角色中选择1个)，用户在前端表单中就可以为角色配置成员，等同于管理员在后台配置。
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td class="Label">字段类型</td>
+    <td class="value">
+      <!-- <input type="checkbox" value="" name="dbDataType" id="dbDataType"/> <label for="dbDataType">大字段</label> -->
+      <select name="dbDataType" id="dbDataType"></select>
+      <br />
+      (
+      <font color="red">字段类型要变更为大字段类型时,须先删除原字段，保存表单，然后再把字段添加进来</font>
+      )
+    </td>
+  </tr>
+  <tr>
+    <td class="Label">
+      显示值字段
+      <br />
+    </td>
+    <td class="value">
+      <select name="realDisplay_display" id="realDisplay_display">
+        <option value="">--请选择--</option>
+      </select>
+    </td>
+  </tr>
+</table>
+<div class="more-split">
+  <div class="text">
+    更多
+    <i class="iconfont icon-ptkj-xianmiaoshuangjiantou-xia"></i>
+  </div>
+</div>
+<table>
+  <tr>
+    <td class="Label">返回值格式</td>
+    <td class="value">
+      <input type="radio" name="valueFormat" value="all" id="valueFormat_1" />
+      <label for="valueFormat_1">完整格式</label>
+      <input type="radio" name="valueFormat" value="justId" checked="checked" id="valueFormat_2" />
+      <label for="valueFormat_2">仅组织ID</label>
+    </td>
+  </tr>
+  <tr id="tr_onlyreadUrl">
+    <td class="Label">标识地址</td>
+    <td class="value">
+      <input type="text" id="onlyreadUrl" name="onlyreadUrl" />
+      <br />
+      参数格式${fieldName},fieldName为表单字段名称。示例：https://www.baidu.com?pa=${pa}
+    </td>
+  </tr>
+</table>
+<div class="label-title">可选内容设置</div>
+<table>
+  <tr>
+    <td class="Label">
+      <font style="color: red">*</font>
+      可选的组织选择项
+      <div id="typeListButtons">
+        <button type="button" id="typeListSelectAll" class="well-btn w-btn-link well-btn-sm">全选</button>
+        <button type="button" id="typeListCancelSelectAll" class="well-btn w-btn-link well-btn-sm">全取消</button>
+      </div>
+    </td>
+    <td class="value" id="typeListTd"></td>
+  </tr>
+  <tr>
+    <td class="Label">
+      <font style="color: red">*</font>
+      可选的节点类型
+    </td>
+    <td class="value" id="selectTypeListTd"></td>
+  </tr>
+  <tr>
+    <td class="Label">组织树是否允许多选</td>
+    <td class="value">
+      <input type="radio" name="mutiSelect" value="true" checked="checked" id="mutiSelect_1" />
+      <label for="mutiSelect_1">是</label>
+      <input type="radio" name="mutiSelect" value="false" id="mutiSelect_2" />
+      <label for="mutiSelect_2">否</label>
+    </td>
+  </tr>
+</table>
+<div class="more-split">
+  <div class="text">
+    更多
+    <i class="iconfont icon-ptkj-xianmiaoshuangjiantou-xia"></i>
+  </div>
+</div>
+<table>
+  <tr>
+    <td class="Label">默认组织选择项</td>
+    <td class="value" id="defaultTypeListTd"></td>
+  </tr>
+  <tr>
+    <td class="Label">
+      默认展现样式
+      <div class="w-property-help show-type-help-popup">
+        <i class="iconfont icon-ptkj-xinxiwenxintishi"></i>
+        <div class="w-property-help-popup">
+          <p>1、人员列表的展现样式，仅“可选的组织节点类型”选中“人员”时才存在</p>
+          <p>2、对每个组织选择项，从组织树和人员列表中，选择1种作为默认展现样式</p>
+          <p>3、当组织选择项只支持1种展现样式时，即为默认，无需选择</p>
+        </div>
+      </div>
+    </td>
+    <td class="value">
+      <div>
+        组织树：
+        <span
+          id="defaultTreeStyle"
+          style="margin-left: 1em; white-space: normal; display: inline-block; vertical-align: middle; width: calc(100% - 80px)"
+        ></span>
+      </div>
+      <div>
+        人员列表：
+        <span
+          id="defaultListStyle"
+          style="white-space: normal; display: inline-block; vertical-align: middle; width: calc(100% - 80px)"
+        ></span>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td class="Label">过滤ID</td>
+    <td class="value">
+      <input type="text" value="" name="filterCondition" id="filterCondition" />
+      <br />
+      <span class="more-split">
+        <a class="text" style="position: static" id="filterConditionTip">查看参数说明</a>
+      </span>
+    </td>
+  </tr>
+</table>
+<div class="label-title">选中内容设置</div>
+<table>
+  <tr>
+    <td class="Label">
+      组织节点显示
+      <div class="w-property-help show-type-help-popup">
+        <i class="iconfont icon-ptkj-xinxiwenxintishi"></i>
+        <div class="w-property-help-popup">
+          <p>1、智能全路径：节点显示为全路径，但保存时，会对所有选中数据的路径，</p>
+          <p>智能过滤掉前2级路径（组织版本/组织版本下的一级节点）相同的内容</p>
+          <p>2、节点简称：节点显示为简称（在组织版本中配置）</p>
+          <p>示例</p>
+          <p>选中节点：部门经理（组织版本1/单位1/财务部/部门经理）、部门经理（组织版本1/单位2/人事部/部门经理）</p>
+          <p>智能全路径的节点显示：单位1/财务部/部门经理、单位2/人事部/部门经理</p>
+          <p>节点简称：单位1财务经理、单位2人事经理</p>
+        </div>
+      </div>
+    </td>
+    <td class="value">
+      <!-- <input type="radio" name="nameDisplayMethod" value="0" /> 节点名称 -->
+      <input type="radio" name="nameDisplayMethod" value="1" checked="checked" id="nameDisplayMethod_1" />
+      <label for="nameDisplayMethod_1">智能全路径</label>
+      <input type="radio" name="nameDisplayMethod" value="2" id="nameDisplayMethod_2" />
+      <label for="nameDisplayMethod_2">节点简称</label>
+    </td>
+  </tr>
+  <tr>
+    <td class="Label">默认选中</td>
+    <td class="value">
+      <input type="hidden" name="defaultSelectIds" id="defaultSelectIds" />
+      <input type="text" name="defaultSelectNames" id="defaultSelectNames" />
+    </td>
+  </tr>
+  <tr class="odd">
+    <td class="Label">选择框的数据样式</td>
+    <td class="value">
+      <select name="orgStyle" id="orgStyle">
+        <option value="">--请选择--</option>
+        <option value="org-style0">正常(分号分割)</option>
+        <option value="org-style1">orgStyle1(实体带逗号)</option>
+        <option value="org-style2">orgStyle2(分组带图标)</option>
+        <option value="org-style3">orgStyle3(实体带图标)</option>
+      </select>
+      在组织选择框中，展现的已选数据的样式
+    </td>
+  </tr>
+</table>
+<div class="label-title">
+  人员信息映射
+  <div class="w-property-help show-type-help-popup">
+    <i class="iconfont icon-ptkj-xinxiwenxintishi"></i>
+    <div class="w-property-help-popup">
+      <p>1、开启时，组织节点只能选择“人员”，且只能单选</p>
+      <p>2、名称（全路径），指组织树上从组织版本开始，到选择节点的路径</p>
+      <p>3、显示字段，只针对单行文本框和多行文本框控件的字段</p>
+    </div>
+  </div>
+</div>
+<div class="value bootstrap-switch" style="margin-bottom: 10px">
+  <input type="checkbox" value="1" name="mappingValues" id="mappingValues" class="switch" />
+  <label for="mappingValues"></label>
+  <span
+    style="display: none"
+    class="icon iconfont icon-ptkj-xinxiwenxintishi"
+    data-container="body"
+    data-trigger="hover"
+    data-html="true"
+    data-toggle="popover"
+    data-placement="bottom"
+    data-content="1、开启时，组织节点只能选择“人员”，且只能单选</br>2、名称（全路径），指组织树上从组织版本开始，到选择节点的路径</br>3、显示字段，只针对单行文本框和多行文本框控件的字段"
+  ></span>
+  <span style="display: none">注意：开启时，如果组织选择项的组织树上无职位节点，则用户无法选择该组织选择项下的人员，系统将报错提示</span>
+</div>
+<table>
+  <tr id="mappingValuesTr">
+    <td class="Label">
+      <font style="color: red">*</font>
+      人员信息映射
+    </td>
+    <td class="value">
+      <div class="mappingJob mapping-group">
+        <label class="mapping-label">职位</label>
+        ：
+        <span class="mapping-group-id">
+          <input type="checkbox" class="mapping-enable" id="mappingEnable1" />
+          <label class="mapping-label" for="mappingEnable1">ID</label>
+          <span class="mapping-id">
+            <select name="mappingJobId" id="mappingJobId" class="mappingFields">
+              <option value="">--请选择--</option>
+            </select>
+          </span>
+        </span>
+        <span class="mapping-group-name">
+          <input type="checkbox" class="mapping-enable" id="mappingEnable2" />
+          <label class="mapping-label" for="mappingEnable2">名称</label>
+          <span class="mapping-name">
+            <select name="mappingJobName" id="mappingJobName" class="mappingFields">
+              <option value="">--请选择--</option>
+            </select>
+            <input type="checkbox" class="mapping-path" id="mappingEnable3" />
+            <label for="mappingEnable3">名称显示全路径</label>
+          </span>
+        </span>
+      </div>
+      <div class="mappingDept mapping-group">
+        <label class="mapping-label">部门</label>
+        ：
+        <span class="mapping-group-id">
+          <input type="checkbox" class="mapping-enable" id="mappingEnable4" />
+          <label class="mapping-label" for="mappingEnable4">ID</label>
+          <span class="mapping-id">
+            <select name="mappingDeptId" id="mappingDeptId" class="mappingFields">
+              <option value="">--请选择--</option>
+            </select>
+          </span>
+        </span>
+        <span class="mapping-group-name">
+          <input type="checkbox" class="mapping-enable" id="mappingEnable5" />
+          <label class="mapping-label" for="mappingEnable5">名称</label>
+          <span class="mapping-name">
+            <select name="mappingDeptName" id="mappingDeptName" class="mappingFields">
+              <option value="">--请选择--</option>
+            </select>
+            <input type="checkbox" class="mapping-path" id="mappingEnable6" />
+            <label for="mappingEnable6">名称显示全路径</label>
+          </span>
+        </span>
+      </div>
+      <div class="mappingUnit mapping-group">
+        <label class="mapping-label">单位</label>
+        ：
+        <span class="mapping-group-id">
+          <input type="checkbox" class="mapping-enable" id="mappingEnable7" />
+          <label class="mapping-label" for="mappingEnable7">ID</label>
+          <span class="mapping-id">
+            <select name="mappingUnitId" id="mappingUnitId" class="mappingFields">
+              <option value="">--请选择--</option>
+            </select>
+          </span>
+        </span>
+        <span class="mapping-group-name">
+          <input type="checkbox" class="mapping-enable" id="mappingEnable8" />
+          <label class="mapping-label" for="mappingEnable8">名称</label>
+          <span class="mapping-name">
+            <select name="mappingUnitName" id="mappingUnitName" class="mappingFields">
+              <option value="">--请选择--</option>
+            </select>
+            <input type="checkbox" class="mapping-path" id="mappingEnable9" />
+            <label for="mappingEnable9">名称显示全路径</label>
+          </span>
+        </span>
+      </div>
+      <div class="mappingOrgElement mapping-group">
+        <label class="mapping-label">组织</label>
+        ：
+        <span class="mapping-group-id">
+          <input type="checkbox" class="mapping-enable" id="mappingEnable10" />
+          <label class="mapping-label" for="mappingEnable10">ID</label>
+          <span class="mapping-id">
+            <select name="mappingOrgElementId" id="mappingOrgElementId" class="mappingFields">
+              <option value="">--请选择--</option>
+            </select>
+          </span>
+        </span>
+        <span class="mapping-group-name">
+          <input type="checkbox" class="mapping-enable" id="mappingEnable11" />
+          <label class="mapping-label" for="mappingEnable11">名称</label>
+          <span class="mapping-name">
+            <select name="mappingOrgElementName" id="mappingOrgElementName" class="mappingFields">
+              <option value="">--请选择--</option>
+            </select>
+            <input type="checkbox" class="mapping-path" id="mappingEnable12" />
+            <label for="mappingEnable12">名称显示全路径</label>
+          </span>
+        </span>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<link rel="stylesheet" type="text/css" href="/static/js/pt/css/custom-admin-style.css" />
+<style type="text/css">
+  .iconfont {
+    font-size: 16px;
+  }
+
+  div.popover {
+    z-index: 10099;
+  }
+
+  span.mapping-group-id,
+  span.mapping-group-name {
+    display: inline-block;
+    height: 34px;
+    width: 25%;
+    max-width: 25%;
+  }
+
+  span.mapping-group-name {
+    width: 62%;
+    max-width: 62%;
+  }
+
+  #mappingValuesTr td select {
+    height: auto;
+  }
+
+  div.mapping-group > span {
+    border: 1px dotted #ccc;
+  }
+  table tr .Label {
+    width: 20%;
+  }
+  table tr .value {
+    white-space: normal;
+  }
+</style>

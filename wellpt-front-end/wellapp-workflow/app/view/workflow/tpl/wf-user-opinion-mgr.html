@@ -1,0 +1,105 @@
+<div id="${dlgId}" class="dlg-opinion-mgr">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active tab-noborder">
+      <a href="#recent_list" aria-controls="recent_list" role="tab" data-toggle="tab" aria-expanded="true">最近使用</a>
+    </li>
+    <li role="presentation" class="tab-noborder">
+      <a href="#common_list" aria-controls="common_list" role="tab" data-toggle="tab" aria-expanded="true">常用意见</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="recent_list">
+      <div class="alert alert-info alert-dismissable" id="recent_list_tip">
+        <i class="iconfont icon-ptkj-xinxiwenxintishi"></i>
+        自动保存您最近签署的意见，可以删除。
+        <span class="pull-right info-close"><i class="iconfont icon-ptkj-dacha"></i></span>
+      </div>
+      <div class="recent_opinion_list">
+        <div class="list-group">
+          {@each recentOpinions as recentOpinion,index}
+          <a class="list-group-item initStyle" opinionUuid="$${recentOpinion.uuid}" opinionCode="$${recentOpinion.code}">
+            <span class="group-item-text" title="$${recentOpinion.content}">$${recentOpinion.content}</span>
+            <span class="hide">
+              <i class="iconfont icon-ptkj-dacha pull-right" title="删除"></i>
+            </span>
+          </a>
+          {@/each}
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="common_list">
+      {@if commonOpinions.length == 0}
+      <div class="alert alert-info alert-dismissable">
+        <i class="iconfont icon-ptkj-xinxiwenxintishi"></i>
+        还没有常用意见，您可以手动添加或者从系统意见库中选择需要的常用意见。
+        <span class="pull-right info-close"><i class="iconfont icon-ptkj-dacha"></i></span>
+      </div>
+      {@/if}
+      <div class="row mt10">
+        <div class="col-sm-5 custom-add-opinion">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+              <a href="#opinion_list" aria-controls="opinion_list" role="tab" data-toggle="tab" aria-expanded="true">从意见库选择</a>
+            </li>
+            <li role="presentation">
+              <a href="#custom_input" aria-controls="custom_input" role="tab" data-toggle="tab" aria-expanded="true">手动输入</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="opinion_list">
+              <div class="opinion_search">
+                <input type="text" placeholder="搜索" id="searchOpinion" />
+                <span class="iconfont icon-ptkj-sousuochaxun"></span>
+              </div>
+              <div class="public-opinion-list">
+                <div class="list-group">
+                  {@each publicOpinions as publicOpinion,index}
+                  <a class="list-group-item" opinionUuid="$${publicOpinion.uuid}">$${publicOpinion.content}</a>
+                  {@/each}
+                </div>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="custom_input">
+              <div class="row">
+                <textarea name="opinion-text" class="form-control" placeholder="输入常用意见..." />
+              </div>
+              <div class="row custom-input-btn">
+                <button name="btn_opinion_add" class="well-btn w-btn-primary" type="button" style="margin-right: 0px">添加</button>
+                <div class="opinion-empty-alert alert-danger hide">
+                  <i class="iconfont icon-ptkj-wentiziduantishi"></i>
+                  请输入意见
+                </div>
+                <div class="opinion-exceed-max-length-alert alert-danger hide">
+                  <i class="iconfont icon-ptkj-wentiziduantishi"></i>
+                  最多只能输入1333个字
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <div class="panel panel-default user-opinion-list">
+            <div class="panel-heading">
+              <div class="panel-title user-opinion-title">我的常用意见</div>
+            </div>
+            <div class="panel-body">
+              <div class="list-group">
+                {@each commonOpinions as commonOpinion,index}
+                <a class="list-group-item initStyle" opinionUuid="$${commonOpinion.uuid}" opinionCode="$${commonOpinion.code}">
+                  <span class="group-item-text" title="$${commonOpinion.content}">$${commonOpinion.content}</span>
+                  <span class="hide">
+                    <i class="iconfont icon-ptkj-dacha pull-right" title="删除"></i>
+                    <i class="iconfont icon-ptkj-xiayi pull-right" title="下移"></i>
+                    <i class="iconfont icon-ptkj-shangyi pull-right" title="上移"></i>
+                    <i class="iconfont icon-ptkj-bianji pull-right" title="编辑"></i>
+                  </span>
+                </a>
+                {@/each}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

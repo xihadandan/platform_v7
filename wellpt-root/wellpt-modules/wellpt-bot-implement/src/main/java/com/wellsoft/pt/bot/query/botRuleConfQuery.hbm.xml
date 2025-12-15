@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <sql-query name="keywordQueryBotRuleConf">
+        <![CDATA[
+		SELECT b.*,
+		   (CASE b.TRANSFER_TYPE
+			 WHEN 0 THEN
+			  '单据转单据'
+			 WHEN 1 THEN
+			  '报文转单据'
+		   END) AS TRANSFER_NAME,
+		   v1.source_obj_name
+	  FROM bot_rule_conf b
+	  LEFT JOIN (SELECT v.rule_conf_uuid, wmsys.wm_concat(v.NAME) AS source_obj_name
+				   FROM (SELECT m.uuid as rule_conf_uuid,
+								d.NAME || '(' || d.version || ')' AS NAME
+						   FROM (WITH TEMP AS (SELECT b.*, rownum rownum1
+												 from bot_rule_conf b)
+								  SELECT REGEXP_SUBSTR(source_obj_id,
+													   '[^;]+',
+													   1,
+													   LEVEL) obj_id,
+										 uuid,
+										 rule_name,
+										 id
+									FROM TEMP
+								  CONNECT BY PRIOR ROWNUM1 = ROWNUM1
+										 AND LEVEL <=
+											 REGEXP_COUNT(source_obj_id, '[^;]+')
+										 AND PRIOR DBMS_RANDOM.VALUE() IS NOT NULL
+
+								   ) m, dyform_form_definition d
+								   WHERE m.obj_id = d.uuid
+						 ) v
+				  GROUP BY v.rule_conf_uuid) v1
+		ON v1.rule_conf_uuid = b.uuid
+		]]>
+
+    </sql-query>
+
+
+</hibernate-mapping>

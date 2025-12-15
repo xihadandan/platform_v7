@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <!-- 获取新建组织时对应的归属单wselect2使用 -->
+    <sql-query name="queryDutyListForSelect2">
+        <![CDATA[
+		select e.id, code, e.name
+		from multi_org_duty e
+		where e.system_unit_id = :systemUnitId
+		<if isNotBlank( name )>
+			and e.name like '%${name}%'
+		</if>
+		order by code
+	]]>
+    </sql-query>
+
+    <sql-query name="queryMultiOrgDuty">
+        <![CDATA[
+		select t.*
+		  from multi_org_duty t
+		 where system_unit_id = :systemUnitId
+		 <if isNotBlank( dutySeqUuid )>
+		 	and duty_seq_uuid = :dutySeqUuid
+		 </if>
+		 <if isNotBlank( jobRankId )>
+		 	and job_rank like '%'|| :jobRankId ||'%'
+		 </if>
+		 <if isNotBlank( keyword )>
+		   and (t.name like '%' || :keyword || '%' or t.id like '%' || :keyword || '%' or t.id like '%' || :keyword || '%' or t.code like '%' || :keyword || '%' or t.remark like '%' || :keyword || '%')
+		 </if>
+		 <if isNotBlank( orderBy )>
+			 ${orderBy}
+		 </if>
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

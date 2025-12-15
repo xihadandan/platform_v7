@@ -1,0 +1,100 @@
+<div id="${dlgId}">
+	<div id="wf_flow_simulation_params_container">
+		<div id="wf_flow_simulation_params_tabs">
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#wf_flow_simulation_params_tabs_base_info">基本信息</a></li>
+				<li role="presentation"><a href="#wf_flow_simulation_params_tabs_dyform_data_info">表单数据</a></li>
+				<li role="presentation"><a href="#wf_flow_simulation_params_tabs_opinion_info">办理意见</a></li>
+			</ul>
+			<div class="tab-content" style="height: 350px;">
+				<div role="tabpanel" class="tab-pane active" id="wf_flow_simulation_params_tabs_base_info">
+					<div class="row">
+						<div class="form-group"></div>
+						<div class="form-group col-xs-12">
+							<label class="col-xs-2 control-label" for="startUserName">启动人</label>
+							<div class="col-xs-10">
+								<input id="startUserName" name="startUserName" type="text" class="form-control" /> <input id="startUserId"
+									name="startUserId" type="hidden" class="form-control" />
+								<div>注：启动人为空时取当前用户</div>
+							</div>
+						</div>
+						<div class="form-group col-xs-12">
+							<div class="col-xs-2"></div>
+							<div class="col-xs-10">
+								<label class="control-label" for="generateSerialNumber"> <input id="generateSerialNumber"
+									name="generateSerialNumber" type="checkbox" />是否生成流水号
+								</label>
+							</div>
+						</div>
+						<div class="form-group col-xs-12">
+							<div class="col-xs-2"></div>
+							<div class="col-xs-10">
+								<label class="control-label" for="sendMsg"> <input id="sendMsg" name="sendMsg" type="checkbox" />是否发送消息
+								</label>
+							</div>
+						</div>
+						<div class="form-group col-xs-12">
+							<div class="col-xs-2"></div>
+							<div class="col-xs-10">
+								<label class="control-label" for="archive"> <input id="archive" name="archive" type="checkbox" />是否归档
+								</label>
+							</div>
+						</div>
+						<div class="form-group col-xs-12">
+							<div class="col-xs-2"></div>
+							<div class="col-xs-10">
+								<label class="control-label" for="autoViewWorkAfterSimulation"> <input id="autoViewWorkAfterSimulation"
+									name="autoViewWorkAfterSimulation" type="checkbox" checked="checked" />仿真结束后自动打开查看流程数据
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="wf_flow_simulation_params_tabs_dyform_data_info">
+					<div class="row">
+						<div class="form-group"></div>
+						<div class="form-group col-xs-12">
+							<div class="col-xs-2">
+								<label class="control-label" for="formDataSource">数据来源</label>
+							</div>
+							<div class="col-xs-10">
+								<label class="radio-inline"><input id="formDataSource1" name="formDataSource" type="radio"
+									checked="checked" value="1" />自动创建空表单 </label> <label class="radio-inline">
+<!-- 									<input id="formDataSource2" name="formDataSource" type="radio" value="2" />使用已有数据 </label> -->
+							</div>
+						</div>
+						<div class="form-group col-xs-12">
+							<div class="col-xs-2">
+								<label class="control-label" for="interactionTasks">数据交互环节</label>
+							</div>
+							<div class="col-xs-10">
+								<input id="interactionTasks" name="interactionTasks" type="text" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="wf_flow_simulation_params_tabs_opinion_info">
+					<div class="row">
+						<div class="pull-right">
+							<button id="btn_opinion_add" class="btn btn-primary">添加</button>
+							<button id="btn_opinion_del" class="btn btn-danger">删除</button>
+						</div>
+					</div>
+					<div class="row">
+						<table class="table table-simulation-opinion-columns">
+							<thead>
+								<tr>
+									<th>环节</th>
+									<th>使用人</th>
+									<th style="width: 40%">办理意见</th>
+									<th>意见立场</th>
+								</tr>
+							</thead>
+							<tbody class="opinion-settings"></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

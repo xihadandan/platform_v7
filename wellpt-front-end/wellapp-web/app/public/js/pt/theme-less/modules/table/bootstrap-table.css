@@ -1,0 +1,219 @@
+/*hover color variables*/
+/*disabled color variables*/
+/*text-overflow function start*/
+/*text-overflow function end*/
+/*background function start*/
+/*background function end*/
+/*font function start */
+/*font function end*/
+/*navbar function start*/
+/*navbar function end*/
+/*set modal svg-font color*/
+/*set modal svg-font color*/
+/*border-radius function start*/
+/*border-radius function end*/
+/*padding function start*/
+/*padding function end*/
+/*margin function start*/
+/*margin function end*/
+.ui-wBootstrapTable {
+  background: #fff;
+}
+.ui-wBootstrapTable .fixed-table-toolbar:after {
+  content: "";
+  display: table;
+  clear: both;
+  visibility: hidden;
+}
+.ui-wBootstrapTable .fixed-table-toolbar {
+  clear: both;
+  margin-bottom: 5px;
+}
+.ui-wBootstrapTable .fixed-table-toolbar .btn-query > i,
+.ui-wBootstrapTable .fixed-table-toolbar .btn-reset > i {
+  margin-right: 5px;
+  vertical-align: -1px;
+}
+.ui-wBootstrapTable .fixed-table-toolbar .btn-group > .btn {
+  margin: 0 5px;
+  border-radius: 4px !important;
+  padding: 5px 13px 5px 13px;
+}
+.ui-wBootstrapTable .fixed-table-toolbar .btn-group > .btn::before {
+  font-size: 12px;
+  padding-right: 5px;
+}
+.ui-wBootstrapTable .fixed-table-toolbar .split-btn-group > .btn:first-child {
+  border-radius: 4px 0px 0px 4px !important;
+  margin-right: 0px !important;
+}
+.ui-wBootstrapTable .fixed-table-toolbar .split-btn-group .btn:nth-child(2) {
+  margin-left: 0px !important;
+  border-radius: 0px 4px 4px 0px !important;
+  padding: 3px 5px 5px 5px;
+}
+.ui-wBootstrapTable .fixed-table-container {
+  border: 0;
+  border-radius: 0;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table {
+  table-layout: fixed;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table thead tr {
+  background: #f5f5f5;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table thead th {
+  border-left: 0;
+  font-size: 14px;
+  vertical-align: middle;
+  color: #404040;
+  font-weight: normal;
+  border-right: 1px solid #e6e6e6;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table thead th .both {
+  display: inline-block;
+  padding-right: 25px;
+  background-image: url(images/sort.png);
+  background-repeat: no-repeat;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table thead th .desc {
+  background-image: url(images/sort-j.png);
+  background-repeat: no-repeat;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table thead th .asc {
+  background-image: url(images/sort-s.png);
+  background-repeat: no-repeat;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table thead th:last-child {
+  border-right: 0;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody > tr {
+  cursor: pointer;
+  /* 行点击事件 */
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody > tr > td {
+  width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #404040;
+  background: #fff;
+  vertical-align: middle;
+  padding: 8px;
+  border-right: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody > tr > td div {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody > tr > td:last-child {
+  border-right: 0;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody > tr .def-view-normal,
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody > tr .def-view-remind,
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody > tr .def-view-warning {
+  padding: 4px 7.5px;
+  border-radius: 5px;
+  color: #fff;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody > tr .def-view-normal {
+  background-color: #c2c2c2;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody > tr .def-view-remind {
+  background-color: #eaa429;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody > tr .def-view-warning {
+  background-color: #e65c20;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody > tr:hover > td {
+  background: #e7f4f8;
+  color: #eaa429;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody > .unread > td {
+  font-weight: bold;
+  color: #333;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody .black-bold > td {
+  font-weight: bold!important;
+  color: #333!important;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody tr.text-primary > td {
+  color: #3996de !important;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody tr.text-success > td {
+  color: #5cce66 !important;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody tr.text-info > td {
+  color: #59c8e4 !important;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody tr.text-warning > td {
+  color: #eaa429 !important;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody tr.text-danger > td {
+  color: #e65c20 !important;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody tr.bg-primary > td {
+  color: #fff!important;
+  background-color: #337ab7!important;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody tr.bg-success > td {
+  color: #333 !important;
+  background-color: #dff0d8!important;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody tr.bg-info > td {
+  color: #333 !important;
+  background-color: #d9edf7!important;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody tr.bg-warning > td {
+  color: #333 !important;
+  background-color: #fcf8e3!important;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-body table tbody tr.bg-danger > td {
+  color: #333 !important;
+  background-color: #f2dede!important;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-pagination {
+  padding: 5px 15px;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-pagination .pagination-detail {
+  color: #999;
+  line-height: 40px;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-pagination .pagination-detail .btn {
+  background-color: #fff;
+  color: #999;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-pagination .pagination > li a,
+.ui-wBootstrapTable .fixed-table-container .fixed-table-pagination .pagination > li span {
+  position: relative;
+  float: left;
+  line-height: 23px;
+  padding: 6px 9px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  text-decoration: none;
+  border: 1px solid #ddd;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-pagination .pagination > li a:hover,
+.ui-wBootstrapTable .fixed-table-container .fixed-table-pagination .pagination > li a:focus {
+  z-index: 3;
+  cursor: pointer;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-pagination .pagination > li.jump-to span,
+.ui-wBootstrapTable .fixed-table-container .fixed-table-pagination .pagination > li.jump-to input[type="text"] {
+  border-radius: 0;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-pagination .pagination > li.jump-to input[type="text"] {
+  float: right;
+  width: 50px;
+  margin-left: -1px;
+  height: 34px;
+}
+.ui-wBootstrapTable .fixed-table-container .fixed-table-pagination:after {
+  content: " ";
+  height: 0;
+  display: table;
+  clear: both;
+}

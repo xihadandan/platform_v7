@@ -1,0 +1,24 @@
+package com.wellsoft.pt.app.context;
+
+/**
+ * Description: 解析配置文件中配置的应用上下文件信息接口
+ *
+ * @author wujx
+ * @version 1.0
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2016年8月8日.1	wujx		2016年8月8日		Create
+ * </pre>
+ * @date 2016年8月8日
+ */
+public interface AppContextParser {
+    /**
+     * 解析配置文件中配置的应用上下文件信息
+     *
+     * @param configurationSupport
+     * @param parserContext
+     */
+    void parse(AppContextPropertiesConfigurationSupport configurationSupport, AppParserContext parserContext);
+}

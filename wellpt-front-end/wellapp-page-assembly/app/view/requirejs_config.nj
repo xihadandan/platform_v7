@@ -1,0 +1,11 @@
+<script type="text/javascript" src="/static/js/requirejs/require.js"></script>
+<script>
+
+    requirejs.onError = function (error) {
+        throw error;
+    }
+
+    requirejs.config( {{ requirejsConfigJSON | safe }} );
+
+    
+</script>

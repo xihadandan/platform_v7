@@ -1,0 +1,216 @@
+/* 图片库弹窗 */
+
+// - 图片库页签
+.pic-lib-panel {
+  padding-top: @padding-md !important;
+
+  // - 图片库页签 - 图片库分类列
+  .pic-category-col {
+    border: @border-default;
+    padding: 0;
+
+    // - 图片库页签 - 图片库分类列 - 标题
+    .pic-category-col-title {
+      line-height: @picture-lib-category-list-title-height;
+      background: @background-light;
+      color: @text-color-dark;
+      font-size: @font-size-lg;
+
+      &::before {
+        .size(@title-decoration-width, @title-decoration-height);
+        .relative(3px false false false);
+
+        content: '';
+        display: inline-block;
+        background: @title-decoration-color;
+        border-radius: (@title-decoration-width / 2);
+        margin-left: 16px;
+        margin-right: 8px;
+      }
+    }
+
+    // - 图片库页签 - 图片库分类列 - 分类
+    .pic-category-col-list {
+      height: @picture-lib-content-height - @picture-lib-category-list-title-height;
+      overflow-y: auto;
+
+      .category-item {
+        height: @picture-lib-category-list-item-height;
+        padding-top: 3px;
+
+        &:hover {
+          background: @item-hover-background;
+          cursor: pointer;
+        }
+
+        &.active {
+          background: @item-active-background;
+        }
+
+        .category-name {
+          display: inline-block;
+          width: calc(100% - 60px);
+        }
+
+        .category-count {
+          display: inline-block;
+          width: 45px;
+        }
+      }
+    }
+  }
+
+  // - 图片库页签 - 图片选择区域
+  .pic-selection-col {
+    // - 图片库页签 - 图片选择区域 - 筛选行
+    .pic-selection-operation-row {
+      height: @height-md;
+    }
+
+    // - 图片库页签 - 图片选择区域 - 卡片区域
+    .pic-selection-cards-row {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: start;
+      height: @picture-lib-content-height - @height-md - @margin-lg;
+      overflow-y: auto;
+      margin-right: -20px;
+
+      .pic-card {
+        max-width: 150px;
+        height: @picture-lib-card-height;
+        border: @border-default-dark;
+        border-radius: @border-radius-base;
+        margin: 4px;
+        position: relative;
+        cursor: pointer;
+
+        &::before {
+          .absolute(false 3px -2px false);
+
+          content: '✔';
+          z-index: 1;
+          color: @picture-lib-card-checkbox-color;
+          font-family: auto;
+        }
+
+        &::after {
+          .absolute(false 0 0 false);
+          .square(0);
+
+          content: '';
+          border-bottom: 12px solid @picture-lib-card-checkbox-background;
+          border-right: 15px solid @picture-lib-card-checkbox-background;
+          border-top: 12px solid transparent;
+          border-left: 15px solid transparent;
+          transition: all @animation-duration-fast;
+        }
+
+        &.selected::after {
+          border-bottom-color: @picture-lib-card-checkbox-selected-background;
+          border-right-color: @picture-lib-card-checkbox-selected-background;
+          right: -1px;
+        }
+
+        &:hover {
+          border: @border-default-primary;
+          border-bottom-right-radius: 0px;
+        }
+
+        // - 图片库页签 - 图片选择区域 - 卡片区域 - 图片
+        .pic-card-img {
+          padding: @padding-3xs;
+
+          img {
+            width: @picture-lib-card-max-width - 2 * @padding-3xs;
+            height: @picture-lib-card-height - 85px;
+          }
+        }
+
+        // - 图片库页签 - 图片选择区域 - 卡片区域 - 描述
+        .pic-card-body p {
+          margin: 5px;
+          text-align: center;
+          font-size: @font-size-sm;
+          color: @text-color-light;
+          font-weight: 400;
+
+          &.pic-card-img-name {
+            color: @text-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+// - 本地上传页签
+.pic-upload-panel {
+  // 表单
+  .well-form {
+    .well-form-label {
+      width: 16%;
+    }
+
+    .well-form-control {
+      width: 75%;
+    }
+  }
+
+  // 图片上传按钮
+  #pic-uploader.scrollbar {
+    height: 260px;
+    overflow-y: auto;
+  }
+
+  // 确定上传按钮
+  .upload-btn-wrapper {
+    text-align: center;
+    border-top: @border-default;
+    line-height: 40px;
+
+    padding-top: 5px;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+}
+
+// ** 控件配置为仅图片库上传，无本地上传 **
+.hide-uploader {
+  .pic-category-col .pic-category-col-list {
+    height: @picture-lib-content-height;
+  }
+
+  .pic-selection-col .pic-selection-cards-row {
+    height: 400px;
+  }
+
+  .panel-tab-header,
+  .tab-content .pic-delete-btn {
+    display: none;
+  }
+}
+
+// - 图片可预览时 鼠标样式
+.allow-preview img,
+img.allow-preview,
+.allow-preview .img-preview {
+  cursor: zoom-in !important;
+}
+
+// - 图片库分类图标
+.msgIconShow {
+  .square(24px);
+
+  line-height: 24px;
+  display: inline-block;
+  border-radius: 50%;
+  color: @text-color-inverse;
+  background-color: @primary-color;
+  transform: scale(0.8);
+  text-align: center;
+
+  // &:before {
+  //   margin-left: 4px;
+  // }
+}

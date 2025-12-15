@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="queryOpinionRuleList">
+        <![CDATA[
+        	select * from WF_OPINION_RULE
+        	where SYSTEM_UNIT_ID = :currentUserUnitId
+        	<if systemIds?? && (systemIds?size > 0)>
+                and system in (:systemIds)
+            </if>
+            <if isNotBlank(tenantId)>
+                and tenant = :tenantId
+            </if>
+        	<if isNotBlank( whereSql )>
+        	    AND ${whereSql}
+        	</if>
+
+        	<if isNotBlank( orderStr )>
+        	    ${orderStr}
+        	</if>
+    	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

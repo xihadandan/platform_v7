@@ -1,0 +1,325 @@
+/* 动态表单 (布局) */
+
+.widget-box {
+  padding: 0;
+  margin: @margin-2xs 0;
+
+  // - 动态表单 (布局) - 头部
+  >.widget-header {
+    .size(100%, @dyform-header-height);
+
+    &:before,
+    &:after {
+      content: '';
+      display: table;
+      line-height: 0;
+      clear: both;
+    }
+
+    >.widget-header-fill-top {
+      .size(100%, 4px);
+      .fixed(0 false false false);
+
+      z-index: 100;
+      background-color: @dyform-background;
+    }
+
+    >.widget-title {
+      .text-truncate();
+
+      line-height: @dyform-header-height;
+      font-size: @dyform-header-font-size;
+      max-width: 40%;
+      display: inline-block;
+      padding-left: @padding-md;
+      font-weight: bold;
+
+      >.ace-icon {
+        margin-right: @margin-2xs;
+        font-weight: normal;
+        display: inline-block;
+      }
+    }
+
+    >.widget-toolbar {
+      position: relative;
+      // line-height: @dyform-header-height;
+      line-height: 36px;
+      font-size: 0px;
+      margin-right: @margin-2xs;
+      float: right;
+      padding: 12px 0;
+
+      label {
+        display: inline-block;
+        vertical-align: middle;
+        margin-bottom: 0;
+      }
+    }
+
+    >.widget-header-fill-bottom {
+      .size(100%, 4px);
+      .absolute(false false false false);
+
+      z-index: 100;
+      background-color: @dyform-background;
+    }
+
+    .widget-header-fill-top,
+    .widget-header-fill-bottom {
+      display: none;
+    }
+
+    &.fixed {
+      .fixed(0 false false 0);
+
+      z-index: 100;
+      border-top: 0;
+      background: @dyform-header-background;
+      box-shadow: @shadow-document-header-default;
+    }
+  }
+
+  // - 动态表单 (布局) - 底部
+  .widget-footer-fill-top {
+    .size(1px, 13em);
+
+    position: absolute;
+    background-color: @dyform-background;
+    display: none;
+  }
+
+  .row {
+    padding: 0;
+    margin: 0;
+  }
+
+  .widget-body {
+    padding: 65px 23px 0 15px;
+
+    .widget-main>form {
+      margin-bottom: 1.2em;
+      padding: 10px;
+    }
+
+    .layout.tab {
+      padding: 0 15px;
+    }
+  }
+
+  .footer.fixed {
+    .fixed(false 0 0 0);
+
+    border-top: none;
+    box-shadow: 0px -3px 5px #ddd;
+    background: #fff;
+    padding: @padding-xs 0px @padding-xs 0px;
+
+    .form-control {
+      height: 54px;
+      padding: 5px 4px 6px;
+      padding-left: 210px;
+      border-radius: 3px;
+      box-sizing: inherit;
+    }
+
+    .row-sign-opinion-text {
+      .opinion-box {
+        position: relative;
+
+        .sign_opinion_text {
+          .absolute(0 false false 0);
+
+          display: inline-block;
+          width: 195px;
+          margin-left: @margin-md;
+          padding: 0 @padding-md;
+          text-align: center;
+          font-size: @font-size-xl;
+          line-height: 54px;
+          border-top-left-radius: @border-radius-base;
+          border-bottom-left-radius: @border-radius-base;
+        }
+
+        .sign-inner-text {
+          padding-left: @padding-3xs;
+          background: url('images/pencil_03.png') no-repeat left;
+        }
+      }
+
+      .wf-opinion-recent-snapshop {
+        max-height: 54px;
+
+        .list-group-item {
+          .text-overflow();
+
+          line-height: 6px;
+          border: 0;
+          margin-bottom: 0px;
+          border-radius: 0;
+        }
+
+        &.only-one-item {
+          overflow: hidden;
+
+          .list-group-item {
+            line-height: 30px;
+          }
+        }
+      }
+    }
+
+    .wf-opinion {
+      padding: @padding-xs;
+
+      >div {
+        padding: 0 @padding-3xs;
+      }
+
+      .note-editor.note-frame {
+        border: @border-default-dark;
+      }
+
+      .list-group {
+        border: @border-default-dark;
+        min-height: 212px;
+
+        a {
+          border: 0;
+          margin-bottom: 0px;
+        }
+      }
+    }
+
+    .tabs-container {
+      .tabs-left>.nav-tabs {
+        width: 6.5em;
+      }
+
+      .tabs-right {
+        .nav:first-child {
+          border: 0;
+        }
+
+        .nav-tabs {
+          width: 6.5em;
+          position: absolute;
+          bottom: 2px;
+          right: 0px;
+          margin-left: 0px;
+
+          li {
+            a {
+              margin-bottom: 0px;
+              color: @text-color-darker;
+              border-color: #cfcfcf #cfcfcf #cfcfcf transparent !important;
+            }
+
+            &.wf-opinion-fixed {
+              .square(32px);
+              .absolute(false 0 180px false);
+
+              display: block;
+              background-repeat: no-repeat;
+              background-image: url('@{image-url-prefix}/dz1.@{theme-color}.png');
+              cursor: pointer;
+
+              &.fixed {
+                background-image: url('@{image-url-prefix}/dz.@{theme-color}.png');
+              }
+            }
+          }
+        }
+
+        .tab-content {
+          margin-right: 85px;
+        }
+      }
+    }
+  }
+
+  &.widget-box-by-dialog .widget-body {
+    padding: 0 @padding-2xl @padding-2xl;
+  }
+}
+
+// 已阅未阅记录
+.view-read-record-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+
+  padding: @padding-3xs;
+  font-size: 14px;
+
+  .record-box {
+    width: 390px;
+    border: @border-width-base @border-color-base @border-style-base;
+
+    .record-header {
+      color: @black;
+      background-color: @background-light;
+      padding: @padding-sm;
+      border-bottom: @border-width-base @border-color-base @border-style-base;
+      font-weight: bold;
+    }
+
+    ul {
+      height: 400px;
+      padding: 0 @padding-xs;
+      overflow-y: scroll;
+
+      /*-------滚动条整体样式----*/
+      &::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+
+      /*滚动条里面小方块样式*/
+      &::-webkit-scrollbar-thumb {
+        border-radius: 100px;
+        background: @gray-7;
+      }
+
+      /*滚动条里面轨道样式*/
+      &::-webkit-scrollbar-track {
+        border-radius: 0;
+        background: transparent;
+      }
+
+      li {
+        border-bottom: @border-width-base @border-color-base @border-style-base;
+
+        .record-item {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: flex;
+
+          -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+
+          line-height: 39px;
+
+          div {
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+
+            padding: 0 @padding-xs;
+          }
+
+        }
+
+        :hover {
+          background: @background-primary-lighter;
+        }
+      }
+
+    }
+  }
+}

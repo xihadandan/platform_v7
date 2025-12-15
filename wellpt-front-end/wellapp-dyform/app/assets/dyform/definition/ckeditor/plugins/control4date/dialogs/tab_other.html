@@ -1,0 +1,95 @@
+<table>
+  <!--<tr class="odd">
+        <td class="Label">风格</td>
+        <td class="value">
+            <select name="dpStyle" id="dpStyle" style="width: 100px;float:left">
+              <option value="LayDate">LayDate</option>
+              <option value="My97DatePicker">My97DatePicker</option>
+              <option value="BootstrapDatePicker">BootstrapDatePicker</option>
+            </select>
+        </td>
+    </tr>-->
+  <tr>
+    <td class="Label">日期格式</td>
+    <td class="value">
+      <select id="contentFormat" name="contentFormat">
+        <option value="1">日期(2000-01-01)</option>
+        <option value="16">日期(2000-1-1)</option>
+        <option value="17">日期(2000年01月01日)</option>
+        <option value="2">日期(2000年1月1日)</option>
+        <option value="7">日期(2000)</option>
+        <option value="3">日期(2000年)</option>
+        <option value="14">日期(2000-01)</option>
+        <option value="4">日期(2000年1月)</option>
+        <option value="5">日期(1月1日)</option>
+        <option value="15">周(2000年第01周)</option>
+        <option value="8">时间(12)</option>
+        <option value="9">时间到分(12:00)</option>
+        <option value="10">时间到秒(12:00:00)</option>
+        <option value="11">日期到时 (2000-01-01 12)</option>
+        <option value="12">日期到分 (2000-01-01 12:00)</option>
+        <option value="13">日期到秒 (2000-01-01 12:00:00)</option>
+      </select>
+    </td>
+  </tr>
+  <tr class="time-status-tr">
+    <td class="Label">设置时间状态</td>
+    <td class="value">
+      <input type="radio" value="defaultTime" name="setTimeStatus" id="setTimeStatus1" />
+      <label for="setTimeStatus1">默认（独立日期控件非开始时间或结束时间）</label>
+      <input type="radio" value="startTime" name="setTimeStatus" id="setTimeStatus2" />
+      <label for="setTimeStatus2">设置为开始时间</label>
+      <input type="radio" value="endTime" name="setTimeStatus" id="setTimeStatus3" />
+      <label for="setTimeStatus3">设置为结束时间</label>
+      <div class="tip">设置为结束时间时，控件布局位置需在开始时间前面</div>
+    </td>
+  </tr>
+  <tr class="getEndTime" style="display: none">
+    <td class="Label">
+      <span style="color: #e33033; magin-right: 5px">*</span>
+      关联结束时间
+    </td>
+    <td class="value">
+      <select id="endTimeArr" name="endTimeArr">
+        <option value="">请选择</option>
+      </select>
+      <span>当前字段在前端将显示为时间范围，建议将结束时间的字段隐藏</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="Label">开启默认时间</td>
+    <td class="value">
+      <input type="checkbox" id="defaultTime" name="defaultTime" />
+      <label for="defaultTime">默认时间为当前电脑系统时间</label>
+    </td>
+  </tr>
+  <tr>
+    <td class="Label">最小时间设置</td>
+    <td class="value">
+      <input type="text" id="minDate" name="minDate" />
+      <br />
+      格式需与日期格式一样
+      <br />
+      当前时间直接写sysdate
+    </td>
+  </tr>
+  <tr>
+    <td class="Label">最大时间设置</td>
+    <td class="value">
+      <input type="text" id="maxDate" name="maxDate" />
+      <br />
+      格式需与日期格式一样
+      <br />
+      当前时间直接写sysdate
+    </td>
+  </tr>
+
+  <tr id="tr_onlyreadUrl" class="odd">
+    <td class="Label">标识地址</td>
+    <td class="value">
+      <input type="text" id="onlyreadUrl" name="onlyreadUrl" />
+      <br />
+      参数格式${fieldName},fieldName为表单字段名称。示例：https://www.baidu.com?pa=${pa}
+    </td>
+  </tr>
+</table>

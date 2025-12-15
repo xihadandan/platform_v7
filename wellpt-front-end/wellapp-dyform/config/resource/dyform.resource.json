@@ -1,0 +1,453 @@
+{
+  "js": {
+    "jquery-validate-dyform": {
+      "path": "/dyform/commons/validate/validation",
+      "name": "jquery-validate-dyform表单校验（重写）",
+      "dependencies": ["dependencyJQueryValidateModule", "jquery-validate-theme-dyform"]
+    },
+    "wUnit2": {
+      "path": "/dyform/control/jquery.wUnit2",
+      "name": "wUnit2表单单位2控件",
+      "dependencies": ["dependencyWUnitCommonMethodModule", "multiOrg"]
+    },
+    "dependencyWUnitCommonMethodModule": {
+      "name": "dependencyWUnitCommonMethodModule",
+      "abstract": true,
+      "dependencies": ["dependencyWControlInterfaceModule", "wTextCommonMethod", "wUnitCommonMethod"]
+    },
+    "wRadio": {
+      "path": "/dyform/control/jquery.wRadio",
+      "name": "wRadio表单单选框控件",
+      "dependencies": ["dependencyWRadioCheckCommonModule", "wRadioCheckBoxCommonMethod"]
+    },
+    "jquery-validate-theme-dyform": {
+      "path": "/dyform/commons/validate/Theme",
+      "name": "jquery-validate-theme-dyform表单校验主题",
+      "dependencies": ["dependencyJQueryValidateModule"]
+    },
+    "dyform_zh_CN": {
+      "path": "/dyform/commons/dyform_zh_CN",
+      "name": "dyform_zh_CN表单解析常量"
+    },
+    "DyformFacade": {
+      "path": "/dyform/explain/DyformFacade",
+      "name": "DyformFacade二开接口",
+      "dependencies": ["api-commons"]
+    },
+    "wRadioCheckBoxCommonMethod": {
+      "path": "/dyform/control/common/jquery.wRadioCheckBoxCommonMethod",
+      "name": "wRadioCheckBoxCommonMethod表单单选复选框基类",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "dependencyDyformValidateModule": {
+      "name": "dependencyDyformValidateModule",
+      "abstract": true,
+      "dependencies": [
+        "jquery-validate",
+        "new_validate",
+        "w-validate-additional-methods",
+        "jquery-validate-messages_zh_CN",
+        "jquery-validate-additional-methods",
+        "w-additional-methods",
+        "jquery-validate-theme-dyform",
+        "jquery-validate-dyform",
+        "jquery-validate-bubble-dyform",
+        "jquery-validate-additional-methods-dyform"
+      ]
+    },
+    "wSelectCommonMethod": {
+      "path": "/dyform/control/common/jquery.wSelectCommonMethod",
+      "name": "wSelectCommonMethod表单下拉框、树形下拉基类",
+      "dependencies": ["dependencyJQueryModule", "dependencyWControlInterfaceModule"]
+    },
+    "wFileUpload4Body": {
+      "path": "/dyform/control/fileupload/jquery.wFileUpload4Body",
+      "name": "wFileUpload4Body表单正文附件控件",
+      "dependencies": ["dependencyWFileUploadCommonModule", "wellfileupload4Body"]
+    },
+    "wTextCommonMethod": {
+      "path": "/dyform/control/common/jquery.wTextCommonMethod",
+      "name": "wTextCommonMethod表单文本基类",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "wSwitchs": {
+      "path": "/dyform/control/jquery.wSwitchs",
+      "name": "wSwitchs表单按钮开关控件",
+      "dependencies": ["dependencyJQueryUIModule","wControlInterface"]
+    },
+    "dependencyWRadioCheckCommonModule": {
+      "name": "dependencyWRadioCheckCommonModule",
+      "abstract": true,
+      "dependencies": ["dependencyWControlInterfaceModule", "wRadioCheckBoxCommonMethod"]
+    },
+    "wDialog": {
+      "path": "/dyform/control/jquery.wDialog",
+      "name": "wDialog表单弹出框控件",
+      "dependencies": ["dependencyWTextCommonModule", "alerts", "dataStoreBase"]
+    },
+    "wLayoutInterface": {
+      "path": "/dyform/control/layout/common/jquery.wLayoutInterface",
+      "name": "wLayoutInterface表单布局解析接口类",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "dyformFormClass": {
+      "path": "/dyform/commons/FormClass",
+      "name": "dyformFormClass表单定义类"
+    },
+    "wComboTree": {
+      "path": "/dyform/control/jquery.wComboTree",
+      "name": "wComboTree表单下拉树控件",
+      "dependencies": ["dependencyWTextCommonModule", "comboTree", "wSelectCommonMethod"]
+    },
+    "wEmbedded": {
+      "path": "/dyform/control/jquery.wEmbedded",
+      "name": "wEmbedded表单页面嵌入控件",
+      "dependencies": ["dependencyWTextCommonModule"]
+    },
+    "wSubForm4Group": {
+      "path": "/dyform/control/subform/jquery.wSubForm4Group",
+      "name": "wSubForm4Group表单从表分组控件",
+      "dependencies": ["dependencyJQueryUIModule", "wSubFormMethod", "dyform_zh_CN", "bootstrap-table-treegrid"]
+    },
+    "dyform_constant": {
+      "path": "/dyform/commons/dyform_constant",
+      "name": "dyform_constant表单常量"
+    },
+    "wDatePicker": {
+      "path": "/dyform/control/jquery.wDatePicker",
+      "name": "wDatePicker表单日期时间控件",
+      "dependencies": ["dependencyWTextCommonModule", "My97DatePicker", "bootstrap-datetimepicker", "layDatePro", "timeSelect"]
+    },
+    "DyformDevelopment": {
+      "path": "/dyform/explain/parser/DyformDevelopment",
+      "name": "Dyform二开接口"
+    },
+    "dependencyWFileUploadCommonModule": {
+      "name": "dependencyWFileUploadCommonModule",
+      "abstract": true,
+      "dependencies": ["dependencyWControlInterfaceModule", "wFileUploadMethod", "alerts"]
+    },
+    "dependencyDyformSubFormModule": {
+      "name": "dependencyDyformSubFormModule",
+      "abstract": true,
+      "dependencies": ["wSubForm", "wSubForm4Group"]
+    },
+    "dyform_config_js": {
+      "path": "/dyform/definition/ckeditor/dyform_config",
+      "name": "dyform_config_js",
+      "dependencies": ["ckeditor"]
+    },
+    "wTabLayout": {
+      "path": "/dyform/control/layout/jquery.wTabLayout",
+      "name": "wTab表单页签布局控件",
+      "dependencies": ["dependencyJQueryUIModule", "wLayoutInterface"]
+    },
+    "wTab": {
+      "path": "/dyform/control/layout/jquery.wTab",
+      "name": "wTab表单页签容器控件",
+      "dependencies": ["dependencyJQueryUIModule", "wLayoutInterface", "wTabLayout"]
+    },
+    "wBlockLayout": {
+      "path": "/dyform/control/layout/jquery.wBlockLayout",
+      "name": "wTab表单页签布局控件",
+      "dependencies": ["dependencyJQueryUIModule", "wLayoutInterface"]
+    },
+    "wBlock": {
+      "path": "/dyform/control/layout/jquery.wBlock",
+      "name": "wBlock表单区块容器控件",
+      "dependencies": ["dependencyJQueryUIModule", "wLayoutInterface", "wBlockLayout"]
+    },
+    "wUnitCommonMethod": {
+      "path": "/dyform/control/common/jquery.wUnitCommonMethod",
+      "name": "wUnitCommonMethod表单组织基类",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "ckUtils": {
+      "path": "/dyform/commons/ckUtils",
+      "name": "ckUtilsCKEditor工具类",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "dependencyWTextCommonModule": {
+      "name": "dependencyWTextCommonModule",
+      "abstract": true,
+      "dependencies": ["dependencyWControlInterfaceModule", "wTextCommonMethod"]
+    },
+    "wUnit": {
+      "path": "/dyform/control/jquery.wUnit2",
+      "name": "wUnit表单单位控件",
+      "dependencies": ["dependencyWUnitCommonMethodModule", "multiOrg"]
+    },
+    "w-additional-methods": {
+      "path": "/dyform/commons/validate/w-additional-methods",
+      "name": "w-additional-methods表单校验补充方法",
+      "dependencies": ["dependencyJQueryValidateModule"]
+    },
+    "wTimeEmploy": {
+      "path": "/dyform/control/jquery.wTimeEmploy",
+      "name": "wTimeEmploy表单时间资源控件",
+      "dependencies": ["dependencyWTextCommonModule", "timeEmploy"]
+    },
+    "new_validate": {
+      "path": "/dyform/commons/validate/new_validate",
+      "name": "表单前端校验",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "wNumberInput": {
+      "path": "/dyform/control/jquery.wNumberInput",
+      "name": "wNumberInput表单数值控件",
+      "dependencies": ["dependencyWTextCommonModule", "numberInput"]
+    },
+    "wFormFileLibrary": {
+      "path": "/dyform/control/jquery.wFileLibrary",
+      "name": "wFormFileLibrary表单文件库列表控件类",
+      "dependencies": ["dependencyJQueryUIModule", "dependencyBootstrapTableModule"]
+    },
+    "FormClass": {
+      "path": "/dyform/commons/FormClass",
+      "name": "FormClass表单属性类",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "wProgress": {
+      "path": "/dyform/control/jquery.wProgress",
+      "name": "wProgress表单进度条控件",
+      "dependencies": ["dependencyJQueryUIModule"]
+    },
+    "wSelect": {
+      "path": "/dyform/control/jquery.wSelect",
+      "name": "wSelect表单下拉框控件",
+      "dependencies": [
+        "dependencyWControlInterfaceModule",
+        "select2",
+        "wRadioCheckBoxCommonMethod",
+        "wellSelect",
+        "wSelectCommonMethod",
+        "dataStoreBase"
+      ]
+    },
+    "DyformFunction": {
+      "path": "/dyform/commons/DyformFunction",
+      "name": "Dyform服务接口",
+      "dependencies": ["dependencyAppBaseModule", "formDefinitionMethod"]
+    },
+    "wTextArea": {
+      "path": "/dyform/control/jquery.wTextArea",
+      "name": "wTextArea表单多行文本控件",
+      "dependencies": ["dependencyWTextCommonModule"]
+    },
+    "formDefinitionMethod": {
+      "path": "/dyform/commons/formDefinitionMethod",
+      "name": "formDefinitionMethod表单获取定义信息",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "wFileUploadMethod": {
+      "path": "/dyform/control/fileupload/jquery.wFileUploadMethod",
+      "name": "wFileUploadMethod表单附件基类",
+      "dependencies": ["dependencyJQueryModule", "wControlInterface"]
+    },
+    "wChained": {
+      "path": "/dyform/control/jquery.wChained",
+      "name": "wChained级联控件",
+      "dependencies": ["dependencyWControlInterfaceModule", "jquery-chained"]
+    },
+    "wSerialNumber": {
+      "path": "/dyform/control/jquery.wSerialNumber",
+      "name": "wSerialNumber表单流水号控件",
+      "dependencies": ["dependencyWTextCommonModule", "serialform", "alerts"]
+    },
+    "wFileUpload": {
+      "path": "/dyform/control/fileupload/jquery.wFileUpload",
+      "name": "wFileUpload表单列表附件控件",
+      "dependencies": ["dependencyWFileUploadCommonModule", "wellfileupload"]
+    },
+    "wControlUtil": {
+      "path": "/dyform/control/common/jquery.wControlUtil",
+      "name": "wControlUtil表单解析辅助类",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "dyform_excel": {
+      "path": "/dyform/explain/dyform_excel",
+      "name": "dyform_excel表单EXCEL导入",
+      "dependencies": ["dependencyJQueryModule", "ajaxfileupload"]
+    },
+    "wTableView": {
+      "path": "/dyform/control/jquery.wTableView",
+      "name": "wTableView表单视图列表控件",
+      "dependencies": ["dependencyJQueryUIModule", "dependencyBootstrapTableModule"]
+    },
+    "wFileUpload4Icon": {
+      "path": "/dyform/control/fileupload/jquery.wFileUpload4Icon",
+      "name": "wFileUpload4Icon表单图标附件控件",
+      "dependencies": ["dependencyWFileUploadCommonModule", "wellfileupload4Icon"]
+    },
+    "formFunction": {
+      "path": "/dyform/commons/function",
+      "name": "formFunction表单获取定义信息辅助类",
+      "dependencies": ["dependencyJQueryModule", "dyformFormClass"]
+    },
+    "wTagGroup": {
+      "path": "/dyform/control/jquery.wTagGroup",
+      "name": "wTagGroup表单标签组控件",
+      "dependencies": ["dependencyJQueryUIModule", "wTagGroupMethod"]
+    },
+    "wSubForm": {
+      "path": "/dyform/control/subform/jquery.wSubForm",
+      "name": "wSubForm表单从表控件",
+      "dependencies": ["dependencyJQueryUIModule", "wSubFormMethod", "dyform_zh_CN"]
+    },
+    "DyformTest1": {
+      "path": "/dyform/DyformTest1",
+      "name": "DyformTest1表单二开测试",
+      "dependencies": ["DyformDevelopment"]
+    },
+    "wControlManager": {
+      "path": "/dyform/control/common/jquery.wControlManager",
+      "name": "wControlManager表单控件解析辅助类",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "wColor": {
+      "path": "/dyform/control/jquery.wColor",
+      "name": "wColor表单颜色控件",
+      "dependencies": ["dependencyJQueryUIModule"]
+    },
+    "wPlaceholder": {
+      "path": "/dyform/control/jquery.wPlaceholder",
+      "name": "wPlaceholder表单下拉框控件",
+      "dependencies": ["dependencyWControlInterfaceModule", "select2", "wRadioCheckBoxCommonMethod"]
+    },
+    "jquery-validate-bubble-dyform": {
+      "path": "/dyform/commons/validate/Bubble",
+      "name": "jquery-validate-bubble-dyform表单校验冒泡",
+      "dependencies": ["dependencyJQueryValidateModule"]
+    },
+    "wComboBox": {
+      "path": "/dyform/control/jquery.wComboBox",
+      "name": "wComboBox表单下拉框控件",
+      "dependencies": ["dependencyWControlInterfaceModule", "select2", "wRadioCheckBoxCommonMethod", "wellSelect", "dataStoreBase"]
+    },
+    "jquery-validate-additional-methods-dyform": {
+      "path": "/dyform/commons/validate/additional-methods",
+      "name": "jquery-validate-additional-methods-dyform表单校验补充",
+      "dependencies": ["dependencyJQueryUIModule", "jquery", "jquery-ui", "jquery-validate", "new_validate"]
+    },
+    "serialform": {
+      "path": "/dyform/control/serialnumber/serialform",
+      "name": "serialform编辑流水号",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "wControlConfigUtil": {
+      "path": "/dyform/control/common/jquery.wControlConfigUtil",
+      "name": "wControlConfigUtil表单定义辅助类",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "wTagGroupMethod": {
+      "path": "/dyform/control/common/jquery.wTagGroupMethod",
+      "name": "wTagGroupMethod表单标签基类",
+      "dependencies": ["dependencyJQueryModule", "dependencyWControlInterfaceModule", "api-wBootstrapTable"]
+    },
+    "wContainerManager": {
+      "path": "/dyform/control/layout/common/jquery.wContainerManager",
+      "name": "wContainerManager表单布局解析辅助类",
+      "dependencies": ["dependencyJQueryModule", "layout_constant", "wTabLayout", "wTab", "wBlockLayout", "wBlock"]
+    },
+    "wTextInput": {
+      "path": "/dyform/control/jquery.wTextInput",
+      "name": "wTextInput表单文本控件",
+      "dependencies": ["dependencyWTextCommonModule"]
+    },
+    "dependencyWControlInterfaceModule": {
+      "name": "dependencyWControlInterfaceModule",
+      "abstract": true,
+      "dependencies": ["jquery", "wControlInterface", "dyform_constant"]
+    },
+    "wSubFormMethod": {
+      "path": "/dyform/control/subform/jquery.wSubFormMethod",
+      "name": "wSubFormMethod表单从表基类",
+      "dependencies": ["dependencyJQueryModule", "bootstrapTable", "bootstrapTable_editable", "alerts", "wRadioCheckBoxCommonMethod"]
+    },
+    "wComboSelect": {
+      "path": "/dyform/control/jquery.wComboSelect",
+      "name": "wComboSelect表单下拉选项控件",
+      "dependencies": [
+        "dependencyWControlInterfaceModule",
+        "select2",
+        "wRadioCheckBoxCommonMethod",
+        "wellSelect",
+        "dataStoreBase",
+        "wSelectCommonMethod"
+      ]
+    },
+    "wCkeditor": {
+      "path": "/dyform/control/jquery.wCkeditor",
+      "name": "wCkeditor表单富文本控件",
+      "dependencies": ["dependencyWTextCommonModule", "ckeditor"]
+    },
+    "wControlInterface": {
+      "path": "/dyform/control/common/jquery.wControlInterface",
+      "name": "wControlInterface表单控件解析接口类",
+      "dependencies": ["dependencyJQueryModule", "dependencyDyformValidateModule", "wControlUtil"]
+    },
+    "w-validate-additional-methods": {
+      "path": "/dyform/commons/validate/validate-additional-methods",
+      "name": "w-validate-additional-methods前端表单校验补充方法",
+      "dependencies": ["dependencyJQueryValidateModule"]
+    },
+    "layout_constant": {
+      "path": "/dyform/control/layout/common/layout_constant",
+      "name": "layout_constant表单布局常量",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "dyform_explain": {
+      "path": "/dyform/explain/parser/dyform_explain",
+      "name": "dyform_explain表单解析控件",
+      "dependencies": [
+        "dependencyJQueryModule",
+        "dyform_constant",
+        "wControlManager",
+        "formDefinitionMethod",
+        "formFunction",
+        "uuid",
+        "dyform_excel",
+        "layer",
+        "minicolors",
+        "bodymovin",
+        "dyform_socket.io"
+      ]
+    },
+    "wJobSelect": {
+      "path": "/dyform/control/leedarson/jquery.wJobSelect",
+      "name": "wJobSelect表单职位选择控件",
+      "dependencies": ["dependencyWControlInterfaceModule"]
+    },
+    "wViewDisplay": {
+      "path": "/dyform/control/jquery.wViewDisplay",
+      "name": "wViewDisplay表单视图展示控件",
+      "dependencies": ["dependencyJQueryUIModule"]
+    },
+    "DyformExplain": {
+      "path": "/dyform/explain/parser/DyformExplain",
+      "name": "Dyform运行环境",
+      "dependencies": ["dyform_explain", "DyformDevelopment", "DyformFacade", "DyformExplainDevelopment"]
+    },
+    "wFileUpload4Image": {
+      "path": "/dyform/control/fileupload/jquery.wFileUpload4Image",
+      "name": "wFileUpload4Image表单图片附件控件",
+      "dependencies": ["dependencyWFileUploadCommonModule", "wellfileupload4Image", "wSelect2"]
+    },
+    "wCheckBox": {
+      "path": "/dyform/control/jquery.wCheckBox",
+      "name": "wCheckBox表单复选框控件",
+      "dependencies": ["dependencyWRadioCheckCommonModule", "wRadioCheckBoxCommonMethod"]
+    },
+    "dyform_socket.io": {
+      "path": "/dyform/commons/dyform_socket.io",
+      "name": "表单socket客户端",
+      "dependencies": ["jquery", "socket.io"]
+    },
+    "DyformExplainDevelopment": {
+      "path": "/dyform/explain/DyformExplainDevelopment",
+      "name": "表单解析二开",
+      "dependencies": ["jquery", "DyformDevelopment"]
+    }
+  },
+  "css": {}
+}

@@ -1,0 +1,91 @@
+/*hover color variables*/
+/*disabled color variables*/
+.ui-wLeftSidebar {
+  position: relative;
+  transition: .3s all;
+}
+.ui-wLeftSidebar .nav-toggle-btn {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: none;
+  border: none;
+}
+.ui-wLeftSidebar .nav-toggle-btn i {
+  border-left: 13px solid #ccc;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  height: 34px;
+  display: block;
+  position: relative;
+}
+.ui-wLeftSidebar .nav-toggle-btn i:before {
+  font-size: 16px;
+  position: absolute;
+  left: -12px;
+  top: 2px;
+  color: #fff;
+}
+.ui-wLeftSidebar .nav-toggle-btn:hover i {
+  border-left: 13px solid #069dd5;
+}
+.ui-wLeftSidebar .nav-toggle-btn.close-nav i:before {
+  content: "\f100";
+}
+.ui-wLeftSidebar .icon-nav {
+  width: 50px;
+  display: none;
+}
+.ui-wLeftSidebar .icon-nav .icon-nav-item {
+  padding: 10px;
+  cursor: pointer;
+  background: #069dd5;
+  text-align: center;
+  line-height: 24px;
+}
+.ui-wLeftSidebar .icon-nav .icon-nav-item i {
+  color: #fff;
+  font-size: 24px;
+}
+.ui-wLeftSidebar .icon-nav .icon-nav-item:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+.ui-wLeftSidebar .icon-nav .icon-nav-item:hover,
+.ui-wLeftSidebar .icon-nav .icon-nav-item.selected {
+  background: #057aa6;
+}
+.ui-wLeftSidebar .metismenu .nav-menu-item > a {
+  padding: 14px 20px;
+  line-height: 21px;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.ui-wLeftSidebar .metismenu .nav-menu-item > a .badge {
+  margin-left: 5px;
+}
+.ui-wLeftSidebar .metismenu .nav-menu-item > a .iconfont {
+  font-size: 17px;
+  vertical-align: middle;
+}
+.ui-wLeftSidebar .metismenu .nav-menu-item > a:hover,
+.ui-wLeftSidebar .metismenu .nav-menu-item > a:focus,
+.ui-wLeftSidebar .metismenu .nav-menu-item > a:active {
+  text-decoration: none;
+}
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.subnav-menu-item > a,
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.thirdnav-menu-item > a {
+  display: block;
+  padding: 4px 20px 4px 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-decoration: none;
+}
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.subnav-menu-item {
+  padding: 10px 15px 10px 38px;
+}
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.thirdnav-menu-item {
+  padding: 10px 15px 10px 58px;
+}

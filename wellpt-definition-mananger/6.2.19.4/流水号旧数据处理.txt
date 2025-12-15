@@ -1,0 +1,16 @@
+调用接口：注意，是后端端口！是后端端口！是后端端口！
+实际IP+后端端口+
+/api/serial/number/oldDataProcess?jwt=**
+
+jwt参数为前后端分离认证需要的jwt认证数据
+返回数据：{"code":0,"msg":"成功","data":null}
+
+如返回其他 请排查相关问题 后可重复执行，直至返回如上值
+
+
+由于表单，流程等历史旧数据有不完善的脏数据，查询解析定义过程中会出错。
+spring 事务会标记只读处理。
+会返回如下错误：
+UnexpectedRollbackException: Transaction rolled back because it has been marked as rollback-only
+
+但实际数据已处理

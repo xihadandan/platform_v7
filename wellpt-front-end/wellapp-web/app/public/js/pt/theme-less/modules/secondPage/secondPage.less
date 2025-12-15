@@ -1,0 +1,41 @@
+//二级页面组件开始
+.second-page{
+    position:relative;
+    height:100%;
+    .menu-sidebar{
+        width:250px;
+        position:absolute;
+        top:0;
+        left:0;
+        height:100%;
+        overflow:hidden;
+        .scroll-inner{
+            overflow-y:auto;
+            width:270px;
+            height:100%;
+            .ui-wLeftSidebar{
+                width:250px;
+            }
+        }
+    }
+    .content{
+        width:calc(100%-250px);
+        margin-left:250px;
+        padding:15px;
+        height:100%;
+        overflow:auto;
+        >.panel{
+            margin:0;
+        }
+        .row,.col-xs-12{
+            height: 100%;
+        }
+        .panel{
+            .file-manager-view{
+                margin:0;
+            }
+        }
+    }
+}
+
+//二级页面组件结束

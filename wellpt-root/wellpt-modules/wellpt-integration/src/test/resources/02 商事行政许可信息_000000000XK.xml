@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<item>
+    <!--null -->
+    <body_col/>
+    <!--颁证日期 -->
+    <BZRQ>2014-12-24</BZRQ>
+    <!--法定代表人 -->
+    <FDDBR>王元</FDDBR>
+    <!--相关文件 -->
+    <XGWJ isAttachment="1"/>
+    <!--注册号 -->
+    <ZCH>440108000024940</ZCH>
+    <!--颁证单位名称 -->
+    <BZDWMC/>
+    <!--更新日期 -->
+    <GXRQ/>
+    <!--颁证单位代码 -->
+    <BZDWDM/>
+    <!--许可范围 -->
+    <XKFW/>
+    <!--企业类型 -->
+    <ZTLX>合资</ZTLX>
+    <!--下次更新日期 -->
+    <XQGXRQ/>
+    <!--企业名称 -->
+    <ZTMC/>
+    <!--经营场所 -->
+    <JYCS>厦门市</JYCS>
+    <!--机构名称 -->
+    <JGMC/>
+    <!--证件号 -->
+    <ZJH/>
+    <!--登记状态 -->
+    <DJZT/>
+    <!--证照名称 -->
+    <ZZMC/>
+    <!--商事登记_行政许可拓展 -->
+    <userform_ssxx_xktz isList="1">
+        <item>
+            <!--标题 -->
+            <BT/>
+            <!--值 -->
+            <Z/>
+        </item>
+    </userform_ssxx_xktz>
+</item>

@@ -1,0 +1,156 @@
+body {
+  --w-steps-primary-color: var(--w-primary-color);
+
+  --w-steps-title-color: var(--w-text-color-dark);
+  --w-steps-description-color: var(--w-text-color-base);
+  --w-steps-subtitle-color: var(--w-text-color-light);
+
+  --w-steps-wait-icon-color: var(--w-text-color-light);
+  --w-steps-wait-title-color: var(--w-text-color-light);
+  --w-steps-wait-description-color: var(--w-text-color-light);
+  --w-steps-wait-subtitle-color: var(--w-text-color-light);
+}
+
+.ant-steps {
+  color: var(--w-steps-title-color);
+  .ant-steps-item-process {
+    .ant-steps-item-icon {
+      background: var(--w-steps-primary-color);
+      border-color: var(--w-steps-primary-color);
+      > .ant-steps-icon {
+        .ant-steps-icon-dot {
+          background: var(--w-steps-primary-color);
+        }
+      }
+    }
+    > .ant-steps-item-container {
+      > .ant-steps-item-content {
+        > .ant-steps-item-title {
+          color: var(--w-steps-title-color);
+        }
+        > .ant-steps-item-description {
+          color: var(--w-steps-description-color);
+        }
+        > .ant-steps-item-subtitle {
+          color: var(--w-steps-subtitle-color);
+        }
+      }
+    }
+    &.ant-steps-item-custom {
+      .ant-steps-item-icon > .ant-steps-icon {
+        color: #ffffff;
+      }
+    }
+  }
+  &.ant-steps-dot,
+  &.ant-steps-dot.ant-steps-small {
+    .ant-steps-item-icon {
+      background: transparent;
+    }
+  }
+  .ant-steps-item-custom.ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon .ant-steps-item-finish {
+    > .ant-steps-item-container {
+      > .ant-steps-item-tail {
+        &:after {
+          background-color: var(--w-steps-primary-color);
+        }
+      }
+    }
+    .ant-steps-item-icon {
+      border-color: var(--w-steps-primary-color);
+      > .ant-steps-icon {
+        color: var(--w-steps-primary-color);
+      }
+    }
+  }
+  .ant-steps-item-error {
+    .ant-steps-item-icon {
+      > .ant-steps-icon {
+        color: var(--w-danger-color);
+      }
+    }
+  }
+  .ant-steps-item {
+    &:not(.ant-steps-item-active):not(.ant-steps-item-process) {
+      > .ant-steps-item-container[role='button'] {
+        &:hover {
+          .ant-steps-item-icon {
+            border-color: var(--w-steps-primary-color);
+          }
+          .ant-steps-item-description,
+          .ant-steps-item-subtitle,
+          .ant-steps-item-title {
+            color: var(--w-steps-primary-color);
+          }
+        }
+      }
+    }
+  }
+  .ant-steps-navigation {
+    .ant-steps-item {
+      &:before {
+        background-color: var(--w-steps-primary-color);
+      }
+    }
+  }
+  .ant-steps-item-error {
+    .ant-steps-item-icon {
+      > .ant-steps-icon {
+        color: var(--w-danger-color);
+      }
+    }
+    > .ant-steps-item-container {
+      > .ant-steps-item-content {
+        > .ant-steps-item-description,
+        > .ant-steps-item-subtitle,
+        > .ant-steps-item-title {
+          color: var(--w-danger-color);
+        }
+      }
+    }
+  }
+  .ant-steps-item-wait {
+    .ant-steps-item-icon {
+      > .ant-steps-icon {
+        color: var(--w-steps-wait-icon-color);
+      }
+    }
+    > .ant-steps-item-container {
+      > .ant-steps-item-content {
+        > .ant-steps-item-title {
+          color: var(--w-steps-wait-title-color);
+        }
+        > .ant-steps-item-description {
+          color: var(--w-steps-wait-description-color);
+        }
+        > .ant-steps-item-subtitle {
+          color: var(--w-steps-wait-subtitle-color);
+        }
+      }
+    }
+  }
+
+  &.pt-steps {
+    --w-pt-steps-width: e('calc(100% - 150px)');
+    --w-pt-steps-margin: 0 auto;
+    --w-pt-steps-icon-size: 36px;
+    --w-pt-steps-title-weight: bold;
+    width: var(--w-pt-steps-width);
+    margin: var(--w-pt-steps-margin);
+    .ant-steps-item {
+      .ant-steps-item-icon {
+        width: var(--w-pt-steps-icon-size);
+        height: var(--w-pt-steps-icon-size);
+        line-height: var(--w-pt-steps-icon-size);
+      }
+      .ant-steps-item-title {
+        font-weight: var(--w-pt-steps-title-weight);
+      }
+      .ant-steps-item-wait {
+        .ant-steps-item-title {
+          color: var(--w-steps-title-color);
+        }
+      }
+    }
+  }
+}

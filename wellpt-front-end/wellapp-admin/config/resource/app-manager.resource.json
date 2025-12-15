@@ -1,0 +1,99 @@
+{
+  "js": {
+    "AppAdminIndexWidgetDevelopment": {
+      "path": "/app-mgr/AppAdminIndexWidgetDevelopment",
+      "name": "平台应用_管理后台主页二开",
+      "dependencies": ["HtmlWidgetDevelopment", "global", "niceScroll"]
+    },
+    "AppFunctionDialog": {
+      "path": "app-mgr/AppFunctionDialog",
+      "name": "平台管理_产品集成_功能弹出框",
+      "dependencies": ["AppPtMgrCommons"]
+    },
+    "AppPageDefinitionListViewWidgetDevelopment": {
+      "path": "app-mgr/AppPageDefinitionListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_页面列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment", "multiOrg", "cookie"]
+    },
+    "AppModuleDetailsWidgetDevelopment": {
+      "path": "app-mgr/AppModuleDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_模块详情_HTML组件二开",
+      "dependencies": ["AppPtMgrDetailsWidgetDevelopment"]
+    },
+    "AppPageDefinitionDetailsWidgetDevelopment": {
+      "path": "app-mgr/AppPageDefinitionDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_页面详情_HTML组件二开",
+      "dependencies": ["AppPtMgrDetailsWidgetDevelopment"]
+    },
+    "AppFunctionSetDevelopment": {
+      "path": "app-mgr/AppFunctionSetDevelopment",
+      "name": "平台应用_产品集成开发及管理_功能编辑二开",
+      "dependencies": ["HtmlWidgetDevelopment", "global", "system-admin", "jsonview"]
+    },
+    "AppFunctionListViewWidgetDevelopment": {
+      "path": "app-mgr/AppFunctionListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_功能列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppApplicationListViewWidgetDevelopment": {
+      "path": "app-mgr/AppApplicationListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_应用列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppProductListViewWidgetDevelopment": {
+      "path": "app-mgr/AppProductListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_产品列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppSystemDetailsWidgetDevelopment": {
+      "path": "app-mgr/AppSystemDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_系统详情_HTML组件二开",
+      "dependencies": ["AppPtMgrDetailsWidgetDevelopment"]
+    },
+    "AppBreadcrumbsHtmlWidgetDevelopment": {
+      "path": "app-mgr/AppBreadcrumbsHtmlWidgetDevelopment",
+      "name": "平台管理_产品集成_面包屑导航_HTML组件二开",
+      "dependencies": ["HtmlWidgetDevelopment"]
+    },
+    "AppFunctionListDevelopment": {
+      "path": "app-mgr/AppFunctionListDevelopment",
+      "name": "平台应用_产品集成开发及管理_功能列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppSystemListViewWidgetDevelopment": {
+      "path": "app-mgr/AppSystemListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_系统列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppPageResourceListViewWidgetDevelopment": {
+      "path": "app-mgr/AppPageResourceListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_页面引用资源列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppProductDetailsWidgetDevelopment": {
+      "path": "app-mgr/AppProductDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_产品详情_HTML组件二开",
+      "dependencies": ["AppPtMgrDetailsWidgetDevelopment"]
+    },
+    "AppModuleListViewWidgetDevelopment": {
+      "path": "app-mgr/AppModuleListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_模块列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppApplicationDetailsWidgetDevelopment": {
+      "path": "app-mgr/AppApplicationDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_应用详情_HTML组件二开",
+      "dependencies": ["AppPtMgrDetailsWidgetDevelopment"]
+    },
+    "AppThemeDefinitionListViewWidgetDevelopment": {
+      "path": "app-mgr/AppThemeDefinitionListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_主题定义列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppThemeDefinitionDetailsWidgetDevelopment": {
+      "path": "app-mgr/AppThemeDefinitionDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_主题定义详情_HTML组件二开",
+      "dependencies": ["AppPtMgrDetailsWidgetDevelopment"]
+    }
+  }
+}

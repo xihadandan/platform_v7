@@ -1,0 +1,105 @@
+.widget-design-select-sider {
+  .widget-select-item-ul {
+    padding: 2px 0px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .widget-select-item {
+      width: 112px;
+      list-style: none;
+      line-height: 32px;
+      padding: 2px 8px;
+      background-color: #fff;
+      border-radius: 4px;
+      cursor: move;
+      display: inline-block;
+      border: 1px solid var(--w-border-color-light);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-bottom: 8px;
+      margin-left: 1px;
+      &:nth-of-type(odd) {
+        margin-right: 12px;
+      }
+
+      font-size: var(--w-font-size-base);
+      color: var(--w-text-color-dark);
+
+      &.filter {
+        background: #e9e9e9;
+        cursor: not-allowed;
+
+        &:hover {
+          color: unset;
+        }
+      }
+
+      > i {
+        font-size: var(--w-font-size-lg);
+        color: var(--w-text-color-base);
+      }
+      &:hover {
+        border: 1px solid var(--w-primary-color);
+        background-color: var(--w-primary-color-1);
+        color: var(--w-primary-color);
+        > i {
+          color: var(--w-primary-color);
+        }
+      }
+
+      &.field-used {
+        background-color: #e8e8e8 !important;
+        cursor: not-allowed !important;
+      }
+
+      &.data-model-column.required::after {
+        color: #f5222d;
+        font-size: 14px;
+        line-height: 1;
+        content: '*';
+        position: relative;
+        margin: 0 8px 0 2px;
+      }
+
+      &.data-model-column.focus {
+        animation: inout 1500ms infinite;
+        -webkit-animation: inout 1500ms infinite;
+      }
+    }
+  }
+}
+
+g[port-group='right'] {
+  circle,
+  line {
+    visibility: hidden;
+    stroke: var(--w-primary-color-4);
+  }
+}
+g[port-group='bottom'] {
+  circle,
+  line {
+    visibility: hidden;
+    stroke: var(--w-primary-color-4);
+  }
+}
+g[port-group='rightLine'] {
+  line {
+    stroke: var(--w-primary-color-3);
+  }
+}
+.x6-edge {
+  path {
+    &:last-child {
+      stroke: var(--w-primary-color-3);
+    }
+  }
+  &.highlight {
+    path {
+      &:last-child {
+        stroke: var(--w-primary-color);
+      }
+    }
+  }
+}

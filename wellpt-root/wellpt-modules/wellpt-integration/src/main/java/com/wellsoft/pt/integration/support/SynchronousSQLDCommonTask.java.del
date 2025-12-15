@@ -1,0 +1,54 @@
+/*
+ * @(#)2013-10-30 V1.0
+ * 
+ * Copyright 2013 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.integration.support;
+
+import org.quartz.JobExecutionContext;
+
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.integration.service.ExchangeDataSynSQLDService;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+
+/**
+ * 
+ * Description: 如何描述该类
+ *  
+ * @author Administrator
+ * @date 2016-8-15
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2016-8-15.1	Administrator		2016-8-15		Create
+ * </pre>
+ *
+ */
+public class SynchronousSQLDCommonTask extends Job {
+	private static boolean locked = true;
+
+	/** 
+	 * 如何描述该方法
+	 * 
+	 * (non-Javadoc)
+	 * @see com.wellsoft.pt.task.job.Job#execute(org.quartz.JobExecutionContext, com.wellsoft.pt.task.job.JobData)
+	 */
+	@Override
+	protected void execute(JobExecutionContext arg0, JobData arg1) {
+		if (locked) {
+			try {
+				locked = false;
+				ExchangeDataSynSQLDService exchangeDataSynSQLDService = ApplicationContextHolder
+						.getBean(ExchangeDataSynSQLDService.class);
+				exchangeDataSynSQLDService.synCommontoTenant();
+			} catch (Exception e) {
+				logger.error("SynchronousSQLDCommonTask业务异常", e);
+			} finally {
+				locked = true;
+			}
+		}
+	}
+}

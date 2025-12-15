@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="wmWebmailInboxQuery">
+        <![CDATA[
+		  from WmMailbox t1
+		 where 1 = 1
+		   and t1.userId = :userId
+		   and t1.status = :status
+		   <if isNotBlank(queryValue) >
+			   and (1 = 2 or t1.fromUserName like '%${queryValue}%' or
+			       t1.toUserName like '%${queryValue}%' or
+			       t1.subject like '%${queryValue}%' or
+			       t1.content like '%${queryValue}%')
+		 	</if>
+		 order by t1.sendTime desc
+	]]>
+    </sql-query>
+
+
+    <sql-query name="querySendMailHasBeenFetched">
+        <![CDATA[
+		 select 1
+		  from WM_MAILBOX t
+		 where t.from_mail_address = :fromMailAddress
+		   <if subject??>
+		   and t.subject = :subject
+		   </if>
+		   and t.mailbox_name = 'INBOX'
+		   and t.send_time = :sendTime
+		   and (t.user_id = :toMailAddress1 or exists
+		        (select 1
+		           from wm_mail_user tt
+		          where tt.user_id = t.user_id
+		            and tt.mail_address = :toMailAddress2))
+	]]>
+    </sql-query>
+
+    <!-- 保存邮件同步记录信息 -->
+    <sql-query name="insertJamesMailAsync">
+        <![CDATA[
+			INSERT INTO james_mail_async
+			(uuid, mail_uid, mailbox_id)
+			VALUES
+				(:uuid, :mailUid, :mailboxId)
+		]]>
+    </sql-query>
+
+
+</hibernate-mapping>

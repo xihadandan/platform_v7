@@ -1,0 +1,62 @@
+/**
+  *目前用于流程环节 - 流程状态 弹窗的表格
+  *
+  * Example:
+  *
+  * ```html
+  * <div class="work-flow-table">
+  *   <div class="t-header">
+  *     <div class="t-item t-item-label"></div>
+  *     <div class="t-item t-item-value"></div>
+  *   </div>
+  *   <ul>
+  *     <li><div class="t-item t-item-label"></div></li>
+  *     <li><div class="t-item t-item-label"></div></li>
+  *   </ul>
+  * </div>
+  * ```
+  */
+
+.work-flow-table {
+  border: @border-default;
+  border-radius: @border-radius-base;
+
+  .t-item {
+    line-height: 44px;
+    font-size: @font-size-base;
+    color: @text-color-dark;
+    text-align: center;
+  }
+
+  .t-item-label {
+    float: left;
+    width: 20%;
+    border-right: @border-default;
+  }
+
+  .t-item-value {
+    float: left;
+    width: 80%;
+  }
+
+  ul li {
+    border-top: @border-default;
+
+    input {
+      box-shadow: none;
+
+      &.error {
+        &:extend(.control-error);
+      }
+    }
+
+    .t-item-value {
+      padding: 5px 10px;
+    }
+  }
+}
+
+.control-error {
+  border: @border-default-danger !important;
+  box-shadow: @shadow-error-default !important;
+}

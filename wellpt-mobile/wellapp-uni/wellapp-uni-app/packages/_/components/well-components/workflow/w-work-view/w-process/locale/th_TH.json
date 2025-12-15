@@ -1,0 +1,37 @@
+{
+  "WidgetWorkProcess": {
+    "arrived": "ถึงแล้ว",
+    "skipTask": "ข้ามงาน",
+    "Me": "ฉัน",
+    "toDoUser": "ผู้ที่ต้องดำเนินการ",
+    "attachment": "ไฟล์แนบ",
+    "downloadAll": "ดาวน์โหลดทั้งหมด",
+    "preview": "ดูตัวอย่าง",
+    "download": "ดาวน์โหลด",
+    "viewMore": "ดูเพิ่มเติม",
+    "collapse": "พับเก็บ",
+    "noOpinionText": "ไม่ได้ป้อนความเห็นในการดำเนินการ",
+    "more": "เพิ่มเติม",
+    "doing": "กำลังดำเนินการ",
+    "endTask": "สิ้นสุดงาน",
+    "approveAuto": "อนุมัติอัตโนมัติ",
+    "autoJumpRepeatTask": "ข้ามอัตโนมัติสำหรับงานซ้ำ",
+    "gotoTaskFromText": "ย้ายกระบวนการจาก",
+    "gotoTaskToText": "ไปยัง",
+    "handoverToText": "โอนให้",
+    "To": "ให้",
+    "copyToMeanwhile": "คัดลอกไปพร้อมกัน",
+    "Target": "วัตถุประสงค์",
+    "extraApproveExtraTask": "รีวิวและดำเนินการเพิ่มเติม",
+    "process": {
+      "current": "ปัจจุบัน",
+      "my": "ของฉัน",
+      "ascSort": "เรียงลำดับจากน้อยไปมาก",
+      "descSort": "เรียงลำดับจากมากไปน้อย",
+      "standardTimeProcess": "ไทม์ไลน์มาตรฐาน",
+      "simpleTimeProcess": "ไทม์ไลน์แบบเรียบง่าย",
+      "tableProcess": "ตาราง"
+    },
+    "pleaseHurryUp": "กรุณารีบ!"
+  }
+}

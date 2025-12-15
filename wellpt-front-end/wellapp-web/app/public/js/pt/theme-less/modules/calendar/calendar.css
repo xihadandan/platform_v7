@@ -1,0 +1,25 @@
+.ui-wFullCalendar .fixed-calendar-toolbar .btn-query > i,
+.ui-wFullCalendar .fixed-calendar-toolbar .btn-reset > i {
+  margin-right: 5px;
+  vertical-align: -1px;
+}
+.ui-wFullCalendar .fixed-calendar-toolbar .columns-right {
+  margin-left: 5px;
+}
+.ui-wFullCalendar .fixed-calendar-toolbar .bs-bars,
+.ui-wFullCalendar .fixed-calendar-toolbar .columns,
+.ui-wFullCalendar .fixed-calendar-toolbar .search {
+  position: relative;
+  margin-bottom: 15px;
+  line-height: 34px;
+}
+.ui-wFullCalendar .fc-header-toolbar .btn {
+  height: 35px;
+  outline: none;
+}
+.ui-wFullCalendar .fixed-calendar-toolbar:after {
+  content: "";
+  display: table;
+  clear: both;
+  visibility: hidden;
+}

@@ -1,0 +1,43 @@
+#progressbar.page-header
+  h2 Extended Progressbar
+
+.row
+  .col-md-4.text-justify
+    :markdown
+      As of `v2.0`, jWizard comes bundled with a widget that extends the
+      [jQuery UI Progressbar Widget](http://jqueryui.com/progressbar/) widget.
+      This extension unobtrusively adds a new feature, a label reflecting the
+      value (in relation to max) that is positioned over the progressbar itself.
+      This feature is "opt-in" only. (by setting the `label` option)
+
+      That being said, if you have included jWizard, you have access to the enhanced
+      progressbar without any additional work on your part. The eventual goal is to
+      submit this feature to the jQuery UI team for inclusion.
+
+  .col-md-8
+    b Configuration Options:
+    .alert.alert-info
+      :markdown
+        These options are in addition to the documented options of the
+        [jQuery UI Progressbar Widget](http://jqueryui.com/progressbar/)
+
+    .panel.panel-default
+      .panel-heading
+        != "<b>label</b> <code>String</code> (Default: <code>null</code>)"
+      .panel-body
+        :markdown
+          This option has 2 possible values, each adds a label to the progressbar:
+
+           - `"count"` adds a label that is formatted as `"55 of 100"`
+           - `"percentage"` adds a label that is formatted as `"55%"`
+
+    .panel.panel-default
+      .panel-heading
+        != "<b>append</b> <code>String</code> (Default: <code>null</code>)"
+      .panel-body
+        :markdown
+          This option specifies a "suffix" for the label, and appends the specified
+          string to the generated label text.
+
+          For example, jWizard appends "Complete" by default so the label would appear
+          as `"3 of 5 Complete"`.

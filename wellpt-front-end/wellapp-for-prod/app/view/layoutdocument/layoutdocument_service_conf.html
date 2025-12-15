@@ -1,0 +1,57 @@
+<form action="" id="layoutdocument_service_conf_form" style="margin-top: 15px">
+  <input type="hidden" id="uuid" name="uuid" />
+  <div class="well-form form-horizontal">
+    <div class="form-group">
+      <label for="serverName" class="well-form-label control-label required">服务名称</label>
+      <div class="well-form-control">
+        <input type="hidden" class="form-control" id="serverName" name="serverName" readonly="readonly" />
+        <input type="hidden" class="form-control" id="serverUniqueCodeTemp" name="serverUniqueCodeTemp" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="serverUniqueCode" class="well-form-label control-label required">服务唯一标识符</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="serverUniqueCode" name="serverUniqueCode" readonly />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="code" class="well-form-label control-label">编号</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="code" name="code" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="serverUrl" class="well-form-label control-label required">服务地址</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" name="serverUrl" id="serverUrl" />
+      </div>
+    </div>
+
+    <div class="form-group" id="value_tr">
+      <label for="fileExtensions" class="well-form-label control-label required">支持的文件扩展名</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="fileExtensions" name="fileExtensions" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="status" class="well-form-label control-label">状态</label>
+      <div class="well-form-control">
+        <div class="switch-wrap active" id="statusSetSwitch" style="margin-top: 7px">
+          <span class="switch-text switch-open">启用</span>
+          <span class="switch-radio"></span>
+          <span class="switch-text switch-close">禁用</span>
+        </div>
+        <input type="hidden" id="status" name="status" class="form-control" value="1" />
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 30px">
+    <div class="col-sm-12 text-center">
+      <button type="button" class="well-btn w-btn-primary" id="layoutdocument_service_conf_btn_save">保存</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <sql-query name="getTaskOperationListByTimeInterval">
+        <![CDATA[
+		SELECT WTO.UUID,
+			WTO.FLOW_INST_UUID,
+			WTO.CREATOR
+		FROM
+			WF_TASK_OPERATION wto
+		WHERE
+			wto.CREATE_TIME > TO_DATE (
+				'${startDateTime}',
+				'yyyy-mm-dd hh24:mi:ss'
+			)
+		AND wto.CREATE_TIME < TO_DATE (
+			'${endDateTime}',
+			'yyyy-mm-dd hh24:mi:ss'
+		)
+
+
+	]]>
+    </sql-query>
+
+
+    <sql-query name="listTaskOperationQuery">
+        <![CDATA[
+		select t.uuid           as uuid,
+		       t.rec_ver    	as rec_ver,
+		       t.creator        as creator,
+		       t.create_time    as create_time,
+		       t.modifier       as modifier,
+		       t.modify_time    as modify_time,
+		       t.action         as action,
+		       t.action_type    as action_type,
+		       t.action_code    as action_code,
+		       t.opinion_label  as opinion_label,
+		       t.opinion_value  as opinion_value,
+		       t.opinion_text   as opinion_text,
+		       t.assignee       as assignee,
+		       t.assignee_name  as assignee_name,
+		       t.user_id        as user_id,
+		       t.copy_user_id   as copy_user_id,
+		       t.task_id        as task_id,
+		       t.task_name      as task_name,
+		       t.task_inst_uuid as task_inst_uuid,
+		       t.flow_inst_uuid as flow_inst_uuid
+		  from wf_task_operation t
+		 where 1 = 1
+			<if isNotBlank(action)>
+				and t.action = :action
+			</if>
+			<if isNotBlank(actionType)>
+				and t.action_type = :actionType
+			</if>
+			<if isNotBlank(actionCode)>
+				and t.action_code = :actionCode
+			</if>
+			<if isNotBlank(opinionValue)>
+				and t.opinion_value = :opinionValue
+			</if>
+			<if isNotBlank(opinionLabel)>
+				and t.opinion_label = :opinionLabel
+			</if>
+			<if isNotBlank(opinionText)>
+				and t.opinion_text = :opinionText
+			</if>
+			<if isNotBlank(opinionTextLike)>
+				and t.opinion_text like '%${opinionTextLike}%'
+			</if>
+			<if isNotBlank(operatorId)>
+				and t.assignee = :operatorId
+			</if>
+			<if isNotBlank(taskId)>
+				and t.task_id = :taskId
+			</if>
+			<if isNotBlank(taskName)>
+				and t.task_name = :taskName
+			</if>
+			<if isNotBlank(taskInstUuid)>
+				and t.task_inst_uuid = :taskInstUuid
+			</if>
+			<if isNotBlank(flowInstUuid)>
+				and t.flow_inst_uuid = :flowInstUuid
+			</if>
+			<if isNotBlank(flowInstUuids)>
+				and t.flow_inst_uuid in (:flowInstUuids)
+			</if>
+			<if isNotBlank(orderBy)>
+				order by ${orderBy}
+			</if>
+	]]>
+    </sql-query>
+
+    <!-- 获取最新抄送给指定用户的操作 -->
+    <sql-query name="getLastestCopyToByUserId">
+        <![CDATA[
+		select t.uuid           as uuid,
+		       t.rec_ver    	as rec_ver,
+		       t.creator        as creator,
+		       t.create_time    as create_time,
+		       t.modifier       as modifier,
+		       t.modify_time    as modify_time,
+		       t.action         as action,
+		       t.action_type    as action_type,
+		       t.action_code    as action_code,
+		       t.opinion_label  as opinion_label,
+		       t.opinion_value  as opinion_value,
+		       t.opinion_text   as opinion_text,
+		       t.assignee       as assignee,
+		       t.assignee_name  as assignee_name,
+		       t.user_id        as user_id,
+		       t.copy_user_id   as copy_user_id,
+		       t.task_id        as task_id,
+		       t.task_name      as task_name,
+		       t.task_inst_uuid as task_inst_uuid,
+		       t.flow_inst_uuid as flow_inst_uuid,
+		       t.extra_info     as extra_info
+		  from wf_task_operation t
+		 where t.flow_inst_uuid = :flowInstUuid
+		 	and t.action_type = 'CopyTo'
+		 	and t.copy_user_id like '%${userId}%'
+		 order by t.create_time desc
+	]]>
+    </sql-query>
+
+    <!-- 获取最新提交并抄送给指定用户的环节实例UUID -->
+    <sql-query name="getLastestTaskInstUuidBySubmitAndCopyToUser">
+        <![CDATA[
+		select
+			t1.task_inst_uuid
+		from
+			wf_task_activity t1
+		where
+			t1.pre_task_inst_uuid in(
+			select
+				t2.task_inst_uuid
+			from
+				wf_task_operation t2
+			where
+				t2.flow_inst_uuid = :flowInstUuid
+				and
+		t2.action_type = 'Submit'
+				and t2.copy_user_id like '%${userId}%'
+		)
+		order by
+			t1.create_time desc
+	]]>
+    </sql-query>
+
+    <!-- 获取分支流相关的用户操作 -->
+    <sql-query name="getBranchTaskRelateOperationQuery">
+        <![CDATA[
+		select distinct t1.uuid                    as uuid,
+		       t1.rec_ver                 as rec_ver,
+		       t1.creator                 as creator,
+		       t1.create_time             as create_time,
+		       t1.modifier                as modifier,
+		       t1.modify_time             as modify_time,
+		       t1.action                  as action,
+		       t1.action_type             as action_type,
+		       t1.action_code             as action_code,
+		       t1.opinion_label           as opinion_label,
+		       t1.opinion_value           as opinion_value,
+		       t1.opinion_text            as opinion_text,
+		       t1.assignee                as assignee,
+		       t1.assignee_name           as assignee_name,
+		       t1.user_id                 as user_id,
+		       t1.copy_user_id            as copy_user_id,
+		       t1.task_id                 as task_id,
+		       t1.task_name               as task_name,
+		       t1.task_inst_uuid          as task_inst_uuid,
+		       t1.flow_inst_uuid          as flow_inst_uuid,
+		       t2.flow_inst_uuid          as belong_to_flow_inst_uuid,
+		       t2.parallel_task_inst_uuid as belong_to_task_inst_uuid,
+		       t2.parallel_task_id        as belong_to_task_id
+		  from wf_task_operation t1
+		 inner join wf_task_branch t2
+		    on t1.flow_inst_uuid = t2.flow_inst_uuid
+         inner join wf_task_instance t3
+            on t1.task_inst_uuid = t3.uuid
+           and t2.parallel_task_inst_uuid = t3.parallel_task_inst_uuid
+		 where t1.flow_inst_uuid = :flowInstUuid
+		 	and t1.action_type in (:actionTypes)
+		 order by t1.create_time desc
+	]]>
+    </sql-query>
+
+    <!-- 获取子流程相关的用户操作 -->
+    <sql-query name="getSubflowRelateOperationQuery">
+        <![CDATA[
+		select t1.uuid           		as uuid,
+		       t1.rec_ver        		as rec_ver,
+		       t1.creator        		as creator,
+		       t1.create_time    		as create_time,
+		       t1.modifier       		as modifier,
+		       t1.modify_time    		as modify_time,
+		       t1.action         		as action,
+		       t1.action_type    		as action_type,
+		       t1.action_code    		as action_code,
+		       t1.opinion_label  		as opinion_label,
+		       t1.opinion_value  		as opinion_value,
+		       t1.opinion_text   		as opinion_text,
+		       t1.assignee       		as assignee,
+		       t1.assignee_name  		as assignee_name,
+		       t1.user_id        		as user_id,
+		       t1.copy_user_id   		as copy_user_id,
+		       t1.task_id        		as task_id,
+		       t1.task_name      		as task_name,
+		       t1.task_inst_uuid 		as task_inst_uuid,
+		       t1.flow_inst_uuid 		as flow_inst_uuid,
+		       t2.parent_flow_inst_uuid as belong_to_flow_inst_uuid,
+		       t2.parent_task_inst_uuid as belong_to_task_inst_uuid,
+		       t2.parent_task_id        as belong_to_task_id
+		  from wf_task_operation t1
+		  	inner join wf_task_sub_flow t2
+    			on t1.flow_inst_uuid = t2.flow_inst_uuid
+		 where t1.flow_inst_uuid in
+		       (select t3.flow_inst_uuid
+		          from wf_task_sub_flow t3
+		         where t3.parent_flow_inst_uuid = :flowInstUuid
+		        union all
+		        select t4.parent_flow_inst_uuid
+		          from wf_task_sub_flow t4
+		         where t4.parent_flow_inst_uuid = :flowInstUuid
+		        union all
+		        select t5.flow_inst_uuid
+		          from wf_task_sub_flow t5
+		         where t5.parent_flow_inst_uuid in
+		               (select t6.parent_flow_inst_uuid
+		                  from wf_task_sub_flow t6
+		                 where t6.flow_inst_uuid = :flowInstUuid))
+		   and t1.action_type in (:actionTypes)
+		   <if isNotBlank(keyword)>
+				and (t1.action like :keyword or t1.opinion_text like :keyword)
+			</if>
+		 order by t1.create_time desc
+	]]>
+    </sql-query>
+
+    <!-- 获取子流程相关的用户操作 -->
+    <sql-query name="getSubflowRelateOperationQueryByParentFlowInstUuid">
+        <![CDATA[
+		select t1.uuid           		as uuid,
+		       t1.rec_ver        		as rec_ver,
+		       t1.creator        		as creator,
+		       t1.create_time    		as create_time,
+		       t1.modifier       		as modifier,
+		       t1.modify_time    		as modify_time,
+		       t1.action         		as action,
+		       t1.action_type    		as action_type,
+		       t1.action_code    		as action_code,
+		       t1.opinion_label  		as opinion_label,
+		       t1.opinion_value  		as opinion_value,
+		       t1.opinion_text   		as opinion_text,
+		       t1.assignee       		as assignee,
+		       t1.assignee_name  		as assignee_name,
+		       t1.user_id        		as user_id,
+		       t1.copy_user_id   		as copy_user_id,
+		       t1.task_id        		as task_id,
+		       t1.task_name      		as task_name,
+		       t1.task_inst_uuid 		as task_inst_uuid,
+		       t1.flow_inst_uuid 		as flow_inst_uuid,
+		       t2.parent_flow_inst_uuid as belong_to_flow_inst_uuid,
+		       t2.parent_task_inst_uuid as belong_to_task_inst_uuid,
+		       t2.parent_task_id        as belong_to_task_id
+		  from wf_task_operation t1
+		  	inner join wf_task_sub_flow t2
+    			on t1.flow_inst_uuid = t2.flow_inst_uuid
+		 where t1.flow_inst_uuid in
+		       (select t3.flow_inst_uuid
+		          from wf_task_sub_flow t3
+		         where t3.parent_flow_inst_uuid = :flowInstUuid)
+		   and t1.action_type in (:actionTypes)
+		    <if isNotBlank(keyword)>
+				and (t1.action like :keyword or t1.opinion_text like :keyword)
+			</if>
+		 order by t1.create_time desc
+	]]>
+    </sql-query>
+</hibernate-mapping>

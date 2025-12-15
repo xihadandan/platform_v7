@@ -1,0 +1,42 @@
+.widget-data-manager-view {
+  margin-bottom: var(--w-margin-xs);
+
+  // padding: 0px var(--w-padding-xs);
+  .ant-tree-directory {
+    li.ant-tree-treenode-selected {
+      .ant-tree-switcher {
+        background: transparent;
+      }
+    }
+  }
+
+  >.widget-table {
+    padding: 0px;
+    margin-bottom: 0px;
+
+    .cell-render {
+      .ant-tag.dm-label {
+        margin-bottom: 2px;
+      }
+
+      .ant-tag.dm-label:hover {
+        box-shadow: #a6a5a5 5px 5px 5px;
+      }
+    }
+  }
+
+  .color-input-group {
+    .ant-input-group-addon {
+      padding: 0 3px;
+    }
+
+    .tag-color-select {
+      display: flex;
+
+      .vue-swatches__fallback__button {
+        padding: 0 7px;
+        font-weight: 400;
+      }
+    }
+  }
+}

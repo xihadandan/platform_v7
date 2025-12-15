@@ -1,0 +1,11 @@
+.size(@size) when (length(@size) = 1) {
+  .square(@size);
+}
+.size(@size) when (length(@size) = 2) {
+  width: extract(@size, 1);
+  height: extract(@size, 2);
+}
+
+.square(@size) {
+  .size(@size @size);
+}

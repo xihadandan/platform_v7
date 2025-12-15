@@ -1,0 +1,541 @@
+.btn-color(@text-color, @bg-color, @border-color) {
+  color: @text-color;
+  background-color: @bg-color;
+  border-color: @border-color;
+}
+
+// 按钮库
+.wellBtnLib {
+  .tab-pane a {
+    margin: 6px;
+  }
+
+  .radio-inline {
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+    input[type='radio'] {
+      margin-top: -5px !important;
+    }
+  }
+
+  .chooseBtnIcon {
+    margin-bottom: 10px;
+  }
+}
+
+.btn-color-wrap {
+  margin-bottom: 10px;
+
+  .btn {
+    margin-right: 5px;
+  }
+}
+
+.well-btn-main-list li {
+  position: relative;
+  padding-left: 70px;
+
+  .well-btn-radio {
+    position: absolute;
+    left: 20px;
+    top: 15px;
+
+    input {
+      margin-top: -5px !important;
+    }
+  }
+}
+
+// 按钮主类
+// 合旧按钮样式分开
+.well-btn {
+  position: relative;
+  display: inline-block;
+  min-width: @btn-min-width;
+  height: @btn-height-base;
+  line-height: @btn-height-base - 2 * @btn-border-width-base;
+  padding: 0 @btn-padding;
+  margin-right: 10px;
+  margin-bottom: 0;
+  vertical-align: middle;
+  font-size: @btn-font-size;
+  font-weight: @btn-font-weight;
+  text-align: center;
+  white-space: nowrap;
+  touch-action: manipulation;
+  user-select: none;
+  border: @btn-border-width-base solid transparent;
+  border-radius: @btn-border-radius;
+  text-decoration: none !important;
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+
+  i {
+    font-size: @btn-lg-icon-size;
+    margin-right: 2px;
+
+    & + span {
+      margin-right: 0;
+    }
+  }
+
+  &::before {
+    font-size: @btn-lg-icon-size;
+
+    margin-right: 2px;
+  }
+
+  &.iconfont::before {
+    font-size: @btn-lg-icon-size;
+    margin-right: 2px;
+  }
+  & > .iconfont {
+    margin-right: 6px;
+  }
+
+  span + i {
+    margin-left: 2px;
+    margin-right: 0;
+  }
+}
+.btn {
+  position: relative;
+  display: inline-block;
+  height: @btn-height-base;
+  line-height: normal;
+  padding: 0 @btn-padding;
+  margin-right: 10px;
+  margin-bottom: 0;
+  vertical-align: middle;
+  font-size: @btn-font-size;
+  font-weight: @btn-font-weight;
+  text-align: center;
+  white-space: nowrap;
+  touch-action: manipulation;
+  user-select: none;
+  border: @btn-border-width-base solid transparent;
+  border-radius: @btn-border-radius;
+  text-decoration: none !important;
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+
+  i {
+    font-size: @btn-icon-size;
+    margin-right: 2px;
+
+    & + span {
+      margin-right: 0;
+    }
+  }
+
+  &::before {
+    font-size: @btn-icon-size;
+    margin-right: 2px;
+  }
+
+  span + i {
+    margin-left: 2px;
+    margin-right: 0;
+  }
+}
+
+.btn-group .btn {
+  min-width: unset;
+}
+
+// 按钮尺寸
+.well-btn-lg,
+.btn-lg {
+  height: @btn-lg-height;
+  padding: 0 @btn-lg-padding;
+  line-height: @btn-lg-height - 2 * @btn-border-width-base;
+  font-size: @btn-lg-font-size;
+
+  i {
+    font-size: @btn-lg-icon-size;
+  }
+}
+
+.well-btn-sm,
+.btn-sm {
+  height: @btn-sm-height + 2;
+  padding: @btn-sm-padding-tb @btn-sm-padding;
+  line-height: @btn-sm-height + 2 - 2 * @btn-sm-padding-tb;
+  font-size: @btn-sm-font-size;
+  min-width: 50px;
+
+  i {
+    font-size: @btn-sm-icon-size;
+  }
+}
+
+@btn-types: primary, success, warning, danger, dark, light;
+
+each(@btn-types, {
+  @btn-font-color: "btn-@{value}-font-color";
+  @btn-background-color: "btn-@{value}-background-color";
+  @btn-border-color: "btn-@{value}-border-color";
+  @btn-hover-font-color: "btn-@{value}-hover-font-color";
+  @btn-hover-background-color: "btn-@{value}-hover-background-color";
+  @btn-hover-border-color: "btn-@{value}-hover-border-color";
+  @btn-active-font-color: "btn-@{value}-active-font-color";
+  @btn-active-background-color: "btn-@{value}-active-background-color";
+  @btn-active-border-color: "btn-@{value}-active-border-color";
+  @btn-disabled-font-color: "btn-@{value}-disabled-font-color";
+  @btn-disabled-background-color: "btn-@{value}-disabled-background-color";
+  @btn-disabled-border-color: "btn-@{value}-disabled-border-color";
+  @btn-minor-font-color: "btn-@{value}-minor-font-color";
+  @btn-minor-background-color: "btn-@{value}-minor-background-color";
+  @btn-minor-border-color: "btn-@{value}-minor-border-color";
+  @btn-minor-hover-font-color: "btn-@{value}-minor-hover-font-color";
+  @btn-minor-hover-background-color: "btn-@{value}-minor-hover-background-color";
+  @btn-minor-hover-border-color: "btn-@{value}-minor-hover-border-color";
+  @btn-minor-active-font-color: "btn-@{value}-minor-active-font-color";
+  @btn-minor-active-background-color: "btn-@{value}-minor-active-background-color";
+  @btn-minor-active-border-color: "btn-@{value}-minor-active-border-color";
+  @btn-line-font-color: "btn-@{value}-line-font-color";
+  @btn-line-background-color: "btn-@{value}-line-background-color";
+  @btn-line-border-color: "btn-@{value}-line-border-color";
+  @btn-line-hover-font-color: "btn-@{value}-line-hover-font-color";
+  @btn-line-hover-background-color: "btn-@{value}-line-hover-background-color";
+  @btn-line-hover-border-color: "btn-@{value}-line-hover-border-color";
+  @btn-line-active-font-color: "btn-@{value}-line-active-font-color";
+  @btn-line-active-background-color: "btn-@{value}-line-active-background-color";
+  @btn-line-active-border-color: "btn-@{value}-line-active-border-color";
+  @btn-line-disabled-font-color: "btn-@{value}-line-disabled-font-color";
+  @btn-line-disabled-background-color: "btn-@{value}-line-disabled-background-color";
+  @btn-line-disabled-border-color: "btn-@{value}-line-disabled-border-color";
+  @btn-noLine-font-color: "btn-@{value}-noLine-font-color";
+  @btn-noLine-background-color: "btn-@{value}-noLine-background-color";
+  @btn-noLine-border-color: "btn-@{value}-noLine-border-color";
+  @btn-noLine-hover-font-color: "btn-@{value}-noLine-hover-font-color";
+  @btn-noLine-hover-background-color: "btn-@{value}-noLine-hover-background-color";
+  @btn-noLine-hover-border-color: "btn-@{value}-noLine-hover-border-color";
+  @btn-noLine-active-font-color: "btn-@{value}-noLine-active-font-color";
+  @btn-noLine-active-background-color: "btn-@{value}-noLine-active-background-color";
+  @btn-noLine-active-border-color: "btn-@{value}-noLine-active-border-color";
+  @btn-noLine-disabled-font-color: "btn-@{value}-noLine-disabled-font-color";
+  @btn-noLine-disabled-background-color: "btn-@{value}-noLine-disabled-background-color";
+  @btn-noLine-disabled-border-color: "btn-@{value}-noLine-disabled-border-color";
+
+  // 主题色按钮
+  .w-btn-@{value} {
+    // - 主按钮
+    .btn-color(@@btn-font-color, @@btn-background-color, @@btn-border-color);
+
+    &:hover,
+    &.hover {
+      .btn-color(@@btn-hover-font-color, @@btn-hover-background-color, @@btn-hover-border-color);
+    }
+
+    &:active,
+    &.active {
+      .btn-color(@@btn-active-font-color, @@btn-active-background-color, @@btn-active-border-color);
+    }
+
+    &.w-disable-btn {
+      .btn-color(@@btn-disabled-font-color, @@btn-disabled-background-color, @@btn-disabled-border-color);
+    }
+
+    // 次按钮
+    &.w-btn-minor {
+      .btn-color(@@btn-minor-font-color, @@btn-minor-background-color, @@btn-minor-border-color);
+
+      &:hover,
+      &.hover {
+        .btn-color(@@btn-minor-hover-font-color, @@btn-minor-hover-background-color, @@btn-minor-hover-border-color);
+      }
+
+      &:active,
+      &.active {
+        .btn-color(@@btn-minor-active-font-color, @@btn-minor-active-background-color, @@btn-minor-active-border-color);
+      }
+
+      // @deprecated
+      &.inactive:active,
+      &.inactive.active {
+        .btn-color(@@btn-minor-font-color, @@btn-minor-background-color, @@btn-minor-border-color);
+      }
+
+      &.w-disable-btn {
+        .btn-color(@@btn-disabled-font-color, @@btn-disabled-background-color, @@btn-disabled-border-color);
+      }
+    }
+
+    // 线型按钮
+    &.w-line-btn {
+      .btn-color(@@btn-line-font-color, @@btn-line-background-color, @@btn-line-border-color);
+
+      &:hover,
+      &.hover {
+        .btn-color(@@btn-line-hover-font-color, @@btn-line-hover-background-color, @@btn-line-hover-border-color);
+      }
+
+      &:active,
+      &.active {
+        .btn-color(@@btn-line-active-font-color, @@btn-line-active-background-color, @@btn-line-active-border-color);
+      }
+
+      &.w-disable-btn {
+        .btn-color(@@btn-line-disabled-font-color, @@btn-line-disabled-background-color, @@btn-line-disabled-border-color);
+      }
+    }
+
+    // 文本边框 (幽灵按钮)
+    &.w-noLine-btn {
+      .btn-color(@@btn-noLine-font-color, @@btn-noLine-background-color, @@btn-noLine-border-color);
+
+      &:hover,
+      &.hover {
+        .btn-color(@@btn-noLine-hover-font-color, @@btn-noLine-hover-background-color, @@btn-noLine-hover-border-color);
+      }
+
+      &:active,
+      &.active {
+        .btn-color(@@btn-noLine-active-font-color, @@btn-noLine-active-background-color, @@btn-noLine-active-border-color);
+      }
+
+      &.w-disable-btn {
+        .btn-color(@@btn-noLine-disabled-font-color, @@btn-noLine-disabled-background-color, @@btn-noLine-disabled-border-color);
+      }
+    }
+  }
+
+  // @deprecated：下面的类仅为兼容旧版本的按钮。来源于 `base.css`
+  .btn-@{value} {
+    .btn-color(@@btn-font-color, @@btn-background-color, @@btn-border-color);
+
+    &:hover {
+      .btn-color(@@btn-hover-font-color, @@btn-hover-background-color, @@btn-hover-border-color);
+    }
+
+    &:active{
+      .btn-color(@@btn-active-font-color, @@btn-active-background-color, @@btn-active-border-color);
+    };
+
+    &[disabled] {
+      .btn-color(@@btn-disabled-font-color, @@btn-disabled-background-color, @@btn-disabled-border-color);
+    }
+  }
+});
+
+// 链接按钮
+.well-btn.w-btn-link {
+  cursor: pointer;
+  text-decoration: @link-decoration;
+  color: @link-color;
+
+  &:hover {
+    text-decoration: @link-hover-decoration;
+    color: @link-hover-color;
+  }
+
+  &:active {
+    text-decoration: @link-hover-decoration;
+    color: @link-active-color;
+  }
+
+  &:focus {
+    text-decoration: @link-focus-decoration;
+    color: @link-hover-color;
+  }
+}
+
+.w-btn-dark.w-line-btn.like-primary,
+.w-btn-dark.w-line-btn.like-primary {
+  &:hover,
+  &.hover {
+    .btn-color(@btn-primary-line-font-color, @btn-primary-line-background-color, @btn-primary-line-border-color);
+  }
+
+  &:active,
+  &.active {
+    .btn-color(@btn-primary-line-hover-font-color, @btn-primary-line-hover-background-color, @btn-primary-line-hover-border-color);
+  }
+}
+
+.w-btn-dropMenu {
+  min-width: 88px !important;
+  padding: @padding-3xs 0;
+  background: @component-background;
+  box-shadow: @shadow-popup-default;
+
+  li a {
+    height: 34px;
+    line-height: 34px;
+    font-size: @font-size-base;
+
+    &:hover {
+      background: @item-hover-background;
+    }
+  }
+}
+
+.w-btn-block {
+  display: block;
+  width: 100%;
+}
+
+.w-btn-checkbox::before {
+  font-family: 'iconfont' !important;
+  font-size: @font-size-3xl;
+  font-style: normal;
+  content: '\e9d7';
+  position: absolute;
+  right: 10px;
+  color: @gray-7;
+}
+
+.well-btn {
+  &.w-btn-radio {
+    color: @gray-10;
+  }
+
+  &.w-btn-checkbox {
+    text-align: left;
+    color: @gray-10;
+  }
+}
+
+.w-btn-checkbox {
+  &.w-btn-primary.hover::before {
+    color: @primary-color;
+  }
+
+  &.c-success {
+    background-color: @success-1!important;
+    color: @success-color!important;
+    text-align: left;
+
+    &::before {
+      color: @success-1!important;
+    }
+    &.active::before {
+      color: @success-color!important;
+    }
+  }
+
+  &.c-warning {
+    background-color: @warning-1!important;
+    color: @warning-8!important;
+    text-align: left;
+
+    &::before {
+      color: @warning-1;
+    }
+    &.active::before {
+      color: @warning-color;
+    }
+  }
+
+  &.c-danger {
+    background-color: @danger-1!important;
+    color: @danger-8!important;
+    text-align: left;
+
+    &::before {
+      color: @danger-1;
+    }
+    &.active::before {
+      color: @danger-color;
+    }
+  }
+}
+
+.w-btn-primary.w-btn-radio {
+  &:hover {
+    color: @primary-color;
+  }
+
+  &:active {
+    color: @text-color-inverse;
+  }
+}
+
+// 下面的类仅为兼容旧版本的按钮。来源于 `base.css`
+// @deprecated
+
+.btn-xs {
+  height: @height-3xs;
+  font-size: @font-size-sm;
+  line-height: @height-3xs;
+  padding: 1px 4px;
+}
+
+.btn.btn-default {
+  // background-color: #fff;
+  border-color: #ccc;
+}
+
+.btn.btn-default[disabled] {
+  background-color: #ccc;
+  border-color: #ccc;
+}
+
+.btn-outline {
+  color: inherit;
+  background-color: transparent;
+  transition: all @animation-duration-base;
+
+  &.btn-primary {
+    color: @primary-5;
+  }
+  &.btn-success {
+    color: @success-5;
+  }
+  &.btn-info {
+    color: @info-5;
+  }
+  &.btn-warning {
+    color: @warning-5;
+  }
+  &.btn-danger {
+    color: @danger-5;
+  }
+
+  &:hover {
+    color: @text-color-inverse !important;
+  }
+}
+
+.btn-rounded {
+  border-radius: 50px;
+}
+
+.btn-circle {
+  .square(30px);
+  padding: @padding-3xs 0px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: @font-size-sm;
+  line-height: @line-height-base;
+}
+
+// 按钮组
+// .btn-group > .btn,
+// .btn-group > .well-btn {
+//   min-width: unset;
+// }
+
+.btn-group {
+  vertical-align: unset;
+}
+.btn-group > .btn {
+  margin-right: 0;
+}
+
+// 表格-工具栏-按钮组
+.ui-wBootstrapTable {
+  .fixed-table-toolbar {
+    .split-btn-group {
+      button {
+        min-width: unset;
+      }
+    }
+  }
+}

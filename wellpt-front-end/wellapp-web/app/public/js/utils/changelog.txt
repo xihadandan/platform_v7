@@ -1,0 +1,27 @@
+﻿1、修改/resources/utils/路径下的ajaxfileupload.js与ajaxfileupload.src.js，以支持ie9、ie10环境
+原来代码：
+	if(window.ActiveXObject) {
+		var io = document.createElement('<iframe id="' + frameId + '" name="' + frameId + '" />');
+		if(typeof uri== 'boolean'){
+			io.src = 'javascript:false';
+		}
+		else if(typeof uri== 'string'){
+			io.src = uri;
+		}
+	}
+修改后代码：
+ if(window.ActiveXObject) {
+    if(jQuery.browser.version=="9.0" || jQuery.browser.version=="10.0"){
+		var io = document.createElement('iframe');
+		io.id = frameId;
+		io.name = frameId;
+	}else if(jQuery.browser.version=="6.0" || jQuery.browser.version=="7.0" || jQuery.browser.version=="8.0"){
+		var io = document.createElement('<iframe id="' + frameId + '" name="' + frameId + '" />');
+		if(typeof uri== 'boolean'){
+			io.src = 'javascript:false';
+		}
+		else if(typeof uri== 'string'){
+			io.src = uri;
+		}
+	}
+}

@@ -1,0 +1,666 @@
+<div class="dyform" id="dysubformconfigcontainer" layout="0">
+  <div class="post-sign">
+    <div class="post-detail">
+      <div id="tabs">
+        <ul>
+          <li>
+            <a href="#basic_info">基本属性</a>
+          </li>
+          <li>
+            <a href="#other">列属性</a>
+          </li>
+          <li>
+            <a href="#button_info">按钮定义</a>
+          </li>
+          <li>
+            <a href="#pagination">分页设置</a>
+          </li>
+          <li>
+            <a href="#event_config">事件管理</a>
+          </li>
+        </ul>
+        <div id="basic_info">
+          <table style="width: 100%; height: 100%">
+            <tr>
+              <td>
+                <label>请选择从表：</label>
+                <input type="text" id="formTree" formuuid="" formname="" formid="" style="width: 300px" />
+                <!-- 用于选择从表，及保存选择的从表的Id -->
+              </td>
+              <td>
+                <label>显示名称：</label>
+                <input type="text" id="displayName" style="width: 300px" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                布局/排版:
+                <input type="radio" name="layoutType" value="0" checked="checked" id="layoutType1" />
+                <label for="layoutType1">表格</label>
+                <input type="radio" name="layoutType" value="1" id="layoutType2" />
+                <label for="layoutType2">表单内联</label>
+              </td>
+              <td class="hs_layoutType_0">
+                行标题字段:
+                <select name="rowTitle" class="rowTitle" style="width: 100px"></select>
+              </td>
+              <td class="hs_layoutType_1">
+                <label>从表数据最大高度:</label>
+                <input
+                  type="number"
+                  id="subFormHeight"
+                  name="subFormHeight"
+                  min="0"
+                  onkeypress="return(/[\d\.]/.test(String.fromCharCode(event.keyCode)))"
+                  style="width: 150px"
+                />
+                <span>px</span>
+                <span id="subFormHeightTip">
+                  <i class="iconfont icon-ptkj-tishishuoming"></i>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                展开/折叠:
+                <input type="radio" id="tableOpen1" name="tableOpen" value="1" />
+                <label for="tableOpen1">展开</label>
+                <input type="radio" id="tableOpen2" name="tableOpen" value="2" checked="checked" />
+                <label for="tableOpen2">折叠</label>
+              </td>
+              <td class="hs_layoutType_1">
+                行编辑模式:
+                <input type="radio" id="editMode1" name="editMode" value="1" checked="checked" />
+                <label for="editMode1">单元格</label>
+                <input type="radio" id="editMode2" name="editMode" value="2" />
+                <label for="editMode2">新窗口</label>
+              </td>
+            </tr>
+            <tr class="hs_layoutType_1" id="openFormTreeLabel">
+              <td>
+                请选择弹窗表单：
+                <input type="text" id="openFormTree" formuuid="" formname="" formid="" style="width: 300px" />
+              </td>
+              <td>
+                弹窗大小：
+                <input type="radio" name="winSize" value="large" id="winSize1" />
+                <label for="winSize1">大</label>
+                <input type="radio" name="winSize" value="middle" id="winSize2" />
+                <label for="winSize2">中</label>
+                <input type="radio" name="winSize" value="small" checked="checked" id="winSize3" />
+                <label for="winSize3">小</label>
+              </td>
+            </tr>
+            <tr class="hs_layoutType_1">
+              <td>
+                从表数据分组展示:
+                <input type="radio" id="isGroupShowTitle1" name="isGroupShowTitle" value="1" />
+                <label for="isGroupShowTitle1">是</label>
+                <input type="radio" id="isGroupShowTitle2" name="isGroupShowTitle" value="2" checked="checked" />
+                <label for="isGroupShowTitle2">否</label>
+              </td>
+              <td>
+                支持子行:
+                <input type="checkbox" id="supportSubRow" name="supportSubRow" value="1" class="switch" />
+                <label for="supportSubRow"></label>
+
+                <label for="fixedHeader" style="display: none">
+                  表头固定:
+                  <input type="checkbox" id="fixedHeader" name="fixedHeader" value="true" />
+                </label>
+              </td>
+            </tr>
+            <tr id="tr_groupShowTitle" style="display: none">
+              <td>
+                分组字段:
+                <select id="groupShowTitle" name="groupShowTitle" class="groupShowTitle" style="width: 100px"></select>
+              </td>
+              <td>
+                分组字段是否显示:
+                <input type="radio" id="isGroupColumnShow1" name="isGroupColumnShow" value="1" />
+                <label for="isGroupColumnShow1">是</label>
+                <input type="radio" id="isGroupColumnShow2" name="isGroupColumnShow" value="2" />
+                <label for="isGroupColumnShow2">否</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>默认行数：</label>
+                <input type="text" id="defaultRowCount" style="width: 300px" value="0" />
+              </td>
+              <td>
+                允许提交空行：
+                <input type="radio" id="isAllowBlankRowY" name="isAllowBlankRow" value="1" />
+                <label for="isAllowBlankRowY">是</label>
+                <input type="radio" id="isAllowBlankRowN" name="isAllowBlankRow" value="2" checked="checked" />
+                <label for="isAllowBlankRowN">否</label>
+              </td>
+            </tr>
+            <tr class="hs_layoutType_1">
+              <td>
+                支持行选择：
+                <div class="switch-wrap active" id="lineOperate">
+                  <span class="switch-radio" data-status="1"></span>
+                </div>
+                <div class="tr_choose_type" style="display: inline-block; margin-left: 15px">
+                  <span>选择类型：</span>
+                  <input type="radio" id="multiSelect1" name="multiSelect" checked="checked" value="0" />
+                  <label for="multiSelect1">单选</label>
+                  <input type="radio" id="multiSelect2" name="multiSelect" value="1" />
+                  <label for="multiSelect2">多选</label>
+                </div>
+              </td>
+
+              <td class="hs_layoutType_1">
+                支持横向滚动：
+                <input type="checkbox" id="horizontalScroll" name="horizontalScroll" class="switch" />
+                <label for="horizontalScroll"></label>
+
+                <span id="horizontalScrollTip">
+                  <i class="iconfont icon-ptkj-tishishuoming"></i>
+                </span>
+                <span>建议列较少时不配置为支持！</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                隐藏序号：
+                <input type="checkbox" id="hideSeqNo" name="hideSeqNo" class="switch" />
+                <label for="hideSeqNo"></label>
+              </td>
+
+              <td id="td_stackSeqNo" style="display: none">
+                序号分组递增：
+                <input type="checkbox" id="stackSeqNo" name="stackSeqNo" class="switch" />
+                <label for="stackSeqNo"></label>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="Label">
+                控件隐藏时校验：
+
+                <input type="checkbox" value="0" name="validateOnHidden" id="validateOnHidden" class="switch" />
+                <label for="validateOnHidden"></label>
+
+                <div class="w-property-help">
+                  <i class="iconfont icon-ptkj-tishishuoming"></i>
+                  <div class="w-property-help-popup">
+                    <p>1、开启时，控件隐藏也会进行约束校验（如长度、必填校验等）</p>
+                    <p>2、控件隐藏，存在2种方式</p>
+                    <p>（1）控件本身设置为隐藏：可通过控件属性设置、二开设置等</p>
+                    <p>（2）控件所在布局设置为隐藏：可通过布局设置、二开设置等</p>
+                  </div>
+                </div>
+              </td>
+
+              <td class="td_editableMode">
+                域编辑模式：
+                <select id="editableMode" name="editableMode" class="editableMode" style="width: 100px">
+                  <option value="auto" selected="selected">默认</option>
+                  <option value="inline">内联/inline</option>
+                  <option value="popover">浮动框/popover</option>
+                  <option value="modal">弹出框/modal</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                编辑模式：
+                <input type="radio" id="showType" name="showType" value="5" />
+                <label for="showType">隐藏</label>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <div id="other">
+          <table style="width: 100%; height: 450px">
+            <tr>
+              <td colspan="2">
+                <div class="form_operate">
+                  <button type="button" onclick="upRow()">上移一行</button>
+                  <button type="button" onclick="downRow()">下移一行</button>
+                  <button type="button" onclick="addRow()">添加行</button>
+                  <button type="button" onclick="deleteRow()">删除行</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <div class="tableDiv" style="height: 320px; overflow: auto">
+                  <table style="width: 98%" id="formFieldsTbl">
+                    <tr class="th">
+                      <td
+                        style="
+                          text-align: center;
+                          background-color: #f2f2f2;
+                          border: 1px solid #ddd;
+                          border-radius: 0 0 0 0;
+                          color: #666;
+                          display: table-cell;
+                        "
+                        class="label"
+                      >
+                        字段编码
+                      </td>
+                      <td
+                        style="
+                          text-align: center;
+                          background-color: #f2f2f2;
+                          border: 1px solid #ddd;
+                          border-radius: 0 0 0 0;
+                          color: #666;
+                          display: table-cell;
+                        "
+                        class="label"
+                      >
+                        列标题
+                      </td>
+                      <td
+                        style="
+                          text-align: center;
+                          background-color: #f2f2f2;
+                          border: 1px solid #ddd;
+                          border-radius: 0 0 0 0;
+                          color: #666;
+                          display: table-cell;
+                        "
+                      >
+                        对应字段
+                      </td>
+                      <td
+                        style="
+                          text-align: center;
+                          background-color: #f2f2f2;
+                          border: 1px solid #ddd;
+                          border-radius: 0 0 0 0;
+                          color: #666;
+                          display: table-cell;
+                        "
+                      >
+                        排序
+                      </td>
+                      <td
+                        style="
+                          text-align: center;
+                          background-color: #f2f2f2;
+                          border: 1px solid #ddd;
+                          border-radius: 0 0 0 0;
+                          color: #666;
+                          display: table-cell;
+                          width: 80px;
+                        "
+                      >
+                        列宽度
+                        <br />
+                        <input type="checkbox" id="autoWidth" name="autoWidth" value="1" />
+                        <label for="autoWidth">按比例</label>
+                      </td>
+                      <td
+                        style="
+                          text-align: center;
+                          background-color: #f2f2f2;
+                          border: 1px solid #ddd;
+                          border-radius: 0 0 0 0;
+                          color: #666;
+                          display: table-cell;
+                        "
+                      >
+                        隐藏
+                      </td>
+                      <td
+                        style="
+                          text-align: center;
+                          background-color: #f2f2f2;
+                          border: 1px solid #ddd;
+                          border-radius: 0 0 0 0;
+                          color: #666;
+                          display: table-cell;
+                        "
+                      >
+                        不可编辑
+                      </td>
+                      <td
+                        style="
+                          text-align: center;
+                          background-color: #f2f2f2;
+                          border: 1px solid #ddd;
+                          border-radius: 0 0 0 0;
+                          color: #666;
+                          display: table-cell;
+                        "
+                      >
+                        展示为控件
+                      </td>
+                      <td
+                        style="
+                          text-align: center;
+                          background-color: #f2f2f2;
+                          border: 1px solid #ddd;
+                          border-radius: 0 0 0 0;
+                          color: #666;
+                          display: table-cell;
+                        "
+                        class="column-frozen"
+                      >
+                        列固定
+                      </td>
+                      <td
+                        style="
+                          text-align: center;
+                          background-color: #f2f2f2;
+                          border: 1px solid #ddd;
+                          border-radius: 0 0 0 0;
+                          color: #666;
+                          display: table-cell;
+                          width: 80px;
+                        "
+                      >
+                        对齐方式
+                      </td>
+                      <td
+                        style="
+                          text-align: center;
+                          background-color: #f2f2f2;
+                          border: 1px solid #ddd;
+                          border-radius: 0 0 0 0;
+                          color: #666;
+                          display: table-cell;
+                        "
+                      >
+                        指定列值公式
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </td>
+            </tr>
+            <hr />
+            <tr class="hs_layoutType_1">
+              <td colspan="2">组合表头JSON</td>
+            </tr>
+            <tr class="hs_layoutType_1">
+              <td colspan="2">
+                <textarea rows="5" cols="" style="width: 100%" name="table-header-json"></textarea>
+              </td>
+            </tr>
+            <tr class="hs_layoutType_1">
+              <td colspan="2">
+                (colspan、rowspan、title、field)，field用“字段编码”标识字段引用。其中seqNO，_inline_operate，rowCheckItem是系统字段编码，
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div id="button_info">
+          <table style="width: 100%; height: 100%">
+            <tr>
+              <td colspan="2">
+                <div class="form_operate">
+                  <button type="button" onclick="addBtnRow()">新增</button>
+                  <button type="button" onclick="deleteBtnRow()">删除</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <div class="tableDiv" style="height: 400px; overflow: auto">
+                  <table style="width: 98%" id="formButtonTbl">
+                    <thead>
+                      <tr class="th">
+                        <td
+                          style="
+                            text-align: center;
+                            background-color: #f2f2f2;
+                            border: 1px solid #ddd;
+                            border-radius: 0 0 0 0;
+                            color: #666;
+                            display: table-cell;
+                          "
+                        >
+                          <input type="checkbox" id="selectAll" />
+                          <label for="selectAll"></label>
+                        </td>
+                        <td
+                          style="
+                            text-align: center;
+                            background-color: #f2f2f2;
+                            border: 1px solid #ddd;
+                            border-radius: 0 0 0 0;
+                            color: #666;
+                            display: table-cell;
+                          "
+                          class="label"
+                        >
+                          按钮名称
+                        </td>
+                        <td
+                          style="
+                            text-align: center;
+                            background-color: #f2f2f2;
+                            border: 1px solid #ddd;
+                            border-radius: 0 0 0 0;
+                            color: #666;
+                            display: table-cell;
+                          "
+                          class="label"
+                        >
+                          按钮编码
+                        </td>
+                        <td
+                          style="
+                            text-align: center;
+                            background-color: #f2f2f2;
+                            border: 1px solid #ddd;
+                            border-radius: 0 0 0 0;
+                            color: #666;
+                            display: table-cell;
+                          "
+                          class="label"
+                        >
+                          内置/扩展按钮
+                        </td>
+                        <td
+                          style="
+                            text-align: center;
+                            background-color: #f2f2f2;
+                            border: 1px solid #ddd;
+                            border-radius: 0 0 0 0;
+                            color: #666;
+                            display: table-cell;
+                          "
+                          class="label"
+                        >
+                          显示/编辑类操作
+                          <div id="btnShowTypeTip" style="display: inline-block">
+                            <i class="iconfont icon-ptkj-tishishuoming"></i>
+                          </div>
+                        </td>
+                        <td
+                          style="
+                            text-align: center;
+                            background-color: #f2f2f2;
+                            border: 1px solid #ddd;
+                            border-radius: 0 0 0 0;
+                            color: #666;
+                            display: table-cell;
+                          "
+                          class="label event-position"
+                        >
+                          按钮位置
+                        </td>
+                        <td
+                          style="
+                            text-align: center;
+                            background-color: #f2f2f2;
+                            border: 1px solid #ddd;
+                            border-radius: 0 0 0 0;
+                            color: #666;
+                            display: table-cell;
+                          "
+                        >
+                          事件管理
+                        </td>
+                        <td
+                          style="
+                            text-align: center;
+                            background-color: #f2f2f2;
+                            border: 1px solid #ddd;
+                            border-radius: 0 0 0 0;
+                            color: #666;
+                            display: table-cell;
+                          "
+                        >
+                          按钮样式
+                        </td>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <div class="btnEventContainer" id="btnEventContainer" />
+        </div>
+        <div id="pagination">
+          <div style="padding-bottom: 1em">
+            开启分页：
+            <input type="checkbox" id="paginationShow" name="paginationShow" class="switch" />
+            <label for="paginationShow"></label>
+          </div>
+          <table id="paginationCfg" style="width: 100%; height: 100%; display: none">
+            <tbody>
+              <tr>
+                <td>
+                  <div class="default-page-size">
+                    <span>默认每页条数：</span>
+                    <span class="input-group-addon minus page-minus" id="reducePageSize"><i class="iconfont icon-ptkj-jianhao"></i></span>
+                    <input
+                      type="number"
+                      value="10"
+                      id="defPageSize"
+                      name="defPageSize"
+                      min="5"
+                      onkeypress="return(/[\d\.]/.test(String.fromCharCode(event.keyCode)))"
+                      style="width: 80px"
+                    />
+                    <span class="input-group-addon plus page-add" id="addPageSize"><i class="iconfont icon-ptkj-jiahao"></i></span>
+                  </div>
+                </td>
+                <td>
+                  显示跳页：
+                  <input type="checkbox" id="paginationJumper" checked name="paginationJumper" class="switch" />
+                  <label for="paginationJumper"></label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  显示总数/页数：
+                  <input type="checkbox" id="paginationShowTotal" checked name="paginationShowTotal" class="switch" />
+                  <label for="paginationShowTotal"></label>
+                </td>
+                <td>
+                  页码为1隐藏分页器：
+                  <input type="checkbox" id="paginationOneHide" checked name="paginationOneHide" class="switch" />
+                  <label for="paginationOneHide"></label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div>
+                    <span>显示切换分页数：</span>
+                    <input type="checkbox" id="paginationOnSizes" checked name="paginationOnSizes" class="switch" />
+                    <label for="paginationOnSizes"></label>
+                  </div>
+                  <div class="page-list">
+                    <input type="text" class="form-control w-configurer-option" height="34px" name="pageList" id="pageList" />
+                  </div>
+                </td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="event_config">
+          <table>
+            <thead>
+              <tr class="odd" style="width: 150px">
+                <td>事件列表</td>
+                <td>事件执行脚本(JAVASCRIPT)</td>
+              </tr>
+            </thead>
+            <tr>
+              <td class="Label" style="vertical-align: top; width: 180px">
+                <span id="eventTree" class="ztree"></span>
+              </td>
+              <td class="value" style="vertical-align: top" id="scriptContent"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  (function () {})();
+</script>
+<style type="text/css">
+  .hs_layoutType_0 {
+    display: none;
+  }
+
+  #dysubformconfigcontainer .column-frozen {
+    display: none !important;
+  }
+
+  .cke_reset_all input[type='text'][disabled],
+  .cke_reset_all input[type='password'][disabled],
+  .cke_reset_all textarea[disabled] {
+    background: #eee;
+  }
+  .default-page-size {
+    display: flex;
+    align-items: center;
+  }
+  .default-page-size input[type='number'] {
+    border-radius: 0;
+    text-align: center;
+    -moz-appearance: textfield;
+  }
+  .default-page-size input::-webkit-inner-spin-button,
+  .default-page-size input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+  .default-page-size .page-minus,
+  .default-page-size .page-add {
+    position: relative;
+    color: #999;
+    border: 1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  .default-page-size .iconfont {
+    cursor: pointer;
+  }
+  .default-page-size .page-minus {
+    border-right: 0;
+    border-top-left-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
+  }
+  .default-page-size .page-add {
+    border-left: 0;
+    border-top-right-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+  }
+  .page-list {
+    width: 580px;
+    margin-top: 8px;
+  }
+</style>

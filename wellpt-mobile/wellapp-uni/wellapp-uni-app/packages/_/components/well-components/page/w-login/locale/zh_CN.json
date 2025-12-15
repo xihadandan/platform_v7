@@ -1,0 +1,57 @@
+{
+  "loginComponent": {
+    "logoTitle": "一体化办公助手",
+    "acctLogin": "账号登录",
+    "acctText": "账号",
+    "acctInputPlaceholder": "请输入账号",
+    "pwdText": "密码",
+    "pwdInputPlaceholder": "请输入密码",
+    "phoneNo": "手机号",
+    "phoneNoInputPlaceholder": "请输入手机号码",
+    "verificationCode": "验证码",
+    "verificationCodeInputPlaceholder": "请输入验证码",
+    "SendVerificationCode": "发送验证码",
+    "rememberAcct&Pwd": "记住账号密码",
+    "rememberAcct": "记住账号",
+    "rememberPwd": "记住密码",
+    "forgetPwd": "忘记密码",
+    "register": "注册",
+    "login": "登录",
+    "loginSettings": "登录设置",
+    "changeLoginType": "登录方式",
+    "selectLoginType": "选择登录方式",
+    "selectLanguage": "选择语言",
+    "usrPwd": "用户名/密码登录",
+    "usrPhonePwd": "用户名/手机号/密码登录",
+    "sms": "短信验证码登录",
+    "unLogin": "未登录",
+    "loginAgain": "请重新登录！",
+    "logout": "退出登录",
+    "error": {
+      "Bad credentials": "用户名或密码错误",
+      "captchaExpired": "验证码已失效",
+      "captchaError": "验证码错误",
+      "phoneError": "手机号码填写错误！",
+      "durationRetry": "请在${duration}秒后重试",
+      "vcodeSendSuccess": "验证码发送成功，请注意查收",
+      "vcodeSendFail": "验证码发送失败",
+      "passwordunEmpty": "密码不能为空！",
+      "pcodeErroe": "图形验证码填写错误！",
+      "phoneMultiple": "手机号码存在多个对应的用户信息",
+      "phoneNoUser": "不存在手机号码对应的用户信息",
+      "systemIdUndefined": "请在登录设置中配置系统ID"
+    },
+    "setting": {
+      "address": "服务器地址",
+      "port": "服务器端口",
+      "ssl": "启用SSL",
+      "systemId": "系统"
+    },
+    "sso": {
+      "logining": "单点登录中",
+      "success": "单点登录成功",
+      "failed": "单点登录失败",
+      "weixinDomainFailed": "企业微信单点登录需使用应用可信域名"
+    }
+  }
+}

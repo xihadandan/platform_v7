@@ -1,0 +1,33 @@
+{
+  "properties": {
+    "attachment": {
+      "type": "attachment"
+    },
+    "filename": {
+      "type": "string",
+      "analyzer": "ik_max_word",
+      "search_analyzer": "ik_smart"
+    },
+    "uuid": {
+      "type": "string"
+    },
+    "creator": {
+      "type": "string",
+      "analyzer": "ik_max_word",
+      "search_analyzer": "ik_smart"
+    },
+    "createTime": {
+      "type": "date",
+      "format": "yyyy-MM-dd HH:mm:ss"
+    },
+    "modifyTime": {
+      "type": "date",
+      "format": "yyyy-MM-dd HH:mm:ss"
+    },
+    "modifier": {
+      "type": "string",
+      "analyzer": "ik_max_word",
+      "search_analyzer": "ik_smart"
+    }
+  }
+}

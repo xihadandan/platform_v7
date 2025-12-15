@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="queryAllDatabaseTables">
+        <![CDATA[
+			select t.OBJECT_NAME,t.OBJECT_ID  from user_objects t where object_type='TABLE'
+			<if isNotBlank(keyword)>
+			    and t.OBJECT_NAME like '%' || :keyword || '%'
+			</if>
+			<if isNotBlank(tableName)>
+			    or t.OBJECT_NAME = :tableName
+			</if>
+		]]>
+    </sql-query>
+
+
+    <sql-query name="queryAllDatabaseTableViews">
+        <![CDATA[
+			select t.OBJECT_NAME,t.OBJECT_ID  from user_objects t where object_type='VIEW'
+		]]>
+    </sql-query>
+
+
+    <sql-query name="queryTableColumnsByTableName">
+        <![CDATA[
+			select t.COLUMN_NAME,t.DATA_TYPE,nvl(c.COMMENTS,t.COLUMN_NAME) as COMMENTS from user_tab_columns t left join user_col_comments c on c.TABLE_NAME = t.TABLE_NAME and c.COLUMN_NAME= t.COLUMN_NAME
+			where t.TABLE_NAME = :tableName
+		]]>
+    </sql-query>
+</hibernate-mapping>

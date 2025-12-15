@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=10">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-store"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta name="google" value="notranslate">
+    <title>单据设计器</title>
+
+    {% for file in themeFiles %}
+      <link href="{{file}}" rel="stylesheet">
+    {% endfor %}
+
+    {# <link rel="stylesheet" type="text/css" href="{{helper.staticPrefix()}}/js/pt/css/custom-admin-style.css"/> #}
+
+    <style type="text/css">
+      .wCommonPictureLib {
+        z-index: 1000000000 !important;
+        width: 900px;
+        left: 50%;
+        margin-left: -450px;
+      }
+      .chooseAddIcon {
+        margin-left: 10px;
+        font-size: 24px;
+        vertical-align: bottom;
+      }
+      .wCommonPictureLib * {
+        box-sizing: border-box;
+      }
+    </style>
+    <script>
+      var ctx = '';
+      var staticPrefix = '{{ helper.staticPrefix() }}';
+      var backendServer = '{{ helper.backendUrl() }}';
+      var preservedFields = {{ preservedFieldsJSON | safe }};
+      preservedFields.is = function (fieldName) {
+        for (var i = 0, len = preservedFields.length; i < len; i++) {
+          if (preservedFields[i].toLowerCase() == fieldName.toLowerCase()) {
+            return true;
+          }
+        }
+        return false;
+      };
+    </script>
+  </head>
+  <body style="font-size: 14px;" class="dyform-designer">
+    <div class="div_body">
+      <div class="form_header">
+        <!--标题-->
+        <div class="form_title">
+          <h2 id="title_h2">单据设计器</h2>
+          <div class="form_close" title="关闭"></div>
+        </div>
+        <div id="toolbar" class="form_toolbar">
+          <div class="form_operate well-form-fontsize0">
+            <button id="btn_form_save" class="btn btn-primary" name="btn_form_save">保存</button>
+            <button class="btn btn-primary btn-save-as-new-version" name="btn_form_save_new">保存新版本</button>
+          </div>
+        </div>
+      </div>
+      <div class="form_content">
+        <div class="tabbable">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a href="#tab1" data-toggle="tab">基本属性</a>
+            </li>
+            {% if 'MST' == formType %}
+              <li>
+                <a href="#tab2" data-toggle="tab">单据设计</a>
+              </li>
+              {% if not(formUuid == null or formUuid == '' or formUuid == 'null' or formUuid == 'undefined') %}
+                <li>
+                  <a href="#tab3" data-toggle="tab">引用单据</a>
+                </li>
+              {% endif %}
+              <li>
+                <a href="#tab5" data-toggle="tab">事件管理</a>
+              </li>
+            {% elif 'P' == formType %}
+              <li>
+                <a href="#tab2" data-toggle="tab">单据设计</a>
+              </li>
+              {% if not(formUuid == null or formUuid == '' or formUuid == 'null' or formUuid == 'undefined') %}
+                <li>
+                  <a href="#tab3" data-toggle="tab">展现单据</a>
+                </li>
+              {% endif %}
+              <li>
+                <a href="#tab5" data-toggle="tab">事件管理</a>
+              </li>
+            {% elif 'V' == formType or 'C' == formType or 'M' == formType%}
+              <li>
+                <a href="#tab2" data-toggle="tab">单据设计</a>
+              </li>
+            {% endif %}
+            <li>
+              <a href="#tab_ref_res" data-toggle="tab">引用资源</a>
+            </li>
+            <li>
+              <a href="#tab4" data-toggle="tab">帮助</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab1">
+              <div class="dyform">
+                <div class="post-sign">
+                  <div class="post-detail">
+                    <form id="mainForm" name="mainForm" style="margin: 0px;">
+                      <input type="hidden" name="formUuid" id="formUuid" value="{{formUuid}}"/>
+                      <input type="hidden" name="formModuleId" id="formModuleId" value="{{moduleId}}"/>
+                      <input type="hidden" name="formCopy" id="formCopy" value="{{formCopy}}"/>
+                      <input type="hidden" name="version" id="version" value=""/>
+                      <input type="hidden" name="formType" id="formType" value="{{formType}}"/>
+                      <table>
+                        <tr class="odd">
+                          <td class="Label" style="width: 10%">名称<font color="red">*</font>
+                          </td>
+                          <td class="value" style="width: 40%"><input type="text" name="mainTableCnName" id="mainTableCnName" value=""/></td>
+                          <td class="Label" style="width: 10%">归属系统单位</td>
+                          <td class="value" style="width: 40%">
+                            <span class="system-unit"></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="Label" style="width: 10%">ID<font color="red">*</font>
+                          </td>
+                          <td class="value" style="width: 40%"><input type="text" name="tableId" id="tableId" value="" {% if formType=='MST' or formType=='P' %} maxlength="27" {% endif %}/></td>
+                          <td class="Label" style="width: 10%">所属模块<font color="red">*</font>
+                          </td>
+                          <td class="value" style="width: 40%">
+                            <input id="moduleName" name="moduleName" type="hidden" style="width: 400px;"/>
+                            <input id="moduleId" name="moduleId" value="{{moduleId}}" type="hidden" style="width: 400px;"/>
+                          </td>
+                        </tr>
+                        {% if 'MST' == formType or 'P' == formType %}
+                          <tr class="odd" style="display: none;">
+                            <td class="Label" style="width: 10%">数据库表名<font color="red">*</font>
+                            </td>
+                            <td class="value" style="width: 40%"><input type="text" name="mainTableEnName" id="mainTableEnName" value=""/></td>
+                            <td class="Label" style="width: 10%"></td>
+                            <td class="value" style="width: 40%"></td>
+                          </tr>
+                        {% endif %}
+                        <tr class="odd">
+                          <td class="Label" style="width: 10%">编号</td>
+                          <td class="value" style="width: 40%"><input type="text" name="tableNum" id="tableNum" value=""/></td>
+                          <td class="Label" style="width: 10%">版本号</td>
+                          <td class="value" style="width: 40%"><input type="hidden" id="version" name="version">
+                            <span id="dyformVersion"></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="Label" style="width: 10%">加载的JS模块</td>
+                          <td class="value" style="width: 40%">
+                            <input id="customJsModuleName" name="customJsModuleName" type="hidden" style="width: 200px;"/>
+                            <input id="customJsModule" name="customJsModule" type="text" style="width: 200px;"/>
+                          </td>
+                          <td class="Label" style="width: 10%">表单标题</td>
+                          <td class="value" style="width: 40%">
+                            <div>
+                              <input type="radio" name="titleType" id="titleType1" value="1" checked="checked">
+                              <label for="titleType1">默认</label>
+                              <input type="radio" name="titleType" id="titleType2" value="2">
+                              <label for="titleType2">自定义</label>
+                              <span id="title_set" style="display:none;margin-left:10px;">
+                                <i class="iconfont icon-ptkj-shezhi text-primary cursor-pointer" style="font-size:14px;"></i>
+                                <span class="text-primary cursor-pointer">设置</span>
+                                <span style="margin-left:10px;">自定义标题为空时，等同于默认，保存后显示为默认</span>
+                              </span>
+                            </div>
+                            <textarea id="titleContent1" class="title_content title_content1 form-control" disabled="disabled" style="background:#fff;border-style: dashed;box-shadow: none;"></textarea>
+                            <textarea id="titleContent2" class="title_content title_content2 form-control" disabled="disabled" style="display:none;background:#fff;border-style: dashed;box-shadow: none;"></textarea>
+                          </td>
+                        </tr>
+                        <tr style="display:none;">
+                          <td class="Label" style="width: 10%">表单可编辑
+                            <div class="w-property-help">
+                              <i class="iconfont icon-ptkj-xinxiwenxintishi"></i>
+                              <div class="w-property-help-popup" style="width: 460px;font-size: 12px;">
+                                <p>1、开启：表单可编辑，前端显示的表单字段【是否可编辑】、【不可编辑时的显示样式】，均读取表单定义中控件的设置</p>
+                                <p>2、关闭：表单不可编辑，前端显示的表单字段均不可编辑，显示样式读取表单定义中控件的设置</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="value" style="width: 40%">
+                            <input id="editForm" name="editForm" type="checkbox" class="switch" checked="checked"/>
+                            <label for="editForm"></label>
+                          </td>
+                          <td class="Label" style="width: 10%"></td>
+                          <td class="value" style="width: 40%"></td>
+                        </tr>
+                        {% if 'P' == formType %}
+                          <tr>
+                            <td class="Label" style="width: 10%">数据存储服务</td>
+                            <td class="value" style="width: 40%">
+                              <select id="repositoryMode" name="repositoryMode" style="width: 100%">
+                                <option value="1" selected="selected">表单内置存储</option>
+                                <option value="2">数据库表存储</option>
+                                <!-- <option value="3">SOAP webserivce表单存储</option> -->
+                                <option value="4">RESTful api表单存储</option>
+                                <option value="5">自定义接口存储</option>
+                              </select>
+                            </td>
+                            <td class="Label repository-mode repository-mode-1 repository-mode-4" style="width: 10%"></td>
+                            <td class="value repository-mode repository-mode-1 repository-mode-4" style="width: 40%"></td>
+                            <td class="Label repository-mode repository-mode-2" style="width: 10%; display: none;">表名</td>
+                            <td class="value repository-mode repository-mode-2" style="width: 40%; display: none;">
+                              <input id="userTableName" name="userTableName" type="text"/>
+                            </td>
+                            <td class="Label repository-mode repository-mode-5" style="width: 10%; display: none;">存储接口</td>
+                            <td class="value repository-mode repository-mode-5" style="width: 40%; display: none;">
+                              <input id="customInterfaceName" name="customInterfaceName" type="hidden"/>
+                              <input id="customInterface" name="customInterface" type="text"/>
+                            </td>
+                          </tr>
+                          <tr class="repository-mode repository-mode-3 repository-mode-4" style="display: none;">
+                            <td class="Label" style="width: 10%">服务地址</td>
+                            <td class="value" style="width: 40%">
+                              <input id="serviceUrl" name="serviceUrl" type="text"/>
+                            </td>
+                            <td class="Label" style="width: 10%">Access Token</td>
+                            <td class="value" style="width: 40%">
+                              <input id="serviceToken" name="serviceToken" type="text"/>
+                            </td>
+                          </tr>
+                        {% endif %}
+                      </table>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab2">
+              <div class="dyform">
+                <div class="post-sign">
+                  <div class="post-detail">
+                    {% if 'V' == formType or 'C' == formType or 'P' == formType or 'MST' == formType %}
+                      {% if 'V' == formType or 'C' == formType %}
+                        <table>
+                          <tr>
+                            <td style="width: 10%">存储单据</td>
+                            <td style="width: 40%"><input type="text" name="pformName" id="pformName" value=""/>
+                              <!-- 存储单据定义名称 -->
+                              <input type="hidden" name="pformUuid" id="pformUuid" value=""/>
+                              <!-- 存储单据定义uuid -->
+                            </td>
+                            <td class="Label hide" style="width: 10%">参照单据</td>
+                            <td class="value hide" style="width: 40%"><input type="text" name="refFormName" id="refFormName" value=""/>
+                              <!-- 参照单据定义名称 -->
+                              <input type="hidden" name="refFormUuid" id="refFormUuid" value=""/>
+                              <!-- 参照单据定义uuid -->
+                            </td>
+                          </tr>
+                        </table>
+                      {% endif %}
+                      <table>
+                        <tr>
+                          <td style="width:20%;vertical-align: top;">
+                            <div id="field-tabs" class="tabs">
+                              <ul class="nav nav-tabs">
+                                <li class="active">
+                                  <a href="#js-tab-content-control" data-toggle="tab">控件</a>
+                                </li>
+                                <li>
+                                  <a href="#js-tab-content-control2" data-toggle="tab">字段</a>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="tab-content">
+                              <div id="js-tab-content-control" class="tab-pane active">
+                                <ul style="list-style-type: none; " class="js-tab-content-control">
+                                  <li class="js-template jsCanDraggable" plugin-code="template" need-grid="true"></li>
+                                </ul>
+                              </div>
+                              <div id="js-tab-content-control2" class="tab-pane">
+                                <div class="mui-input-row">
+                                  <input type="text" id="search_tree_text" name="search_tree_text" style="display: inline-block">
+                                  <button type="button" id="btn_search_tree" class="mui-btn">查询</button>
+                                  <button id="btn_expand_all" type="button" class="mui-btn" title="折叠全部数据">-</button>
+                                  <button id="btn_collapse_all" type="button" class="mui-btn" title="展开全部数据">+</button>
+                                </div>
+                                <ul class="field-list">
+                                  <li>
+                                    <div></div>
+                                    <ul style="list-style-type: none;" class="js-tab-content-control"></ul>
+                                  </li>
+                                  <li>
+                                    <div></div>
+                                    <ul style="list-style-type: none;" class="js-tab-content-control"></ul>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </td>
+                          <td style="border:0px;padding: 0 0 0 3px;vertical-align: top">
+                            <fieldset id="fs3">
+                              <legend></legend>
+                              <textarea id="moduleText" name="moduleText"></textarea>
+                            </fieldset>
+                          </td>
+                        </tr>
+                      </table>
+                    {% elif 'M' == formType %}
+                      <table>
+                        <tr>
+                          <td style="width: 10%">存储单据</td>
+                          <td style="width: 40%"><input type="hidden" name="pformName" id="pformName" value=""/>
+                            <!-- 存储单据定义名称 -->
+                            <input type="text" name="pformUuid" id="pformUuid" value=""/>
+                            <!-- 存储单据定义uuid -->
+                          </td>
+                          <!-- <td class="Label" style="width: 10%">参照单据</td> <td class="value"><input type="text" name="refFormName" id="refFormName" value="" /> <input type="hidden" name="refFormUuid" id="refFormUuid" value="" /> -->
+                          <!-- 参照单据定义uuid -->
+                        </tr>
+                      </td>
+                    </tr>
+                  </table>
+                  <div id="div_mobile_definition_btn" class='form_operate'>
+                    <button id="btn_add_mobile_block">添加区块</button>
+                    <button id="btn_del_mobile_block">删除区块</button>
+                    <button id="btn_reset_mobile_definition">重置字段</button>
+                    <button id="btn_merge_mobile_definition">合并字段</button>
+                  </div>
+                  <div id="div_mobile_definition">
+                    <div class="div_field_tree">
+                      <div class="mui-input-row">
+                        <input type="text" id="search_tree_text" name="search_tree_text"/>
+                        <button type="button" id="btn_search_tree" class="mui-btn">查询</button>
+                        <button id="btn_expand_all" type="button" class="mui-btn" title="折叠全部数据">-</button>
+                        <button id="btn_collapse_all" type="button" class="mui-btn" title="展开全部数据">+</button>
+                      </div>
+                      <ul id="div_field_tree_container" class="ztree"></ul>
+                    </div>
+                    <div class="div_property_defintion form_operate" style="display: none">
+                      <div class="div_property_defintion_container"></div>
+                      <div style="margin-left: auto; margin-right: auto; text-align: center;">
+                        <button id="btn_definition_ok">确认</button>
+                        <button id="btn_definition_reset">重置</button>
+                      </div>
+                    </div>
+                    <div id="div_add_block_dialog" style="display: none">
+                      <div style="margin-left: auto; margin-right: auto; width: 90%">
+                        <label for="mobileBlockCode" class="control-label">区块编码</label>
+                        <div>
+                          <input type="text" height="34px" style="width: 100%" id="mobileBlockCode">
+                        </div>
+                        <label for="mobileBlockTitle" class="control-label">区块标题</label>
+                        <div>
+                          <input type="text" height="34px" style="width: 100%" id="mobileBlockTitle">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="div_form_preview">
+                    <div class="phone">
+                      <iframe name="iframe_mobile_preview" scrolling="no" src="/pt/dyform/definition/mobile/preview?isMobileApp=true" frameborder="0"></iframe>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab3">
+          {% if 'P' == formType %}
+            <table>
+              <tr>
+                <td style="width: 10%">默认展示单据</td>
+                <td style="width: 40%">
+                  <input type="text" name="defaultVFormName" id="defaultVFormName" value="" style="width:400px;"/>
+                  <!-- 默认展示单据 -->
+                  <input type="hidden" name="defaultVFormUuid" id="defaultVFormUuid" value="" style="width:400px;"/>
+                  <!-- 默认展示单据uuid -->
+                </td>
+                <td class="Label" style="width: 10%">默认手机单据</td>
+                <td class="value" style="width: 40%">
+                  <input type="text" name="defaultMFormName" id="defaultMFormName" value="" style="width:400px;"/>
+                  <!-- 默认手机单据 -->
+                  <input type="hidden" name="defaultMFormUuid" id="defaultMFormUuid" value="" style="width:400px;"/>
+                  <!-- 默认手机单据uuid -->
+                </td>
+              </tr>
+            </table>
+          {% endif %}
+          <table id="list" style="width: 100%;"></table>
+          <div id="pager"></div>
+        </div>
+        <div class="tab-pane" id="tab5">
+          <div id="event_config" class="dyform">
+            <table style="width: 80%; margin: auto">
+              <thead>
+                <tr class="odd">
+                  <td>事件列表</td>
+                  <td>事件执行脚本(JAVASCRIPT)</td>
+                </tr>
+              </thead>
+              <tr>
+                <td class="Label" style="vertical-align: top;">
+                  <span id="dyFormEventTree" class="ztree"></span>
+                </td>
+                <td class="value" id="dyformScriptContent"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab_ref_res">
+          <table style="width: 100%">
+            <tr>
+              <td style="width: 15%;vertical-align:top;">
+                <ul class="nav nav-tabs tabs-left tabs-left__quote-resource" role="tablist">
+                  <li role="presentation" class="active">
+                    <a href="#all_ref_res" role="tab" data-toggle="tab" aria-controls="all_ref_res" aria-expanded="false">全部</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#subform_ref_res" role="tab" data-toggle="tab" aria-controls="subform_ref_res" aria-expanded="false">从表</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#template_form_ref_res" role="tab" data-toggle="tab" aria-controls="template_form_ref_res" aria-expanded="false">子表单</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#datadic_ref_res" role="tab" data-toggle="tab" aria-controls="datadic_ref_res" aria-expanded="false">数据字典</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#datastore_ref_res" role="tab" data-toggle="tab" aria-controls="datastore_ref_res" aria-expanded="false">数据仓库</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#serialnumber_ref_res" role="tab" data-toggle="tab" aria-controls="serialnumber_ref_res" aria-expanded="false">流水号</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#js_ref_res" role="tab" data-toggle="tab" aria-controls="js_ref_res" aria-expanded="false">JS模块</a>
+                  </li>
+                </ul>
+              </td>
+              <td style="width: 85%">
+                <div class="tab-content" style="min-height: 700px;overflow-y: auto;">
+                  <div role="tabpanel" class="tab-pane active" id="all_ref_res">
+                    <table id="table_ref_total_info" class="table" data-height="430"></table>
+                  </div>
+                  <div role="tabpanel" class="tab-pane" id="subform_ref_res">
+                    <table id="table_ref_subform_info" class="table" data-height="430"></table>
+                  </div>
+                  <div role="tabpanel" class="tab-pane" id="template_form_ref_res">
+                    <table id="table_ref_template_form_info" class="table" data-height="430"></table>
+                  </div>
+                  <div role="tabpanel" class="tab-pane" id="datadic_ref_res">
+                    <table id="table_ref_datadic_info" class="table" data-height="430"></table>
+                  </div>
+                  <div role="tabpanel" class="tab-pane" id="datastore_ref_res">
+                    <table id="table_ref_datastore_info" class="table" data-height="430"></table>
+                  </div>
+                  <div role="tabpanel" class="tab-pane" id="serialnumber_ref_res">
+                    <table id="table_ref_sn_info" class="table" data-height="430"></table>
+                  </div>
+                  <div role="tabpanel" class="tab-pane" id="js_ref_res">
+                    <table id="table_ref_js_info" class="table" data-height="430"></table>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tab-pane" id="tab4" style="height: 250px;">
+          {% if 'MST' == formType or 'P' == formType %}
+            <div style="margin-left: 50px;">
+              &nbsp;&nbsp;存储单据与子表单使用说明：<br>
+            </div>
+          {% elif 'V' == formType or 'C' == formType %}
+            <div style="margin-left: 50px;">
+              &nbsp;&nbsp;展现单据使用说明：<br>
+            </div>
+          {% elif 'M' == formType %}
+            <div style="margin-left: 50px;">
+              &nbsp;&nbsp;手机单据使用说明：<br>
+              <font color="red">表单作为从表时，“手机设置”失效，手机端以主表的“设置从表”的列标题、隐藏、不可编辑属性为准。表单作为主表时，“手机设置”才生效。</font>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html></div></div><div class="body_foot"></div></body>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/jquery/1.12.4/jquery-1.12.4.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/jqueryui/1.12.1/jquery-ui.min.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/jquery/1.12.4/jquery-migrate-1.4.1.min.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/bootstrap/3.3.7/js/bootstrap.min.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/bootstrap-table/1.11.0/js/bootstrap-table.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/bootstrap/js/bootstrap-tooltip.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/ace/ace_binder.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/bootstrap-editable/js/bootstrap-editable.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/bootstrap-table/1.11.0/js/locale/bootstrap-table-zh-CN.min.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/bootstrap-table/1.11.0/js/extensions/editable/bootstrap-table-editable.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/bootstrap-editable/js/bootstrap-editable-extensions.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/utils/ajaxfileupload.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/utils/json2.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/global.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/jqgrid/js/i18n/grid.locale-cn.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common/jquery.alerts.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/commons/dyform_constant.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/commons/function.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/validate/js/jquery.validate.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/lodash/3.10.1/lodash.custom.min.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/ztree/3.5.24/js/jquery.ztree.all.fixed.min.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/ztree/3.5.24/js/jquery.ztree.exhide.min.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common2/jquery.common.Core.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common2/jquery.common.ComboTree.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/minicolors/js/jquery.minicolors.js?v={{helper.resVer()}}"></script><!-- 控件文件 --><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/definition/ckeditor/pluginUtils/jquery.wFieldDefinitionUtils.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/jqueryui/js/jquery-ui.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/jqgrid/js/src/i18n/grid.locale-cn.js?v={{helper.resVer()}}"></script><script type="text/javascript">$.jgrid.no_legacy_api = true;
+$.jgrid.useJSON = true;</script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/jqgrid/js/jquery.jqGrid.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common/jquery.comboTree.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/commons/FormClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/commons/formDefinitionMethod.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/commons/function.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/commons/validate/additional-methods.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/ckeditor4.5.11/ckeditor.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/definition/ckeditor/dyform_config.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/commons/ckUtils.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/fileupload/js/uuid.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/select2/select2.min.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/select2/select2_locale_zh-CN.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common/jquery.wSelect2.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common/jquery.wSelect2Group.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/system_admin.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/constant.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/lodash/3.10.1/lodash.custom.min.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/moment/moment-with-locales.min.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/commons.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/server.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/layDate/laydate.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/layDate/laydatePro.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/multi/org/jquery.multiOrg.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/formBuilder.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/bootstrap-bootbox/4.4.0/bootbox.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common2/jquery.common.Dialog.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/bodymovin.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/appModal.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/layer/layer.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/webmessage/wellMessage.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common2/jquery.common.PictureLib.js?v={{helper.resVer()}}"></script><script src="{{helper.staticPrefix()}}/js/jquery.wellSelect/wellSelect.js?v={{helper.resVer()}}" type="text/javascript"></script><script src="{{helper.staticPrefix()}}/js/ace/min/ace.js?v={{helper.resVer()}}" type="text/javascript"></script><script src="{{helper.staticPrefix()}}/js/ace/min/ext-language_tools.js?v={{helper.resVer()}}" type="text/javascript"></script><script src="{{helper.staticPrefix()}}/js/ace/min/ext-zoom_win.js?v={{helper.resVer()}}" type="text/javascript"></script><script src="{{helper.staticPrefix()}}/js/ace/min/ext-code_var_snippets.js?v={{helper.resVer()}}" type="text/javascript"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/commons/FormClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wFileUploadClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wCheckBoxClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wCkeditorClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wComboBoxClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wSelectClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wComboSelectClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wComboTreeClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wDatePickerClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wFileUpload4IconClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wFileUploadClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wNumberInputClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wRadioClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wSerialNumberClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wTextAreaClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wTextInputClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wUnitClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wViewDisplayClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wDialogClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wTimeEmployClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wTableViewClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wTagGroupClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wColorClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wSwitchsClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wProgressClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wFileLibraryClass.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/system_admin.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/definition/dyform_form_designer.js?v={{helper.resVer()}}"></script><script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/definition/dyform_{{'v' if formType=='C' else formType | lower }}form_designer.js?v={{helper.resVer()}}">
+</script><script type="text/javascript">
+// 全局设置csrf-token
+$.ajaxSetup({
+beforeSend: function (xhr, settings) {
+if (!(/^(GET|HEAD|OPTIONS|TRACE)$/.test(settings.type)) && !this.crossDomain) {
+  xhr.setRequestHeader('x-csrf-token', getCookie('_csrfToken'));
+}
+var _auth = getCookie('_auth');
+// 设置前端访问后端服务接口的token验证
+xhr.setRequestHeader('Authorization' + (
+  'jwt' === _auth
+  ? '-JWT'
+  : ''), 'Bearer ' + getCookie(_auth));
+}
+});
+var isRef = Browser.getQueryString('isRef');
+if (isRef === '1') {
+$(":input").prop('disabled', true); // 引用的单据禁止编辑
+$(".form_operate").hide();
+}
+</script>
+</html>

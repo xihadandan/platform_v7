@@ -1,0 +1,11 @@
+{
+  "WidgetIconLib": {
+    "copy": "คัดลอก",
+    "style": "สไตล์",
+    "shape": "รูปทรง",
+    "color": "สี",
+    "themesColor": "ตัวแปรสีในตัว",
+    "delete": "ลบ",
+    "copySuccess": "คัดลอกสำเร็จ"
+  }
+}

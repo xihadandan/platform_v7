@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="getByFormUuidAndDataUuid">
+        <![CDATA[
+            from DmsDocExchangeRecordEntity
+            where 1=1
+            <if dataUuid??>
+            and dataUuid=:dataUuid
+            </if>
+            <if dyformUuid??>
+            and dyformUuid=:dyformUuid
+            </if>
+	    ]]>
+    </sql-query>
+
+
+    <sql-query name="updateDocExchangeFinishedWhenDetailDone">
+        <![CDATA[
+            update dms_doc_exchange_record r
+               set r.record_status = 2
+             where r.uuid = :uuid
+               and not exists
+             (select 1
+                      from dms_doc_exchange_record_detail l
+                     where l.doc_exchange_record_uuid = r.uuid
+                       and ((r.is_need_feedback = 1 and l.is_feedback = 0) or
+                           l.sign_status in (3, 6))
+                    )
+
+	    ]]>
+    </sql-query>
+
+    <sql-query name="updateDocExchangeSignFinishedWhenDetailDone">
+        <![CDATA[
+            update dms_doc_exchange_record r
+               set r.record_status = 2
+             where r.uuid = :uuid
+               and not exists
+             (select 1
+                      from dms_doc_exchange_record_detail l
+                     where l.doc_exchange_record_uuid = r.uuid
+                       and ((r.is_need_sign = 1 and l.sign_user_id is null) or l.sign_status in (3, 6))
+                    )
+
+	    ]]>
+    </sql-query>
+
+    <sql-query name="queryDmsDocExchangeDataStore">
+        <![CDATA[
+            SELECT
+		r.uuid as r_uuid,
+        r.create_time as r_create_time,
+        r.creator as r_creator,
+        r.modifier as r_modifier,
+        r.modify_time as r_modify_time,
+        r.is_mail_notify as r_is_mail_notify,
+        r.is_sms_notify as r_is_sms_notify,
+        r.data_uuid as r_data_uuid,
+        r.file_uuids as r_file_uuids,
+        r.file_names as r_file_names,
+        r.user_id as r_user_id,
+        r.record_status as r_record_status,
+        r.exchange_type as r_exchange_type,
+        r.to_user_names as r_to_user_names,
+        r.from_user_id as r_from_user_id,
+        r.send_time as r_send_time,
+        r.doc_urge_level as r_doc_urge_level,
+        r.flow_uuid as r_flow_uuid,
+        r.to_user_ids as r_to_user_ids,
+        r.doc_title as r_doc_title,
+        r.dyform_uuid as r_dyform_uuid,
+        r.from_record_detail_uuid as r_from_record_detail_uuid,
+        r.sign_time_limit as r_sign_time_limit,
+        r.is_need_sign as r_is_need_sign,
+        r.is_need_feedback as r_is_need_feedback,
+        r.overtime_level as r_overtime_level,
+        r.doc_encryption_level as r_doc_encryption_level,
+        r.is_im_notify as r_is_im_notify,
+        r.feedback_time_limit as r_feedback_time_limit,
+        r.from_unit_id as r_from_unit_id,
+        r.config_uuid as r_config_uuid,
+		o.*
+	FROM
+		DMS_DOC_EXCHANGE_RECORD r
+		inner join ${tableName} o on r.data_uuid = o.uuid
+		left join DMS_DOC_EXCHANGE_CONFIG c on r.config_uuid = c.uuid
+	WHERE
+		r.exchange_type = 0
+	AND r.record_status IN ( 4, 5, 6, 7 )
+	AND (
+		r.user_id = :currentUserId
+		OR EXISTS (
+		SELECT
+			1
+		FROM
+			( SELECT b.RELA_USER_ID,u.UNIT_ID FROM dms_doc_exc_contact_book b LEFT JOIN dms_doc_exc_contact_book_unit u ON b.contact_unit_uuid = u.uuid ) t
+		WHERE
+			t.rela_user_id = :currentUserId
+			AND t.unit_id = r.user_id
+		)
+		OR EXISTS (
+		SELECT
+			1
+		FROM
+			BUSINESS_ROLE_ORG_USER u
+		WHERE
+			EXISTS ( SELECT 1 FROM BUSINESS_ROLE br WHERE br.uuid = c.RECIPIENT_ROLE_UUID AND br.BUSINESS_CATEGORY_UUID = c.business_category_uuid )
+			AND EXISTS ( SELECT 1 FROM BUSINESS_CATEGORY_ORG bo WHERE bo.uuid = u.business_category_org_uuid AND bo.id = r.USER_ID )
+			AND u.BUSINESS_ROLE_UUID = c.RECIPIENT_ROLE_UUID
+			AND u.USERS LIKE :likeCurrentUserId
+		)
+		OR EXISTS (
+		SELECT
+			1
+		FROM
+			BUSINESS_CATEGORY_ORG o LEFT JOIN BUSINESS_ROLE_ORG_USER u ON u.business_category_org_uuid = o.uuid
+		WHERE
+			o.type ='1' and o.ID = r.user_id and o.MANAGE_USER = :currentUserId and u.uuid is null
+		)
+	)
+	    <if isNotBlank(whereSqlString)>
+			and ${whereSqlString}
+		</if>
+	    <if isNotBlank(orderString)>
+				${orderString}
+			</if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="countDmsDocExchangeDataStore">
+        <![CDATA[
+            SELECT
+		count(r.uuid) as total
+	FROM
+		DMS_DOC_EXCHANGE_RECORD r
+		inner join ${tableName} o on r.data_uuid = o.uuid
+		left join DMS_DOC_EXCHANGE_CONFIG c on r.config_uuid = c.uuid
+	WHERE
+		r.exchange_type = 0
+	AND r.record_status IN ( 4, 5, 6, 7 )
+	AND(
+		r.user_id = :currentUserId
+		OR EXISTS (
+		SELECT
+			1
+		FROM
+			( SELECT b.RELA_USER_ID,u.UNIT_ID FROM dms_doc_exc_contact_book b LEFT JOIN dms_doc_exc_contact_book_unit u ON b.contact_unit_uuid = u.uuid ) t
+		WHERE
+			t.rela_user_id = :currentUserId
+			AND t.unit_id = r.user_id
+		)
+		OR EXISTS (
+		SELECT
+			1
+		FROM
+			BUSINESS_ROLE_ORG_USER u
+		WHERE
+			EXISTS ( SELECT 1 FROM BUSINESS_ROLE br WHERE br.uuid = c.RECIPIENT_ROLE_UUID AND br.BUSINESS_CATEGORY_UUID = c.business_category_uuid )
+			AND EXISTS ( SELECT 1 FROM BUSINESS_CATEGORY_ORG bo WHERE bo.uuid = u.business_category_org_uuid AND bo.id = r.USER_ID )
+			AND u.BUSINESS_ROLE_UUID = c.RECIPIENT_ROLE_UUID
+			AND u.USERS LIKE :likeCurrentUserId
+		)
+		OR EXISTS (
+		SELECT
+			1
+		FROM
+			BUSINESS_CATEGORY_ORG o LEFT JOIN BUSINESS_ROLE_ORG_USER u ON u.business_category_org_uuid = o.uuid
+		WHERE
+			o.type ='1' and o.ID = r.user_id and o.MANAGE_USER = :currentUserId and u.uuid is null
+		)
+	)
+	    <if isNotBlank(whereSqlString)>
+			and ${whereSqlString}
+		</if>
+	    ]]>
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,190 @@
+<form action="" id="dms_folder_form" class="form-widget" style="margin-top: 15px">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#folder-tabs-1" aria-controls="folder-tabs-1" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+    </li>
+    <li role="presentation">
+      <a href="#folder-tabs-2" aria-controls="folder-tabs-2" role="tab" data-toggle="tab" aria-expanded="true">夹文件数据定义</a>
+    </li>
+    <li role="presentation">
+      <a href="#folder-tabs-3" aria-controls="folder-tabs-3" role="tab" data-toggle="tab" aria-expanded="true">权限配置</a>
+    </li>
+  </ul>
+  <input type="hidden" id="uuid" name="uuid" />
+  <input type="hidden" id="recVer" name="recVer" />
+  <input type="hidden" id="parentUuid" name="parentUuid" />
+  <input type="hidden" id="appId" name="appId" />
+  <input type="hidden" id="userName" name="userName" />
+  <input type="hidden" id="userId" name="userId" />
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="folder-tabs-1">
+      <div class="well-form form-horizontal">
+        <div class="form-group">
+          <label for="name" class="well-form-label control-label required">名称</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="name" name="name" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="code" class="well-form-label control-label">编号</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="code" name="code" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="contentType" class="well-form-label control-label">类型</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" name="contentType" id="contentType" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="remark" class="well-form-label control-label">备注</label>
+          <div class="well-form-control">
+            <textarea type="text" class="form-control" id="remark" name="remark"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="folder-tabs-2">
+      <div class="well-form form-horizontal">
+        <div class="form-group">
+          <label for="dataType" class="well-form-label control-label">类型</label>
+          <div class="well-form-control">
+            <input id="dataType" name="dataType" type="text" class="full-width" />
+          </div>
+        </div>
+        <div class="form-group data-type data-type-dyform data-type-mixture">
+          <label for="formName" class="well-form-label control-label">动态表单</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="formName" name="formName" />
+            <input type="hidden" class="form-control" id="formUuid" name="formUuid" />
+          </div>
+        </div>
+        <div class="form-group data-type data-type-dyform data-type-mixture">
+          <label for="fileNameFieldName" class="well-form-label control-label">文档标题字段</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="fileNameFieldName" name="fileNameFieldName" />
+            <input type="hidden" class="form-control" id="fileNameField" name="fileNameField" />
+          </div>
+        </div>
+        <div class="form-group data-type data-type-dyform data-type-mixture">
+          <label for="fileStatusFieldName" class="well-form-label control-label">文档状态字段</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="fileStatusFieldName" name="fileStatusFieldName" />
+            <input type="hidden" class="form-control" id="fileStatusField" name="fileStatusField" />
+          </div>
+        </div>
+        <div class="form-group data-type data-type-dyform data-type-mixture">
+          <label for="readFileFieldName" class="well-form-label control-label">阅读人员字段</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="readFileFieldName" name="readFileFieldName" />
+            <input type="hidden" class="form-control" id="readFileField" name="readFileField" />
+          </div>
+        </div>
+        <div class="form-group data-type data-type-dyform data-type-mixture">
+          <label for="editFileFieldName" class="well-form-label control-label">编辑人员字段</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="editFileFieldName" name="editFileFieldName" />
+            <input type="hidden" class="form-control" id="editFileField" name="editFileField" />
+          </div>
+        </div>
+        <div class="form-group data-type data-type-dyform data-type-mixture">
+          <label for="stick" class="well-form-label control-label">置顶状态</label>
+          <div class="well-form-control">
+            <input class="form-control" id="stick" name="stick" type="checkbox" value="true" checked="checked" />
+            <label for="stick">标示置顶状态</label>
+          </div>
+        </div>
+        <div class="form-group data-type data-type-dyform data-type-mixture">
+          <label for="stickStatusFieldName" class="well-form-label control-label">置顶状态字段</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="stickStatusFieldName" name="stickStatusFieldName" />
+            <input type="hidden" class="form-control" id="stickStatusField" name="stickStatusField" />
+          </div>
+        </div>
+        <div class="form-group data-type data-type-dyform data-type-mixture">
+          <label for="stickTimeFieldName" class="well-form-label control-label">置顶时间字段</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="stickTimeFieldName" name="stickTimeFieldName" />
+            <input type="hidden" class="form-control" id="stickTimeField" name="stickTimeField" />
+          </div>
+        </div>
+        <div class="form-group data-type data-type-dyform data-type-mixture">
+          <label for="readRecord" class="well-form-label control-label">启用阅读记录</label>
+          <div class="well-form-control">
+            <input class="form-control" id="readRecord" name="readRecord" type="checkbox" value="true" checked="checked" />
+            <label for="readRecord">标示阅读记录</label>
+          </div>
+        </div>
+        <div class="form-group data-type data-type-dyform data-type-mixture">
+          <label for="readRecordFieldName" class="well-form-label control-label">阅读记录人员字段</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="readRecordFieldName" name="readRecordFieldName" />
+            <input type="hidden" class="form-control" id="readRecordField" name="readRecordField" />
+          </div>
+        </div>
+        <div class="form-group data-type data-type-dyform data-type-mixture">
+          <label for="displayFormName" class="well-form-label control-label">显示表单</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="displayFormName" name="displayFormName" />
+            <input type="hidden" class="form-control" id="displayFormUuid" name="displayFormUuid" />
+          </div>
+        </div>
+        <div class="form-group data-type data-type-dyform data-type-mixture">
+          <label for="displayMFormName" class="well-form-label control-label">手机表单</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="displayMFormName" name="displayMFormName" />
+            <input type="hidden" class="form-control" id="displayMFormUuid" name="displayMFormUuid" />
+          </div>
+        </div>
+        <div class="form-group data-type data-type-dyform">
+          <label for="listViewName" class="well-form-label control-label">展示视图</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="listViewName" name="listViewName" />
+            <input type="hidden" class="form-control" id="listViewId" name="listViewId" />
+          </div>
+        </div>
+        <div class="form-group data-type data-type-dyform">
+          <label for="printTemplate" class="well-form-label control-label">打印模板</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="printTemplateNames" name="printTemplateNames" />
+            <input type="hidden" class="form-control" id="printTemplateUuids" name="printTemplateUuids" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="folder-tabs-3">
+      <div class="well-form form-horizontal">
+        <div class="form-group">
+          <label class="well-form-label control-label">权限配置</label>
+          <div class="well-form-control">
+            <input id="isInheritFolderRole_Y" name="isInheritFolderRole" type="radio" value="1" checked="checked" />
+            <label for="isInheritFolderRole_Y">继承上级夹</label>
+            <input id="isInheritFolderRole_N" name="isInheritFolderRole" type="radio" value="0" />
+            <label for="isInheritFolderRole_N">自定义</label>
+          </div>
+        </div>
+        <div id="div_isInheritFolderRole_Y">
+          <div class="row">
+            <button type="button" class="well-btn w-btn-primary" id="btn_dms_role_add">新增</button>
+            <button type="button" class="well-btn w-btn-danger" id="btn_dms_role_del">删除</button>
+          </div>
+          <!--<div id="div_dms_role_toolbar" class="btn-group">-->
+          <!--<button id="btn_add_dms_role" type="button" class="well-btn w-btn-primary">-->
+          <!--<i class="iconfont icon-ptkj-jiahao" aria-hidden="true"></i>新增-->
+          <!--</button>-->
+          <!--<button id="btn_delete_dms_role" type="button" class="well-btn w-btn-danger">-->
+          <!--<i class="iconfont icon-ptkj-shanchu" aria-hidden="true"></i>删除-->
+          <!--</button>-->
+          <!--</div>-->
+          <table id="dms_folder_assign_role_list"></table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 30px">
+    <div class="col-sm-12 text-center">
+      <button type="button" class="well-btn w-btn-primary" id="folder_btn_save">保存</button>
+    </div>
+  </div>
+</form>

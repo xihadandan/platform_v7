@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <sql-query name="getAppPageDefinitionAsAppProductIntegration">
+        <![CDATA[
+        -- 页面定义以集成信息的方式返回
+        select *
+			  from (select CONCAT_WS('_','page' , t1.app_pi_uuid , t1.uuid) as uuid,
+			               t1.code                       as code,
+			               t1.create_time                as create_time,
+			               t1.uuid                       as data_uuid,
+			               t1.id                         as data_id,
+			               concat(t1.name , '-版本' , t1.version )        as data_name,
+			               CONCAT_WS('/',t2.data_path,t1.id,if(t1.version ='1.0',null ,t1.version)) as data_path,
+			               '4'                           as data_type,
+			               t2.uuid                       as parent_uuid,
+                           t2.app_product_uuid           as app_product_uuid,
+                           t2.app_system_uuid            as app_system_uuid,
+                           t1.uuid                       as app_page_uuid
+			          from app_page_definition t1
+			          inner join app_product_integration t2
+			            on t1.app_pi_uuid = t2.uuid
+			         where 1 = 1 and t1.user_id is null
+			             <if isNotBlank(appProductUuid)>
+			                 and t2.app_product_uuid = :appProductUuid
+			             </if>
+			             <if isNotBlank(appSystemUuid)>
+                             and t2.app_system_uuid = :appSystemUuid
+                         </if>
+                         <if isNotBlank(isProtected)>
+                             and t2.is_protected = :isProtected
+                         </if>
+                         <if isNotBlank(parentUuids)>
+                             and t2.uuid in(:parentUuids)
+                         </if>
+			        union all
+			        select CONCAT_WS('_','pageref' , t3.app_pi_uuid , t1.uuid) as uuid,
+			               t1.code                       as code,
+			               t1.create_time                as create_time,
+			               t1.uuid                       as data_uuid,
+			               t1.id                         as data_id,
+			               t1.name                       as data_name,
+			               CONCAT_WS('/',t2.data_path,t1.id,if(t1.version ='1.0',null ,t1.version)) as data_path,
+			               '4'                           as data_type,
+			               t2.uuid                       as parent_uuid,
+                           t2.app_product_uuid           as app_product_uuid,
+                           t2.app_system_uuid            as app_system_uuid,
+                           t1.uuid                       as app_page_uuid
+			          from app_page_definition t1
+			         inner join app_page_definition_ref t3
+			            on t1.uuid = t3.ref_uuid
+			         inner join app_product_integration t2
+                        on t3.app_pi_uuid = t2.uuid
+			         where 1 = 1 and t1.user_id is null
+                         <if isNotBlank(appProductUuid)>
+                             and t2.app_product_uuid = :appProductUuid
+                         </if>
+                         <if isNotBlank(appSystemUuid)>
+                             and t2.app_system_uuid = :appSystemUuid
+                         </if>
+                         <if isNotBlank(isProtected)>
+			                 and t2.is_protected = :isProtected
+			             </if>
+			             <if isNotBlank(parentUuids)>
+                             and t2.uuid in(:parentUuids)
+                         </if>
+			             ) t
+			 order by t.code asc, t.create_time asc
+    ]]>
+    </sql-query>
+
+    <sql-query name="getAppFunctionOfAppPageDefinitionAsAppProductIntegration">
+        <![CDATA[
+        -- 页面定义引用功能以集成信息的方式返回
+        select CONCAT_WS('_','funcref' , t3.page_pi_uuid ,t1.app_function_uuid) as uuid,
+		        t2.code                       as code,
+		        t1.create_time                as create_time,
+		        t1.uuid                       as data_uuid,
+		        t2.id                         as data_id,
+		        t2.name                       as data_name,
+		        CONCAT_WS('/',t3.data_path , t2.id)  as data_path,
+		        '4'                           as data_type,
+		        t3.page_pi_uuid               as parent_uuid,
+		        t3.app_product_uuid           as app_product_uuid,
+		        t3.app_system_uuid            as app_system_uuid,
+		        t3.app_page_uuid              as page_uuid
+		   from app_page_resource t1
+		  inner join app_function t2
+		      on t1.app_function_uuid = t2.uuid
+		  inner join (select CONCAT_WS('_','page' , t1.app_pi_uuid , t1.uuid) as page_pi_uuid,
+		                     t1.uuid                      as app_page_uuid,
+		                     CONCAT_WS('/', t2.data_path , t1.id) as data_path,
+                             t2.app_product_uuid          as app_product_uuid,
+                             t2.app_system_uuid           as app_system_uuid
+		                from app_page_definition t1
+		                inner join app_product_integration t2
+		                  on t1.app_pi_uuid = t2.uuid
+		               where 1 = 1 and t1.user_id is null
+                         <if isNotBlank(appProductUuid)>
+                             and t2.app_product_uuid = :appProductUuid
+                         </if>
+                         <if isNotBlank(appSystemUuid)>
+                             and t2.app_system_uuid = :appSystemUuid
+                         </if>
+                         <if isNotBlank(parentUuids)>
+                             and t2.uuid in(:parentUuids)
+                         </if>
+		              union all
+		              select CONCAT_WS('_','pageref' , t3.app_pi_uuid , t1.uuid) as page_pi_uuid,
+		                     t1.uuid                      as app_page_uuid,
+		                     CONCAT_WS('/',t2.data_path ,t1.id) as data_path,
+                             t2.app_product_uuid          as app_product_uuid,
+                             t2.app_system_uuid           as app_system_uuid
+		                from app_page_definition t1
+                        inner join app_page_definition_ref t3
+                          on t1.uuid = t3.ref_uuid
+		                inner join app_product_integration t2
+		                  on t3.app_pi_uuid = t2.uuid
+		               where 1 = 1 and t1.user_id is null
+                         <if isNotBlank(appProductUuid)>
+                             and t2.app_product_uuid = :appProductUuid
+                         </if>
+                         <if isNotBlank(appSystemUuid)>
+                             and t2.app_system_uuid = :appSystemUuid
+                         </if>
+                         <if isNotBlank(parentUuids)>
+                             and t2.uuid in(:parentUuids)
+                         </if>) t3
+		     on t1.app_page_uuid = t3.app_page_uuid
+		  where 1 = 1
+		      <if isNotBlank(isProtected)>
+		          and t1.is_protected = :isProtected
+		      </if>
+		      <if functionTypes??>
+                  and t2.type in (:functionTypes)
+              </if>
+		  order by t2.code asc, t1.create_time asc
+    ]]>
+    </sql-query>
+</hibernate-mapping>

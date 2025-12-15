@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <!-- 获取新建组织时对应的归属单wselect2使用 -->
+    <sql-query name="queryJobRankListForSelect2">
+        <![CDATA[
+		select e.id, e.name
+		from multi_org_job_rank e
+		where e.system_unit_id = :systemUnitId
+		<if isNotBlank( name )>
+			and e.name like '%${name}%'
+		</if>
+	]]>
+    </sql-query>
+
+    <sql-query name="queryJobRankListByParam">
+        <![CDATA[
+		select e.uuid,e.id, e.code,e.job_rank, e.name,e.duty_seq_uuid,e.describe from multi_org_job_rank e
+		join ORG_DUTY_SEQ s on e.duty_seq_uuid = s.uuid
+		where e.system_unit_id = :systemUnitId
+		<if isNotBlank( keyword )>
+			 and (e.job_rank like '%${keyword}%'  or s.duty_seq_name like '%${keyword}%')
+		</if>
+		order by code desc,job_grade desc
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

@@ -1,0 +1,46 @@
+
+/* -----------------------------金蝶轻应用对接开始------------------------------------ */
+.pt-qing header.mui-bar {
+	display: none;
+}
+
+.pt-qing .work-process-viewer .title {
+    display: none;
+}
+
+.pt-qing .mui-bar-nav~.mui-content {
+    padding-top: 0px;
+}
+
+.pt-qing .wf-work-view .mui-dyform.mui-scroll-wrapper {
+	top: 0px;
+}
+
+.pt-qing .mui-bar-nav~.mui-content .mui-slider.mui-fullscreen {
+    top: 0px;
+}
+
+.pt-qing .wf-work-view .mui-dyform .mui-top-tabs.mui-fullscreen {
+    top: 0px;
+}
+
+.pt-qing .wf-work-view .mui-dyform .mui-bottom-tabs.mui-fullscreen {
+	top: 0px;
+}
+
+.pt-qing .mui-bar-nav~.mui-content .mui-dyform.mui-scroll-wrapper {
+    top: 0px;
+}
+
+.pt-qing .mui-app-nav-panel.mui-fullscreen {
+    top: 0px;
+}
+
+.pt-qing .mui-app-nav-panel.mui-fullscreen>.mui-app-nav>.mui-table {
+	top: 0px;
+}
+
+.pt-qing .attach-button-row .btn-filedownall {
+    display: none !important;
+}
+/* -----------------------------金蝶轻应用对接结束------------------------------------ */

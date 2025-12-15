@@ -1,0 +1,31 @@
+/** 分割线 */
+
+// 应用于：
+// - 导航块编辑弹窗
+// - 悬浮框编辑弹窗
+.divider {
+  @divider-margin-vertical: ((@divider-height - @divider-width) / 2);
+  .size(100%, @divider-width);
+
+  position: relative;
+  margin: @divider-margin-vertical 0;
+  background: @divider-color;
+
+  .text {
+    .absolute((-@divider-height / 2) false false (@divider-text-offset-left - @divider-text-margin-left));
+
+    padding-right: @divider-text-margin-right;
+    padding-left: @divider-text-margin-left;
+    line-height: @divider-height;
+    font-size: @divider-font-size;
+    color: @divider-text-color;
+    background: @component-background;
+    cursor: pointer;
+
+    i {
+      font-size: @font-size-sm;
+      margin-right: 5px;
+      transform: scale(0.8);
+    }
+  }
+}

@@ -1,0 +1,624 @@
+/*职务体系管理样式*/
+.rank-mgr-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  border-bottom: 1px solid @gray-4;
+}
+
+.rank-mgr-header-left {
+  display: flex;
+  align-items: center;
+}
+
+.rank-mgr-header-left .switch-wrap {
+  color: @gray-11;
+}
+
+.rank-mgr-header-left .switch-wrap {
+  margin: 0 10px;
+}
+
+.rank-mgr-header-left .rank-tip {
+  color: @gray-9;
+}
+
+.rank-mgr-header-right .iconfont {
+  font-size: 20px;
+  color: @gray-9;
+  cursor: pointer;
+}
+
+.rank-mgr-header-right .iconfont.active,
+.rank-tab-header .rank-tab-header-set:hover,
+.rank-mgr-header-right .iconfont:hover {
+  color: @text-color-primary;
+}
+
+.rank-mgr-header-right .iconfont:not(:last-child) {
+  margin-right: 10px;
+}
+
+.clear-margin-padding {
+  margin: 0;
+  padding: 0;
+}
+
+.clear-margin-padding .custom-column.col-xs-3 {
+  margin: 0;
+  width: 220px !important;
+}
+
+.clear-margin-padding .custom-column.col-xs-9 {
+  width: calc(100% - 240px) !important;
+}
+
+.rank-mgr-tab {
+  padding-top: 10px;
+  border-right: 1px solid @gray-4;
+}
+
+.rank-mgr-tab .rank-tab-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.rank-mgr-tab .rank-tab {
+  border: 1px solid @primary-3;
+  border-radius: 4px;
+  font-size: 0;
+}
+
+.rank-mgr-tab .rank-tab-item {
+  display: inline-block;
+  line-height: 1;
+  padding: 9px 11px;
+  color: @gray-10;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.rank-mgr-tab .rank-tab-item.active {
+  color: @white;
+  background-color: @primary-color;
+}
+
+.rank-mgr-tab .rank-tab-item:first-of-type {
+  border-radius: 4px 0 0 4px;
+  border-right: 1px solid @primary-3;
+}
+
+.rank-mgr-tab .rank-tab-item:last-of-type {
+  border-radius: 0 4px 4px 0;
+  border-left: 1px solid @primary-3;
+}
+
+.rank-tab-search {
+  padding: 0 10px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.rank-tab-search .iconfont {
+  position: absolute;
+  top: 8px;
+  line-height: 1;
+  color: @gray-9;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.rank-tab-search .rank-close {
+  display: none;
+  right: 39px;
+}
+
+.rank-tab-search .rank-search {
+  right: 19px;
+}
+
+.rank-tab-search .iconfont:hover {
+  color: @text-color-primary;
+}
+
+.rank-tab-content .rank-content-body,
+.rank-tab-content .rank-tab-content3 {
+  border-top: 1px solid @gray-4;
+}
+
+.rank-tab-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 15px 15px 20px;
+  border-bottom: 1px solid @gray-4;
+}
+
+.rank-tab-header .rank-tab-header-set {
+  font-size: 18px;
+  color: @gray-9;
+  cursor: pointer;
+}
+
+.rank-tab-header .left-title {
+  color: @gray-10;
+}
+
+.rank-tab-header .left-tip {
+  position: relative;
+  margin-left: 16px;
+  color: @gray-7;
+}
+
+.rank-tab-header .left-tip:before {
+  position: absolute;
+  content: '';
+  height: 10px;
+  width: 1px;
+  background: @gray-9;
+  display: block;
+  top: 50%;
+  left: -8px;
+  margin-top: -5px;
+}
+
+.rank-tab-content2 .rank-tab-list {
+  padding: 10px 0;
+  height: 500px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+}
+
+.rank-tab-list .rank-item {
+  padding: 0 10px 0 30px;
+  height: 28px;
+  line-height: 28px;
+  color: @gray-10;
+  font-size: 14px;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+.rank-tab-list .rank-item:hover {
+  background: @primary-3;
+}
+
+.rank-cate-header {
+  padding: 0 10px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rank-cate-header .arrow {
+  color: @gray-9;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 2.5px 7px;
+}
+
+.rank-cate-header .cate {
+  margin: 0 3px;
+  color: @text-color-primary;
+  font-size: 14px;
+}
+
+.rank-cate-header .rank-cate-name {
+  color: @gray-10;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.rank-cate-header-right {
+  width: 26px;
+  height: 26px;
+  line-height: 26px;
+  border-radius: 50%;
+  border: 1px solid @primary-3;
+  text-align: center;
+}
+
+.rank-cate-header-right .add {
+  font-size: 14px;
+  color: @text-color-primary;
+  cursor: pointer;
+}
+
+.post-list {
+  width: auto;
+  height: 550px;
+  overflow: hidden;
+
+  &::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+}
+
+.post-list .lay {
+  position: relative;
+  height: 34px;
+  line-height: 34px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.post-list .lay:hover {
+  background: @primary-3;
+}
+
+.post-list li.active {
+  background: @primary-3;
+}
+
+.lay .icon-style {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  margin-right: 5px;
+}
+
+.lay .icon-style .iconfont {
+  color: #fff;
+  font-size: 14px;
+}
+
+.lay .folder {
+  position: absolute;
+  left: -20px;
+  color: @gray-9;
+  font-size: 10px;
+}
+
+.lay .post-name {
+  color: @gray-10;
+}
+
+.lay .post-code {
+  color: @gray-9;
+}
+
+.post-list .lay0 {
+  padding-left: 50px;
+}
+
+.post-list .lay0 .folder {
+  left: 30px;
+}
+
+.post-list .lay1 {
+  padding-left: 79px;
+}
+
+.post-list .lay1 .folder {
+  left: 59px;
+}
+
+.post-list .lay2 {
+  padding-left: 108px;
+}
+
+.post-list .lay2 .folder {
+  left: 88px;
+}
+
+.post-list .lay3 {
+  padding-left: 127px;
+}
+
+.post-list .lay3 .folder {
+  left: 107px;
+}
+
+.post-list .lay4 {
+  padding-left: 156px;
+}
+
+.post-list .lay4 .folder {
+  left: 136px;
+}
+
+.lay-operate {
+  display: none;
+  position: absolute;
+  left: 180px;
+  top: 3px;
+}
+
+.lay-operate-icon {
+  display: block;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: rgba(@white, 0.8);
+  text-align: center;
+  line-height: 27px;
+}
+
+.lay-operate-icon:hover .iconfont {
+  color: @text-color-primary;
+}
+
+.lay-operate-btns {
+  position: absolute;
+  display: none;
+  padding: 5px 0;
+  width: 100px;
+  right: -10px;
+  top: 33px;
+  background: #fff;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.lay-operate-btns:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -10px;
+  right: 13px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid @white;
+}
+
+.lay-operate-btns .btn-edit,
+.lay-operate-btns .btn-delete {
+  padding: 10px 15px;
+  color: @text-color-primary;
+  line-height: 1;
+}
+
+.lay-operate-btns .btn-edit:hover,
+.lay-operate-btns .btn-delete:hover {
+  background: @primary-3;
+}
+
+.lay-operate-btns .btn-edit .iconfont,
+.lay-operate-btns .btn-delete .iconfont {
+  margin-right: 5px;
+  line-height: 1;
+}
+
+/* .lay-operate-icon:hover + .lay-operate-btns {
+  display: block;
+} */
+.lay:hover .lay-operate {
+  display: block;
+}
+
+.lay-operate-btns:hover {
+  display: block;
+}
+
+.level-header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+  box-shadow: 0px 2px 0px 0px @gray-3;
+}
+
+.level-header-title {
+  color: @gray-11;
+}
+
+.level-header-content {
+  display: flex;
+  align-items: center;
+  margin: 0 15px 0 10px;
+  color: @gray-11;
+}
+
+.level-header-tip {
+  color: @gray-9;
+}
+
+.level-num-wrap {
+  display: flex;
+  width: 102px;
+  border-radius: 4px;
+  border: 1px solid @gray-6;
+}
+
+.level-num-wrap:first-of-type {
+  margin-right: 10px;
+}
+
+.level-num-wrap:last-of-type {
+  margin-left: 10px;
+}
+
+.level-num-wrap .level-num-input {
+  width: 80px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.level-num-wrap .level-num-input:focus,
+.level-num-wrap .level-num-input:hover {
+  box-shadow: none !important;
+  border: none;
+}
+
+.level-num-arrows {
+  width: 22px;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid @gray-6;
+}
+
+.num-arrows-down,
+.num-arrows-up {
+  height: 17px;
+  text-align: center;
+  line-height: 17px;
+  cursor: pointer;
+}
+
+.num-arrows-up {
+  height: 18px;
+  border-bottom: 1px solid @gray-6;
+  box-sizing: border-box;
+}
+
+.level-num-arrows .iconfont {
+  color: @gray-6;
+  font-size: 10px;
+}
+
+.level-num-arrows .iconfont:hover {
+  color: @text-color-primary;
+}
+
+.level-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.level-item .form-control {
+  width: 200px;
+  display: inline-block;
+}
+
+.level-item .level-minus {
+  display: block;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  margin-left: 10px;
+  border-radius: 50%;
+  border: 1px solid @gray-7;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.level-item .level-minus .iconfont {
+  line-height: 1;
+}
+
+.level-item .level-minus:hover .iconfont {
+  color: @text-color-primary;
+}
+
+.rank-help {
+  color: @gray-9;
+  margin-left: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.rank-help-info {
+  line-height: 28px;
+
+  .name {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: @gray-11;
+    font-weight: bold;
+  }
+
+  .title {
+    line-height: 28px;
+    position: relative;
+    color: #444;
+    font-size: 16px;
+    padding-left: 36px;
+    font-weight: 600;
+
+    &:before {
+      content: '';
+      width: 4px;
+      height: 14px;
+      display: block;
+      position: absolute;
+      left: 22px;
+      top: 50%;
+      margin-top: -7px;
+      background: @text-color-primary;
+      border-radius: 2px;
+    }
+  }
+
+  p {
+    padding-left: 22px;
+    line-height: 24px;
+    color: @gray-10;
+    text-indent: 2em;
+  }
+}
+
+.rank-view2 {
+  display: none;
+}
+
+.rank-view-page {
+  margin-top: 15px;
+  min-height: 700px;
+}
+
+.duty-table {
+  margin-top: 20px;
+
+  &>table {
+    width: 100%;
+    border: 1px solid @gray-6;
+
+    thead {
+      background: @gray-2;
+    }
+
+    th,
+    td {
+      border: 1px solid @gray-6;
+      min-height: 34px;
+      line-height: 34px;
+      text-align: center;
+    }
+
+    th {
+      color: @gray-11;
+    }
+
+    td {
+      line-height: 40px;
+      min-height: 40px;
+    }
+
+    tbody tr:hover {
+      background: @table-body-row-hover-background-color;
+    }
+  }
+}

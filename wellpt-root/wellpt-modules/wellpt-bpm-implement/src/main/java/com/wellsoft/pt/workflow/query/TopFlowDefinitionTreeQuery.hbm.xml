@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="topFlowDefinitionTreeQuery">
+        <![CDATA[
+		select flow_def.uuid as uuid,
+			flow_def.name as name,
+			flow_def.id as id,
+			flow_def.version as version,
+			flow_def.enabled as enabled,
+			flow_def.form_name as formName,
+			flow_def.form_uuid as formUuid,
+			category.name as category,
+			flow_def.remark as remark,
+			flow_def.creator	as	creator,
+			flow_def.create_time	as	createTime,
+			flow_def.modifier	as	modifier,
+			flow_def.modify_time	as	modifyTime,
+			flow_def.system_unit_id as systemUnitId
+		from wf_flow_definition flow_def left join wf_def_category category
+		on flow_def.category = category.uuid
+		where
+		 (flow_def.id,flow_def.version) in (
+			select oo.id,max(oo.version) from wf_flow_definition o, wf_flow_definition oo  where o.id = oo.id
+
+			<if isNotBlank(name) || isNotBlank(id)|| isNotBlank(formName) || isNotBlank(category)>
+				and (1 = 2
+					<if isNotBlank(name)>
+						or o.name like '%${name}%'
+					</if>
+					<if isNotBlank(id)>
+						or o.id like '%${id}%'
+					</if>
+					<if isNotBlank(formName)>
+						or o.form_name like '%${formName}%'
+					</if>
+					<if isNotBlank(category)>
+					or exists (select 1 from wf_def_category wdc where wdc.uuid=o.category and wdc.name like '%${category}%')
+					</if>
+				)
+			</if>
+			<if isNotBlank(categoryUuid)>
+			 and exists (select 1 from wf_def_category wdc where wdc.uuid=o.category and wdc.uuid =:categoryUuid)
+			</if>
+			<if isNotBlank(systemUnitId)>
+				and oo.system_unit_id= :systemUnitId
+			</if>
+			group by oo.id, oo.enabled
+		)
+		<if isNotBlank(categoryUuid)>
+			and flow_def.category = :categoryUuid
+		</if>
+		<if isNotBlank(enabled)>
+				and flow_def.enabled = :enabled
+		</if>
+		order by flow_def.code, flow_def.name
+	]]>
+    </sql-query>
+</hibernate-mapping>

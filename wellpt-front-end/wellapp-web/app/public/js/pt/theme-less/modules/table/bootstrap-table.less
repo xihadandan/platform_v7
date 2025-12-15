@@ -1,0 +1,221 @@
+@import '../../variables/variables.less';
+@import '../../mixin/mixin.less';
+//bootstrap-table组件开始
+.ui-wBootstrapTable{
+    background:@white;
+    .fixed-table-toolbar:after{
+        content: "";
+        display: table;
+        clear: both;
+        visibility: hidden;
+    }
+    .fixed-table-toolbar{
+        clear:both; 
+        margin-bottom:5px;
+        .btn-query>i,.btn-reset>i{
+            margin-right: 5px;
+            vertical-align: -1px;
+        }
+        .btn-group{
+            >.btn{
+                margin:0 5px;
+                border-radius: 4px !important;    
+                padding: 5px 13px 5px 13px;
+            }
+            >.btn::before{
+                font-size:12px;
+                padding-right: 5px;
+            }
+        }
+        .split-btn-group{
+            >.btn:first-child{
+                border-radius:4px 0px 0px 4px !important;
+                margin-right: 0px !important;
+            }
+            .btn:nth-child(2){
+                margin-left: 0px !important;
+                border-radius:0px 4px 4px 0px !important;
+                padding: 3px 5px 5px 5px;
+            }
+        }
+    }
+    .fixed-table-container{
+        border:0;
+        border-radius: 0;
+        .fixed-table-body{
+            table{
+                table-layout: fixed;             
+                thead{
+                    tr{
+                        background:#f5f5f5;
+                    }
+                    th{
+                        border-left:0; 
+                        font-size:14px;                      
+                        vertical-align: middle;
+                        color:@fontBaseColor; 
+                        font-weight:normal;
+                        border-right:1px solid #e6e6e6;
+                        .both{
+                            display: inline-block;
+                            padding-right: 25px;
+                            background-image:url(images/sort.png);
+                            background-repeat: no-repeat;
+                        } 
+                        .desc{
+                            background-image:url(images/sort-j.png);
+                            background-repeat: no-repeat;
+                        }
+                        .asc{
+                            background-image:url(images/sort-s.png);
+                            background-repeat: no-repeat;
+                        }
+                    }
+                    th:last-child{
+                        border-right: 0;
+                    }
+                } 
+                tbody{
+                    >tr {
+                        cursor: pointer;/* 行点击事件 */                      
+                        >td{
+                            width:100px;
+                            overflow: hidden;
+                            white-space:nowrap;
+                            text-overflow: ellipsis;
+                            color:@fontBaseColor; 
+                            background:@white;
+                            vertical-align: middle;
+                            padding:8px;
+                            border-right: 1px solid #e6e6e6;
+                            border-bottom:  1px solid #e6e6e6; 
+                            div{
+                                overflow: hidden;
+                                white-space:nowrap;
+                                text-overflow: ellipsis;
+                            }              
+                        }
+                        >td:last-child{
+                            border-right:0;
+                        }
+                        .def-view-normal,
+                        .def-view-remind,
+                        .def-view-warning {
+                        padding: 4px 7.5px;
+                        border-radius: 5px;
+                        color: @white;
+                        }
+                        .def-view-normal {
+                            background-color: @default;
+                        }
+                        .def-view-remind {
+                            background-color: @warning;
+                        }
+                        .def-view-warning {
+                            background-color: @danger;
+                        }  
+                        &:hover{
+                            >td{
+                                background:rgba(231, 244, 248, 1);
+                                color:@warning;
+                            }                            
+                        }                    
+                    }
+                    >.unread>td{
+                        font-weight:bold;
+                        color: @titleColor;
+                    }
+                    .black-bold > td {
+                        font-weight: bold!important;
+                        color: #333!important;
+                    }
+                    tr.text-primary > td {
+                        color: @primary!important;
+                    }
+                    tr.text-success > td {
+                        color: @success!important;
+                    }
+                    tr.text-info > td {
+                        color: @info!important;
+                    }
+                    tr.text-warning > td {
+                        color: @warning!important;
+                    }
+                    tr.text-danger > td {
+                        color: @danger!important;
+                    }
+                    tr.bg-primary > td {
+                        color: #fff!important;
+                        background-color: #337ab7!important;
+                    }
+                    tr.bg-success > td {
+                        color: @titleColor!important;
+                        background-color: #dff0d8!important;
+                    }
+                    tr.bg-info > td {
+                        color: @titleColor!important;
+                        background-color: #d9edf7!important;
+                    }
+                    tr.bg-warning > td {
+                        color: @titleColor!important;
+                        background-color: #fcf8e3!important;
+                    }
+                    tr.bg-danger > td {
+                        color: @titleColor!important;
+                        background-color: #f2dede!important;
+                    }
+                }
+            }
+            
+        }
+        .fixed-table-pagination{
+            .pagination-detail{
+                color: @descColor;
+                line-height: 40px;
+                .btn {
+                    background-color: @white;
+                    color: @descColor;
+                }
+            }
+            padding:5px 15px;
+            .pagination{
+                >li{
+                    a,span{
+                        position: relative;
+                        float: left;
+                        line-height: 23px;
+                        padding: 6px 9px;
+                        margin-left: -1px;
+                        line-height: 1.42857143;
+                        text-decoration: none;
+                        border: 1px solid #ddd; 
+                    }
+                    a{
+                        &:hover,&:focus{
+                            z-index: 3;
+                            cursor: pointer;
+                        }
+                    }
+                    &.jump-to{
+                        span,input[type="text"]{
+                            border-radius: 0;
+                        }
+                        input[type="text"]{
+                            float: right;
+                            width: 50px;
+                            margin-left: -1px;
+                            height: 34px;
+                        }
+                    }
+                }
+            }
+        }
+        .fixed-table-pagination:after{
+            content:" ";
+            height:0;
+            display:table;
+            clear:both;
+        }
+    }
+}
+//bootstrap-table组件结束

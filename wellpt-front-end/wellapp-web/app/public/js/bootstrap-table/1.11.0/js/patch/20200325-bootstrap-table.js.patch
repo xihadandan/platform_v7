@@ -1,0 +1,16 @@
+单选模式时，选中状态更新错误
+http://zen.well-soft.com:81/zentao/bug-view-32377.html
+
+Index: wellpt-root/wellpt-web/WebContent/resources/bootstrap-table/1.11.0/js/bootstrap-table.js
+===================================================================
+--- wellpt-root/wellpt-web/WebContent/resources/bootstrap-table/1.11.0/js/bootstrap-table.js	(revision 204861)
++++ wellpt-root/wellpt-web/WebContent/resources/bootstrap-table/1.11.0/js/bootstrap-table.js	(working copy)
+@@ -1935,7 +1935,7 @@
+         });
+ 
+         this.$selectItem = this.$body.find(sprintf('[name="%s"]', this.options.selectItemName));
+-        this.$selectItem.off('click').on('click', function (event) {
++        this.$selectItem.off('change').on('change', function (event) {
+             event.stopImmediatePropagation();
+ 
+             var $this = $(this),

@@ -1,0 +1,407 @@
+/* 导航条组件 */
+
+// FIXME: 弹出层滚动按钮失效
+
+/** 导导航条 - 顶部导航 */
+.ui-wNavbar .ui-navbar-nav {
+  padding: 0 10px;
+  border-bottom: 0;
+  float: none;
+  border-radius: 0;
+  border: 0;
+  margin: 0;
+  border-top: @border-default-primary-light;
+
+  > li {
+    position: relative;
+
+    > a {
+      margin-right: 0;
+      padding: 0 @padding-2xl;
+      height: @navbar-height;
+      line-height: @navbar-height;
+      border: 0;
+      border-radius: 0;
+      font-size: @navbar-font-size;
+      background: transparent;
+      z-index: 1;
+      color: @navbar-text-color;
+
+      span {
+        display: inline-block;
+        width: 20px;
+        font-size: @navbar-font-size;
+      }
+
+      &:hover {
+        background: @navbar-nav-hover-background;
+      }
+    }
+
+    > .nav-dropdown {
+      .absolute(0 false false 100%);
+    }
+
+    &.more-nav-bar {
+      @navbar-nav-more-width: 120px;
+
+      width: @navbar-nav-more-width;
+      cursor: pointer;
+
+      > i {
+        padding: 0 ((@navbar-nav-more-width - @font-size-2xl) / 2);
+        line-height: @navbar-height;
+        font-size: @font-size-2xl;
+        color: @navbar-text-color;
+      }
+    }
+  }
+}
+
+/** 导航条 *全部展示* - 弹出层 */
+.ui-wNavbar .sub-nav-wrap {
+  display: none;
+  z-index: 999999999;
+  position: absolute;
+  margin-left: -1px;
+  width: calc(100% + 2px);
+  padding: 0 @padding-xs;
+  background: @navbar-all-style-popup-background;
+  overflow: hidden;
+
+  &::before {
+    .box();
+
+    display: block;
+    content: '';
+    // background: rgba(0, 0, 0, 0.3);
+  }
+
+  .sub-nav-list {
+    z-index: 1;
+    position: relative;
+    float: left;
+    min-height: 1px;
+    padding: @padding-xs 0;
+
+    &.active,
+    &.hover {
+      z-index: 2;
+      background: @navbar-all-style-popup-hover-background;
+    }
+
+    .sub-nav-li {
+      .text-overflow();
+
+      position: relative;
+      padding: 0 @padding-lg 0 @padding-2xl;
+      line-height: @navbar-all-style-popup-item-height;
+      font-size: @navbar-all-style-popup-font-size;
+      color: @navbar-all-style-popup-text-color;
+      text-align: left;
+      cursor: pointer;
+      opacity: 0.75;
+
+      a {
+        .text-overflow();
+
+        color: @navbar-all-style-popup-text-color;
+        text-decoration: none;
+        opacity: 0.75;
+
+        .ui-wIcon {
+          display: inline-block;
+          width: 20px;
+          font-size: @font-size-lg;
+        }
+      }
+
+      .sub-nav-arrow {
+        color: @navbar-all-style-popup-text-color;
+        font-size: 10px;
+        transform: scale(1);
+        line-height: inherit;
+        float: right;
+      }
+
+      &:hover {
+        opacity: 1;
+
+        a {
+          opacity: 1;
+        }
+
+        &::before {
+          .size(3px, 16px);
+          .absolute(7px false false 19px);
+
+          content: '';
+          background: #fff;
+        }
+      }
+    }
+  }
+}
+
+/** 导航条 *全部展示* - 弹出层 (多级导航 - 默认隐藏) */
+.ui-wNavbar .sub-nav-wrap .dynamic-nav {
+  display: none;
+  position: fixed;
+  background: @navbar-all-style-popup-hover-background;
+  top: @header-height + @navbar-height + 1px !important;
+
+  .sub-nav-li {
+    padding: 0 (@padding-2xl + 1px) 0 (@padding-lg + 1px);
+  }
+
+  &::before {
+    .box();
+
+    display: block;
+    content: '';
+  }
+
+  &.border-left {
+    border-left: @border-default-primary-light;
+  }
+
+  &.border-right {
+    border-right: @border-default-primary-light;
+  }
+}
+
+/** 导航条 *全部展示* - 弹出层 (多级导航 - 显示条件) */
+.ui-wNavbar .sub-nav-wrap .sub-nav-list .sub-nav-li:hover > .dynamic-nav {
+  display: block;
+}
+
+.ui-wNavbar .sub-nav-wrap .sub-nav-list.dynamic-nav .sub-nav-li:hover::before {
+  left: 10px;
+}
+
+// 导航条 (*全部展示*) - 子导航弹出层 - 滚动按钮
+.ui-wNavbar .ui-wNavbar .sub-nav-list .btn-li {
+  position: fixed !important;
+  width: inherit;
+  bottom: -3px;
+
+  .move-up,
+  .move-down {
+    width: 50%;
+    text-align: center;
+    display: inline-block;
+    margin: 0;
+    background-color: @primary-10;
+    color: @navbar-all-style-popup-text-color;
+    border: none;
+    box-sizing: border-box;
+    height: 24px;
+    box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.1);
+
+    .iconfont {
+      font-size: 9px;
+    }
+
+    &.disabled {
+      color: @primary-9;
+      cursor: not-allowed;
+    }
+  }
+
+  .move-up {
+    border-right: @border-default-light;
+  }
+}
+
+/** 导航条 (*单列展示*) - 子导航弹出层 */
+.ui-wNavbar .single-sub-nav-wrap {
+  .absolute(@navbar-height  false false 0);
+
+  display: none;
+  z-index: 999999999;
+  background: @navbar-single-popup-background;
+
+  .single-sub-nav-list {
+    .absolute(false false false 0);
+
+    padding: 2px 0;
+    background: @navbar-single-popup-background;
+    box-shadow: @shadow-popup-default;
+    max-height: calc(100vh - @header-height - @navbar-height);
+  }
+
+  // 导航条 *单列展示* - 子导航弹出层 (多级导航向左侧弹出 *JS控制，右侧宽度不足时*)
+  &.direction-right {
+    left: auto;
+
+    .single-sub-nav-list {
+      .absolute(false 0 false auto);
+    }
+  }
+}
+
+// 导航条(*单列展示*) - 子导航弹出层 - 一级导航
+.ui-wNavbar .single-sub-nav-wrap .single-sub-nav-list .sub-nav-li {
+  position: relative;
+  padding: 0 @padding-2xl;
+  line-height: 40px;
+  font-size: @font-size-lg;
+  color: @text-color;
+  text-align: left;
+  cursor: pointer;
+
+  // 导航条(*单列展示*) - 子导航弹出层 - 一级导航 - 导航文本
+  a {
+    .text-overflow();
+
+    color: @text-color;
+    text-decoration: none;
+    .ui-wIcon {
+      margin-right: 5px;
+    }
+  }
+
+  // 导航条(*单列展示*) - 子导航弹出层 - 一级导航 - 多级导航展开箭头
+  .sub-nav-arrow {
+    .absolute(0 @padding-2xl false false);
+
+    font-size: @font-size-sm;
+    transform: scale(0.8);
+  }
+
+  // 导航条(*单列展示*) - 子导航弹出层 - 一级导航 *鼠标悬浮状态*
+  &:hover,
+  &.hover {
+    > a,
+    > .sub-nav-arrow {
+      color: @dropdown-hover-item-font-color;
+    }
+
+    &::before {
+      .absolute(0 2px 0 2px);
+
+      content: '';
+      background: @primary-color;
+      opacity: 0.15;
+    }
+
+    > .dynamic-nav {
+      display: block;
+      animation-duration: @animation-duration-slow;
+      animation-fill-mode: both;
+      animation-name: fadeIn;
+    }
+  }
+}
+
+// 导航条(*单列展示*) - 子导航弹出层 - 多级导航
+.ui-wNavbar .single-sub-nav-wrap .single-sub-nav-list .dynamic-nav {
+  display: none;
+  position: fixed;
+  padding: 2px 0;
+  background: @navbar-single-popup-background;
+  border-left: @border-default-transparent;
+
+  // 导航条(*单列展示*) - 子导航弹出层 - 多级导航(右侧展开) - 左侧分隔线
+  &::before {
+    .absolute(2px -1px 2px false);
+
+    display: block;
+    content: '';
+    border-left: @border-default-thick;
+  }
+
+  // 导航条(*单列展示*) - 子导航弹出层 - 多级导航(左侧展开) - 右侧分隔线
+  &[direction='right'] {
+    border-left: none;
+    border-right: @border-default-transparent;
+
+    &::before {
+      .absolute(2px -1px 2px false);
+
+      display: block;
+      content: '';
+      border-right: @border-default-thick;
+    }
+  }
+
+  .sub-nav-li {
+    padding: 0 30px;
+
+    &:hover::before {
+      left: 10px;
+    }
+  }
+}
+
+// 导航条(*单列展示*) - 子导航弹出层 - 滚动按钮
+.ui-wNavbar .single-sub-nav-wrap .sub-nav-list .btn-li {
+  background-color: @navbar-single-popup-background;
+
+  .move-up,
+  .move-down {
+    line-height: 1;
+    background-color: @navbar-single-popup-background;
+    color: @text-color-light;
+    border: @border-default-light;
+
+    &:hover {
+      color: @dropdown-hover-item-icon-color;
+      border: @border-default-primary;
+    }
+
+    &.disabled {
+      color: @disabled-text-color;
+      cursor: not-allowed;
+      border: @border-default-light;
+    }
+  }
+}
+
+.ui-wNavbar .sub-nav-list {
+  .hide-scrollbar();
+
+  overflow-y: auto;
+
+  &.sub-nav-scrollable:after {
+    content: '';
+    height: 30px;
+    display: block;
+  }
+}
+
+.ui-wNavbar :not(:hover) .btn-li {
+  display: none;
+}
+
+.ui-wNavbar .navbar-themeColor .nav > li {
+  &.hover::before,
+  &:hover::before,
+  &.active::before {
+    .box();
+
+    z-index: 1;
+    content: '';
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  > a {
+    color: @navbar-text-color;
+  }
+}
+
+.ui-wNavbar .ui-navbar-nav:hover .nav-menu-item::before {
+  &.active {
+    display: none;
+  }
+
+  &.hover,
+  &:hover {
+    display: block;
+  }
+}
+
+.ui-wNavbar .ui-navbar {
+  // 覆盖 `bootstrap` 导航条样式
+  border-radius: 0;
+}

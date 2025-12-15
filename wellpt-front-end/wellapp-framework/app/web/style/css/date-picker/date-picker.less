@@ -1,0 +1,818 @@
+@calendar-prefix-cls: ~'@{ant-prefix}-calendar';
+@calendar-timepicker-prefix-cls: ~'@{ant-prefix}-calendar-time-picker';
+
+body {
+  --w-date-border-color: var(--w-border-color-base);
+  --w-date-border-width: var(--w-border-width-base);
+  --w-date-border-style: var(--w-border-style-base);
+
+  --w-date-border-radius: var(--w-border-radius-2);
+
+  --w-date-text-color: var(--w-text-color-dark);
+  --w-date-placeholder-color: var(--w-text-color-lighter);
+  --w-date-text-size: var(--w-font-size-base);
+  --w-date-text-weight: var(--w-font-weight-regular);
+
+  --w-date-picker-icon-color: var(--w-text-color-light);
+  --w-date-picker-icon-size: var(--w-font-size-base);
+
+  --w-date-picker-input-bg: var(--w-fill-color-base);
+
+  --w-date-picker-icon-right: var(--w-margin-xs);
+
+  --w-date-picker-input-height: var(--w-height-sm);
+
+  // --w-date-picker-input-min-width: 195px;
+
+  --w-date-border-color-hover: var(--w-primary-color);
+  --w-date-picker-icon-color-hover: var(--w-text-color-light);
+
+  --w-date-border-color-focus: var(--w-primary-color);
+  --w-date-picker-icon-color-focus: var(--w-text-color-light);
+
+  --w-date-border-color-disabled: var(--w-border-color-dark);
+  --w-date-text-color-disabled: var(--w-text-color-light);
+  --w-date-picker-icon-color-disabled: var(--w-text-color-light);
+  --w-date-picker-bg-disabled: var(--w-fill-color-light);
+
+  --w-date-picker-error-border-color: var(--w-danger-color);
+  --w-date-picker-error-border-style: var(--w-border-style-base);
+  --w-date-picker-error-border-width: var(--w-border-width-base);
+  --w-date-picker-error-text-color: var(--w-danger-color);
+  --w-date-picker-error-text-size: var(--w-font-size-base);
+  --w-date-picker-error-text-weight: var(--w-font-weight-regular);
+  --w-date-picker-error-icon-size: var(--w-font-size-base);
+  --w-date-picker-error-icon-color: var(--w-danger-color);
+  --w-date-picker-error-border-color-hover: var(--w-danger-color);
+  --w-date-picker-error-border-color-focus: var(--w-danger-color);
+
+  --w-date-panel-border-color: var(--w-border-color-inverse);
+  --w-date-panel-border-width: var(--w-border-width-base);
+  --w-date-panel-border-style: var(--w-border-style-base);
+  --w-date-panel-border-radius: var(--w-border-radius-base);
+  --w-date-picker-panel-bg: var(--w-fill-color-base);
+
+  --w-date-picker-panel-today-day-color: var(--w-primary-color);
+  --w-date-picker-panel-today-day-border-color: transparent;
+  --w-date-picker-panel-day-date-background: var(--w-fill-color-base);
+  --w-date-picker-panel-day-border-radius: var(--w-border-radius-2);
+  --w-date-picker-panel-today-day-font-weight: var(--w-font-weight-regular);
+
+  --w-date-picker-panel-color: var(--w-text-color-dark);
+  --w-date-picker-panel-color-active: var(--w-gray-color-1);
+  --w-date-picker-panel-background-active: var(--w-primary-color);
+
+  --w-date-picker-panel-color-hover: var(--w-primary-color);
+  --w-date-picker-panel-background-hover: transparent;
+  --w-date-picker-panel-border-color-hover: var(--w-primary-color);
+
+  --w-date-picker-panel-selected-background: var(--w-primary-color);
+  --w-date-picker-panel-selected-color: var(--w-gray-color-1);
+
+  --w-date-picker-range-panel-selected-background: var(--w-primary-color-2);
+
+  --w-date-picker-panel-footer-btn-color: var(--w-primary-color);
+
+  --w-date-picker-panel-button-primary-color: var(--w-gray-color-1);
+  --w-date-picker-panel-button-primary-background: var(--w-primary-color);
+  --w-date-picker-panel-button-primary-background-focus: var(--w-primary-color-7);
+  --w-date-picker-panel-button-primary-border-color: var(--w-primary-color);
+
+  // 阴影
+  --w-date-picker-input-box-shadow: none;
+  --w-date-picker-input-box-shadow-hover: none;
+  --w-date-picker-input-box-shadow-focus: 0 0 2px 0px var(--w-date-border-color-focus);
+  --w-date-picker-input-error-box-shadow: none;
+  --w-date-picker-input-error-box-shadow-hover: none;
+  --w-date-picker-input-error-box-shadow-focus: 0 0 2px 0px var(--w-date-picker-error-border-color-focus);
+
+  // 允许清空
+  --w-date-clear-font-size: var(--w-font-size-base);
+  --w-date-clear-font-color: var(--w-text-color-lighter);
+  --w-date-clear-right-padding: 0px;
+  --w-date-clear-size-hover: var(--w-font-size-base);
+  --w-date-clear-color-hover: var(--w-text-color-light);
+  --w-date-clear-size-active: var(--w-font-size-base);
+  --w-date-clear-color-active: var(--w-text-color-light);
+}
+
+.@{calendar-prefix-cls}-picker {
+  min-width: var(--w-date-picker-input-min-width);
+
+  &-input {
+    &.@{ant-prefix}-input {
+      height: var(--w-date-picker-input-height);
+      border: var(--w-date-border-width) var(--w-date-border-style) var(--w-date-border-color);
+      border-radius: var(--w-date-border-radius);
+      background-color: var(--w-date-picker-input-bg);
+      font-size: var(--w-date-text-size);
+      box-shadow: var(--w-date-picker-input-box-shadow);
+      font-weight: var(--w-date-text-weight);
+      color: var(--w-date-text-color);
+
+      &::placeholder,
+      .ant-calendar-range-picker-input::placeholder {
+        color: var(--w-date-placeholder-color);
+      }
+
+      .ant-calendar-range-picker-input {
+        font-size: var(--w-date-text-size);
+        font-weight: var(--w-date-text-weight);
+        color: var(--w-date-text-color);
+      }
+
+      &:hover {
+        border-color: var(--w-date-border-color-hover);
+        border-right-width: var(--w-date-border-width) !important;
+      }
+
+      &:focus {
+        border-color: var(--w-date-border-color-focus);
+        border-right-width: var(--w-date-border-width) !important;
+        box-shadow: var(--w-date-picker-input-box-shadow-focus);
+      }
+
+      &:disabled,
+      &.@{ant-prefix}-input-disabled {
+        border-color: var(--w-date-border-color-disabled);
+        color: var(--w-date-text-color-disabled);
+        background-color: var(--w-date-picker-bg-disabled);
+        box-shadow: none;
+
+        .ant-calendar-range-picker-input {
+          color: var(--w-date-text-color-disabled);
+        }
+      }
+    }
+
+    &:disabled + .@{calendar-prefix-cls}-picker-icon {
+      color: var(--w-date-picker-icon-color-disabled);
+    }
+  }
+
+  &:focus {
+    .@{calendar-prefix-cls}-picker-input:not(.ant-input-disabled) {
+      border-color: var(--w-date-border-color-focus);
+      border-right-width: var(--w-date-border-width) !important;
+      box-shadow: var(--w-date-picker-input-box-shadow-focus);
+    }
+
+    .@{calendar-prefix-cls}-picker-icon {
+      color: var(--w-date-picker-icon-color-focus);
+    }
+  }
+
+  &:hover &-input:not(.@{ant-prefix}-input-disabled) {
+    border-color: var(--w-date-border-color-hover);
+    border-right-width: var(--w-date-border-width) !important;
+    box-shadow: var(--w-date-picker-input-box-shadow-hover);
+  }
+
+  &-icon {
+    color: var(--w-date-picker-icon-color);
+    font-size: var(--w-date-picker-icon-size);
+    right: var(--w-date-picker-icon-right);
+    margin-top: initial;
+    transform: translateY(-50%);
+  }
+
+  &:hover &-icon {
+    color: var(--w-date-picker-icon-color-hover);
+  }
+}
+
+.ant-time-picker {
+  min-width: var(--w-date-picker-input-min-width);
+
+  &-input {
+    height: var(--w-date-picker-input-height);
+    border: var(--w-date-border-width) var(--w-date-border-style) var(--w-date-border-color);
+    border-radius: var(--w-date-border-radius);
+    background-color: var(--w-date-picker-input-bg);
+    font-size: var(--w-date-text-size);
+    box-shadow: var(--w-date-picker-input-box-shadow);
+    font-weight: var(--w-date-text-weight);
+    color: var(--w-date-text-color);
+
+    &::placeholder {
+      color: var(--w-date-placeholder-color);
+    }
+
+    &:hover {
+      border-color: var(--w-date-border-color-hover);
+      border-right-width: var(--w-date-border-width) !important;
+    }
+
+    &:focus {
+      border-color: var(--w-date-border-color-focus);
+      border-right-width: var(--w-date-border-width) !important;
+      box-shadow: var(--w-date-picker-input-box-shadow-focus);
+
+      & + .ant-time-picker-icon {
+        .ant-time-picker-clock-icon {
+          color: var(--w-date-picker-icon-color-focus);
+        }
+      }
+    }
+
+    &:disabled,
+    &.@{ant-prefix}-input-disabled {
+      border-color: var(--w-date-border-color-disabled);
+      color: var(--w-date-text-color-disabled);
+      background-color: var(--w-date-picker-bg-disabled);
+      box-shadow: none;
+    }
+  }
+
+  &-icon {
+    color: var(--w-date-picker-icon-color);
+    font-size: var(--w-date-picker-icon-size);
+    right: var(--w-date-picker-icon-right);
+    margin-top: initial;
+    transform: translateY(-50%);
+
+    .ant-time-picker-clock-icon {
+      color: var(--w-date-picker-icon-color);
+    }
+  }
+
+  &:hover &-icon {
+    .ant-time-picker-clock-icon {
+      color: var(--w-date-picker-icon-color-hover);
+    }
+  }
+
+  &:focus {
+    .ant-time-picker-input:not(.ant-input-disabled) {
+      border-color: var(--w-date-border-color-focus);
+      border-right-width: var(--w-date-border-width) !important;
+      box-shadow: var(--w-date-picker-input-box-shadow-focus);
+    }
+
+    .ant-time-picker-clock-icon {
+      color: var(--w-date-picker-icon-color-focus);
+    }
+  }
+}
+
+.ant-calendar-picker-clear,
+.ant-time-picker-clear {
+  font-size: var(--w-date-clear-font-size);
+  color: var(--w-date-clear-font-color);
+  padding-right: var(--w-date-clear-right-padding);
+  background-color: transparent;
+
+  &:hover {
+    font-size: var(--w-date-clear-size-hover);
+    color: var(--w-date-clear-color-hover);
+  }
+
+  &:active,
+  &:focus {
+    font-size: var(--w-date-clear-size-active);
+    color: var(--w-date-clear-color-active);
+  }
+}
+
+.has-error {
+  .@{calendar-prefix-cls}-picker {
+    &-input {
+      &.@{ant-prefix}-input {
+        border: var(--w-date-picker-error-border-width) var(--w-date-picker-error-border-style) var(--w-date-picker-error-border-color);
+        box-shadow: var(--w-date-picker-input-error-box-shadow);
+
+        &:hover {
+          border-color: var(--w-date-picker-error-border-color-hover);
+          border-right-width: var(--w-date-picker-error-border-width) !important;
+          box-shadow: var(--w-date-picker-input-error-box-shadow-hover);
+        }
+
+        &:focus {
+          border-color: var(--w-date-picker-error-border-color-focus);
+          border-right-width: var(--w-date-picker-error-border-width) !important;
+          box-shadow: var(--w-date-picker-input-error-box-shadow-focus);
+        }
+      }
+    }
+
+    &-error {
+      color: var(--w-date-picker-error-text-color);
+      font-size: var(--w-date-picker-error-text-size);
+      font-weight: var(--w-date-picker-error-text-weight);
+    }
+
+    &-icon {
+      color: var(--w-date-picker-error-icon-color);
+      font-size: var(--w-date-picker-error-icon-size);
+    }
+  }
+
+  .ant-time-picker {
+    &-input {
+      border: var(--w-date-picker-error-border-width) var(--w-date-picker-error-border-style) var(--w-date-picker-error-border-color);
+      box-shadow: var(--w-date-picker-input-error-box-shadow);
+
+      &:hover {
+        border-color: var(--w-date-picker-error-border-color-hover);
+        border-right-width: var(--w-date-picker-error-border-width) !important;
+        box-shadow: var(--w-date-picker-input-error-box-shadow-hover);
+      }
+
+      &:focus {
+        border-color: var(--w-date-picker-error-border-color-focus);
+        border-right-width: var(--w-date-picker-error-border-width) !important;
+        box-shadow: var(--w-date-picker-input-error-box-shadow-focus);
+      }
+    }
+
+    &-icon {
+      .ant-time-picker-clock-icon {
+        color: var(--w-date-picker-error-icon-color);
+        font-size: var(--w-date-picker-error-icon-size);
+      }
+    }
+  }
+
+  &:has(.@{calendar-prefix-cls}-picker),
+  &:has(.ant-time-picker) {
+    .ant-form-explain {
+      color: var(--w-date-picker-error-text-color);
+      font-size: var(--w-date-picker-error-text-size);
+      font-weight: var(--w-date-picker-error-text-weight);
+    }
+  }
+}
+
+// .widget-form-layout .has-error {
+
+//   &:has(.@{calendar-prefix-cls}-picker),
+//   &:has(.ant-time-picker) {
+//     margin-bottom: e('calc(var(--w-date-picker-error-text-size) + 4px)');
+
+//     .ant-form-explain {
+//       bottom: e('calc(-4px - var(--w-date-picker-error-text-size))');
+//     }
+//   }
+
+// }
+
+.@{calendar-prefix-cls} {
+  font-size: var(--w-date-text-size);
+  border: var(--w-date-panel-border-width) var(--w-date-panel-border-style) var(--w-date-panel-border-color);
+  border-radius: var(--w-date-panel-border-radius);
+  background-color: var(--w-date-picker-panel-bg);
+
+  &-picker-container {
+    color: var(--w-text-color-darker);
+  }
+
+  &-month-panel,
+  &-decade-panel,
+  &-year-panel {
+    background-color: var(--w-date-picker-panel-bg);
+  }
+
+  .@{calendar-prefix-cls}-last-month-cell,
+  .@{calendar-prefix-cls}-next-month-btn-day {
+    .@{calendar-prefix-cls}-date {
+      color: var(--w-text-color-lighter);
+    }
+  }
+
+  // 天
+  .@{calendar-prefix-cls}-date {
+    border-radius: var(--w-date-picker-panel-day-border-radius);
+    color: var(--w-date-picker-panel-color);
+
+    &:active {
+      color: var(--w-date-picker-panel-color-active);
+      background: var(--w-date-picker-panel-background-active);
+    }
+
+    &:hover {
+      color: var(--w-date-picker-panel-color-hover);
+      background: var(--w-date-picker-panel-background-hover);
+      border-color: var(--w-date-picker-panel-border-color-hover);
+    }
+  }
+
+  // 当天
+  .@{calendar-prefix-cls}-today {
+    .@{calendar-prefix-cls}-date {
+      font-weight: var(--w-date-picker-panel-today-day-font-weight);
+    }
+  }
+
+  .@{calendar-prefix-cls}-today:not(.ant-calendar-disabled-cell) {
+    .@{calendar-prefix-cls}-date {
+      color: var(--w-date-picker-panel-today-day-color);
+      background: var(--w-date-picker-panel-day-date-background);
+      border-color: var(--w-date-picker-panel-today-day-border-color);
+
+      &::before {
+        border-color: var(--w-date-picker-panel-today-day-border-color);
+      }
+
+      &:hover {
+        color: var(--w-date-picker-panel-color-hover);
+        background: var(--w-date-picker-panel-background-hover);
+        border-color: var(--w-date-picker-panel-border-color-hover);
+      }
+
+      &:active {
+        color: var(--w-date-picker-panel-color-active);
+        background: var(--w-date-picker-panel-background-active);
+      }
+    }
+  }
+
+  // 天-选中
+  .@{calendar-prefix-cls}-selected-day {
+    .@{calendar-prefix-cls}-date,
+    &.@{calendar-prefix-cls}-today .@{calendar-prefix-cls}-date {
+      color: var(--w-date-picker-panel-selected-color);
+      background: var(--w-date-picker-panel-selected-background);
+    }
+  }
+
+  .@{calendar-prefix-cls}-footer-btn {
+    a {
+      color: var(--w-date-picker-panel-footer-btn-color);
+
+      &.@{calendar-prefix-cls}-ok-btn {
+        &:extend(.ant-btn);
+
+        color: var(--w-date-picker-panel-button-primary-color);
+        background-color: var(--w-date-picker-panel-button-primary-background);
+        border-color: var(--w-date-picker-panel-button-primary-border-color);
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: #fff;
+          background-color: var(--w-date-picker-panel-button-primary-background-focus);
+          border-color: var(--w-date-picker-panel-button-primary-background-focus);
+        }
+      }
+    }
+  }
+
+  .@{calendar-prefix-cls}-year-panel-last-decade-cell,.@{calendar-prefix-cls}-year-panel-next-decade-cell{
+    .@{calendar-prefix-cls}-year-panel-year {
+      color: var(--w-text-color-light);
+    }
+  }
+  // 年
+  .@{calendar-prefix-cls}-year-panel-year {
+    border-radius: var(--w-date-picker-panel-day-border-radius);
+
+    &:active {
+      color: var(--w-date-picker-panel-color-active);
+      background: var(--w-date-picker-panel-background-active);
+    }
+
+    &:hover {
+      color: var(--w-date-picker-panel-color-hover);
+      background: var(--w-date-picker-panel-background-hover);
+      border: var(--w-border-width-base) var(--w-border-style-base) var(--w-date-picker-panel-border-color-hover);
+    }
+  }
+
+  // 年-选中
+  .@{calendar-prefix-cls}-year-panel-selected-cell {
+    .@{calendar-prefix-cls}-year-panel-year {
+      color: var(--w-date-picker-panel-selected-color);
+      background: var(--w-date-picker-panel-selected-background);
+
+      &:hover {
+        color: var(--w-date-picker-panel-color-hover);
+        background: var(--w-date-picker-panel-background-hover);
+      }
+
+      &:active {
+        color: var(--w-date-picker-panel-color-active);
+        background: var(--w-date-picker-panel-background-active);
+      }
+    }
+  }
+
+  .@{calendar-prefix-cls}-header {
+    a {
+      &.@{calendar-prefix-cls} {
+        &-year-select,
+        &-month-select,
+        &-year-panel-decade-select,
+        &-day-select {
+          font-weight: var(--w-font-weight-bold);
+        }
+      }
+
+      color: var(--w-text-color-darker);
+
+      &:hover {
+        color: var(--w-date-picker-panel-color-hover);
+      }
+    }
+
+    .@{calendar-prefix-cls} {
+      &-prev-century-btn,
+      &-prev-decade-btn,
+      &-prev-year-btn {
+        &:after,
+        &:before {
+          border-color: var(--w-gray-color-9);
+        }
+      }
+    }
+  }
+
+  // 年阶段-选中
+  .@{calendar-prefix-cls}-decade-panel-selected-cell {
+    .@{calendar-prefix-cls}-decade-panel-decade {
+      color: var(--w-date-picker-panel-selected-color);
+      background: var(--w-date-picker-panel-selected-background);
+
+      &:hover {
+        color: var(--w-date-picker-panel-color-hover);
+        background: var(--w-date-picker-panel-background-hover);
+      }
+
+      &:active {
+        color: var(--w-date-picker-panel-color-active);
+        background: var(--w-date-picker-panel-background-active);
+      }
+    }
+  }
+  .@{calendar-prefix-cls}-decade-panel-last-century-cell,.@{calendar-prefix-cls}-decade-panel-next-century-cell{
+    .@{calendar-prefix-cls}-decade-panel-decade {
+      color: var(--w-text-color-light);
+    }
+  }
+  // 年阶段
+  .@{calendar-prefix-cls}-decade-panel-decade {
+    border-radius: var(--w-date-picker-panel-day-border-radius);
+
+    &:active {
+      color: var(--w-date-picker-panel-color-active);
+      background: var(--w-date-picker-panel-background-active);
+    }
+
+    &:hover {
+      color: var(--w-date-picker-panel-color-hover);
+      background: var(--w-date-picker-panel-background-hover);
+      border: var(--w-border-width-base) var(--w-border-style-base) var(--w-date-picker-panel-border-color-hover);
+    }
+  }
+
+  // 月-选中
+  .@{calendar-prefix-cls}-month-panel-selected-cell {
+    .@{calendar-prefix-cls}-month-panel-month {
+      color: var(--w-date-picker-panel-selected-color);
+      background: var(--w-date-picker-panel-selected-background);
+
+      &:hover {
+        color: var(--w-date-picker-panel-color-hover);
+        background: var(--w-date-picker-panel-background-hover);
+      }
+
+      &:active {
+        color: var(--w-date-picker-panel-color-active);
+        background: var(--w-date-picker-panel-background-active);
+      }
+    }
+  }
+
+  // 月
+  .@{calendar-prefix-cls}-month-panel-month {
+    border-radius: var(--w-date-picker-panel-day-border-radius);
+
+    &:active {
+      color: var(--w-date-picker-panel-color-active);
+      background: var(--w-date-picker-panel-background-active);
+    }
+
+    &:hover {
+      color: var(--w-date-picker-panel-color-hover);
+      background: var(--w-date-picker-panel-background-hover);
+      border: var(--w-border-width-base) var(--w-border-style-base) var(--w-date-picker-panel-border-color-hover);
+    }
+  }
+
+  // 星期
+  &.@{calendar-prefix-cls}-week-number {
+    .@{calendar-prefix-cls}-body {
+      tr {
+        &.ant-calendar-active-week {
+          background: var(--w-date-picker-panel-selected-background);
+
+          .ant-calendar-date,
+          .ant-calendar-week-number-cell {
+            color: var(--w-date-picker-panel-selected-color);
+
+            &:hover {
+              background: var(--w-date-picker-panel-selected-background);
+              color: var(--w-date-picker-panel-selected-color);
+            }
+          }
+        }
+
+        .ant-calendar-week-number-cell {
+          opacity: 1;
+        }
+
+        .ant-calendar-date {
+          font-weight: var(--w-date-picker-panel-today-day-font-weight);
+        }
+
+        td:first-child {
+          border-radius: var(--w-date-picker-panel-day-border-radius) 0 0 var(--w-date-picker-panel-day-border-radius);
+        }
+
+        td:last-child {
+          border-radius: 0 var(--w-date-picker-panel-day-border-radius) var(--w-date-picker-panel-day-border-radius) 0;
+        }
+
+        &:not(.ant-calendar-active-week):hover {
+          background: var(--w-primary-color-1);
+
+          .ant-calendar-date,
+          .ant-calendar-week-number-cell {
+            color: var(--w-date-picker-panel-color-hover);
+
+            &:hover {
+              background: var(--w-primary-color-1);
+              border-color: transparent;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-range {
+    .@{calendar-prefix-cls}-selected {
+      &-start-date,
+      &-end-date {
+        position: relative;
+
+        &::before {
+          position: absolute;
+          top: 4px;
+          right: 0;
+          bottom: 4px;
+          left: 0;
+          display: block;
+          background: var(--w-date-picker-panel-selected-background);
+          border: 0;
+          border-radius: 0;
+          content: '';
+          z-index: 0;
+        }
+
+        &.ant-calendar-selected-day {
+          .ant-calendar-date {
+            position: relative;
+            z-index: 1;
+            color: var(--w-date-picker-panel-selected-color);
+            background: transparent;
+
+            &:hover {
+              color: var(--w-date-picker-panel-selected-color);
+              background: transparent;
+              border-color: transparent;
+            }
+
+            &:active {
+              color: var(--w-date-picker-panel-selected-color);
+              background: transparent;
+              border-color: transparent;
+            }
+          }
+        }
+      }
+
+      &-start-date {
+        &::before {
+          border-radius: var(--w-date-picker-panel-day-border-radius) 0 0 var(--w-date-picker-panel-day-border-radius);
+        }
+      }
+
+      &-end-date {
+        &::before {
+          border-radius: 0 var(--w-date-picker-panel-day-border-radius) var(--w-date-picker-panel-day-border-radius) 0;
+        }
+      }
+    }
+  }
+}
+
+.@{ant-prefix}-time-picker-panel-inner {
+  font-size: var(--w-date-text-size);
+  border: var(--w-date-panel-border-width) var(--w-date-panel-border-style) var(--w-date-panel-border-color);
+  border-radius: var(--w-date-panel-border-radius);
+  background-color: var(--w-date-picker-panel-bg);
+  color: var(--w-date-picker-panel-color);
+}
+
+// .@{ant-prefix}-time-picker-panel-narrow .@{ant-prefix}-time-picker-panel-input-wrap {
+//   max-width: 100px;
+// }
+
+.@{ant-prefix}-time-picker-panel-select,
+.@{calendar-prefix-cls}-time-picker-select {
+  font-size: var(--w-date-text-size);
+
+  li {
+    border-radius: var(--w-date-picker-panel-day-border-radius);
+    padding-left: 0;
+    margin: 0 var(--w-margin-2xs);
+    width: e('calc(100% - var(--w-margin-2xs)*2)');
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+
+    &:hover {
+      color: var(--w-date-picker-panel-color);
+      background: var(--w-primary-color-2);
+    }
+
+    &:active {
+      color: var(--w-date-picker-panel-color);
+      background: var(--w-primary-color-2);
+    }
+
+    &.@{ant-prefix}-time-picker-panel-select-option-selected,
+    &.@{calendar-prefix-cls}-time-picker-select-option-selected {
+      color: var(--w-date-picker-panel-color);
+      background: var(--w-primary-color-2);
+    }
+  }
+
+  /* 自定义整个滚动条 */
+  &::-webkit-scrollbar {
+    width: e('calc(var(--w-margin-2xs) - 2px)');
+    /* 设置滚动条的宽度 */
+  }
+
+  /* 自定义滚动条轨道 */
+  &::-webkit-scrollbar-track {
+    background: var(--w-fill-color-base);
+    border-radius: 10px;
+    /* 设置轨道的背景颜色 */
+  }
+
+  /* 自定义滚动条的滑块（thumb） */
+  &::-webkit-scrollbar-thumb {
+    background: var(--w-border-color-dark);
+    border-radius: 10px;
+    /* 设置滑块的背景颜色 */
+  }
+
+  /* 当滑块悬停或活动时，可以添加更多样式 */
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--w-border-color-darker);
+    /* 设置滑块在悬停状态下的背景颜色 */
+  }
+}
+
+.@{calendar-prefix-cls}-range {
+  .@{calendar-prefix-cls}-in-range-cell {
+    &::before {
+      background: var(--w-date-picker-range-panel-selected-background);
+    }
+
+    &.ant-calendar-today {
+      .ant-calendar-date {
+        background: transparent;
+        border-color: transparent;
+      }
+    }
+  }
+}
+
+.theme-date-picker-clear {
+  .ant-calendar-picker-clear,
+  .ant-time-picker-clear {
+    opacity: 1;
+  }
+}
+
+.widget-form-date-picker {
+  .textonly {
+    font-size: var(--w-date-text-size);
+    font-weight: var(--w-date-text-weight);
+    color: var(--w-date-text-color);
+  }
+}
+
+.time-range-container {
+  .ant-calendar-range.ant-calendar-time {
+    .ant-calendar-time-picker-inner {
+      padding-top: 0;
+    }
+
+    .ant-calendar-footer-show-ok {
+      display: none;
+    }
+  }
+}

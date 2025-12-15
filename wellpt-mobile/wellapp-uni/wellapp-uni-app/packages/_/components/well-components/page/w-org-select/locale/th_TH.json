@@ -1,0 +1,39 @@
+{
+  "orgSelect": {
+    "placeholder": "กรุณาเลือกหน่วยงาน",
+    "bizOrgLabel": "หน่วยงานธุรกิจ",
+    "selectAll": "เลือกทั้งหมด",
+    "expand": "ขยาย",
+    "collapse": "ยุบ",
+    "countPreviewUser": "สมาชิก {count} คน",
+    "loading": "กำลังโหลด",
+    "selectedLabel": "ที่เลือกแล้ว",
+    "dragToSort": "ลากเพื่อเรียงลำดับ",
+    "delete": "ลบ",
+    "modalTitle": "เลือกบุคลากร",
+    "clear": "ล้าง",
+    "cancelText": "ยกเลิก",
+    "okText": "ตกลง",
+    "userView": "มุมมองของผู้ใช้",
+    "treeNodeView": "มุมมองต้นไม้",
+    "searchInputPlaceholder": "ป้อนชื่อผู้ใช้หรือพินอินเพื่อค้นหาเพิ่มเติม",
+    "nextLevel": "ระดับถัดไป",
+    "all": "ทั้งหมด",
+    "resultText": "ผลการค้นหาที่มี \"{value}\"",
+    "unSelectable": "ไม่สามารถเลือกได้",
+    "message": {
+      "noMoreData": "ไม่มีข้อมูลเพิ่มเติม",
+      "serverError": "ข้อผิดพลาดของบริการหน่วยงาน",
+      "loadDataError": "ไม่สามารถโหลดข้อมูลหน่วยงานได้"
+    },
+    "orgOption": {
+      "MyOrg": "หน่วยงานของฉัน",
+      "MyLeader": "ผู้นำของฉัน",
+      "MyDept": "แผนกของฉัน",
+      "MyUnderling": "ลูกน้องของฉัน",
+      "TaskUsers": "ผู้รับผิดชอบงาน",
+      "TaskDoneUsers": "ผู้ที่ทำเสร็จแล้ว",
+      "PublicGroup": "กลุ่มสาธารณะ"
+    }
+  }
+}

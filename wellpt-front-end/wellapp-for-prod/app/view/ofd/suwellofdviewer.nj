@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="/static/ofd/suwell_ofdReader3.0.21.js" charset="UTF-8"></script>
+
+    <title>{{ofdParam.fileName}}</title>
+    <script>
+
+    function urldecode(str) {
+
+      return decodeURIComponent((str + '').replace(/%(?![\da-f]{2})/gi, function () {
+        // PHP tolerates poorly formed escape sequences
+        return '%25';
+      }).replace(/\+/g, '%20'));
+    }
+
+        function getCookie(name) {
+          var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+          if (arr) {
+            return urldecode(arr[2]);
+          } else {
+            return null;
+          }
+        }
+
+        var ocx;
+        var jwt = getCookie('jwt');
+        var saveFileUrl;
+        var ofdPath = '{{ofdParam.backendURL}}/repository/file/mongo/download?fileID={{ofdParam.fileId}}&jwt='+jwt;
+
+        function initObject() {
+            if (window.console)
+                window.console.log("initObject()");
+            else
+                alert("initObject()");
+
+            //注意：插件宽高设固定值。
+            ocx = suwell.ofdReaderInit("OFDActiveXDIV");//"800px", "600px"
+            ocx.registListener("f_open","openPerformed",true);
+            ocx.registListener("f_close","closePerformed",true);
+
+            //此监听用于判断远程保存文件的成败。如果此监听被触发说明文件保存成功。如果不被触发说明文件保存失败。
+            if (ocx) {
+                ocx.registListener("f_saveurl", "savePerformed", true);
+            }
+// boolean openurl(String open url,String save url,boolean readonly);
+                saveFileUrl = '{{ofdParam.backendURL}}/repository/file/mongo/savefiles?origUuid={{ofdParam.fileId}}&fileNameStr={{ofdParam.fileName}}&jwt='+jwt;
+              var isEdit = '{{ofdParam.isEdit}}';
+            ocx.openurl(ofdPath,saveFileUrl,isEdit!=='true' );
+            // ocx.openFile2(ofdPath,isEdit!=='true' );
+
+            // var issuccess = ocx.saveFile(ofdPath);
+            // alert(issuccess);
+        }
+
+        function btnSave(){
+           ocx.performClick('f_save');
+           // ocx.saveFileWithResult(saveFileUrl);
+        }
+
+        function btnClose(){
+          if(ocx.isDocumentModified()){
+           ocx.closeFile();
+          }else{
+           window.close();
+          }
+        }
+
+        function openPerformed(){
+            ocx.setCompsiteVisible("f_open", false);
+            ocx.setCompsiteVisible("print", false);
+            ocx.setCompsiteVisible("toolbarauto", false);
+            ocx.setCompsiteVisible("f_save", false);
+              var isEdit = '{{ofdParam.isEdit}}';
+              if(isEdit === 'true' ) {
+                var btnSaveEl = document.getElementById('btn_save');
+                btnSaveEl.style.display = 'block';
+              }
+        }
+
+        function closePerformed() {
+        if(!ocx.getDocInfo()) {
+             // 无文件关闭窗口
+             window.close();
+          }
+        }
+
+        function savePerformed() {
+            //注意监听处理里最好不用alert方法，一个控件处于监听状态触发另一个控件可能会有问题。目前我方测试某些firefox，alert中会卡死.chrome弹出窗口位置异常。
+            //建议通过ajax后台处理后回弹信息，或使用iframe方法重构提示窗口。
+
+            // alert("保存成功");
+        }
+
+
+        //打开本地文件。
+        function openFile() {
+            var path = document.getElementById("openPath").value;
+
+            //  ocx.openFile(path,false);
+            ocx.openFileOld(path);
+
+        }
+
+        function saveFile2() {
+            var issuccess = ocx.saveFile(ofdPath);
+            alert(issuccess);
+        }
+
+        //上传文件
+        function saveFile() {
+            var path = document.getElementById("uploadUrl").value;
+            var issuccess = ocx.saveFile(path);
+            alert(issuccess);
+        }
+
+// onunload="unload()"
+        //function unload(){
+        //    var isEdit = '{{ofdParam.isEdit}}';
+        //    if(window.opener && isEdit === 'true' ) {
+        //        //
+        //        var saveFileUrl = '{{ofdParam.backendURL}}/repository/file/mongo/savefiles?origUuid={{ofdParam.fileId}}';
+        //        // var saveFileUrl =  'D:\\temp\\web\\1.ofd'
+        //        var issuccess = ocx.saveFile(saveFileUrl);
+        //        // if (window.opener.DyformFacade) {
+        //        //        var fileControl = window.opener.DyformFacade.getControl('{{ofdParam.fieldName}}');
+        //        //        // fileControl[0].;
+        //        // }
+        //        // alert(1);
+        //        // return false;
+        //    }
+//
+        //}
+
+    </script>
+</head>
+<body onload="initObject();" style="margin: 0;">
+<div style="width: 100%;height:44px;background-color:#008ad9">
+  <button id="btn_close" onclick="btnClose()" style="float:right;margin: 5px;padding: 8px;border: none;border-radius: 3px;cursor:pointer;">&nbsp;关闭&nbsp;</button>
+  <button id="btn_save" onclick="btnSave()" style="float:right;margin: 5px 4px;padding: 8px;border: none;border-radius: 3px;display:none;cursor:pointer;">&nbsp;保存&nbsp;</button>
+</div>
+<div id="OFDActiveXDIV" style="float:left;width:100%;height:100%"></div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+// 生成百分比宽度 5% - 100%
+each(range(5, 100, 5), {
+  .width-@{value} {
+    width: @value * 1%;
+  }
+});
+
+// 生成固定宽度 10px - 300px
+each(range(10, 300, 10), {
+  .width-@{value}px {
+    width: @value * 1px;
+  }
+});

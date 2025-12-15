@@ -1,0 +1,272 @@
+.w-tooltip {
+  position: relative;
+  display: inline-block;
+
+  > i {
+    color: @text-color-light;
+    font-weight: normal;
+
+    &:hover + .w-tooltip-content {
+      display: block;
+    }
+
+    & + .w-tooltip-content:hover {
+      display: block;
+    }
+  }
+
+  // 默认情况  左边弹出
+  .w-tooltip-content {
+    .absolute((-@tooltip-top-left-side-offset-top) false false (@tooltip-top-left-side-offset-left));
+    top: -20px;
+    max-width: 250px;
+    min-width: 200px;
+    display: none;
+    line-height: 20px;
+    padding: @tooltip-content-padding;
+    box-shadow: @tooltip-content-shadow;
+    border-radius: @border-radius-base;
+    text-align: left;
+    color: @tooltip-text-color;
+    background: @tooltip-background;
+    font-size: @tooltip-content-font-size;
+    font-weight: normal;
+    z-index: 105;
+
+    &:before {
+      .absolute((@tooltip-top-left-side-offset-top + @tooltip-arrow-height / 2) false false (-@tooltip-arrow-width));
+
+      content: '';
+      display: block;
+      border-top: (@tooltip-arrow-height / 2) solid transparent;
+      border-bottom: (@tooltip-arrow-height / 2) solid transparent;
+      border-right: @tooltip-arrow-width solid @tooltip-arrow-background;
+    }
+
+    &::after {
+      .absolute(-30px -30px -30px -30px);
+
+      content: '';
+      z-index: -1;
+    }
+  }
+
+  // 右下弹出 BR
+  &.w-tooltip-br {
+    .w-tooltip-content {
+      .absolute(@tooltip-content-top-bottom-offset-top (-@tooltip-content-top-bottom-offset-left) initial initial);
+
+      &::before {
+        .absolute((-@tooltip-arrow-top-bottom-offset-top)  @tooltip-arrow-top-bottom-offset-left initial  initial);
+
+        border-bottom: @tooltip-arrow-width solid @tooltip-arrow-background;
+        border-left: (@tooltip-arrow-height / 2) solid transparent;
+        border-right: (@tooltip-arrow-height / 2) solid transparent;
+      }
+    }
+  }
+
+  // 左下弹出 BL
+  &.w-tooltip-bl {
+    .w-tooltip-content {
+      .absolute(@tooltip-content-top-bottom-offset-top initial initial (-@tooltip-content-top-bottom-offset-left));
+
+      &::before {
+        .absolute((-@tooltip-arrow-top-bottom-offset-top)  initial initial  @tooltip-arrow-top-bottom-offset-left);
+
+        border-bottom: @tooltip-arrow-width solid @tooltip-arrow-background;
+        border-left: (@tooltip-arrow-height / 2) solid transparent;
+        border-right: (@tooltip-arrow-height / 2) solid transparent;
+      }
+    }
+  }
+
+  // 下面弹出 bottom
+  &.w-tooltip-bottom {
+    .w-tooltip-content {
+      .absolute(@tooltip-content-top-bottom-offset-top initial initial 50%);
+      transform: translate(-50%, 0);
+
+      &::before {
+        .absolute((-@tooltip-arrow-top-bottom-offset-top)  initial initial  50%);
+        margin-left: -8px;
+
+        border-bottom: @tooltip-arrow-width solid @tooltip-arrow-background;
+        border-left: (@tooltip-arrow-height / 2) solid transparent;
+        border-right: (@tooltip-arrow-height / 2) solid transparent;
+      }
+    }
+  }
+
+  // 上右弹出
+  &.w-tooltip-tr {
+    .w-tooltip-content {
+      .absolute(initial (-@tooltip-content-top-bottom-offset-left) @tooltip-content-top-bottom-offset-top initial);
+
+      &::before {
+        .absolute(initial @tooltip-arrow-top-bottom-offset-left (-@tooltip-arrow-top-bottom-offset-top) initial);
+
+        border-top: @tooltip-arrow-width solid @tooltip-arrow-background;
+        border-left: (@tooltip-arrow-height / 2) solid transparent;
+        border-right: (@tooltip-arrow-height / 2) solid transparent;
+      }
+    }
+  }
+
+  // 上左弹出
+  &.w-tooltip-tl {
+    .w-tooltip-content {
+      .absolute(initial initial @tooltip-content-top-bottom-offset-top (-@tooltip-content-top-bottom-offset-left));
+
+      &::before {
+        .absolute(initial initial (-@tooltip-arrow-top-bottom-offset-top) @tooltip-arrow-top-bottom-offset-left);
+
+        border-top: @tooltip-arrow-width solid @tooltip-arrow-background;
+        border-left: (@tooltip-arrow-height / 2) solid transparent;
+        border-right: (@tooltip-arrow-height / 2) solid transparent;
+      }
+    }
+  }
+
+  // 上面弹出
+  &.w-tooltip-top {
+    .w-tooltip-content {
+      .absolute(inherit initial @tooltip-content-top-bottom-offset-top 50%);
+      transform: translate(-50%, 0);
+
+      &::before {
+        .absolute(inherit  initial (-@tooltip-arrow-top-bottom-offset-top)  50%);
+        margin-left: -8px;
+
+        border-top: @tooltip-arrow-width solid @tooltip-arrow-background;
+        border-left: (@tooltip-arrow-height / 2) solid transparent;
+        border-right: (@tooltip-arrow-height / 2) solid transparent;
+      }
+    }
+  }
+
+  // 左上弹出
+  &.w-tooltip-lt {
+    .w-tooltip-content {
+      .absolute((-@tooltip-content-left-right-offset-left) @tooltip-content-left-right-offset-top inherit inherit);
+
+      &::before {
+        .absolute(@tooltip-arrow-left-right-offset-top (-@tooltip-arrow-left-right-offset-left) inherit inherit);
+
+        border-left: @tooltip-arrow-width solid @tooltip-arrow-background;
+        border-top: (@tooltip-arrow-height / 2) solid transparent;
+        border-bottom: (@tooltip-arrow-height / 2) solid transparent;
+        border-right: none;
+      }
+    }
+  }
+
+  // 左下弹出
+  &.w-tooltip-lb {
+    .w-tooltip-content {
+      .absolute(inherit @tooltip-content-left-right-offset-top (-@tooltip-content-left-right-offset-left) inherit);
+
+      &::before {
+        .absolute(inherit (-@tooltip-arrow-left-right-offset-left) @tooltip-arrow-left-right-offset-top inherit);
+
+        border-left: @tooltip-arrow-width solid @tooltip-arrow-background;
+        border-top: (@tooltip-arrow-height / 2) solid transparent;
+        border-bottom: (@tooltip-arrow-height / 2) solid transparent;
+        border-right: none;
+      }
+    }
+  }
+
+  // 左边弹出
+  &.w-tooltip-left {
+    .w-tooltip-content {
+      .absolute(50% @tooltip-content-left-right-offset-top inherit inherit);
+      transform: translate(0, -50%);
+
+      &::before {
+        .absolute(50% (-@tooltip-arrow-left-right-offset-left) inherit inherit);
+        margin-top: -5px;
+
+        border-left: @tooltip-arrow-width solid @tooltip-arrow-background;
+        border-top: (@tooltip-arrow-height / 2) solid transparent;
+        border-bottom: (@tooltip-arrow-height / 2) solid transparent;
+        border-right: none;
+      }
+    }
+  }
+
+  // 右上弹出
+  &.w-tooltip-rt {
+    .w-tooltip-content {
+      .absolute(-@tooltip-content-left-right-offset-left inherit inherit @tooltip-content-left-right-offset-top);
+
+      &::before {
+        .absolute(@tooltip-arrow-left-right-offset-top inherit inherit -@tooltip-arrow-left-right-offset-left);
+
+        border-right: @tooltip-arrow-width solid @tooltip-arrow-background;
+        border-top: (@tooltip-arrow-height / 2) solid transparent;
+        border-bottom: (@tooltip-arrow-height / 2) solid transparent;
+        border-left: none;
+      }
+    }
+  }
+
+  // 右下弹出
+  &.w-tooltip-rb {
+    .w-tooltip-content {
+      .absolute(inherit inherit -@tooltip-content-left-right-offset-left @tooltip-content-left-right-offset-top);
+
+      &::before {
+        .absolute(inherit inherit @tooltip-arrow-left-right-offset-top -@tooltip-arrow-left-right-offset-left);
+
+        border-right: @tooltip-arrow-width solid @tooltip-arrow-background;
+        border-top: (@tooltip-arrow-height / 2) solid transparent;
+        border-bottom: (@tooltip-arrow-height / 2) solid transparent;
+        border-left: none;
+      }
+    }
+  }
+
+  // 右边弹出
+  &.w-tooltip-right {
+    .w-tooltip-content {
+      .absolute(50% inherit inherit @tooltip-content-left-right-offset-top);
+      transform: translate(0, -50%);
+
+      &::before {
+        .absolute(50% inherit inherit -@tooltip-arrow-left-right-offset-left);
+        margin-top: -5px;
+
+        border-right: @tooltip-arrow-width solid @tooltip-arrow-background;
+        border-top: (@tooltip-arrow-height / 2) solid transparent;
+        border-bottom: (@tooltip-arrow-height / 2) solid transparent;
+        border-left: none;
+      }
+    }
+  }
+}
+
+.wtooltip {
+  position: relative;
+  display: inline-block;
+
+  .wtooltiptext {
+    .absolute(3px false false false);
+
+    visibility: hidden;
+    min-width: 100px;
+    color: @tooltip-component-text-color;
+    background: @tooltip-component-background;
+    border-radius: @border-radius-base;
+    font-size: @tooltip-content-font-size;
+    text-align: left;
+    padding: @padding-3xs;
+    word-break: keep-all;
+    width: auto;
+    z-index: 99999999999;
+  }
+
+  &:hover .wtooltiptext {
+    visibility: visible;
+  }
+}

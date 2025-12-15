@@ -1,0 +1,1 @@
+update multi_org_option t set t.is_show = 0 where t.id = 'Role';

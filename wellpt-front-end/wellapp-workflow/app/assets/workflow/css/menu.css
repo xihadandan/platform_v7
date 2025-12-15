@@ -1,0 +1,60 @@
+﻿BODY
+{
+    BORDER-RIGHT: 0px;
+    BORDER-TOP: 0px;
+    MARGIN: 0px;
+    BORDER-LEFT: 0px;
+    BORDER-BOTTOM: 0px
+}
+TD
+{
+    FONT-SIZE: 9pt;
+    FONT-FAMILY: 宋体,Verdana,Arial
+}
+TABLE.Menu
+{
+    BORDER-RIGHT: buttonshadow 1px solid;
+    BORDER-TOP: window 1px solid;
+    BORDER-LEFT: window 1px solid;
+    BORDER-BOTTOM: buttonshadow 1px solid;
+    BACKGROUND-COLOR: #0072bc
+}
+TD.LeftBg
+{
+    CURSOR: default;
+    COLOR: buttontext;
+    BACKGROUND-COLOR: #DADADA
+}
+TD.CenterBg
+{
+    CURSOR: default;
+    COLOR: buttontext;
+    BACKGROUND-COLOR: #F0F0F0
+}
+TD.RightBg
+{
+    CURSOR: default;
+    COLOR: buttontext;
+    BACKGROUND-COLOR: #F0F0F0
+}
+
+TD.MouseOver
+{
+    CURSOR: default;
+    COLOR: highlighttext;
+    BACKGROUND-COLOR: highlight
+}
+TD.MouseOut
+{
+    CURSOR: default;
+    COLOR: buttontext;
+    BACKGROUND-COLOR: #F0F0F0;
+}
+TD.HrShadow
+{
+    BACKGROUND-COLOR: buttonshadow
+}
+TD.HrHighLight
+{
+    BACKGROUND-COLOR: buttonhighlight
+}

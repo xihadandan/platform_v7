@@ -1,0 +1,9 @@
+<fieldset>
+	<legend>通用配置</legend>
+	<div class="form-group">
+		<label for="customClass" class="col-sm-2 control-label">自定义class</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control w-configurer-option" height="34px" id="customClass" name="customClass" />
+		</div>
+	</div>
+</fieldset>

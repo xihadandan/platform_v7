@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+    <description>Spring Framework JSP Form Tag Library Extension</description>
+    <tlib-version>3.0 ext</tlib-version>
+    <jsp-version>1.2</jsp-version>
+    <short-name>app</short-name>
+    <uri>/wellpt/tags/app</uri>
+
+    <tag>
+        <description>Renders an HTML 'select' element. Supports databinding to the selected option.</description>
+        <name>cssFile</name>
+        <tag-class>com.wellsoft.pt.app.web.tags.CssFileTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>id</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>extraModules</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Enable/disable HTML escaping of rendered values.</description>
+            <name>htmlEscape</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>Renders an HTML 'select' element. Supports databinding to the selected option.</description>
+        <name>dyformCssFile</name>
+        <tag-class>com.wellsoft.pt.app.web.tags.DyformCssFileTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>formUuid</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>extraModules</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Enable/disable HTML escaping of rendered values.</description>
+            <name>htmlEscape</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>Renders an HTML 'select' element. Supports databinding to the selected option.</description>
+        <name>configScript</name>
+        <tag-class>com.wellsoft.pt.app.web.tags.ConfigJavaScriptModuleTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>id</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>extraModules</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Enable/disable HTML escaping of rendered values.</description>
+            <name>htmlEscape</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>Renders an HTML 'select' element. Supports databinding to the selected option.</description>
+        <name>configDyformScript</name>
+        <tag-class>com.wellsoft.pt.app.web.tags.ConfigDyformJavaScriptModuleTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>formUuid</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>formUuids</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>extraModules</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Enable/disable HTML escaping of rendered values.</description>
+            <name>htmlEscape</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>Renders an HTML 'select' element. Supports databinding to the selected option.</description>
+        <name>requireScript</name>
+        <tag-class>com.wellsoft.pt.app.web.tags.RequireJavaScriptModuleTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>dataMain</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>requireModules</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Enable/disable HTML escaping of rendered values.</description>
+            <name>htmlEscape</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>Renders an HTML 'select' element. Supports databinding to the selected option.</description>
+        <name>requireDyformScript</name>
+        <tag-class>com.wellsoft.pt.app.web.tags.RequireDyformJavaScriptModuleTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>dataMain</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>formUuid</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>requireModules</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Enable/disable HTML escaping of rendered values.</description>
+            <name>htmlEscape</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>前端JS模块缓存时间戳</description>
+        <name>frontCache</name>
+        <tag-class>com.wellsoft.pt.cache.support.CacheTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>module</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+</taglib>

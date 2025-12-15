@@ -1,0 +1,40 @@
+{
+  "WidgetWorkProcess": {
+    "arrived": "Arrived",
+    "skipTask": "Skip Task",
+    "Me": "Me",
+    "decisionMaker": "Decision Maker",
+    "toDoUser": "To-Do User",
+    "attachment": "Attachment",
+    "downloadAll": "Download All",
+    "preview": "Preview",
+    "download": "Download",
+    "viewMore": "View More",
+    "collapse": "Collapse",
+    "noOpinionText": "No processing opinion filled out",
+    "more": "More",
+    "doing": "In Progress",
+    "endTask": "End",
+    "approveAuto": "Auto Approval",
+    "autoJumpRepeatTask": "Automatic Skip for Repeated Tasks",
+    "gotoTaskFromText": "Move process from",
+    "gotoTaskToText": "to",
+    "handoverToText": "Handover to",
+    "toText": "To",
+    "To": "To",
+    "copyToMeanwhile": "Copy to simultaneously",
+    "Target": "Target",
+    "extraApproveExtraTask": "Supplementary Review and Processing",
+    "process": {
+      "current": "Current",
+      "my": "My",
+      "ascSort": "Ascending Order",
+      "descSort": "Descending Order",
+      "standardTimeProcess": "Standard Timeline",
+      "simpleTimeProcess": "Simplified Timeline",
+      "tableProcess": "Table"
+    },
+    "pleaseHurryUp": "Please hurry up!",
+    "completed": "Completed"
+  }
+}

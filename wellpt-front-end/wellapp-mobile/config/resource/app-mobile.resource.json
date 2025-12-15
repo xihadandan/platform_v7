@@ -1,0 +1,86 @@
+{
+    "jsTemplate":{
+        "wMobilePanel-navMenu":{
+            "path": "/tpl/mobile/wMobilePanel-navMenu.html",
+            "name": "手机端_面板组件_导航菜单"
+        },
+
+        "mui-appModal-dialog":{
+            "path": "/tpl/mobile/mui-appModal-dialog.html",
+            "name": "手机端_弹出框"
+        },
+        "mui-DyformField-placeHolder-default":{
+            "path": "/tpl/mobile/mui-DyformField-placeHolder-default.html",
+            "name": "手机端_表单_字段 默认格式"
+        },
+        "mui-DyformField-placeHolder-default-2":{
+            "path": "/tpl/mobile/mui-DyformField-placeHolder-default-2.html",
+            "name": "手机端_表单_字段 默认双行格式"
+        },
+        "mui-DyformField-placeHolder-textarea":{
+            "path": "/tpl/mobile/mui-DyformField-placeHolder-textarea.html",
+            "name": "手机端_表单_字段 单行多文本框"
+        },
+        "mui-DyformField-placeHolder-textarea-2":{
+            "path": "/tpl/mobile/mui-DyformField-placeHolder-textarea-2.html",
+            "name": "手机端_表单_字段 双行多文本框"
+        },
+        "mui-DyformField-placeHolder-richEditor":{
+            "path": "/tpl/mobile/mui-DyformField-placeHolder-richeditor.html",
+            "name": "手机端_表单_字段 简易富文本输入框"
+        },
+        "mui-DyformField-placeHolder-richEditor-2":{
+            "path": "/tpl/mobile/mui-DyformField-placeHolder-richeditor-2.html",
+            "name": "手机端_表单_字段 简易富文本输入框"
+        },
+        "mui-DyformField-placeHolder-radio":{
+            "path": "/tpl/mobile/mui-DyformField-placeHolder-radio.html",
+            "name": "手机端_表单_字段 默认单选框"
+        },
+        "mui-DyformField-placeHolder-checkbox":{
+            "path": "/tpl/mobile/mui-DyformField-placeHolder-checkbox.html",
+            "name": "手机端_表单_字段 默认复选框"
+        },
+        "mui-DyformField-placeHolder-select":{
+            "path": "/tpl/mobile/mui-DyformField-placeHolder-select.html",
+            "name": "手机端_表单_字段 单行下拉框"
+        },
+        "mui-DyformField-placeHolder-select-2":{
+            "path": "/tpl/mobile/mui-DyformField-placeHolder-select-2.html",
+            "name": "手机端_表单_字段 字段多行下拉框"
+        },
+        "mui-DyformField-placeHolder-select-multiple":{
+            "path": "/tpl/mobile/mui-DyformField-placeHolder-select-multiple.html",
+            "name": "手机端_表单_字段_字段单行下拉框_多选"
+        },
+        "mui-DyformField-placeHolder-select-multiple-2":{
+            "path": "/tpl/mobile/mui-DyformField-placeHolder-select-multiple-2.html",
+            "name": "手机端_表单_字段多行下拉框_多选"
+        },
+        "mui-DyformField-placeHolder-number":{
+            "path": "/tpl/mobile/mui-DyformField-placeHolder-number.html",
+            "name": "手机端_表单_字段 单行数字控件"
+        },
+        "mui-DyformField-placeHolder-number-2":{
+            "path": "/tpl/mobile/mui-DyformField-placeHolder-number-2.html",
+            "name": "手机端_表单_字段 双行数字控件"
+        },
+        "mui-DyformField-placeHolder-embedded":{
+            "path": "/tpl/mobile/mui-DyformField-placeHolder-embedded.html",
+            "name": "手机端_表单_字段 嵌入页面"
+        },
+        "mui-DyformField-placeHolder-viewdisplay":{
+            "path": "/tpl/mobile/mui-DyformField-placeHolder-viewdisplay.html",
+            "name": "手机端_表单_视图页面控件"
+        },
+        "mui-WorkFlowOpinionEditor":{
+            "path": "/tpl/mobile/mui-WorkFlowOpinionEditor.html",
+            "name": "手机端_流程_签署意见"
+        },
+        "mui-WorkFlowCCMobileListViewDevelopment": {
+          "path": "/mobile/mui/js/app/workflow/mui.WorkFlowCCMobileListViewDevelopment",
+          "name": "工作流程_手机数据列表_抄送二开",
+          "dependencies": ["mui-WorkFlowMobileListViewDevelopmentBase"]
+        }
+    }
+}

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="myDeptQuery">
+        <![CDATA[
+		SELECT
+            O.UUID,
+            O.ORG_VERSION_ID,
+            O.ORG_VERSION_UUID,
+            O.PARENT_UUID,
+            O.ID,
+            P.ID_PATH,
+            O.NAME,
+            O.SHORT_NAME,
+            P.CN_PATH,
+            P.PIN_YIN_PATH,
+            O.SEQ,
+            P.LEAF,
+            O.TYPE
+            <if isNotBlank(locale)>
+            , I.CONTENT AS NAME_I18N
+            </if>
+        FROM
+            ORG_ELEMENT O INNER JOIN ORG_ELEMENT_PATH P ON P.ORG_ELEMENT_ID = O.ID AND O.ORG_VERSION_UUID = P.ORG_VERSION_UUID
+            <if isNotBlank(locale)>
+            LEFT JOIN ORG_ELEMENT_I18N I ON I.DATA_UUID = O.UUID AND I.LOCALE=:locale AND I.DATA_CODE= 'name'
+            </if>
+        WHERE
+            O.ORG_VERSION_UUID=:orgVersionUuid
+            AND (EXISTS (
+            SELECT
+                1
+            FROM
+                (
+                SELECT
+                    A.ORG_ELEMENT_ID,
+                    A.SUB_ORG_ELEMENT_ID
+                FROM
+                    ORG_ELEMENT_PATH_CHAIN A
+                WHERE
+                    (
+                        EXISTS (
+                        SELECT
+                            1
+                        FROM
+                            ORG_USER RELA
+                        WHERE
+                            RELA.USER_ID = :userId
+                            AND RELA.ORG_ELEMENT_ID = A.ORG_ELEMENT_ID
+                            AND RELA.TYPE = 0
+                            AND RELA.ORG_ELEMENT_TYPE = 'dept'
+                        )
+                        OR EXISTS (
+                        SELECT
+                            1
+                        FROM
+                            ORG_ELEMENT_PATH_CHAIN CHAIN
+                        WHERE
+                            EXISTS (
+                            SELECT
+                                1
+                            FROM
+                                (
+                                SELECT
+                                    SUB_ORG_ELEMENT_ID,
+                                    MIN( "LEVEL" ) MIN_LEVEL
+                                FROM
+                                    ORG_ELEMENT_PATH_CHAIN C,
+                                    ORG_USER R
+                                WHERE
+                                    R.USER_ID = :userId
+                                    AND R.TYPE IN ( 1, 2 )
+                                    AND R.ORG_ELEMENT_TYPE = 'job'
+                                    AND C.SUB_ORG_ELEMENT_ID = R.ORG_ELEMENT_ID
+                                    AND C.ORG_ELEMENT_TYPE = 'dept'
+                                GROUP BY
+                                    SUB_ORG_ELEMENT_ID
+                                ) V
+                            WHERE
+                                V.SUB_ORG_ELEMENT_ID = CHAIN.SUB_ORG_ELEMENT_ID
+                                AND V.MIN_LEVEL = CHAIN."LEVEL"
+                            )
+                            AND CHAIN.ORG_ELEMENT_ID = A.ORG_ELEMENT_ID
+                        )
+                    )
+                ) V
+            WHERE
+                V.SUB_ORG_ELEMENT_ID = O.ID
+                OR V.ORG_ELEMENT_ID = O.ID
+            ) OR O.ID IN (
+            SELECT RELA.ORG_ELEMENT_ID
+            FROM ORG_USER RELA
+            WHERE RELA.USER_ID = :userId
+              AND RELA.TYPE = 0
+              AND RELA.ORG_ELEMENT_TYPE = 'dept'
+            )
+        )
+        ORDER BY O.SEQ ASC
+	]]>
+    </sql-query>
+
+</hibernate-mapping>

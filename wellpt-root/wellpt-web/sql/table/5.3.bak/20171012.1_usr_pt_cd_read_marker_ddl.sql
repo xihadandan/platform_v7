@@ -1,0 +1,1 @@
+create index cd_rm_entity_uuid_idx on cd_read_marker (entity_uuid);

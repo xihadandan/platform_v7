@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+  <title>Document</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+
+    body {
+      font-size: 14px;
+      line-height: 1.5;
+      font-family: 'Microsoft Yahei', 'simsun', 'arial', 'tahoma';
+      color: #222;
+      background: #eee;
+    }
+
+    .tkBox {
+      width: 99.5%;
+      height: 99.1%;
+      background: #fff;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      /* border: 1px solid #9d9d9d; */
+    }
+
+    .titleBox {
+      padding: 0 10px;
+      background: #fff;
+    }
+
+    .titleBox p {
+      padding: 5px 0;
+      border-bottom: 1px solid #dbdbdb;
+    }
+
+    .content {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .contentBox {
+      position: absolute;
+      left: 50%;
+      top: 20%;
+      transform: translateX(-50%);
+      width: 100%;
+      text-align: center;
+    }
+
+    .isSure {
+      margin-top: 10%;
+    }
+
+    .isSure button {
+      border: 1px solid #9d9d9d;
+      padding: 3px 25px;
+      background: #fff;
+    }
+
+    .isSure button:hover {
+      background: #2291ff
+    }
+
+    .isSure button:nth-child(2) {
+      margin: 0 20px;
+    }
+  </style>
+</head>
+<script type="text/javascript" src='./js/monitor.js'></script>
+<script type="text/javascript" src='./js/common.js'></script>
+<script type="text/javascript" src='./js/module/oastart.js'></script>
+<script type="text/javascript" src='./js/wpsenum/kso_enum.js'></script>
+
+
+<script>
+
+
+    window.onload = function () {
+        wps.ExecFunc('editNotify()')
+    }
+
+    function editNotify() {
+        var name = wps.WpsApplication().ActiveDocument.Name;
+        document.getElementById("notify").innerText = '是否保存对"' + name + '"的修改'
+    }
+
+    function cancel() {
+        window.close();
+    }
+
+    function notSave() {
+        propAddStorage(wps.WpsApplication().ActiveDocument.DocID, "notSave", "true");
+        cancel();
+        wps.WpsApplication().ActiveDocument.Close(0);
+
+    }
+
+    function saveFile() {
+        propAddStorage(wps.WpsApplication().ActiveDocument.DocID, "notSave", "false");
+        cancel()
+
+        wps.WpsApplication().ActiveDocument.Close()
+    }
+</script>
+<body>
+<div class="tkBox">
+  <!-- <div class="titleBox">
+      <p>WPS 文字</p>
+  </div> -->
+  <div class="content">
+    <div class="contentBox">
+      <p id="notify">是否保存对文档的修改</p>
+      <div class="isSure">
+        <button onClick="wps.ExecFunc('saveFile()')">是 (Y)</button>
+        <button onClick="wps.ExecFunc('notSave()')">否 (N)</button>
+        <button onClick="wps.ExecFunc('cancel()')">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

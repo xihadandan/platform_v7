@@ -1,0 +1,55 @@
+<div class="tabs-right">
+	<ul class="nav nav-tabs">
+		{@if recents.length > 0}
+		<li class="active text-center"><a href="#wf-opinion-recent" data-toggle="tab" title="最近使用">最近使用</a></li>
+		{@/if}
+		{@if publicOpinionCategory != null}
+		<li class="{@if recents.length <= 0}active{@/if} text-center"><a href="#wf-opinion-public" data-toggle="tab" title="公共意见">公共意见</a></li>
+		{@/if}
+		<li class="wf-opinion-mgr text-center"><a href="#wf-opinion-mgr" data-toggle="tab" title="意见管理" class="hide">意见管理</a></li>
+		<li class="wf-opinion-fixed text-center">
+			<i title="固定意见窗口"></i>
+			<!-- 
+			<div class="setings-item">
+				<span><label for="fixedopinion">固定意见</label></span>
+				<div class="switch">
+					<div class="onoffswitch">
+						<input type="checkbox" name="fixedopinion" class="onoffswitch-checkbox wf-fixed-opinion" id="fixedopinion">
+						<label class="onoffswitch-label" for="fixedopinion">
+							<span class="onoffswitch-inner"></span>
+							<span class="onoffswitch-switch"></span>
+						</label>
+					</div>
+				</div>
+			</div>
+			 -->
+		</li>
+		<!-- <li class="wf-opinion-mgr text-center hidden"><i class="fa fa-cog fa-large"></i></li> -->
+	</ul>
+	<div class="tab-content">
+		{@if recents.length > 0}
+		<div class="tab-pane fade in active" id="wf-opinion-recent">
+			<div class="list-group">
+				{@each recents as recent,index}
+				<a class="list-group-item">$${recent.content}</a>
+				{@/each}
+			</div>
+		</div>
+		{@/if}
+		{@if publicOpinionCategory != null}
+		<div class="tab-pane fade {@if recents.length <= 0}in active{@/if} " id="wf-opinion-public">
+			<div class="list-group">
+				{@each publicOpinionCategory.opinions as opinion,index}
+				<a class="list-group-item">$${opinion.content}</a>
+				{@/each}
+			</div>
+		</div>
+		{@/if}
+		<!-- 
+		<div class="tab-pane fade" id="wf-opinion-mgr">
+			<div class="list-group">
+			</div>
+		</div>
+ 		-->
+	</div>
+</div>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsonpath 使用说明</title>
+    <link href="/resources/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <h2><a href="https://github.com/s3u/JSONPath" target="_blank">JSONPath</a> 引入使用说明</h2>
+        <pre>
+        &lt;<span class="pl-ent">script</span> <span
+                class="pl-e">src</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>jsonpath.js<span
+                class="pl-pds">"</span></span>&gt;<span class="pl-s1">&lt;</span>/<span
+                class="pl-ent">script</span>&gt;
+        &lt;<span class="pl-ent">script</span>&gt;<span class="pl-s1"></span>
+        <span class="pl-s1">      <span class="pl-k">var</span> result <span
+                class="pl-k">=</span> <span
+                class="pl-en">JSONPath</span>({path<span class="pl-k">:</span> path, json<span
+                class="pl-k">:</span> obj});</span>
+        <span class="pl-s1">  </span><span class="pl-s1">&lt;</span>/<span
+                class="pl-ent">script</span>&gt;
+        </pre>
+    </div>
+
+
+    <div class="row">
+        <h2><a href="https://github.com/s3u/JSONPath" target="_blank">JSONPath</a> 样例</h2>
+        <pre>{
+    <span class="pl-s"><span class="pl-pds">"</span>store<span class="pl-pds">"</span></span><span
+                    class="pl-k">:</span> {
+        <span class="pl-s"><span class="pl-pds">"</span>book<span
+                class="pl-pds">"</span></span><span class="pl-k">:</span> [
+            {
+                <span class="pl-s"><span class="pl-pds">"</span>category<span
+                        class="pl-pds">"</span></span><span class="pl-k">:</span> <span
+                    class="pl-s"><span class="pl-pds">"</span>reference<span class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>author<span class="pl-pds">"</span></span><span
+                    class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Nigel Rees<span
+                    class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>title<span
+                        class="pl-pds">"</span></span><span class="pl-k">:</span> <span
+                    class="pl-s"><span class="pl-pds">"</span>Sayings of the Century<span
+                    class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>price<span
+                        class="pl-pds">"</span></span><span class="pl-k">:</span> <span
+                    class="pl-c1">8.95</span>
+            },
+            {
+                <span class="pl-s"><span class="pl-pds">"</span>category<span
+                        class="pl-pds">"</span></span><span class="pl-k">:</span> <span
+                    class="pl-s"><span class="pl-pds">"</span>fiction<span
+                    class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>author<span class="pl-pds">"</span></span><span
+                    class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Evelyn Waugh<span
+                    class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>title<span
+                        class="pl-pds">"</span></span><span class="pl-k">:</span> <span
+                    class="pl-s"><span class="pl-pds">"</span>Sword of Honour<span
+                    class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>price<span
+                        class="pl-pds">"</span></span><span class="pl-k">:</span> <span
+                    class="pl-c1">12.99</span>
+            },
+            {
+                <span class="pl-s"><span class="pl-pds">"</span>category<span
+                        class="pl-pds">"</span></span><span class="pl-k">:</span> <span
+                    class="pl-s"><span class="pl-pds">"</span>fiction<span
+                    class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>author<span class="pl-pds">"</span></span><span
+                    class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Herman Melville<span
+                    class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>title<span
+                        class="pl-pds">"</span></span><span class="pl-k">:</span> <span
+                    class="pl-s"><span class="pl-pds">"</span>Moby Dick<span class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>isbn<span
+                        class="pl-pds">"</span></span><span class="pl-k">:</span> <span
+                    class="pl-s"><span class="pl-pds">"</span>0-553-21311-3<span
+                    class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>price<span
+                        class="pl-pds">"</span></span><span class="pl-k">:</span> <span
+                    class="pl-c1">8.99</span>
+            },
+            {
+                <span class="pl-s"><span class="pl-pds">"</span>category<span
+                        class="pl-pds">"</span></span><span class="pl-k">:</span> <span
+                    class="pl-s"><span class="pl-pds">"</span>fiction<span
+                    class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>author<span class="pl-pds">"</span></span><span
+                    class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>J. R. R. Tolkien<span
+                    class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>title<span
+                        class="pl-pds">"</span></span><span class="pl-k">:</span> <span
+                    class="pl-s"><span class="pl-pds">"</span>The Lord of the Rings<span
+                    class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>isbn<span
+                        class="pl-pds">"</span></span><span class="pl-k">:</span> <span
+                    class="pl-s"><span class="pl-pds">"</span>0-395-19395-8<span
+                    class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>price<span
+                        class="pl-pds">"</span></span><span class="pl-k">:</span> <span
+                    class="pl-c1">22.99</span>
+            }
+        ],
+        <span class="pl-s"><span class="pl-pds">"</span>bicycle<span
+                class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s"><span class="pl-pds">"</span>color<span
+                    class="pl-pds">"</span></span><span class="pl-k">:</span> <span
+                    class="pl-s"><span class="pl-pds">"</span>red<span
+                    class="pl-pds">"</span></span>,
+            <span class="pl-s"><span class="pl-pds">"</span>price<span
+                    class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">19.95</span>
+        }
+    },
+    <span class="pl-s"><span class="pl-pds">"</span>expensive<span
+            class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">10</span>
+}</pre>
+        <table class="table">
+            <thead>
+            <tr>
+                <th align="left">JsonPath (click link to try)</th>
+                <th align="left">Result</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td align="left"><a
+                        href="http://jsonpath.herokuapp.com/?path=$.store.book[*].author"
+                        rel="nofollow">$.store.book[*].author</a></td>
+                <td align="left">The authors of all books</td>
+            </tr>
+            <tr>
+                <td align="left"><a href="http://jsonpath.herokuapp.com/?path=$..author"
+                                    rel="nofollow">$..author</a></td>
+                <td align="left">All authors</td>
+            </tr>
+            <tr>
+                <td align="left"><a href="http://jsonpath.herokuapp.com/?path=$.store.*"
+                                    rel="nofollow">$.store.*</a></td>
+                <td align="left">All things, both books and bicycles</td>
+            </tr>
+            <tr>
+                <td align="left"><a href="http://jsonpath.herokuapp.com/?path=$.store..price"
+                                    rel="nofollow">$.store..price</a></td>
+                <td align="left">The price of everything</td>
+            </tr>
+            <tr>
+                <td align="left"><a href="http://jsonpath.herokuapp.com/?path=$..book[2]"
+                                    rel="nofollow">$..book[2]</a></td>
+                <td align="left">The third book</td>
+            </tr>
+            <tr>
+                <td align="left"><a href="http://jsonpath.herokuapp.com/?path=$..book[2]"
+                                    rel="nofollow">$..book[-2]</a></td>
+                <td align="left">The second to last book</td>
+            </tr>
+            <tr>
+                <td align="left"><a href="http://jsonpath.herokuapp.com/?path=$..book[0,1]"
+                                    rel="nofollow">$..book[0,1]</a></td>
+                <td align="left">The first two books</td>
+            </tr>
+            <tr>
+                <td align="left"><a href="http://jsonpath.herokuapp.com/?path=$..book[:2]"
+                                    rel="nofollow">$..book[:2]</a></td>
+                <td align="left">All books from index 0 (inclusive) until index 2 (exclusive)</td>
+            </tr>
+            <tr>
+                <td align="left"><a href="http://jsonpath.herokuapp.com/?path=$..book[1:2]"
+                                    rel="nofollow">$..book[1:2]</a></td>
+                <td align="left">All books from index 1 (inclusive) until index 2 (exclusive)</td>
+            </tr>
+            <tr>
+                <td align="left"><a href="http://jsonpath.herokuapp.com/?path=$..book[-2:]"
+                                    rel="nofollow">$..book[-2:]</a></td>
+                <td align="left">Last two books</td>
+            </tr>
+            <tr>
+                <td align="left"><a href="http://jsonpath.herokuapp.com/?path=$..book[2:]"
+                                    rel="nofollow">$..book[2:]</a></td>
+                <td align="left">Book number two from tail</td>
+            </tr>
+            <tr>
+                <td align="left"><a href="http://jsonpath.herokuapp.com/?path=$..book[?(@.isbn)]"
+                                    rel="nofollow">$..book[?(@.isbn)]</a></td>
+                <td align="left">All books with an ISBN number</td>
+            </tr>
+            <tr>
+                <td align="left"><a
+                        href="http://jsonpath.herokuapp.com/?path=$.store.book[?(@.price &lt; 10)]"
+                        rel="nofollow">$.store.book[?(@.price &lt; 10)]</a></td>
+                <td align="left">All books in store cheaper than 10</td>
+            </tr>
+            <tr>
+                <td align="left"><a
+                        href="http://jsonpath.herokuapp.com/?path=$..book[?(@.price &lt;= $['expensive'])]"
+                        rel="nofollow">$..book[?(@.price &lt;= $['expensive'])]</a></td>
+                <td align="left">All books in store that are not "expensive"</td>
+            </tr>
+            <tr>
+                <td align="left"><a
+                        href="http://jsonpath.herokuapp.com/?path=$..book[?(@.author =~ /.*REES/i)]"
+                        rel="nofollow">$..book[?(@.author =~ /.*REES/i)]</a></td>
+                <td align="left">All books matching regex (ignore case)</td>
+            </tr>
+            <tr>
+                <td align="left"><a href="http://jsonpath.herokuapp.com/?path=$..*" rel="nofollow">$..*</a>
+                </td>
+                <td align="left">Give me every thing</td>
+            </tr>
+            <tr>
+                <td align="left"><a href="http://jsonpath.herokuapp.com/?path=$..book.length()"
+                                    rel="nofollow">$..book.length()</a></td>
+                <td align="left">The number of books</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+</body>
+</html>

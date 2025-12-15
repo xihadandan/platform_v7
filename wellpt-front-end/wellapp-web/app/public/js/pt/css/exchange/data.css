@@ -1,0 +1,79 @@
+.form_content{width:880px;margin:15px auto 0;}
+.form_content table{width:100%;margin-top:10px;}
+.form_content td{height:29px;padding:0 15px;border-right:1px solid #fff;}
+.form_content .Label{width:110px;}
+.form_content .odd td{background:#f7f7f7;white-space: nowrap;}
+.form_content .odd td select {padding: 0;margin: 0;width:133px;}
+
+.form_content .title {background: none repeat scroll 0 0 #0F599C;color:#fff;}
+
+#test_con3 {
+	background: none repeat scroll 0 0 #FFFFFF;
+    margin: 20px;
+    padding: 5px;
+}
+
+.form_operate1 button {
+    background: url("../../images/icon.png") no-repeat scroll 0 -165px rgba(0, 0, 0, 0);
+    border: 1px solid #DEE1E2;
+    color: #0F599C;
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    height: 22px;
+    margin-left: 4px;
+    padding: 0 5px;
+}
+
+.form_toolbar {
+	background: none repeat scroll 0 0 #F4F8FA;
+    padding: 8px;
+    text-align: right;
+}
+.form_operate {
+    padding-right: 5px;
+    margin-top: 0;
+}
+.form_operate button {
+	background: url("../../images/icon.png") no-repeat scroll 0 -165px rgba(0, 0, 0, 0);
+    border: 1px solid #DEE1E2;
+    color: #0F599C;
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    height: 22px;
+    margin-left: 4px;
+    padding: 0 5px;
+}
+.form_operate button:hover {
+	color: #FF7200;
+	background: url(../../images/icon.png) no-repeat scroll 0 -165px transparent;
+}
+.dytable_form {font: 12px/1.5 arial;}
+.dytable_form .post-sign .filter{width:880px;margin:15px auto 0;}
+.dytable_form .post-sign .filter-form{height:40px;}
+.dytable_form .post-sign .filter-form li{float:left;display:inline;margin:0 37px 0 18px;padding:4px 
+12px;border:1px solid #d7d7d7;line-height:25px;color:#0f599c;}
+.post-sign .post-sign .filter-form li input{margin-left:13px;padding:3px 5px 4px;line-
+height:18px;border:0 none;border-left:1px solid #d7d7d7;}
+
+.dytable_form .post-sign .post-detail{width:880px;margin:15px auto 0;}
+.dytable_form .post-sign .post-detail table{width:100%;margin-top:10px;}
+.dytable_form .post-sign .post-detail td{height:29px;padding:0 15px;border-right:1px solid #fff;}
+.dytable_form .post-sign .post-detail .Label{width:110px;}
+.dytable_form .post-sign .post-detail .odd td{background:#f7f7f7;white-space: nowrap;}
+.dytable_form .post-sign .post-detail .odd td select {padding: 0;margin: 0;width:133px;}
+
+.dytable_form .post-sign .post-info{margin-top:2px;}
+.dytable_form .post-sign .post-info .post-hd{height:30px;padding:0 10px;background:#0f599c;}
+.dytable_form .post-sign .post-info .post-hd h3{float:left;font-weight:normal;color:#fff;margin: 0;padding: 0;}
+.dytable_form .post-sign .post-info .post-hd .extral{float:right;margin-top:5px;color:#fff;cursor: pointer;margin-left:12px;margin-top:2px;}
+.dytable_form .post-sign .post-info .post-hd a:link,.post-sign .post-info .post-hd a:visited{margin:0 
+8px;color:#fff;}
+.dytable_form .post-sign .post-info .post-bd{padding:15px 0;}
+.dytable_form .post-sign .post-info .attach-list{height:100px;}
+.dytable_form .post-sign .post-info .attach-list li{float:left;width:120px;text-align:center;list-style: none outside none;}
+.dytable_form .post-sign .post-info .attach-list .bar{border: 1px solid;}
+.dytable_form .post-sign .post-info .attach-list a img{width:64px;height:64px;padding:10px;border:1px solid #d4d0c8;}
+.dytable_form .post-sign .post-info .attach-list a{text-decoration:none;color:#434343;}
+.dytable_form .post-sign .post-info .attach-list span{display:block;line-height:25px;text-align:center;}
+.dytable_form .post-sign .post-detail .title {background: none repeat scroll 0 0 #0F599C;color:#fff;}
+.title {background: none repeat scroll 0 0 #0F599C;color:#fff;}

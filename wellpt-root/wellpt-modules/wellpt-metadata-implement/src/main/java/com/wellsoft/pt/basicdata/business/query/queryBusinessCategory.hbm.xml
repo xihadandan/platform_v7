@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!-- queryAllLeaderListByVerId -->
+    <sql-query name="queryBusinessCategoryByApplication">
+        <![CDATA[
+		select c.*, a.uuid APPLICATION_ID from BUSINESS_CATEGORY c inner join BUSINESS_APPLICATION a on a.BUSINESS_CATEGORY_UUID = c.uuid
+		where c.SYSTEM_UNIT_ID = :unitId
+		<if isNotBlank(value)>
+			and (c.name like '%' || lower(:value) || '%' or c.MANAGE_DEPT_VALUE like '%' || lower(:value) || '%' or c.MANAGE_USER_VALUE like '%' || lower(:value) || '%')
+		</if>
+	]]>
+    </sql-query>
+
+    <sql-query name="queryByManage">
+        <![CDATA[
+		select o.business_category_uuid, o.uuid, c.name, o.name dept_value, c.manage_user_value
+		  from business_category c
+		 inner join business_category_org o
+		    on c.uuid = o.business_category_uuid and o.type = '1' where 1=1
+		    <if manageDept??>
+			and c.MANAGE_DEPT = :manageDept
+		    </if>
+		<if isNotBlank(value)>
+			and (c.name like '%' || lower(:value) || '%' or c.MANAGE_DEPT_VALUE like '%' || lower(:value) || '%' or c.MANAGE_USER_VALUE like '%' || lower(:value) || '%')
+		</if>
+	]]>
+    </sql-query>
+
+    <!-- 数据仓库查询 -->
+    <sql-query name="businessCategoryOrgQuery">
+        <![CDATA[
+		select o.business_category_uuid, o.uuid, c.name, o.name manage_dept_value, o.manage_user_value
+		  from business_category c
+		 inner join business_category_org o
+		    on c.uuid = o.business_category_uuid and o.type = '1' where o.manage_user=:currentUserId
+		<if isNotBlank(keyword)>
+			AND (
+				c. NAME LIKE :keyword
+				OR o. NAME LIKE :keyword
+				OR c.MANAGE_USER_VALUE LIKE :keyword
+)
+		</if>
+	    <if isNotBlank(orderBy)>
+	        ${orderBy}
+	    </if>
+	]]>
+    </sql-query>
+
+    <!-- 数据仓库查询 -->
+    <sql-query name="businessCategoryQuery">
+        <![CDATA[
+		select c.uuid uuid,c.name name,c.manage_dept_value manageDeptValue,c.manage_user_value manageUserValue, a.uuid APPLICATION_UUID
+			from BUSINESS_CATEGORY c
+				inner join BUSINESS_APPLICATION a on a.BUSINESS_CATEGORY_UUID = c.uuid
+			where c.SYSTEM_UNIT_ID = :unitId
+			<if isNotBlank(keyword)>
+				and (c.name like '%' || lower(:keyword) || '%' or c.MANAGE_DEPT_VALUE like '%' || lower(:keyword) || '%' or c.MANAGE_USER_VALUE like '%' || lower(:keyword) || '%')
+			</if>
+			<if isNotBlank(whereSql)>
+		    	and ${whereSql}
+		    </if>
+			<if isNotBlank(orderBy)>
+		        ${orderBy}
+		    </if>
+	    ]]>
+    </sql-query>
+
+</hibernate-mapping>

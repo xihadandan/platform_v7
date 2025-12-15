@@ -1,0 +1,23 @@
+{
+  "WidgetFormSerialNumber": {
+    "fillNumber": "补号",
+    "clickToEdit": "点击编辑流水号",
+    "editable": "可编辑流水号",
+    "serialNumberName": "流水号名称",
+    "selectable": "可选择流水号",
+    "serialNumber": "流水号",
+    "fieldName": "字段名称",
+    "isResubmit": "是否重新提交",
+    "error": "报错失败",
+    "prompt": "提示",
+    "selectDefinition": "请选择流水号定义！",
+    "selectSerialNumber": "请选择流水号!",
+    "enterPointer": "请输入有效的指针！",
+    "pointerOccupied": "该指针无效或已经被占用！",
+    "serialNumberOccupied": "该流水号已经被占用!",
+    "requestException": "服务请求异常！",
+    "enterValidPointer": "请输入有效的指针！",
+    "noUsableSerialNumber": "没有可使用的流水号",
+    "alreadyHasSerialNumber": "指定的指针已存在流水号记录！"
+  }
+}

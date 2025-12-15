@@ -1,0 +1,365 @@
+{
+  "js": {
+    "printtemplateUtils": {
+      "path": "/printtemplate/printtemplate.utils",
+      "name": "套打工具"
+    },
+    "layoutDocumentUtils": {
+      "path": "/layoutDocument/layoutDocument.utils",
+      "name": "版式文档处理工具"
+    },
+    "appWindowManager": {
+      "path": "/js/appWindowManager",
+      "name": "应用窗口管理器",
+      "dependencies": ["jquery", "constant", "commons"]
+    },
+    "constant": {
+      "path": "/js/constant",
+      "name": "公共平台常量",
+      "dependencies": ["jquery"]
+    },
+    "base64": {
+      "path": "/js/utils/base64",
+      "name": "base64编码",
+      "dependencies": ["jquery"]
+    },
+    "ViewDevelopmentTest": {
+      "path": "/js/ViewDevelopmentTest",
+      "name": "视图组件二开测试",
+      "dependencies": ["ViewDevelopmentBase"]
+    },
+    "wSelect2Group": {
+      "path": "/js/pt/js/common/jquery.wSelect2Group",
+      "name": "wSelect2Group",
+      "dependencies": ["dependencySelect2Module"]
+    },
+    "multiOrg": {
+      "path": "/js/pt/js/multi/org/jquery.multiOrg",
+      "name": "多版本多形态组织，",
+      "dependencies": ["dependencyJQueryUIModule"]
+    },
+    "appModal": {
+      "path": "/js/appModal",
+      "name": "应用模态窗口",
+      "dependencies": ["jquery", "constant", "commons", "bootbox", "appContext", "appWindowManager", "appToast", "bodymovin", "ckeditor"]
+    },
+    "iexportData": {
+      "path": "/js/pt/js/common/jquery.iexportData",
+      "name": "iexportData",
+      "dependencies": ["dependencyJQueryUIModule", "alerts"]
+    },
+    "es5-shim": {
+      "path": "/js/es5-shim-4.5.9/es5-shim.min",
+      "name": "JS5兼容性"
+    },
+    "dependencyAppBaseModule": {
+      "name": "dependencyAppBaseModule",
+      "abstract": true,
+      "dependencies": [
+        "jquery",
+        "constant",
+        "commons",
+        "server",
+        "appContext",
+        "appWindowManager",
+        "appModal",
+        "appDispatcher",
+        "formBuilder"
+      ]
+    },
+    "SelectFirstMenuItemOfLeftSidebarPanelWidgetDevelopment": {
+      "path": "/js/develop/common/SelectFirstMenuItemOfLeftSidebarPanelWidgetDevelopment",
+      "name": "平台组件_公共功能_页面初始化完成后选中左导航第一个菜单项_面板组件二开",
+      "dependencies": ["PanelWidgetDevelopment"]
+    },
+    "system-admin": {
+      "path": "/js/pt/js/system_admin",
+      "name": "system_admin",
+      "dependencies": ["jquery-layout"]
+    },
+    "CALogin": {
+      "path": "/js/CALogin",
+      "name": "ca登录",
+      "dependencies": ["jquery", "constant", "commons"]
+    },
+    "bodymovin": {
+      "path": "/js/pt/js/bodymovin",
+      "name": "bodymovin gif动画"
+    },
+    "GetCountBase": {
+      "path": "/js/GetCountBase",
+      "name": "获取数量JS接口",
+      "dependencies": ["constant", "commons", "server", "appContext"]
+    },
+    "cmsWindown": {
+      "path": "/js/pt/js/common/jquery.cmsWindown",
+      "name": "cmsWindown",
+      "dependencies": ["dependencyJQueryUIModule"]
+    },
+    "wCommonDialog": {
+      "path": "/js/pt/js/common2/jquery.common.Dialog",
+      "name": "弹出框",
+      "dependencies": ["dependencyWCommonCoreModule", "bootbox", "server"]
+    },
+    "i18n": {
+      "path": "/js/jquery-i18n-properties/jquery.i18n.properties",
+      "name": "国际化",
+      "dependencies": ["jquery"]
+    },
+    "wellfileupload": {
+      "path": "/js/pt/js/fileupload/well.fileupload",
+      "name": "wellfileupload附件",
+      "dependencies": [
+        "dependencyJQueryUIModule",
+        "jquery.fileupload",
+        "jquery.iframe-transport",
+        "jquery.fileupload-process",
+        "jquery.fileupload-validate",
+        "fileuploadconstant",
+        "spark-md5",
+        "global",
+        "filePreviewApi",
+        "layoutDocumentUtils"
+      ]
+    },
+    "alerts": {
+      "path": "/js/pt/js/common/jquery.alerts",
+      "name": "alerts弹窗",
+      "dependencies": ["dependencyJQueryUIModule", "timers"]
+    },
+    "wellfileupload4Body": {
+      "path": "/js/pt/js/fileupload/well.fileupload4Body",
+      "name": "wellfileupload4Body正文附件",
+      "dependencies": ["dependencyJQueryUIModule", "wellfileupload4Icon", "fileuploadconstant", "js-body-api-v2"]
+    },
+    "wellfileupload4Image": {
+      "path": "/js/pt/js/fileupload/well.fileupload4Image",
+      "name": "wellfileupload4Image图片附件",
+      "dependencies": ["dependencyJQueryUIModule", "wellfileupload", "fileuploadconstant"]
+    },
+    "wCommonCore": {
+      "path": "/js/pt/js/common2/jquery.common.Core",
+      "name": "通用组件核心类",
+      "dependencies": ["jquery", "jquery-ui", "bootstrap", "constant", "commons", "server", "appContext"]
+    },
+    "wCommonComboTree": {
+      "path": "/js/pt/js/common2/jquery.common.ComboTree",
+      "name": "下拉树",
+      "dependencies": ["dependencyWCommonCoreModule", "ztree", "ztree-exhide"]
+    },
+    "TileWidgetDevelopmentTest": {
+      "path": "/js/TileWidgetDevelopmentTest",
+      "name": "磁贴组件二开测试",
+      "dependencies": ["TileWidgetDevelopment"]
+    },
+    "timeEmploy": {
+      "path": "/js/pt/js/common/jquery.timeEmploy",
+      "name": "timeEmploy时间资源",
+      "dependencies": ["dependencyJQueryUIModule"]
+    },
+    "Click2RefreshBadgeListViewWidgetDevelopment": {
+      "path": "/js/develop/common/Click2RefreshBadgeListViewWidgetDevelopment",
+      "name": "平台组件_公共功能_点击刷新徽章数量_视图组件二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "MobileListDevelopmentBase": {
+      "path": "/mobile/mui/js/app/MobileListDevelopmentBase",
+      "name": "手机列表组件二开",
+      "dependencies": ["constant", "commons", "server", "ListViewWidgetDevelopment"]
+    },
+    "server": {
+      "path": "/js/server",
+      "name": "公共平台应用",
+      "dependencies": ["jquery", "constant", "commons"]
+    },
+    "numberInput": {
+      "path": "/js/pt/js/common/jquery.numberInput",
+      "name": "numberInput数字输入",
+      "dependencies": ["dependencyJQueryUIModule"]
+    },
+    "BootstrapTableViewGetCount": {
+      "path": "/js/BootstrapTableViewGetCount",
+      "name": "获取表格视图的数据总数",
+      "dependencies": ["GetCountBase"]
+    },
+    "fileuploadconstant": {
+      "path": "/js/pt/js/fileupload/well.fileupload.constant",
+      "name": "fileuploadconstant附件控件常量",
+      "dependencies": ["dependencyJQueryModule", "global"]
+    },
+    "global": {
+      "path": "/js/pt/js/global",
+      "name": "平台应用_全局JS",
+      "dependencies": ["dependencyJQueryModule", "cookie", "wellMessage"]
+    },
+    "Click2RefreshListViewWidgetDevelopment": {
+      "path": "/js/develop/common/Click2RefreshListViewWidgetDevelopment",
+      "name": "平台组件_公共功能_点击刷新_视图组件二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "commons": {
+      "path": "/js/commons",
+      "name": "公共工具",
+      "dependencies": ["jquery", "constant", "lodash", "global"]
+    },
+    "comboTree": {
+      "path": "/js/pt/js/common/jquery.comboTree",
+      "name": "comboTree下拉树",
+      "dependencies": ["dependencyJQueryUIModule", "ztree", "ztree-exhide"]
+    },
+    "wCommonPictureLib": {
+      "path": "/js/pt/js/common2/jquery.common.PictureLib",
+      "name": "图片库",
+      "dependencies": ["dependencyWCommonCoreModule", "ajaxfileupload", "wCommonDialog", "ztree"]
+    },
+    "placeholder": {
+      "path": "/js/jqueryplugin/jquery.placeholder",
+      "name": "HTML5中placeholder效果"
+    },
+    "wellfileupload4Icon": {
+      "path": "/js/pt/js/fileupload/well.fileupload4Icon",
+      "name": "wellfileupload4Icon图标附件",
+      "dependencies": [
+        "dependencyJQueryUIModule",
+        "wellfileupload",
+        "fileuploadconstant",
+        "js-body-api-v2",
+        "bootstrapTable",
+        "bootstrapTable_editable"
+      ]
+    },
+    "HeaderDefaultEvent": {
+      "path": "/js/HeaderDefaultEvent",
+      "name": "HeaderDefaultEvent",
+      "dependencies": ["jquery", "AppOutboxMsgViewDevelopment", "AppInboxMsgViewDevelopment", "DefaultMsgEvent", "UserMsgEvent"]
+    },
+    "UserMsgEvent": {
+      "path": "/js/UserMsgEvent",
+      "name": "UserMsgEvent",
+      "dependencies": ["jquery", "AppOutboxMsgViewDevelopment", "AppInboxMsgViewDevelopment"]
+    },
+    "DefaultMsgEvent": {
+      "path": "/js/DefaultMsgEvent",
+      "name": "DefaultMsgEvent",
+      "dependencies": ["jquery", "AppOutboxMsgViewDevelopment", "AppInboxMsgViewDevelopment"]
+    },
+    "MyAgendaCalendarDevelopment": {
+      "path": "/js/MyAgendaCalendarDevelopment",
+      "name": "我的日程",
+      "dependencies": ["constant", "commons", "server", "CalendarWidgetDevelopment"]
+    },
+    "appDispatcher": {
+      "path": "/js/appDispatcher",
+      "name": "平台公共的默认应用派发器",
+      "dependencies": ["constant", "commons"]
+    },
+    "RefreshBadgeBootstrapTabsWidgetDevelopment": {
+      "path": "/js/develop/common/RefreshBadgeBootstrapTabsWidgetDevelopment",
+      "name": "平台组件_公共功能_tab组件加载完成后刷新徽章数量",
+      "dependencies": ["BootstrapTabsWidgetDevelopment"]
+    },
+    "html5shiv": {
+      "path": "/js/html5shiv-3.7.3/dist/html5shiv.min",
+      "name": "html5标签结构支持"
+    },
+    "form_body": {
+      "path": "/js/form/form_body",
+      "name": "form_body正文",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "ajaxFileUpload": {
+      "path": "/js/utils/ajaxfileupload",
+      "name": "ajaxFileUpload",
+      "dependencies": ["jquery"]
+    },
+    "jqueryForm": {
+      "path": "/js/form/jquery.form",
+      "name": "jqueryForm",
+      "dependencies": ["jquery"]
+    },
+    "dependencyWCommonCoreModule": {
+      "name": "dependencyWCommonCoreModule",
+      "abstract": true,
+      "dependencies": ["wCommonCore"]
+    },
+    "CalendarDevelopmentBase": {
+      "path": "/js/CalendarDevelopmentBase",
+      "name": "基础资源日历组件二开",
+      "dependencies": ["constant", "commons", "server", "CalendarWidgetDevelopment"]
+    },
+    "wSelect2": {
+      "path": "/js/pt/js/common/jquery.wSelect2",
+      "name": "wSelect2",
+      "dependencies": ["dependencySelect2Module", "global"]
+    },
+    "MobileListDevelopmentTest": {
+      "path": "/mobile/mui/js/app/MobileListDevelopmentTest",
+      "name": "手机列表组件二开测试",
+      "dependencies": ["MobileListDevelopmentBase"]
+    },
+    "appToast": {
+      "path": "/js/jquery-toast/dist/jquery.toast.min",
+      "name": "应用动态弹窗",
+      "dependencies": ["jquery"]
+    },
+    "appContext": {
+      "path": "/js/appContext",
+      "name": "系统应用上下文",
+      "dependencies": ["jquery", "commons", "server", "templateEngine", "appDispatcher"]
+    },
+    "formBuilder": {
+      "path": "/js/formBuilder",
+      "name": "Bootstrap风格表单构建器",
+      "dependencies": ["jquery", "constant", "commons", "moment", "wCommonComboTree", "layDatePro", "wellfileupload", "wellSelect"]
+    },
+    "AppTabs": {
+      "path": "/js/AppTabs",
+      "name": "应用tab标签页插件",
+      "dependencies": ["jquery", "appContext"]
+    },
+    "templateEngine": {
+      "path": "/js/template-engine/juicer/juicer.min",
+      "name": "JavaScript模板引擎"
+    },
+    "respond": {
+      "path": "/js/respond/respond.min",
+      "name": "媒体查询的CSS响应式支持"
+    },
+    "ViewDevelopmentBase": {
+      "path": "/js/ViewDevelopmentBase",
+      "name": "基础视图组件二开",
+      "dependencies": ["constant", "commons", "server", "ListViewWidgetDevelopment"]
+    },
+    "dataStoreBase": {
+      "path": "/js/datastore/dataStore.base",
+      "name": "基础数据源",
+      "dependencies": ["constant", "commons", "server"]
+    },
+    "iexportData_V61": {
+      "path": "/js/pt/js/common/jquery.iexportData.v61",
+      "name": "平台管理基础功能_定义导入定义导出_平台6.1版本",
+      "dependencies": ["dependencyAppBaseModule"]
+    },
+    "niceScroll": {
+      "path": "/js/jquery.nicescroll/jquery.nicescroll",
+      "name": "niceScroll",
+      "dependencies": ["jquery"]
+    },
+    "wellPagination": {
+      "path": "/js/wellPagination/jquery.wellPagnition",
+      "name": "wellPagination 分页",
+      "dependencies": ["jquery"]
+    },
+    "MarkerRead": {
+      "path": "/js/MakerRead",
+      "name": "批量标记为已读",
+      "dependencies": ["jquery", "ListViewWidgetDevelopment"]
+    },
+    "MarkerUnRead": {
+      "path": "/js/MakerUnRead",
+      "name": "批量标记为未读",
+      "dependencies": ["jquery", "ListViewWidgetDevelopment"]
+    }
+  },
+  "css": {}
+}

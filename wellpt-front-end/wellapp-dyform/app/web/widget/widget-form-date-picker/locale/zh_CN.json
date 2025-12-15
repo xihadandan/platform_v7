@@ -1,0 +1,16 @@
+{
+  "WidgetFormDatePicker": {
+    "placeholder": "请选择时间",
+    "startDate": "开始时间",
+    "endDate": "结束时间",
+    "validateError": {
+      "startBeforeEndMsg": "开始时间应在结束时间之前",
+      "startBeforeMinMsg": "开始时间应在最小时间之后",
+      "endAfterMaxMsg": "结束时间应在最大时间之前",
+      "dateBeforeMinMsg": "选择时间应在最小时间之后",
+      "dateAfterMaxMsg": "选择时间应在最大时间之前",
+      "endTimeNull": "请选择结束时间",
+      "startTimeNull": "请选择开始时间"
+    }
+  }
+}

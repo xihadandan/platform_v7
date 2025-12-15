@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OA 助手测试</title>
+    <script src="./base64.js"></script>
+    <script src="./jquery.min.js"></script>
+    <script src="./checkwps.js"></script>
+    <script src="./launchwps.js"></script>
+    <script src="./wps.js"></script>
+    <script>
+
+        var strBookmarkDataPath = "http://dev.wpseco.cn/bookmark/getAllBookmark";
+        var templatePath = "http://dev.wpseco.cn/wps-oa/template/paging";
+        var docId = "c2de1fcd1d3e4ac0b3cda1392c36c9e2";
+        var excelId = "bad28416fa554a2b824caa7874a3f415";
+        var pptId = "586bad086e14463ab2bdb0d144b2b177"
+        var uploadPath = "http://dev.wpseco.cn/file/upload?id=";
+        var fileName = "http://dev.wpseco.cn/file/download/"
+        function newDoc() {
+            _wps.openDoc({
+                "uploadPath": "http://localhost:8080/file/uploadFromWps", //保存文档接口
+                "strBookmarkDataPath": strBookmarkDataPath,//书签列表接口
+                "templatePath": templatePath,//正文模板列表接口
+                "buttonGroups": "",//btnSaveAsFile,btnImportDoc,btnPageSetup,btnInsertDate,btnSelectBookmark,btnImportTemplate
+                "disableBtns": "ReviewTrackChangesMenu,FileSaveAsMenu,FileSaveAs",
+                "suffix": ".ofd",
+            })
+        }
+
+        function openDoc() {
+            _wps.openDoc({
+                "docId": docId,
+                "uploadPath": uploadPath + docId,
+                "fileName": "http://dev.wpseco.cn/plugins/v3.1/6KGM5pS_6K645Y%2bv5omT5Y2w5qih5p2_.doc",
+                "strBookmarkDataPath": strBookmarkDataPath,//书签列表接口
+                "templatePath": templatePath,//公文模板列表接口
+                "buttonGroups": "btnSaveAsFile,btnImportDoc,btnPageSetup,btnInsertDate,btnSelectBookmark,btnImportTemplate",
+                "userName": '王五'//用户名
+            });
+        }
+
+        function protectOpen() {
+            _wps.openDoc({
+                "docId": docId, //文档ID
+                "uploadPath": "http://dev.wpseco.cn/file/place?id=" + docId + "&type=1", //保存文档接口
+                "fileName": fileName + docId, //根据文档id获取服务器文档接口
+                "buttonGroups": "btnChangeToPDF,btnChangeToUOT,btnChangeToUOF",
+                "openType": { //文档打开方式
+                    //文档保护类型，-1：不启用保护模式，0：只允许对现有内容进行修订，1：只允许添加批注，2：只允许修改窗体域(禁止拷贝功能)，3：只读
+                    "protectType": 3,
+                    "password": "123456"
+                }
+            });
+        }
+
+        function revisionCtrlOpen() {
+            _wps.openDoc({
+                "docId": docId, //文档ID
+                "uploadPath": uploadPath + docId, //保存文档接口
+                "fileName": fileName + docId, //根据文档id获取服务器文档接口
+                "buttonGroups": "btnOpenRevision,btnShowRevision,btnAcceptAllRevisions,btnRejectAllRevisions",
+                "userName": 'wangyifei',//用户名
+                "revisionCtrl": {
+                    "bOpenRevision": true,
+                    "bShowRevision": true
+                }
+            });
+        }
+
+        function onlineEdit() {
+            _wps.onlineEditDoc({
+                "docId": docId, //文档ID
+                "uploadPath": uploadPath + docId, //保存文档接口
+                "fileName": fileName + docId, //根据文档id获取服务器文档接口
+                "strBookmarkDataPath": "123456",//书签列表接口
+                "templatePath": "1233456",//正文模板列表接口
+                "buttonGroups": "btnSaveAsFile,btnImportDoc,btnPageSetup,btnInsertDate,btnSelectBookmark,btnImportTemplate",
+                "userName": '王五',//用户名
+                "revisionCtrl": {
+                    "bOpenRevision": false,
+                    "bShowRevision": true
+                }
+            })
+        }
+
+        function fillRedhead() {
+            _wps.insertRedHeadDocFromWeb({
+                "docId": docId, //文档ID
+                "uploadPath": uploadPath + docId, //保存文档接口
+                "fileName": fileName + docId, //根据文档id获取服务器文档接口
+                "buttonGroups": "btnInsertRedHeader",
+            }, "http://dev.wpseco.cn/file/download/b528ce0b140d46879c9c8576ffbc3e98", "Content");//红头模板中填充正文的位置书签名
+        }
+
+        function fillTemplate() {
+            _wps.openDoc({
+                "docId": docId, //文档ID
+                "fileName": "http://dev.wpseco.cn/wps-oa/template/getFileData/98",
+                "uploadPath": uploadPath + docId, //保存文档接口
+            }, [
+                    {
+                        "fillTemplate": {
+                            "dataFromWeb": [{ "name": "FirstTitle", "text": "web" }, {
+                                "name": "TopTitle1",
+                                "text": "军参谋-web"
+                            }, { "name": "TopTitle2", "text": "通信-web" }, {
+                                "name": "ContentTitle",
+                                "text": "空军内部使用办文助手-web"
+                            }, { "name": "Company", "text": "空军参谋部-web" }, {
+                                "name": "Contactor",
+                                "text": "李四-web"
+                            }, {
+                                "name": "table_index",
+                                "text": ["zhangsan", "18", "nan", "lis", "19", "nan", "wangwu", "20", "nan", "zhaoliu", "21", "nv", "sunqi", "22", "nv"],
+                                "type": "table"
+                            }],
+                            // "dataFromServer": "http://dev.wpseco.cn/wps-oa/document/getData"
+                        }
+                    },
+                    {
+                        "closeActiveDocument": {}
+                    },
+
+                ])
+        }
+
+        function openET() {
+            _wps.openET({
+                "uploadPath": uploadPath + excelId,
+                "fileName": fileName + excelId,
+                // "buttonGroups": "btnSaveAsFile,btnImportDoc,btnPageSetup,btnInsertDate,btnSelectBookmark,btnImportTemplate",
+            })
+        }
+
+        function openWpp() {
+            _wps.openWpp({
+                "uploadPath": uploadPath + pptId,
+                "fileName": fileName + pptId,
+                "buttonGroups": "btnSaveAsFile,btnImportDoc,btnPageSetup,btnInsertDate,btnSelectBookmark,btnImportTemplate",
+            })
+        }
+
+        function checkwps() {
+            checkWPSProtocol(scb, fcb);
+        }
+
+        var json = {
+            "bookmark": [
+                {
+                    "type": "gotofield",
+                    "docfield": "办公室审签"
+                },
+                {
+                    "type": "insertDocField",
+                    "docfield": "标题",
+                    "value": "测试文件套红",
+                    "attrs": {
+                        "fontFamily": "仿宋_GB2312",
+                        "fontSize": "12",
+                        "maxRow": 1,
+                        "maxRowLength": 29,
+                        "lastrow": true
+                    }
+                },
+                {
+                    "type": "gotofield",
+                    "docfield": "处审核"
+                },
+                {
+                    "type": "insertText",
+                    "value": "戴纲 2018-11-21  "
+                },
+                {
+                    "type": "insertDocField",
+                    "docfield": "电话",
+                    "value": "13522115420"
+                },
+                {
+                    "type": "insertDocField",
+                    "docfield": "主办单位",
+                    "value": "办公室信息档案处  信息档案处"
+                },
+                {
+                    "type": "gotofield",
+                    "docfield": "附件名称"
+                },
+                {
+                    "type": "insertDocField",
+                    "docfield": "公开范围",
+                    "value": "不公开"
+                },
+                {
+                    "type": "gotofield",
+                    "docfield": "核稿"
+                },
+                {
+                    "type": "insertDocField",
+                    "docfield": "缓急",
+                    "value": "普通"
+                },
+                {
+                    "type": "gotofield",
+                    "docfield": "领导审核"
+                },
+                {
+                    "type": "insertText",
+                    "value": "张柱 2018-11-21  "
+                },
+                {
+                    "type": "insertDocField",
+                    "docfield": "拟稿",
+                    "value": "史丛"
+                },
+                {
+                    "type": "insertDocField",
+                    "docfield": "年度",
+                    "value": "〔2018〕"
+                },
+                {
+                    "type": "gotofield",
+                    "docfield": "签发"
+                },
+                {
+                    "type": "insertDocField",
+                    "docfield": "文件类型",
+                    "value": "中气发"
+                },
+                {
+                    "type": "gotofield",
+                    "docfield": "局内会签"
+                },
+                {
+                    "type": "insertDocField",
+                    "docfield": "主送单位",
+                    "value": "人事司、法规司,天津市气象局、北京市气象局",
+                    "attrs": {
+                        "fontFamily": "仿宋_GB2312",
+                        "fontSize": "12",
+                        "maxRow": 1,
+                        "maxRowLength": 29,
+                        "lastrow": true
+                    }
+                }
+            ],
+            "downLoadFile": "http://localhost:8082/ezweb/action?PublicOfficeAction=2&mnr=1372567488347545",
+            "attrs": {
+                "fileName": "中国气象局发文稿纸（新）.doc",
+                "canSaveAs": null,
+                "readOnly": "false",
+                "title": "中国气象局综合办公系统",
+                "userName": "康为",
+                "funcType": "4"
+            }
+        }
+
+        function fillTemplate2() {
+            // 打开模板
+            _wps.openDoc({
+                "uploadPath": "http://dev.wpseco.cn/file/uploadFromWps", //保存文档接口
+                "fileName": "C:\\1372567488347545.doc", //根据文档id获取服务器文档接口
+                "buttonGroups": ""
+            }, [
+                    {
+                        "insertDocumentMarks": {  // 填充数据
+                            "dataFromServer": "./naturalResources.json",
+                            "dataFromWeb": json.bookmark,
+                        }
+                    },
+                    {
+                        "insertWatermark": {   // 插入水印
+                            "text": "WPS保密文档"
+                        }
+                    },
+                    {
+                        "setOpenType": {   // 设置文档只读
+                            "protectType": 3,
+                            "password": "123456",
+                            "readonly": 1      //1-文档为只读模式，不能编辑。2，文档为只读模式，能编辑，但禁止上传
+                        }
+                    }
+                ]);
+        }
+
+
+
+        var content = {
+            "functions": [{
+                "insertBookmarks": {
+                    "bookmarks": [
+                        {
+                            "type": "common",
+                            "value": "123",
+                            "key": "B0001"
+                        },
+                        {
+                            "type": "macro",
+                            "value": "fn_Enter",
+                        },
+                        {
+                            "type": "common",
+                            "value": "bbbb",
+                        },
+                        {
+                            "type": "macro",
+                            "value": "toRight",
+                        },
+                        {
+                            "type": "file",
+                            "value": "D:\\金山文档\\8、自然资源部\\梦创双杨\\附件1.doc",
+                            "key": "正文文件"
+                        },
+
+                        {
+                            "type": "file",
+                            "value": "D:\\金山文档\\8、自然资源部\\梦创双杨\\附件2.doc"
+                        },
+                        {
+                            "type": "file",
+                            "value": "D:\\金山文档\\8、自然资源部\\梦创双杨\\附件3.doc"
+                        },
+                        {
+                            "type": "file",
+                            "value": "D:\\金山文档\\8、自然资源部\\梦创双杨\\附件4.doc"
+                        },
+                        {
+                            "type": "file",
+                            "value": "D:\\金山文档\\8、自然资源部\\梦创双杨\\附件5.doc"
+                        },
+                        {
+                            "type": "img",
+                            "value": "D:\\金山文档\\8、自然资源部\\梦创双杨\\1.png",
+                            "key": "图片"
+                        }, {
+                            "type": "img",
+                            "value": "D:\\金山文档\\8、自然资源部\\梦创双杨\\2.png",
+                        }
+
+                    ]
+                },
+
+            }
+
+
+                // ,{
+                //     "OnClearRevDocClicked":{}
+                // }
+
+                /**
+            ,{
+                "OnClearRevDocClicked":{}
+            },{
+                "setOpenType":{
+                    "protectType":3,
+                    "password":"***",
+                    "readonly":2
+                }
+            }
+             **/
+
+            ],
+            "command": {
+                "datas": {
+                    "fileName": "D:\\金山文档\\8、自然资源部\\梦创双杨\\模板文件.doc",
+                    "buttonGroups": "",
+                    "docId": "1599858497080853",
+                    "uploadPath": "http://localhost:8080/DreamWeb/ctrl/office/wpsUpload?infoId=190226160701nq4AYGBJzbksLoQASwP&fileId=190226163050vaa2jHEHOK6af2L9y5c&moduleId=180622094325aHAq8EaMYvmZyMGdjQx&unitId=180505162656YILYYOzw1FnE5OzzNxm&fileType=2&extension=doc&userId=180627211146fDIBx82HM37tBb4PtOo&deptId=1806272111467Eo6LAam0ISFm6mawTY",
+                    "revisionCtrl": {
+                        "bOpenRevision": false,
+                        "bShowRevision": true
+                    },
+                    "buttonGroups": "",
+                    "userName": "倪国强**"
+                },
+                "templateMode": "word"
+            }
+        }, command = content.command || {};
+
+
+
+        function runWord(command, functions) { //这个以后统一处理
+            _wps.openDoc(command, functions);
+        };
+
+        function fillTemplate3() {
+            if (command["templateMode"] == "word") {
+                runWord(command["datas"], content["functions"] || {});
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <p>文档相关</p>
+    <button id="checkwps" onclick="checkwps()">检测wps</button>
+    <button id="newDoc" onclick="newDoc()">新建doc</button>
+    <button id="openDoc" onclick="openDoc()">打开指定doc</button>
+    <button id="protectOpen" onclick="protectOpen()">保护模式打开</button>
+    <button id="revisionCtrlOpen" onclick="revisionCtrlOpen()">修订模式打开</button>
+    <button id="onlineEdit" onclick="onlineEdit()">文档不落地</button>
+    <button id="fillRedhead" onclick="fillRedhead()">套红头</button>
+    <button id="fillTemplate" onclick="fillTemplate()">填充模板</button>
+    <button id="fillTemplate2" onclick="fillTemplate2()">填充模板2</button><br />
+    <p>表格</p>
+    <button id="openET" onclick="openET()">启动et</button><br />
+    <p>PPT</p>
+    <button id="openWpp" onclick="openWpp()">启动ppt</button>
+    <!-- <button id="openDoc">启动doc</button> -->
+</body>
+
+</html>

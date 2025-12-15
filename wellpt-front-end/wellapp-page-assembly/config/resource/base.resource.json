@@ -1,0 +1,60 @@
+{
+  "js": {
+    "jquery-migrate": {
+      "path": "/js/jquery/1.12.4/jquery-migrate-1.4.1.min",
+      "name": "jQuery-migrate",
+      "dependencies": ["jquery"]
+    },
+    "lodash": {
+      "path": "/js/lodash/3.10.1/lodash.min",
+      "name": "lodash"
+    },
+    "ie-fixme": {
+      "path": "/pt/theme/default/ie-fixme",
+      "name": "ie8兼容性JS"
+    },
+    "dependencyJQueryUIModule": {
+      "name": "dependencyJQueryUIModule",
+      "abstract": true,
+      "dependencies": ["jquery-ui"]
+    },
+    "jquery-ui": {
+      "path": "/js/jqueryui/1.12.1/jquery-ui",
+      "name": "jQuery-UI",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "dependencyJQueryModule": {
+      "name": "dependencyJQueryModule",
+      "abstract": true,
+      "dependencies": ["jquery", "jquery-migrate"]
+    },
+    "requirejs": {
+      "path": "/js/requirejs/2.3.2/require.min",
+      "name": "requirejs"
+    },
+    "bootstrap": {
+      "path": "/js/bootstrap/3.3.7/js/bootstrap.min",
+      "name": "Bootstrap",
+      "dependencies": ["dependencyJQueryModule"]
+    },
+    "jquery": {
+      "path": "/js/jquery/1.12.4/jquery-1.12.4",
+      "name": "jQuery"
+    },
+    "printArea": {
+      "path": "/js/jquery/jquery.PrintArea",
+      "name": "printArea",
+      "dependencies": ["jquery"]
+    },
+    "md5": {
+      "path": "/js/utils/md5",
+      "name": "requirejs"
+    },
+    "dependencyBootstrapModule": {
+      "name": "dependencyBootstrapModule",
+      "abstract": true,
+      "dependencies": ["bootstrap"]
+    }
+  },
+  "css": {}
+}

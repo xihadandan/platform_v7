@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="wmWebmailOutboxQuery">
+        <![CDATA[
+		from WmMailbox t1
+		 where 1 = 1
+		   and t1.userId = :userId
+		   and t1.status = :status 
+		   <if isNotBlank(queryValue) >
+			   and (1 = 2 or t1.fromUserName like '%${queryValue}%' or
+			       t1.toUserName like '%${queryValue}%' or
+			       t1.subject like '%${queryValue}%' or
+			       t1.content like '%${queryValue}%')
+		 	</if>
+		 order by t1.sendTime desc
+	]]>
+    </sql-query>
+
+    <sql-query name="countMailByParams">
+        <![CDATA[
+		select count(t1.uuid) as total from WmMailboxInfoUser t1
+		 where 1 = 1
+		 <if isNotBlank(userId) >
+		   and t1.userId = :userId
+		   </if>
+		   <if isNotBlank(mailbox)>
+		   and t1.mailboxName=:mailbox
+		   </if>
+		   <if isNotBlank(isRead)>
+		   and t1.isRead=:isRead
+		   </if>
+			<if isNotBlank(status)>
+		   and t1.status = :status
+		   </if>
+		   <if isNotBlank(excludeDeleteStatus)>
+		   and t1.status not in (:excludeDeleteStatus)
+		   </if>
+
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

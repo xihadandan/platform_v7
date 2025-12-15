@@ -1,0 +1,264 @@
+{
+  "js": {
+    "AppSystemUnitSetDevelopment": {
+      "path": "org-mgr/AppSystemUnitSetDevelopment",
+      "name": "平台应用_系统单位管理_系统单位编辑二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "global",
+        "system-admin",
+        "multiOrg",
+        "bootstrapTable",
+        "bootstrapTable_editable",
+        "formBuilder"
+      ]
+    },
+    "AppOrgUserWidgetDevelopment": {
+      "path": "org-mgr/AppOrgUserWidgetDevelopment",
+      "name": "平台应用_多组织管理_用户编辑二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "global",
+        "ztree",
+        "system-admin",
+        "multiOrg",
+        "wSelect2",
+        "bootstrapTable",
+        "bootstrapTable_editable",
+        "wellfileupload",
+        "js-base64"
+      ]
+    },
+    "AppOrgUserAccountListDevelopment": {
+      "path": "org-mgr/AppOrgUserAccountListDevelopment",
+      "name": "平台应用_系统单位管理_单位管理员列表二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "global",
+        "system-admin",
+        "multiOrg",
+        "bootstrapTable",
+        "bootstrapTable_editable"
+      ]
+    },
+    "AppOrgVerConfListDevelopment": {
+      "path": "org-mgr/AppOrgVerConfListDevelopment",
+      "name": "平台应用_多组织管理_组织版本配置列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppOrgVerConfWidgetDevelopment": {
+      "path": "org-mgr/AppOrgVerConfWidgetDevelopment",
+      "name": "平台应用_多组织管理_组织版本配置编辑页二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "global",
+        "ztree",
+        "system-admin",
+        "multiOrg",
+        "wSelect2",
+        "wCommonComboTree",
+        "bootstrapTable",
+        "bootstrapTable_editable",
+        "comboTree"
+      ]
+    },
+    "AppOrgGroupWidgetDevelopment": {
+      "path": "org-mgr/AppOrgGroupWidgetDevelopment",
+      "name": "平台应用_多组织管理_群组编辑二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "global",
+        "ztree",
+        "system-admin",
+        "multiOrg",
+        "wSelect2",
+        "bootstrapTable",
+        "bootstrapTable_editable"
+      ]
+    },
+    "AppOrgUserTreeDevelopment": {
+      "path": "org-mgr/AppOrgUserTreeDevelopment",
+      "name": "平台应用_多组织管理_用户列表树结构二开",
+      "dependencies": ["HtmlWidgetDevelopment", "ztree", "bootstrapTable", "bootstrapTable_editable", "wBootstrapTable", "slimScroll"]
+    },
+    "AppSystemUnitListDevelopment": {
+      "path": "org-mgr/AppSystemUnitListDevelopment",
+      "name": "平台应用_系统单位管理_系统单位列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppOrgPostWidgetDevelopment": {
+      "path": "org-mgr/AppOrgPostWidgetDevelopment",
+      "name": "平台应用_多组织管理_职务编辑二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "jquery-validate", "global", "system-admin"]
+    },
+    "AppOrgUserAccountSetDevelopment": {
+      "path": "org-mgr/AppOrgUserAccountSetDevelopment",
+      "name": "平台应用_系统单位管理_单位管理员编辑二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "global",
+        "system-admin",
+        "multiOrg",
+        "bootstrapTable",
+        "bootstrapTable_editable",
+        "js-base64",
+        "formBuilder"
+      ]
+    },
+    "AppOrgVerWidgetDevelopment": {
+      "path": "org-mgr/AppOrgVerWidgetDevelopment",
+      "name": "平台应用_多组织管理_组织版本编辑二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "global",
+        "system-admin",
+        "multiOrg",
+        "wSelect2",
+        "bootstrapTable",
+        "bootstrapTable_editable"
+      ]
+    },
+    "AppOrgGroupListDevelopment": {
+      "path": "org-mgr/AppOrgGroupListDevelopment",
+      "name": "平台应用_多组织管理_群组列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppOrgRankWidgetDevelopment": {
+      "path": "org-mgr/AppOrgRankWidgetDevelopment",
+      "name": "平台应用_多组织管理_职级编辑二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "jquery-validate", "global", "system-admin"]
+    },
+    "AppOrgVerConfLeaderDevelopment": {
+      "path": "org-mgr/AppOrgVerConfLeaderDevelopment",
+      "name": "平台应用_多组织管理_组织版本配置查看领导关系二开",
+      "dependencies": ["HtmlWidgetDevelopment", "global", "system-admin", "wSelect2", "bootstrapTable", "bootstrapTable_editable"]
+    },
+    "AppMultiOrgOptionSetDevelopment": {
+      "path": "org-mgr/AppMultiOrgOptionSetDevelopment",
+      "name": "平台应用_系统单位管理_组织选择项编辑二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "global",
+        "system-admin",
+        "multiOrg",
+        "bootstrapTable",
+        "bootstrapTable_editable"
+      ]
+    },
+    "AppOrgVerListDevelopment": {
+      "path": "org-mgr/AppOrgVerListDevelopment",
+      "name": "平台应用_多组织管理_组织版本列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppOrgVerConfTreeDevelopment": {
+      "path": "org-mgr/AppOrgVerConfTreeDevelopment",
+      "name": "平台应用_多组织管理_组织版本配置树二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "ztree",
+        "system-admin",
+        "bootstrapTable",
+        "bootstrapTable_editable",
+        "wBootstrapTable",
+        "ajaxfileupload",
+        "slimScroll"
+      ]
+    },
+    "AppOrgTypeWidgetDevelopment": {
+      "path": "org-mgr/AppOrgTypeWidgetDevelopment",
+      "name": "平台应用_多组织管理_组织类型编辑二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "jquery-validate", "global", "system-admin", "formBuilder"]
+    },
+    "AppOrgUserListDevelopment": {
+      "path": "org-mgr/AppOrgUserListDevelopment",
+      "name": "平台应用_多组织管理_用户列表二开",
+      "dependencies": ["ListViewWidgetDevelopment", "ajaxfileupload", "js-base64"]
+    },
+    "AppOrgPostListDevelopment": {
+      "path": "org-mgr/AppOrgPostListDevelopment",
+      "name": "平台应用_多组织管理_职务列表二开",
+      "dependencies": ["ListViewWidgetDevelopment", "ajaxfileupload"]
+    },
+    "AppPasswordRuleWidgetDevelopment": {
+      "path": "org-mgr/AppPasswordRuleWidgetDevelopment",
+      "name": "平台应用_密码规则管理",
+      "dependencies": ["dependencyBootstrapTableModule", "HtmlWidgetDevelopment", "global", "system-admin"]
+    },
+    "AppPasswordModifyWidgetDevelopment": {
+      "path": "org-mgr/AppPasswordModifyWidgetDevelopment",
+      "name": "平台应用_修改密码",
+      "dependencies": ["dependencyBootstrapTableModule", "HtmlWidgetDevelopment", "global", "system-admin", "js-base64"]
+    },
+    "AppOrgRankListHeaderDevelopment": {
+      "path": "org-mgr/AppOrgRankListHeaderDevelopment",
+      "name": "平台应用_职务体系管理_头部_二开",
+      "dependencies": ["dependencyBootstrapTableModule", "HtmlWidgetDevelopment", "global", "system-admin"]
+    },
+    "AppOrgRankListTabDevelopment": {
+      "path": "org-mgr/AppOrgRankListTabDevelopment",
+      "name": "平台应用_职务体系管理_左侧页签_二开",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "ztree",
+        "global",
+        "system-admin",
+        "wCommonPictureLib",
+        "minicolors",
+        "comboTree",
+        "slimScroll",
+        "lodash"
+      ]
+    },
+    "AppOrgRankListViewDevelopment": {
+      "path": "org-mgr/AppOrgRankListViewDevelopment",
+      "name": "平台应用_多组织管理_职务序列体系视图二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "global",
+        "system-admin",
+        "bootstrapTable",
+        "bootstrapTable_editable",
+        "wellfileupload",
+        "html2canvas"
+      ]
+    },
+    "AppOrgRankListTableDevelopment": {
+      "path": "org-mgr/AppOrgRankListTableDevelopment",
+      "name": "平台应用_职务体系管理_列表_二开",
+      "dependencies": ["ListViewWidgetDevelopment", "jquery-form", "ztree", "comboTree", "global", "system-admin", "html2canvas"]
+    },
+    "AppGroupOrgListDevelopment": {
+      "path": "org-mgr/AppGroupOrgListDevelopment",
+      "name": "平台应用_集团组织管理_列表_二开",
+      "dependencies": ["ListViewWidgetDevelopment", "jquery-form", "ztree", "global", "system-admin"]
+    },
+    "AppWorkHandoverListDevelopment": {
+      "path": "org-mgr/AppWorkHandoverListDevelopment",
+      "name": "平台应用_工作交接_列表_二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppWorkHandoverWidgetDevelopment": {
+      "path": "org-mgr/AppWorkHandoverWidgetDevelopment",
+      "name": "平台应用_工作交接_详情_二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "ztree","wCommonComboTree", "layDate", "bootstrapTable", "bootstrapTable_editable","multiOrg","global", "system-admin"]
+    }
+  }
+}

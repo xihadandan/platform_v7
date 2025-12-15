@@ -1,0 +1,2 @@
+1、bootstrap.css、bootstrap.min.css、bootstrap-responsive.css、bootstrap-responsive.min.css、bootstrap.js、bootstrap.min.js更新为2.3.2版本
+2、bootstrap内容自定义，使用的css及js组件见图片"自定义内容1.png"及"自定义内容2.png"

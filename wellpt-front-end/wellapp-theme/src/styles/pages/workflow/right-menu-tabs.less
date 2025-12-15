@@ -1,0 +1,177 @@
+/** 流程页面  */
+
+// 流程页面右侧菜单
+#rightMenuTabNavContainer {
+  position: fixed !important;
+  right: 0px !important;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
+// 流程页面右侧菜单 包含(签署意见、办理过程等)
+#rightMenuTabNavContainer .pull-right-nav {
+  // 签批意见 & 办理过程
+  > li {
+    > a {
+      writing-mode: lr-tb;
+      width: 30px;
+      padding: 13px 8px;
+      color: @text-color-primary;
+      background: @item-background-primary;
+      font-size: @font-size-base;
+      border-radius: 0;
+      color: @text-color-primary;
+      background: @item-background-primary;
+
+      &:focus,
+      &:hover {
+        color: @text-color-inverse;
+        background-color: @primary-color;
+      }
+    }
+
+    &.active > a {
+      position: relative;
+      color: @text-color-inverse;
+      background-color: @primary-color;
+
+      &:before {
+        .absolute(50% false false -5px);
+
+        content: '';
+        display: block;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-right: 5px solid @border-color-primary;
+        margin-top: -5px;
+      }
+    }
+
+    &:not(:first-of-type) > a {
+      margin-top: 0px;
+    }
+  }
+
+  // 查阅流程
+  > div {
+    margin-top: 2px;
+
+    > a {
+      display: block;
+      text-decoration: none;
+      writing-mode: lr-tb;
+      width: 30px;
+      padding: 13px 8px;
+      color: @text-color-primary;
+      background: @item-background-primary;
+      font-size: @font-size-base;
+      border-radius: 0;
+
+      &:hover {
+        color: @text-color-inverse;
+        background-color: @primary-color;
+      }
+    }
+  }
+}
+
+// 流程页面右侧菜单 展开、分屏按钮
+#rightMenuTabNavContainer {
+  button.stick,
+  button.open-tab {
+    .square(30px);
+    .fixed(false false 50px false);
+
+    color: @text-color-light;
+    margin-top: 2px;
+    padding: 0px;
+    background: transparent;
+    outline: none;
+    display: block;
+  }
+
+  button.stick-active,
+  button.open-tab-active {
+    color: @text-color-primary;
+    background-color: transparent;
+  }
+
+  button.open-tab {
+    font-size: @font-size-lg;
+    bottom: 86px;
+  }
+
+  button.stick:hover,
+  button.open-tab:hover {
+    color: @text-color-primary;
+  }
+
+  button.btn.active.focus,
+  button.btn.active:focus,
+  button.btn.focus,
+  button.btn:active.focus,
+  button.btn:active:focus,
+  button.btn:focus {
+    box-shadow: none;
+  }
+}
+
+// 流程页面右侧菜单 页签内容
+#rightMenuTabContainer {
+  position: fixed !important;
+  right: 0px;
+  padding-right: 30px !important;
+  padding-left: 0px !important;
+  background-color: @component-background;
+  box-shadow: @shadow-popup-default;
+
+  .tab-content {
+    padding-right: 0px;
+    padding-left: 0px;
+    border-right: 1px solid #e8e8e8;
+
+    // 流程页面右侧菜单 页签内容
+    .tab-pane {
+      padding: 15px 15px 15px 0;
+      box-sizing: border-box;
+      //border-right: @border-default;
+
+      &.work-process-tab-pane {
+        padding-left: 15px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+      }
+    }
+
+    #wf_work_process {
+      padding: 0 0 15px 0;
+      min-height: 3000px;
+    }
+  }
+
+  .work-process-viewer .tab-content {
+    border-right: none;
+    height: calc(100vh - 130px);
+    overflow-y: scroll;
+  }
+
+  .tab-nav {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 10px;
+  }
+}
+
+.box-shadow {
+  box-shadow: @shadow-popup-default;
+}
+// 流程页面右侧菜单 - 宽度拖动线
+.drag-line {
+  .absolute(0 false false 0);
+
+  min-height: 800px;
+  cursor: e-resize;
+  z-index: 1;
+  background: transparent;
+  width: 14px;
+}

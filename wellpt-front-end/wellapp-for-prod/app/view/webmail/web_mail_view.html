@@ -1,0 +1,178 @@
+<style>
+  .dyform table td {
+    max-width: 600px !important;
+  }
+</style>
+<div class="container-fluid email-container hidden" id="mailbody">
+  <div class="row">
+    <div class="widget-box widget-color-blue">
+      <div class="widget-header fixed">
+        <div class="widget-header-fill-top"></div>
+        <div class="widget-toolbar no-border wf_operate operate_group" id="mail_buttons" style="display: none">
+          <div class="btn-group">
+            <button type="button" class="well-btn w-btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              移动到
+              <span class="fa fa-angle-down"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li class="li_class_moveToInBox">
+                <a href="#">收件箱</a>
+              </li>
+              <li class="li_class_addFolderAndMoveIn split_li">
+                <a href="#">新建文件夹并移动</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="btn-group">
+            <button type="button" class="well-btn w-btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              标记为
+              <span class="fa fa-angle-down"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li class="li_class_tags">
+                <a href="#">标签</a>
+              </li>
+              <li class="li_class_removeSelectedMailTags">
+                <a href="#">取消所有标签</a>
+              </li>
+            </ul>
+          </div>
+
+          <button id="prevMail" class="well-btn w-btn-primary prevOrNext iconfont icon-ptkj-xianmiaojiantou-zuo">上一封</button>
+          <button id="nextMail" class="well-btn w-btn-primary prevOrNext">
+            下一封
+            <i class="iconfont icon-ptkj-xianmiaojiantou-you"></i>
+          </button>
+        </div>
+        <div class="widget-header-fill-bottom"></div>
+      </div>
+      <div class="widget-body" style="padding-top: 60px; width: 100%; padding-left: 0px; padding-right: 0px">
+        <div class="widget-main ace-scroll scroll-disabled" style="padding-bottom: 20px">
+          <form id="webmail_form" class="dyform">
+            <input id="mailboxUuid" name="mailboxUuid" type="hidden" />
+            <input id="mailboxName" name="mailboxName" type="hidden" />
+            <input id="replyToUserName" name="replyToUserName" type="hidden" />
+            <input id="replyToMailAddress" name="replyToMailAddress" type="hidden" />
+            <input id="transfer" name="transfer" type="hidden" />
+            <input id="reply" name="reply" type="hidden" />
+            <input id="replyAll" name="replyAll" type="hidden" />
+            <table class="mail-table">
+              <tr class="field">
+                <td colspan="2">
+                  <span class="mail_title" id="subject"></span>
+                  <div id="tagDiv" style="display: inline-block"></div>
+                </td>
+              </tr>
+              <tr class="field">
+                <td class="Label">发件</td>
+                <td>
+                  <span id="fromUserName"></span>
+                </td>
+              </tr>
+              <tr class="field">
+                <td class="Label">时间</td>
+                <td>
+                  <!-- yyyy年MM月dd日 HH:mm (E)-->
+                  <span id="sendTime"></span>
+                </td>
+              </tr>
+              <tr class="field">
+                <td class="Label">收件</td>
+                <td>
+                  <span id="toUserName"></span>
+                </td>
+              </tr>
+              <!-- <c:if test="${not empty webmailBean.ccUserName}">-->
+              <tr class="field hidden">
+                <td class="Label">抄送</td>
+                <td>
+                  <span id="ccUserName"></span>
+                </td>
+              </tr>
+              <!-- </c:if>-->
+              <!-- <c:if test="${webmailBean.mid==null && webmailBean.sendTime!=null && not empty webmailBean.bccUserName}">-->
+              <tr class="field hidden">
+                <td class="Label">密送</td>
+                <td>
+                  <span id="bccUserName"></span>
+                </td>
+              </tr>
+              <!-- </c:if>-->
+              <!-- <c:if test="${not empty webmailBean.repoFileUuids && webmailBean.revokeStatus!=1}">-->
+              <tr class="field">
+                <td class="Label">附件</td>
+                <td>
+                  <div id="webmail_file_upload_el"></div>
+                </td>
+              </tr>
+              <!-- </c:if>-->
+              <!-- <c:if test="${webmailBean.mailboxName=='OUTBOX' && webmailBean.mid==null && webmailBean.sendTime!=null}">-->
+              <tr class="field hidden">
+                <td class="Label">收件状态</td>
+                <td>
+                  <div class="mailSendstatus" data-sendstatus="-1" style="display: none">
+                    <span class="mail_send_status" style="margin-right: 5px">
+                      <span class="mail_icon mail_send_revoke"></span>
+                      已撤回
+                    </span>
+                    <a href="javascript:void(0);" id="fetchStatusBtn">查看详情</a>
+                  </div>
+                  <div class="mailSendstatus" data-sendstatus="0" style="display: none">
+                    <span class="mail_send_status" style="margin-right: 5px">
+                      <span class="mail_icon mail_send_address"></span>
+                      待解析收件地址
+                    </span>
+                    <div class="mail-tooltip">
+                      <i class="iconfont icon-ptkj-tishishuoming"></i>
+                      <div class="mail-tooltip-content">
+                        需要从您的收件信息中解析收件地址，如果收件信息中还存在部门、职位、群组等收件人的集合，则需要从集合中解析出所有收件人的地址
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mailSendstatus" data-sendstatus="2" style="display: none">
+                    <span class="mail_send_status" style="margin-right: 5px">
+                      <span class="mail_icon mail_send_fail"></span>
+                      投递失败
+                    </span>
+                    <a href="javascript:void(0);" id="fetchStatusBtn2">查看详情</a>
+                  </div>
+                  <div class="mailSendstatus" data-sendstatus="1" style="display: none">
+                    <span class="mail_send_status" style="margin-right: 5px">
+                      <span class="mail_icon mail_send_success"></span>
+                      投递成功
+                    </span>
+                    <a href="javascript:void(0);" id="fetchStatusBtn1">查看详情</a>
+                  </div>
+                </td>
+              </tr>
+              <!-- </c:if>-->
+
+              <tr class="field sendStatusTableTr hide">
+                <td colspan="2"></td>
+              </tr>
+
+              <tr class="field">
+                <td colspan="2" class="">
+                  <!-- ${webmailBean.mailboxName=='INBOX'&&webmailBean.revokeStatus==1? 'revoked_block':''}-->
+                  <div class="inbox-content"></div>
+                </td>
+              </tr>
+            </table>
+          </form>
+          <div class="email-receipt" style="display: none">
+            <div class="email-receipt-text">
+              <i class="iconfont icon-ptkj-xinxiwenxintishi"></i>
+              发件人希望得到您的阅读回执，是否发送？
+            </div>
+            <div class="email-receipt-btns">
+              <button type="button" class="well-btn w-btn-primary sendEmailReceipt">发送</button>
+              <button type="button" class="well-btn w-btn-primary w-line-btn notSndEmailReceipt">不发送</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <input type="hidden" id="revokeStatus" />
+</div>

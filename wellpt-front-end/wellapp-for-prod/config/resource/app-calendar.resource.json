@@ -1,0 +1,98 @@
+{
+  "js": {
+    "BaseCalendarDevelopment": {
+      "path": "calendar/BaseCalendarDevelopment",
+      "name": "APP_基础日历二开",
+      "dependencies": ["constant", "commons", "server", "CalendarWidgetDevelopment", "layer"]
+    },
+    "MyCalendarDevelopment": {
+      "path": "calendar/MyCalendarDevelopment",
+      "name": "APP_我的日程管理",
+      "dependencies": ["constant", "commons", "server", "CalendarWidgetDevelopment", "layer"]
+    },
+    "MyCalendarListDev": {
+      "path": "calendar/MyCalendarListDev",
+      "name": "APP_我的日历本_列表二开",
+      "dependencies": ["ListViewWidgetDevelopment", "wSelect2Group"]
+    },
+    "MyCalendarLeftNavDev": {
+      "path": "calendar/MyCalendarLeftNavDev",
+      "name": "APP_我的日程_左导航二开",
+      "dependencies": ["LeftSidebarWidgetDevelopment", "appContext"]
+    },
+    "OtherUserCalendarLeftNavDev": {
+      "path": "calendar/OtherUserCalendarLeftNavDev",
+      "name": "APP_他人日程_左导航二开",
+      "dependencies": ["MyCalendarLeftNavDev"]
+    },
+    "MyAttentionUserLeftNavDev": {
+      "path": "calendar/MyAttentionUserLeftNavDev",
+      "name": "APP_我关注的用户_左导航二开",
+      "dependencies": ["LeftSidebarWidgetDevelopment", "multiOrg"]
+    },
+    "MyAttentionGroupLeftNavDev": {
+      "path": "calendar/MyAttentionGroupLeftNavDev",
+      "name": "APP_我关注的群组_左导航二开",
+      "dependencies": ["LeftSidebarWidgetDevelopment", "multiOrg"]
+    },
+    "MyAttentionTabsDev": {
+      "path": "calendar/MyAttentionTabsDev",
+      "name": "APP_我的关注_页签二开",
+      "dependencies": ["BootstrapTabsWidgetDevelopment", "multiOrg"]
+    },
+    "MyCalendarTabsDev": {
+      "path": "calendar/MyCalendarTabsDev",
+      "name": "APP_我的日历本_页签二开",
+      "dependencies": ["BootstrapTabsWidgetDevelopment", "multiOrg"]
+    },
+    "MyCalendarDyformDevelopment": {
+      "path": "calendar/MyCalendarDyformDevelopment",
+      "name": "日程管理_我的日历本表单二开",
+      "dependencies": ["DyformDevelopment"]
+    },
+    "MyCalendarCategoryWidgetDevelopment": {
+      "path": "calendar/MyCalendarCategoryWidgetDevelopment",
+      "name": "日程管理_我的日历分类",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "ztree",
+        "global",
+        "system-admin",
+        "wCommonPictureLib",
+        "minicolors",
+        "dependencyBootstrapTableModule"
+      ]
+    },
+    "MyCalendar": {
+      "path": "calendar/jquery.MyCalendar",
+      "name": "日程管理_我的日历",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "appContext"]
+    },
+    "MyCalendarDayClick": {
+      "path": "calendar/mycalendar.dayclick",
+      "name": "日程管理_日历面板单击事件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "appContext"]
+    },
+    "MyCalendarEventClick": {
+      "path": "calendar/mycalendar.eventclick",
+      "name": "日程管理_日历事项查看事件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "appContext"]
+    },
+    "MyResourceDayClick": {
+      "path": "calendar/myresource.dayclick",
+      "name": "日程管理_资源面板单击事件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "appContext"]
+    },
+    "MyResourceEventClick": {
+      "path": "calendar/myresource.eventclick",
+      "name": "日程管理_资源占用查看事件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "appContext"]
+    },
+    "mui.MyCalendarDevelopment": {
+      "path": "calendar/mui.MyCalendarDevelopment",
+      "name": "APP_我的手机日程管理",
+      "dependencies": ["constant", "commons", "server", "CalendarWidgetDevelopment"]
+    }
+  }
+}

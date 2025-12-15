@@ -1,0 +1,345 @@
+/** tabs-container */
+
+.tabs-container .panel-body {
+  background: @component-background;
+  border: @border-default;
+  border-radius: 2px;
+  padding: 20px;
+  position: relative;
+}
+
+.tabs-container .tabs-left {
+  .nav-tabs {
+    float: left;
+    margin-right: 19px;
+    width: 20%;
+
+    li {
+      float: none;
+
+      > a {
+        min-width: 74px;
+        margin-right: 0;
+        margin-bottom: 3px;
+        margin-right: -1px;
+        border-radius: @border-radius-base 0 0 @border-radius-base;
+        border-color: @border-color-base transparent @border-color-base @border-color-base;
+
+        &:hover,
+        &:focus {
+          border-color: #e7eaec transparent #e7eaec #e7eaec;
+        }
+      }
+    }
+  }
+
+  .panel-body {
+    position: static;
+    width: 80%;
+    margin-left: 20%;
+  }
+}
+
+.tabs-container .tabs-right {
+  .nav-tabs {
+    float: right;
+    margin-left: 19px;
+    width: 20%;
+
+    li {
+      float: none;
+
+      > a {
+        min-width: 74px;
+        margin-right: 0;
+        margin-bottom: 3px;
+        margin-left: -1px;
+        border-radius: 0 @border-radius-base @border-radius-base 0;
+        border-color: @border-color-base transparent @border-color-base @border-color-base;
+
+        &:hover,
+        &:focus {
+          border-color: #e7eaec transparent #e7eaec #e7eaec;
+        }
+      }
+    }
+  }
+
+  .panel-body {
+    width: 80%;
+    margin-right: 20%;
+  }
+}
+
+.tabs-container .tab-content > .tab-pane,
+.tabs-container .pill-content > .pill-pane {
+  display: none;
+}
+
+.tabs-container .tab-content > .active,
+.tabs-container .pill-content > .active {
+  display: block;
+}
+
+.tabs-container .tabs-below > .nav-tabs {
+  border-top: @border-default;
+
+  > li {
+    margin-top: -1px;
+    margin-bottom: 0;
+
+    > a {
+      border-radius: 0 0 @border-radius-base @border-radius-base;
+
+      &:hover,
+      &:focus {
+        border-top-color: @border-color-base;
+        border-bottom-color: transparent;
+      }
+    }
+  }
+}
+
+.tabs-container .nav-tabs {
+  border-bottom: @border-default;
+
+  > li {
+    float: left;
+    margin-bottom: -1px;
+
+    a {
+      border: @border-default;
+      border-bottom-color: transparent;
+      background-color: @component-background;
+
+      &:hover {
+        background: transparent;
+        border-color: transparent;
+      }
+    }
+
+    &.active {
+      > a,
+      > a:hover > a:focus {
+        border: @border-default;
+        border-bottom-color: transparent;
+        background-color: @component-background;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .tabs-container .nav-tabs > li {
+    float: none !important;
+
+    &.active > a {
+      border-bottom: @border-default !important;
+      margin: 0;
+    }
+  }
+}
+
+.nav-tabs > li.tab-noborder > a {
+  color: @text-color-dark;
+}
+
+.nav-tabs > .tab-border.active > a,
+.nav-tabs > .tab-border.active > a:focus,
+.nav-tabs > .tab-border.active > a:hover,
+.nav-tabs > .tab-border > a:hover {
+  color: @text-color-inverse;
+}
+
+.nav-tabs > li.tab-border > a,
+.nav-tabs > .tab-noborder.active > a,
+.nav-tabs > .tab-noborder.active > a:focus,
+.nav-tabs > .tab-noborder.active > a:hover,
+.nav-tabs > .tab-noborder > a:hover {
+  color: @text-color-primary;
+}
+
+.nav-tabs > li.tab-noborder > a {
+  padding: 10px;
+  border: none;
+  color: @text-color-dark;
+  background: initial;
+  font-size: 15px;
+}
+
+.nav-tabs > .tab-noborder.active > a,
+.nav-tabs > .tab-noborder.active > a:focus,
+.nav-tabs > .tab-noborder.active > a:hover,
+.nav-tabs > .tab-noborder > a:hover {
+  color: @text-color-primary;
+  border: none;
+  border-bottom: 3px solid @border-color-primary;
+}
+
+.nav-tabs.tab-style-btns {
+  display: inline-block;
+  height: 32px;
+  margin: 9px 10px;
+  background: @body-background;
+  border: @border-default;
+  border-radius: @border-radius-base;
+  overflow: hidden;
+  font-size: @font-size-base;
+}
+
+.nav-tabs.tab-style-btns > li {
+  height: 30px;
+  margin-bottom: 0;
+  line-height: 32px;
+}
+
+.nav-tabs.tab-style-btns > li > a {
+  height: 30px;
+  margin-right: 0;
+  padding: 0 9px;
+  line-height: 30px;
+  color: @text-color;
+  border: none;
+  border-radius: 4px;
+}
+
+.nav-tabs.tab-style-btns > li.active > a,
+.nav-tabs.tab-style-btns > li.active > a:focus,
+.nav-tabs.tab-style-btns > li.active > a:hover,
+.nav-tabs.tab-style-btns > li.active > a:hover {
+  color: @text-color-primary;
+  border: none;
+}
+
+/** tabs */
+.row-tabs-left .col-xs-2,
+.row-tabs-right .col-xs-2,
+.row-tabs-left .col-xs-3,
+.row-tabs-right .col-xs-3,
+.row-tabs-left .col-sm-2,
+.row-tabs-right .col-sm-2,
+.row-tabs-left .col-sm-3,
+.row-tabs-right .col-sm-3 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.row-tabs-left,
+.row-tabs-right {
+  box-shadow: @shadow-tab-default;
+}
+
+.tabs-left,
+.tabs-right {
+  border-bottom: none;
+  padding-top: 2px;
+}
+
+.row-tabs-left .tabs-left {
+  border-right: @border-default-dark;
+}
+
+.row-tabs-right .tabs-right {
+  border-left: @border-default-dark;
+}
+
+.tabs-left > li,
+.tabs-right > li {
+  float: none;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.tabs-left > li {
+  margin-right: -1px;
+}
+
+.tabs-right > li {
+  margin-left: -1px;
+}
+
+.tabs-left > li.active > a,
+.tabs-left > li.active > a:hover,
+.tabs-left > li.active > a:focus {
+  border: none;
+  background: initial;
+  border-bottom: @border-width-1 solid @border-color-primary;
+  color: @text-color-primary;
+}
+
+.tabs-right > li > a:hover,
+.tabs-left > li > a:hover {
+  border: none;
+  background: initial;
+  border-bottom: @border-width-1 solid @border-color-primary;
+  color: @text-color-primary;
+}
+
+.nav-tabs li a:hover .badge,
+.nav-tabs li.active a .badge,
+.nav-tabs li.active a:hover .badge,
+.nav-tabs li.active a:focus .badge {
+  color: @text-color-primary;
+}
+
+.tabs-right > li.active > a,
+.tabs-right > li.active > a:hover,
+.tabs-right > li.active > a:focus {
+  border: none;
+  background: initial;
+  border-bottom: @border-width-1 solid @border-color-primary;
+  color: @text-color-primary;
+}
+
+.tabs-left > li > a {
+  font-size: 15px;
+  color: @text-color-dark;
+  margin-right: 0;
+  display: inline-block;
+  padding: 5px 2px;
+}
+
+// 表单设计 引用资源
+.tabs-left__quote-resource > li > a {
+  padding: 8px 15px;
+}
+
+.tabs-left__quote-resource > li.active a .badge,
+.tabs-left__quote-resource > li.active a:hover .badge {
+  color: @text-color-inverse;
+}
+
+.tabs-right > li > a {
+  font-size: 15px;
+  color: @text-color-dark;
+  margin-right: 0;
+  display: inline-block;
+}
+
+.tab-content > .form-horizontal {
+  padding: 10px;
+}
+
+.nav-tabs .badge {
+  color: @text-color-light;
+  background: initial;
+  border-radius: 0;
+  font-size: 14px;
+  vertical-align: initial;
+  padding: 0;
+  margin-left: 8px;
+  min-width: initial;
+  font-weight: normal;
+  position: relative;
+
+  &:before {
+    .absolute(-1px  false false -5px);
+    content: '(';
+  }
+
+  &:after {
+    .absolute(-1px -5px false false);
+    content: ')';
+  }
+}

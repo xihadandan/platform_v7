@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="queryAllDatabaseTables">
+        <![CDATA[
+			SELECT table_name as OBJECT_NAME, table_name as OBJECT_ID FROM information_schema.TABLES
+			    WHERE table_type='BASE TABLE'
+			    and table_schema= :tableSchema
+			    <if isNotBlank(keyword)>
+                    and table_name like '%${keyword?lower_case}%'
+                </if>
+                <if isNotBlank(tableName)>
+                    or table_name = :tableName
+                </if>
+		]]>
+    </sql-query>
+
+
+    <sql-query name="queryAllDatabaseTableViews">
+        <![CDATA[
+			SELECT table_name as OBJECT_NAME, table_name as OBJECT_ID FROM information_schema.TABLES
+			    WHERE table_type='VIEW'
+			    and table_schema='${getSystemProperties('multi.tenancy.tenant.database_name')}'
+		]]>
+    </sql-query>
+
+    <sql-query name="queryTableColumnsByTableName">
+        <![CDATA[
+			 select column_name as COLUMN_NAME ,column_comment as COMMENTS
+                from information_schema.columns
+                where table_name=:tableName and table_schema='${getSystemProperties('multi.tenancy.tenant.database_name')}'
+		]]>
+    </sql-query>
+</hibernate-mapping>

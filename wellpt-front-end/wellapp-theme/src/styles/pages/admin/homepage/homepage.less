@@ -1,0 +1,402 @@
+/** 管理后台主页 */
+.admin-home {
+  width: 100%;
+
+  .mt20 {
+    margin-top: 20px;
+  }
+}
+
+// 管理后台主页 - 顶部提示信息
+.admin-home .admin-home-tips {
+  width: 100%;
+  line-height: 30px;
+  padding: 0 5px;
+  background: rgba(227, 48, 51, 0.05);
+  border: 1px solid rgba(227, 48, 51, 0.1);
+  border-radius: @border-radius-base;
+  box-sizing: border-box;
+  color: @danger-color;
+  font-size: @font-size-base;
+
+  i {
+    font-size: @font-size-xl;
+    margin-right: 5px;
+    vertical-align: middle;
+    line-height: 1;
+  }
+}
+
+// 管理后台主页 - 快捷链接
+.admin-home .admin-home-quick {
+  width: 100%;
+  padding: 10px 30px;
+  box-sizing: border-box;
+  background: @admin-home-background;
+
+  .admin-home-item {
+    .size(200px 60px);
+
+    margin: 20px;
+    float: left;
+    font-size: 0;
+    padding: 0;
+    margin: 20px 0;
+    cursor: pointer;
+
+    &:not(:nth-of-type(5n + 1)) {
+      margin-left: calc(calc(100% - 1000px) / 4);
+    }
+
+    .admin-home-quick-icon {
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+      text-align: center;
+      vertical-align: middle;
+      border-radius: 16px;
+      margin-right: 10px;
+      color: #fff;
+      transition: all 0.3s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      i {
+        font-size: 24px;
+      }
+    }
+
+    .admin-home-name {
+      font-size: @font-size-base;
+      line-height: 60px;
+      vertical-align: middle;
+      color: @text-color;
+    }
+  }
+}
+
+.admin-home .admin-home-card .title,
+.admin-home .admin-home-chart .title {
+  position: relative;
+  width: 100%;
+  padding: 14px 15px 14px 30px;
+  line-height: 1;
+  background: @background-lighter;
+  border-bottom: @border-default-dark;
+
+  // background: linear-gradient(0deg, rgba(250, 250, 250, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  // box-shadow: 0px 1px 0px 0px #f1f2f3;
+  font-size: @font-size-lg;
+  color: @text-color-dark;
+
+  .more {
+    float: right;
+    color: @text-color-primary;
+    font-size: @font-size-base;
+    cursor: pointer;
+
+    i {
+      font-size: 10px;
+    }
+
+    &:hover,
+    &:hover i {
+      color: @link-hover-color;
+    }
+  }
+
+  &:before {
+    .absolute(50% false false 15px);
+    .size(@title-decoration-width @title-decoration-height);
+
+    content: '';
+    display: block;
+    margin-top: -7px;
+    background: @title-decoration-color;
+    border-radius: @title-border-radius;
+  }
+}
+
+// 管理后台主页 - 数据信息行
+.admin-home .admin-home-data {
+  width: 100%;
+
+  // 管理后台主页 - 数据信息行 - 卡片
+  .admin-home-card {
+    float: left;
+    background: @admin-home-background;
+    height: 430px;
+
+    // 管理后台主页 - 数据信息行 - 列表卡片
+    .admin-home-data-list {
+      width: 100%;
+      padding: @padding-md;
+
+      .admin-home-data-item {
+        line-height: 1;
+        text-align: center;
+        border: @border-default-light;
+        border-radius: @border-radius-base;
+        font-size: 0;
+
+        .admin-home-data-title {
+          width: 30%;
+          display: inline-block;
+          padding: 0 8px;
+          line-height: 20px;
+          font-size: @font-size-base;
+          color: @text-color;
+          font-weight: bold;
+          vertical-align: middle;
+        }
+
+        .admin-home-data-tips {
+          display: inline-block;
+          position: relative;
+
+          i {
+            font-size: @font-size-base;
+            color: @text-color-light;
+            font-weight: normal;
+
+            &:hover {
+              color: @text-color-primary;
+
+              + .admin-home-data-tooltip {
+                display: block;
+              }
+            }
+          }
+
+          .admin-home-data-tooltip {
+            .absolute(-10px false false 25px);
+
+            display: none;
+            width: 300px;
+            line-height: 20px;
+            padding: @padding-md;
+            box-shadow: @shadow-popup-default;
+            border-radius: @border-radius-base;
+            text-align: left;
+            color: @text-color-light;
+            background: @admin-home-background;
+            font-size: @font-size-base;
+            font-weight: normal;
+            z-index: 100;
+
+            &:before {
+              .absolute(10px false false -10px);
+
+              content: '';
+              display: block;
+              border-top: 8px solid transparent;
+              border-bottom: 10px solid transparent;
+              border-right: 10px solid #fff;
+            }
+          }
+        }
+
+        .admin-home-data-detail {
+          width: 70%;
+          display: inline-block;
+          background: @admin-home-background;
+          vertical-align: middle;
+
+          .admin-home-detail-item {
+            width: 50%;
+            padding: 15px 0;
+            float: left;
+
+            .admin-home-detail-text {
+              color: @text-color-light;
+              font-size: @font-size-base;
+            }
+
+            .admin-home-detail-num {
+              color: @text-color-dark;
+              font-size: @font-size-xl;
+              margin-top: 4px;
+            }
+          }
+        }
+
+        &:not(:last-of-type) {
+          margin-bottom: 8px;
+        }
+
+        &.bg1 {
+          background: @admin-home-card-background-1;
+          box-shadow: (-@admin-home-card-decorator-width) 0px 0px 0px @admin-home-card-decorator-1;
+        }
+
+        &.bg2 {
+          background: @admin-home-card-background-2;
+          box-shadow: (-@admin-home-card-decorator-width) 0px 0px 0px @admin-home-card-decorator-2;
+        }
+
+        &.bg3 {
+          background: @admin-home-card-background-3;
+          box-shadow: (-@admin-home-card-decorator-width) 0px 0px 0px @admin-home-card-decorator-3;
+        }
+
+        &.bg4 {
+          background: @admin-home-card-background-4;
+          box-shadow: (-@admin-home-card-decorator-width) 0px 0px 0px @admin-home-card-decorator-4;
+        }
+      }
+    }
+
+    // 管理后台主页 - 数据信息行 - 异常卡片
+    .admin-home-exception {
+      padding: 20px;
+      height: calc(100% - 44px);
+      overflow: auto;
+
+      // 管理后台主页 - 数据信息行 - 异常卡片 - 异常项
+      .admin-home-exception-item {
+        position: relative;
+        width: 100%;
+        padding-bottom: 40px;
+        font-size: 0;
+        line-height: 20px;
+        color: @text-color;
+
+        // 异常项左侧信息
+        .admin-home-exception-left {
+          width: 120px;
+          display: inline-block;
+          font-size: @font-size-base;
+          text-align: right;
+          vertical-align: top;
+
+          // 异常项左侧信息 - 时间
+          .admin-home-exception-time {
+            color: @text-color-light;
+          }
+
+          // 异常项左侧信息 - 异常类型
+          .admin-home-exception-type {
+            color: @text-color-dark;
+          }
+        }
+
+        // 异常项右侧信息
+        .admin-home-exception-right {
+          width: calc(100% - 150px);
+          display: inline-block;
+          margin-left: @margin-2xl;
+          font-size: @font-size-base;
+          vertical-align: top;
+          color: @text-color-light;
+        }
+
+        // 异常项左右分割线圆点
+        &:before {
+          .absolute(0 false false (135px - @admin-home-exception-divider-point-size / 2));
+          .square(@admin-home-exception-divider-point-size);
+
+          content: '';
+          display: block;
+          border-radius: 50%;
+          background: @admin-home-exception-divider-point-color;
+          z-index: 10;
+        }
+
+        // 异常项左右分割线
+        &:after {
+          .absolute(0 false false 135px);
+          .size(@admin-home-exception-divider-line-width 100%);
+
+          content: '';
+          background: @admin-home-exception-divider-line-color;
+        }
+
+        &.active {
+          color: @admin-home-exception-active-color;
+
+          .admin-home-exception-time,
+          .admin-home-exception-type,
+          .admin-home-exception-right {
+            color: @admin-home-exception-active-color;
+          }
+
+          &:before,
+          &:after {
+            background: @admin-home-exception-active-color;
+          }
+        }
+      }
+    }
+
+    &:not(:first-of-type) {
+      margin-left: 20px;
+    }
+
+    &.card-one {
+      width: calc(27.5% - 20px);
+    }
+
+    &.card-two {
+      width: 45%;
+    }
+
+    &.card-three {
+      width: calc(50% - 10px);
+      height: 363px;
+    }
+
+    &.height2 .admin-home-data-list .admin-home-data-item .admin-home-data-detail .admin-home-detail-item {
+      padding: 53px 0;
+    }
+
+    &.card-three .admin-home-data-list .admin-home-data-item .admin-home-data-detail .admin-home-detail-item {
+      width: 25%;
+    }
+
+    &.admin-show-data .admin-home-data-list .admin-home-data-item .admin-home-data-detail .admin-home-detail-item .admin-home-detail-num {
+      color: @text-color-primary;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// 管理后台主页 - 图标信息行
+.admin-home .admin-home-chart {
+  width: 100%;
+  background: @admin-home-background;
+
+  .admin-home-chart-list {
+    width: 100%;
+    padding: 20px 20px 0 20px;
+    font-size: 0;
+
+    > div {
+      width: calc(22.02% - 20px);
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      display: inline-block;
+      box-sizing: border-box;
+
+      img {
+        .size(100%);
+        display: block;
+      }
+
+      &:nth-of-type(5n + 1) {
+        width: calc(11.9% - 15px);
+      }
+
+      &:not(:nth-of-type(5n + 1)) {
+        margin-left: @margin-lg;
+      }
+    }
+  }
+}

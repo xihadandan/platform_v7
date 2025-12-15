@@ -1,0 +1,502 @@
+html,body{
+	margin: 0;
+	padding: 0;
+	height:100%;
+	width: 100%;
+	min-width:1200px;
+	min-height:720px;
+	box-sizing:border-box;
+	font-family: "Microsoft YaHei";
+}
+
+.content{
+	width: 100%;
+	height: 100%;
+	background : url(imgs/body.png) no-repeat 0 0;
+	background-size : 100% 100%;
+	background-position-y : 90px;
+}
+
+.header{
+	position:absolute;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	min-height: 90px;
+	line-height: 90px;
+	min-width: 100%;
+	background-color: #ffffff;
+}
+
+.header img{
+	display:inline-block;
+	vertical-align: middle;
+	height: 90px;
+}
+
+.header span{
+	display:inline-block;
+	font-size: 22px;
+	color: #212121;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+.box{
+	background-color: #fff;
+	width:353px;
+	height:auto;
+	padding : 8px 8px 14px 8px;
+	position:absolute;
+	z-index: 2;
+	right: 64px;
+	top : calc(50% - 186px); 
+}
+
+
+.nav{
+	width : 100%;
+	height : 74px;
+	line-height : 74px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	font-size: 14px;
+	border-bottom: 1px solid #f2f2f2;
+}
+
+.nav ul{
+	vertical-align : middle;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.nav ul li{
+	display: inline-block;
+	width: 134px;
+	height: 32px;
+	line-height: 32px;
+	vertical-align: middle;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	margin-right: -1px;
+}
+
+.nav ul li span{
+	width:auto;
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	color : #757575;
+	border-bottom: 2px solid #fff;
+	cursor: pointer;
+}
+
+.nav ul li span:hover{
+	color : #404040;
+}
+.nav ul li .spanA{
+	color : #0078d7;
+	border-bottom: 2px solid #0078d7;
+	font-size: 18px;
+}
+.login{
+	width : 100%;
+}
+
+.account{
+	width : 100%;
+}
+
+.account ul{
+	list-style: none;
+	margin: 0;
+	padding: 0 37px;
+}
+
+.account ul li{
+	display: inline-block;
+	width: 100%;
+	text-align: left;
+	padding: 0;
+	margin: 0;
+	padding-top: 24px;
+	border-bottom: 1px solid #cccccc;
+}
+
+.account ul .select{
+	border-bottom: 1px solid #0078d7;
+}
+
+.account ul .username-li, .account ul .password-li, .account ul .image-verify-li, .account ul .sms-verify-li{
+	padding : 24px 3px 0px 3px;
+}
+
+.account ul li input[type="text"], .account ul li input[type="password"]{
+	height: 36px;
+	background:transparent;
+	border:none;
+	font-size: 14px;
+	color: #212121;
+	padding-left: 34px;
+}
+input:focus { 
+	outline: none;
+}
+
+.account ul .username-li input[type="text"]{
+	width: 253px;
+	background : url(imgs/username.svg) no-repeat 0 0;
+	background-size : 24px 24px;
+	background-position: 0 center;
+}
+
+.account ul .username-li input[type="text"]:focus{
+	background : url(imgs/username-select.svg) no-repeat 0 0;
+	background-size : 24px 24px;
+	background-position: 0 center;
+}
+
+.account ul .password-li input[type="password"], .account ul .password-li input[type="text"]{
+	width: 214px;
+	background : url(imgs/password.svg) no-repeat 0 0;
+	background-size : 24px 24px;
+	background-position: 0 center;
+}
+
+.account ul .password-li input[type="password"]:focus, .account ul .password-li input[type="text"]:focus{
+	background : url(imgs/password-select.svg) no-repeat 0 0;
+	background-size : 24px 24px;
+	background-position: 0 center;
+}
+
+.account ul .password-li a{
+	text-decoration: none;
+	display: inline-block;
+	vertical-align:middle;
+	width: 24px;
+	height: 24px;
+	margin: 0;
+	padding: 0;
+	background : url(imgs/password2.svg) no-repeat 0 0;
+	background-size : 24px 24px;
+}
+
+.account ul .password-li a:hover{
+	background : url(imgs/password3.svg) no-repeat 0 0;
+	background-size : 24px 24px;
+}
+
+.account ul .password-li .aA{
+	background : url(imgs/password4.svg) no-repeat 0 0;
+	background-size : 24px 24px;
+}
+
+.account ul .password-li .aA:hover{
+	background : url(imgs/password5.svg) no-repeat 0 0;
+	background-size : 24px 24px;
+}
+
+
+.account ul .image-verify-li input[type="text"]{
+	width: 162px;
+	background : url(imgs/image-verify.svg) no-repeat 0 0;
+	background-size : 24px 24px;
+	background-position: 0 center;
+}
+
+.account ul .image-verify-li input[type="text"]:focus{
+	background : url(imgs/image-verify-select.svg) no-repeat 0 0;
+	background-size : 24px 24px;
+	background-position: 0 center;
+}
+
+.account ul .image-verify-li span{
+	cursor: pointer;
+	display: inline-block;
+	height: 36px;
+	line-height:36px;
+	margin: 0;
+	padding: 0;
+}
+
+.account ul .image-verify-li span img{
+	display: inline-block;
+	vertical-align:middle;
+	width: 74px;
+	height: 24px;
+}
+
+.account ul .sms-verify-li input[type="text"]{
+	width: 162px;
+	background : url(imgs/sms-verify.svg) no-repeat 0 0;
+	background-size : 24px 24px;
+	background-position: 0 center;
+}
+
+.account ul .sms-verify-li input[type="text"]:focus{
+	background : url(imgs/sms-verify-select.svg) no-repeat 0 0;
+	background-size : 24px 24px;
+	background-position: 0 center;
+}
+
+.account ul .sms-verify-li span{
+	cursor: pointer;
+	display: inline-block;
+	height: 16px;
+	line-height: 16px;
+	color: #0078d7;
+	font-size: 14px;
+}
+
+.account ul .sms-verify-li .spanA{
+	color: #9e9e9e;
+}
+
+.account ul .sms-verify-li span:hover, .account ul .sms-verify-li span:active{
+	color: #4da1e3;
+}
+
+.account ul .button-li{
+	border:0;
+	padding-top: 42px;
+	height: 36px;
+}
+
+.account ul .button-li button{
+	width:100%;
+	height: 100%;
+	background-color:#0078d7;
+	border: 1px solid #0078d7;
+	font-size: 16px;
+	color : #fff;
+	display : inline-block;
+	text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    letter-spacing:8px;
+}
+
+.account ul .button-li button:hover{
+	background-color:#4da1e3;
+	border: 1px solid #4da1e3;
+}
+
+.account ul .button-li button:active{
+	background-color:#0070bc;
+	border: 1px solid #0070bc;
+}
+
+.account ul .operating-li{
+	border:0;
+	padding : 20px 0 6px 0;
+}
+
+.account ul .operating-li a{
+	float: left;
+	display : inline-block;
+	width:auto;
+	height:16px;
+	background : url(imgs/uncheck.svg) no-repeat 0 0;
+	background-size : 16px 16px;
+	background-position: 0 center;
+	cursor: pointer;
+	padding-left: 24px;
+	font-size: 12px;
+	padding-right: 16px;
+	text-decoration: none;
+}
+
+.account ul .operating-li .check{
+	background : url(imgs/check.svg) no-repeat 0 0;
+	background-size : 16px 16px;
+	background-position: 0 center;
+}
+
+.account ul .operating-li .forget-password{
+	background:#fff;
+	font-size: 12px;
+	float: right;
+	color:#0078d7;
+	padding : 0;
+}
+
+.account ul .operating-li .forget-password:hover, .account ul .operating-li .forget-password:active{
+	color:#4da1e3;
+}
+
+.error-div{
+	padding : 0 37px;
+	line-height:32px;
+	background-color: #ffebec;
+	font-size: 12px;
+	color: #e80000;
+	vertical-align: middle;
+}
+
+.hardware ul{
+	list-style: none;
+	margin: 0;
+	padding: 0 37px;
+}
+
+.hardware ul li{
+	display: inline-block;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.hardware ul .image-li{
+	margin-top: 12px;
+	height: 100px;
+	background : url(imgs/hardware.png) no-repeat 0 0;
+	background-size : 100px 100px;
+	background-position: center 0;
+}
+
+.hardware ul .desc-li{
+	padding-top: 10px;
+	color: #9e9e9e;
+	font-size: 12px;
+	text-align: center;
+}
+
+.hardware ul .button-li{
+	padding : 25px 0 0 0;
+	height: 36px;
+}
+
+.hardware ul .button-li button{
+	width:100%;
+	height: 100%;
+	background-color:#0078d7;
+	border: 1px solid #0078d7;
+	font-size: 16px;
+	color : #fff;
+	display : inline-block;
+	text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    letter-spacing:8px;
+}
+
+.hardware ul .button-li button:hover{
+	background-color:#4da1e3;
+	border: 1px solid #4da1e3;
+}
+
+.hardware ul .button-li button:active{
+	background-color:#0070bc;
+	border: 1px solid #0070bc;
+}
+
+.code ul{
+	list-style: none;
+	margin: 0;
+	padding: 0 37px;
+}
+
+.code ul li{
+	display: inline-block;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.code ul .image-li{
+	margin-top: 12px;
+	height: 126px;
+	line-height : 126px;
+	text-align:center;
+	background : url(imgs/code.png) no-repeat 0 0;
+	background-size : 126px 126px;
+	background-position: center 0;
+}
+
+.code ul .image-li img{
+	display: inline-block;
+	vertical-align: middle;
+	width: 90px;
+	height: 90px;
+	
+}
+
+.code ul .desc-li{
+	padding-top: 10px;
+	color: #9e9e9e;
+	font-size: 12px;
+	text-align: center;
+}
+
+.code ul .download-li{
+	padding : 21px 0 6px 0;
+	text-align: center;
+}
+
+.code ul .download-li a{
+	display : inline-block;
+	width:auto;
+	color:#0078d7;
+	cursor: pointer;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.code ul .download-li a:hover, .code ul .download-li a:active{
+	color:#4da1e3;
+}
+
+.footer{
+	color:#9e9e9e;
+	font-size:14px;
+	position:absolute;
+	z-index: 1;
+	min-height:110px;
+	padding: 40px 360px 0 360px;
+	background-color: #ffffff; 
+	text-align: center;
+	box-sizing:border-box;
+}
+
+.footer p{
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.footer a{
+	opacity:0.64; 
+	color:#0078d7;
+	text-decoration: underline;
+}
+.footer a:hover{
+	color:#4da1e3;
+}
+
+/* placeholder颜色  */
+input::-webkit-input-placeholder {
+	color: #9e9e9e;
+}
+/* 去掉谷歌浏览器叉号  */
+input::-webkit-search-cancel-button{
+  display: none;
+}
+
+.goto-oauth2-login {
+	margin-top: 30px;
+	margin-bottom: 25px;
+	border-bottom: 1px solid rgba(204,204,204,1);
+	position: relative;
+}
+
+.goto-oauth2-login a {
+	position: absolute;
+	left: calc(50% - 73px);
+	top: -10px;
+	padding: 0 10px;
+	background: #fff;
+	text-decoration: none;
+	font-size: 14px;
+}

@@ -1,0 +1,10 @@
+{
+  "SystemErrorCode": {
+    "403": "Resource unavailable, no permission to access the page",
+    "500": "Internal server error, the server encountered an unexpected condition and could not complete the request",
+    "404": "Page not found, the user entered an incorrect URL or the resource has been removed",
+    "UnauthorizedAccessToData": "No permission to access data",
+    "PleaseUseAuthorizedUserToAccessData": "The account you are currently logged in with does not have permission to access this data. Please use an authorized account!",
+    "SwitchAccountLogin": "Log in with a different account?"
+  }
+}

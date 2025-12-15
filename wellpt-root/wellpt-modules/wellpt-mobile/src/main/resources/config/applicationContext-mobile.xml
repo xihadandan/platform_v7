@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+       default-lazy-init="true">
+    <bean id="mobileListTemplate" class="com.wellsoft.pt.basicdata.mobilelist.support.MobileListTemplate">
+        <property name="name" value="模板一"/>
+        <property name="properties">
+            <map>
+                <entry key="title" value="标题"/>
+                <entry key="subtitle" value="小标题"/>
+                <entry key="subtitle2" value="小标题2"/>
+                <entry key="content" value="内容"/>
+            </map>
+        </property>
+        <property name="html">
+            <value>
+                <![CDATA[
+				<div class="mui-table">
+	                <div class="mui-table-cell mui-col-xs-10">
+	                    <h4 style='line-height: 21px;' class="mui-ellipsis">{title}</h4>
+	                    <h5 class="mui-h6 mui-ellipsis">{content}</h5><h5 class="mui-h6">{subtitle}</h5>
+	                </div>
+	                <div class="mui-table-cell mui-col-xs-2 mui-text-right">
+	                    <span class="mui-h5">{subtitle2}</span>
+	                </div>
+	            </div>
+			]]>
+            </value>
+        </property>
+    </bean>
+
+    <bean id="mobileListTemplate2" class="com.wellsoft.pt.basicdata.mobilelist.support.MobileListTemplate">
+        <property name="name" value="模板二"/>
+        <property name="properties">
+            <map>
+                <entry key="title" value="标题"/>
+                <entry key="subtitle" value="小标题"/>
+                <entry key="subtitle2" value="小标题2"/>
+                <entry key="content" value="内容"/>
+            </map>
+        </property>
+        <property name="html">
+            <value>
+                <![CDATA[
+				<div class="mui-table">
+	                <div class="mui-table-cell mui-col-xs-10">
+	                    <h4 style='line-height: 21px;' class="mui-ellipsis-2">{title}</h4>
+	                    <h5>{subtitle} <p class="mui-h6 mui-ellipsis">{content}</p></h5>
+	                </div>
+	                <div class="mui-table-cell mui-col-xs-2 mui-text-right">
+	                    <span class="mui-h5">{subtitle2}</span>
+	                </div>
+	            </div>
+			]]>
+            </value>
+        </property>
+    </bean>
+
+
+    <bean id="mobileListTemplate-ldx" class="com.wellsoft.pt.basicdata.mobilelist.support.MobileListTemplate">
+        <property name="name" value="模板LDX"/>
+        <property name="properties">
+            <map>
+                <entry key="title" value="标题"/>
+                <entry key="subtitle" value="小标题"/>
+                <entry key="subtitle2" value="小标题2"/>
+                <entry key="content" value="内容"/>
+            </map>
+        </property>
+        <property name="html">
+            <value>
+                <![CDATA[
+				<div class="mui-table workitem-view-cell">
+	                <div class="mui-table-cell">
+	                    <h4 class="mui-ellipsis">{title}</h4>
+	                    <h5 class="mui-clearfix"><span>{subtitle}</span> <span>{content}</span></h5>
+	                    <span class="mui-h5">{subtitle2}</span>
+	                </div>
+	            </div>
+			]]>
+            </value>
+        </property>
+    </bean>
+    <!-- 手机端文件_开始 -->
+    <bean id="mobileListTemplate-file" class="com.wellsoft.pt.basicdata.mobilelist.support.MobileListTemplate">
+        <property name="name" value="模板File"/>
+        <property name="properties">
+            <map>
+                <entry key="type" value="文件类型"/>
+                <entry key="title" value="标题"/>
+                <entry key="createTime" value="创建时间"/>
+                <entry key="fileSize" value="文件大小"/>
+            </map>
+        </property>
+        <property name="html">
+            <value>
+                <![CDATA[
+				<div class="mui-table workitem-view-cell">
+	                <div class="mui-table-cell">
+	                	{@if contentType == 'application/folder'}
+		                	<div class="mui-file-image-folder">
+		                	</div>
+		                {@else if contentType == 'application/dyform'}
+		                	<div class="mui-file-image-file">
+		                	</div>
+		                {@else}
+		                	<div class="mui-file-image-file">
+		                	</div>
+	                	{@/if}
+	                	<div class="mui-file-content">
+	                		<div>{title}</div>
+	                		<div><span>{createTime}</span><span>{fileSize}</span> </div>
+	                    </div>
+	                    <div class="mui-file-operate">
+	                	</div>
+	                </div>
+	            </div>
+			]]>
+            </value>
+        </property>
+    </bean>
+    <!-- 手机端文件_结束linst -->
+    <!-- 工作流程_草稿 -->
+    <bean id="workflowDraftMobileListTemplate" class="com.wellsoft.pt.basicdata.mobilelist.support.MobileListTemplate">
+        <property name="name" value="工作流程_草稿"/>
+        <property name="properties">
+            <map>
+                <entry key="title" value="流程标题"/>
+                <entry key="name" value="流程名称"/>
+                <entry key="createTime" value="创建时间"/>
+            </map>
+        </property>
+        <property name="html">
+            <value>
+                <![CDATA[
+				<div class="mui-table">
+	                <div class="mui-table-cell mui-col-xs-9">
+	                    <h4 style='line-height: 21px;' class="mui-ellipsis-2">{title}</h4>
+	                    <h5><p class="mui-h6 mui-ellipsis">{name}</p></h5>
+	                </div>
+	                <div class="mui-table-cell mui-col-xs-3 mui-text-right">
+	                    <span class="mui-h5">{createTime}</span>
+	                </div>
+	            </div>
+			]]>
+            </value>
+        </property>
+    </bean>
+
+    <!-- 工作流程_通用模板 -->
+    <bean id="workflowMobileListTemplate" class="com.wellsoft.pt.basicdata.mobilelist.support.MobileListTemplate">
+        <property name="name" value="工作流程_通用模板"/>
+        <property name="properties">
+            <map>
+                <entry key="title" value="流程标题"/>
+                <entry key="taskName" value="环节名称"/>
+                <entry key="todoUserName" value="办理人"/>
+                <entry key="startTime" value="开始时间"/>
+            </map>
+        </property>
+        <property name="html">
+            <value>
+                <![CDATA[
+				<div class="mui-table">
+	                <div class="mui-table-cell mui-col-xs-9">
+	                    <h4 style='line-height: 21px;' class="mui-ellipsis-2">{title}</h4>
+	                    <h5>{taskName}</h5><p class="mui-h6 mui-ellipsis">{todoUserName}</p>
+	                </div>
+	                <div class="mui-table-cell mui-col-xs-3 mui-text-right">
+	                    <span class="mui-h5">{startTime}</span>
+	                </div>
+	            </div>
+			]]>
+            </value>
+        </property>
+    </bean>
+
+    <!-- JS模板，spring配置文件的content内容变量符号$要做转义#{'$'} -->
+    <!-- JS模板抽象类，source不为空时，从source读取加载 -->
+    <bean id="jsTemplate" class="com.wellsoft.pt.app.js.JuicerTemplate" abstract="true">
+        <property name="sourceReloadable" value="true"/>
+    </bean>
+    <!-- 手机端_面板组件_导航菜单 -->
+    <bean parent="jsTemplate">
+        <property name="id" value="wMobilePanel-navMenu"/>
+        <property name="name" value="手机端_面板组件_导航菜单"/>
+        <property name="source" value="/com/wellsoft/pt/app/js/tpl/mobile/wMobilePanel-navMenu.html"/>
+    </bean>
+    <!-- 手机端_弹出框 -->
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-appModal-dialog"/>
+        <property name="name" value="手机端_弹出框"/>
+        <property name="source" value="/com/wellsoft/pt/app/js/tpl/mobile/mui-appModal-dialog.html"/>
+    </bean>
+    <!-- 手机端_表单_字段 默认格式 -->
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-DyformField-placeHolder-default"/>
+        <property name="name" value="手机端_表单_字段 默认格式"/>
+        <property name="source" value="/com/wellsoft/pt/app/js/tpl/mobile/mui-DyformField-placeHolder-default.html"/>
+    </bean>
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-DyformField-placeHolder-default-2"/>
+        <property name="name" value="手机端_表单_字段 默认双行格式"/>
+        <property name="source" value="/com/wellsoft/pt/app/js/tpl/mobile/mui-DyformField-placeHolder-default-2.html"/>
+    </bean>
+
+    <!-- 手机端_表单_多行文本框 默认格式 -->
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-DyformField-placeHolder-textarea"/>
+        <property name="name" value="手机端_表单_字段 单行多文本框"/>
+        <property name="source" value="/com/wellsoft/pt/app/js/tpl/mobile/mui-DyformField-placeHolder-textarea.html"/>
+    </bean>
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-DyformField-placeHolder-textarea-2"/>
+        <property name="name" value="手机端_表单_字段 双行多文本框"/>
+        <property name="source" value="/com/wellsoft/pt/app/js/tpl/mobile/mui-DyformField-placeHolder-textarea-2.html"/>
+    </bean>
+    <!-- 手机端_表单_简易富文本 默认格式 -->
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-DyformField-placeHolder-richEditor"/>
+        <property name="name" value="手机端_表单_字段 简易富文本输入框"/>
+        <property name="source" value="/com/wellsoft/pt/app/js/tpl/mobile/mui-DyformField-placeHolder-richeditor.html"/>
+    </bean>
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-DyformField-placeHolder-richEditor-2"/>
+        <property name="name" value="手机端_表单_字段 简易富文本输入框"/>
+        <property name="source"
+                  value="/com/wellsoft/pt/app/js/tpl/mobile/mui-DyformField-placeHolder-richeditor-2.html"/>
+    </bean>
+
+    <!-- 手机端_表单_字段 默认单选框 -->
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-DyformField-placeHolder-radio"/>
+        <property name="name" value="手机端_表单_字段 默认单选框"/>
+        <property name="source" value="/com/wellsoft/pt/app/js/tpl/mobile/mui-DyformField-placeHolder-radio.html"/>
+    </bean>
+    <!-- 手机端_表单_字段 默认复选框 -->
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-DyformField-placeHolder-checkbox"/>
+        <property name="name" value="手机端_表单_字段 默认复选框"/>
+        <property name="source" value="/com/wellsoft/pt/app/js/tpl/mobile/mui-DyformField-placeHolder-checkbox.html"/>
+    </bean>
+    <!-- 手机端_表单_字段 默认下拉框 -->
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-DyformField-placeHolder-select"/>
+        <property name="name" value="手机端_表单_字段 单行下拉框"/>
+        <property name="source" value="/com/wellsoft/pt/app/js/tpl/mobile/mui-DyformField-placeHolder-select.html"/>
+    </bean>
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-DyformField-placeHolder-select-2"/>
+        <property name="name" value="手机端_表单_字段多行下拉框"/>
+        <property name="source" value="/com/wellsoft/pt/app/js/tpl/mobile/mui-DyformField-placeHolder-select-2.html"/>
+    </bean>
+
+    <!-- 手机端_表单_字段 默认下拉框_多选 -->
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-DyformField-placeHolder-select-multiple"/>
+        <property name="name" value="手机端_表单_字段单行下拉框_多选"/>
+        <property name="source"
+                  value="/com/wellsoft/pt/app/js/tpl/mobile/mui-DyformField-placeHolder-select-multiple.html"/>
+    </bean>
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-DyformField-placeHolder-select-multiple-2"/>
+        <property name="name" value="手机端_表单_字段多行下拉框_多选"/>
+        <property name="source"
+                  value="/com/wellsoft/pt/app/js/tpl/mobile/mui-DyformField-placeHolder-select-multiple-2.html"/>
+    </bean>
+    <!-- 手机端_表单_数字控件  默认格式 -->
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-DyformField-placeHolder-number"/>
+        <property name="name" value="手机端_表单_字段 单行数字控件"/>
+        <property name="source" value="/com/wellsoft/pt/app/js/tpl/mobile/mui-DyformField-placeHolder-number.html"/>
+    </bean>
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-DyformField-placeHolder-number-2"/>
+        <property name="name" value="手机端_表单_字段 双行数字控件"/>
+        <property name="source" value="/com/wellsoft/pt/app/js/tpl/mobile/mui-DyformField-placeHolder-number-2.html"/>
+    </bean>
+    <!-- 手机端_表单_内嵌页面  默认格式 -->
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-DyformField-placeHolder-embedded"/>
+        <property name="name" value="手机端_表单_内嵌页面控件"/>
+        <property name="source" value="/com/wellsoft/pt/app/js/tpl/mobile/mui-DyformField-placeHolder-embedded.html"/>
+    </bean>
+    <!-- 手机端_表单_视图页面  默认格式 -->
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-DyformField-placeHolder-viewdisplay"/>
+        <property name="name" value="手机端_表单_视图页面控件"/>
+        <property name="source"
+                  value="/com/wellsoft/pt/app/js/tpl/mobile/mui-DyformField-placeHolder-viewdisplay.html"/>
+    </bean>
+    <!-- 手机端_流程_签署意见 -->
+    <bean parent="jsTemplate">
+        <property name="id" value="mui-WorkFlowOpinionEditor"/>
+        <property name="name" value="手机端_流程_签署意见"/>
+        <property name="source" value="/com/wellsoft/pt/app/js/tpl/mobile/mui-WorkFlowOpinionEditor.html"/>
+    </bean>
+</beans>

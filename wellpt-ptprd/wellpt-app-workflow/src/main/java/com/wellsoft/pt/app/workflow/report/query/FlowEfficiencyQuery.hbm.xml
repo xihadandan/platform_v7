@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="flowAverageCompletedTimeQuery">
+        <![CDATA[
+            select avg((cast(nvl(t1.end_time, sysdate) as date) - cast(t1.start_time as date)) * 24 * 60) as avg_completed_time
+            from wf_flow_instance t1
+                <if isNotBlank(whereSql)>
+                    left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                </if>
+            where 1 = 1 and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t1.uuid)
+                <if flowCompleted>
+                    and t1.end_time is not null
+                </if>
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listFlowAverageCompletedTimeQuery">
+        <![CDATA[
+            select * from (
+                select avg((cast(nvl(t1.end_time, sysdate) as date) - cast(t1.start_time as date)) * 24 * 60) as avg_completed_time,
+                       t1.name  as name,
+                       t1.id    as id
+                from wf_flow_instance t1
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                    </if>
+                where 1 = 1 and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t1.uuid)
+                    <if flowCompleted>
+                        and t1.end_time is not null
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                group by t1.name, t1.id
+            ) t
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                <else>
+                    order by avg_completed_time desc
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="taskAverageDurationQuery">
+        <![CDATA[
+            select avg((cast(ti.end_time as date) - cast(ti.start_time as date)) * 24 * 60) as avg_duration
+            from wf_task_instance ti left join wf_flow_instance t1 on ti.flow_inst_uuid = t1.uuid
+                <if isNotBlank(whereSql)>
+                    left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                </if>
+            where ti.end_time is not null
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listTaskAverageDurationQuery">
+        <![CDATA[
+            select * from (
+                select avg((cast(ti.end_time as date) - cast(ti.start_time as date)) * 24 * 60) as avg_duration,
+                       t1.name  as name,
+                       t1.id    as id
+                from wf_task_instance ti left join wf_flow_instance t1 on ti.flow_inst_uuid = t1.uuid
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                    </if>
+                where ti.end_time is not null
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                    group by t1.name, t1.id
+            ) t
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                <else>
+                    order by avg_duration desc
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listTaskAverageDurationByDefinitionQuery">
+        <![CDATA[
+            select * from (
+                select avg((cast(ti.end_time as date) - cast(ti.start_time as date)) * 24 * 60) as avg_duration,
+                       t1.name  as name,
+                       t1.id    as id,
+                       ti.id    as task_id,
+                       ti.name  as task_name
+                from wf_task_instance ti left join wf_flow_instance t1 on ti.flow_inst_uuid = t1.uuid
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                    </if>
+                where ti.end_time is not null
+                    <if flowCompleted>
+                        and t1.end_time is not null
+                    </if>
+                    <if isNotBlank(flowDefId)>
+                        and t1.id = :flowDefId
+                    </if>
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+                    group by t1.name, t1.id, ti.id, ti.name
+            ) t
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="taskCompletedCountQuery">
+        <![CDATA[
+            select sum(count(distinct ti.id)) as count
+            from wf_task_instance ti left join wf_flow_instance t1 on ti.flow_inst_uuid = t1.uuid
+                <if isNotBlank(whereSql)>
+                    left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                </if>
+            where ti.end_time is not null
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                group by ti.flow_inst_uuid
+	    ]]>
+    </sql-query>
+
+    <sql-query name="flowEfficiencyTaskAllCountQuery">
+        <![CDATA[
+            select count(*) as count
+            from wf_task_instance ti left join wf_flow_instance t1 on ti.flow_inst_uuid = t1.uuid
+                <if isNotBlank(whereSql)>
+                    left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                </if>
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listFlowCompletedTimeDetailQuery">
+        <![CDATA[
+            select * from (
+                select  t1.uuid             as uuid,
+                        t1.title            as title,
+                        t1.name             as name,
+                        t1.id               as id,
+                        t1.start_user_id    as start_user_id,
+                        u.user_name         as start_user_name,
+                        t1.start_time       as start_time,
+                        t1.end_time         as end_time,
+                        ti.task_count       as task_count,
+                        (cast(nvl(t1.end_time, sysdate) as date) - cast(t1.start_time as date)) * 24 * 60 as duration
+                from wf_flow_instance t1
+                    left join user_info u on t1.start_user_id = u.user_id
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                    </if>
+                    left join (
+                        select count(ti.flow_inst_uuid) as task_count, ti.flow_inst_uuid as flow_inst_uuid
+                        from wf_task_instance ti where ti.end_time is not null
+                        group by ti.flow_inst_uuid
+                    ) ti on ti.flow_inst_uuid = t1.uuid
+                where 1 = 1 and exists(select 1 from wf_task_instance ti where ti.flow_inst_uuid = t1.uuid)
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                <else>
+                    order by duration desc
+                </if>
+	    ]]>
+    </sql-query>
+
+    <sql-query name="listTaskDurationDetailQuery">
+        <![CDATA[
+            select * from (
+                select  ti.uuid         as uuid,
+                        t1.title        as title,
+                        t1.name         as name,
+                        t1.id           as id,
+                        ti.start_time   as start_time,
+                        ti.end_time     as end_time,
+                        ti.id           as task_id,
+                        ti.name         as task_name,
+                        ti.type         as task_type,
+                        ti.owner        as owner,
+                        (cast(ti.end_time as date) - cast(ti.start_time as date)) * 24 * 60 as duration
+                from wf_task_instance ti left join wf_flow_instance t1 on ti.flow_inst_uuid = t1.uuid
+                    <if isNotBlank(flowInstWhereSql)>
+                        left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                    </if>
+                where ti.end_time is not null
+                    <if isNotBlank(flowInstWhereSql)>
+                        and ${flowInstWhereSql}
+                    </if>
+            ) t
+            where 1 = 1
+                <if isNotBlank(whereSql)>
+                    and ${whereSql}
+                </if>
+                <if isNotBlank(orderBy)>
+                    ${orderBy}
+                </if>
+	    ]]>
+    </sql-query>
+
+</hibernate-mapping>

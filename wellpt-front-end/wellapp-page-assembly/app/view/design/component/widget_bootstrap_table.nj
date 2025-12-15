@@ -1,0 +1,913 @@
+<div id="widget_bootstrap_table">
+  <form id="widget_bootstrap_table_form" class="form-horizontal">
+    <div id="widget_bootstrap_table_tabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#widget_bootstrap_table_tabs_base_info">基础信息</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_bootstrap_table_tabs_column_info">列定义</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_bootstrap_table_tabs_query_info">查询定义</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_bootstrap_table_tabs_button_info">按钮定义</a>
+        </li>
+        <li role="presentation">
+        <li >
+          <a href="#widget_bootstrap_table_tabs_status_info">状态标记</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_bootstrap_table_tabs_sort_info">默认排序</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_bootstrap_table_tabs_treeorcard_info">树形/卡片列表</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_bootstrap_table_tabs_export_info">导出配置</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_bootstrap_table_tabs_import_info">导入配置</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_bootstrap_table_tabs_js_event_info">表格事件</a>
+        </li>
+      </ul>
+
+      <div class="tab-content" style="height: 500px">
+        {# Tab #1: 基本信息页面 #}
+        <div role="tabpanel" class="tab-pane active" id="widget_bootstrap_table_tabs_base_info">
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label required">名称</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" name="name" id="name"/>
+            </div>
+          </div>
+
+          <div class="form-group hide">
+            <label for="categoryCode" class="col-sm-2 control-label required">分类</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="categoryName" id="categoryName"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="categoryCode" name="categoryCode"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="dataStoreId" class="col-sm-2 control-label required">数据仓库</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="dataStoreName" id="dataStoreName"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="dataStoreId" name="dataStoreId"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="resetConfigurationOnDataStoreChange" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input type="checkbox" class="w-checkbox w-checkbox" id="resetConfigurationOnDataStoreChange" name="resetConfigurationOnDataStoreChange" checked="checked"/>
+                <label for="resetConfigurationOnDataStoreChange">数据仓库变更时重置列定义、查询定义、默认排序等配置(该配置非组件定义配置项)</label>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" name="jsModule" id="jsModule"/>
+              <input type="hidden" class="form-control w-configurer-option" height="34px" name="jsModuleName" id="jsModuleName"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="default-condition" class="col-sm-2 control-label">默认查询条件</label>
+            <div class="col-sm-10">
+              <pre style="min-height: 100px" name="default-condition" id="default-condition"></pre>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lazyData" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input type="checkbox" id="lazyData" name="lazyData" class="w-configurer-option"/>
+                <label for="lazyData">初始化时不加载数据</label>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="height" class="col-sm-2 control-label">每页条数</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" value="10" height="34px" name="pageSize" id="pageSize"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="width" class="col-sm-2 control-label">宽度</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" name="width" id="width"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="height" class="col-sm-2 control-label">高度</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" name="height" id="height"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="pageStyle" class="col-sm-2 control-label">分页选项</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="pageStyle" id="pageStyle" style="width: 100%"/>
+              <input type="hidden" class="form-control w-configurer-option" height="34px" id="pageStyleName" name="pageStyleName"/>
+              <input class="w-configurer-option hidden" type="checkbox" id="pagination" name="pagination" value="false"/>
+            </div>
+          </div>
+
+          <div id="div_page_definition" style="display: none">
+            <div class="form-group pageStyle-default">
+              <label for="height" class="col-sm-2 control-label">分页数组</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option" height="34px" name="pageList" id="pageList"/>
+              </div>
+              <div class="col-sm-offset-2 col-sm-10">
+                <label class="checkbox-inline">
+                  <input class="w-configurer-option w-checkbox" type="checkbox" id="jumpPage" name="jumpPage" value="true"/>
+                  <label for="jumpPage">开启跳页输入</label>
+                </label>
+                <label class="checkbox-inline">
+                  <input class="w-configurer-option w-checkbox" type="checkbox" id="hidePageList" name="hidePageList" value="true"/>
+                  <label for="hidePageList">隐藏分页列表</label>
+                </label>
+                <label class="checkbox-inline">
+                  <input class="w-configurer-option w-checkbox" type="checkbox" id="hideTotalPageText" name="hideTotalPageText" value="true"/>
+                  <label for="hideTotalPageText">隐藏总页数文本</label>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group pageStyle-waterfall">
+              <label for="height" class="col-sm-2 control-label">加载页操作文本</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option" height="34px" name="waterfallPageLabel" id="waterfallPageLabel" placeholder="加载更多"/>
+              </div>
+            </div>
+
+            <div class="form-group pageStyle-turn">
+              <label for="height" class="col-sm-2 control-label">上页操作文本</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control w-configurer-option" height="34px" name="prePageLabel" id="prePageLabel" placeholder="上一页"/>
+              </div>
+              <label for="height" class="col-sm-2 control-label">下页操作文本</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control w-configurer-option" height="34px" name="nextPageLabel" id="nextPageLabel" placeholder="下一页"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="maxRows" class="col-sm-2 control-label required">
+              单元格数据
+              <br/>
+              最多行数
+            </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" name="maxRows" id="maxRows"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="rowClass" class="col-sm-2 control-label">行头修饰</label>
+            <div class="col-sm-10">
+              <select class="form-control w-configurer-option" height="34px" name="rowClass" id="rowClass" multiple="multiple">
+                <option value="dot-1" class="dot-1">dot-1</option>
+                <option value="dot-2" class="dot-2">dot-2</option>
+                <option value="dot-3" class="dot-3">dot-3</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="multiSelect" class="col-sm-2 control-label">其他选项</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option w-checkbox" type="checkbox" id="hideChecked" name="hideChecked" value="true"/>
+                <label for="hideChecked">禁用选择</label>
+              </label>
+              <label class="checkbox-inline">
+                <input class="w-configurer-option w-checkbox" type="checkbox" id="multiSelect" name="multiSelect" value="true"/>
+                <label for="multiSelect">启用多选</label>
+              </label>
+              <label class="checkbox-inline">
+                <input class="w-configurer-option w-checkbox" type="checkbox" id="clickToSelect" name="clickToSelect" value="true"/>
+                <label for="clickToSelect">单击选中</label>
+              </label>
+              <label class="checkbox-inline">
+                <input class="w-configurer-option w-checkbox" type="checkbox" id="hideColumnHeader" name="hideColumnHeader" value="true"/>
+                <label for="hideColumnHeader">隐藏标题</label>
+              </label>
+              <label class="checkbox-inline">
+                <input class="w-configurer-option w-checkbox" type="checkbox" id="hideTdBorder" name="hideTdBorder" value="true"/>
+                <label for="hideTdBorder">隐藏表格内容左右边框</label>
+              </label>
+              <br/>
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="hideColumnIndex" name="hideColumnIndex" value="false"/>
+                <label for="hideColumnIndex">隐藏序号</label>
+              </label>
+              <label class="checkbox-inline">
+                <input class="w-configurer-option w-checkbox" type="checkbox" id="paginationStackColumnIndex" name="paginationStackColumnIndex" value="false"/>
+                <label for="paginationStackColumnIndex">序号分页递增</label>
+              </label>
+              <br/>
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="fixedColumns" name="fixedColumns" value="false"/>
+                <label for="fixedColumns">表格列冻结</label>
+
+              </label>
+
+              <br/>
+              <div id="fixedTableColumnsSet" style="display:none;" class="fixed-table-columns-set">
+                <span class="set-items">冻结表格列前
+                  <input type="number" class="form-control w-configurer-option" name="fixedNumber" id="fixedNumber" value="1" min="0" style="display: inline-block; width: 100px"/>
+                  列</span>
+                <span class="set-items">冻结表格列后
+                  <input type="number" class="form-control w-configurer-option" name="fixedRightNumber" id="fixedRightNumber" value="0" min="0" style="display: inline-block; width: 100px"/>
+                  列</span>
+                <div class="items-explain" style="margin-top:5px;">设置表格显示时的冻结列，冻结的列不受表格左右拖动影响，冻结列为0时表示不冻结</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-sm-2 control-label">用户自定义选项</label>
+            <div class="col-sm-10">
+              {# <div style="margin-top:5px;">
+                <div class="switch-wrap active" id="userSelfSetSwitch">
+                  <span class="switch-radio"></span>
+                </div>
+                <input type="hidden" id="userSelfSet" name="userSelfSet" class="form-control w-configurer-option" value="true">
+						  </div> #}
+              {# <br/> #}
+              <div id="userSelfSetBox" class="fixed-table-columns-set">
+                <div style="margin-top:5px;">
+                  <span style="margin-right:20px;display:inline-block;width:84px;">自定义表格</span>
+                  <div class="switch-wrap active" id="showColumnsSwitch">
+                    <span class="switch-radio"></span>
+                  </div>
+                  <input type="hidden" id="showColumns" name="showColumns" class="form-control w-configurer-option" value="true">
+                  <span style="margin-left:30px;" class="items-explain">用户可自定义表格显示的列、列顺序、冻结表格列</span>
+                </div>
+                {# <div style="margin-top:5px;">
+                  <span style="margin-right:20px;display:inline-block;width:84px;">自定义冻结列</span>
+
+                  <div class="switch-wrap " id="fixedColumnsSwitch">
+                    <span class="switch-radio"></span>
+                  </div>
+                  <input type="hidden" id="fixedColumns" name="fixedColumns" class="form-control w-configurer-option" value="false">
+                  <span style="margin-left:30px;" class="items-explain">用户可选择将表格前、后几列冻结固定</span>
+                </div> #}
+                <div style="margin-top:5px;">
+                  <span style="margin-right:20px;display:inline-block;width:84px;">拖动调整列宽</span>
+
+                  <div class="switch-wrap active" id="columnDndSwitch">
+                    <span class="switch-radio"></span>
+                  </div>
+                  <input type="hidden" id="columnDnd" name="columnDnd" class="form-control w-configurer-option" value="true">
+                  <span style="margin-left:30px;" class="items-explain">用户可拖动列标题调整列宽</span>
+
+                </div>
+
+                {# <div class="items-explain" style="margin-top:5px;">(开启自定义固定列和自定义列宽只能二选一)</div> #}
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="" class="col-sm-2 control-label">自动刷新数据</label>
+            <div class="col-sm-10">
+              <div style="margin-top:5px;">
+                <div class="switch-wrap" id="autoRefreshSetSwitch">
+                  <span class="switch-text switch-open">开启</span>
+                  <span class="switch-radio"></span>
+                  <span class="switch-text switch-close">关闭</span>
+                </div>
+                <input type="hidden" id="autoRefresh" name="autoRefresh" class="form-control w-configurer-option" value="true">
+              </div>
+              <div id="autoRefreshSetBox" class="fixed-table-columns-set">
+                <div style="margin-top:5px;">
+                  <span style="margin-right:20px;display:inline-block;width:84px;">刷新频率</span>
+                  <div class="" id="" style="width: 120px;display: inline-table;">
+                    <input type="number" class="form-control w-configurer-option" name="autoRefreshTime" id="autoRefreshTime" value="60" min='30'>
+                    <span class="input-group-addon">秒</span>
+                  </div>
+                  <span style="margin-left:30px;" class="items-explain">表格数据将按照该频率自动刷新，最小频率30秒</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="formatNoMatchText" class="col-sm-2 control-label">查无数据提示语</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" name="formatNoMatchText" id="formatNoMatchText" placeholder="没有找到匹配的记录"/>
+            </div>
+          </div>
+          {% include "./widget_base_info.nj" %}
+        </div>
+
+        {# Tab #2: 列定义页面 #}
+        <div role="tabpanel" class="tab-pane" id="widget_bootstrap_table_tabs_column_info">
+          <div id="div_column_toolbar" class="btn-group btn_column_info">
+            <button id="btn_add_column" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              新增
+            </button>
+            <button id="btn_delete_column" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              删除
+            </button>
+            <button id="btn_row_up_column" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+              上移
+            </button>
+            <button id="btn_row_down_column" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+              下移
+            </button>
+          </div>
+
+          <table id="table_column_info" class="definition_info" data-height="400"></table>
+        </div>
+
+        {# Tab #3: 查询定义页面 #}
+        <div role="tabpanel" class="tab-pane" id="widget_bootstrap_table_tabs_query_info">
+          <div class="form-group">
+            <label class="col-sm-1 control-label" style="width: 88px">搜索类型</label>
+            <div class="col-sm-10">
+              <label class="radio-inline">
+                <input class="w-configurer-option w-radio" type="radio" id="queryType_1" value="keywordFieldQueryWrap" name="queryType"/>
+                <label for="queryType_1">关键字/高级字段搜索</label>
+              </label>
+              <label class="radio-inline">
+                <input class="w-configurer-option w-radio" type="radio" id="queryType_2" value="propertyQueryWrap" name="queryType"/>
+                <label for="queryType_2">属性搜索</label>
+              </label>
+            </div>
+          </div>
+
+          {# Tab #3: 查询定义页面 - 关键字搜索 #}
+          <div id="keywordFieldQueryWrap" class="query-type-wrap" style="display: none">
+            <div class="form-group">
+              <div class="col-sm-12">
+                <label class="checkbox-inline">
+                  <input class="w-configurer-option w-checkbox" type="checkbox" value="true" id="keyword" name="keyword"/>
+                  <label for="keyword">关键字搜索</label>
+                </label>
+                <label class="checkbox-inline">
+                  <input class="w-configurer-option w-checkbox" type="checkbox" value="true" id="fieldSearch" name="fieldSearch"/>
+                  <label for="fieldSearch">高级搜索</label>
+                </label>
+                <label class="checkbox-inline " style="color: red">(请先勾选搜索再对对应搜索具体配置)</label>
+              </div>
+            </div>
+            <ul class="nav nav-tabs" role="tablist">
+              <li id="keywordConfigTab" role="presentation">
+                <a href="#keywordConfig" aria-controls="keywordConfig" role="tab" data-toggle="tab">关键字搜索配置</a>
+              </li>
+              <li id="fieldsConfigTab" role="presentation">
+                <a href="#fieldsConfig" aria-controls="fieldsConfig" role="tab" data-toggle="tab">高级字段搜索配置</a>
+              </li>
+            </ul>
+
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane" id="keywordConfig">
+                <div id="div_keyword_search_info" class="form-group" style="padding-left: 10px; padding-right: 10px">
+                  <div class="form-group">
+                    <div class="col-sm-12">
+                      <label class="checkbox-inline">
+                        <input class="w-configurer-option w-checkbox" type="checkbox" value="true" id="multiKeyword" name="multiKeyword"/>
+                        <label for="multiKeyword">开启组合关键字搜索(关键字搜索不允许选择时间字段)</label>
+                      </label>
+                      <label class="checkbox-inline hidden">
+                        <input class="w-configurer-option w-checkbox" type="checkbox" value="true" id="allowSaveTemplate" name="allowSaveTemplate"/>
+                        <label for="allowSaveTemplate">允许保存为模板</label>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div id="multiKeywordWrap" style="display: none">
+                    <div id="div_multi_keyword_search_info_toolbar" class="btn-group btn_field_search_info">
+                      <button id="btn_add_multi_keyword" type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        新增
+                      </button>
+                      <button id="btn_delete_multi_keyword" type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        删除
+                      </button>
+                      <button id="btn_row_up_multi_keyword" type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                        上移
+                      </button>
+                      <button id="btn_row_down_multi_keyword" type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                        下移
+                      </button>
+                    </div>
+
+                    <table id="table_multi_keyword_search_info" class="definition_info" data-height="430"></table>
+                  </div>
+                </div>
+              </div>
+
+              <div role="tabpanel" class="tab-pane" id="fieldsConfig">
+                <div id="div_field_search_info" class="form-group" style="padding-left: 10px; padding-right: 10px">
+                  <div class="form-group">
+                    <div class="col-sm-3">
+                      <label class="checkbox-inline">
+                        <input class="w-configurer-option w-checkbox" type="checkbox" value="true" id="expandFieldSearch" name="expandFieldSearch"/>
+                        <label for="expandFieldSearch">默认展开字段查询</label>
+                      </label>
+                    </div>
+                    <div class="col-sm-5">
+                      <label style="font-weight: normal">每行列数:</label>
+                      <input type="number" class="form-control w-configurer-option" name="fieldRowColumns" id="fieldRowColumns" value="3" min="1" max="4" style="display: inline-block; width: 100px"/>
+                    </div>
+                  </div>
+                  <div id="div_field_search_info_toolbar" class="btn-group btn_field_search_info">
+                    <button id="btn_add_field" type="button" class="btn btn-default">
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                      新增
+                    </button>
+                    <button id="btn_delete_field" type="button" class="btn btn-default">
+                      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                      删除
+                    </button>
+                    <button id="btn_row_up_field" type="button" class="btn btn-default">
+                      <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                      上移
+                    </button>
+                    <button id="btn_row_down_field" type="button" class="btn btn-default">
+                      <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                      下移
+                    </button>
+                  </div>
+
+                  <table id="table_field_search_info" class="definition_info" data-height="430"></table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {# Tab #3: 查询定义页面 - 属性搜索 #}
+          <div id="propertyQueryWrap" class="query-type-wrap" style="display: none">
+            <div id="propertyWrap">
+              <div id="div_property_search_info_toolbar" class="btn-group btn_field_search_info">
+                <button id="btn_add_property" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  新增
+                </button>
+                <button id="btn_delete_property" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  删除
+                </button>
+                <button id="btn_row_up_property" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                  上移
+                </button>
+                <button id="btn_row_down_property" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                  下移
+                </button>
+              </div>
+              <table id="table_property_search_info" class="definition_info" data-height="430"></table>
+            </div>
+          </div>
+        </div>
+
+        {# Tab #4: 按钮定义页面 #}
+        <div role="tabpanel" class="tab-pane" id="widget_bootstrap_table_tabs_button_info">
+          <div id="div_button_info_toolbar" class="btn-group btn_button_info">
+            <button id="btn_add_button" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              新增
+            </button>
+            <button id="btn_delete_button" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              删除
+            </button>
+            <button id="btn_row_up_button" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+              上移
+            </button>
+            <button id="btn_row_down_button" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+              下移
+            </button>
+          </div>
+
+          <table id="table_button_info" class="definition_info" data-height="400"></table>
+        </div>
+
+        {# Tab #5: 状态标记页面 #}
+        <div role="tabpanel" class="tab-pane" id="widget_bootstrap_table_tabs_status_info">
+          <div class="status-title">常用状态标记</div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">已读未读
+              <div class="read-tooltip">
+                <i class="iconfont icon-ptkj-tishishuoming"></i>
+                <div class="read-tooltip-content">开启已读未读功能，打开文档将自动标记已读状态，并区分已读未读的样式。</div>
+              </div>
+            </label>
+            <div class="col-sm-10">
+              <input value="0" type="hidden" name="readStatus" id="readStatus" class="w-configurer-option"/>
+              <div class="switch-wrap" style="margin-top:7px;" id="readStatusSetSwitch">
+                <span class="switch-radio"></span>
+              </div>
+              <p class="status-open" style="display:none;margin-top:10px;color:#999;">用户打开文档时将自动标记为已读</p>
+            </div>
+          </div>
+          <div class="form-group status-open" style="display:none;" id="readStatusSetBox">
+            <label class="col-sm-2 control-label required">标记数据主键</label>
+            <div class="col-sm-10">
+              <input type="text" name="tagDataKeyName" id="tagDataKeyName" class="w-configurer-option"/>
+              <input type="hidden" name="tagDataKey" id="tagDataKey" class="w-configurer-option"/>
+            </div>
+          </div>
+        </div>
+
+        {# Tab #5: 默认排序页面 #}
+        <div role="tabpanel" class="tab-pane" id="widget_bootstrap_table_tabs_sort_info">
+          <div id="div_sort_toolbar" class="btn-group btn_sort_info">
+            <button id="btn_add_sort" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              新增
+            </button>
+            <button id="btn_delete_sort" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              删除
+            </button>
+            <button id="btn_row_up_sort" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+              上移
+            </button>
+            <button id="btn_row_down_sort" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+              下移
+            </button>
+          </div>
+
+          <table id="table_sort_info" class="definition_info" data-height="450"></table>
+        </div>
+
+        {# Tab #6: 树形卡片页面 #}
+        <div role="tabpanel" class="tab-pane" id="widget_bootstrap_table_tabs_treeorcard_info">
+          <div class="form-group">
+            <label for="enableTreegrid" class="col-sm-2 control-label">树形列表</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option w-checkbox" type="checkbox" id="enableTreegrid" name="enableTreegrid" value="true"/>
+                <label for="enableTreegrid">启用树形列表</label>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group div_treegrid_definition">
+            <label for="allPageDataTreeFormate" class="col-sm-2 control-label">树形数据</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option w-checkbox" type="checkbox" id="allPageDataTreeFormate" name="allPageDataTreeFormate" value="true"/>
+                <label for="allPageDataTreeFormate">全部页的数据</label>
+              </label>
+              <br/>
+              <label class="text-info">注:默认只对当前页的数据进行树形结构化</label>
+            </div>
+          </div>
+
+          <div class="form-group div_treegrid_definition">
+            <label for="treeView" class="col-sm-2 control-label">默认视图</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option w-checkbox" type="checkbox" id="treeView" name="treeView" value="true"/>
+                <label for="treeView">默认树形列表视图(与默认卡片列表视图互斥)</label>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group div_treegrid_definition">
+            <label for="treeCascadeCheck" class="col-sm-2 control-label">级联勾选</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option w-checkbox" type="checkbox" id="treeCascadeCheck" name="treeCascadeCheck" value="true"/>
+                <label for="treeCascadeCheck">级联全选/反选子节点</label>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group div_treegrid_definition">
+            <label class="col-sm-2 control-label">默认树形态</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" id="initTreeShowStyle" name="initTreeShowStyle" value="EXPAND_ALL"/>
+            </div>
+          </div>
+
+          <div class="form-group div_treegrid_definition">
+            <label for="collapseIcon" class="col-sm-2 control-label">折叠图标</label>
+            <div class="col-sm-10">
+              <input type="hidden" name="collapseIcon" id="collapseIcon" class="form-control w-configurer-option treeIconClass" value="glyphicon glyphicon-chevron-right"/>
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <button type="button" class="btn btn-primary iconSelectBtn">选择图标</button>
+            </div>
+          </div>
+
+          <div class="form-group div_treegrid_definition">
+            <label for="expandIcon" class="col-sm-2 control-label">展开图标</label>
+            <div class="col-sm-10">
+              <input type="hidden" name="expandIcon" id="expandIcon" class="form-control w-configurer-option treeIconClass" value="glyphicon glyphicon-chevron-down"/>
+              <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+              <button type="button" class="btn btn-primary iconSelectBtn">选择图标</button>
+            </div>
+          </div>
+
+          <div class="form-group div_treegrid_definition">
+            <label for="allPageDataTreeFormate" class="col-sm-2 control-label">树构造方式</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" id="treeBuildType" name="treeBuildType"/>
+            </div>
+          </div>
+
+          <div class="treeBuildType treegrid_multiField">
+            {# 该配置暂时无用 #}
+            <div class="form-group XXXXXXXXXX_div_treegrid_definition" style="display: none">
+              <label for="treeNodeDisplayField" class="col-sm-2 control-label required">节点显示字段</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option" height="34px" id="treeNodeDisplayField" name="treeNodeDisplayField"/>
+                <label class="text-info">注:树节点值的展示字段</label>
+              </div>
+            </div>
+
+            <div class="form-group div_treegrid_definition">
+              <label for="treeNodeDisplayField" class="col-sm-2 control-label required">末级行数据树形</label>
+              <div class="col-sm-10">
+                <label class="checkbox-inline">
+                  <input class="w-configurer-option w-checkbox" type="checkbox" id="lastLevelDataParentTree" name="lastLevelDataParentTree" value="true"/>
+                  <label for="lastLevelDataParentTree">末级行数据按父级字段构造</label>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="treeBuildType treegrid_parentField">
+            <div class="form-group div_treegrid_definition">
+              <label for="parentIdField" class="col-sm-2 control-label required">节点父字段</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option" height="34px" id="parentIdField" name="parentIdField"/>
+                <label class="text-info">注:节点主键字段在“列定义”->“是否主键”定义</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="treeBuildType treegrid_multiField">
+            <div class="div_treegrid_definition">
+              <div id="div_tree_node_toolbar" class="btn-group btn_tree_node_info">
+                <button id="btn_add_tree_node" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  新增
+                </button>
+                <button id="btn_delete_tree_node" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  删除
+                </button>
+                <button id="btn_row_up_tree_node" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                  上移
+                </button>
+                <button id="btn_row_down_tree_node" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                  下移
+                </button>
+              </div>
+
+              <table id="table_tree_node_info" class="definition_info" data-height="450"></table>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="enableCardgrid" class="col-sm-2 control-label">卡片列表</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-card-grid-configurer-option w-checkbox" type="checkbox" id="enableCardgrid" name="enableCardgrid" value="true"/>
+                <label for="enableCardgrid">启用卡片列表</label>
+              </label>
+              <input class="w-card-grid-configurer-option" type="hidden" id="usedIndividualCardGroup" name="usedIndividualCardGroup"/>
+              <span style="margin-left: 10px; position: relative; top: 5px">
+                <i class="iconfont icon-ptkj-tishishuoming"></i>
+                启用后，可以在【按钮定义】中配置卡片列表组别！
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group div_cardgrid_definition">
+            <label for="gridColumn" class="col-sm-2 control-label">卡片列数</label>
+            <div class="col-sm-10">
+              <input class="form-control w-card-grid-configurer-option" type="text" id="gridColumn" name="gridColumn" value="3"/>
+            </div>
+          </div>
+
+          <div class="form-group div_cardgrid_definition">
+            <label for="cardView" class="col-sm-2 control-label">默认视图</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-card-grid-configurer-option w-checkbox" type="checkbox" id="cardView" name="cardView" value="true"/>
+                <label for="cardView">默认卡片列表视图(与默认树形列表视图互斥)</label>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {# Tab #7: 导出配置 #}
+        <div role="tabpanel" class="tab-pane" id="widget_bootstrap_table_tabs_export_info">
+          <div class="form-group">
+            <label for="hasExport" class="col-sm-2 control-label">启用导出</label>
+            <div class="col-sm-10">
+              <label class="radio-inline">
+                <input class="w-configurer-option w-checkbox" type="checkbox" id="hasExport" name="hasExport" value="true"/>
+                <label for="hasExport"></label>
+              </label>
+            </div>
+          </div>
+
+          <div id="div_exprot_definition">
+            <div class="form-group">
+              <label for="exportBtn" class="col-sm-2 control-label">导出按钮</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option" height="34px" name="exportBtn" id="exportBtn"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="exportDataType" class="col-sm-2 control-label required">导出方式</label>
+              <div class="col-sm-10">
+                <label class="radio-inline">
+                  <input value="1" class="w-configurer-option w-checkbox" id="exportDataType_1" name="exportDataType" type="checkbox"/>
+                  <label for="exportDataType_1">全部</label>
+                </label>
+                <label class="radio-inline">
+                  <input value="2" class="w-configurer-option w-checkbox" id="exportDataType_2" name="exportDataType" type="checkbox"/>
+                  <label for="exportDataType_2">当前页</label>
+                </label>
+                <label class="radio-inline">
+                  <input value="3" class="w-configurer-option w-checkbox" id="exportDataType_3" name="exportDataType" type="checkbox"/>
+                  <label for="exportDataType_3">选中项</label>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="fileName" class="col-sm-2 control-label required">文件名称</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option" height="34px" name="fileName" id="fileName"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="exportTypes" class="col-sm-2 control-label required">导出类型</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control w-configurer-option" height="34px" name="exportTypes" id="exportTypes"/>
+                <input type="hidden" class="form-control w-configurer-option" height="34px" name="exportTypeShows" id="exportTypeShows"/>
+              </div>
+            </div>
+
+            <div style="display: none" id="exportTemplateHelp">{% include "./widget_bootstrap_table_export_help.nj" %}</div>
+
+            <div id="exportTemplateContainer" style="display: none">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">模板说明</label>
+                <div class="col-sm-10">
+                  <a href="javascript:void(0);" id="seeTemplateUseInfo">查看说明</a>
+                </div>
+              </div>
+              <div id="exportTemplateFileUpload"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="exportTypes" class="col-sm-2 control-label">导出前事件处理</label>
+              <div class="col-sm-10">
+                <pre style="min-height: 300px" name="before-export-code" id="before-export-code"></pre>
+              </div>
+            </div>
+          </div>
+          <div class="export-title">导出列定义</div>
+          <div id="div_export_info_toolbar" class="btn-group btn_export_info">
+            <button id="btn_add_export" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              新增
+            </button>
+            <button id="btn_delete_export" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              删除
+            </button>
+            <button id="btn_row_up_export" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+              上移
+            </button>
+            <button id="btn_row_down_export" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+              下移
+            </button>
+          </div>
+
+          <table id="table_export_info" class="definition_info" data-height="430"></table>
+        </div>
+
+        {# Tab #8: 导入配置 #}
+        <div role="tabpanel" class="tab-pane" id="widget_bootstrap_table_tabs_import_info">
+          <div id="div_import_info_toolbar" class="btn-group btn_import_info">
+            <button id="btn_add_import" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              新增
+            </button>
+            <button id="btn_delete_import" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              删除
+            </button>
+            <button id="btn_row_up_import" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+              上移
+            </button>
+            <button id="btn_row_down_import" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+              下移
+            </button>
+          </div>
+
+          <table id="table_import_info" class="definition_info" data-height="430"></table>
+        </div>
+
+        {# Tab #9:表格事件 #}
+        <div role="tabpanel" class="tab-pane" id="widget_bootstrap_table_tabs_js_event_info">
+          <div class="form-group">
+            <div class="col-sm-3">
+              <ul class="nav nav-pills nav-stacked" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#beforeRender">组件渲染前</a>
+                </li>
+                <li role="presentation">
+                  <a href="#afterRender">组件渲染后</a>
+                </li>
+                <li role="presentation">
+                  <a href="#onPreBody">表格渲染前</a>
+                </li>
+                <li role="presentation">
+                  <a href="#onPostBody">表格渲染后</a>
+                </li>
+                <li role="presentation">
+                  <a href="#onPreButton">按钮渲染前</a>
+                </li>
+                <li role="presentation">
+                  <a href="#onMouseOver">鼠标移入表格行</a>
+                </li>
+                <li role="presentation">
+                  <a href="#onMouseOut">鼠标移出表格行</a>
+                </li>
+                <li role="presentation">
+                  <a href="#onMouseClick">鼠标点击表格行</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tab-content">
+              <div class="tab-pane col-sm-9 active" role="tabpanel" id="beforeRender">
+                <pre style="min-height: 400px" name="before-render-code" id="before-render-code"></pre>
+              </div>
+              <div class="tab-pane col-sm-9" role="tabpanel" id="afterRender">
+                <pre style="min-height: 400px" name="after-render-code" id="after-render-code"></pre>
+              </div>
+              <div class="tab-pane col-sm-9" role="tabpanel" id="onPreButton">
+                <pre style="min-height: 400px" name="on-pre-button-code" id="on-pre-button-code"></pre>
+              </div>
+              <div class="tab-pane col-sm-9" role="tabpanel" id="onPreBody">
+                <pre style="min-height: 400px" name="on-pre-body-code" id="on-pre-body-code"></pre>
+              </div>
+              <div class="tab-pane col-sm-9" role="tabpanel" id="onPostBody">
+                <pre style="min-height: 400px" name="on-post-body-code" id="on-post-body-code"></pre>
+              </div>
+              <div class="tab-pane col-sm-9" role="tabpanel" id="onMouseOver">
+                <pre style="min-height: 400px" name="on-mouseover-code" id="on-mouseover-code"></pre>
+              </div>
+              <div class="tab-pane col-sm-9" role="tabpanel" id="onMouseOut">
+                <pre style="min-height: 400px" name="on-mouseout-code" id="on-mouseout-code"></pre>
+              </div>
+              <div class="tab-pane col-sm-9" role="tabpanel" id="onMouseClick">
+                <pre style="min-height: 400px" name="on-mouse-click-code" id="on-mouse-click-code"></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

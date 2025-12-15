@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <!--模块定时任务查询-->
+    <sql-query name="appModuleJobManagerQuery">
+        <![CDATA[
+    select t1.uuid as uuid,
+           t1.create_time as create_time,
+           t1.creator as creator,
+           t1.modifier as modifier,
+           t1.modify_time as modify_time,
+           t1.rec_ver as rec_ver,
+           t1.name as name,
+           t1.id as id,
+           t1.code as code,
+           t1.job_class_name as jobClassName,
+           t1.system_unit_id as system_unit_id,
+           t1.module_id as module_id,
+           '' as state,
+           '' as next_fire_time,
+           t1.last_execute_instance as scheduler_instance_id
+      from task_job_details t1
+     where 1=1
+        <if moduleId??>
+        and t1.module_id=:moduleId
+		 </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+        <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+
+    ]]>
+
+
+    </sql-query>
+
+
+    <sql-query name="appModuleJobTriggerHisManagerQuery">
+        <![CDATA[
+    select t1.entry_id,t1.instance_name,t1.fired_time,t1.state,t1.execute_time,t1.finish_time
+      from QRTZ_FIRED_TRIGGERS_HIS t1
+     where 1=1
+        <if jobName??>
+        and t1.JOB_NAME=:jobName
+		 </if>
+		 <if jobGroup??>
+        and t1.JOB_GROUP=:jobGroup
+		 </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+        <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+
+    ]]>
+
+
+    </sql-query>
+
+
+</hibernate-mapping>

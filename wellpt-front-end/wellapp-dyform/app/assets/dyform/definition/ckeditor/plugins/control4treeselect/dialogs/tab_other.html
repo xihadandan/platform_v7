@@ -1,0 +1,233 @@
+<table>
+  <tr class="odd">
+    <td class="Label">显示值</td>
+    <td class="value">
+      <div style="margin-bottom: 15px">
+        <span style="font-size: 14px">取值逻辑</span>
+        <input id="allPathFalse" type="radio" value="false" name="allPath" />
+        <label for="allPathFalse">仅所选节点</label>
+        <input id="allPathTrue" type="radio" checked="checked" value="true" name="allPath" />
+        <label for="allPathTrue">全路径</label>
+      </div>
+      <!-- realDisplay.real is Deprecated -->
+      <!-- 真实值字段 -->
+      <select name="realDisplay_real" id="realDisplay_real" style="width: 200px; display: none">
+        <option value="">--请选择--</option>
+      </select>
+      映射至
+      <select name="realDisplay_display" id="realDisplay_display" style="width: 200px">
+        <option value="">--请选择--</option>
+      </select>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="Label">备选项来源</td>
+    <td class="value">
+      <input id="optionDataSource_1" type="radio" value="1" name="optionDataSource" />
+      <label for="optionDataSource_1">数据服务</label>
+      <input id="optionDataSource_3" type="radio" value="3" name="optionDataSource" />
+      <label for="optionDataSource_3">
+        数据字典
+        <div id="optionDataSourceTip" style="display: inline-block">
+          <i class="iconfont icon-ptkj-tishishuoming"></i>
+        </div>
+      </label>
+      <input id="optionDataSource_2" type="radio" value="2" name="optionDataSource" checked="checked" />
+      <label for="optionDataSource_2">数据仓库</label>
+    </td>
+  </tr>
+
+  <tr class="tr_serviceName">
+    <td class="Label">数据服务</td>
+    <td class="value">
+      <input
+        type="hidden"
+        id="serviceName"
+        name="serviceName"
+        placeholder="自定义的服务实现，例：dataDictionaryService.getAsTreeAsync('-1')"
+      />
+      <input type="hidden" id="newServiceName" name="newServiceName" />
+      <div style="font-size: 12px; color: #e30033">
+        数据接口为实现com.wellsoft.pt.basicdata.treecomponent.facade.support.TreeNodeDataProvider的服务类
+      </div>
+    </td>
+  </tr>
+
+  <!--字典-->
+  <tr class="tr_dicCode" hide="true">
+    <td class="Label">备选项动态设置</td>
+    <td class="value">
+      <input type="checkbox" value="0" name="optionDataAutoSet2" id="optionDataAutoSet2" class="switch" />
+      <label for="optionDataAutoSet2"></label>
+    </td>
+  </tr>
+
+  <tr class="tr_dicCode dicAutoSet1" hide="true">
+    <td class="Label">
+      <font style="color: red">*</font>
+      联动字段
+      <div id="relateFieldTip" style="display: inline-block">
+        <i class="iconfont icon-ptkj-tishishuoming"></i>
+      </div>
+    </td>
+    <td class="value">
+      <input type="text" id="relateField2" name="relateField2" placeholder="请选择" />
+    </td>
+  </tr>
+
+  <tr class="tr_dicCode">
+    <td class="Label">
+      <font style="color: red">*</font>
+      字典
+    </td>
+    <td class="value">
+      <div class="dicAutoSet1">根据联动字段的值读取（示例：联动字段【性别】，值【女】时，字典自动读取【女】对应的字典）</div>
+      <div class="dicAutoSet2">
+        <input id="dictName" class="w100" type="text" name="dictName" />
+        <input id="dictCode" type="hidden" class="w100" name="dictCode" />
+        <input id="dictUuid" type="hidden" class="w100" name="dictUuid" />
+        <ul id="datadict_tree" class="ztree"></ul>
+      </div>
+    </td>
+  </tr>
+
+  <tr class="tr_dicCode">
+    <td class="Label">树形配置字段</td>
+    <td class="value">
+      <label for="dictValueColumn">真实值字段：</label>
+      <div style="width: 100px; display: inline-block">
+        <input type="text" id="dictValueColumn" name="dictValueColumn" />
+      </div>
+      <div id="valueTip1" style="display: inline-block">
+        <i class="iconfont icon-ptkj-tishishuoming"></i>
+      </div>
+    </td>
+  </tr>
+
+  <tr class="tr_dicCode">
+    <td class="Label">
+      字典配置
+      <div id="optionDictTip" style="display: inline-block">
+        <i class="iconfont icon-ptkj-tishishuoming"></i>
+      </div>
+    </td>
+    <td class="value">
+      <input type="checkbox" name="" id="showRightBtn" value="true" />
+      <label for="showRightBtn">是否显示右侧更多操作</label>
+      <br />
+      <div class="showRightBtn" style="margin: 10px 0 0; display: none">
+        <input type="checkbox" name="" id="dicCodeAddBtn" value="true" />
+        <label for="dicCodeAddBtn">新增备选项</label>
+        <input type="checkbox" name="" id="dicCodeMoveUp" value="true" />
+        <label for="dicCodeMoveUp">选项上移</label>
+        <input type="checkbox" name="" id="dicCodeMoveDown" value="true" />
+        <label for="dicCodeMoveDown">选项下移</label>
+        <input type="checkbox" name="" id="dicCodeDelBtn" value="true" />
+        <label for="dicCodeDelBtn">删除备选项</label>
+      </div>
+    </td>
+  </tr>
+
+  <!--数据仓库-->
+  <tr class="tr_dataSource" hide="true">
+    <td class="Label">备选项动态设置</td>
+    <td class="value">
+      <input type="checkbox" value="0" name="optionDataAutoSet3" id="optionDataAutoSet3" class="switch" />
+      <label for="optionDataAutoSet3"></label>
+    </td>
+  </tr>
+
+  <tr class="tr_dataSource sourceAutoSet1" hide="true">
+    <td class="Label">
+      <font style="color: red">*</font>
+      联动字段
+    </td>
+    <td class="value">
+      <input type="text" id="relateField3" name="relateField3" placeholder="请选择" />
+    </td>
+  </tr>
+
+  <tr class="tr_dataSource">
+    <td class="Label">数据仓库</td>
+    <td class="value">
+      <input type="hidden" id="dataSourceText" name="dataSourceText" value="" style="width: 220px" />
+      <input type="text" id="dataSourceId" name="dataSourceId" value="" style="width: 220px" />
+    </td>
+  </tr>
+  <tr class="tr_dataSource">
+    <td class="Label">树形配置字段</td>
+    <td class="value">
+      <table>
+        <tr>
+          <td>
+            <label for="uniqueColumn">唯一值字段：</label>
+            <select name="uniqueColumn" id="uniqueColumn" style="width: 150px" class="dataSourceColumnSelect"></select>
+          </td>
+          <td>
+            <label for="parentColumn">父级值字段：</label>
+            <select name="parentColumn" id="parentColumn" style="width: 150px" class="dataSourceColumnSelect"></select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="valueColumn">真实值字段：</label>
+            <select name="valueColumn" id="valueColumn" style="width: 150px" class="dataSourceColumnSelect"></select>
+            <div id="valueTip2" style="display: inline-block">
+              <i class="iconfont icon-ptkj-tishishuoming"></i>
+            </div>
+          </td>
+          <td>
+            <label for="displayColumn">显示值字段：</label>
+            <select name="displayColumn" id="displayColumn" style="width: 150px" class="dataSourceColumnSelect"></select>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr class="tr_dataSource">
+    <td class="Label">默认条件</td>
+    <td class="value">
+      <!-- <textarea name="defaultCondition" id="defaultCondition" value="" rows="3" cols="85"></textarea> -->
+      <pre style="min-height: 100px" name="defaultCondition" id="defaultCondition"></pre>
+    </td>
+  </tr>
+
+  <tr class="odd">
+    <td class="Label">选择模式</td>
+    <td class="value">
+      <div class="tr_td_div_left" style="padding-top: 9px">
+        <input type="radio" name="mutiSelect" value="false" id="multiSelect1" />
+        <label for="multiSelect1">单选</label>
+        <input type="radio" name="mutiSelect" value="true" checked="checked" id="multiSelect2" />
+        <label for="multiSelect2">多选</label>
+        <input type="checkbox" name="selectParent" id="selectParent" value="true" />
+        <label for="selectParent">父级可选</label>
+        <input type="checkbox" name="showCheckAll" id="showCheckAll" value="true" />
+        <label for="showCheckAll">支持全选</label>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td class="Label">支持全部展开/折叠</td>
+    <td class="value">
+      <div class="tr_td_div_left" style="padding-top: 9px">
+        <input type="checkbox" name="expandAndCollapse" id="expandAndCollapse" value="true" />
+        <label for="expandAndCollapse">是</label>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td class="Label">
+      是否支持清空已选项
+      <div id="clearAllTip" style="display: inline-block">
+        <i class="iconfont icon-ptkj-tishishuoming"></i>
+      </div>
+    </td>
+    <td class="value">
+      <input type="checkbox" value="true" name="clearAll" id="clearAll" class="switch" />
+      <label for="clearAll"></label>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,159 @@
+<form action="" id="exchange_module_form" style="margin-top: 15px;">
+    <input type="hidden" id="uuid" name="uuid" />
+    <div class="well-form form-horizontal">
+        <div class="form-group">
+            <label class="well-form-label control-label">名称</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_name" name="name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">ID</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_id" name="id">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">编号</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_code" name="code">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">服务器IP</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_serverIp" name="serverIp">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">单位</label>
+            <div class="well-form-control">
+                <input id="exchange_unitId" name="unitId" type="hidden">
+                <input type="text" class="form-control" id="exchange_unitName" name="unitName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">上报数据类型</label>
+            <div class="well-form-control">
+                <input id="typeId" name="typeId" type="hidden">
+                <input type="text" class="form-control" id="typeName" name="typeName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">接收数据类型</label>
+            <div class="well-form-control">
+                <input id="typeId1" name="typeId1" type="hidden">
+                <input type="text" class="form-control" id="typeName1" name="typeName1">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">数据接收接口地址</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_receiveUrl" name="receiveUrl">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">上传结果回调接口地址</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_sendCallbackUrl" name="sendCallbackUrl">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">路由回调接口地址(商改平台使用)</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_routeCallbackUrl" name="routeCallbackUrl">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">回复消息告知接口地址(商改平台使用)</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_replyMsgUrl" name="replyMsgUrl">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">撤销接口地址(商改平台使用)</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_cancelUrl" name="cancelUrl">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">撤销回调接口地址(商改平台使用)</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_cancelCallbackUrl" name="cancelCallbackUrl">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">webServiceUrl</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_webServiceUrl" name="webServiceUrl">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">FTP服务器地址</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_ftpServerUrl" name="ftpServerUrl">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">FTP用户名</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_ftpUserName" name="ftpUserName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">FTP密码</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_ftpUserPassword" name="ftpUserPassword">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">FTP路径</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_ftpFilePath" name="ftpFilePath">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">证书主体</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_subjectDN" name="subjectDN">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">备注</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="exchange_remark" name="remark">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label no-suffix"></label>
+            <div class="well-form-control">
+                <input type="checkbox" id="exchange_isCallBack" name="isCallBack">
+                <label class="control-label" for="exchange_isCallBack">禁用回调</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">对接方式</label>
+            <div class="well-form-control">
+                <input id="exchange_exchangeType" name="exchangeType"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">发送位置</label>
+            <div class="well-form-control">
+                <input id="exchange_sendPosition" name="sendPosition"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label no-suffix"></label>
+            <div class="well-form-control">
+                <input type="checkbox" id="exchange_isEnableCa" name="isEnableCa">
+                <label for="exchange_isEnableCa" class="control-label">启用CA</label>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:30px;">
+        <div class="col-sm-12 text-center">
+            <button type="button" class="well-btn w-btn-primary" id="exchange_btn_save">保存</button>
+        </div>
+    </div>
+</form>

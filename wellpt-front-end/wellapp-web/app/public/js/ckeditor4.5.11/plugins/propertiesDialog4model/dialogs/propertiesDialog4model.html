@@ -1,0 +1,349 @@
+<div id="propertiesDialog4model" title='字段属性列表窗口'  >
+	<div> 
+		<div class="dyform">
+			<div class="post-sign">
+				<div class="post-detail" id="cpropertiesDialog">
+					<div class="pane ui-layout-north" style="overflow-y: auto;">
+					<!-- >>>从表信息 -->
+						<table id="subformtbl">
+							 
+						</table>
+					</div>   
+		 			<div class="pane ui-layout-center" style="overflow-y: auto;">
+		 			>>>双击选择字段
+						<table id="columnstbl">
+							 
+						</table>
+					</div>
+					  <div class="pane ui-layout-south"></div>   
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+
+
+var propertiesDialog4model = {}; 
+ 
+propertiesDialog4model.$ =  function(selector){ 
+	return $(selector, $("#propertiesDialog4model"));
+} 
+
+$.extend(propertiesDialog4model, $.ControlConfigUtil);
+
+
+propertiesDialog4model.deletedField=[];
+propertiesDialog4model.deletedSubform=[];
+
+$.extend(true, propertiesDialog4model, {
+
+	init : function(editor){
+		this.editor = editor; 
+		 // $(".cke_reset_all").removeClass("cke_reset_all");//删除ckeditor内部的局css
+		 
+		//初始化窗口布局
+		this.layout();
+		
+		var _this = this;
+		
+		if(formDefinition == null){
+			return;
+		}
+		
+		window.setTimeout(function(){
+			var fields = formDefinition.fields;
+			_this.fillFieldDefinition(fields);
+			//var subforms = formDefinition.subforms; 
+			//_this.fillSubformDefinition(subforms);
+		}, 100); 
+	},
+
+	layout : function(){
+		var widthHeight = getWidthAndHeight();
+		$("#cpropertiesDialog").css("width", widthHeight.width - 160);
+		$("#cpropertiesDialog").css("height", widthHeight.height -160);
+		//$("#cpropertiesDialog").css("padding", 80);
+		$('#cpropertiesDialog').layout({
+			 
+	         north: {
+	             size:                    300
+	          ,    spacing_open:            15
+	          //,    closable:                false
+	         // ,    resizable:                false 
+	       }
+		}); 
+	 
+		$(".pane ui-layout-center").css("width", "")
+		window.setTimeout(function(){  
+			 $(".ui-layout-toggler-south-open").trigger("click");
+			 $(".ui-layout-toggler-north-open").trigger("click");
+		}, 100); 
+	},
+
+	fillSubformDefinition  : function(subforms){
+		if(typeof subforms == "undefined" ){
+			return;
+		}
+		var index = 0;
+		for(var i in subforms){
+			index ++;
+		}
+		if(index == 0){
+			 $(".ui-layout-toggler-north-open").trigger("click");
+			return;
+		}
+		
+		
+		
+		var tr ="<tbody><tr class='title' >";
+		var th = "";
+		var colName = [ "表名", "显示名称","展示/折叠", "编辑模式", "展示操作按钮", "分组字段", "字段信息","操作"];
+		for(var i = 0 ; i < colName.length; i++){  
+			th += "<th>"
+			th += colName[i];
+			th += "</th>"; 
+		}
+		tr += th;
+		tr += "</tr></tbody>";
+		$("#subformtbl").append(tr);
+		
+		for(var i in subforms){ 
+			var subform = subforms[i]; 
+			
+			var isExistPlaceHolder = isPlaceholder(subform.formUuid, "subform");
+			
+			var ptr = "<tr"; 
+		 
+			
+			ptr += ">";
+			var ptd = "<td>"
+			ptd += subform.name;
+			ptd += "</td>"; 
+			
+
+			ptd += "<td>"
+			ptd += subform.displayName;
+			ptd += "</td>"; 
+			
+			
+			ptd += "<td>"
+			ptd +=  subform.tableOpen == dySubFormTableOpen.open ?"展开":"折叠"
+			ptd += "</td>"; 
+			
+			ptd += "<td>"
+			ptd += dySubFormEdittype.rowEdit == subform.editMode ? "行内编辑":"新窗口"
+			ptd += "</td>"; 
+			
+			ptd += "<td>"
+			ptd += dySubFormHideButtons.show == subform.hideButtons ? "展示":"隐藏"
+			ptd += "</td>"; 
+			
+			ptd += "<td>"
+			ptd +=  subform.groupShowTitle;
+			ptd += "</td>"; 
+			
+			ptd += "<td>"
+			for(var j in  subform.fields){
+				ptd += j + ";";
+			}
+			 
+			ptd += "</td>";  
+			
+			 
+			
+			ptd += "<td>"
+			ptd += "<a href='javascript:void(0)' onclick = \"deleteSubform('" +subform.formUuid  + "', this, " + isExistPlaceHolder + ")\">删除</a>"
+			ptd += "</td>";  
+			
+			ptr += ptd + "</tr>";
+			
+			$("#subformtbl").append(ptr);
+		}
+		
+
+		$('#subformtbl tr').hover(function(){
+			$(".odd").removeClass("odd");
+			 $(this).addClass("odd");
+		});
+		
+	},
+	fillFieldDefinition  : function(fields){ 
+		var tr ="<tbody><tr class='title' >";
+		var th = "";
+		var colName = [ "字段名", "显示名称","应用于", "数据库类型", "长度", "默认值", "控件类型", "值计算方式","编辑模式"];
+		for(var i = 0 ; i < colName.length; i++){  
+			th += "<th>"
+			th += colName[i];
+			th += "</th>"; 
+		}
+		tr += th;
+		tr += "</tr></tbody>";
+		this.$("#columnstbl").append(tr);
+		
+		
+		var index = 0;
+		for(var i in fields){ 
+			 
+			var field = fields[i]; 
+			/* if(dyFieldSysType.custom != field.sysType){
+				continue;
+			} */
+			var isExistPlaceHolder = isPlaceholder(i);
+			
+			var ptr = "<tr"; 
+			 
+			if(index % 2 != 0){
+				//ptr += " class='odd' ";
+			}
+			
+			ptr += ">";
+			var ptd = "<td>"
+			ptd += field.name;
+			ptd += "</td>"; 
+			
+
+			ptd += "<td>"
+			ptd += field.displayName;
+			ptd += "</td>"; 
+			
+			
+			ptd += "<td>"
+			ptd += getApplyToName(field.applyTo);
+			ptd += "</td>"; 
+			
+			ptd += "<td>"
+			ptd += getDbDataTypeName(field.dbDataType);
+			ptd += "</td>"; 
+			
+			ptd += "<td>"
+			ptd += field.length;
+			ptd += "</td>"; 
+			
+			ptd += "<td>"
+			ptd += field.defaultValue;
+			ptd += "</td>"; 
+			
+			ptd += "<td>"
+			ptd += getControlName(field.inputMode);
+			ptd += "</td>";  
+			
+			ptd += "<td>"
+			ptd += getValueCreateMethod(field.valueCreateMethod);
+			ptd += "</td>";  
+
+			ptd += "<td>"
+			ptd += getShowType(field.showType)
+			ptd += "</td>";
+			 
+			
+			ptr += ptd + "</tr>";
+			
+			this.$("#columnstbl").append(ptr);
+			index ++ ;
+		}
+		
+		var _this = this;
+		//alert(this.$('#columnstbl tr').size());
+		this.$('#columnstbl tr').hover(function(){ 
+			_this.$(".odd").removeClass("odd");
+			 $(this).addClass("odd");
+		});
+		
+		 
+		_this.$('#columnstbl tr:gt(0)').dblclick(function(){
+			//为表格行添加选择事件处理 
+			var fieldName = $(this).find("td:first").html(); 
+			var displayName =  $(this).find("td:eq(1)").html();
+			//var ctlHtml = "<input  name='" + fieldName + "' title='" + displayName +"' />";
+			var ctlHtml = "<img class=\"value\" name=\"" + fieldName  +"\" src=\"resources/ckeditor4.4.2/plugins/control4text/images/textctl.jpg\" title=\"" + displayName + "\" />";
+			var element = CKEDITOR.dom.element.createFromHtml( ctlHtml );
+			_this.editor.insertElement( element ); 
+			$(".cke_dialog_ui_button").trigger("click");
+		});  
+	 
+		
+		
+		
+	},
+
+	
+
+	/**
+	 * 收集数据
+	 */
+	collectData  : function(){ 
+		//删除字段
+		/*
+		//console.log(propertiesDialog.deletedField.length + " columns is deleted"); 
+		for(var i = 0; i < this.deletedField.length ; i ++){
+			var fieldName = this.deletedField[i];
+			
+			var isExistPlaceHolder = isPlaceholder(fieldName);//是否有占位符
+			
+			var fields = formDefinition.fields;
+			 var field = fields[fieldName];
+			 
+			if(isExistPlaceHolder){//删除占位符
+				var elems = getPlaceHolder(fieldName);
+				var elem = elems.getItem(0);  
+				elem.remove();
+			}
+			formDefinition.deleteField(fieldName);
+		}
+		
+		
+		//删除从表
+		for(var i = 0; i < this.deletedSubform.length; i++){
+			var formUuid = this.deletedSubform[i];
+			var isExistPlaceHolder = isPlaceholder(formUuid, "subform");//是否有占位符
+			if(isExistPlaceHolder){
+				//删除占位符
+				var subforms = getPlaceHolder(formUuid, "subform");
+				var subform = subforms.getItem(0); 
+				subform.remove();
+			}
+			
+			formDefinition.deleteSubform(formUuid);
+		}*/
+	}
+	
+	
+});
+
+function deleteField(fieldName, tag, isPlaceHolder){ 
+	 
+	$(tag).parent().parent().remove();//删除字段属性行
+	 propertiesDialog4model.deletedField.push(fieldName); 
+	 
+}
+
+function deleteSubform(formUuid, tag){
+	$(tag).parent().parent().remove();//删除从表属性行
+	propertiesDialog4model.deletedSubform.push(formUuid);
+}
+
+
+
+function getPlaceHolder(fieldName, type){
+	if(type == "subform"){
+		return propertiesDialog4model.editor.document.find("table[formUuid='" + fieldName + "']");
+	}else {
+		return propertiesDialog4model.editor.document.find("img[name='" + fieldName + "'][class='value']");
+	}
+	
+}
+
+function isPlaceholder(fieldName, type){
+	// alert(propertiesDialog.editor.document.find);
+	var elems = getPlaceHolder(fieldName, type);
+	if(elems.count() > 0){
+		return true;
+	}
+	return false;
+}
+
+
+
+</script>

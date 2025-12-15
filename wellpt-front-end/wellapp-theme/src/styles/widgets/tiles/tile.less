@@ -1,0 +1,1119 @@
+.ui-wTiles .panel {
+  display: flex;
+  flex-flow: column;
+
+  .panel-body {
+    flex: 1;
+  }
+}
+
+#tile-mixins() {
+  .tile-common-mixin {
+    display: block;
+    float: left;
+    margin: 5px;
+    background-color: #eeeeee;
+    box-shadow: @tile-image-box-shadow;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    overflow: visible;
+  }
+
+  .tile-content-flip-mixin {
+    .tile-content.flipVertical {
+      transform: perspective(1000px);
+      transform-style: preserve-3d;
+      transition: all @animation-duration-slow ease;
+      overflow: visible;
+
+      .slide {
+        .absolute(0 false false 0);
+        .square(100%);
+
+        backface-visibility: hidden;
+        transform: rotateY(0deg);
+      }
+
+      .slide-over {
+        .absolute(0 false false 0);
+        .square(100%);
+
+        backface-visibility: hidden;
+        transform: rotateY(180deg);
+      }
+    }
+
+    .tile-content.flipHorizontal {
+      transform: perspective(1000px);
+      overflow: visible;
+      transform-style: preserve-3d;
+      transition: all @animation-duration-slow ease;
+
+      .slide {
+        .absolute(0 false false 0);
+        .square(100%);
+
+        z-index: 2;
+        transform: rotateX(0deg);
+      }
+
+      .slide-over {
+        .absolute(0 false false 0);
+        .square(100%);
+
+        transform: rotateX(180deg);
+      }
+    }
+
+    &:hover .tile-content.flipVertical,
+    &.hover .tile-content.flipVertical,
+    &.flip .tile-content.flipVertical,
+    &:hover .tile-content.flipHorizontal,
+    &.hover .tile-content.flipHorizontal,
+    &.flip .tile-content.flipHorizontal {
+      transform: rotateY(180deg);
+    }
+  }
+
+  .tile-badge-mixin {
+    .tile-badge {
+      position: absolute;
+      bottom: 0;
+      right: 0.625rem;
+      padding: 0.25rem 0.625rem;
+      z-index: 999;
+    }
+  }
+
+  .tile-label-mixin {
+    .tile-label {
+      position: absolute;
+      bottom: 0;
+      left: 0.625rem;
+      padding: 0.425rem 0.25rem;
+      z-index: 999;
+    }
+  }
+
+  .tile-outline-mixin {
+    &:hover {
+      outline: @tile-hover-outline;
+    }
+
+    &:active {
+      outline: 0;
+    }
+  }
+}
+
+// 磁贴尺寸
+.ui-wTiles .tile-container {
+  .size(100%, auto);
+
+  margin: 0;
+  padding: 0;
+  height: inherit;
+  overflow: hidden;
+  display: block;
+
+  // 标准磁贴
+  .tile,
+  .tile-square {
+    .size(@tile-normal-size);
+    #tile-mixins.tile-common-mixin();
+    #tile-mixins.tile-outline-mixin();
+    #tile-mixins.tile-content-flip-mixin();
+    #tile-mixins.tile-badge-mixin();
+    #tile-mixins.tile-label-mixin();
+  }
+
+  // 小磁贴
+  .tile-small {
+    .size(@tile-small-size);
+    #tile-mixins.tile-common-mixin();
+    #tile-mixins.tile-outline-mixin();
+    #tile-mixins.tile-content-flip-mixin();
+    #tile-mixins.tile-badge-mixin();
+    #tile-mixins.tile-label-mixin();
+  }
+
+  // 宽磁贴
+  .tile-wide {
+    .size(@tile-wide-size);
+    #tile-mixins.tile-common-mixin();
+    #tile-mixins.tile-outline-mixin();
+    #tile-mixins.tile-content-flip-mixin();
+    #tile-mixins.tile-badge-mixin();
+    #tile-mixins.tile-label-mixin();
+  }
+
+  // 大磁贴
+  .tile-large {
+    .size(@tile-large-size);
+    #tile-mixins.tile-common-mixin();
+    #tile-mixins.tile-outline-mixin();
+    #tile-mixins.tile-content-flip-mixin();
+    #tile-mixins.tile-badge-mixin();
+    #tile-mixins.tile-label-mixin();
+  }
+
+  // 特大磁贴 *未提供配置*
+  .tile-big {
+    .size(@tile-big-size);
+    #tile-mixins.tile-common-mixin();
+    #tile-mixins.tile-outline-mixin();
+    #tile-mixins.tile-content-flip-mixin();
+    #tile-mixins.tile-badge-mixin();
+    #tile-mixins.tile-label-mixin();
+  }
+
+  // 超大磁贴 *未提供配置*
+  .tile-super {
+    .size(@tile-super-size);
+    #tile-mixins.tile-common-mixin();
+    #tile-mixins.tile-outline-mixin();
+    #tile-mixins.tile-content-flip-mixin();
+    #tile-mixins.tile-badge-mixin();
+    #tile-mixins.tile-label-mixin();
+  }
+}
+
+// 磁贴 - 预留尺寸类  *未提供配置*
+.ui-wTiles {
+  .tile-small-x {
+    width: 70px;
+  }
+
+  .tile-square-x {
+    width: 150px;
+  }
+
+  .tile-wide-x {
+    width: 310px;
+  }
+
+  .tile-large-x {
+    width: 310px;
+  }
+
+  .tile-big-x {
+    width: 470px;
+  }
+
+  .tile-super-x {
+    width: 630px;
+  }
+
+  .tile-small-y {
+    height: 70px;
+  }
+
+  .tile-square-y {
+    height: 150px;
+  }
+
+  .tile-wide-y {
+    height: 310px;
+  }
+
+  .tile-large-y {
+    height: 310px;
+  }
+
+  .tile-big-y {
+    height: 470px;
+  }
+
+  .tile-super-y {
+    height: 630px;
+  }
+}
+
+// 磁贴 - 内容
+.ui-wTiles .tile-container .wTiles .tile-content {
+  .absolute(0 false false 0);
+
+  width: 100%;
+  height: inherit;
+  overflow: hidden;
+
+  &:not(:first-child) {
+    display: none;
+  }
+
+  .live-slide {
+    .absolute(0 false false 0);
+    .square(100%);
+
+    display: none;
+    overflow: hidden;
+
+    &:nth-child(1) {
+      display: block;
+    }
+  }
+
+  // 磁贴尺寸 - 内容 - 图标/文字
+  &.iconic .icon {
+    .absolute(50% false false 50%);
+    .square(@tile-icon-size);
+
+    font-size: @tile-icon-size;
+    line-height: @tile-icon-size;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  // 磁贴尺寸 - 内容 - 图片
+  &.image-set > img,
+  &.image-set > .image-container {
+    .size(25%, 50%);
+
+    margin: 0;
+    padding: 0;
+    float: left;
+    border: @border-default-darker;
+
+    &:first-child {
+      .size(50%, 100%);
+
+      float: left;
+    }
+  }
+}
+
+// 磁贴(小磁贴) - 内容(图标/文字)
+.ui-wTiles .tile-small .tile-content.iconic .icon {
+  .square(@tile-small-icon-size);
+
+  font-size: @tile-small-icon-size;
+}
+
+// 磁贴 - 内容 - 颜色 *未提供配置*
+.ui-wTiles {
+  .tile-area-schema-mixin(@schema, @bg, @outline) {
+    .tile-area-scheme-@{schema} {
+      background-color: @bg;
+
+      [class*='tile'] {
+        outline-color: @outline;
+      }
+    }
+  }
+
+  .tile-area-schema-mixin('dark', #1d1d1d ,#373737);
+  .tile-area-schema-mixin('darkBrown', #63362f ,#86493f);
+  .tile-area-schema-mixin('darkCrimson', #640024 ,#970036);
+  .tile-area-schema-mixin('darkViolet', #57169a ,#701cc7);
+  .tile-area-schema-mixin('darkMagenta', #81003c ,#b40054);
+  .tile-area-schema-mixin('darkCyan', #1b6eae ,#228ada);
+  .tile-area-schema-mixin('darkCobalt', #00356a ,#004e9d);
+  .tile-area-schema-mixin('darkTeal', #004050 ,#006983);
+  .tile-area-schema-mixin('darkEmerald', #003 ,#007100);
+  .tile-area-schema-mixin('darkGreen', #128023 ,#18ad2f);
+  .tile-area-schema-mixin('darkOrange', #bf5a15 ,#e77120);
+  .tile-area-schema-mixin('darkRed', #9a1616 ,#c71c1c);
+  .tile-area-schema-mixin('darkPink', #9a165a ,#c71c74);
+  .tile-area-schema-mixin('darkIndigo', #4b0096 ,#6400c9);
+  .tile-area-schema-mixin('darkBlue', #16499a ,#1c5ec7);
+  .tile-area-schema-mixin('lightBlue', #4390df ,#6faae6);
+  .tile-area-schema-mixin('lightTeal', #45fffd ,#78fffd);
+  .tile-area-schema-mixin('lightOlive', #78aa1c ,#97d623);
+  .tile-area-schema-mixin('lightOrange', #ffc194 ,#ffdec7);
+  .tile-area-schema-mixin('lightPink', #f472d0 ,#f8a1e0);
+  .tile-area-schema-mixin('lightOlive', #78aa1c ,#97d623);
+  .tile-area-schema-mixin('grayed', #585858 ,#727272);
+}
+
+// 磁贴 - 内容 - 图片
+.ui-wTiles .tile-content img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+}
+
+// 磁贴 - 内容(图片) - 效果(滑动1/滑动2)
+.ui-wTiles .tile-content {
+  &.slide-up,
+  &.slide-down,
+  &.slide-up-2,
+  &.slide-down-2,
+  &.slide-left,
+  &.slide-right,
+  &.slide-left-2,
+  &.slide-right-2 {
+    > .slide {
+      top: 0;
+      z-index: 1;
+      transition: all @animation-duration-slow ease;
+    }
+
+    > .slide,
+    > .slide-over {
+      width: 100%;
+      height: inherit;
+      display: block;
+      position: absolute;
+      box-shadow: @tile-image-box-shadow;
+    }
+
+    &:hover > .slide {
+      transform: scale(1.5);
+      transition: all @animation-duration-slow ease;
+    }
+  }
+
+  &.slide-up {
+    > .slide-over {
+      top: 100%;
+      z-index: 2;
+      height: 75%;
+      transition: all @animation-duration-slow ease;
+    }
+
+    &:hover > .slide-over {
+      top: 25%;
+      transition: all @animation-duration-slow ease;
+    }
+  }
+
+  &.slide-up-2 {
+    > .slide-over {
+      top: 100%;
+      z-index: 2;
+      height: 100%;
+      transition: all @animation-duration-slow ease;
+    }
+
+    &:hover {
+      > .slide-over {
+        top: 0;
+        transition: all @animation-duration-slow ease;
+      }
+
+      > .slide {
+        transform: scale(1);
+        top: -100%;
+        transition: all @animation-duration-slow ease;
+      }
+    }
+  }
+
+  &.slide-down {
+    > .slide-over {
+      top: -100%;
+      z-index: 2;
+      height: 75%;
+      transition: all @animation-duration-slow ease;
+    }
+
+    &:hover > .slide-over {
+      top: 0;
+      transition: all @animation-duration-slow ease;
+    }
+  }
+
+  &.slide-down-2 {
+    > .slide-over {
+      top: -100%;
+      z-index: 2;
+      height: 100%;
+      transition: all @animation-duration-slow ease;
+    }
+
+    &:hover {
+      > .slide-over {
+        top: 0;
+        transition: all @animation-duration-slow ease;
+      }
+
+      > .slide {
+        transform: scale(1);
+        top: 100%;
+        transition: all @animation-duration-slow ease;
+      }
+    }
+  }
+
+  &.slide-left {
+    > .slide-over {
+      .size(75%, 100%);
+
+      left: -100%;
+      z-index: 2;
+      transition: all @animation-duration-slow ease;
+    }
+
+    &:hover > .slide-over {
+      left: 0;
+      transition: all @animation-duration-slow ease;
+    }
+  }
+
+  &.slide-left-2 {
+    > .slide-over {
+      .square(100%);
+
+      left: -100%;
+      z-index: 2;
+      transition: all @animation-duration-slow ease;
+    }
+
+    > .slide {
+      left: 0;
+      transition: all @animation-duration-slow ease;
+    }
+
+    &:hover {
+      > .slide-over {
+        left: 0;
+        transition: all @animation-duration-slow ease;
+      }
+
+      > .slide {
+        transform: scale(1);
+        left: 100%;
+        transition: all @animation-duration-slow ease;
+      }
+    }
+  }
+
+  &.slide-right {
+    > .slide-over {
+      .size(75%, 100%);
+
+      left: 100%;
+      z-index: 2;
+      transition: all @animation-duration-slow ease;
+    }
+
+    &:hover > .slide-over {
+      left: 25%;
+      transition: all @animation-duration-slow ease;
+    }
+  }
+
+  &.slide-right-2 {
+    > .slide-over {
+      .square(100%);
+
+      left: 100%;
+      z-index: 2;
+      transition: all @animation-duration-slow ease;
+    }
+
+    > .slide {
+      left: 0;
+      transition: all @animation-duration-slow ease;
+    }
+
+    &:hover {
+      > .slide-over {
+        left: 0;
+        transition: all @animation-duration-slow ease;
+      }
+
+      > .slide {
+        transform: scale(1);
+        left: -100%;
+        transition: all @animation-duration-slow ease;
+      }
+    }
+  }
+}
+
+// 磁贴 - 内容(图片) - 效果(放大/缩小)
+.ui-wTiles .tile-content {
+  &.zooming .slide {
+    .square(100%);
+
+    box-shadow: @tile-image-box-shadow;
+    display: block;
+    position: relative;
+    transition: all @animation-duration-slow ease;
+
+    &:hover {
+      transform: scale(1.5);
+      transition: all @animation-duration-slow ease;
+    }
+  }
+
+  &.zooming-out .slide {
+    .square(100%);
+
+    display: block;
+    position: relative;
+    transform: scale(1.5);
+    transition: all @animation-duration-slow ease;
+
+    &:hover {
+      transform: scale(1);
+      transition: all @animation-duration-slow ease;
+    }
+  }
+}
+
+// 磁贴 - 内容(图片) - 效果(水平翻转/垂直翻转) *未提供配置*
+.ui-wTiles .tile-small,
+.ui-wTiles .tile,
+.ui-wTiles .tile-square,
+.ui-wTiles .tile-wide,
+.ui-wTiles .tile-large,
+.ui-wTiles .tile-big,
+.ui-wTiles .tile-super {
+  overflow: visible;
+
+  .tile-content.flipVertical {
+    transform: perspective(1000px);
+    overflow: visible;
+    transform-style: preserve-3d;
+    transition: all @animation-duration-slow ease;
+
+    .slide,
+    .slide-over {
+      .square(100%);
+      .absolute(0 false false 0);
+
+      backface-visibility: hidden;
+    }
+
+    .slide {
+      z-index: 2;
+      transform: rotateY(0deg);
+    }
+
+    .slide-over {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &:hover .tile-content.flipVertical,
+  &.hover .tile-content.flipVertical,
+  &.flip .tile-content.flipVertical {
+    transform: rotateY(180deg);
+  }
+
+  .tile-content.flipHorizontal {
+    transform: perspective(1000px);
+    overflow: visible;
+    transform-style: preserve-3d;
+    transition: all @animation-duration-slow ease;
+
+    .slide,
+    .slide-over {
+      .square(100%);
+      .absolute(0 false false 0);
+
+      backface-visibility: hidden;
+    }
+
+    .slide {
+      z-index: 2;
+      transform: rotateX(0deg);
+    }
+
+    .slide-over {
+      transform: rotateX(180deg);
+    }
+  }
+
+  &:hover .tile-content.flipHorizontal,
+  &.hover .tile-content.flipHorizontal,
+  &.flip .tile-content.flipHorizontal {
+    transform: rotateX(180deg);
+  }
+}
+
+// 磁贴 - 内容(图片) - 效果(旋转) *未提供配置*
+.ui-wTiles {
+  [class*='tile-transform-'] {
+    transition: all @animation-duration-base ease;
+  }
+
+  .tile-transform-right {
+    transform-origin: left 50%;
+
+    &.tile {
+      transform: perspective(500px) rotateY(0.138372rad) !important;
+    }
+    &.tile-square {
+      transform: perspective(500px) rotateY(0.138372rad) !important;
+    }
+    &.tile-wide {
+      transform: perspective(500px) rotateY(0.069186rad) !important;
+    }
+    &.tile-large {
+      transform: perspective(500px) rotateY(0.069186rad) !important;
+    }
+    &.tile-big {
+      transform: perspective(500px) rotateY(0.046124rad) !important;
+    }
+    &.tile-super {
+      transform: perspective(500px) rotateY(0.034593rad) !important;
+    }
+    &.tile-small {
+      transform: perspective(500px) rotateY(0.276744rad) !important;
+    }
+  }
+
+  .tile-transform-left {
+    transform-origin: right 50%;
+
+    &.tile {
+      transform: perspective(500px) rotateY(-0.138372rad) !important;
+    }
+    &.tile-square {
+      transform: perspective(500px) rotateY(-0.138372rad) !important;
+    }
+    &.tile-wide {
+      transform: perspective(500px) rotateY(-0.069186rad) !important;
+    }
+    &.tile-large {
+      transform: perspective(500px) rotateY(-0.069186rad) !important;
+    }
+    &.tile-big {
+      transform: perspective(500px) rotateY(-0.046124rad) !important;
+    }
+    &.tile-super {
+      transform: perspective(500px) rotateY(-0.034593rad) !important;
+    }
+    &.tile-small {
+      transform: perspective(500px) rotateY(-0.276744rad) !important;
+    }
+  }
+
+  .tile-transform-top {
+    transform-origin: 50% bottom;
+
+    &.tile {
+      transform: perspective(500px) rotateX(0.138372rad) !important;
+    }
+    &.tile-square {
+      transform: perspective(500px) rotateX(0.138372rad) !important;
+    }
+    &.tile-wide {
+      transform: perspective(500px) rotateX(0.069186rad) !important;
+    }
+    &.tile-large {
+      transform: perspective(500px) rotateX(0.069186rad) !important;
+    }
+    &.tile-big {
+      transform: perspective(500px) rotateX(0.046124rad) !important;
+    }
+    &.tile-super {
+      transform: perspective(500px) rotateX(0.034593rad) !important;
+    }
+    &.tile-small {
+      transform: perspective(500px) rotateX(0.276744rad) !important;
+    }
+  }
+
+  .tile-transform-bottom {
+    transform-origin: 50% top;
+
+    &.tile {
+      transform: perspective(500px) rotateX(-0.138372rad) !important;
+    }
+    &.tile-square {
+      transform: perspective(500px) rotateX(-0.138372rad) !important;
+    }
+    &.tile-wide {
+      transform: perspective(500px) rotateX(-0.069186rad) !important;
+    }
+    &.tile-large {
+      transform: perspective(500px) rotateX(-0.069186rad) !important;
+    }
+    &.tile-big {
+      transform: perspective(500px) rotateX(-0.046124rad) !important;
+    }
+    &.tile-super {
+      transform: perspective(500px) rotateX(-0.034593rad) !important;
+    }
+    &.tile-small {
+      transform: perspective(500px) rotateX(-0.276744rad) !important;
+    }
+  }
+}
+
+// 磁贴 - 内容(图片) - 效果(轮播)
+.ui-wTiles .carousel {
+  .square(100%);
+
+  display: block;
+  position: relative;
+  min-height: 100px;
+  overflow: hidden;
+  box-shadow: @tile-image-box-shadow;
+
+  .slide {
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+  }
+
+  &:before {
+    display: table;
+    content: '';
+  }
+
+  &:after {
+    display: table;
+    content: '';
+    clear: both;
+  }
+
+  [class*='carousel-switch'] {
+    position: absolute;
+    display: block;
+    z-index: 999;
+    user-select: none;
+  }
+
+  .carousel-bullets {
+    .absolute(false 0 0.625rem 0);
+
+    text-align: center;
+    display: block;
+    z-index: 999;
+    user-select: none;
+
+    .carousel-bullet {
+      display: inline-block;
+      float: none;
+      width: 0.8rem;
+      height: 0.8rem;
+      background-color: #ababab;
+      box-shadow: none;
+      border-radius: 50%;
+      margin-right: 0.625rem;
+      cursor: pointer;
+      border: 1px #ffffff solid;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &.bullet-on {
+        background-color: #59cde2;
+      }
+    }
+
+    .carousel-switch-next,
+    .carousel-switch-prev {
+      width: auto;
+      line-height: 4rem;
+      height: 4rem;
+      text-decoration: none;
+      margin-top: -2rem;
+      top: 50%;
+      font-size: 4rem;
+      font-weight: 300;
+      color: #eeeeee;
+      cursor: pointer;
+      vertical-align: middle;
+      padding: 0;
+
+      &:hover {
+        color: #ffffff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+      }
+
+      img {
+        max-width: 64px;
+        max-height: 64px;
+      }
+    }
+
+    .carousel-switch-next {
+      right: 0;
+      left: auto;
+    }
+
+    .carousel-switch-prev {
+      left: 0;
+      right: auto;
+    }
+  }
+
+  &.square-bullets .carousel-bullet {
+    border-radius: 0;
+  }
+}
+
+// 磁贴 - 内容(图片) - 效果(图片容器)
+.ui-wTiles .image-container {
+  .square(100%);
+
+  box-shadow: @tile-image-box-shadow;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  max-width: 100%;
+  background-color: transparent;
+
+  .frame {
+    .square(100%);
+    background-color: #ffffff;
+    position: relative;
+
+    img {
+      .square(100%);
+      display: block;
+    }
+  }
+
+  .image-overlay {
+    .box();
+
+    overflow: hidden;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    padding: 1em 1.5em;
+    background-color: rgba(27, 161, 226, 0.7);
+    color: #ffffff;
+    text-align: center;
+    border-radius: inherit;
+    transition: all 0.65s ease;
+
+    &:hover {
+      opacity: 1;
+
+      &:before,
+      &:after {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    &:before {
+      .absolute(1em 1em 1em 1em);
+
+      display: block;
+      content: '';
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      opacity: 0;
+      border-radius: inherit;
+      transform: scale(1.5);
+      transition: all 0.65s ease;
+
+      border-top: none;
+      border-bottom: none;
+    }
+
+    &:after {
+      .absolute(1em 1em 1em 1em);
+
+      display: block;
+      content: '';
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      opacity: 0;
+      border-radius: inherit;
+      transform: scale(1.5);
+      transition: all 0.65s ease;
+
+      border-left: none;
+      border-right: none;
+    }
+  }
+}
+
+// 磁贴 - 内容(图片) - 效果(图片容器) - 图片样式  *未提供配置*
+.ui-wTiles .image-container {
+  &.diamond {
+    overflow: hidden;
+
+    .frame {
+      transform: rotate(45deg);
+      overflow: hidden;
+
+      img,
+      .image-replacer {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  &.rounded {
+    .frame img {
+      border-radius: 0.3125rem;
+    }
+  }
+
+  &.bordered {
+    .frame {
+      border: 1px #eeeeee solid;
+      padding: 0.5rem;
+    }
+  }
+
+  &.polaroid {
+    .frame {
+      border: 1px #eeeeee solid;
+      padding: 0.5rem 0.5rem 2rem;
+    }
+  }
+
+  &.handing {
+    margin-top: 20px;
+
+    &:after {
+      .square(50%);
+      .absolute(0 false false 0);
+
+      content: '';
+      background-color: transparent;
+      border-top: 1px solid #eeeeee;
+      transform: rotate(-16deg);
+      z-index: 2;
+      transform-origin: top left;
+    }
+
+    &:before {
+      .square(50%);
+      .absolute(0 0 false false);
+
+      position: absolute;
+      content: '';
+      background-color: transparent;
+      border-top: 1px solid #eeeeee;
+      transform: rotate(16deg);
+      z-index: 2;
+      transform-origin: top right;
+    }
+
+    .frame {
+      border: 1px #eeeeee solid;
+      position: relative;
+      padding: 0.5rem;
+
+      &:after {
+        .square(0.625rem);
+        .absolute(-20% false false 50%);
+
+        content: '';
+        background-color: #647687;
+        border-radius: 50%;
+        margin-left: -0.3125rem;
+        z-index: 3;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+      }
+    }
+
+    &.image-format-hd .frame:after {
+      top: -25%;
+    }
+
+    &.image-format-square .frame:after {
+      top: -15%;
+    }
+
+    &.handing.ani {
+      transform-origin: 50% -25px;
+      animation: swinging 10s ease-in-out 0s infinite;
+    }
+
+    &.ani-hover:hover {
+      transform-origin: 50% -25px;
+      animation: swinging 5s ease-in-out 0s;
+    }
+  }
+}
+
+// 磁贴 - 详情
+.ui-wTiles-tip {
+  .panel-heading {
+    padding: 0px @padding-md;
+    height: 100%;
+  }
+
+  .panel-body > .arrow {
+    .absolute(20px 45px false false);
+  }
+}
+
+// 磁贴区域 （样式已被弃用）
+.ui-wTiles {
+  .tile-area {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 120px 80px 0 0;
+    overflow: hidden;
+
+    &:before {
+      display: table;
+      content: '';
+    }
+
+    &:after {
+      display: table;
+      content: '';
+      clear: both;
+    }
+
+    .tile-area-title {
+      .fixed(20px false false 80px);
+
+      font-weight: 300;
+      font-size: 42px;
+      line-height: 1.1;
+    }
+  }
+
+  .tile-group {
+    margin-left: 80px;
+    min-width: 80px;
+    width: auto;
+    float: left;
+    display: block;
+    padding-top: 40px;
+    position: relative;
+
+    .tile-group-title {
+      color: #ffffff;
+      font-size: 18px;
+      line-height: 20px;
+      position: absolute;
+      top: 10px;
+      left: 0;
+    }
+
+    &.one {
+      width: 160px;
+    }
+
+    &.two,
+    &.double {
+      width: 320px;
+    }
+
+    &.three,
+    &.triple {
+      width: 480px;
+    }
+
+    &.four,
+    &.quadro {
+      width: 640px;
+    }
+
+    &.five {
+      width: 800px;
+    }
+
+    &.six {
+      width: 960px;
+    }
+
+    &.seven {
+      width: 1120px;
+    }
+  }
+}

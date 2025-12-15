@@ -1,0 +1,22 @@
+{
+  "js": {
+    "AppImportRuleListViewWidgetDevelopment": {
+      "path": "/imexport-rule-mgr/AppImportRuleListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_导入规则定义列表_视图组件二开",
+      "dependencies": [
+        "AppPtMgrListViewWidgetDevelopment"
+      ]
+    },
+    "AppImportRuleDetailsWidgetDevelopment": {
+      "path": "/imexport-rule-mgr/AppImportRuleDetailsWidgetDevelopment",
+      "name": "平台管理_产品集成_导入规则定义详情_HTML组件二开",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "AppPtMgrDetailsWidgetDevelopment",
+        "formBuilder",
+        "dataStoreBase"
+      ]
+    }
+  },
+  "css": {}
+}

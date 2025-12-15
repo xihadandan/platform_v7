@@ -1,0 +1,33 @@
+<form id="workflow_category_form" style="margin-top: 15px">
+    <input type="hidden" id="uuid" name="uuid" />
+    <input type="hidden" id="id" name="id" />
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#workflow_category_info" aria-controls="workflow_category_info" role="tab" data-toggle="tab"
+               aria-expanded="true">基本信息</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="workflow_category_info" style="padding-top: 10px;">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label for="workflow_category_name" class="well-form-label control-label">名称</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="workflow_category_name" name="name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="workflow_category_code" class="well-form-label control-label required">编号</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="workflow_category_code" name="code" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px;">
+        <div class="col-sm-12 text-center">
+            <button type="button" class="well-btn w-btn-primary" id="workflow_category_btn_save">保存</button>
+        </div>
+    </div>
+</form>

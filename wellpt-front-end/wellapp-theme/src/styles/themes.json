@@ -1,0 +1,25 @@
+[{
+    "theme": "wellpt-default",
+    "path": "/themes/wellpt-default",
+    "name": "平台主题_默认主题",
+    "id": "wellpt-default",
+    "custom": {
+      "@primary-color": {
+        "red1": "#c7000b",
+        "default": "#0078D7",
+        "blue-284989": "#284989"
+      },
+      "@font-size-base": {
+        "sm": "12px",
+        "default": "14px",
+        "lg": "16px"
+      }
+    }
+  },
+  {
+    "theme": "wellpt-dark",
+    "path": "/themes/wellpt-dark",
+    "name": "平台主题_深色主题",
+    "id": "wellpt-dark"
+  }
+]

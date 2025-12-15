@@ -1,0 +1,48 @@
+<div class="wf-task-operation" belong-block-code="${belongBlockCode}">
+  {@each taskOperations as taskOperationData,batchIndex}
+  <div class="wf-data-container wf-task-operation${batchIndex}" data-type="operation" data-index="${batchIndex}">
+    <div class="task-operation-header">
+      <span style="font-weight: bold; font-size: 15px">
+        {@if taskOperationData.title != null && taskOperationData.title != ""} ${taskOperationData.title} {@else} 操作记录 {@/if} {@if
+        taskOperations.length > 1} ${taskOperations.length - batchIndex} {@/if}
+      </span>
+    </div>
+
+    <div class="keyword_search_toolbar clearfix">
+      <div class="keyword-search-wrap pull-left">
+        <span class="search-icon"><i class="iconfont icon-ptkj-sousuochaxun"></i></span>
+        <input class="form-control" type="text" placeholder="关键字" />
+        <div class="close-icon" style="display: none"><i class="iconfont icon-ptkj-dacha"></i></div>
+      </div>
+      <div class="pull-left"><button class="well-btn w-btn-primary btn-query" type="button" name="query" title="查询">查询</button></div>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="col-order">序号</th>
+          <th>操作人员</th>
+          <th>操作名称</th>
+          <th>操作对象</th>
+          <th>操作时间</th>
+          <th>详情</th>
+        </tr>
+      </thead>
+      <tbody>
+        {@each taskOperationData.operations as taskOperation,index} {@if index < 10}
+        <tr>
+          <td>${parseInt(index) + 1}</td>
+          <td>${taskOperation.assigneeName}</td>
+          <td>${taskOperation.action}</td>
+          <td>${taskOperation.userName}</td>
+          <td>${taskOperation.createTime}</td>
+          <td>${taskOperation.opinionText}</td>
+        </tr>
+        {@/if} {@/each}
+      </tbody>
+    </table>
+
+    <div class="operation-data-pagination clearfix"></div>
+  </div>
+  {@/each}
+</div>

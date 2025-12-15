@@ -1,0 +1,154 @@
+body {
+  --w-rich-border-color: var(--w-border-color-base);
+  --w-rich-border-style: var(--w-border-style-base);
+  --w-rich-border-width: var(--w-border-width-base);
+  --w-rich-border-radius: var(--w-border-radius-2);
+  --w-rich-placeholder-color: var(--w-text-color-lighter);
+  --w-rich-bg-color: var(--w-fill-color-base);
+  --w-rich-lr-padding: var(--w-padding-xs);
+  --w-rich-def-height: var(--w-height-3xl);
+  --w-rich-border-color-hover: var(--w-primary-color);
+  --w-rich-border-color-disabled: var(--w-border-color-light);
+  --w-rich-bg-color-disabled: var(--w-fill-color-light);
+
+  --w-rich-error-border-color: var(--w-danger-color);
+  --w-rich-error-border-style: var(--w-border-style-base);
+  --w-rich-error-border-width: var(--w-border-width-base);
+  --w-rich-error-bg-color: var(--w-fill-color-base);
+  --w-rich-error-border-color-hover: var(--w-danger-color);
+  --w-rich-error-word-color: var(--w-danger-color);
+  --w-rich-error-word-font-size: var(--w-font-size-base);
+  --w-rich-error-word-font-weight: var(--w-font-weight-regular);
+}
+
+.quill-text-editor-container {
+  .ql-toolbar {
+    &.ql-snow {
+      border: var(--w-rich-border-style) var(--w-rich-border-width) var(--w-rich-border-color);
+      border-top-left-radius: var(--w-rich-border-radius);
+      border-top-right-radius: var(--w-rich-border-radius);
+      background-color: var(--w-rich-bg-color);
+    }
+  }
+
+  .ql-container {
+
+    &.ql-snow {
+      border: var(--w-rich-border-style) var(--w-rich-border-width) var(--w-rich-border-color);
+      border-bottom-left-radius: var(--w-rich-border-radius);
+      border-bottom-right-radius: var(--w-rich-border-radius);
+      background-color: var(--w-rich-bg-color);
+    }
+
+    .ql-editor {
+      padding-left: var(--w-rich-lr-padding);
+      padding-right: var(--w-rich-lr-padding);
+
+      // min-height: var(--w-rich-def-height);
+      &.ql-blank::before {
+        font-style: normal;
+        color: var(--w-rich-placeholder-color);
+        left: var(--w-rich-lr-padding);
+        right: var(--w-rich-lr-padding);
+      }
+    }
+  }
+
+  &:hover,
+  &.theme-rich-text-hover {
+    .ql-toolbar {
+      border-color: var(--w-rich-border-color-hover);
+    }
+
+    .ql-container {
+      border-color: var(--w-rich-border-color-hover);
+    }
+  }
+
+  .ql-editor {
+    font-size: var(--w-font-size-base);
+    line-height: var(--w-line-height);
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  // &.readonly {
+  //   &:hover {
+
+  //     .ql-toolbar,
+  //     .ql-container {
+  //       &.ql-snow {
+  //         cursor: not-allowed;
+  //         border-color: var(--w-rich-border-color);
+  //       }
+  //     }
+  //   }
+  // }
+}
+
+.quill-text-editor-container:has(.disable) {
+  .ql-toolbar.ql-snow {
+    border-color: var(--w-rich-border-color-disabled);
+  }
+
+  .ql-container.ql-snow {
+    border-color: var(--w-rich-border-color-disabled);
+  }
+
+  .disable {
+    background-color: var(--w-rich-bg-color-disabled);
+    opacity: 0.1;
+  }
+}
+
+// 错误提示样式
+.has-error {
+  .quill-text-editor-container {
+    .ql-toolbar {
+      &.ql-snow {
+        border: var(--w-rich-error-border-style) var(--w-rich-error-border-width) var(--w-rich-error-border-color);
+        background-color: var(--w-rich-error-bg-color);
+      }
+    }
+
+    .ql-container {
+      &.ql-snow {
+        border: var(--w-rich-error-border-style) var(--w-rich-error-border-width) var(--w-rich-error-border-color);
+        background-color: var(--w-rich-error-bg-color);
+      }
+    }
+
+    &:hover,
+    &.theme-rich-text-hover {
+      .ql-toolbar {
+        border-color: var(--w-rich-error-border-color-hover);
+      }
+
+      .ql-container {
+        border-color: var(--w-rich-error-border-color-hover);
+      }
+    }
+
+  }
+
+  &:has(.quill-text-editor-container) {
+
+    .ant-form-explain,
+    .ant-form-split {
+      color: var(--w-rich-error-word-color);
+      font-size: var(--w-rich-error-word-font-size);
+      font-weight: var(--w-rich-error-word-font-weight);
+    }
+  }
+}
+
+// .widget-form-layout .has-error {
+//   &:has(.quill-text-editor-container) {
+//     margin-bottom: e('calc(var(--w-rich-error-word-font-size) + 4px)');
+
+//     .ant-form-explain,
+//     .ant-form-split {
+//       bottom: e('calc(-4px - var(--w-rich-error-word-font-size))');
+//     }
+//   }
+// }

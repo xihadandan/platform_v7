@@ -1,0 +1,29 @@
+{
+  "name": "well-pt-package-info",
+  "version": "1.0.1-rc",
+  "description": "wellsoft 平台包信息",
+  "files": [
+    "index.js"
+  ],
+  "config": {
+    "packages": [
+      "wellapp-framework",
+      "wellapp-web",
+      "wellapp-mobile",
+      "wellapp-admin",
+      "wellapp-dyform",
+      "wellapp-for-prod",
+      "wellapp-page-assembly",
+      "wellapp-workflow"
+    ]
+  },
+  "keywords": [
+    "wellsoft",
+    "well-init",
+    "well-init-config"
+  ],
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "author": "wellsoft"
+}

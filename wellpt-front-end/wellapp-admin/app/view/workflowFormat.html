@@ -1,0 +1,45 @@
+<form id="workflow_format_form" style="margin-top: 15px">
+  <input type="hidden" id="uuid" name="uuid" />
+  <input type="hidden" id="id" name="id" />
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#workflow_format_info" aria-controls="workflow_format_info" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="workflow_format_info" style="padding-top: 10px">
+      <div class="well-form form-horizontal">
+        <div class="form-group">
+          <label for="workflow_format_name" class="well-form-label control-label required">名称</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="workflow_format_name" name="name" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="workflow_format_code" class="well-form-label control-label required">编号</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="workflow_format_code" name="code" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="workflow_format_value" class="well-form-label control-label required">格式内容</label>
+          <div class="well-form-control">
+            <textarea class="form-control" id="workflow_format_value" name="value" rows="20"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="workflow_format_value" class="well-form-label control-label">清除HTML格式</label>
+          <div class="well-form-control checkbox-inline">
+            <input type="checkbox" name="isClear" id="isClear" value="false" />
+            <label for="isClear"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 20px">
+    <div class="col-sm-12 text-center">
+      <button type="button" class="well-btn w-btn-primary" id="workflow_format_btn_save">保存</button>
+    </div>
+  </div>
+</form>

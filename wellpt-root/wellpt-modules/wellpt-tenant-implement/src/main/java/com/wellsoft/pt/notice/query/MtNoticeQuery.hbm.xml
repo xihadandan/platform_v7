@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="mtNoticeQuery">
+        <![CDATA[
+		from MtNotice o where 1 = 1
+		<if isNotBlank(whereHql)>
+			and ${whereHql}
+		</if>
+		and ( 1 = 2
+			<list orgIds as orgId>
+				or o.reader like '%;${orgId};%'
+			</list>
+		)
+		and ((o.retainTime is not null and o.retainTime > :currentTime) or (o.retainTime is null))
+		order by o.topState desc, o.modifyTime desc
+	]]>
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,599 @@
+.dytable_form {font: 12px/1.5 Microsoft YaHei;}
+.dytable_form .post-sign .filter{width:880px;margin:15px auto 0;}
+.dytable_form .post-sign .filter-form{height:40px;}
+.dytable_form .post-sign .filter-form li{float:left;display:inline;margin:0 37px 0 18px;padding:4px 
+12px;border:1px solid #d7d7d7;line-height:25px;color:#0f599c;}
+.post-sign .post-sign .filter-form li input{margin-left:13px;padding:3px 5px 4px;line-
+height:18px;border:0 none;border-left:1px solid #d7d7d7;}
+.dytable_form .post-sign .post-detail{margin: 10px 15px 0 25px;width: auto;background: #fff;}
+.dytable_form .post-sign .post-detail table{width:100%;margin-top:10px; border-collapse: collapse;}
+
+.dytable_form .post-sign .post-detail .ui-jqgrid-btable{width:100%;margin-top:0px; border-collapse: collapse;}
+
+.dytable_form .post-sign .post-detail td{height:29px;padding:0 15px;border-right:1px solid #fff;}
+.dytable_form .post-sign .post-detail .ui-jqgrid-btable td {
+	height:0px;
+	padding: 0 2px;
+    border-right:1px solid #ddd;
+}
+.dytable_form .post-sign .post-detail .Label{width:110px;}
+.dytable_form .post-sign .post-detail  input,select{
+	width: 100%;
+	border-radius: 0 0 0 0;
+    margin-top: 5px;
+    transform: none;
+    font-family: microsoft yahei;
+}
+/*****动态表单从表的编辑时的input*******/
+.dytable_form .post-sign .post-detail .edit-cell.ui-state-highlight > input {
+    height: 20px;
+    margin: 0;
+    padding: 0;
+}
+/*****动态表单从表的编辑时的input END*******/
+.dytable_form .post-sign .post-detail  input[type="radio"]{
+    padding: 0;
+	width: 20px;
+	margin: -3px 0 0;
+}
+
+.dytable_form .post-sign .post-detail  input[type="checkbox"]{
+	margin: -3px 0 0;
+    padding: 0;
+	width: 20px;
+}
+.dytable_form .post-sign .post-detail  label{font-size: 12px;display: inline;}
+.dytable_form .post-sign .post-detail .odd input{float:left;margin-top: 5px;}
+.dytable_form .post-sign .post-detail .odd td{background:#f7f7f7;}
+.dytable_form .post-sign .post-detail .odd label{float:left;font-size: 12px;margin-top: 2px;}
+.dytable_form .post-sign .post-detail .odd td select {padding: 4px;margin: 3px;width:33%;font-family: microsoft yahei;}
+
+.dytable_form .post-sign .post-info{}
+.dytable_form .post-sign .post-info .post-hd{}
+.dytable_form .post-sign .post-info .post-hd h3{float:left;font-weight:normal;color:#fff;margin: 0;padding: 0;}
+.dytable_form .post-sign .post-info .post-hd .extralDiv{
+	color: #FFFFFF;
+    cursor: pointer;
+    float: right;
+    font-size: 12px;
+    padding-right: 10px;
+}
+.tr_td_div_left{
+	float: left;
+	margin-right: 5px;
+}
+.dytable_form .post-sign .post-info .post-hd .extral{
+	background: #EAF2F5;
+	color: #FFFFFF;
+    cursor: pointer;
+    float: right;
+    font-size: 12px;
+    color: #0F599C;
+    margin-left: 8px;
+    padding: 1px 5px;
+    border-radius: 0 0 0 0;
+}
+
+.dytable_form .post-sign .post-info .post-hd .extral:hover{
+	background: #ff7200;
+	color: fff;
+	border-radius: 0 0 0 0;
+}
+
+.extral.c {
+}
+
+.extral.d {
+}
+
+.extral > div {
+    float: right;
+}
+.value > label {
+    font-size: 12px;
+    display: inline;
+}
+
+.dytable_form .post-sign .post-info .post-hd .extralDiv .Body_col {
+	background-color: #0F599C;
+    border: 0 outset;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 0;
+    width: 68px;
+}
+.dytable_form .post-sign .post-info .post-hd a:link,.post-sign .post-info .post-hd a:visited{margin:0 
+8px;color:#fff;}
+
+.dytable_form .post-sign .post-info .post-bd{
+	float: left;
+	min-height: 100px;
+}
+.dytable_form .post-sign .post-info .aaaa{
+	float: left;
+	min-height: 100px;
+	margin-left: -10px;
+}
+
+.dytable_form .post-sign .post-info .aaaaa{
+	float: left;
+	min-height: 100px;
+	border-right: 1px solid #DDDDDD;
+	margin-left: -10px;
+}
+.attach-list2 li{
+	border: 1px solid #FFFFFF;
+    float: left;
+    height: 25px;
+    list-style: none outside none;
+    text-align: center;
+    margin:0;
+}
+
+.dytable_form .post-sign .post-info .attach-list li{
+	float:left;margin-right:50px;text-align:center;list-style: none outside none;border: 1px solid #FFFFFF;height: 30px;
+	 margin-left: -40px;
+	}
+
+.dytable_form .post-sign .post-info .attach-list li img{
+	vertical-align: middle;
+    width: 23px;
+}
+
+.dytable_form .post-sign .post-info .attach-list .autocut {  
+    width:120px;  
+    overflow:hidden;  
+    white-space:nowrap;  
+    text-overflow:ellipsis;  
+    -o-text-overflow:ellipsis;  
+    -icab-text-overflow: ellipsis;  
+    -khtml-text-overflow: ellipsis;  
+    -moz-text-overflow: ellipsis;  
+    -webkit-text-overflow: ellipsis;  
+}
+.dytable_form .post-sign .post-info .attach-list .bar{border: 1px solid;}
+.dytable_form .post-sign .post-info .attach-list a img{width:64px;height:64px;padding:10px;border:1px solid #d4d0c8;}
+.dytable_form .post-sign .post-info .attach-list a{text-decoration:none;color:#434343;}
+.dytable_form .post-sign .post-info .attach-list span{line-height:18px;text-align:center;}
+.dytable_form .post-sign .post-info .attach-list2{
+	height:100px;
+	margin-left: -30px;
+}
+.dytable_form .post-sign .post-info .attach-list2 li{float:left;width:120px;text-align:center;list-style: none outside none;}
+.dytable_form .post-sign .post-info .attach-list2 .bar{border: 1px solid;}
+.dytable_form .post-sign .post-info .attach-list2 a img{width:64px;height:64px;padding:10px;border:1px solid #d4d0c8;}
+.dytable_form .post-sign .post-info .attach-list2 a{text-decoration:none;color:#434343;}
+.dytable_form .post-sign .post-info .attach-list2 span{display:block;line-height:25px;text-align:center;}
+
+.dytable_form .post-sign .post-detail .title {background: none repeat scroll 0 0 #0F599C;color:#fff;}
+
+.form_header {
+/* 	top: 0; */
+/* 	left: 0; */
+/* 	position: absolute; */
+/* 	right: 0; */
+	/* 	overflow: visible; */
+	background: url(../images/icon.png) repeat-x scroll 0 -53px transparent;
+	color: #fff;
+	font-size: 100%;
+	text-align: left;
+	padding: 0px;
+	width: 100%;
+	border-top: 1px solid #FFFFFF;
+	margin-top: 10px;
+}
+.body_foot {
+	background: url("${ctx}/resources/theme/images/v1_bg_bottom.png")
+		repeat-x scroll 0 0 transparent;
+	height: 33px;
+	margin: 0 auto;
+	width: 76%;
+}
+.form_header .form_title {
+    height: 40px;
+    text-indent: 20px;
+}
+.form_header .form_title h2 {
+	color: #FFFFFF;
+    float: left;
+    font-family: "Microsoft YaHei";
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0px;
+    padding: 8px 0 0 0;
+    line-height: 20px;
+}
+.form_header .form_close {
+	background: url("../../theme/images/v1_close_btn.png") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    float: right;
+    height: 32px;
+    margin: 4px;
+    width: 32px;
+}
+.form_header .form_close:hover{
+	background:url("../../theme/images/v1_close_btn.png") no-repeat scroll 0 0 #0D589B;
+}
+.form_content:before,.form_content:after {
+	content: "";
+	display: table;
+	line-height: 0;
+}
+
+.form_content:after {
+	clear: both;
+}
+
+.form_content {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: auto;
+	width:98%;
+}
+
+.form_toolbar {
+	background: none repeat scroll 0 0 #F4F8FA;
+    padding: 8px 0;
+    text-align: right;
+}
+.form_operate {
+	margin-top: 0;
+	padding-right: 5px;
+}
+.form_operate button {
+	background: url("../images/icon.png") no-repeat scroll 0 -165px transparent;
+    border: 1px solid #DEE1E2;
+    color: #0F599C;
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    height: 22px;
+    margin-left: 4px;
+    padding: 0 5px;
+}
+.form_operate button:hover {
+	color: #FF7200;
+	background: url(../images/icon.png) no-repeat scroll 0 -165px transparent;
+}
+
+.img_icon{
+    background: url(../images/file_img.gif) no-repeat scroll 999px 999px transparent;
+    cursor: pointer;
+    float: left;
+    height: 22px;
+    width: 26px;
+}
+.imgWord{
+    background-position: -96px -80px;
+}
+
+.extralDiv .btn.btn-success{
+	background: #EAF2F5;
+    border: medium none;
+    box-shadow: none;
+    padding: 0px 5px;
+	font-size: 12px;
+	border-radius: 0 0 0 0;
+	color: #0F599C;
+	/**修改附件上传的按钮样式 **/
+	padding: 0 5px 3px 1px;
+}
+
+.post-detail textarea{
+    width: 100%;
+    border-radius: 0 0 0 0;
+}
+
+.look_free{
+	 cursor: pointer;
+    padding: 9px;
+    text-decoration: underline;
+}
+
+form {
+    margin: 0;
+}
+body {
+	background-color: #586973;
+}
+
+.tab-content {
+    overflow: -moz-hidden-unscrollable;
+}
+
+.info {
+	background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    color: #fff;
+    display: none;
+    line-height: 20px;
+    padding: 2px 20px 2px 5px;
+    position: absolute;
+    z-index: 99;
+    margin-left: 2px;
+}
+
+
+.dec .dec1 {
+    color: #CCCCCC;
+}
+
+.dec s {
+    font-family: simsun;
+    font-size: 16px;
+    height: 19px;
+    left: 7px;
+    line-height: 19px;
+    position: absolute;
+    text-decoration: none;
+    top: -9px;
+    width: 17px;
+}
+
+object {
+    display: none;
+}
+.div_body {
+	border-left: 1px solid #FFFFFF;
+	margin: 0 auto;
+	width: 76%;
+	background: url("../../theme/images/v1_bd3.png") repeat-y
+		scroll 100% 0 #FFFFFF;
+}
+.div_body_content {
+    width: 99.5%;
+}
+.body_foot {
+	background: url("../../theme/images/v1_bg_bottom.png")
+		repeat-x scroll 0 0 transparent;
+	height: 33px;
+	margin: 0 auto;
+	width: 76%;
+}
+
+
+.dytable_form .post-sign .post-info .post-hd .z {
+    float: left;
+    margin-right: 9px;
+    padding: 1px 5px;
+}
+
+.defineSpan {
+	display: block;
+    float: left;
+    padding-top: 9px;
+    text-align: left;
+    width: 101px;
+}
+
+.dytable_form .post-sign .post-detail .subTableCss input {
+	width: auto;
+	background: url("../images/icon.png") no-repeat scroll 0 -165px transparent;
+    border: 1px solid #DEE1E2;
+    color: #0F599C;
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    height: 22px;
+    margin-left: 4px;
+    padding: 0 5px;
+}
+/****************前端表单从表样式*********************/
+.dytable_form .post-sign .post-detail .subTableCss input:hover {
+	width: auto;
+	color: #FF7200;
+	background: url(../images/icon.png) no-repeat scroll 0 -165px transparent;
+}
+
+.dytable_form .post-sign .post-detail .ui-jqgrid-htable {
+    margin: 0;
+}
+
+.dytable_form .ui-state-default th { 
+	background:#0F599C;  
+}
+
+/* .ui-dialog .ui-dialog-buttonpane button { */
+/* 	background: url("../../jqueryui/css/base/images/ui-bg_glass_85_dfeffc_1x400.png") repeat-x scroll 50% 50% #DFEFFC; */
+/* } */
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+	color: #FF7200;
+}
+
+.ui-jqgrid .ui-jqgrid-htable th div {overflow: hidden; position:relative; height:17px;color: #FFFFFF;}
+/****************ckedit工具栏*********************/
+.cke_dialog_ui_input_text div {
+    overflow-x: hidden;
+}
+.cke_reset_all, .cke_reset_all .cke_dialog_ui_input_text{
+	height: 30px;
+}
+.cke_dialog_ui_hbox .cke_dialog_ui_hbox_child,
+.cke_dialog_ui_hbox .cke_dialog_ui_hbox_last,
+.cke_dialog_ui_hbox .cke_dialog_ui_hbox_first{
+	display: block;
+	float: left;
+	margin-bottom: 10px;
+    margin-left: 5px;
+}
+#fieldCfgTable input{
+	height: 15px;
+    margin: 5px 0 5px 15px;
+    padding: 5px;
+    width: 90%;
+}
+.cke_reset_all .formfileSelect {
+    border: 1px solid #cccccc;
+    height: 30px;
+    margin: 5px 0 5px 15px;
+    padding: 5px;
+    width: 90%;
+    border-radius: 4px;
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+.cke_reset_all, .cke_reset_all .tableDiv{
+    height: 425px;
+    overflow: auto;
+}
+
+/****************版本比较功能css 吴宾 13.9.10*********************/
+.fileList_li {
+	list-style: none outside none;
+	text-align: center;
+}
+
+.fileName_span {
+	float:none;
+	display: block;
+    text-align: center;
+}
+
+.edittime_span {
+	float:none;
+	display: block;
+    text-align: center;
+}
+
+.replace_buttonDiv {
+	float:left;
+	margin-top: 50px;
+}
+
+.replace_button {
+    background: url("../images/v1_icon.png") no-repeat scroll 0 -165px transparent;
+    border: 1px solid #DEE1E2;
+    color: #0F599C;
+    font-size: 12px;
+    height: 22px;
+    padding: 0px 5px;
+    margin-left: 2px;
+}
+.replace_button:hover{
+	color: #ff7200;
+}
+.title_th{
+	display: block;
+    float: inherit;
+	text-align: center;
+}
+
+
+.subcolorCss {
+   background: url("../../theme/images/v1_icon3.png") no-repeat scroll 0 -263px transparent;
+    cursor: pointer;
+    float: left;
+    height: 20px;
+    margin-left: 4px;
+    margin-top: 8px;
+    position: relative;
+    width: 20px;
+}
+
+.colors {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #DDDDDD;
+    position: absolute;
+    top: 18px;
+    width: 58px;
+}
+
+.selectcolor {
+    display: block;
+    float: left;
+    height: 15px;
+    margin: 2px;
+    width: 15px;
+}
+
+.fontColorCss {
+	background-color: #000000;
+    display: block;
+    float: left;
+    height: 11px;
+    margin-left: 10px;
+    margin-top: 12px;
+    width: 11px;
+}
+.hongdy {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid;
+    padding: 6px;
+    position: absolute;
+    top: 35px;
+    width: 100%;
+    z-index: 9999;
+    display: none;
+}
+.hongdy > ul{
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+.hongdy > ul > li {
+    cursor: pointer;
+    margin: 2px 5px;
+}
+.hongdy > ul > .isChose{
+	margin-left: 20px;
+}
+.hongdy > ul > .isChose:hover{
+	background: #4b9ad2;
+}
+.ui-dialog {overflow: visible;}
+/* .ui-dialog .ui-dialog-content {overflow: visible;} */
+
+/* new Css for 列表文件样式 */
+
+._delete_input {
+	cursor: pointer;
+	border: 1px none;
+	width: 42px;
+	font-size: 12px;
+	margin-left: 0px;
+	background: none repeat scroll 0 0 transparent;
+	color: #4B9AD2;
+	margin-top: 6px;
+}
+
+.delete_Div {
+    float: left;
+}
+
+#openDiv {
+	background-image: url("../../ztree/css/zTreeStyle/img/zTreeStandard.png");
+	background-position: -95px 0;
+	display: block;
+	float: left;
+	height: 15px;
+	margin-left: 10px;
+	width: 15px;
+	cursor: pointer;
+}
+/* #ZTMC + span{ */
+/* 	color: blue; */
+/* 	cursor: pointer; */
+/* } */
+/* #ZTMC + span:hover{ */
+/* 	text-decoration: underline; */
+/* } */
+#notOpenDiv {
+	background-image: url("../../ztree/css/zTreeStyle/img/zTreeStandard.png");
+	background-position: -75px 0;
+	display: block;
+	float: left;
+	height: 15px;
+	margin-left: 10px;
+	width: 15px;
+	cursor: pointer;
+}
+
+
+/*从表的表格宽度 20140210 wubin*/
+#fieldCfgTable select {
+    width: 100px;
+}
+
+/*从表的某个属性宽度 20140210 wubin*/
+#subformApply  input {
+    width: 265px;
+}

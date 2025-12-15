@@ -1,0 +1,167 @@
+<div class="container-fluid form-widget">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#print_template_basic_info" aria-controls="print_template_basic_info" role="tab" data-toggle="tab" aria-expanded="true">
+        基本信息
+      </a>
+    </li>
+    <li role="presentation" class="">
+      <a href="#template_list" aria-controls="template_list" role="tab" data-toggle="tab" aria-expanded="true">模板列表</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="print_template_basic_info" style="padding-top: 10px">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label required">名称</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" name="name" />
+            <input type="hidden" id="uuid" name="uuid" />
+            <input type="hidden" id="version" name="version" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id" class="col-sm-2 control-label">ID</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="id" name="id" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="code" class="col-sm-2 control-label">编号</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="code" name="code" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="code" class="col-sm-2 control-label">分类</label>
+          <div class="col-sm-10">
+            <input type="hidden" class="form-control" id="category" name="category" />
+            <input type="hidden" class="form-control" id="categoryName" name="categoryName" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="code" class="col-sm-2 control-label">所属模块</label>
+          <div class="col-sm-10">
+            <input type="hidden" class="form-control" id="moduleId" name="moduleId" readonly="readonly" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">模板类型</label>
+          <div class="col-sm-10">
+            <input type="radio" name="templateType" id="wordType" value="wordType" />
+            <label class="" for="wordType">Word模板(只支持doc)</label>
+            <input type="radio" name="templateType" id="htmlType" value="htmlType" />
+            <label class="" for="htmlType">HTML模板</label>
+            <input type="radio" name="templateType" id="wordXmlType" value="wordXmlType" />
+            <label class="" for="wordXmlType">WordXml模板</label>
+            <input type="radio" name="templateType" id="wordXmlByCommentType" value="wordXmlByCommentType" />
+            <label class="" for="wordXmlByCommentType">WordXml模板(批注)</label>
+            <input type="radio" name="templateType" id="wordPoiType" value="wordPoiType" />
+            <label class="" for="wordPoiType">Poi-tl模板(只支持docx)</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <span class="help-block">
+              <br />
+              word模板:一般不建议使用 html模板: 功能最强大（支持freemarker的全语法），但在套打出来后，不可编辑。
+              <br />
+              WordXml模板:功能也还可以，但没html强大，但套打出来后是可编辑的,可以再次调整内容及格式(不建议使用，建议使用下面这种方式)
+              <br />
+              WordXml模板(批注): 功能与WordXml模板是一样，不同之处在于:freemarker脚本是写在批注中。(政府收发文建议使用)
+              <br />
+              Poi-tl模板: 模版文件和嵌套的正文必须为docx格式文件
+              <br />
+              <a target="_blank" href="http://wiki.well-soft.com:81/pages/viewpage.action?pageId=4292668">帮助</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">多次套打结果间隔</label>
+          <div class="col-sm-10">
+            <input type="radio" name="printInterval" id="paging" value="paging" />
+            <label class="" for="paging">分页</label>
+            <input type="radio" name="printInterval" id="multi_line" value="multi_line" />
+            <label class="" for="multi_line">多行</label>
+          </div>
+        </div>
+        <div class="form-group printInterval multi_line" style="display: none">
+          <label for="id" class="col-sm-2 control-label">行数</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="rowNumber" name="rowNumber" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">其他选项</label>
+          <div class="col-sm-10">
+            <input type="checkbox" id="isSaveTrace" name="isSaveTrace" value="" style="margin-top: 4px" />
+            <label for="isSaveTrace">保留正文修改痕迹</label>
+            <input type="checkbox" id="isReadOnly" name="isReadOnly" value="" style="margin-top: 4px" />
+            <label for="isReadOnly">只读标志</label>
+            <input type="checkbox" id="isSavePrintRecord" name="isSavePrintRecord" value="" style="margin-top: 4px" />
+            <label for="isSavePrintRecord">保存打印记录</label>
+            <input type="checkbox" id="isSaveSource" name="isSaveSource" value="" style="margin-top: 4px" />
+            <label for="isSaveSource">保存到源文档</label>
+          </div>
+        </div>
+
+        <div class="form-group isSaveSource" style="display: none">
+          <label for="fileNameFormat" class="col-sm-2 control-label">文件名格式</label>
+          <div class="col-sm-10">
+            <input type="text" id="fileNameFormat" name="fileNameFormat" class="form-control" />
+          </div>
+        </div>
+
+        <div id="printTemplateFileUpload" class="dyform"></div>
+
+        <!--<div class="form-group"> <label for="uploadFile" class="col-sm-2 control-label">上传模板文件</label> <div class="col-sm-10"> <input type="file" id="uploadFile" name="uploadFile" class="form-control"/> </div> </div>-->
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <span class="help-block">
+              Word模板上传2003的版本、应用服务器安装office
+              2000及jacob-1.17-x86.dll(32位操作系统)或jacob-1.17-x64.dll(64位操作系统)放到系统PATH目录(C:\Windows\System32)下
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="template_list" role="tabpanel" class="tab-pane" style="padding-top: 10px">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <div class="col-sm-12">
+            <div id="div_print_template_toolbar" class="btn-group btn_print_template_info">
+              <button id="btn_add_print_template" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                新增
+              </button>
+              <button id="btn_delete_print_template" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                删除
+              </button>
+              <button id="btn_row_up_print_template" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                上移
+              </button>
+              <button id="btn_row_down_print_template" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                下移
+              </button>
+            </div>
+            <table id="table_print_template_info" data-height="430"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 80px">
+    <div class="col-sm-12 text-center">
+      <button type="button" class="btn btn-primary" id="btn_save_printtemplate">保存</button>
+      <button type="button" class="btn btn-primary" id="btn_save_printtemplate_new_version">保存新版本</button>
+    </div>
+  </div>
+</div>

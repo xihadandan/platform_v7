@@ -1,0 +1,137 @@
+{
+  "pages": [
+    {
+      "path": "uni_modules/w-app/pages/app/app",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/app/preview",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/workflow/start_new_work",
+      "style": {
+        "navigationBarTitleText": "发起工作"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/workflow/work_view",
+      "style": {
+        "navigationBarTitleText": "流程单据",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/workflow/subflow_details",
+      "style": {
+        "navigationBarTitleText": "子流程详情",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/dyform/preview",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/template/preview",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/dyform/subform_edit",
+      "style": {
+        "navigationBarTitleText": "从表明细"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/dyform/subform_data_table_view",
+      "style": {
+        "navigationBarTitleText": "从表数据表格展示"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/dyform/popup_dialog",
+      "style": {
+        "navigationBarTitleText": "弹出搜索框"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/dms/dms_dyform_view",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/web-view/web-view",
+      "style": {
+        "navigationBarTitleText": "查看网页"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/org/unit/org_unit_dialog",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/login/login_settings",
+      "style": {
+        "navigationBarTitleText": "登录设置"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/login/login",
+      "style": {
+        "navigationBarTitleText": "登录"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/pwd/pwd",
+      "style": {
+        "navigationBarTitleText": "找回密码"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/pwd/update-password",
+      "style": {
+        "navigationBarTitleText": "修改密码"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/theme/settings",
+      "style": {
+        "navigationBarTitleText": "主题设置"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/user/user",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/user/workbench_settings",
+      "style": {
+        "navigationBarTitleText": "工作台设置"
+      }
+    },
+    {
+      "path": "uni_modules/w-app/pages/about/about",
+      "style": {
+        "navigationBarTitleText": "关于应用"
+      }
+    }
+  ]
+}

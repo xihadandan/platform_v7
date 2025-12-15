@@ -1,0 +1,398 @@
+<div id="widget_data_management_viewer">
+  <form id="widget_data_management_viewer_form" class="form-horizontal">
+    <div id="widget_data_management_viewer_tabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#widget_data_management_viewer_tabs_base_info">基础信息</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_data_management_viewer_tabs_data_source_info">数据定义</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_data_management_viewer_tabs_action_info">文档处理</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_data_management_viewer_tabs_visualization_info">可视化</a>
+        </li>
+        <li role="presentation" id="data_mark_define_tabLi">
+          <a href="#widget_data_management_viewer_tabs_mark_info">数据标记</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_data_management_viewer_tabs_dataactive_info">数据活动记录</a>
+        </li>
+      </ul>
+      <div class="tab-content" style="height: 500px">
+        <div role="tabpanel" class="tab-pane active" id="widget_data_management_viewer_tabs_base_info">
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">名称</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" name="name" id="name">
+            </div>
+          </div>
+          <div class="form-group hide">
+            <label for="categoryCode" class="col-sm-2 control-label">分类</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="categoryName" id="categoryName"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="categoryCode" name="categoryCode"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="code" class="col-sm-2 control-label">编号</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="code" id="code"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="code" name="code"/>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="widget_data_management_viewer_tabs_data_source_info">
+          <div class="form-group">
+            <label for="dataType" class="col-sm-2 control-label">类型</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" id="dataType" name="dataType"/>
+            </div>
+          </div>
+          <div class="form-group data-type data-type-DYFORM">
+            <label for="formName" class="col-sm-2 control-label">动态表单</label>
+            <div class="col-sm-10">
+              <input type="text" class="w-configurer-option" name="formName" id="formName"/>
+              <input type="hidden" class="form-control w-configurer-option" height="34px" id="formUuid" name="formUuid"/>
+            </div>
+            <div class="col-sm-offset-2 col-sm-3">
+              <input type="checkbox" class="w-configurer-option w-checkbox" id="useDyFormLatestVersion" name="useDyFormLatestVersion" value="true" style="margin: initial;"/>
+              <label for="useDyFormLatestVersion" class="control-label">使用最新表单版本</label>
+            </div>
+            <div class="col-sm-3">
+              <input type="checkbox" class="w-configurer-option w-checkbox" id="useCForm" name="useCForm" value="true" style="margin: initial;"/>
+              <label for="useCForm" class="control-label">优先加载扩展单据</label>
+            </div>
+          </div>
+          <div class="form-group data-type data-type-DYFORM">
+            <label for="displayFormName" class="col-sm-2 control-label">显示表单</label>
+            <div class="col-sm-10">
+              <input type="text" class="w-configurer-option" name="displayFormName" id="displayFormName"/>
+              <input type="hidden" class="form-control w-configurer-option" height="34px" id="displayFormUuid" name="displayFormUuid"/>
+            </div>
+          </div>
+          <div class="form-group data-type data-type-TABLE">
+            <label for="table" class="col-sm-2 control-label">数据库表</label>
+            <div class="col-sm-10"></div>
+          </div>
+          <div class="form-group data-type data-type-DATA_STORE">
+            <label for="dataStoreName" class="col-sm-2 control-label">数据仓库</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="dataStoreName" id="dataStoreName"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="dataStoreId" name="dataStoreId"/>
+            </div>
+          </div>
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="widget_data_management_viewer_tabs_action_info">
+          <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">单据标题</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" id="title" name="title"/>
+              <div>备注：标题支持freemarker模板表达式，可访问parameter、actionId、document变量.<br/>
+                1、变量parameter代表操作的url请求参数，通过\${parameter.参数名}访问参数值;<br/>
+                2、变量actionId代表当前执行操作的ID;<br/>
+                3、变量document代表当前文档，通过\${document.field_name}访问文档字段值.</div>
+            </div>
+          </div>
+          <div class="form-group"></div>
+          <div class="form-group">
+            <label for="interceptors" class="col-sm-2 control-label">操作处理拦截器</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="form-control w-configurer-option" height="34px" id="interceptorNames" name="interceptorNames"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="interceptors" name="interceptors"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="form-control w-configurer-option" height="34px" id="jsModuleName" name="jsModuleName"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="jsModule" name="jsModule"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="jsModule" class="col-sm-2 control-label">文档打开模式</label>
+            <div class="col-sm-8">
+              <select class="form-control w-configurer-option" name="openMode" id="openMode">
+                <option value="1">新窗口</option>
+                <option value="2">弹出框</option>
+              </select>
+            </div>
+            <div class="col-sm-2">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option w-checkbox" type="checkbox" id="enableVersioning" name="enableVersioning" value="true">
+                <label for="enableVersioning">启用版本管理</label>
+              </label>
+
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label for="dataStoreName" class="col-sm-2 control-label">文档操作</label>
+            <div class="col-sm-10">
+              <div id="div_button_info_toolbar" class="btn-group btn_button_info">
+                <button id="btn_add_button" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                </button>
+                <button id="btn_delete_button" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                </button>
+                <button id="btn_row_up_button" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+                </button>
+                <button id="btn_row_down_button" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+                </button>
+              </div>
+              <table id="table_button_info" class="button_info" data-height="400"></table>
+            </div>
+          </div>
+
+          <fieldset class="col-sm-offset-2">
+            <legend>标签页</legend>
+            <div class="form-group">
+              <label class="col-sm-6" style="margin-left:6%;">右侧标签页</label>
+              <div class="col-sm-12">
+                <div class="row" id="widget_bootstap_tabs_form">
+                  <div class="col-md-5" >
+                      <div class="form-group">
+                        <label for="navTree_name" class="col-sm-3 control-label required">名称</label>
+                        <div class="col-sm-9">
+                          <input type="hidden" class="form-control w-nav-tree-option" name="navTree_uuid" id="navTree_uuid"/>
+                          <input type="text" class="form-control w-nav-tree-option" name="navTree_name" id="navTree_name"/>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6" >
+                    <div class="form-group">
+                        <label for="navTree_eventHandler_name" class="col-sm-3 control-label">事件处理</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control w-nav-tree-option" name="navTree_eventHandler_name" id="navTree_eventHandler_name"/>
+                          <input type="hidden" class="form-control w-nav-tree-option" name="navTree_eventHandler_id" id="navTree_eventHandler_id"/>
+                          <input type="hidden" class="form-control w-nav-tree-option" name="navTree_eventHandler_path" id="navTree_eventHandler_path"/>
+                          <input type="hidden" class="form-control w-nav-tree-option" name="navTree_eventHandler_type" id="navTree_eventHandler_type"/>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-md-1" style="padding-top:5px;" >
+                    <div class="form-group navBtnRow">
+                        <button type="button" class="btn btn-primary btn-sm" id="navTree_save">保存</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="row widget_example">
+                  <div class="col-md-4" style="padding-left:46px;">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-primary btn-sm" id="widget_bootstrap_tabs_nav_add">
+                      <i class="iconfont icon-ptkj-jiahao"></i>添加</button>
+                      <button type="button" class="btn btn-primary btn-sm" id="widget_bootstrap_tabs_nav_remove">
+                      <i class="iconfont icon-ptkj-shanchu"></i>删除</button>
+                    </div>
+                    <ul id="widget_bootstrap_tabs_nav_tree" class="ztree"></ul>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="form-group">
+              <label for="tabShowType" class="col-sm-2 control-label">标签页展现方式</label>
+              <div class="col-sm-4">
+                <input type="hidden" class="form-control" name="tabShowType" id="tabShowType"/>
+              </div>
+              <label for="defaultShowTab" class="col-sm-2 control-label">默认展开页签</label>
+              <div class="col-sm-4">
+                <input type="hidden" class="form-control" name="defaultShowTab" id="defaultShowTab"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="tabShowType" class="col-sm-2 control-label">其他选项</label>
+              <div class="col-sm-10">
+                <label class="checkbox-inline">
+                  <input class="w-configurer-option w-checkbox" type="checkbox" id="dragableTabWidth" name="dragableTabWidth" value="true">
+                  <label for="dragableTabWidth">可拖动调整标签页宽度</label>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="widget_data_management_viewer_tabs_visualization_info">
+          <div class="form-group">
+            <label for="dataViewType" class="col-sm-2 control-label">数据展示</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="dataViewName" id="dataViewName"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="dataViewType" name="dataViewType"/>
+            </div>
+          </div>
+          <div class="form-group dataView bootstrapTableDataView tagTreeWithBootstrapTableDataView unitTreeWithBootstrapTableDataView leftSidebarWithBootstrapTableDataView">
+            <label for="listViewId" class="col-sm-2 control-label">视图</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="listViewName" id="listViewName"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="listViewId" name="listViewId"/>
+            </div>
+          </div>
+          <div class="form-group dataView tagTreeWithBootstrapTableDataView">
+            <label for="tagTreeId" class="col-sm-2 control-label">标签树</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="tagTreeName" id="tagTreeName"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="tagTreeId" name="tagTreeId"/>
+            </div>
+          </div>
+          <div class="form-group dataView unitTreeWithBootstrapTableDataView">
+            <label for="unitTreeId" class="col-sm-2 control-label">通用树</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="unitTreeName" id="unitTreeName"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="unitTreeId" name="unitTreeId"/>
+            </div>
+          </div>
+          <div class="form-group dataView leftSidebarWithBootstrapTableDataView">
+            <label for="leftSidebarTreeId" class="col-sm-2 control-label">左导航</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="leftSidebarTreeName" id="leftSidebarTreeName"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="leftSidebarTreeId" name="leftSidebarTreeId"/>
+            </div>
+          </div>
+          <div class="form-group dataView tagTreeWithBootstrapTableDataView unitTreeWithBootstrapTableDataView leftSidebarWithBootstrapTableDataView">
+            <label for="relationshipQuery" class="col-sm-2 control-label">关联查询</label>
+            <div class="col-sm-10">
+              <div class="relationship-query-info"></div>
+            </div>
+          </div>
+
+          <div class="form-group dataView dyformDataView">
+            <div class="col-sm-10 col-sm-offset-2">
+              <input type="radio" class="w-configurer-option dyformDataSelectCk w-radio" name="dyfromDataType" id="editUnitOneFormData" value="1" style="margin-top: 0px;"/>
+              <label for="editUnitOneFormData">仅编辑本单位的第一条表单数据</label>
+              <input type="radio" class="w-configurer-option dyformDataSelectCk w-radio" name="dyfromDataType" id="enableDefaultConditionSql" style="margin-top: 0px;" value="2"/>
+              <label for="enableDefaultConditionSql">默认条件</label>
+            </div>
+          </div>
+
+          <div class="form-group enableDefaultConditionSql" style="display: none;">
+            <div class="col-sm-10 col-sm-offset-2">
+              <pre style="min-height:100px" name="defaultConditionSql" id="defaultConditionSql"></pre>
+            </div>
+          </div>
+
+          <div class="form-group hidden">
+            <label for="previewId" class="col-sm-2 control-label">数据预览</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="previewName" id="previewName"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="previewId" name="previewId"/>
+            </div>
+          </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="widget_data_management_viewer_tabs_mark_info">
+          <fieldset>
+            <legend>标签配置</legend>
+
+            <div class="form-group">
+              <label for="enableLabel" class="col-sm-3 control-label">标签</label>
+              <div class="col-sm-9">
+                <label class="checkbox-inline">
+                  <input class="w-configurer-option enableDataMark w-checkbox" type="checkbox" id="enableLabel" name="enableLabel" value="true"><label for="enableLabel">启用标签功能</label>
+                </label>
+              </div>
+            </div>
+            <div class="form-group enableLabel" style="display: none;">
+              <label for="labelModuleId" class="col-sm-3 control-label required">归属模块ID</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control w-configurer-option" height="34px" readonly="readonly" id="labelModuleId" name="labelModuleId"/>
+                <label class="text-info">注:标签来源将按照归属模块ID加载表DMS_DATA_LABEL</label>
+              </div>
+
+            </div>
+            <div class="form-group enableLabel" style="display: none;">
+              <label for="columnNameForShowLabel" class="col-sm-3 control-label required">展示列</label>
+              <div class="col-sm-9">
+                <input type="text" class="w-configurer-option" name="columnNameForShowLabel" id="columnNameForShowLabel"/>
+                <input type="hidden" class="form-control w-configurer-option" height="34px" id="columnIndexForShowLabel" name="columnIndexForShowLabel"/>
+                <label class="text-info">注:标签的显示位置，来源列定义的非隐藏列</label>
+              </div>
+            </div>
+
+            <div class="form-group enableLabel" style="display: none;">
+              <label for="labelBtnName" class="col-sm-3 control-label required">标签按钮</label>
+              <div class="col-sm-9">
+                <input type="text" class="w-configurer-option renderMarkBtn" name="labelBtnName" id="labelBtnName"/>
+                <input type="hidden" class="form-control w-configurer-option" height="34px" id="labelBtnCode" name="labelBtnCode"/>
+                <label class="text-info">注:加载标签按钮，来源按钮定义的按钮</label>
+              </div>
+            </div>
+            <div class="form-group enableLabel" style="display: none;">
+              <label for="lableRelaEntity" class="col-sm-3 control-label required">标签数据关系实体</label>
+              <div class="col-sm-9">
+                <input type="text" class="w-configurer-option" name="lableRelaEntity" id="lableRelaEntity"/>
+                <input type="hidden" class="form-control w-configurer-option" height="34px" id="lableRelaEntityName" name="lableRelaEntityName"/>
+                <label class="text-info">注:标记后的数据与标签的关系存储实体类，自定义关系存储实体类必须继承DataLabelRelaEntity</label>
+              </div>
+            </div>
+
+          </fieldset>
+
+          <fieldset>
+            <legend>分类标记配置</legend>
+            <div id="div_classify_mark_toolbar" class="btn-group btn_button_info">
+              <button id="btn_add_classify_mark" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+              </button>
+              <button id="btn_delete_classify_mark" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+              </button>
+              <button id="btn_row_up_classify_mark" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+              </button>
+              <button id="btn_row_down_classify_mark" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+              </button>
+            </div>
+            <table id="table_classify_mark_info" class="definition_info " data-height="400"></table>
+          </fieldset>
+
+          <fieldset>
+            <legend>状态标记配置</legend>
+            <div id="div_status_mark_toolbar" class="btn-group btn_button_info">
+              <button id="btn_add_status_mark" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+              </button>
+              <button id="btn_delete_status_mark" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+              </button>
+              <button id="btn_row_up_status_mark" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+              </button>
+              <button id="btn_row_down_status_mark" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+              </button>
+            </div>
+            <table id="table_status_mark_info" class="definition_info " data-height="400"></table>
+          </fieldset>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="widget_data_management_viewer_tabs_dataactive_info">
+          <div id="div_data_active_toolbar" class="btn-group btn_button_info">
+            <button id="btn_add_data_active" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+            <button id="btn_delete_data_active" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+            </button>
+            <button id="btn_row_up_data_active" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+            </button>
+            <button id="btn_row_down_data_active" type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+            </button>
+          </div>
+          <table id="table_data_active_info" class="definition_info " data-height="400"></table>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

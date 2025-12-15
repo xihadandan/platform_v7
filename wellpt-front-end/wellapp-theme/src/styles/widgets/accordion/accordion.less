@@ -1,0 +1,124 @@
+/** 手风琴组件 */
+
+// - 手风琴组件 - 水平布局
+.ui-wAccordion .accordion.horizontal .accordion-item {
+  position: relative;
+  padding-left: @accordion-horizontal-label-width;
+  float: left;
+  height: 100%;
+  overflow: hidden;
+
+  // - 手风琴组件  - 水平布局 - 标签
+  .accordion-label {
+    .absolute(0 false 0 0);
+    .size(@accordion-horizontal-label-width, 100%);
+
+    // - 手风琴组件  - 水平布局 - 标签内容
+    .accordion-label-content {
+      width: @accordion-horizontal-label-width;
+      font-size: @accordion-horizontal-label-font-size;
+      color: @accordion-horizontal-label-font-color;
+      text-align: center;
+      display: table-cell;
+      vertical-align: middle;
+
+      // *背景色一般被配置的内联样式所覆盖*
+      background: orange;
+
+      // - 手风琴组件  - 水平布局 - 标签内容 - 徽标
+      .badge-wrap {
+        height: @accordion-horizontal-label-badge-height;
+        line-height: @accordion-horizontal-label-badge-height;
+        margin-bottom: 30px;
+        font-size: @accordion-horizontal-label-badge-font-size;
+        font-weight: @accordion-horizontal-label-badge-font-weight;
+      }
+
+      // - 手风琴组件  - 水平布局 - 标签内容 - 展开/折叠按钮
+      .icon {
+        .absolute(false false @margin-lg false);
+
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+      }
+    }
+  }
+
+  // - 手风琴组件  - 水平布局 - 内容区域
+  .accordion-content {
+    display: none;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+// - 手风琴组件 - 垂直布局
+.ui-wAccordion .accordion.vertical .accordion-item {
+  position: relative;
+  overflow: hidden;
+  padding-top: @accordion-vertical-label-height;
+
+  // - 手风琴组件  - 垂直布局 - 标签
+  .accordion-label {
+    .absolute(0 0 false 0);
+    height: @accordion-vertical-label-height;
+
+    // - 手风琴组件  - 垂直布局 - 标签内容
+    .accordion-label-content {
+      .size(100%, @accordion-vertical-label-height);
+
+      font-size: @accordion-vertical-label-font-size;
+      color: @accordion-vertical-label-font-color;
+      text-align: center;
+
+      // *背景色一般被配置的内联样式所覆盖*
+      background: orange;
+
+      // - 手风琴组件  - 垂直布局 - 标签内容 - 徽标
+      .badge-wrap {
+        display: inline-block;
+        box-sizing: border-box;
+        font-size: @accordion-vertical-label-badge-font-size;
+      }
+
+      // - 手风琴组件  - 垂直布局 - 标签内容 - 页签标题
+      p {
+        display: inline-block;
+        margin: 0;
+        line-height: @accordion-vertical-label-height;
+      }
+
+      // - 手风琴组件  - 垂直布局 - 标签内容 - 展开/折叠按钮
+      .icon {
+        .absolute(0 @margin-lg false false);
+        height: @accordion-vertical-label-badge-height;
+        line-height: @accordion-vertical-label-badge-height;
+        transform: rotate(90deg);
+        cursor: pointer;
+      }
+    }
+  }
+
+  // - 手风琴组件  - 垂直布局 - 内容区域
+  .accordion-content {
+    display: none;
+    height: @accordion-vertical-content-height;
+    overflow: hidden;
+  }
+}
+
+// 选中状态隐藏展开按钮、显示内容区域。
+.ui-wAccordion .accordion .accordion-item.active {
+  .accordion-label .accordion-label-content .icon {
+    display: none;
+  }
+
+  .accordion-content {
+    display: block;
+  }
+}
+
+.ui-wAccordion .accordion .accordion-item .accordion_table thead {
+  display: none !important;
+}

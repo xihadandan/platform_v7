@@ -1,0 +1,138 @@
+body {
+  --w-org-border-color: var(--w-border-color-base);
+  --w-org-border-style: var(--w-border-style-base);
+  --w-org-border-width: var(--w-border-width-base);
+  --w-org-border-radius: var(--w-border-radius-2);
+  --w-org-icon-size: var(--w-font-size-base);
+  --w-org-icon-color: var(--w-text-color-light);
+  --w-org-bg-color: var(--w-fill-color-base);
+  --w-org-lr-padding: var(--w-padding-xs);
+  --w-org-select-height: var(--w-height-sm);
+
+  --w-org-border-color-hover: var(--w-primary-color);
+  --w-org-icon-size-hover: var(--w-font-size-base);
+  --w-org-icon-color-hover: var(--w-text-color-light);
+
+  // 错误提示
+  --w-org-error-border-color: var(--w-danger-color);
+  --w-org-error-border-style: var(--w-border-style-base);
+  --w-org-error-border-width: var(--w-border-width-base);
+  --w-org-error-text-color: var(--w-danger-color);
+  --w-org-error-text-size: var(--w-font-size-base);
+  --w-org-error-text-weight: var(--w-font-weight-regular);
+  --w-org-error-icon-size: var(--w-font-size-base);
+  --w-org-error-icon-color: var(--w-danger-color);
+
+  --w-org-error-border-color-hover: var(--w-danger-color);
+
+  // 返回值-标签
+  --w-org-tag-border-color: var(--w-primary-color-3);
+  --w-org-tag-border-style: var(--w-border-style-base);
+  --w-org-tag-border-width: var(--w-border-width-base);
+  --w-org-tag-border-radius: var(--w-border-radius-2);
+  --w-org-tag-text-color: var(--w-primary-color);
+  --w-org-tag-text-size: var(--w-font-size-sm);
+  --w-org-tag-text-weight: var(--w-font-weight-regular);
+  --w-org-tag-close-size: var(--w-font-size-sm);
+  --w-org-tag-bg-color: var(--w-primary-color-1);
+  --w-org-tag-lr-padding: var(--w-padding-2xs);
+  --w-org-tag-height: var(--w-height-3xs);
+
+  // 返回值-文本
+  --w-org-text-size: var(--w-font-size-base);
+  --w-org-text-color: var(--w-text-color-dark);
+
+  .org-select-input {
+    min-height: var(--w-org-select-height);
+    padding: 2px var(--w-org-lr-padding);
+    border: var(--w-org-border-width) var(--w-org-border-style) var(--w-org-border-color);
+    border-radius: var(--w-org-border-radius);
+    background-color: var(--w-org-bg-color);
+    font-size: var(--w-org-text-size);
+    color: var(--w-org-text-color);
+    font-weight: var(--w-org-tag-text-weight);
+    display: flex;
+    align-items: center;
+    line-height: var(--w-line-height);
+
+    .input-suffix-icon {
+      font-size: var(--w-org-icon-size);
+      color: var(--w-org-icon-color);
+    }
+
+    &:hover {
+      border-color: var(--w-org-border-color-hover);
+
+      .input-suffix-icon {
+        font-size: var(--w-org-icon-size-hover);
+        color: var(--w-org-icon-color-hover);
+      }
+    }
+
+    .@{tag-prefix-cls} {
+      height: e('var(--w-org-tag-height) + 2px');
+      line-height: var(--w-org-tag-height);
+      border: var(--w-org-tag-border-width) var(--w-org-tag-border-style) var(--w-org-tag-border-color);
+      border-radius: var(--w-org-tag-border-radius);
+      font-size: var(--w-org-tag-text-size);
+      color: var(--w-org-tag-text-color);
+      font-weight: var(--w-org-tag-text-weight);
+      background-color: var(--w-org-tag-bg-color);
+      padding: 0 var(--w-org-tag-lr-padding);
+      margin-top: 2px;
+      margin-bottom: 2px;
+
+      .@{ant-iconfont-css-prefix}-close {
+        font-size: var(--w-org-tag-close-size);
+      }
+    }
+
+    // &.readonly {
+    //   cursor: not-allowed;
+
+    //   &:hover {
+    //     border-color: var(--w-org-border-color);
+    //   }
+    // }
+  }
+
+  .has-error {
+    .org-select-input {
+      border: var(--w-org-error-border-width) var(--w-org-error-border-style) var(--w-org-error-border-color);
+
+      .input-suffix-icon {
+        font-size: var(--w-org-error-icon-size);
+        color: var(--w-org-error-icon-color);
+      }
+
+      &:hover {
+        border-color: var(--w-org-error-border-color-hover);
+      }
+    }
+
+    .org-select-error {
+      color: var(--w-org-error-text-color);
+      font-size: var(--w-org-error-text-size);
+      font-weight: var(--w-org-error-text-weight);
+    }
+
+    &:has(.org-select-input) {
+      .ant-form-explain {
+        color: var(--w-org-error-text-color);
+        font-size: var(--w-org-error-text-size);
+        font-weight: var(--w-org-error-text-weight);
+      }
+    }
+  }
+
+  // .widget-form-layout .has-error {
+  //   &:has(.org-select-input) {
+  //     margin-bottom: e('calc(var(--w-org-error-text-size) + 4px)');
+
+  //     .ant-form-explain,
+  //     .ant-form-split {
+  //       bottom: e('calc(-4px - var(--w-org-error-text-size))');
+  //     }
+  //   }
+  // }
+}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="getDefaultOrgVersionBySystem">
+        <![CDATA[
+		from OrgVersionEntity t1
+		 where 1=1
+		     and t1.state = 0
+             and exists (
+                select t2.uuid from OrganizationEntity t2
+                    where t2.isDefault = true and t2.uuid = t1.orgUuid
+                     <if isNotBlank(system)>
+                        and t2.system = :system
+                     </if>
+                     <if isNotBlank(tenant)>
+                        and t2.tenant = :tenant
+                     </if>
+             )
+	]]>
+    </sql-query>
+
+    <sql-query name="getOrgVersionByOrgIdAndSystem">
+        <![CDATA[
+		from OrgVersionEntity t1
+		 where 1=1
+		     and t1.state = 0
+             and exists (
+                select t2.uuid from OrganizationEntity t2
+                    where t2.id = :orgId and t2.uuid = t1.orgUuid
+                     <if isNotBlank(system)>
+                        and t2.system = :system
+                     </if>
+             )
+	]]>
+    </sql-query>
+
+    <sql-query name="listOrgVersionQueryItem">
+        <![CDATA[
+		 select t1.id as id, t1.orgUuid as orgUuid, t2.id as orgId, t2.name as orgName
+		    from OrgVersionEntity t1, OrganizationEntity t2
+            where 1=1
+                 and t1.state = :state
+                 and t1.id in(:orgVersionIds)
+                 and t1.orgUuid = t2.uuid
+	]]>
+    </sql-query>
+</hibernate-mapping>

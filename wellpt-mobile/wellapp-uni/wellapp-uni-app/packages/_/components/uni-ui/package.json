@@ -1,0 +1,48 @@
+{
+  "_from": "@dcloudio/uni-ui@^1.5.6",
+  "_id": "@dcloudio/uni-ui@1.5.6",
+  "_inBundle": false,
+  "_integrity": "sha512-jmb98PasFvZkrIDXGh94GbdWg2/jyhgs1HUG+bU8eyL7Ltias/5XBz4q8w9RXyWUfqepJRqapPA2IIQpLCuTIg==",
+  "_location": "/@dcloudio/uni-ui",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "@dcloudio/uni-ui@^1.5.6",
+    "name": "@dcloudio/uni-ui",
+    "escapedName": "@dcloudio%2funi-ui",
+    "scope": "@dcloudio",
+    "rawSpec": "^1.5.6",
+    "saveSpec": null,
+    "fetchSpec": "^1.5.6"
+  },
+  "_requiredBy": [
+    "/",
+    "/wellapp-uni-wview"
+  ],
+  "_resolved": "http://192.168.0.215:4873/@dcloudio%2funi-ui/-/uni-ui-1.5.6.tgz",
+  "_shasum": "f2f0c10ec7fa2432e694c2c716e00a384e45555b",
+  "_spec": "@dcloudio/uni-ui@^1.5.6",
+  "_where": "D:\\wellsoft_workspace\\code\\dev-vue\\wellpt-mobile\\wellapp-uni\\wellapp-uni-app",
+  "author": "",
+  "browserslist": [
+    "Android >= 4",
+    "ios >= 8"
+  ],
+  "bugs": {
+    "url": "https://github.com/dcloudio/uni-ui/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "## uni-ui产品特点",
+  "devDependencies": {},
+  "homepage": "https://github.com/dcloudio/uni-ui#readme",
+  "license": "Apache-2.0",
+  "name": "@dcloudio/uni-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dcloudio/uni-ui.git"
+  },
+  "version": "1.5.6"
+}

@@ -1,0 +1,1541 @@
+@charset 'utf-8';
+@import url('./dysubform.css');
+@import url('../../../js/jquery-chained-1.0.0/jquery.chained.css');
+@import url('../../../js/pt/js/multi/org/org-select.css');
+@import url('../../../js/layer/theme/default/layer.css');
+@import url('../../../js/minicolors/css/jquery.minicolors.css');
+@import url('../../../css/appModal.css');
+
+/*hover color variables*/
+/*disabled color variables*/
+.dyform.dyform-stribe .field:nth-child(2n) {
+  background: #c8e9f5;
+}
+.dyform {
+  font: 14px Microsoft YaHei;
+  width: auto;
+  background: #fff;
+}
+.dyform h1 {
+  text-align: center;
+}
+.dyform table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.dyform table td.label-td {
+  width: 10%;
+  min-width: 120px;
+  padding: 7.5px 15px;
+  background: #f1f1f1;
+  text-align: center;
+}
+.dyform table td.label-td label {
+  font-weight: normal;
+}
+.dyform table td.photo-fileup {
+  text-align: center;
+}
+.dyform table td.photo-fileup .attach-listSMALL_PHOTO_UUID {
+  display: none;
+}
+.dyform table td {
+  padding: 5px;
+  border: 1px solid #e8e8e8;
+}
+.dyform table td .value {
+  display: none;
+}
+.dyform table td label {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  line-height: 35px;
+  position: relative;
+  font-size: 14px;
+  margin: 0 6px;
+  cursor: pointer;
+}
+.dyform table td label:before {
+  font-size: 16px;
+  margin-right: 3px;
+  vertical-align: top;
+}
+.dyform table td .editableClass input[type='radio'],
+.dyform table td .editableClass input[type='checkbox'] {
+  position: absolute;
+  margin: 5px 0 0 12px;
+  opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+}
+.dyform table td .editableClass input[type='radio'] + label:before {
+  content: '\e86f';
+}
+.dyform table td .editableClass input[type='radio'] + label.radiolabel:before {
+  content: '\e86e';
+}
+.dyform table td .editableClass input[type='radio']:checked + label:before {
+  content: '\e86e';
+}
+.dyform table td .editableClass input[type='checkbox'] + label:before {
+  content: '\f096';
+}
+.dyform table td .editableClass input[type='checkbox']:checked + label:before {
+  content: '\e878';
+}
+.dyform table td .editableClass input[type='checkbox'] + label.checkboxlabel:before {
+  content: '\e878';
+}
+.dyform .subtab {
+  width: 100%;
+}
+.dyform .WdateFmtErr {
+  font-weight: bold;
+  color: red;
+}
+.dyform .select2-container {
+  width: 100%;
+}
+.dyform .select2-container .select2-choice,
+.dyform .select2-container-multi .select2-choices {
+  height: 35px;
+  line-height: 35px;
+  border-radius: 3px;
+  background-image: none;
+  border: 1px solid #ccc;
+  outline: none;
+}
+.dyform .select2-container .select2-choice span:first-child,
+.dyform .select2-container-multi .select2-choices span:first-child {
+  width: auto;
+}
+.dyform .select2-container .select2-choice .select2-arrow,
+.dyform .select2-container-multi .select2-choices .select2-arrow {
+  border: 0;
+}
+.dyform .select2-container-active .select2-choice,
+.dyform .select2-container-active .select2-choices {
+  border: 1px solid #069dd5;
+}
+.dyform label.label {
+  white-space: normal;
+}
+.dyform .ui-jqgrid .ui-jqgrid-htable th div {
+  height: auto;
+}
+.dyform label {
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #404040;
+  display: inline-block;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+.dyform .title {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  position: relative;
+  height: 29px;
+}
+.dyform .title:before,
+.dyform .title:after {
+  content: '';
+  display: table;
+  line-height: 0;
+  clear: both;
+}
+.dyform .title.fixed {
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}
+.dyform .fileupload-ico {
+  width: 100%;
+  border-left-width: 2px;
+  padding: 5px 11px;
+}
+.dyform .fileupload-ico .left-counter {
+  color: #f3f3f3;
+}
+.dyform .fileupload-ico div > a {
+  padding: 0 11px;
+  position: relative;
+  color: #fff;
+  width: 100%;
+  line-height: 17px;
+  text-decoration: none;
+}
+.dyform .fileupload-ico div a:not(:last-child) {
+  border-right: 1px solid #fff;
+}
+.dyform .fileupload-ico div input {
+  width: auto;
+  display: inline-block;
+  margin-right: 9px;
+  border: 0;
+  display: none;
+}
+.dyform .fileupload-ico .newContent,
+.dyform .fileupload-ico .imposeContent {
+  border: 0;
+  left: 0;
+  top: 32px;
+  text-align: center;
+  padding: 5px;
+}
+.dyform .tab-design {
+  border: 1px dotted red;
+  padding: 10px;
+}
+.dyform .subtab-design {
+  border: 1px dotted green;
+  padding: 10px;
+}
+.dyform .attach-list {
+  border: 1px solid #069dd5;
+  margin-top: 0px;
+}
+.dyform .attach-list li {
+  padding: 5px 0;
+  list-style: none outside none;
+  border: 1px solid #069dd5;
+  margin-left: 0;
+}
+.dyform .attach-list li input[type='checkbox'] {
+  width: auto;
+  margin-right: 9px;
+  border: 0;
+  display: none;
+}
+.dyform .attach-list li img {
+  vertical-align: middle;
+  width: 23px;
+}
+.dyform .attach-list li:hover {
+  background: #c8e9f5;
+}
+.dyform .attach-list li.icoItem {
+  float: left;
+  width: 90px;
+  padding: 20px 0;
+  text-align: center;
+  cursor: pointer;
+}
+.dyform .attach-list li.icoItem img {
+  width: 48px;
+}
+.dyform .attach-list li.icoItem > span {
+  width: 90px;
+  display: block;
+  /* overflow:hidden;
+                white-space:nowrap;
+                text-overflow:ellipsis; */
+}
+.dyform .attach-list .autocut {
+  width: 120px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -icab-text-overflow: ellipsis;
+  -khtml-text-overflow: ellipsis;
+  -moz-text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+}
+.dyform .attach-list li.icoItem.bar {
+  border-bottom: 0;
+  border-right: 1px solid #fff;
+}
+.dyform .attach-list .bar {
+  background: #13baf8;
+  border-bottom: 1px solid #fff;
+}
+.dyform .attach-list a {
+  text-decoration: none;
+  color: #404040;
+}
+.dyform .attach-list a img {
+  width: 64px;
+  height: 64px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+.dyform .attach-list span {
+  line-height: 18px;
+  text-align: center;
+}
+.dyform .fileUpdateload {
+  overflow-x: hidden;
+  width: 100%;
+  border-left-width: 2px;
+  padding: 5px 11px;
+}
+.dyform .fileUpdateload input[type='checkbox'] {
+  width: auto;
+  margin-right: 9px;
+  border: 0;
+  display: none;
+}
+.dyform .fileUpdateload .left-counter {
+  color: #f3f3f3;
+}
+.dyform .fileUpdateload span a {
+  padding: 0 10px;
+  color: #fff;
+  text-decoration: none;
+}
+.dyform .fileUpdateload span a:not(:last-child) {
+  border-right: 1px solid #fff;
+}
+.dyform .fileUpdateload span a:hover {
+  color: #f9622a;
+}
+.dyform #upload_div {
+  padding-top: 5px;
+  height: 42px;
+}
+.dyform #upload_div .add_icon {
+  margin-left: 4px;
+}
+.dyform #upload_div .btn.btn-success {
+  margin-left: 4px;
+  padding: 2px 14px;
+  color: #fff;
+  height: 35px;
+  line-height: 30px;
+  font-size: 14px;
+}
+.dyform #upload_div .btn.btn-success span {
+  color: #fff;
+}
+.dyform #upload_div .file_icon {
+  margin-top: 4px;
+  margin-right: 5px;
+  background: none;
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.dyform #upload_div .file_icon:before {
+  content: '\f0c6';
+  color: #fff;
+}
+.dyform .file-list li {
+  background: #eee;
+  border-bottom: 1px solid #ccc;
+}
+.dyform .files_div .file_icon {
+  display: inline-block;
+  width: 30px;
+  line-height: 35px;
+  float: left;
+}
+.dyform .files_div .filename {
+  line-height: 35px;
+  font-size: 14px;
+  padding: 0 15px;
+  float: left;
+}
+
+.dyform .ui-jqgrid-btable .files_div .filename {
+  max-width: 130px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 0;
+}
+.dyform .files_div ._delete_input {
+  width: auto;
+}
+.dyform .downloadAll a {
+  text-decoration: none;
+}
+.dyform .downloadAll a:hover {
+  color: #f9622a;
+}
+.dyform .attach-listoa_file {
+  margin-bottom: 0;
+}
+.dyform .attach-listoa_file input {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.dyform .Validform_checktip span.error {
+  color: #e33033;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 4px 8px 4px 21px;
+  z-index: 50;
+  position: relative;
+  width: 200px;
+  display: block;
+  line-height: 1;
+}
+.dyform .Validform_checktip span.error:after {
+  font-size: 14px;
+  content: '\e8b0';
+  display: block;
+  left: 0;
+  position: absolute;
+  top: 0;
+  padding: 4px 0;
+}
+.dyform .ui-widget-overlay {
+  background: #aaaaaa url(../../../jqueryui/css/base/images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+.ui-jqgrid {
+  margin: 0 auto;
+}
+.ui-jqgrid .ui-jqgrid-view {
+  border-color: #069dd5;
+}
+.ui-jqgrid .ui-jqgrid-title {
+  line-height: 30px;
+  font-weight: normal;
+  font-family: '微软雅黑';
+  float: none;
+}
+.ui-jqgrid .ui-jqgrid-titlebar {
+  height: 40px;
+  font-size: 14px;
+}
+.ui-jqgrid .ui-jqgrid-titlebar .ui-wbtn-group {
+  float: right;
+}
+.ui-jqgrid .ui-jqgrid-titlebar span > button {
+  font-family: '微软雅黑';
+  font-weight: normal;
+  background: #f2f4f8;
+  border: 0;
+  color: #007aa7;
+  font-size: 14px;
+  height: 30px;
+  margin-left: 4px;
+  padding: 0 20px;
+  -moz-border-radius: 3px;
+  /* Gecko browsers */
+  -webkit-border-radius: 3px;
+  /* Webkit browsers */
+  border-radius: 3px;
+}
+.ui-jqgrid .ui-jqgrid-hdiv {
+  border-bottom: 0;
+  overflow-x: hidden;
+}
+.ui-jqgrid .ui-jqgrid-bdiv {
+  /*   position: relative; */
+  margin: 0em;
+  padding: 0;
+  /*overflow: visible;*/ /* zhongzh comment:固定列表格可滚动，overflow-x、overflow-y顺序不可换*/
+  /*   overflow-x : auto; */
+  /*   overflow-y : hidden; */
+  text-align: left;
+  min-height: 50px;
+}
+.ui-jqgrid tr.jqgrow td {
+  font-weight: normal;
+  overflow: hidden;
+  height: 22px;
+  padding: 0 2px 0 2px;
+  border-bottom-width: 1px;
+  border-bottom-color: inherit;
+  border-bottom-style: solid;
+  word-break: break-all;
+  white-space: normal;
+}
+
+.ui-jqgrid .ui-jqgrid-bdiv table.ui-jqgrid-btable tbody td {
+  /*   overflow: visible; */
+}
+.ui-jqgrid .ui-jqgrid-bdiv .value {
+  display: block;
+}
+.ui-jqgrid .fileupload-ico td {
+  cursor: pointer;
+  border: #f3f4f8 1px solid;
+  text-align: center;
+}
+.ui-jqgrid .ToolBtn {
+  cursor: pointer;
+  border: #e1e1e1 1px solid;
+  padding: 2px 6px;
+  line-height: 12pt;
+  background-color: #e1e1e1;
+}
+.ui-jqgrid .ToolBtnOutset {
+  cursor: pointer;
+  border-top: #ffffff 1px solid;
+  border-right: #777777 1px solid;
+  border-bottom: #777777 1px solid;
+  border-left: #ffffff 1px solid;
+  background-color: #e1e1e1;
+}
+.ui-jqgrid .labelclass {
+  -webkit-user-select: text;
+}
+.ui-jqgrid .select2-drop {
+  margin-top: -21px;
+}
+.dyform #openDiv {
+  background-image: url('../../../theme/default/images/open-close.png');
+  background-position: 0 -1px;
+  display: block;
+  float: left;
+  height: 20px;
+  margin: 5px;
+  width: 20px;
+  cursor: pointer;
+}
+.dyform #notOpenDiv {
+  background-image: url('../../../theme/default/images/open-close.png');
+  background-position: 0 18px;
+  display: block;
+  float: left;
+  height: 20px;
+  margin: 5px;
+  width: 20px;
+  cursor: pointer;
+}
+#bubble_tooltip {
+  width: 180px;
+  position: absolute;
+  top: 100px;
+  right: 3px;
+  display: none;
+  background-color: #fff;
+  z-index: 9999999999;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+}
+#bubble_tooltip .bubble_top {
+  height: 40px;
+  text-align: left;
+  line-height: 40px;
+  font-weight: normal;
+  background: #488cee;
+  color: #fff;
+  padding-left: 20px;
+}
+#bubble_tooltip .bubble_middle {
+  background-repeat: repeat-y;
+  background-position: bottom left;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-bottom: 7px;
+}
+#bubble_tooltip .bubble_middle span {
+  position: relative;
+  top: -8px;
+  font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;
+  font-size: 11px;
+}
+#bubble_tooltip .bubble_bottom {
+  background-repeat: no-repeat;
+  height: 5px;
+  position: relative;
+  top: -6px;
+}
+#bubble_tooltip_content {
+  list-style: outside none none;
+  margin-left: 0;
+  margin-bottom: 2px;
+  margin-top: 4px;
+}
+#bubble_tooltip_content li {
+  height: 34px;
+  line-height: 34px;
+  padding-left: 2px;
+}
+#bubble_tooltip_content li:not(:last-of-type) {
+  box-shadow: 0px 1px 0px 0px rgba(232, 232, 232, 1);
+}
+#bubble_tooltip_content li i {
+  color: #666;
+  font-size: 10px;
+  float: right;
+}
+#bubble_tooltip_content a {
+  text-decoration: none;
+}
+#bubble_tooltip_content a:hover {
+  cursor: pointer;
+}
+.template-wrapper.bg {
+  padding: 10px;
+  background-image: url('../../images/bg.png');
+  background-color: #eee;
+  position: relative;
+  cursor: pointer;
+}
+.template-wrapper.bg .inner-box {
+  background: #fff;
+  cursor: text;
+}
+.template-wrapper.bg .inner-box.filter {
+  background: #fff;
+  cursor: text;
+  -webkit-filter: contrast(90%) brightness(80%);
+  /* Chrome, Safari, Opera */
+  filter: contrast(90%) brightness(80%);
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+.bootstrap-datetimepicker-widget table tr td.day,
+.bootstrap-datetimepicker-widget .picker-switch table tr td.day,
+.bootstrap-datetimepicker-widget table tr td,
+.bootstrap-datetimepicker-widget .picker-switch table tr td {
+  text-align: center;
+  padding: 5px;
+  border-color: #fff;
+}
+.datepick-wrapper {
+  z-index: 100;
+  display: none;
+}
+.datepick-wrapper input {
+  display: inline-block;
+  width: 100px;
+}
+.input-waiting {
+  background: url('../../../js/theme/images/waiting.gif') no-repeat scroll 99.5%;
+  background-size: 24px 8px;
+  background-repeat: no-repeat;
+}
+
+#rightSidebarNav {
+  background: transparent !important;
+  width: auto !important;
+}
+
+#rightSidebarNav > li {
+  display: inline-block !important;
+  width: auto !important;
+  float: none !important;
+  min-width: 77px;
+}
+
+#rightSidebarNav > li > a {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+#formDataVersionTable {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.version-line {
+  float: left;
+  padding-right: 15px;
+  border-right: 1px solid #069dd5;
+  line-height: 30px;
+  margin-left: 5px;
+}
+#formDataVersionTable td {
+  border: 0px;
+}
+
+#formDataVersionTable tr > td:first-child {
+  color: #069dd5;
+}
+
+#formDataVersionTable td:first-child {
+  font-weight: bold;
+}
+
+#formDataVersionTable tr:nth-child(even) > td {
+  padding: 0px;
+}
+
+#formDataVersionTable tr:nth-child(odd) > td:nth-child(1n + 2) {
+  cursor: pointer;
+}
+
+#formDataVersionTable tr > td:nth-child(1n + 2) {
+  background: #cae2ea;
+}
+
+/*表单侧边导航栏样式   start*/
+.wellpt_form_anchor {
+  position: fixed;
+  top: 100px;
+  left: 50px;
+  width: 200px;
+  padding-left: 20px;
+  border-left: 2px solid #ddd;
+  box-sizing: border-box;
+}
+
+.wellpt_form_anchor li {
+  height: 32px;
+  vertical-align: top;
+  font-size: 15px;
+  color: #333;
+  cursor: pointer;
+}
+
+.wellpt_form_anchor li.anchor_active {
+  position: relative;
+  color: #1890ff;
+}
+
+.wellpt_form_anchor li.anchor_active:before,
+.wellpt_form_anchor li.anchor_active:after {
+  content: '';
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+}
+
+.wellpt_form_anchor li.anchor_active:before {
+  width: 14px;
+  height: 14px;
+  left: -28px;
+  top: 3px;
+  background: #1890ff;
+  z-index: 2;
+}
+
+.wellpt_form_anchor li.anchor_active:after {
+  width: 6px;
+  height: 6px;
+  left: -24px;
+  top: 7px;
+  background: #fff;
+  z-index: 2;
+}
+
+.wellpt_form_container {
+  float: right;
+  width: calc(100% - 200px);
+}
+
+/*表单侧边导航栏样式   end*/
+
+/*回到顶部按钮样式*/
+.backToTop {
+  position: fixed;
+  bottom: 130px;
+  right: 0;
+  display: none;
+  padding: 5px;
+  font-size: 12px;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background: #069dd5;
+  color: #fff;
+  cursor: pointer;
+}
+
+/*tagGroup样式*/
+.dyform td .tag-group {
+  list-style: none;
+}
+.dyform td .tag-group .tag-group-item {
+  display: inline-block;
+  overflow: hidden;
+  float: left;
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.dyform td .tag-group .tag-group-item span {
+  display: inline-block;
+  padding: 0 24px 0 6px;
+  height: auto;
+  min-height: 22px;
+  line-height: 22px;
+  margin-right: 6px;
+  background: #f6f6f6;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+  word-break: break-all;
+  vertical-align: middle;
+}
+.dyform td .tag-group .tag-shapes {
+  padding-left: 12px;
+  position: relative;
+}
+.dyform td .tag-group .tag-shapes span {
+  position: inherit;
+  font-size: 12px;
+  vertical-align: middle;
+  z-index: 1;
+  border-left: 0;
+  border-radius: 0 4px 4px 0;
+}
+.dyform td .tag-group .tag-shapes i.three-angle {
+  position: absolute;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  left: 4px;
+  top: 0;
+  background: #f6f6f6;
+  vertical-align: middle;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg); /* Internet Explorer */
+  -moz-transform: rotate(45deg); /* Firefox */
+  -webkit-transform: rotate(45deg); /* Safari 和 Chrome */
+  -o-transform: rotate(45deg); /* Opera */
+  z-index: 0;
+  border: 1px solid #ddd;
+  border-right: 0;
+  border-top: 0;
+  border-bottom-left-radius: 4px;
+  box-sizing: content-box;
+}
+.dyform td .tag-group .tag-group-item i.tag-delete {
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+  color: #999;
+  position: absolute;
+  top: 50%;
+  margin-top: -5px;
+  right: 11px;
+  z-index: 1;
+}
+.dyform td .tag-group .tag-group-item.selected span {
+  color: #488cee;
+  border-color: #488cee;
+  background: #fff;
+}
+.dyform td .tag-group .tag-group-item.selected i {
+  border-color: #488cee;
+  background: #fff;
+}
+.dyform td .tag-group .tag-group-item:hover i.tag-delete {
+  color: #488cee;
+}
+.dyform td .edit-tags {
+  float: left;
+  display: inline-block;
+  color: #488cee;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 6px;
+  background: #fff;
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0;
+}
+.dyform td .edit-tags:hover {
+  border-color: #488cee;
+}
+.dyform td .edit-tags i {
+  font-size: 12px;
+}
+.dyform td .tag-focus {
+  border-style: solid;
+  border-color: #488cee;
+  box-shadow: 0px 0px 4px 0px rgba(72, 140, 238, 0.5);
+}
+.dyform td .edit-tags .edit-tags-input::placeholder {
+  color: #ccc;
+}
+.dyform td .edit-tags .edit-tags-input {
+  display: none;
+  width: 80px;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none;
+  height: 22px;
+  line-height: 22px;
+  padding: 0;
+  float: left;
+}
+
+.dyform td .add-tags {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 4px;
+  text-align: center;
+  color: #fff;
+  background: #488cee;
+  position: relative;
+  cursor: pointer;
+  font-size: 0;
+  float: left;
+}
+.dyform td .add-tags > i {
+  font-size: 12px;
+}
+.dyform td .more-tags-box {
+  display: none;
+  min-width: 400px;
+  position: absolute;
+  bottom: -200px;
+  left: 0;
+  z-index: 51;
+  background: #fff;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+}
+.dyform td .more-tags-box .more-tags-data {
+  padding: 15px;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.dyform td .more-tags-box .more-tags-data li {
+  color: #666;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  word-break: break-all;
+}
+.dyform td .more-tags-box .more-tags-data li.tag-disabled {
+  cursor: not-allowed;
+  color: #bbb;
+}
+.dyform td .more-tags-box .more-tags-data li .tag-check {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  vertical-align: baseline;
+  font-size: 14px;
+}
+.dyform td .more-tags-box .more-tags-data li:not(:last-of-type) {
+  margin-bottom: 12px;
+}
+.dyform td .more-tags-box .more-tags-data li.tag-selected,
+.dyform td .more-tags-box .more-tags-data li.select-all {
+  color: #488cee;
+}
+.dyform td .more-tags-box .more-tags-data li.option-select-all i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+.dyform td .more-tags-box .tag-operate {
+  padding: 15px;
+  text-align: right;
+  border-top: 1px solid #e8e8e8;
+}
+.dyform td .more-tags-box .tag-operate .tag-operate-btn {
+  padding: 10px 20px;
+  line-height: 1;
+  border: 1px solid #ddd;
+  background: #fff;
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: #666;
+  border-radius: 4px;
+}
+.dyform td .more-tags-box .tag-operate .tag-operate-btn:first-of-type {
+  margin-right: 10px;
+  border: 1px solid #488cee;
+  background: #488cee;
+  color: #fff;
+}
+
+.dyform .editableClass[disabled] > .add-tags,
+.dyform .editableClass[disabled] > .edit-tags,
+.dyform .editableClass[disabled] .tag-group .tag-delete {
+  display: none;
+}
+
+/*tips组件*/
+.dyform .tips-warn .tool-content,
+.dyform .tips-tool .warn-content {
+  display: none;
+}
+.dyform .tips-warn {
+  display: block;
+  font-size: 0;
+  padding: 15px;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+.dyform .tips-warn .tips-icon,
+.dyform .tips-warn .tips-content {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+  vertical-align: middle;
+  color: #eaa900;
+}
+.dyform .tips-warn .tips-icon {
+  font-size: 18px;
+}
+.dyform .tips-tool {
+  display: inline-block;
+  position: relative;
+  margin-left: 4px;
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+.dyform .tips-tool .tool-content {
+  width: 14px;
+  height: 14px;
+  color: #999;
+  display: inline-block;
+}
+.dyform .tips-tool .tool-content:before {
+  font-size: 14px;
+  vertical-align: top;
+}
+.dyform .tips-tool .tool-content:hover {
+  color: #488cee;
+}
+.layui-layer-tips.tips-content .layui-layer-content {
+  word-break: break-all;
+  padding: 12px 30px;
+  color: #999;
+  font-size: 14px;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+}
+.layui-layer-tips.tips-content i.layui-layer-TipsL {
+  border-left-color: #fff;
+  right: -16px;
+  top: 13px;
+  border-bottom-color: transparent;
+}
+.layui-layer-tips.tips-content i.layui-layer-TipsR {
+  left: -16px;
+  top: 13px;
+  border-right-color: #fff;
+  border-bottom-color: transparent;
+}
+.layui-layer-tips.tips-content i.layui-layer-TipsB {
+  left: 13px;
+  top: -16px;
+  border-bottom-color: #fff;
+  border-right-color: transparent;
+}
+.layui-layer-tips.tips-content i.layui-layer-TipsT {
+  bottom: -16px;
+  left: 13px;
+  border-top-color: #fff;
+  border-right-color: transparent;
+}
+
+/*颜色控件*/
+.dyform .color-wrap {
+  position: relative;
+}
+.dyform .color-wrap .color-selected {
+  border: 1px solid #ddd;
+  padding: 4px;
+  width: 34px;
+  height: 34px;
+  display: inline-block;
+}
+.dyform .color-wrap .color-selected li {
+  width: 100%;
+  height: 100%;
+  background: #0070c0;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+.dyform .color-wrap .color-selected:hover,
+.dyform .color-wrap .color-selected.options-open {
+  border: 1px solid rgba(72, 140, 238, 1);
+  box-shadow: 0px 0px 4px 0px rgba(72, 140, 238, 0.5);
+}
+.dyform .color-wrap .color-options {
+  position: absolute;
+  top: 0;
+  left: 34px;
+  border: 1px solid #ddd;
+  background: #fff;
+  display: none;
+  transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  z-index: 99;
+}
+.dyform .color-wrap .color-list {
+  font-size: 0;
+  padding: 4px;
+}
+.dyform .color-wrap .color-items {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  border: 1px solid #e8e8e8;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.dyform .color-wrap .color-items.iconfont {
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  line-height: 24px;
+}
+.dyform .color-wrap .color-items.hasWhite {
+  color: #f00;
+}
+.color-wrap .color-inline .color-items:not(:first-of-type) {
+  margin-left: 4px;
+}
+.color-wrap .color-box .color-items:not(:nth-of-type(4n + 1)) {
+  margin-left: 4px;
+}
+.color-wrap .color-box .color-items:nth-of-type(n + 5) {
+  margin-top: 4px;
+}
+.dyform .color-wrap .color-box {
+  width: 123px;
+}
+.dyform .color-wrap .color-more {
+  padding: 7px 7px 11px;
+  text-align: right;
+  line-height: 1;
+  font-size: 14px;
+  color: #488cee;
+  cursor: pointer;
+}
+.dyform .color-wrap .color-more i {
+  font-size: 10px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+.dyform .color-wrap .color-input {
+  display: none;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.color-wrap .minicolors .minicolors-swatch {
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.color-wrap .minicolors .minicolors-panel {
+  display: block;
+  top: 0;
+}
+.dyform .color-wrap .show-more-color {
+  border-color: transparent;
+}
+
+.dyform .editableClass[disabled] > .color-wrap,
+.dyform .editableClass[disabled] > .color-wrap .color-selected li {
+  cursor: not-allowed;
+}
+
+/*按钮开关*/
+.dyform .switch-wrap {
+  position: relative;
+  display: inline-block;
+  min-width: 42px;
+  height: 20px;
+  padding: 0 7px;
+  outline: none;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background: #cccccc;
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+  -ms-transition: border-color 0.3s, background-color 0.3s;
+  -moz-transition: border-color 0.3s, background-color 0.3s;
+  -webkit-transition: border-color 0.3s, background-color 0.3s;
+  -o-transition: border-color 0.3s, background-color 0.3s;
+  vertical-align: middle;
+  font-size: 0;
+}
+.dyform .switch-wrap .switch-radio {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  background-color: #fff;
+}
+.dyform .switch-wrap .switch-text {
+  display: inline-block;
+  line-height: 20px;
+  font-size: 14px;
+  color: #fff;
+}
+.dyform .switch-wrap .switch-open {
+  float: left;
+  padding-right: 8px;
+  display: none;
+}
+.dyform .switch-wrap .switch-close {
+  float: right;
+  padding-left: 8px;
+}
+.dyform .switch-wrap.active {
+  background-color: #488cee;
+}
+.dyform .switch-wrap.active .switch-close {
+  display: none;
+}
+.dyform .switch-wrap.active .switch-open {
+  display: block;
+}
+.dyform .switch-wrap.active .switch-radio {
+  left: calc(100% - 20px);
+  border: 1px solid #488cee;
+}
+/*进度条*/
+.dyform .progress-wrap {
+  margin: 20px 0;
+  width: 100%;
+  position: relative;
+  line-height: 18px;
+  font-size: 0;
+  moz-user-select: -moz-none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.dyform .progress-content .progress-btn {
+  position: absolute;
+  left: -2px;
+  top: 10px;
+  height: 14px;
+  width: 14px;
+  background: #fff;
+  border-radius: 50%;
+  border: 2px solid #488cee;
+  margin-top: -14px;
+  cursor: pointer;
+}
+.dyform .editableClass[disabled] .progress-content .progress-btn {
+  cursor: not-allowed;
+}
+.dyform .progress-content .progress-value {
+  font-size: 14px;
+  position: absolute;
+  top: 20px;
+  color: #488cee;
+  white-space: nowrap;
+  -moz-transform: translateX(-25%);
+  -o-transform: translateX(-25%);
+  -ms-transform: translateX(-25%);
+  -webkit-transform: translateX(-25%);
+  transform: translateX(-25%);
+}
+.dyform .progress-wrap .progress-content {
+  display: inline-block;
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+  background-color: #e8e8e8;
+  width: calc(100% - 130px);
+  height: 6px;
+  position: relative;
+  font-size: 0px;
+  border-radius: 3px;
+}
+.dyform .progress-content div {
+  background-repeat: repeat-x;
+  background-color: #488cee;
+  width: 0;
+  position: absolute;
+  height: 6px;
+  width: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 3px;
+}
+.dyform .progress-wrap .progress-min,
+.dyform .progress-wrap .progress-max {
+  display: inline-block;
+  font-size: 14px;
+  color: #666;
+}
+.dyform .progress-wrap .progress-min {
+  width: 50px;
+  text-align: right;
+  padding-right: 10px;
+  box-sizing: border-box;
+}
+.dyform .progress-wrap .progress-max {
+  width: 80px;
+  text-align: left;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+.dyform .progress-wrap .progress-content .progress-edit {
+  width: auto;
+  padding: 0 10px;
+  height: 34px;
+  background: #fff;
+  border: 2px solid rgba(72, 140, 238, 1);
+  border-radius: 4px;
+  font-size: 0;
+  color: #488cee;
+  text-align: center;
+  line-height: 30px;
+  margin-top: -15px;
+}
+.dyform .progress-wrap .progress-content .progress-edit span {
+  font-size: 14px;
+  vertical-align: middle;
+  outline: none;
+}
+
+/*单选和复选按钮*/
+.dyform table td .select-vertical {
+  float: left;
+}
+.dyform table td .select-vertical:not(:last-of-type) {
+  margin-right: 30px;
+}
+.dyform table td .editableClass input[type='radio'] + label,
+.dyform table td .editableClass input[type='checkbox'] + label {
+  font-family: Microsoft YaHei;
+  font-size: 14px;
+  color: #666;
+  padding: 0;
+  margin: 0;
+  line-height: 28px;
+  word-break: break-all;
+  position: relative;
+  padding: 0 10px 0px 22px;
+}
+.dyform table td .editableClass .row input[type='radio'] + label,
+.dyform table td .editableClass .row input[type='checkbox'] + label {
+  line-height: 20px;
+  vertical-align: text-top;
+  float: initial;
+  padding-bottom: 5px;
+}
+.dyform table td .editableClass .select-vertical input[type='radio'] + label,
+.dyform table td .editableClass .select-vertical input[type='checkbox'] + label {
+  margin-right: 0;
+}
+.dyform table td .editableClass input[type='radio'] + label:before,
+.dyform table td .editableClass input[type='checkbox'] + label:before {
+  color: #999;
+  margin-right: 8px;
+  position: absolute;
+  left: 0;
+}
+.dyform table td .editableClass input[type='radio']:checked + label:before,
+.dyform table td .editableClass input[type='checkbox']:checked + label:before,
+.dyform table td .editableClass input[type='radio']:not(:checked) + label:hover:before,
+.dyform table td .editableClass input[type='checkbox']:not(:checked) + label:hover:before,
+.dyform table td .editableClass .selectAll:not(.selected):hover:before {
+  color: #488cee;
+}
+
+.dyform table td .editableClass input[disabled='disabled'] + label,
+.dyform table td .editableClass input[disabled='disabled'] + label:before,
+.dyform table td .editableClass input[disabled='disabled']:checked + label:before,
+.dyform table td .editableClass .selectAll[disabled='disabled'],
+.dyform table td .editableClass .selectAll[disabled='disabled']:before {
+  cursor: not-allowed;
+}
+
+.dyform table td .editableClass input[disabled='disabled'] + label:before,
+.dyform table td .editableClass input[disabled='disabled']:checked + label:before,
+.dyform table td .editableClass .selectAll[disabled='disabled']:before {
+  color: #ccc;
+}
+
+.dyform table td .editableClass input[type='checkbox'] + label:before,
+.dyform table td .editableClass .selectAll:before {
+  content: '\e87e';
+}
+.dyform table td .editableClass .btn-radio input[type='radio'] + label {
+  border: 1px solid #dddddd;
+  min-height: 34px;
+  line-height: 20px;
+  margin: 10px 0 0 0;
+  padding: 7px 25px;
+  border-radius: 4px;
+}
+.dyform table td .editableClass .btn-radio input[type='radio']:not(:checked) + label:hover {
+  border-color: #488cee;
+}
+.dyform table td .editableClass .btn-radio > div {
+  display: inline-block;
+}
+.dyform table td .editableClass .btn-radio > div:not(:last-of-type) {
+  margin-right: 10px;
+}
+.dyform table td .editableClass .btn-radio input[type='radio'] + label:before {
+  content: '';
+  font-size: 0;
+  margin: 0;
+}
+.dyform table td .editableClass .btn-radio input[type='radio']:checked + label {
+  color: #488cee;
+  border-color: #488cee;
+}
+.dyform table td .editableClass .btn-radio input[type='radio']:checked + label:before {
+  content: '\e93b';
+  color: #488cee;
+  font-size: 28px;
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  left: initial;
+  line-height: 1;
+  overflow: hidden;
+  border-radius: 0 4px 0 0;
+}
+.dyform table td .editableClass .btn-radio input[disabled='disabled'] + label,
+.dyform table td .editableClass .btn-radio input[disabled='disabled']:checked + label,
+.dyform table td .editableClass .btn-radio input[disabled='disabled'] + label:before {
+  color: #666666;
+  background-color: #f6f6f6;
+  border-color: #ddd;
+}
+.dyform table td .editableClass .btn-radio input[disabled='disabled']:checked + label:before {
+  color: #ccc;
+  background-color: #f6f6f6;
+}
+.dyform table td .editableClass .checkbox-all {
+  clear: both;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  border-top: 1px solid #e8e8e8;
+  transition: opacity 0.3s;
+}
+.dyform table td .editableClass .selectAll {
+  margin: 0;
+  line-height: 28px;
+  color: #666;
+}
+.dyform table td .editableClass .selectAll:before {
+  content: '\e8f2';
+  color: #999;
+  margin-right: 8px;
+  font-size: 16px;
+  vertical-align: top;
+}
+.dyform table td .editableClass .selectAll.selected:before {
+  content: '\e8de';
+  color: #488cee;
+}
+.dyform table td .input-box:hover .checkbox-all {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.dyform table td .editableClass .input-box .fix-margin {
+  margin-right: 30px;
+  display: inline-block;
+}
+
+.dyform table td .editableClass.label-elem input:checked + label {
+  display: inline-block;
+  padding: 0px 6px;
+}
+
+.dyform table td .editableClass.label-elem input:checked + label::before {
+  display: none;
+}
+
+.dyform table td .editableClass.label-elem input:not(:checked) + label {
+  display: none;
+}
+
+.inline-block {
+  display: inline;
+}
+
+/*tab*/
+/*有边框*/
+.nav-tabs > li.tab-border {
+  margin-left: 15px;
+}
+.nav-tabs > li.tab-border > a {
+  padding: 10px 20px;
+  color: #488cee;
+  border: 1px solid #e8e8e8;
+  background: #fafafa;
+  border-radius: 4px 4px 0px 0px;
+  font-size: 15px;
+  line-height: 1;
+}
+.nav-tabs > li.tab-border > a.tab-disabled,
+.nav-tabs > li.tab-noborder > a.tab-disabled {
+  color: #ccc;
+}
+.nav-tabs > .tab-border.active > a,
+.nav-tabs > .tab-border.active > a:focus,
+.nav-tabs > .tab-border.active > a:hover,
+.nav-tabs > .tab-border > a:hover {
+  color: #fff;
+  background: #488cee;
+  border-color: #488cee;
+}
+/*没有边框*/
+.tab > .tab-content {
+  margin-top: 20px;
+}
+.nav-tabs > li.tab-noborder:not(:first-of-type) {
+  margin-left: 30px;
+}
+.nav-tabs > li.tab-noborder > a {
+  padding: 10px;
+  border: none;
+  color: #333;
+  background: initial;
+  font-size: 15px;
+}
+.nav-tabs > .tab-noborder.active > a,
+.nav-tabs > .tab-noborder.active > a:focus,
+.nav-tabs > .tab-noborder.active > a:hover,
+.nav-tabs > .tab-noborder > a:hover {
+  color: #488cee;
+  border: none;
+  border-bottom: 3px solid #488cee;
+}
+.nav-tabs .tab-content {
+  margin-top: 20px;
+}
+/*区块block*/
+.dyform table .title {
+  position: relative;
+  padding-left: 14px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  color: #333;
+  background: none;
+  box-shadow: 0px 1px 0px 0px rgba(232, 232, 232, 1);
+  border: none;
+  line-height: 1;
+}
+.dyform table .title:before {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -8px;
+  content: '';
+  height: 15px;
+  width: 4px;
+  background: #488cee;
+  border-radius: 2px;
+}

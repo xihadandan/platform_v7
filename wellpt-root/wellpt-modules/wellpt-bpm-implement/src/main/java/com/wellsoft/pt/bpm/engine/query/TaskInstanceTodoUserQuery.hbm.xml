@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <sql-query name="getListByFlowInstUuidAndTaskIdsAndUserId">
+
+        SELECT
+        UUID,
+        CREATE_TIME,
+        CREATOR,
+        MODIFIER,
+        MODIFY_TIME,
+        REC_VER,
+        TASK_INST_UUID,
+        TODO_USER_ID,
+        TODO_USER_NAME,
+        TODO_USER_JOB_PATH,
+        TASK_ID,
+        FLOW_INST_UUID
+        FROM
+        WF_TASK_INSTANCE_TODO_USER
+        WHERE FLOW_INST_UUID= :flowInstUuid
+        AND TASK_ID IN (:taskIds)
+        AND TODO_USER_ID= :userId
+
+    </sql-query>
+
+    <sql-query name="getListByFlowInstUuidAndTaskIds">
+
+        SELECT
+        UUID,
+        CREATE_TIME,
+        CREATOR,
+        MODIFIER,
+        MODIFY_TIME,
+        REC_VER,
+        TASK_INST_UUID,
+        TODO_USER_ID,
+        TODO_USER_NAME,
+        TODO_USER_JOB_PATH,
+        TASK_ID,
+        FLOW_INST_UUID
+        FROM
+        WF_TASK_INSTANCE_TODO_USER
+        WHERE FLOW_INST_UUID= :flowInstUuid
+        AND TASK_ID IN (:taskIds)
+
+    </sql-query>
+
+</hibernate-mapping>

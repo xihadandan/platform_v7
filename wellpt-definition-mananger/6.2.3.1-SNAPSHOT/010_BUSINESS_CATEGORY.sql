@@ -1,0 +1,4 @@
+-- Add/modify columns
+
+alter table BUSINESS_CATEGORY modify MANAGE_USER VARCHAR2(1000);
+alter table BUSINESS_CATEGORY modify MANAGE_USER_VALUE VARCHAR2(1000);

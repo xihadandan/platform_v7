@@ -1,0 +1,48 @@
+/** 自定义页面布局容器 */
+
+.web-app-container.container-fluid {
+  padding-right: 0px;
+  padding-left: 0px;
+  height: 100%;
+}
+
+.well-header {
+  .fixed(0 0 false 0);
+
+  z-index: 1;
+  padding: 0;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.well-content {
+  .fixed((@header-height + 1px)  0  @footer-height false);
+
+  padding: 0;
+  width: calc(100% - @left-sidebar-expanded-width);
+
+  .ui-wNavTab {
+    .box();
+  }
+}
+
+.well-footer {
+  .fixed(false 0 0 0);
+
+  padding: 0;
+  min-height: @footer-height;
+}
+
+.show-float-menu {
+  .well-left-nav {
+    width: @left-sidebar-collapsed-width;
+  }
+
+  .well-content {
+    width: calc(100% - @left-sidebar-collapsed-width);
+  }
+}
+
+.fullFixedBody {
+  position: fixed;
+  width: 100%;
+}

@@ -1,0 +1,71 @@
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>Hello MUI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<!--标准mui.css-->
+<link rel="stylesheet" href="../css/mui.min.css">
+<link rel="stylesheet" href="../css/mui.htmlviewer.css">
+<!--App自定义的css-->
+<style type="text/css">
+</style>
+
+</head>
+
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">iframe viewer（iframe预览）</h1>
+	</header>
+	<div class="mui-content">
+		<div class="mui-content-padded">
+			<p>这是图片放大预览示例，点击如下图片体验全屏预览功能</p>
+			<p>
+				<img src="../images/yuantiao.jpg" />
+			</p>
+			<p>图片全屏后，双击或双指缩放均可对图片进行放大、缩小操作，左右滑动可查看同组(data-preview-group相同的图片为一组)其它图片，点击会关闭预览</p>
+			<p>
+				<img src="../images/muwu.jpg" />
+			</p>
+			<p>第三张图片，纯粹为了占位：</p>
+			<p>
+				<div class="mui-html" data-html>
+				<table border="1" cellpadding="1" cellspacing="1" style="width:500px;">
+	<tbody>
+		<tr>
+			<td>1</td>
+			<td>2</td>
+		</tr>
+		<tr>
+			<td>a</td>
+			<td>b</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>aaaabbbbaaaaafffddd啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊<img alt="asdf" src="http://172.16.26.14:4080/repository/file/mongo/download?fileID=8ddece72de2447299a6d5bc20f904a31&amp;filename=%E8%89%B2%E7%B3%BB%E5%BA%94%E7%94%A8.jpg&amp;preview=true" style="width: 800px; height: 800px;" /></p>
+<p><img alt="4444" src="http://172.16.26.14:4080/repository/file/mongo/download?fileID=6f7d04033c86449ea059c2eedce24a4d" style="width: 1351px; height: 710px;" /></p>
+<p>&nbsp;</p>
+<p data-sended-object="D0000000524;J0000002609" style="display:none;">remove this p will resend;</p>
+<p data-sended-object="D0000000524" style="display:none;">remove this p will resend;</p>
+				</div>
+			</p>
+		</div>
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/mui.htmlViewer.js"></script>
+<script type="text/javascript">
+	(function($, document) {
+		$.HtmlViewer();
+	}(mui, document));
+</script>
+
+</html>

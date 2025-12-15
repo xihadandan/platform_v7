@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="formDataListQuery">
+        <![CDATA[
+			select ${fieldName}
+			from ${tableName} where ${fieldName} is not null
+			<if isNotBlank(where)>
+		     ${where}
+			</if>
+		]]>
+    </sql-query>
+
+    <sql-query name="formDataQuery">
+        <![CDATA[
+		select *
+		from ${tableName}  where ${fieldName}=:fieldValue
+		<if isNotBlank(uuidExclude)>
+		 and uuid!=:uuidExclude
+		</if>
+		<if isNotBlank(orderBy)>
+		 ${orderBy}
+		</if>
+	]]>
+    </sql-query>
+
+    <sql-query name="formDataQueryMultiField">
+        <![CDATA[
+		select *
+		from ${tableName}  where 1=1
+		<#list fieldName as fname>
+		   <#list fieldValue as fvalue>
+				   <#if fname_index=fvalue_index>
+						 and ${fname}='${fvalue}'
+				   </#if>
+		   </#list>
+		</#list>
+		<if isNotBlank(uuidExclude)>
+		 and uuid!=:uuidExclude
+		</if>
+	]]>
+    </sql-query>
+
+</hibernate-mapping>

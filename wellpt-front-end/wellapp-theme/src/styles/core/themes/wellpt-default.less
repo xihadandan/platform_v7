@@ -1,0 +1,1337 @@
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+@theme: default;
+@theme-color: default;
+
+@w-prefix: w;
+@image-url-prefix: '/static/themes/images';
+@html-selector: html;
+
+// -------- 颜色 -----------
+@white: #ffffff;
+@black: #000;
+
+// 主题色
+@primary-color: #0089ff;
+@primary-1: mix(@primary-color, @white, 5%);
+@primary-2: mix(@primary-color, @white, 10%);
+@primary-3: mix(@primary-color, @white, 15%);
+@primary-4: mix(@primary-color, @white, 30%);
+@primary-5: mix(@primary-color, @white, 50%);
+@primary-6: mix(@primary-color, @white, 75%);
+@primary-7: mix(@primary-color, @black, 85%);
+@primary-8: mix(@primary-color, @black, 70%);
+@primary-9: mix(@primary-color, rgba(110, 110, 110, 1), 30%);
+@primary-10: fade(mix(@primary-color, @black, 45%), 85%);
+@primary-11: desaturate(darken(@primary-color, 30%), 30%);
+@primary-12: mix(@primary-color, rgba(245, 245, 245, 1), 2%);
+
+// 中性色
+@gray-1: darken(@white, 2%);
+@gray-2: darken(@white, 4%);
+@gray-3: darken(@white, 6%);
+@gray-4: darken(@white, 6.5%);
+@gray-5: darken(@white, 9%);
+@gray-6: darken(@white, 13.5%);
+@gray-7: darken(@white, 20%);
+@gray-8: darken(@white, 33.5%);
+@gray-9: darken(@white, 40%);
+@gray-10: darken(@white, 60%);
+@gray-11: darken(@white, 80%);
+@gray-12: darken(@white, 93.5%);
+@gray-13: darken(@white, 100%);
+
+// 中性 & 正常
+@info-color: #2aaedd;
+@info-1: mix(@info-color, @white, 5%);
+@info-2: mix(@info-color, @white, 10%);
+@info-3: mix(@info-color, @white, 15%);
+@info-4: mix(@info-color, @white, 30%);
+@info-5: mix(@info-color, @white, 50%);
+@info-6: mix(@info-color, @white, 75%);
+@info-7: mix(@info-color, @black, 85%);
+@info-8: mix(@info-color, @white, 75%);
+@info-9: mix(@info-color, @white, 50%);
+@info-10: mix(@info-color, @white, 30%);
+
+// 成功 & 完成
+@success-color: #3aa322;
+@success-1: mix(@success-color, @white, 5%);
+@success-2: mix(@success-color, @white, 10%);
+@success-3: mix(@success-color, @white, 15%);
+@success-4: mix(@success-color, @white, 30%);
+@success-5: mix(@success-color, @white, 50%);
+@success-6: mix(@success-color, @white, 75%);
+@success-7: mix(@success-color, @black, 85%);
+@success-8: mix(@success-color, @white, 75%);
+@success-9: mix(@success-color, @white, 50%);
+@success-10: mix(@success-color, @white, 30%);
+
+// 成功 & 完成
+@success-color: #3aa322;
+@success-1: mix(@success-color, @white, 5%);
+@success-2: mix(@success-color, @white, 10%);
+@success-3: mix(@success-color, @white, 15%);
+@success-4: mix(@success-color, @white, 30%);
+@success-5: mix(@success-color, @white, 50%);
+@success-6: mix(@success-color, @white, 75%);
+@success-7: mix(@success-color, @black, 85%);
+@success-8: mix(@success-color, @white, 75%);
+@success-9: mix(@success-color, @white, 50%);
+@success-10: mix(@success-color, @white, 30%);
+
+// 提醒 & 警示
+@warning-color: #e99f00;
+@warning-1: mix(@warning-color, @white, 5%);
+@warning-2: mix(@warning-color, @white, 10%);
+@warning-3: mix(@warning-color, @white, 15%);
+@warning-4: mix(@warning-color, @white, 30%);
+@warning-5: mix(@warning-color, @white, 50%);
+@warning-6: mix(@warning-color, @white, 75%);
+@warning-7: mix(@warning-color, @black, 85%);
+@warning-8: mix(@warning-color, @white, 75%);
+@warning-9: mix(@warning-color, @white, 50%);
+@warning-10: mix(@warning-color, @white, 30%);
+
+// 失败 & 错误 - 色阶
+@danger-color: #e33033;
+@danger-1: mix(@danger-color, @white, 5%);
+@danger-2: mix(@danger-color, @white, 10%);
+@danger-3: mix(@danger-color, @white, 15%);
+@danger-4: mix(@danger-color, @white, 30%);
+@danger-5: mix(@danger-color, @white, 50%);
+@danger-6: mix(@danger-color, @white, 75%);
+@danger-7: mix(@danger-color, @black, 85%);
+@danger-8: mix(@danger-color, @white, 75%);
+@danger-9: mix(@danger-color, @white, 50%);
+@danger-10: mix(@danger-color, @white, 30%);
+
+// 文件颜色
+@folder-color: #f1b755;
+@excel-color: #207245;
+@word-color: #2a5699;
+@ppt-color: #d24625;
+@pdf-color: #f06966;
+@other-files-color: #f1b755;
+
+// 页面背景色
+@body-background: @primary-12;
+
+// 组件背景色
+@component-background: #fff;
+
+// 弹出层
+@popover-background: @component-background;
+@popover-border-color: @border-color-base;
+
+// 背景色
+@background-lighter: @gray-1;
+@background-light: @gray-2;
+@background-primary: @primary-color;
+@background-primary-light: @primary-3;
+@background-primary-lighter: @primary-1;
+@background-document-header: @primary-1;
+
+// 清单项
+@item-background-primary: @primary-1;
+@item-background-default: @component-background;
+@item-text-color: @text-color;
+@item-font-size: @font-size-base;
+@item-icon-color: @text-color-light;
+@item-icon-size: @font-size-xl;
+@item-hover-background: @background-primary-lighter;
+@item-hover-text-color: @text-color-primary;
+@item-active-background: @background-primary-light;
+@item-active-text-color: @text-color-primary;
+
+// -------- 字体 -----------
+// 字体
+@font-family: 'Microsoft Yahei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+@code-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+// 字体大小
+@font-size-base: 14px;
+@font-size-sm: @font-size-base - 2px;
+@font-size-lg: @font-size-base + 2px;
+@font-size-xl: @font-size-base + 4px;
+@font-size-2xl: @font-size-base + 6px;
+@font-size-3xl: @font-size-base + 10px;
+@font-size-4xl: @font-size-base + 16px;
+@font-size-5xl: @font-size-base + 22px;
+@font-size-6xl: @font-size-base + 34px;
+
+// 行高
+@line-height-base: 1.43;
+@line-height-sm: 1.5;
+@line-height-lg: 1.5;
+@line-height-xl: 1.44;
+@line-height-2xl: 1.4;
+@line-height-3xl: 1.33;
+@line-height-4xl: 1.27;
+@line-height-5xl: 1.22;
+@line-height-6xl: 1.25;
+
+// 字体颜色
+// - @body-background颜色下的字体颜色
+@text-color: @gray-10;
+@text-color-light: @gray-9;
+@text-color-lighter: @gray-7;
+@text-color-dark: @gray-11;
+@text-color-darker: @gray-12;
+@text-color-black: @gray-13;
+@text-color-primary: @primary-color;
+@text-color-primary-hover: @primary-8;
+
+// - @body-background的反色下的字体颜色
+@text-color-inverse: @white;
+@text-color-inverse-1: fade(@white, 85%);
+@text-color-inverse-2: fade(@white, 75%);
+@text-color-inverse-3: fade(@white, 50%);
+@text-color-inverse-4: fade(@white, 30%);
+@text-color-inverse-5: fade(@white, 15%);
+
+// 链接
+@link-color: @primary-color;
+@link-hover-color: @primary-8;
+@link-active-color: @primary-9;
+@link-decoration: underline;
+@link-hover-decoration: none;
+@link-focus-decoration: none;
+
+// 图标
+@icon-color: inherit;
+@icon-hover-color: inherit;
+
+// -------- 尺寸 -----------
+// 内边距
+@padding-4xs: 4px;
+@padding-3xs: 6px;
+@padding-2xs: 8px;
+@padding-xs: 10px;
+@padding-sm: 12px;
+@padding-md: 16px;
+@padding-lg: 20px;
+@padding-xl: 24px;
+@padding-2xl: 30px;
+@padding-3xl: 48px;
+
+// 外边距
+@margin-3xs: 2px;
+@margin-2xs: 6px;
+@margin-xs: 8px;
+@margin-sm: 10px;
+@margin-md: 15px;
+@margin-lg: 20px;
+@margin-xl: 24px;
+@margin-2xl: 30px;
+@margin-3xl: 50px;
+
+// 高度
+@height-3xs: 20px;
+@height-2xs: 24px;
+@height-xs: 26px;
+@height-sm: 28px;
+@height-md: 34px;
+@height-lg: 40px;
+@height-xl: 42px;
+@height-2xl: 44px;
+@height-3xl: 50px;
+@height-4xl: 60px;
+@height-5xl: 64px;
+@height-6xl: 80px;
+
+// -------- 边框 -----------
+// 边框样式
+@border-style-base: solid;
+@border-style-1: dashed;
+@border-style-2: dotted;
+
+// 边框宽度
+@border-width-base: 1px;
+@border-width-0: 0px;
+@border-width-1: 2px;
+@border-width-2: 3px;
+@border-width-3: 4px;
+@border-width-4: 8px;
+
+// 圆角大小
+@border-radius-base: 4px;
+@border-radius-1: 0px;
+@border-radius-2: 2px;
+@border-radius-3: 10px;
+@border-radius-4: 16px;
+
+// 边框颜色
+// - @body-background颜色下的边框颜色
+@border-color-base: @gray-5;
+@border-color-darker: @gray-7;
+@border-color-dark: @gray-6;
+@border-color-light: @gray-4;
+@border-color-lighter: @gray-3;
+@border-color-primary: @primary-color;
+@border-color-danger: @danger-color;
+
+// - @body-background的反色下的边框颜色
+@border-color-inverse: @white;
+@border-color-inverse-1: fade(@white, 85%);
+@border-color-inverse-2: fade(@white, 75%);
+@border-color-inverse-3: fade(@white, 50%);
+@border-color-inverse-4: fade(@white, 30%);
+@border-color-inverse-5: fade(@white, 15%);
+
+// - 默认边框简写
+@border-default: @border-width-base @border-color-base solid;
+@border-default-dash: @border-width-base @border-color-base dashed;
+@border-default-thick: @border-width-1 @border-color-base solid;
+@border-default-dark: @border-width-base @border-color-dark solid;
+@border-default-darker: @border-width-base @border-color-darker solid;
+@border-default-lighter: @border-width-base @border-color-lighter solid;
+@border-default-light: @border-width-base @border-color-light solid;
+@border-default-transparent: @border-width-base transparent solid;
+@border-default-inverse: @border-width-base @border-color-inverse solid;
+@border-default-primary: @border-width-base @border-color-primary solid;
+@border-default-primary-light: @border-width-base @primary-5 solid;
+@border-default-danger: @border-width-base @border-color-danger solid;
+
+// - 默人阴影简写
+@shadow-active-default: 0 0 4px 0 fade(@primary-color, 50%);
+@shadow-error-default: 0 0 4px 0 fade(@danger-color, 50%);
+@shadow-popup-default: 0 2px 10px 0px fade(@black, 15%);
+@shadow-document-header-default: 0 2px 0 0 fade(@primary-color, 65%);
+@shadow-tab-default: 0px 0px 20px 0px fade(@black, 5%);
+
+// -------- 过渡 & 动画 -----------
+@animation-duration-base: 0.2s;
+@animation-duration-fast: 0.1s;
+@animation-duration-slow: 0.3s;
+
+// -------- 滚动条 -----------
+@scrollbar-width: 4px;
+@scrollbar-thumb-color: #ccc;
+@scrollbar-thumb-radius: @border-radius-base;
+@scrollbar-track-background: rgba(0, 0, 0, 0.05);
+@scrollbar-track-radius: 0;
+@scrollbar-auto-hide: false;
+
+// -------- 加载动画 -----------
+@loading-size: 200px;
+@loading-inner-point-color: @primary-color; // 内圆颜色
+@loading-inner-point-radius: 2.5px; // 内圆半径
+@loading-outer-circle-border-color: @primary-color; // 两个扇形的边框颜色
+@loading-outer-circle-area-color: @primary-2; // 两个扇形的颜色
+@loading-outer-circle-radius: 40px; // 外圆半径
+@loading-outer-circle-border-width: 2px; // 两个扇形的边框宽度
+@loading-message-margin-top: @margin-md; // 底部提示文字上边距
+@loading-message-color: @text-color; // 底部提示文字颜色
+@loading-message-font-size: @font-size-base; // 底部提示文字字体大小
+@loading-duration-time: 1.5s; // 动画每转动一圈的时间
+
+// -------- 禁用状态-----------
+@disabled-text-color: @text-color-lighter;
+
+// *************** 控件 - 浏览器进度条 ***************
+@browser-pace-height: 2px;
+@browser-pace-background-color: #aaa;
+
+// *************** 控件 - 分割线 ***************
+@divider-background: @gray-5;
+@divider-color: @border-color-base;
+@divider-width: @border-width-base;
+@divider-height: @height-lg;
+@divider-text-color: @text-color-light;
+@divider-font-size: @font-size-base;
+@divider-text-margin-left: @margin-sm; // 分割线文本左侧边距
+@divider-text-margin-right: @margin-md; // 分割线文本右侧边距
+@divider-text-offset-left: 0; // 分割线文本水平位置
+
+// *************** 控件 - 面包屑导航 ***************
+@breadcrumb-height: 55px;
+@breadcrumb-bg: @component-background;
+@breadcrumb-color: @text-color-primary; // 导航字体颜色
+@breadcrumb-active-color: @text-color; // 当前导航字体颜色
+@breadcrumb-separator: '/'; // 面包屑导航分隔符
+@breadcrumb-separator-color: @text-color-light; // 面包屑导航分隔符颜色
+@breadcrumb-icon-size: @font-size-xl; // 面包屑导航前面图标的大小
+@breadcrumb-icon-color: @breadcrumb-color; // 面包屑导航前面图标的颜色
+@breadcrumb-icon-font: 'iconfont' '\e91e'; // 面包屑导航前面图标内容 `font-family icon-code`
+
+// *************** 控件 - 标签 ***************
+@tag-line-height: @height-2xs;
+@tag-font-size: @font-size-base;
+@tag-default-background: @background-light;
+@tag-default-color: @text-color;
+
+// *************** 控件 - 标题装饰线 ***************
+@title-decoration-color: @primary-color;
+@title-decoration-width: 4px;
+@title-decoration-height: 15px;
+@title-border-radius: (@title-decoration-width / 2);
+
+// *************** 控件 - 无数据(empty) ***************
+@empty-content: '没有找到匹配的记录';
+
+// *************** 表单 form ***************
+@form-group-label-margin: @margin-2xs;
+@form-group-label-color: @text-color-dark;
+@form-group-label-font-size: @font-size-base;
+
+// *************** 控件 - 单行文本输入框 ***************
+@input-height: @height-md;
+
+// *************** 控件 - 数字输入框 ***************
+@number-input-height: @height-md;
+
+// *************** 控件 - 下拉框 ***************
+@select-background: @component-background;
+@select-dropdown-background: @component-background;
+@select-border-color: @border-color-base;
+@select-text-color: @text-color;
+@select-placeholder-color: @text-color-lighter;
+@select-tag-background: @height-sm;
+
+// 普通大小
+@select-height: @height-md;
+@select-font-size: @font-size-sm;
+@select-tag-height: @height-sm;
+// 大下拉框
+@select-large-height: @height-lg;
+@select-large-font-size: @font-size-base;
+// 小下拉框
+@select-small-height: @height-xs;
+@select-small-font-size: @font-size-sm;
+
+// @select-item-selected-color: @text-color;
+// @select-item-selected-font-weight: 600;
+// @select-item-selected-bg: @primary-1;
+// @select-item-active-bg: @item-hover-bg;
+// @select-dropdown-vertical-padding: @dropdown-vertical-padding;
+// @select-dropdown-font-size: @dropdown-font-size;
+// @select-dropdown-line-height: @dropdown-line-height;
+// @select-dropdown-height: 32px;
+// @select-background: @component-background;
+// @select-clear-background: @select-background;
+// @select-selection-item-bg: @background-color-base;
+// @select-selection-item-border-color: @border-color-split;
+// @select-single-item-height-lg: 40px;
+// @select-multiple-item-height: @input-height-base - @input-padding-vertical-base * 2; // Normal 24px
+// @select-multiple-item-height-lg: 32px;
+// @select-multiple-item-spacing-half: ceil((@input-padding-vertical-base / 2));
+// @select-multiple-disabled-background: @input-disabled-bg;
+// @select-multiple-item-disabled-color: #bfbfbf;
+// @select-multiple-item-disabled-border-color: @select-border-color;
+
+// *************** 控件 - 下拉框弹出层 ***************
+@dropdown-background: @component-background;
+@dropdown-background-darker: @gray-1;
+@dropdown-item-height: @height-lg;
+@dropdown-item-font-color: @item-text-color;
+@dropdown-item-font-size: @item-font-size;
+@dropdown-item-icon-color: @item-icon-color;
+@dropdown-item-icon-size: @item-icon-size;
+@dropdown-hover-item-font-color: @item-hover-text-color;
+@dropdown-hover-item-icon-color: @item-hover-text-color;
+@dropdown-hover-item-background: @item-hover-background;
+@dropdown-item-padding-horizontal: @padding-md;
+
+// *************** 控件 - Well Easy-Table ***************
+@easy-table-cell-border: @border-default;
+@easy-table-header-background: @background-light;
+@easy-table-header-height: @height-2xl;
+@easy-table-even-row-background: initial;
+@easy-table-hover-row-background: initial;
+
+// *************** 控件 - 树形 ***************
+
+// *************** 控件 - 提示弹窗 Tooltip **************
+@tooltip-background: @component-background;
+@tooltip-text-color: @text-color-light;
+@tooltip-content-shadow: @shadow-popup-default;
+@tooltip-content-padding: @padding-md;
+@tooltip-content-font-size: @font-size-base;
+@tooltip-arrow-background: @tooltip-background;
+@tooltip-arrow-width: 10px;
+@tooltip-arrow-height: 18px;
+
+@tooltip-component-background: #000;
+@tooltip-component-text-color: @text-color-inverse;
+// - 左边顶部弹出
+@tooltip-top-left-side-offset-top: 10px;
+@tooltip-top-left-side-offset-left: 30px;
+// 弹框偏移
+@tooltip-content-top-bottom-offset-left: 16px;
+@tooltip-content-top-bottom-offset-top: 35px;
+
+@tooltip-content-left-right-offset-left: 16px;
+@tooltip-content-left-right-offset-top: 26px;
+
+@tooltip-arrow-top-bottom-offset-left: 15px;
+@tooltip-arrow-top-bottom-offset-top: 19px;
+
+@tooltip-arrow-left-right-offset-left: 10px;
+@tooltip-arrow-left-right-offset-top: 18px;
+
+// *************** 组件 - 开关 ***************
+@switch-width: 42px;
+@switch-height: @height-3xs;
+@switch-closed-background: @gray-7;
+@switch-closed-handle-color: @component-background;
+@switch-opened-background: @primary-color;
+@switch-opened-handle-background: @switch-closed-handle-color;
+@switch-handle-size: @height-3xs - 2px;
+@switch-disabled-background: rgba(204, 204, 204, 0.3);
+
+// *************** 控件 - 按钮 ***************
+@btn-border-radius: @border-radius-base;
+@btn-font-size: @font-size-base;
+@btn-icon-size: @btn-font-size;
+@btn-font-weight: 400;
+@btn-border-width-base: 1px;
+@btn-padding: @padding-sm;
+@btn-height-base: @height-md;
+@btn-min-width: 70px;
+
+// 较大按钮
+@btn-lg-height: @height-xl;
+@btn-lg-padding: @padding-xl;
+@btn-lg-font-size: @font-size-lg;
+@btn-lg-icon-size: @btn-lg-font-size;
+
+// 较小按钮
+@btn-sm-height: @height-sm;
+@btn-sm-padding-tb: 5px;
+@btn-sm-padding: @padding-xs;
+@btn-sm-font-size: @font-size-base;
+@btn-sm-icon-size: @btn-lg-font-size;
+
+// *主题色按钮*
+// 主要按钮 - 普通状态
+@btn-primary-font-color: @text-color-inverse;
+@btn-primary-background-color: @primary-color;
+@btn-primary-border-color: transparent;
+// 主要按钮 - 鼠标悬浮状态
+@btn-primary-hover-font-color: @text-color-inverse;
+@btn-primary-hover-background-color: @primary-7;
+@btn-primary-hover-border-color: @primary-7;
+// 主要按钮 - 激活状态
+@btn-primary-active-font-color: @text-color-inverse;
+@btn-primary-active-background-color: @primary-8;
+@btn-primary-active-border-color: @primary-8;
+// 主要按钮 - 禁用状态
+@btn-primary-disabled-font-color: @disabled-text-color;
+@btn-primary-disabled-background-color: @gray-1;
+@btn-primary-disabled-border-color: @border-color-lighter;
+// 次要按钮 - 普通状态
+@btn-primary-minor-font-color: @text-color-primary;
+@btn-primary-minor-background-color: @primary-3;
+@btn-primary-minor-border-color: transparent;
+// 次要按钮 - 鼠标悬浮状态
+@btn-primary-minor-hover-font-color: @text-color-inverse;
+@btn-primary-minor-hover-background-color: @primary-color;
+@btn-primary-minor-hover-border-color: @btn-primary-minor-border-color;
+// 次要按钮 - 激活状态
+@btn-primary-minor-active-font-color: @btn-primary-minor-hover-font-color;
+@btn-primary-minor-active-background-color: @primary-7;
+@btn-primary-minor-active-border-color: @btn-primary-minor-border-color;
+// 线按钮 - 普通状态
+@btn-primary-line-font-color: @text-color-primary;
+@btn-primary-line-background-color: transparent;
+@btn-primary-line-border-color: @primary-4;
+// 线按钮 - 鼠标悬浮状态
+@btn-primary-line-hover-font-color: @btn-primary-line-font-color;
+@btn-primary-line-hover-background-color: transparent;
+@btn-primary-line-hover-border-color: @border-color-primary;
+// 线按钮 - 激活状态
+@btn-primary-line-active-font-color: @text-color-inverse;
+@btn-primary-line-active-background-color: @primary-7;
+@btn-primary-line-active-border-color: @btn-primary-line-hover-border-color;
+// 线按钮 - 禁用状态
+@btn-primary-line-disabled-font-color: @disabled-text-color;
+@btn-primary-line-disabled-background-color: transparent;
+@btn-primary-line-disabled-border-color: @border-color-lighter;
+// 文本按钮 - 普通状态
+@btn-primary-noLine-font-color: @text-color-primary;
+@btn-primary-noLine-background-color: transparent;
+@btn-primary-noLine-border-color: transparent;
+// 文本按钮 - 鼠标悬浮状态
+@btn-primary-noLine-hover-font-color: @btn-primary-noLine-font-color;
+@btn-primary-noLine-hover-background-color: transparent;
+@btn-primary-noLine-hover-border-color: @border-color-primary;
+// 文本按钮 - 激活状态
+@btn-primary-noLine-active-font-color: @text-color-inverse;
+@btn-primary-noLine-active-background-color: @primary-color;
+@btn-primary-noLine-active-border-color: @primary-color;
+// 文本按钮 - 禁用状态
+@btn-primary-noLine-disabled-font-color: @disabled-text-color;
+@btn-primary-noLine-disabled-background-color: transparent;
+@btn-primary-noLine-disabled-border-color: @border-color-inverse;
+
+// *成功按钮*
+// 主要按钮 - 普通状态
+@btn-success-font-color: @text-color-inverse;
+@btn-success-background-color: @success-color;
+@btn-success-border-color: @success-color;
+// 主要按钮 - 鼠标悬浮状态
+@btn-success-hover-font-color: @btn-success-font-color;
+@btn-success-hover-background-color: @success-7;
+@btn-success-hover-border-color: @success-7;
+// 主要按钮 - 激活状态
+@btn-success-active-font-color: @btn-success-font-color;
+@btn-success-active-background-color: @success-8;
+@btn-success-active-border-color: @success-8;
+// 主要按钮 - 禁用状态
+@btn-success-disabled-font-color: @disabled-text-color;
+@btn-success-disabled-background-color: @gray-1;
+@btn-success-disabled-border-color: @border-color-lighter;
+// 次要按钮 - 普通状态
+@btn-success-minor-font-color: @success-color;
+@btn-success-minor-background-color: @success-3;
+@btn-success-minor-border-color: transparent;
+// 次要按钮 - 鼠标悬浮状态
+@btn-success-minor-hover-font-color: @text-color-inverse;
+@btn-success-minor-hover-background-color: @success-color;
+@btn-success-minor-hover-border-color: @btn-success-minor-border-color;
+// 次要按钮 - 激活状态
+@btn-success-minor-active-font-color: @btn-success-minor-hover-font-color;
+@btn-success-minor-active-background-color: @success-7;
+@btn-success-minor-active-border-color: @btn-success-minor-hover-border-color;
+// 线按钮 - 普通状态
+@btn-success-line-font-color: @success-color;
+@btn-success-line-background-color: transparent;
+@btn-success-line-border-color: @success-5;
+// 线按钮 - 鼠标悬浮状态
+@btn-success-line-hover-font-color: @btn-success-line-font-color;
+@btn-success-line-hover-background-color: @btn-success-line-background-color;
+@btn-success-line-hover-border-color: @success-color;
+// 线按钮 - 激活状态
+@btn-success-line-active-font-color: @text-color-inverse;
+@btn-success-line-active-background-color: @success-color;
+@btn-success-line-active-border-color: @success-color;
+// 线按钮 - 禁用状态
+@btn-success-line-disabled-font-color: @disabled-text-color;
+@btn-success-line-disabled-background-color: transparent;
+@btn-success-line-disabled-border-color: @border-color-lighter;
+// 文本按钮 - 普通状态
+@btn-success-noLine-font-color: @success-color;
+@btn-success-noLine-background-color: transparent;
+@btn-success-noLine-border-color: transparent;
+// 文本按钮 - 鼠标悬浮状态
+@btn-success-noLine-hover-font-color: @btn-success-noLine-font-color;
+@btn-success-noLine-hover-background-color: transparent;
+@btn-success-noLine-hover-border-color: @success-color;
+// 文本按钮 - 激活状态
+@btn-success-noLine-active-font-color: @text-color-inverse;
+@btn-success-noLine-active-background-color: @success-color;
+@btn-success-noLine-active-border-color: @success-color;
+// 文本按钮 - 禁用状态
+@btn-success-noLine-disabled-font-color: @disabled-text-color;
+@btn-success-noLine-disabled-background-color: transparent;
+@btn-success-noLine-disabled-border-color: @border-color-inverse;
+
+// *警告按钮*
+// 主要按钮 - 普通状态
+@btn-warning-font-color: @text-color-inverse;
+@btn-warning-background-color: @warning-color;
+@btn-warning-border-color: @warning-color;
+// 主要按钮 - 鼠标悬浮状态
+@btn-warning-hover-font-color: @btn-warning-font-color;
+@btn-warning-hover-background-color: @warning-7;
+@btn-warning-hover-border-color: @warning-7;
+// 主要按钮 - 激活状态
+@btn-warning-active-font-color: @btn-warning-font-color;
+@btn-warning-active-background-color: @warning-8;
+@btn-warning-active-border-color: @warning-8;
+// 主要按钮 - 禁用状态
+@btn-warning-disabled-font-color: @disabled-text-color;
+@btn-warning-disabled-background-color: @gray-1;
+@btn-warning-disabled-border-color: @border-color-lighter;
+// 次要按钮 - 普通状态
+@btn-warning-minor-font-color: @warning-color;
+@btn-warning-minor-background-color: @warning-3;
+@btn-warning-minor-border-color: transparent;
+// 次要按钮 - 鼠标悬浮状态
+@btn-warning-minor-hover-font-color: @text-color-inverse;
+@btn-warning-minor-hover-background-color: @warning-color;
+@btn-warning-minor-hover-border-color: @btn-warning-minor-border-color;
+// 次要按钮 - 激活状态
+@btn-warning-minor-active-font-color: @btn-warning-minor-hover-font-color;
+@btn-warning-minor-active-background-color: @warning-7;
+@btn-warning-minor-active-border-color: @btn-warning-minor-hover-border-color;
+// 线按钮 - 普通状态
+@btn-warning-line-font-color: @warning-color;
+@btn-warning-line-background-color: transparent;
+@btn-warning-line-border-color: @warning-5;
+// 线按钮 - 鼠标悬浮状态
+@btn-warning-line-hover-font-color: @btn-warning-line-font-color;
+@btn-warning-line-hover-background-color: @btn-warning-line-background-color;
+@btn-warning-line-hover-border-color: @warning-color;
+// 线按钮 - 激活状态
+@btn-warning-line-active-font-color: @text-color-inverse;
+@btn-warning-line-active-background-color: @warning-color;
+@btn-warning-line-active-border-color: @warning-color;
+// 线按钮 - 禁用状态
+@btn-warning-line-disabled-font-color: @disabled-text-color;
+@btn-warning-line-disabled-background-color: transparent;
+@btn-warning-line-disabled-border-color: @border-color-lighter;
+// 文本按钮 - 普通状态
+@btn-warning-noLine-font-color: @warning-color;
+@btn-warning-noLine-background-color: transparent;
+@btn-warning-noLine-border-color: transparent;
+// 文本按钮 - 鼠标悬浮状态
+@btn-warning-noLine-hover-font-color: @btn-warning-noLine-font-color;
+@btn-warning-noLine-hover-background-color: transparent;
+@btn-warning-noLine-hover-border-color: @warning-color;
+// 文本按钮 - 激活状态
+@btn-warning-noLine-active-font-color: @text-color-inverse;
+@btn-warning-noLine-active-background-color: @warning-color;
+@btn-warning-noLine-active-border-color: @warning-color;
+// 文本按钮 - 禁用状态
+@btn-warning-noLine-disabled-font-color: @disabled-text-color;
+@btn-warning-noLine-disabled-background-color: transparent;
+@btn-warning-noLine-disabled-border-color: @border-color-inverse;
+
+// *危险按钮*
+// 主要按钮 - 普通状态
+@btn-danger-font-color: @text-color-inverse;
+@btn-danger-background-color: @danger-color;
+@btn-danger-border-color: @danger-color;
+// 主要按钮 - 鼠标悬浮状态
+@btn-danger-hover-font-color: @btn-danger-font-color;
+@btn-danger-hover-background-color: @danger-7;
+@btn-danger-hover-border-color: @danger-7;
+// 主要按钮 - 激活状态
+@btn-danger-active-font-color: @btn-danger-font-color;
+@btn-danger-active-background-color: @danger-8;
+@btn-danger-active-border-color: @danger-8;
+// 主要按钮 - 禁用状态
+@btn-danger-disabled-font-color: @disabled-text-color;
+@btn-danger-disabled-background-color: @gray-1;
+@btn-danger-disabled-border-color: @border-color-lighter;
+// 次要按钮 - 普通状态
+@btn-danger-minor-font-color: @danger-color;
+@btn-danger-minor-background-color: @danger-3;
+@btn-danger-minor-border-color: transparent;
+// 次要按钮 - 鼠标悬浮状态
+@btn-danger-minor-hover-font-color: @text-color-inverse;
+@btn-danger-minor-hover-background-color: @danger-color;
+@btn-danger-minor-hover-border-color: @btn-danger-minor-border-color;
+// 次要按钮 - 激活状态
+@btn-danger-minor-active-font-color: @btn-danger-minor-hover-font-color;
+@btn-danger-minor-active-background-color: @danger-7;
+@btn-danger-minor-active-border-color: @btn-danger-minor-hover-border-color;
+// 线按钮 - 普通状态
+@btn-danger-line-font-color: @danger-color;
+@btn-danger-line-background-color: transparent;
+@btn-danger-line-border-color: @danger-5;
+// 线按钮 - 鼠标悬浮状态
+@btn-danger-line-hover-font-color: @btn-danger-line-font-color;
+@btn-danger-line-hover-background-color: @btn-danger-line-background-color;
+@btn-danger-line-hover-border-color: @danger-color;
+// 线按钮 - 激活状态
+@btn-danger-line-active-font-color: @text-color-inverse;
+@btn-danger-line-active-background-color: @danger-color;
+@btn-danger-line-active-border-color: @danger-color;
+// 线按钮 - 禁用状态
+@btn-danger-line-disabled-font-color: @disabled-text-color;
+@btn-danger-line-disabled-background-color: transparent;
+@btn-danger-line-disabled-border-color: @border-color-lighter;
+// 文本按钮 - 普通状态
+@btn-danger-noLine-font-color: @danger-color;
+@btn-danger-noLine-background-color: transparent;
+@btn-danger-noLine-border-color: transparent;
+// 文本按钮 - 鼠标悬浮状态
+@btn-danger-noLine-hover-font-color: @btn-danger-noLine-font-color;
+@btn-danger-noLine-hover-background-color: transparent;
+@btn-danger-noLine-hover-border-color: @danger-color;
+// 文本按钮 - 激活状态
+@btn-danger-noLine-active-font-color: @text-color-inverse;
+@btn-danger-noLine-active-background-color: @danger-color;
+@btn-danger-noLine-active-border-color: @danger-color;
+// 文本按钮 - 禁用状态
+@btn-danger-noLine-disabled-font-color: @disabled-text-color;
+@btn-danger-noLine-disabled-background-color: transparent;
+@btn-danger-noLine-disabled-border-color: @border-color-inverse;
+
+// *深色按钮*
+// 主要按钮 - 普通状态
+@btn-dark-font-color: @text-color-inverse;
+@btn-dark-background-color: @gray-10;
+@btn-dark-border-color: @btn-dark-background-color;
+// 主要按钮 - 鼠标悬浮状态
+@btn-dark-hover-font-color: @btn-dark-font-color;
+@btn-dark-hover-background-color: @gray-11;
+@btn-dark-hover-border-color: @btn-dark-hover-background-color;
+// 主要按钮 - 激活状态
+@btn-dark-active-font-color: @btn-dark-font-color;
+@btn-dark-active-background-color: @gray-9;
+@btn-dark-active-border-color: @btn-dark-active-background-color;
+// 主要按钮 - 禁用状态
+@btn-dark-disabled-font-color: @disabled-text-color;
+@btn-dark-disabled-background-color: @gray-1;
+@btn-dark-disabled-border-color: @border-color-lighter;
+// 次要按钮 - 普通状态
+@btn-dark-minor-font-color: @btn-dark-background-color;
+@btn-dark-minor-background-color: @gray-11;
+@btn-dark-minor-border-color: transparent;
+// 次要按钮 - 鼠标悬浮状态
+@btn-dark-minor-hover-font-color: @text-color-inverse;
+@btn-dark-minor-hover-background-color: @gray-10;
+@btn-dark-minor-hover-border-color: @btn-dark-minor-hover-background-color;
+// 次要按钮 - 激活状态
+@btn-dark-minor-active-font-color: @btn-dark-minor-hover-font-color;
+@btn-dark-minor-active-background-color: @gray-11;
+@btn-dark-minor-active-border-color: @btn-dark-minor-active-background-color;
+// 线按钮 - 普通状态
+@btn-dark-line-font-color: @gray-10;
+@btn-dark-line-background-color: transparent;
+@btn-dark-line-border-color: @gray-11;
+// 线按钮 - 鼠标悬浮状态
+@btn-dark-line-hover-font-color: @btn-dark-line-font-color;
+@btn-dark-line-hover-background-color: @btn-dark-line-background-color;
+@btn-dark-line-hover-border-color: @gray-10;
+// 线按钮 - 激活状态
+@btn-dark-line-active-font-color: @text-color-inverse;
+@btn-dark-line-active-background-color: @gray-10;
+@btn-dark-line-active-border-color: @gray-10;
+// 线按钮 - 禁用状态
+@btn-dark-line-disabled-font-color: @disabled-text-color;
+@btn-dark-line-disabled-background-color: transparent;
+@btn-dark-line-disabled-border-color: @border-color-lighter;
+// 文本按钮 - 普通状态
+@btn-dark-noLine-font-color: @gray-10;
+@btn-dark-noLine-background-color: transparent;
+@btn-dark-noLine-border-color: transparent;
+// 文本按钮 - 鼠标悬浮状态
+@btn-dark-noLine-hover-font-color: @btn-dark-noLine-font-color;
+@btn-dark-noLine-hover-background-color: transparent;
+@btn-dark-noLine-hover-border-color: @gray-11;
+// 文本按钮 - 激活状态
+@btn-dark-noLine-active-font-color: @text-color-inverse;
+@btn-dark-noLine-active-background-color: @gray-10;
+@btn-dark-noLine-active-border-color: @gray-10;
+// 文本按钮 - 禁用状态
+@btn-dark-noLine-disabled-font-color: @disabled-text-color;
+@btn-dark-noLine-disabled-background-color: transparent;
+@btn-dark-noLine-disabled-border-color: @border-color-inverse;
+
+// *浅色按钮*
+// 主要按钮 - 普通状态
+@btn-light-font-color: @gray-10;
+@btn-light-background-color: @gray-6;
+@btn-light-border-color: @btn-light-background-color;
+// 主要按钮 - 鼠标悬浮状态
+@btn-light-hover-font-color: @btn-light-font-color;
+@btn-light-hover-background-color: @gray-7;
+@btn-light-hover-border-color: @btn-light-hover-background-color;
+// 主要按钮 - 激活状态
+@btn-light-active-font-color: @btn-light-font-color;
+@btn-light-active-background-color: @gray-4;
+@btn-light-active-border-color: @btn-light-active-background-color;
+// 主要按钮 - 禁用状态
+@btn-light-disabled-font-color: @disabled-text-color;
+@btn-light-disabled-background-color: @gray-1;
+@btn-light-disabled-border-color: @border-color-lighter;
+// 次要按钮 - 普通状态
+@btn-light-minor-font-color: @btn-light-font-color;
+@btn-light-minor-background-color: @gray-5;
+@btn-light-minor-border-color: transparent;
+// 次要按钮 - 鼠标悬浮状态
+@btn-light-minor-hover-font-color: @btn-light-minor-font-color;
+@btn-light-minor-hover-background-color: @gray-6;
+@btn-light-minor-hover-border-color: @btn-light-minor-hover-background-color;
+// 次要按钮 - 激活状态
+@btn-light-minor-active-font-color: @btn-light-minor-font-color;
+@btn-light-minor-active-background-color: @gray-7;
+@btn-light-minor-active-border-color: @btn-light-minor-active-background-color;
+// 线按钮 - 普通状态
+@btn-light-line-font-color: @btn-light-font-color;
+@btn-light-line-background-color: transparent;
+@btn-light-line-border-color: @gray-6;
+// 线按钮 - 鼠标悬浮状态
+@btn-light-line-hover-font-color: @btn-light-line-font-color;
+@btn-light-line-hover-background-color: transparent;
+@btn-light-line-hover-border-color: @gray-7;
+// 线按钮 - 激活状态
+@btn-light-line-active-font-color: @btn-light-line-font-color;
+@btn-light-line-active-background-color: @gray-7;
+@btn-light-line-active-border-color: @gray-7;
+// 线按钮 - 禁用状态
+@btn-light-line-disabled-font-color: @disabled-text-color;
+@btn-light-line-disabled-background-color: transparent;
+@btn-light-line-disabled-border-color: @border-color-lighter;
+// 文本按钮 - 普通状态
+@btn-light-noLine-font-color: @btn-light-line-font-color;
+@btn-light-noLine-background-color: transparent;
+@btn-light-noLine-border-color: transparent;
+// 文本按钮 - 鼠标悬浮状态
+@btn-light-noLine-hover-font-color: @btn-light-noLine-font-color;
+@btn-light-noLine-hover-background-color: transparent;
+@btn-light-noLine-hover-border-color: @gray-6;
+// 文本按钮 - 激活状态
+@btn-light-noLine-active-font-color: @btn-light-noLine-font-color;
+@btn-light-noLine-active-background-color: @gray-6;
+@btn-light-noLine-active-border-color: @gray-6;
+// 文本按钮 - 禁用状态
+@btn-light-noLine-disabled-font-color: @disabled-text-color;
+@btn-light-noLine-disabled-background-color: transparent;
+@btn-light-noLine-disabled-border-color: @border-color-inverse;
+
+// *************** 组件 - 表格 ***************
+// - 通用设置
+@table-background-color: @component-background;
+@table-font-size: @font-size-base;
+@table-content-padding-both: @padding-xl;
+
+// - 搜索栏
+@table-search-toolbar-split: @border-width-1 solid @border-color-base;
+
+// - 表格头部
+@table-header-background-color: @background-light;
+@table-header-font-color: @text-color-dark;
+@table-header-font-size: @table-font-size;
+@table-header-font-weight: normal;
+@table-header-height: @height-lg;
+@table-header-hover-background-color: @table-header-background-color;
+@table-header-hover-font-color: @table-header-font-color;
+@table-header-hover-font-weight: @table-header-font-weight;
+
+// - 表格内容
+@table-body-background-color: transparent;
+@table-body-font-color: @text-color;
+@table-body-font-size: @table-font-size;
+@table-body-font-weight: normal;
+@table-body-row-height: @height-xl;
+@table-body-row-hover-background-color: @primary-1;
+@table-body-row-hover-font-color: @table-header-font-color;
+@table-body-row-hover-font-weight: @table-body-font-weight;
+
+// - 表格内部复选框
+@table-checkbox-size: 14px;
+@table-checkbox-color: @text-color;
+@table-checkbox-checked-color: @text-color-primary;
+@table-checkbox-disabled-color: @disabled-text-color;
+
+// - 分页栏
+@table-pagination-height: @height-lg;
+@table-pagination-margin-top: @margin-2xs;
+@table-pagination-detail-font-color: @text-color-light;
+
+// - 自定义列/固定列弹窗
+@table-custom-column-btn-size: @font-size-lg;
+@table-custom-column-btn-color: @text-color-primary;
+@table-custom-column-btn-margin-both: @margin-2xs;
+@table-custom-column-popup-background: @component-background;
+@table-custom-column-popup-width: 500px;
+@table-custom-column-title-height: @height-3xl;
+@table-custom-column-title-color: @text-color-dark;
+@table-custom-column-title-font-size: @font-size-xl;
+@table-custom-column-title-font-weight: bold;
+@table-custom-column-subtitle-color: @text-color-light;
+@table-custom-column-subtitle-font-size: @font-size-base;
+@table-custom-column-subtitle-font-weight: 400;
+@table-fixed-column-area-height: @height-3xl;
+@table-fixed-column-area-background: @gray-1;
+@table-custom-column-list-height: 300px;
+@table-custom-column-item-height: @height-md;
+@table-custom-column-item-font-color: @text-color;
+@table-custom-column-item-font-weight: 400;
+@table-custom-column-item-icon-color: @text-color-light;
+@table-custom-column-item-icon-hover-color: @text-color-primary;
+@table-custom-column-item-hover-background-color: @primary-1;
+@table-custom-column-item-fixed-desc-color: @warning-color;
+@table-custom-column-popup-footer-height: @height-5xl;
+
+// *************** 组件 - 头部组件 ***************
+@header-height: @height-6xl;
+@header-background: @primary-color;
+@header-text-color: @text-color-inverse;
+@header-badge-size: @font-size-sm;
+@header-badge-min-width: 10px;
+@header-badge-background: @danger-color;
+@header-icon-size: @font-size-2xl;
+@header-nav-avatar-size: @font-size-4xl;
+
+// - 应用图标/名称区域
+@header-img-height: 66px;
+@header-title-color: @header-text-color;
+
+// - 导航
+@header-nav-hover-background: @primary-7;
+@header-dropdown-popup-background: @component-background;
+
+//- 全局搜索框 - 搜索框
+@header-search-width: 500px; // *配置无效，目前搜索框宽度未内联样式，使用JS计算*
+@header-search-background: @header-background;
+@header-search-input-background: @primary-6;
+@header-search-input-width: 50%;
+@header-search-input-height: @height-xl;
+@header-search-input-icon-size: @font-size-2xl;
+@header-search-input-clear-icon-background: rgba(240, 240, 240, 0.15);
+@header-search-input-clear-icon-color: rgba(255, 255, 255, 0.65);
+@header-search-input-clear-icon-hover-background: rgba(240, 240, 240, 0.3);
+@header-search-input-clear-icon-hover-color: @header-search-input-clear-icon-color;
+
+//- 全局搜索框 - 搜索结果覆盖层
+@header-search-container-background: @white;
+@header-search-container-title-text-color: @text-color-light;
+@header-search-container-title-font-size: @font-size-base;
+@header-search-container-title-height: @height-lg;
+@header-search-container-close-icon-size: @font-size-base;
+@header-search-container-close-icon-color: @text-color-light;
+@header-search-container-close-icon-hover-color: @text-color-primary;
+@header-search-container-result-background: @background-light;
+@header-search-container-condition-filter-width: 112px;
+@header-search-container-time-filter-width: 212px;
+@header-search-container-time-filter-custom-area-background: @background-light;
+
+// - 我的消息 - 弹出层
+@header-message-popup-width: 360px;
+@header-message-popup-setting-row-height: 39px;
+
+// *************** 组件 - 导航条组件 ***************
+// - 顶部导航
+@navbar-height: @height-3xl;
+@navbar-background: @primary-color;
+@navbar-text-color: @text-color-inverse;
+@navbar-font-size: @font-size-lg;
+@navbar-nav-hover-background: @primary-7;
+@navbar-single-popup-background: @component-background;
+
+// - *全部展示布局* 弹出层
+@navbar-all-style-popup-background: @primary-6;
+@navbar-all-style-popup-hover-background: @navbar-nav-hover-background;
+@navbar-all-style-popup-text-color: @navbar-text-color;
+@navbar-all-style-popup-font-size: @navbar-font-size;
+@navbar-all-style-popup-item-height: @height-sm;
+
+// *************** 组件 - 底部组件 ***************
+@footer-height: @height-3xl;
+@footer-text-color: @text-color-light;
+@footer-background: @background-light;
+@footer-border-color: @border-color-base;
+@footer-border-width: @border-width-base;
+
+// *************** 组件 - 左导航 ***************
+// - 主体
+@left-sidebar-text-color: @primary-11;
+@left-sidebar-background: @primary-1;
+@left-sidebar-hover-background: @background-primary-light;
+@left-sidebar-hover-text-color: @text-color-primary;
+@left-sidebar-selected-text-color: @text-color-primary;
+@left-sidebar-selected-background: @item-active-background;
+@left-sidebar-shadow: fade(@black, 10%) 0px 2px 4px 0;
+@left-sidebar-font-size: @font-size-base;
+@left-sidebar-selected-symbol-width: 4px;
+@left-sidebar-selected-symbol-color: @primary-color;
+
+// - 展开样式  (基本样式)
+@left-sidebar-expanded-width: 230px;
+@left-sidebar-expanded-nav-font-size: @left-sidebar-font-size;
+@left-sidebar-expanded-nav-icon-size: @font-size-xl;
+@left-sidebar-expanded-nav-color: @left-sidebar-text-color;
+@left-sidebar-expanded-nav-arrow-size: @font-size-sm;
+@left-sidebar-expanded-nav-arrow-color: @text-color-light;
+@left-sidebar-expanded-nav-background: @left-sidebar-background;
+@left-sidebar-expanded-nav-text-width: 120px;
+@left-sidebar-expanded-nav-badge-color: @text-color-light;
+@left-sidebar-expanded-nav-hover-color: @left-sidebar-hover-text-color;
+@left-sidebar-expanded-nav-hover-background: @left-sidebar-hover-background;
+@left-sidebar-expanded-nav-selected-color: @left-sidebar-selected-text-color;
+@left-sidebar-expanded-nav-selected-background: @left-sidebar-selected-background;
+
+//  - 展开样式 (一级导航)
+@left-sidebar-expanded-main-nav-font-size: @font-size-lg;
+@left-sidebar-expanded-main-nav-height: @height-3xl;
+@left-sidebar-expanded-main-nav-hover-color: @left-sidebar-expanded-nav-hover-color;
+@left-sidebar-expanded-main-nav-hover-background: @left-sidebar-expanded-nav-hover-background;
+@left-sidebar-expanded-main-nav-selected-color: @left-sidebar-expanded-nav-selected-color;
+@left-sidebar-expanded-main-nav-selected-background: @left-sidebar-expanded-nav-selected-background;
+
+//  - 展开样式 (二级导航)
+@left-sidebar-expanded-sub-nav-font-size: @left-sidebar-expanded-nav-font-size;
+@left-sidebar-expanded-sub-nav-height: 48px;
+@left-sidebar-expanded-sub-nav-hover-color: @left-sidebar-hover-text-color;
+@left-sidebar-expanded-sub-nav-hover-background: @left-sidebar-hover-background;
+@left-sidebar-expanded-sub-nav-selected-color: @left-sidebar-expanded-nav-selected-color;
+@left-sidebar-expanded-sub-nav-selected-background: @left-sidebar-expanded-nav-selected-background;
+
+//  - 展开样式 (三级导航)
+@left-sidebar-expanded-third-nav-font-size: @left-sidebar-expanded-nav-font-size;
+@left-sidebar-expanded-third-nav-height: 48px;
+@left-sidebar-expanded-third-nav-hover-color: @left-sidebar-hover-text-color;
+@left-sidebar-expanded-third-nav-hover-background: @left-sidebar-hover-background;
+@left-sidebar-expanded-third-nav-selected-color: @left-sidebar-expanded-nav-selected-color;
+@left-sidebar-expanded-third-nav-selected-background: @left-sidebar-expanded-nav-selected-background;
+
+// - 缩起样式
+@left-sidebar-collapsed-width: 50px;
+@left-sidebar-collapsed-item-height: 48px;
+@left-sidebar-collapsed-item-size: @font-size-lg;
+@left-sidebar-collapsed-float-popup-item-height: 48px;
+@left-sidebar-collapsed-float-popup-min-width: 160px;
+@left-sidebar-collapsed-float-popup-selected-symbol-width: @left-sidebar-selected-symbol-width;
+@left-sidebar-collapsed-float-popup-selected-symbol-color: @border-color-primary;
+
+// - 开关样式
+@left-sidebar-toggle-button-top: 130px;
+@left-sidebar-toggle-button-width: 20px;
+@left-sidebar-toggle-button-height: @height-5xl;
+
+// *************** 组件 - 多标签导航 ***************
+// - 导航
+@tags-nav-height: @height-lg;
+@tags-nav-background: @component-background;
+// - 导航标签
+@tags-nav-font-size: @font-size-base;
+@tags-nav-close-icon-size: @font-size-sm;
+@tags-nav-font-color: @text-color-dark;
+@tags-nav-icon-color: @text-color-light;
+@tags-nav-icon-hover-color: @text-color-primary;
+@tags-nav-selected-font-color: @text-color-primary;
+@tags-nav-selected-icon-color: @text-color-light;
+@tags-nav-selected-background-color: @primary-1;
+@tags-nav-selected-symbol-width: 3px; // tag被选中时顶部的标记
+@tags-nav-selected-symbol-background: @primary-color;
+// - 导航弹窗
+@tags-popup-border-radius: @border-radius-base;
+@tags-popup-selected-hover-item-background: @item-active-background;
+@tags-popup-item-height: 30px;
+@tags-popup-item-padding: @padding-md;
+@tags-popup-shadow:2px 2px 3px 0 rgba(0, 0, 0, 0.1);
+
+// *************** 组件 - 文件上传 ***************
+
+// *************** 组件 - 图片库上传弹窗 ***************
+@picture-lib-content-height: 410px;
+@picture-lib-category-list-title-height: @height-lg;
+@picture-lib-category-list-item-height: @height-sm;
+@picture-lib-card-height: 159px;
+@picture-lib-card-max-width: 150px;
+@picture-lib-card-checkbox-color: @text-color-inverse;
+@picture-lib-card-checkbox-background: @gray-5;
+@picture-lib-card-checkbox-selected-background: @primary-color;
+
+// *************** 组件 - 图片预览 ***************
+@picture-previewer-background: rgba(240, 242, 246, 0.95);
+@picture-previewer-header-background: @white;
+@picture-previewer-header-height: @height-lg;
+@picture-previewer-header-font-size: @font-size-lg;
+@picture-previewer-header-operation-size: @picture-previewer-header-font-size;
+@picture-previewer-header-operation-color: @text-color-light;
+@picture-previewer-header-operation-hover-color: @text-color-primary;
+@picture-previewer-arrow-button-size: 64px 100px;
+@picture-previewer-arrow-icon-size: 60px;
+@picture-previewer-arrow-button-background: rgba(0, 0, 0, 0.1);
+@picture-previewer-arrow-icon-color: @text-color;
+@picture-previewer-arrow-disabled-background: rgba(0, 0, 0, 0.3);
+
+// *************** 组件 - 面板组件 ***************
+@panel-background: @component-background;
+
+// 面板 - 标题行
+@panel-header-height: @height-2xl;
+
+// 面板 - 标题行 - 文本区域
+@panel-header-title-color: @text-color-dark;
+@panel-header-title-font-size: 15px;
+@panel-header-title-font-weight: normal;
+@panel-header-title-icon-color: @title-decoration-color;
+
+// 面板 - 标题行 - 右侧操作区域 - 搜索框
+@panel-header-title-search-box-width: 200px;
+@panel-header-title-search-icon-color: @text-color-primary;
+@panel-header-title-search-icon-size: @font-size-2xl;
+@panel-header-title-clear-icon-size: @font-size-sm;
+
+// 面板 - 标题行 - 右侧操作区域 - 更多按钮
+@panel-header-title-view-more-color: @link-color;
+@panel-header-title-view-more-hover-color: @link-hover-color;
+@panel-header-title-view-more-icon-size: @font-size-sm;
+@panel-header-title-view-more-icon-color: @text-color-light;
+@panel-header-title-view-more-icon-background: @gray-3;
+@panel-header-title-view-more-icon-hover-color: @text-color-primary;
+@panel-header-title-view-more-icon-hover-background: @panel-header-title-view-more-icon-background;
+
+// 面板 - 标题行 - 数量徽标
+@panel-header-title-badge-background: @primary-color;
+@panel-header-title-badge-font-color: @text-color-inverse;
+
+// 面板 - 内容区域  - 内容标题
+@panel-content-header-background: @gray-3;
+@panel-content-header-height: @panel-header-height;
+@panel-content-header-text-color: @text-color-dark;
+@panel-content-header-tab-hover-color: @text-color-primary;
+@panel-content-header-tab-span-hover-color: @danger-color;
+@panel-content-header-tab-font-size: @font-size-lg;
+
+// *************** 组件 - 导航块组件 ***************
+@nav-block-background: @component-background;
+@nav-block-font-size: @font-size-base;
+@nav-block-font-color: @text-color-light;
+@nav-block-item-hover-font-color: @text-color-primary;
+@nav-block-icon-size: @font-size-xl;
+@nav-block-icon-color: @text-color-primary;
+@nav-block-icon-background: @background-primary-light;
+@nav-block-item-hover-icon-color: @text-color-inverse;
+@nav-block-item-hover-icon-background: @primary-color;
+@nav-block-icon-diameter: 34px;
+@nav-block-item-gutter: 60px;
+@nav-block-badge-color: @danger-color;
+
+// - 导航块弹窗 (与悬浮框弹窗共用)
+@nav-block-modal-tip-row-height: @height-lg;
+@nav-block-modal-tip-background: @primary-1;
+@nav-block-modal-content-title-height: @height-lg;
+@nav-block-modal-content-title-color: @text-color-dark;
+@nav-block-modal-content-title-background: @background-light;
+@nav-block-modal-content-title-symbol-width: 4px;
+@nav-block-modal-content-title-symbol-height: 15px;
+@nav-block-modal-choose-window-width: 560px;
+@nav-block-modal-selected-window-width: 448px;
+@nav-block-modal-window-height: 480px;
+@nav-block-modal-choose-wrap-background: @primary-color;
+
+// *************** 组件 - 悬浮框组件 ***************
+@suspended-component-background: rgba(0, 0, 0, 0.65);
+@suspended-component-border-radius: @border-radius-base;
+@suspended-component-item-hover-background: rgba(0, 0, 0, 0.85);
+@suspended-component-text-color: @text-color-inverse;
+@suspended-component-position-top: 50%; // 悬浮框中心相对页面顶部位置
+@suspended-component-collapse-width: 40px; // 收起宽度可设置，展开宽度自适应
+@suspended-component-item-height: @height-lg;
+@suspended-component-item-divider: 1px solid rgba(255, 255, 255, 0.5);
+@suspended-component-item-font-size: @font-size-base;
+@suspended-component-item-icon-size: @font-size-2xl;
+
+// *************** 组件 - 手风琴组件 ***************
+// - 水平布局
+@accordion-horizontal-label-font-size: @font-size-xl;
+@accordion-horizontal-label-font-color: @text-color-inverse;
+@accordion-horizontal-label-width: 110px;
+@accordion-horizontal-label-badge-height: @height-3xl;
+@accordion-horizontal-label-badge-font-size: @font-size-5xl;
+@accordion-horizontal-label-badge-font-weight: bold;
+
+// - 垂直布局
+@accordion-vertical-label-font-size: @font-size-2xl;
+@accordion-vertical-label-font-color: @text-color-inverse;
+@accordion-vertical-label-height: @height-3xl;
+@accordion-vertical-label-badge-height: @height-3xl;
+@accordion-vertical-label-badge-font-size: @font-size-4xl;
+@accordion-vertical-content-height: 300px;
+
+// *************** 组件 - 轮播图组件 ***************
+// - 左右两侧控制按钮
+@carousel-control-color: @text-color-inverse;
+@carousel-control-width: 15%;
+@carousel-control-opacity: 0.5;
+@carousel-control-font-size: @font-size-2xl;
+// - 中间指针
+@carousel-indicator-active-bg: @component-background;
+@carousel-indicator-border-color: @border-color-inverse;
+// - 标题
+@carousel-caption-color: @text-color-inverse;
+@carousel-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+
+// *************** 组件 - 统一门户组件 ***************
+@unified-portal-background: @body-background;
+
+// - 头部
+@unified-portal-header-height: @header-height;
+@unified-portal-header-background: @primary-color;
+@unified-portal-header-font-color: @text-color-inverse;
+@unified-portal-header-title-divider-width: 4px;
+@unified-portal-header-title-font-size: @font-size-3xl;
+@unified-portal-header-avatar-size: @font-size-4xl;
+@unified-portal-header-user-name-size: @font-size-base;
+@unified-portal-header-sign-out-btn-size: @font-size-2xl;
+
+// - 内容
+@unified-portal-body-font-color: @text-color-inverse;
+@unified-portal-body-list-title-font-size: @font-size-2xl;
+@unified-portal-body-item-border-radius: @border-radius-4; // 鼠标悬浮状态时的外框圆角
+@unified-portal-body-item-icon-bg-border-radius: @border-radius-4; // 图标背景外框圆角
+@unified-portal-body-item-size: 200px;
+@unified-portal-body-item-icon-bg-size: 88px;
+@unified-portal-body-item-icon-size: 32px;
+@unified-portal-body-item-icon-color: @unified-portal-body-font-color;
+@unified-portal-body-item-title-color: @unified-portal-body-font-color;
+@unified-portal-body-item-title-font-size: @font-size-xl;
+
+// - 悬浮操作按钮
+@unified-portal-suspended-set-width: 50px;
+@unified-portal-suspended-offset-bottom: 100px;
+@unified-portal-suspended-icon-color: @text-color-primary;
+@unified-portal-suspended-icon-size: @font-size-2xl;
+
+// - 设置弹窗
+@unified-portal-setting-modal-background: @component-background;
+@unified-portal-setting-modal-width: 630px;
+@unified-portal-setting-modal-height: 300px;
+@unified-portal-setting-title-font-size: @font-size-lg;
+@unified-portal-setting-title-font-color: @text-color-dark;
+@unified-portal-setting-theme-item-size: 80px;
+@unified-portal-setting-theme-checked-icon-size: 24px;
+@unified-portal-setting-layout-item-size: 64px;
+@unified-portal-setting-layout-item-font-size: 32px;
+
+// *************** 组件 - 磁贴组件 ***************
+@tile-hover-outline: @gray-9 solid 3px;
+@tile-image-box-shadow: inset 0 0 1px #ffffcc;
+
+// 尺寸 (长宽尺寸 方形可以省略宽度尺寸)
+@tile-small-size: 70px;
+@tile-normal-size: 150px;
+@tile-wide-size: 310px 150px;
+@tile-wide-vertical-size: 150px 310px;
+@tile-large-size: 310px;
+@tile-big-size: 470px;
+@tile-super-size: 630px;
+@tile-icon-size: 64px; // 非小磁贴
+@tile-small-icon-size: 32px; // 小磁贴
+
+// *************** 组件 - 步骤条组件 ***************
+@steps-nav-background: @component-background;
+@steps-nav-step-number-font-size: @font-size-2xl;
+@steps-nav-step-description-text-color: @text-color-primary;
+@steps-nav-step-circle-diameter: 70px;
+@steps-nav-step-border-width: 2px;
+@steps-nav-previous-step-border-color: @border-color-primary;
+@steps-nav-previous-step-text-color: @text-color-primary;
+@steps-nav-active-step-background-color: @primary-color;
+@steps-nav-active-step-text-color: @text-color-inverse;
+@steps-nav-next-step-background-color: @gray-7;
+@steps-nav-next-step-number-text-color: @text-color-inverse;
+@steps-nav-next-step-description-text-color: @text-color-lighter;
+@steps-nav-steps-gutter-width: @margin-2xl * 2;
+@steps-nav-steps-gutter-height: 5px;
+@steps-nav-steps-gutter-color: @border-color-dark;
+
+// ***************页面 - 表单详情页 ***************
+@dyform-background: @component-background;
+@dyform-header-height: 60px;
+@dyform-header-font-size: @font-size-lg;
+@dyform-header-background: @background-document-header;
+@dyform-footer-height: 60px;
+
+// - 区块
+@dyform-block-title-background: @primary-color;
+@dyform-block-title-text-color: @text-color-inverse;
+@dyform-block-title-height: 20px;
+@dyform-block-title-font-size: @font-size-base;
+
+// *************** 页面 - 管理后台 ***************
+@admin-home-background: @component-background;
+@admin-home-card-decorator-width: 2px;
+@admin-home-card-background-1: rgba(213, 239, 249, 0.2);
+@admin-home-card-decorator-1: rgba(213, 239, 249, 1);
+@admin-home-card-background-2: rgba(208, 223, 253, 0.2);
+@admin-home-card-decorator-2: rgba(208, 223, 253, 1);
+@admin-home-card-background-3: rgba(208, 244, 229, 0.2);
+@admin-home-card-decorator-3: rgba(208, 244, 229, 1);
+@admin-home-card-background-4: rgba(252, 236, 189, 0.2);
+@admin-home-card-decorator-4: rgba(252, 236, 189, 1);
+@admin-home-exception-active-color: @warning-color;
+@admin-home-exception-divider-line-color: #ddd;
+@admin-home-exception-divider-point-color: #999;
+@admin-home-exception-divider-line-width: 1px;
+@admin-home-exception-divider-point-size: 7px;

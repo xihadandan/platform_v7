@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="queryOrgTreeNodeListForPage">
+        <![CDATA[
+		select * from (
+			select r.*, e.uuid as ele_uuid, e.code, e.name, e.short_name, e.sap_code, e.remark, e.type, e.system_unit_id
+			from multi_org_tree_node r
+			left join multi_org_element e on r.ele_id = e.id
+			where r.ele_id != :versionId
+			and r.org_version_id = :versionId
+			<if isNotBlank( eleIdPath )>
+				and r.ele_id_path like '${eleIdPath}%'
+			</if>
+			<if isNotBlank( otherSysUnitId )>
+				and r.json_params like  '%${otherSysUnitId}%'
+			</if>
+			<if eleTypes?? && (eleTypes?size > 0)>
+              and e.type in (:eleTypes)
+            </if>
+			<if isNotBlank(name) || isNotBlank(sapCode) || isNotBlank(remark)>
+             and (1 = 2
+                <if isNotBlank( name )>
+                    or e.name like '%${name}%'
+                </if>
+                <if isNotBlank( sapCode )>
+                    or e.sap_code like '%${sapCode}%'
+                </if>
+                <if isNotBlank( remark )>
+                    or e.remark like '%${remark}%'
+                </if>
+             )
+             </if>
+		) as org_tree_view order by ${orderBy}
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

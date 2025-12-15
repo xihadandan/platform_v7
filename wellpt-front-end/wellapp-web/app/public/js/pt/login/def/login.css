@@ -1,0 +1,601 @@
+@import url('../../../../css/pt-iconfont/iconfont.css');
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Microsoft YaHei';
+}
+.content {
+  width: 100%;
+  height: 100%;
+  background: url(imgs/body.png) no-repeat center;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.box {
+  background-color: #fff;
+  width: 410px;
+  height: auto;
+  padding: 8px 8px 14px 8px;
+  position: absolute;
+  z-index: 2;
+  left: calc(50% - 213px);
+  top: calc(50% - 186px);
+}
+
+.header {
+  width: 100%;
+  height: 90px;
+  line-height: 90px;
+  background: url(imgs/header.png) no-repeat 0 0;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  padding-left: 172px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.header span {
+  line-height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.nav {
+  width: 100%;
+  height: 32px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 14px;
+}
+
+.nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav ul li {
+  display: inline-block;
+  width: 134px;
+  height: 32px;
+  line-height: 32px;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  margin-right: -1px;
+}
+
+.nav ul li span {
+  width: auto;
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  color: #757575;
+  border-bottom: 2px solid #fff;
+  cursor: pointer;
+}
+
+.nav ul li span:hover {
+  color: #404040;
+}
+.nav ul li .spanA {
+  color: #0078d7;
+  border-bottom: 2px solid #0078d7;
+}
+.login {
+  width: 100%;
+}
+
+.account {
+  width: 100%;
+}
+
+.account ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 37px;
+}
+
+.account ul li {
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  padding-top: 12px;
+  border-bottom: 1px solid #cccccc;
+}
+
+.account ul .select {
+  border-bottom: 1px solid #0078d7;
+}
+
+.account ul .username-li,
+.account ul .password-li,
+.account ul .image-verify-li,
+.account ul .sms-verify-li {
+  padding: 12px 3px 0px 3px;
+}
+
+.account ul li input[type='text'],
+.account ul li input[type='password'] {
+  height: 36px;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  color: #212121;
+  padding-left: 34px;
+}
+input:focus {
+  outline: none;
+}
+
+.account ul .username-li input[type='text'] {
+  width: 305px;
+  background: url(imgs/username.svg) no-repeat 0 0;
+  background-size: 24px 24px;
+  background-position: 0 center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account ul .username-li input[type='text']:focus {
+  background: url(imgs/username-select.svg) no-repeat 0 0;
+  background-size: 24px 24px;
+  background-position: 0 center;
+}
+
+.account ul .password-li input[type='password'],
+.account ul .password-li input[type='text'] {
+  width: 270px;
+  background: url(imgs/password.svg) no-repeat 0 0;
+  background-size: 24px 24px;
+  background-position: 0 center;
+}
+
+.account ul .password-li input[type='password']:focus,
+.account ul .password-li input[type='text']:focus {
+  background: url(imgs/password-select.svg) no-repeat 0 0;
+  background-size: 24px 24px;
+  background-position: 0 center;
+}
+
+.account ul .password-li a {
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  background: url(imgs/password2.svg) no-repeat 0 0;
+  background-size: 24px 24px;
+}
+
+.account ul .password-li a:hover {
+  background: url(imgs/password3.svg) no-repeat 0 0;
+  background-size: 24px 24px;
+}
+
+.account ul .password-li .aA {
+  background: url(imgs/password4.svg) no-repeat 0 0;
+  background-size: 24px 24px;
+}
+
+.account ul .password-li .aA:hover {
+  background: url(imgs/password5.svg) no-repeat 0 0;
+  background-size: 24px 24px;
+}
+
+.account ul .image-verify-li input[type='text'] {
+  width: 216px;
+  background: url(imgs/image-verify.svg) no-repeat 0 0;
+  background-size: 24px 24px;
+  background-position: 0 center;
+}
+
+.account ul .image-verify-li input[type='text']:focus {
+  width: 216px;
+  background: url(imgs/image-verify-select.svg) no-repeat 0 0;
+  background-size: 24px 24px;
+  background-position: 0 center;
+}
+
+.account ul .image-verify-li span {
+  cursor: pointer;
+  display: inline-block;
+  height: 36px;
+  line-height: 36px;
+  margin: 0;
+  padding: 0;
+}
+
+.account ul .image-verify-li span img {
+  display: inline-block;
+  vertical-align: middle;
+  width: 74px;
+  height: 24px;
+}
+
+.account ul .sms-verify-li input[type='text'] {
+  width: 218px;
+  background: url(imgs/sms-verify.svg) no-repeat 0 0;
+  background-size: 24px 24px;
+  background-position: 0 center;
+}
+
+.account ul .sms-verify-li input[type='text']:focus {
+  background: url(imgs/sms-verify-select.svg) no-repeat 0 0;
+  background-size: 24px 24px;
+  background-position: 0 center;
+}
+
+.account ul .sms-verify-li span {
+  cursor: pointer;
+  display: inline-block;
+  height: 16px;
+  line-height: 16px;
+  color: #0078d7;
+  font-size: 14px;
+}
+
+.account ul .sms-verify-li .spanA {
+  color: #9e9e9e;
+}
+
+.account ul .sms-verify-li span:hover,
+.account ul .sms-verify-li span:active {
+  color: #4da1e3;
+}
+
+.account ul .button-li {
+  border: 0;
+  padding-top: 28px;
+  height: 36px;
+}
+
+.account ul .button-li button {
+  width: 100%;
+  height: 100%;
+  background-color: #0078d7;
+  border: 1px solid #0078d7;
+  font-size: 16px;
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  letter-spacing: 8px;
+}
+
+.account ul .button-li button:hover {
+  background-color: #4da1e3;
+  border: 1px solid #4da1e3;
+}
+
+.account ul .button-li button:active {
+  background-color: #0070bc;
+  border: 1px solid #0070bc;
+}
+
+.account ul .operating-li {
+  border: 0;
+  padding: 20px 0 6px 0;
+}
+
+.account ul .operating-li a {
+  float: left;
+  display: inline-block;
+  width: auto;
+  height: 16px;
+  background: url(imgs/uncheck.svg) no-repeat 0 0;
+  background-size: 16px 16px;
+  background-position: 0 center;
+  cursor: pointer;
+  padding-left: 24px;
+  font-size: 12px;
+  padding-right: 16px;
+  text-decoration: none;
+}
+
+.account ul .operating-li .check {
+  background: url(imgs/check.svg) no-repeat 0 0;
+  background-size: 16px 16px;
+  background-position: 0 center;
+}
+
+.account ul .operating-li .forget-password {
+  background: #fff;
+  font-size: 12px;
+  float: right;
+  color: #0078d7;
+  padding: 0;
+}
+
+.account ul .operating-li .forget-password:hover,
+.account ul .operating-li .forget-password:active {
+  color: #4da1e3;
+}
+
+.error-div {
+  padding: 5px 20px 5px 30px;
+  line-height: 20px;
+  background-color: #ffebec;
+  font-size: 12px;
+  color: #e80000;
+  vertical-align: middle;
+  position: relative;
+}
+.error-div:before {
+  position: absolute;
+  content: '\e920';
+  font-family: 'iconfont' !important;
+  margin-right: 6px;
+  top: 50%;
+  left: 5px;
+  margin-top: -10px;
+  font-size: 16px;
+}
+
+.hardware ul,
+.key ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 37px;
+}
+
+.hardware ul li,
+.key ul li {
+  display: inline-block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.hardware ul .image-li,
+.key ul .image-li {
+  margin-top: 12px;
+  height: 100px;
+  background: url(imgs/hardware.png) no-repeat 0 0;
+  background-size: 100px 100px;
+  background-position: center 0;
+}
+
+.hardware ul .desc-li,
+.key ul .desc-li {
+  padding-top: 10px;
+  color: #9e9e9e;
+  font-size: 12px;
+  text-align: center;
+}
+
+.hardware ul .button-li,
+.key ul .button-li {
+  padding: 28px 0 5px 0;
+  height: 36px;
+}
+
+.hardware ul .button-li button,
+.key ul .button-li button {
+  width: 100%;
+  height: 100%;
+  background-color: #0078d7;
+  border: 1px solid #0078d7;
+  font-size: 16px;
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  letter-spacing: 8px;
+}
+
+.hardware ul .button-li button:hover,
+.key ul .button-li button:hover {
+  background-color: #4da1e3;
+  border: 1px solid #4da1e3;
+}
+
+.hardware ul .button-li button:active,
+.key ul .button-li button:active {
+  background-color: #0070bc;
+  border: 1px solid #0070bc;
+}
+
+.key ul li.password-li {
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  padding-top: 12px;
+  border-bottom: 1px solid #cccccc;
+}
+
+.key ul .password-li {
+  padding: 12px 3px 0px 3px;
+}
+
+.key ul li.select {
+  border-bottom: 1px solid #0078d7;
+}
+.key ul li input[type='password'],
+.key ul li input[type='text'] {
+  height: 36px;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  color: #212121;
+  padding-left: 34px;
+}
+.key ul .password-li input[type='password'],
+.key ul .password-li input[type='text'] {
+  width: 270px;
+  background: url(imgs/password.svg) no-repeat 0 0;
+  background-size: 24px 24px;
+  background-position: 0 center;
+}
+.key ul .password-li input[type='password']:focus,
+.key ul .password-li input[type='text']:focus {
+  background: url(imgs/password-select.svg) no-repeat 0 0;
+  background-size: 24px 24px;
+  background-position: 0 center;
+}
+
+.key ul .password-li a {
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  background: url(imgs/password2.svg) no-repeat 0 0;
+  background-size: 24px 24px;
+}
+
+.key ul .password-li .aA {
+  background: url(imgs/password4.svg) no-repeat 0 0;
+  background-size: 24px 24px;
+}
+
+.code ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 37px;
+}
+
+.code ul li {
+  display: inline-block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.code ul .image-li {
+  margin-top: 12px;
+  height: 126px;
+  line-height: 126px;
+  text-align: center;
+  background: url(imgs/code.png) no-repeat 0 0;
+  background-size: 126px 126px;
+  background-position: center 0;
+}
+
+.code ul .image-li img {
+  display: inline-block;
+  vertical-align: middle;
+  width: 90px;
+  height: 90px;
+}
+
+.code ul .desc-li {
+  padding-top: 10px;
+  color: #9e9e9e;
+  font-size: 12px;
+  text-align: center;
+}
+
+.code ul .download-li {
+  padding: 21px 0 6px 0;
+  text-align: center;
+}
+
+.code ul .download-li a {
+  display: inline-block;
+  width: auto;
+  color: #0078d7;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.code ul .download-li a:hover,
+.code ul .download-li a:active {
+  color: #4da1e3;
+}
+
+.footer {
+  color: #000000;
+  opacity: 0.38;
+  font-size: 14px;
+  position: absolute;
+  z-index: 1;
+  bottom: 42px;
+  text-align: center;
+  left: 360px;
+  width: calc(100% - 720px);
+  min-width: 372px;
+}
+
+.footer p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.footer a {
+  opacity: 0.64;
+  color: #ffffff;
+  text-decoration: underline;
+}
+.footer a:hover {
+  color: #ccffff;
+}
+
+/* placeholder颜色  */
+input::-webkit-input-placeholder {
+  color: #9e9e9e;
+}
+/* 去掉谷歌浏览器叉号  */
+input::-webkit-search-cancel-button {
+  display: none;
+}
+
+/*钉钉登录样式*/
+#dingCode > iframe {
+  display: block;
+  margin: 0 auto;
+  max-height: 320px;
+}
+
+.goto-oauth2-login {
+  margin-top: 30px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(204, 204, 204, 1);
+  position: relative;
+}
+
+.goto-oauth2-login a {
+  position: absolute;
+  left: calc(50% - 73px);
+  top: -10px;
+  padding: 0 10px;
+  background: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.account ul .operating-li a.download-app {
+  padding: 0;
+  float: right;
+  background: none;
+}
+
+.account ul .operating-li a.download-app > img {
+  display: none;
+  position: absolute;
+}
+
+.account ul .operating-li a.download-app:hover > img {
+  display: block;
+}

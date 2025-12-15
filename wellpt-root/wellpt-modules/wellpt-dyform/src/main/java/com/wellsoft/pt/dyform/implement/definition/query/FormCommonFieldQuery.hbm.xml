@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="getRefFormDefintion">
+        <![CDATA[
+		select b.name as name, b.uuid as form_uuid, b.name as display_name
+		  from DYFORM_COMMON_FIELD_REF a
+		  join DYFORM_FORM_DEFINITION b
+		    on b.uuid = a.form_uuid
+		 where a.common_field_uuid = :fieldUuid order by a.modify_time desc
+	]]>
+    </sql-query>
+</hibernate-mapping>

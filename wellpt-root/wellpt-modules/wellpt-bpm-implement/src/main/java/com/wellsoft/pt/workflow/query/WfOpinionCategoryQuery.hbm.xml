@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="queryFlowOpinionCateByBusinessFlag">
+        <![CDATA[
+            from FlowOpinionCategory where businessFlag is not null
+            <if businessFlags?? && (businessFlags?size > 0)>
+                and businessFlag in (:businessFlags)
+            </if>
+            <if isNotBlank( keyword )>
+				and (
+					code like '%${keyword}%' or
+					name like '%${keyword}%'
+				)
+			</if>
+			<if isNotBlank(orderBy)>
+				${orderBy}
+			</if>
+
+	]]>
+    </sql-query>
+
+    <sql-query name="queryFlowOpinionByCategory">
+        <![CDATA[
+            from FlowOpinion where 1 = 1
+            <if opinionCategoryUuids?? && (opinionCategoryUuids?size > 0)>
+                and opinionCategoryUuid in (:opinionCategoryUuids)
+            <else>
+                and opinionCategoryUuid in (select t.uuid from FlowOpinionCategory t where t.businessFlag is not null)
+            </if>
+            <if isNotBlank( keyword )>
+				and (
+					content like '%${keyword}%' or
+					code like '%${keyword}%'
+				)
+			</if>
+			<if isNotBlank(orderBy)>
+				${orderBy}
+			</if>
+
+	]]>
+    </sql-query>
+</hibernate-mapping>

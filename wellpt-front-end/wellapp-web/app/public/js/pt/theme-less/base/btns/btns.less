@@ -1,0 +1,222 @@
+// button part
+
+//base btn
+.btn {
+	.border-radius(3);
+	transition: all 0.5s;
+	height:35px;
+	font-size:@fontBaseSize;
+}
+
+//btn size
+
+.btn-lg{
+	height:45px;
+	width:90px;
+	font-size: 18px;
+}
+
+.btn-sm{
+	height:30px;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.btn-xs{
+	height:20px;
+	font-size: 11px;
+	line-height: 20px;
+	padding: 1px 4px;
+}
+
+//btn color
+
+.btn-primary {
+	background-color: @primary;
+	border-color: @primary;
+    color: @white;
+    &:active,&:focus,&:hover{
+        background-color: @primary-hover;
+        border-color: @primary-hover;
+    }
+    &[disabled]{
+        background-color: @primary-disabled;
+	    border-color: @primary-disabled;
+    }
+}
+
+.btn-success {
+	background-color: @success;
+	border-color: @success;
+    color: @white;
+    &:active,&:focus,&:hover{
+        background-color: @success-hover;
+        border-color: @success-hover;
+    }
+    &[disabled]{
+        background-color: @success-disabled;
+	    border-color: @success-disabled;
+    }
+}
+
+.btn-info {
+	background-color: @info;
+	border-color: @info;
+    color: @white;
+    &:active,&:focus,&:hover{
+        background-color: @info-hover;
+        border-color: @info-hover;
+    }
+    &[disabled]{
+        background-color: @info-disabled;
+	    border-color:@info-disabled;
+    }
+}
+
+.btn-default {
+	background-color: @default;
+	border-color: @default;
+    color: @white;
+    &:active,&:focus,&:hover{
+        background-color: @default-hover;
+        border-color: @default-hover;
+    }
+    &[disabled]{
+        background-color: @default-disabled;
+	    border-color:@default-disabled;
+    }
+}
+
+.btn-warning {
+	background-color: @warning;
+	border-color: @warning;
+    color: @white;
+    &:active,&:focus,&:hover{
+        background-color: @warning-hover;
+        border-color: @warning-hover;
+    }
+    &[disabled]{
+        background-color: @warning-disabled;
+	    border-color:@warning-disabled;
+    }
+}
+
+.btn-danger {
+	background-color: @danger;
+	border-color: @danger;
+    color: @white;
+    &:active,&:focus,&:hover{
+        background-color: @danger-hover;
+        border-color: @danger-hover;
+    }
+    &[disabled]{
+        background-color: @danger-disabled;
+	    border-color:@danger-disabled;
+    }
+}
+
+.btn-outline {
+	color: inherit;
+	background-color: transparent;
+	-webkit-transition: all .5s;
+	transition: all .5s
+}
+
+.btn-rounded {
+	.border-radius(50);
+}
+
+.btn-circle {
+	width: 30px;
+	height: 30px;
+	.padding(6,0);
+	.border-radius(100);
+	text-align: center;
+	font-size: 12px;
+	line-height: 1.428571429
+}
+
+.btn-primary.btn-outline {
+	color: @primary
+}
+
+.btn-success.btn-outline {
+	color: @success
+}
+
+.btn-info.btn-outline {
+	color: @info
+}
+
+.btn-warning.btn-outline {
+	color: @warning
+}
+
+.btn-danger.btn-outline {
+	color: @danger
+}
+.btn-danger.btn-outline:hover,.btn-info.btn-outline:hover,.btn-primary.btn-outline:hover,.btn-success.btn-outline:hover,.btn-warning.btn-outline:hover {
+	color: @white
+}
+
+
+
+.btn-bg-color{
+	color:#fff;
+	border:none;
+}
+.btn-font-color{
+	background-color:transparent;
+	border-color:transparent;
+}
+.btn-fontBor-color{
+	background-color:transparent;
+}
+.btn-primary{
+	&.btn-fontBor-color,
+	&.btn-font-color{
+		color:@primary;
+		&:hover{
+			color:@white;
+		}
+	}
+}
+.btn-success{
+	&.btn-fontBor-color,
+	&.btn-font-color{
+		color:@success;
+		&:hover{
+			color:@white;
+		}
+	}
+}
+.btn-info{
+	&.btn-fontBor-color,
+	&.btn-font-color{
+		color:@info;
+		&:hover{
+			color:@white;
+		}
+	}
+}
+.btn-warning{
+	&.btn-fontBor-color,
+	&.btn-font-color{
+		color:@warning;
+		&:hover{
+			color:@white;
+		}
+	}
+}
+.btn-danger{
+	&.btn-fontBor-color,
+	&.btn-font-color{
+		color:@danger;
+		&:hover{
+			color:@white;
+		}
+	}
+}
+.div_lineEnd_toolbar button{
+	margin-right:5px;
+}

@@ -1,0 +1,19 @@
+{
+  "WidgetDataManagerView": {
+    "categoryTo": "Categorize to",
+    "selectTag": "Select Tag",
+    "colorOkText": "Confirm",
+    "newTag": "Create New Tag",
+    "column": {
+      "collect": "Collect",
+      "focus": "Focus"
+    },
+    "message": {
+      "pleaseSelectRow": "Please select a row",
+      "serverError": "Server error occurred",
+      "pleaseSelectTag": "Please select a tag",
+      "saveTagSuccess": "Tag saved successfully",
+      "saveSuccess": "Saved successfully"
+    }
+  }
+}

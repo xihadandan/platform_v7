@@ -1,0 +1,113 @@
+{
+  "js": {
+    "AppEmailAccountListDevelopment": {
+      "path": "webmail/AppEmailAccountListDevelopment",
+      "name": "平台应用_平台邮件_其他邮箱账号",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "PopSendMailDialog": {
+      "path": "webmail/PopSendMailDialog",
+      "name": "平台应用_平台邮件_弹出发送邮件弹窗",
+      "dependencies": ["QuickSendMailDialog"]
+    },
+    "AppEmailSetDevelopment": {
+      "path": "webmail/AppEmailSetDevelopment",
+      "name": "平台应用_平台邮件_webmail邮件设置",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "jquery-validate", "global", "system-admin", "wSelect2"]
+    },
+    "AppEmailContactBookListDevelopment": {
+      "path": "webmail/AppEmailContactBookListDevelopment",
+      "name": "平台应用_平台邮件_通讯录列表二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppEmailSentHtmlDevelopment": {
+      "path": "webmail/AppEmailSentHtmlDevelopment",
+      "name": "平台应用_平台邮件_写邮件",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "formBuilder",
+        "multiOrg",
+        "ckeditor",
+        "lodash",
+        "jquery_tag_editor",
+        "cmsWindown",
+        "niceScroll"
+      ]
+    },
+    "AppEmailHeaderWidgetDevelopment": {
+      "path": "webmail/AppEmailHeaderWidgetDevelopment",
+      "name": "平台应用_头部组件二开_邮件模块",
+      "dependencies": ["HeaderWidgetDevelopment"]
+    },
+    "mui.AppEmailListDevelopment": {
+      "path": "webmail/mui.AppEmailListDevelopment",
+      "name": "平台应用_平台邮件_手机邮件列表",
+      "dependencies": ["MobileListDevelopmentBase", "mui-webmailBox"]
+    },
+    "AppEmailListDevelopment": {
+      "path": "webmail/AppEmailListDevelopment",
+      "name": "平台应用_平台邮件_邮件列表",
+      "dependencies": ["ListViewWidgetDevelopment", "lodash", "minicolors", "AppEmailTagDevelopment", "AppEmailFolderDevelopment"]
+    },
+    "mui.AppEmailLeftSidebarWidgetDevelopment": {
+      "path": "webmail/mui.AppEmailLeftSidebarWidgetDevelopment",
+      "name": "平台应用_手机导航组件二开_邮件模块",
+      "dependencies": ["LeftSidebarWidgetDevelopment"]
+    },
+    "AppEmailLeftSidebarWidgetDevelopment": {
+      "path": "webmail/AppEmailLeftSidebarWidgetDevelopment",
+      "name": "平台应用_左导航组件二开_邮件模块",
+      "dependencies": ["LeftSidebarWidgetDevelopment"]
+    },
+    "QuickSendMailDialog": {
+      "path": "webmail/QuickSendMailDialog",
+      "name": "平台应用_平台邮件_快捷发送邮件弹窗",
+      "dependencies": ["layer"]
+    },
+    "AppEmailFolderDevelopment": {
+      "path": "webmail/AppEmailFolderDevelopment",
+      "name": "平台应用_平台邮件_邮件文件夹",
+      "dependencies": ["ViewDevelopmentBase", "lodash"]
+    },
+    "AppEmailDetailHtmlDevelopment": {
+      "path": "webmail/AppEmailDetailHtmlDevelopment",
+      "name": "平台应用_平台邮件_邮件详情",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "cmsWindown",
+        "dataStoreBase",
+        "lodash",
+        "AppEmailListDevelopment",
+        "AppEmailTagDevelopment"
+      ]
+    },
+    "BtnFetchEmail": {
+      "path": "webmail/BtnFetchEmail",
+      "name": "平台应用_邮件模块_收信"
+    },
+    "AppEmailPaperDevelopment": {
+      "path": "webmail/AppEmailPaperDevelopment",
+      "name": "平台应用_平台邮件_邮件信纸",
+      "dependencies": ["TileWidgetDevelopment"]
+    },
+    "AppEmailTemplateDevelopment": {
+      "path": "webmail/AppEmailTemplateDevelopment",
+      "name": "平台应用_平台邮件_邮件写信模板",
+      "dependencies": ["ListViewWidgetDevelopment", "ckeditor"]
+    },
+    "AppEmailSignatureDevelopment": {
+      "path": "webmail/AppEmailSignatureDevelopment",
+      "name": "平台应用_平台邮件_邮件签名",
+      "dependencies": ["ListViewWidgetDevelopment", "ckeditor"]
+    },
+    "ModifyMailClientPwdDialog": {
+      "path": "webmail/ModifyMailClientPwdDialog",
+      "name": "平台应用_平台邮件_修改邮件客户端密码弹窗"
+    },
+    "AppEmailTagDevelopment": {
+      "path": "webmail/AppEmailTagDevelopment",
+      "name": "平台应用_平台邮件_邮件标签",
+      "dependencies": ["ViewDevelopmentBase", "lodash", "minicolors"]
+    }
+  }
+}

@@ -1,0 +1,38 @@
+.second-page {
+  position: relative;
+  height: 100%;
+}
+.second-page .menu-sidebar {
+  width: 250px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #c3deef;
+  overflow: hidden;
+}
+.second-page .menu-sidebar .scroll-inner {
+  overflow-y: auto;
+  width: 270px;
+  height: 100%;
+}
+.second-page .menu-sidebar .scroll-inner .ui-wLeftSidebar {
+  width: 250px;
+}
+.second-page .content {
+  width: calc(100%-250px);
+  margin-left: 250px;
+  padding: 15px;
+  height: 100%;
+  overflow: auto;
+}
+.second-page .content .panel .panel-heading {
+  padding: 7.5px;
+  border: 0;
+}
+.second-page .content .panel .panel-heading h3 {
+  line-height: 25px;
+}
+.second-page .content .panel .file-manager-view {
+  margin: 0;
+}

@@ -1,0 +1,457 @@
+/* 左导航组件 */
+
+// 布局
+.well-left-nav {
+  padding: 0;
+  height: calc(100vh - @header-height - @navbar-height);
+  width: @left-sidebar-expanded-width;
+  background: @left-sidebar-background;
+  // overflow: auto;
+}
+
+// 左导航样式
+.ui-wLeftSidebar {
+  position: relative;
+  transition: @animation-duration-slow all;
+  // margin-bottom: 1px;
+  background: transparent;
+
+  .module-text {
+    .size(100%, 58px);
+    font-size: 22px;
+    line-height: 58px;
+    padding: 0 12px;
+    color: @text-color-primary;
+    overflow: hidden;
+    border-bottom: @border-width-1 @border-style-base @border-color-primary;
+    // background: @primary-2;
+    // box-shadow: @shadow-popup-default;
+  }
+}
+
+.show-float-menu .ui-wLeftSidebar .module-text {
+  display: none;
+}
+
+// 导航右侧的关闭/打开按钮
+.ui-wLeftSidebar .nav-toggle-btn {
+  .size(@left-sidebar-toggle-button-width, @left-sidebar-toggle-button-height);
+  .fixed(@left-sidebar-toggle-button-top false false @left-sidebar-collapsed-width);
+
+  z-index: 10;
+  border: none;
+  background: url('images/leftSlideOpen.png') no-repeat;
+
+  &.close-nav {
+    background: url('images/leftSlideClose.png') no-repeat;
+    left: @left-sidebar-expanded-width;
+  }
+
+  // TODO: Check - 下面的样式可能已经被弃用
+  i {
+    border-left: 13px solid #ccc;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    height: 34px;
+    display: block;
+    position: relative;
+
+    &:before {
+      font-size: 16px;
+      .absolute(2px false false -12px);
+      color: @component-background;
+    }
+  }
+
+  &:hover i {
+    border-left: 13px solid #069dd5;
+  }
+
+  &.close-nav i:before {
+    content: '\f100';
+  }
+}
+
+// 左导航收起状态
+.ui-wLeftSidebar .icon-nav {
+  width: @left-sidebar-collapsed-width;
+  display: none;
+
+  .icon-nav-item {
+    height: @left-sidebar-collapsed-item-height;
+    line-height: @left-sidebar-collapsed-item-height;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    border-bottom: @border-default-inverse;
+    margin-bottom: 1px;
+    color: @left-sidebar-text-color;
+
+    // 导航图标区域 - 普通状态
+    .icon-nav-wrap {
+      height: 100%;
+      background: @left-sidebar-background;
+      box-shadow: 0px 1px 0px 0px @left-sidebar-background;
+
+      i {
+        font-size: @left-sidebar-collapsed-item-size;
+        vertical-align: bottom;
+      }
+    }
+
+    // 导航图标区域 - 鼠标悬浮状态
+    &:hover,
+    &.selected {
+      color: @left-sidebar-hover-text-color;
+
+      .icon-nav-wrap {
+        color: @left-sidebar-hover-text-color;
+        background: @left-sidebar-hover-background;
+      }
+    }
+  }
+}
+
+// 右边子导航弹出层
+.left-slide-float-menu {
+  background: @component-background;
+  box-shadow: @shadow-popup-default;
+
+  .absolute(0 false false 50px);
+
+  z-index: 1000;
+  padding-left: 1px;
+
+  .third-float-menu {
+    .absolute(0 false false 160px);
+    z-index: 1000;
+    padding-left: 1px;
+    display: none;
+  }
+
+  .third-float-menu-wrap {
+    background: #fff;
+    box-shadow: @shadow-popup-default;
+  }
+
+  .float-menu-item {
+    .text-overflow();
+
+    position: relative;
+    height: @left-sidebar-collapsed-float-popup-item-height;
+    line-height: @left-sidebar-collapsed-float-popup-item-height;
+    min-width: @left-sidebar-collapsed-float-popup-min-width;
+    margin-bottom: 1px;
+    padding: 0 15px 0 11px;
+    font-size: @left-sidebar-font-size;
+    color: @left-sidebar-text-color;
+    text-align: left;
+    border-left: @left-sidebar-selected-symbol-width solid transparent;
+    cursor: pointer;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      background: @left-sidebar-hover-background;
+      color: @left-sidebar-hover-text-color;
+    }
+
+    // &.selected {
+    //   color: @left-sidebar-selected-text-color;
+    //   background: @left-sidebar-selected-background;
+    // }
+
+    // &.selected[isParent='0'] {
+    //   border-left-style: solid;
+    //   border-left-width: @left-sidebar-collapsed-float-popup-selected-symbol-width;
+    //   border-left-color: @left-sidebar-collapsed-float-popup-selected-symbol-color;
+    // }
+
+    .arrow {
+      .absolute(50% 5px false false);
+      .square(@font-size-lg);
+
+      line-height: @font-size-lg;
+      margin-top: -10px;
+      transform: scale(0.5);
+
+      i {
+        font-size: @font-size-lg;
+      }
+    }
+  }
+}
+
+.left-slide-float-menu-wrap {
+  background: #fff;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+
+  .third-float-menu-wrap {
+    background: #fff;
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// 左导航展开状态 - 导航基本样式
+.ui-wLeftSidebar .metismenu {
+  .nav-menu-item > a {
+    .text-overflow();
+
+    padding: 14px 15px 14px 38px;
+    display: block;
+    line-height: 20px;
+    background: @left-sidebar-expanded-nav-background;
+    color: @left-sidebar-expanded-nav-color;
+
+    // 展开状态 - 导航基本样式 - 图标
+    .sidebar-nav-item-icon {
+      .absolute(false false false 12px);
+
+      font-size: @left-sidebar-expanded-nav-icon-size;
+
+      &.glyphicon {
+        padding: 14px 0;
+      }
+    }
+
+    // 展开状态 - 导航基本样式 - 文本
+    .sidebar-nav-item {
+      .text-overflow();
+
+      display: block;
+      float: left;
+      width: @left-sidebar-expanded-nav-text-width;
+    }
+
+    // 展开状态 - 导航基本样式 - 徽标
+    .badge {
+      margin-left: @margin-sm;
+      float: right;
+      line-height: @line-height-base;
+      font-weight: normal;
+      padding: 0;
+      color: @left-sidebar-expanded-nav-badge-color;
+      background: transparent;
+    }
+
+    // 展开状态 - 导航基本样式 - 收起/展开箭头
+    .arrow {
+      margin-left: @margin-sm;
+      margin-top: @margin-3xs;
+      font-size: @left-sidebar-expanded-nav-arrow-size;
+      color: @left-sidebar-expanded-nav-arrow-color;
+      vertical-align: middle;
+      transition: all @animation-duration-slow ease-in-out;
+      float: right;
+    }
+
+    &:active,
+    &:focus,
+    &.active {
+      text-decoration: none;
+      color: @left-sidebar-hover-text-color;
+      background: @left-sidebar-hover-background;
+
+      .arrow {
+        color: @left-sidebar-hover-text-color;
+      }
+    }
+  }
+
+  .nav-menu-item.sub-nav-menu-item > a .sidebar-nav-item-icon.glyphicon {
+    padding: 0;
+  }
+
+  // 展开状态 - 导航基本样式 (选中状态)
+  &.nav-menu-active > a {
+    color: @left-sidebar-hover-text-color;
+    background: @left-sidebar-hover-background;
+
+    .arrow {
+      color: @left-sidebar-hover-text-color;
+    }
+  }
+
+  // 展开状态 - 导航基本样式 (子级导航被打开)
+  .nav-menu-item.menu-open > a .arrow {
+    transform: rotate(180deg);
+  }
+
+  // 展开状态 - 导航基本样式 (边框)
+  .nav-menu-item {
+    &.main-nav-menu-item > a {
+      box-shadow: 0 1px 0 0 @primary-3;
+    }
+
+    &.sub-nav-menu-item.menu-open > .collapse {
+      border-top: 1px solid @primary-6;
+      border-bottom: 1px solid @primary-3;
+    }
+  }
+}
+
+// 左导航展开状态 - 一级导航样式
+.ui-wLeftSidebar .metismenu .nav-menu-item.main-nav-menu-item {
+  border-bottom: @border-default-inverse;
+  margin-bottom: @border-width-base;
+  font-size: @left-sidebar-expanded-main-nav-font-size;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.menu-open {
+    border-bottom: none;
+
+    > .collapse {
+      border-top: 1px solid @primary-6;
+      border-bottom: 1px solid @primary-3;
+    }
+  }
+
+  a:hover {
+    background-color: @left-sidebar-expanded-main-nav-hover-background;
+  }
+
+  &.active.nav-menu-active > a {
+    color: @left-sidebar-selected-text-color;
+  }
+}
+
+// 左导航展开状态 - 二级子导航样式
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.sub-nav-menu-item > a {
+  font-size: @left-sidebar-expanded-sub-nav-font-size;
+  position: relative;
+  padding: 14px 15px 14px 38px;
+  text-decoration: none;
+  background-color: @component-background;
+  color: @left-sidebar-text-color;
+
+  .sidebar-nav-item-icon {
+    .relative(false false false 0);
+
+    display: block;
+    width: 25px;
+    float: left;
+  }
+}
+
+// 左导航展开状态 - 三级子导航样式
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.third-nav-menu-item > a {
+  padding: 14px 15px 14px 50px;
+  font-size: @left-sidebar-expanded-third-nav-font-size;
+  text-decoration: none;
+  background-color: @component-background;
+
+  .sidebar-nav-item-icon {
+    .relative(false false false 0);
+
+    display: block;
+    width: 25px;
+    float: left;
+  }
+}
+
+// 左导航展开状态 - 一级导航无图标
+.ui-wLeftSidebar.first-level-no-icon .metismenu {
+  .nav-menu-item > a {
+    padding-left: 12px;
+  }
+
+  .collapse > .nav-menu-item.sub-nav-menu-item > a {
+    padding-left: 22px;
+  }
+
+  .collapse > .nav-menu-item.third-nav-menu-item > a {
+    padding-left: 32px;
+
+    &::before,
+    &::after {
+      left: 20px;
+    }
+  }
+}
+
+.ui-wLeftSidebar .sidebar-nav ul {
+  // border-bottom: @border-default-inverse;
+}
+
+.ui-wLeftSidebar .metismenu .has-third-nav .collapse > .nav-menu-item.sub-nav-menu-item > a {
+  background: rgba(72, 140, 238, 0.05);
+  color: #335177;
+}
+
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.sub-nav-menu-item:hover,
+.ui-wLeftSidebar .metismenu .collapse .nav-menu-item.sub-nav-menu-item:focus,
+.ui-wLeftSidebar .metismenu .collapse .nav-menu-item.sub-nav-menu-item:active {
+  opacity: 1;
+  color: @left-sidebar-expanded-sub-nav-hover-color;
+
+  > a {
+    background: @left-sidebar-expanded-sub-nav-hover-background;
+    color: @left-sidebar-expanded-sub-nav-hover-color;
+  }
+}
+
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.sub-nav-menu-item {
+  &.nav-menu-active > a {
+    background: @left-sidebar-expanded-sub-nav-selected-background;
+    color: @left-sidebar-expanded-sub-nav-selected-color;
+  }
+
+  // &.menu-open > a {
+  //   background: rgba(72, 140, 238, 0.05);
+  // }
+}
+
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.third-nav-menu-item > a {
+  position: relative;
+  background: @component-background;
+
+  &::before {
+    .absolute(0 false 0 38px);
+
+    content: '';
+    border-left: 1px dotted #ddd;
+  }
+
+  &::after {
+    .absolute(50% false false 38px);
+
+    content: '';
+    width: 10px;
+    border-top: 1px dotted #ddd;
+  }
+}
+
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.third-nav-menu-item:hover,
+.ui-wLeftSidebar .metismenu .collapse .nav-menu-item.third-nav-menu-item:focus,
+.ui-wLeftSidebar .metismenu .collapse .nav-menu-item.third-nav-menu-item:active {
+  opacity: 1;
+  color: @left-sidebar-expanded-third-nav-hover-color;
+
+  > a {
+    background: @left-sidebar-expanded-third-nav-hover-background;
+    color: @left-sidebar-expanded-third-nav-hover-color;
+  }
+}
+
+.ui-wLeftSidebar .metismenu .collapse > .nav-menu-item.third-nav-menu-item.nav-menu-active > a {
+  background: @left-sidebar-expanded-third-nav-selected-background;
+  color: @left-sidebar-expanded-third-nav-selected-color;
+}
+
+.ui-wLeftSidebar .metismenu .nav-menu-item {
+  position: relative;
+
+  &.nav-menu-active[isParent='0'] > a::before {
+    .absolute(0 false 0 0);
+
+    content: '';
+    width: @left-sidebar-selected-symbol-width;
+    background: @left-sidebar-selected-symbol-color;
+    border-left: none;
+  }
+}

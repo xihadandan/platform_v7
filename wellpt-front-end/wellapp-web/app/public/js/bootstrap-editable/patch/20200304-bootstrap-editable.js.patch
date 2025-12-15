@@ -1,0 +1,14 @@
+修改click.editable到mousedown.editable，点击事件前做数据收集
+Index: wellpt-root/wellpt-web/WebContent/resources/bootstrap-editable/js/bootstrap-editable.js
+===================================================================
+--- wellpt-root/wellpt-web/WebContent/resources/bootstrap-editable/js/bootstrap-editable.js	(revision 203108)
++++ wellpt-root/wellpt-web/WebContent/resources/bootstrap-editable/js/bootstrap-editable.js	(working copy)
+@@ -947,7 +947,7 @@
+ 
+                 //close containers when click outside 
+                 //(mousedown could be better than click, it closes everything also on drag drop)
+-                $(document).on('click.editable', function(e) {
++                $(document).on('mousedown.editable', function(e) {
+                     var $target = $(e.target), i,
+                         exclude_classes = ['.editable-container', 
+                                            '.ui-datepicker-header', 

@@ -1,0 +1,121 @@
+/*hover color variables*/
+/*disabled color variables*/
+/*border-radius function start*/
+/*border-radius function end*/
+/*padding function start*/
+/*padding function end*/
+/*margin function start*/
+/*margin function end*/
+/*text-overflow function start*/
+/*text-overflow function end*/
+/*background function start*/
+/*background function end*/
+/*font function start */
+/*font function end*/
+/*navbar function start*/
+/*navbar function end*/
+/*set modal svg-font color*/
+/*set modal svg-font color*/
+.bootbox .modal-dialog.modal-lg .modal-header,
+.bootbox .modal-dialog.modal-md .modal-header,
+.bootbox .modal-dialog.modal-sm .modal-header {
+  padding: 5px 15px;
+}
+.bootbox .modal-warning,
+.bootbox .modal-error,
+.bootbox .modal-success,
+.bootbox .modal-info,
+.bootbox .modal-confirm {
+  width: 450px;
+}
+.bootbox .modal-warning .message-content,
+.bootbox .modal-error .message-content,
+.bootbox .modal-success .message-content,
+.bootbox .modal-info .message-content,
+.bootbox .modal-confirm .message-content {
+  display: table-cell;
+  width: 100%;
+  height: 110px;
+  vertical-align: middle;
+  text-align: left;
+}
+.bootbox .modal-warning .modal-body,
+.bootbox .modal-error .modal-body,
+.bootbox .modal-success .modal-body,
+.bootbox .modal-info .modal-body,
+.bootbox .modal-confirm .modal-body {
+  min-height: 140px;
+}
+.bootbox .modal-warning .modal-body .col-xs-3,
+.bootbox .modal-error .modal-body .col-xs-3,
+.bootbox .modal-success .modal-body .col-xs-3,
+.bootbox .modal-info .modal-body .col-xs-3,
+.bootbox .modal-confirm .modal-body .col-xs-3 {
+  text-align: center;
+}
+.bootbox .modal-warning .modal-body i,
+.bootbox .modal-error .modal-body i,
+.bootbox .modal-success .modal-body i,
+.bootbox .modal-info .modal-body i,
+.bootbox .modal-confirm .modal-body i {
+  line-height: 110px;
+  font-size: 60px;
+  vertical-align: middle;
+}
+.bootbox .modal-warning .modal-body i {
+  color: #f69101;
+}
+.bootbox .modal-error .modal-body i {
+  color: #f03f1d;
+}
+.bootbox .modal-success .modal-body i {
+  color: #80d412;
+}
+.bootbox .modal-info .modal-body i {
+  color: #15bee8;
+}
+.bootbox .modal-dialog .modal-header {
+  padding: 0 15px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.bootbox .modal-dialog .modal-header .modal-title {
+  line-height: 33px;
+  padding: 0;
+  font-size: 16px;
+}
+.bootbox .modal-dialog .modal-header .close {
+  text-shadow: none;
+  opacity: 1;
+}
+.bootbox .modal-dialog .modal-header .close:hover {
+  color: #b90808;
+}
+.bootbox .modal-dialog .modal-body {
+  padding: 15px;
+}
+.bootbox .modal-dialog .modal-footer {
+  border-top: 1px solid #ddd;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  padding: 5px 15px;
+}
+.bootbox .modal-dialog .modal-footer button {
+  width: 80px;
+}
+.modal-open {
+  overflow: hidden;
+}
+.modal.ui-front {
+  z-index: 1050;
+}
+.modal-bottom-right {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="/static/js/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/js/minicolors/css/jquery.minicolors.css" type="text/css" />
+    <script src="/static/js/jqueryplugin/jquery.placeholder.min.js"></script>
+    <script>
+      if (!$.fn.placeholder) {
+        $.fn.placeholder = {
+          input: true,
+          textarea: true
+        };
+      }
+    </script>
+    <script type="text/javascript" src="/static/js/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/1.12.4/jquery-migrate-1.4.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-table/1.11.0/js/bootstrap-table.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script type="text/javascript" src="/static/js/ace/ace_binder.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-editable/js/bootstrap-editable.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-table/1.11.0/js/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-table/1.11.0/js/extensions/editable/bootstrap-table-editable.js"></script>
+    <!--<script type="text/javascript" src="/static/js/bootstrap-editable/js/bootstrap-editable-extensions.js"></script>-->
+    <script type="text/javascript" src="/static/js/utils/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="/static/js/utils/json2.js"></script>
+    <script type="text/javascript" src="/static/js/pt/js/global.js"></script>
+    <!--<script type="text/javascript" src="/static/js/jqgrid/js/i18n/grid.locale-cn.js"></script>-->
+    <script type="text/javascript" src="/static/js/pt/js/common/jquery.alerts.js"></script>
+    <script type="text/javascript" src="/static/dyform/commons/function.js"></script>
+    <script type="text/javascript" src="/static/js/validate/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="/static/js/lodash/3.10.1/lodash.custom.min.js"></script>
+    <script type="text/javascript" src="/static/dyform/commons/formDefinitionMethod.js"></script>
+    <script type="text/javascript" src="/static/js/ztree/3.5.24/js/jquery.ztree.all.fixed.min.js"></script>
+    <script type="text/javascript" src="/static/js/ztree/3.5.24/js/jquery.ztree.exhide.min.js"></script>
+    <script type="text/javascript" src="/static/js/pt/js/common2/jquery.common.Core.js"></script>
+    <script type="text/javascript" src="/static/js/pt/js/common2/jquery.common.ComboTree.js"></script>
+    <script type="text/javascript" src="/static/dyform/commons/dyform_zh_CN.js"></script>
+    <!--<script type="text/javascript" src="/static/js/minicolors/js/jquery.minicolors.js"></script>-->
+
+    <!--&lt;!&ndash; 控件文件 &ndash;&gt;-->
+    <link rel="stylesheet" type="text/css" href="/static/js/jqueryui/css/base/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="/static/js/jqgrid/css/ui.jqgrid.css" />
+    <link rel="stylesheet" type="text/css" href="/static/js/jqgrid/themes/ui.multiselect.css" />
+    <link rel="stylesheet" type="text/css" href="/static/js/select2/select2.css" />
+    <script type="text/javascript" src="/static/dyform/definition/ckeditor/pluginUtils/jquery.wFieldDefinitionUtils.js"></script>
+    <!--<script type="text/javascript" src="/static/js/jqueryui/js/jquery-ui.js"></script>-->
+    <!--<script type="text/javascript" src="/static/js/jqgrid/js/src/i18n/grid.locale-cn.js"></script>-->
+    <!--<script type="text/javascript" src="/static/js/jqgrid/js/jquery.jqGrid.js"></script>-->
+    <!--&lt;!&ndash;<%@ include file="/pt/dyform/definition/dyform_preservedjs.jsp" %>&ndash;&gt;-->
+
+    <!--&lt;!&ndash; Bootstrap &ndash;&gt;-->
+    <link rel="stylesheet" type="text/css" href="/static/js/ztree/3.5.24/css/zTreeStyle/zTreeStyle.css" />
+    <link rel="stylesheet" type="text/css" href="/static/js/bootstrap-table/1.11.0/css/bootstrap-table.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/js/bootstrap-editable/css/bootstrap-editable.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="/static/js/wellBtnLib/wellBtnLib.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/appModal.css" />
+
+    <script type="text/javascript" src="/static/js/pt/js/common/jquery.comboTree.js"></script>
+    <script type="text/javascript" src="/static/dyform/commons/FormClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/commons/function.js"></script>
+    <script type="text/javascript" src="/static/dyform/commons/validate/additional-methods.js"></script>
+    <script type="text/javascript" src="/static/js/ckeditor4.5.11/ckeditor.js"></script>
+    <script type="text/javascript" src="/static/dyform/definition/ckeditor/dyform_config.js"></script>
+    <script type="text/javascript" src="/static/dyform/commons/ckUtils.js"></script>
+    <script type="text/javascript" src="/static/js/fileupload/js/uuid.js"></script>
+    <script type="text/javascript" src="/static/js/select2/select2.min.js"></script>
+    <!--<script type="text/javascript" src="/static/js/select2/select2_locale_zh-CN.js"></script>-->
+    <script type="text/javascript" src="/static/js/pt/js/common/jquery.wSelect2.js"></script>
+
+    <script type="text/javascript" src="/static/js/pt/js/common/jquery.wSelect2Group.js"></script>
+    <script type="text/javascript" src="/static/js/pt/js/system_admin.js"></script>
+    <script type="text/javascript" src="/static/js/pt/js/multi/org/jquery.multiOrg.js"></script>
+    <script type="text/javascript" src="/static/js/constant.js"></script>
+    <script type="text/javascript" src="/static/js/lodash/3.10.1/lodash.custom.min.js"></script>
+    <script type="text/javascript" src="/static/js/moment/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="/static/js/commons.js"></script>
+    <script type="text/javascript" src="/static/js/server.js"></script>
+    <script type="text/javascript" src="/static/js/formBuilder.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-bootbox/4.4.0/bootbox.js"></script>
+    <script type="text/javascript" src="/static/js/pt/js/common2/jquery.common.Dialog.js"></script>
+    <script type="text/javascript" src="/static/js/appModal.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/static/js/pt/js/common2/jquery.common.PictureLib.js"></script>
+
+    <link rel="stylesheet" href="/static/js/jquery.wellSelect/wellSelect.css" />
+    <script type="text/javascript" src="/static/js/jquery.wellSelect/wellSelect.js"></script>
+
+    <!--&lt;!&ndash; 控件文件 &ndash;&gt;-->
+
+    <link rel="stylesheet" type="text/css" href="/static/js/fileupload/jquery.fileupload-ui.css" />
+    <link rel="stylesheet" type="text/css" href="/static/js/fileupload/fileupload.css" />
+
+    <script type="text/javascript" src="/static/js/pt/js/fileupload/well.fileupload.constant.js"></script>
+    <script type="text/javascript" src="/static/js/utils/ajaxfileupload.src.js"></script>
+    <script type="text/javascript" src="/static/js/utils/ajaxfileupload.js"></script>
+    <!--&lt;!&ndash; 控件对应的class属性文件 &ndash;&gt;-->
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wFileUploadClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wCheckBoxClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wCkeditorClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wComboBoxClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wSelectClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wComboSelectClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wComboTreeClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wDatePickerClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wFileUpload4IconClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wFileUploadClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wNumberInputClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wRadioClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wSerialNumberClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wTextAreaClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wTextInputClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wUnitClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wViewDisplayClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wDialogClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wTimeEmployClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wTableViewClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wTagGroupClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wColorClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wSwitchsClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wProgressClass.js"></script>
+    <script type="text/javascript" src="/static/dyform/control/controlproperty/wFileLibraryClass.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/dyform/definition/ckeditor/icomoon/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/dyform/css/definition/new-dyformdesign.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/js/bootstrap/3.3.5/css/dyformBootstrapAddStyle.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/css/pt-iconfont/iconfont.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/css/base.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/js/pt/theme/default/default.css" />
+
+    <style type="text/css">
+      .wCommonPictureLib {
+        z-index: 1000000000 !important;
+        width: 900px;
+        left: 50%;
+        margin-left: -450px;
+      }
+      .chooseAddIcon {
+        margin-left: 10px;
+        font-size: 24px;
+        vertical-align: bottom;
+      }
+      .wCommonPictureLib * {
+        box-sizing: border-box;
+      }
+      .dyform-table td {
+        border-bottom: 1px solid #d6d6d6;
+        vertical-align: middle !important;
+      }
+    </style>
+  </head>
+  <body style="font-size: 14px">
+    <div class="div_body">
+      <div class="form_header">
+        <!--标题-->
+        <div class="panel panel-default ui-wPanel">
+          <div class="panel-heading">
+            <h3 class="panel-title form_title">
+              <span class="panel-icon iconfont icon-ptkj-qukuaibiaotitubiao"></span>
+              <span id="title" class="title-text">单据设计器</span>
+            </h3>
+            <div class="panel-header-right well-form-fontsize0">
+              <button id="btn_form_save" class="well-btn w-btn-primary" name="btn_form_save">保存</button>
+              <button class="well-btn w-btn-primary btn-save-as-new-version" name="btn_form_save_new">保存新版本</button>
+            </div>
+          </div>
+          <div class="panel-body"></div>
+        </div>
+      </div>
+
+      <div class="form_content">
+        <div class="tabbable">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="hide">
+              <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+            </li>
+            <li role="presentation">
+              <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab" aria-expanded="true">单据设计</a>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <div class="tab-pane" id="tab1">
+              <div class="dyform">
+                <div class="post-sign">
+                  <div class="post-detail">
+                    <form id="mainForm" name="mainForm" style="margin: 0px">
+                      <input type="hidden" name="formUuid" id="formUuid" />
+                      <input type="hidden" name="formModuleId" id="formModuleId" />
+                      <input type="hidden" name="formCopy" id="formCopy" />
+                      <input type="hidden" name="formType" id="formType" />
+                      <div class="well-form form-horizontal">
+                        <div class="form-group">
+                          <label class="well-form-label control-label required">名称</label>
+                          <div class="well-form-control">
+                            <input type="text" class="form-control" id="mainTableCnName" name="mainTableCnName" />
+                            <input type="hidden" class="form-control" id="mainTableEnName" name="mainTableEnName" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="well-form-label control-label required">ID</label>
+                          <div class="well-form-control">
+                            <input type="text" class="form-control" id="tableId" name="tableId" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="well-form-label control-label">编号</label>
+                          <div class="well-form-control">
+                            <input type="text" class="form-control" id="tableNum" name="tableNum" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="well-form-label control-label">加载的JS模块</label>
+                          <div class="well-form-control">
+                            <input type="hidden" class="form-control" id="customJsModuleName" name="customJsModuleName" />
+                            <input type="hidden" class="form-control" id="customJsModule" name="customJsModule" />
+                          </div>
+                        </div>
+                        <div class="form-group dyform-P">
+                          <label class="well-form-label control-label">数据存储服务</label>
+                          <div class="well-form-control">
+                            <select class="form-control" id="repositoryMode" name="repositoryMode">
+                              <option value="1" selected="selected">表单内置存储</option>
+                              <option value="2">数据库表存储</option>
+                              <!--<option value="3">SOAP webserivce表单存储</option> -->
+                              <option value="4">RESTful api表单存储</option>
+                              <option value="5">自定义接口存储</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group dyform-P repository-mode repository-mode-2" style="display: none">
+                          <label class="well-form-label control-label">表名</label>
+                          <div class="well-form-control">
+                            <input type="text" class="form-control" id="userTableName" name="userTableName" />
+                          </div>
+                        </div>
+                        <div class="form-group dyform-P repository-mode repository-mode-3 repository-mode-4" style="display: none">
+                          <label class="well-form-label control-label">服务地址</label>
+                          <div class="well-form-control">
+                            <input type="text" class="form-control" id="serviceUrl" name="serviceUrl" />
+                          </div>
+                        </div>
+                        <div class="form-group dyform-P repository-mode repository-mode-3 repository-mode-4" style="display: none">
+                          <label class="well-form-label control-label">Access Token</label>
+                          <div class="well-form-control">
+                            <input type="text" class="form-control" id="serviceToken" name="serviceToken" />
+                          </div>
+                        </div>
+                        <div class="form-group dyform-P repository-mode repository-mode-5" style="display: none">
+                          <label class="well-form-label control-label">存储接口</label>
+                          <div class="well-form-control">
+                            <input type="hidden" class="form-control" id="customInterfaceName" name="customInterfaceName" />
+                            <input type="hidden" class="form-control" id="customInterface" name="customInterface" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="well-form-label control-label">归属系统单位</label>
+                          <div class="well-form-control" id="associationForm">
+                            <span class="system-unit"></span>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="well-form-label control-label required">所属模块</label>
+                          <div class="well-form-control">
+                            <input type="hidden" class="form-control" id="moduleName" name="moduleName" />
+                            <input type="hidden" class="form-control" id="moduleId" name="moduleId" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="well-form-label control-label">版本号</label>
+                          <div class="well-form-control">
+                            <input type="hidden" class="form-control" id="version" name="version" />
+                            <span id="dyformVersion"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab2">
+              <div class="dyform">
+                <div class="post-sign">
+                  <div class="post-detail">
+                    <form class="form-horizontal dyform-V dyform-M hide">
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label">存储单据</label>
+                        <div class="col-sm-10">
+                          <input type="hidden" class="form-control" id="pformName" name="pformName" />
+                          <input type="hidden" class="form-control" id="pformUuid" name="pformUuid" />
+                          <input type="hidden" class="form-control" id="refFormName" name="refFormName" />
+                          <input type="hidden" class="form-control" id="refFormUuid" name="refFormUuid" />
+                        </div>
+                      </div>
+                    </form>
+                    <table class="dyform-V dyform-P dyform-MST dyform-C hide">
+                      <tr>
+                        <td style="width: 335px; vertical-align: top; padding: 0">
+                          <div id="field-tabs" class="tabs">
+                            <ul class="nav nav-tabs">
+                              <li class="active">
+                                <a style="width: 60px; text-align: center" href="#js-tab-content-control" data-toggle="tab">控件</a>
+                              </li>
+                              <li>
+                                <a style="width: 90px; text-align: center" href="#js-tab-content-control2" data-toggle="tab">表单字段</a>
+                              </li>
+                              <li id="product-nav" style="text-align: center">
+                                <a
+                                  href="#js-tab-content-control3"
+                                  data-toggle="tab"
+                                  style="width: 155px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap"
+                                ></a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="tab-content" style="padding: 0 5px">
+                            <div id="js-tab-content-control" class="tab-pane active">
+                              <ul class="js-tab-content-control clear">
+                                <li class="js-template jsCanDraggable" plugin-code="template" need-grid="true"></li>
+                              </ul>
+                            </div>
+                            <div id="js-tab-content-control2" class="tab-pane">
+                              <div class="control2-field-search">
+                                <div class="input-group">
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    id="search_tree_text"
+                                    name="search_tree_text"
+                                    aria-describedby="basic-addon2"
+                                  />
+                                  <span id="basic-addon2" class="input-group-addon">查询</span>
+                                </div>
+                                <div class="icon-block-wrap clear">
+                                  <div class="btn_expand_all icon-block fl" title="折叠全部数据">
+                                    <i class="iconfont icon-ptkj-zhedie"></i>
+                                  </div>
+                                  <div class="btn_collapse_all icon-block fl" title="展开全部数据">
+                                    <i class="iconfont icon-ptkj-zhankai"></i>
+                                  </div>
+                                </div>
+                              </div>
+                              <ul class="field-list">
+                                <li>
+                                  <div></div>
+                                  <ul style="list-style-type: none" class="js-tab-content-control clear"></ul>
+                                </li>
+                                <li>
+                                  <div></div>
+                                  <ul style="list-style-type: none" class="js-tab-content-control clear"></ul>
+                                </li>
+                              </ul>
+                            </div>
+                            <div id="js-tab-content-control3" class="tab-pane">
+                              <div class="control-field-search clear">
+                                <input type="text" class="form-control fl" name="search_tree_text" />
+                                <span class="well-btn w-btn-primary btn-search fl">查询</span>
+                                <div class="btn_expand_all icon-block fl" title="折叠全部数据">
+                                  <i class="iconfont icon-ptkj-zhedie"></i>
+                                </div>
+                                <div class="btn_collapse_all icon-block fl" title="展开全部数据">
+                                  <i class="iconfont icon-ptkj-zhankai"></i>
+                                </div>
+                              </div>
+                              <div class="product-nav init-fields-list">
+                                <div class="tit">字段</div>
+                                <ul></ul>
+                              </div>
+                              <div class="product-nav init-subforms-list">
+                                <div class="tit">从表</div>
+                                <ul></ul>
+                              </div>
+                              <div class="product-nav init-templetes-list">
+                                <div class="tit">子表单</div>
+                                <ul></ul>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td style="border: 0px; padding: 0 0 0 3px">
+                          <fieldset id="fs3">
+                            <legend></legend>
+                            <textarea id="moduleText" name="moduleText"></textarea>
+                          </fieldset>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+          var isRef = Browser.getQueryString('isRef');
+          if (isRef === '1') {
+            $(':input').prop('disabled', true); //引用的单据禁止编辑
+            $('.form_operate').hide();
+          }
+        </script>
+      </div>
+    </div>
+    <div class="body_foot"></div>
+  </body>
+</html>

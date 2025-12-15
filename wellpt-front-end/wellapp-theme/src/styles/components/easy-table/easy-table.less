@@ -1,0 +1,32 @@
+.well-easy-table {
+  width: 100%;
+  margin: @margin-sm 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  thead {
+    background: @easy-table-header-background;
+  }
+
+  tr {
+    th {
+      height: @easy-table-header-height;
+      text-align: center;
+      padding: 5px @padding-xs;
+      border: @easy-table-cell-border;
+    }
+
+    td {
+      padding: 5px @padding-xs;
+      border: @easy-table-cell-border;
+    }
+
+    &:nth-child(even) {
+      background: @easy-table-even-row-background;
+    }
+
+    &:hover {
+      background: @easy-table-hover-row-background;
+    }
+  }
+}

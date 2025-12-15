@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="jobByDepartmentQuery">
+        <![CDATA[
+		from Job job where 1 = 1
+		<if isNotBlank(name) || isNotBlank(remark)>
+			and (1 = 2
+				<if isNotBlank(name)>
+					or lower(job.name) like '%${name?lower_case}%'
+				</if>
+				<if isNotBlank(remark)>
+					or lower(job.remark) = lower(:remark)
+				</if>
+				<if isNotBlank(departmentName)>
+					or lower(job.departmentName) like '%${departmentName?lower_case}%'
+				</if>
+				<if isNotBlank(dutyName)>
+					or lower(job.dutyName)  like '%${dutyName?lower_case}%'
+				</if>
+			)
+		</if>
+		and job.departmentUuid in (:departmentUuids)
+		order by ${orderBy}
+	]]>
+    </sql-query>
+</hibernate-mapping>

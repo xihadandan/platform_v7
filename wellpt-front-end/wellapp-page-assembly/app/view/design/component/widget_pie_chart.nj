@@ -1,0 +1,57 @@
+<!-- <%@ include file="/pt/common/taglibs.jsp" %> -->
+<link
+  href="{{ helper.staticPrefix() }}/css/design/app_widget_configurer.css"
+  rel="stylesheet"
+/>
+<div id="widget_bootstrap_table">
+  <form id="widget_bootstrap_table_form" class="form-horizontal">
+    <div id="widget_bootstrap_table_tabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#widget_chart_base_info">基础信息</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_chart_data_info">图表数据集定义</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_chart_series_info">系列列表定义</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_chart_title_info">图表标题定义</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_chart_legend_info">图例定义</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_chart_tooltip_info">提示框定义</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_chart_toolbox_info">工具栏定义</a>
+        </li>
+      </ul>
+
+      <div class="tab-content" style="height: 500px">
+        {% include "./report-components/widget_chart_basic_define_info.nj" %}
+        <!-- <%@ include file="common/widget_chart_basic_define_info.jsp" %> -->
+
+        {% include "./report-components/widget_chart_data_define_info.nj" %}
+        <!-- <%@ include file="common/widget_chart_data_define_info.jsp" %> -->
+
+        {% include "./report-components/widget_chart_series_define_info.nj" %}
+        <!-- <%@ include file="common/widget_chart_series_define_info.jsp" %> -->
+
+        {% include "./report-components/widget_chart_title_define_info.nj" %}
+        <!-- <%@ include file="common/widget_chart_title_define_info.jsp" %> -->
+
+        {% include "./report-components/widget_chart_legend_define_info.nj" %}
+        <!-- <%@ include file="common/widget_chart_legend_define_info.jsp" %> -->
+
+        {% include "./report-components/widget_chart_tooltip_define_info.nj" %}
+        <!-- <%@ include file="common/widget_chart_tooltip_define_info.jsp" %> -->
+
+        {% include "./report-components/widget_chart_toolbox_define_info.nj" %}
+        <!-- <%@ include file="common/widget_chart_toolbox_define_info.jsp" %> -->
+      </div>
+    </div>
+  </form>
+</div>

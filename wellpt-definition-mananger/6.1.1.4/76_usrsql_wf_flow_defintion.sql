@@ -1,0 +1,1 @@
+update wf_flow_definition set multi_job_flow_type = 'flow_by_user_main_job' where multi_job_flow_type is null;

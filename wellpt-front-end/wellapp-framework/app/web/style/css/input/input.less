@@ -1,0 +1,375 @@
+body {
+  // 边框变量
+  --w-input-border-color: var(--w-border-color-light);
+  --w-input-border-width: var(--w-border-width-base);
+  --w-input-border-style: var(--w-border-style-base);
+  --w-input-border-color-focus: var(--w-primary-color);
+  --w-input-border-color-hover: var(--w-primary-color);
+  --w-input-border-color-disabled: var(--w-input-border-color);
+  --w-input-error-border-color: var(--w-danger-color);
+  --w-input-error-border-color-hover: var(--w-danger-color);
+  --w-input-error-border-color-focus: var(--w-danger-color);
+  --w-input-error-border-style: var(--w-input-border-style);
+  --w-input-error-border-width: var(--w-border-width-base);
+  // 阴影
+  --w-input-box-shadow: none;
+  --w-input-box-shadow-hover: none;
+  --w-input-box-shadow-focus: 0 0 2px 0px var(--w-input-border-color-focus);
+  --w-input-error-box-shadow-hover: none;
+  --w-input-error-box-shadow-focus: 0 0 2px 0px var(--w-input-error-border-color-focus);
+
+  // 背景
+  --w-input-background-color: var(--w-fill-color-base);
+  --w-input-background-color-disabled: var(--w-fill-color-light);
+
+  // (缺省)文字颜色
+  --w-input-color: var(--w-text-color-dark);
+  --w-input-placeholder-color: var(--w-text-color-lighter);
+  --w-input-error-word-color: var(--w-input-error-border-color);
+
+  --w-input-font-size-sm: var(--w-font-size-base);
+  --w-input-font-size-lg: var(--w-font-size-lg);
+  --w-input-font-size: var(--w-font-size-base);
+  --w-input-error-word-font-size: var(--w-input-font-size);
+
+  --w-input-font-weight: var(--w-font-weight-regular);
+  --w-input-error-word-font-weight: var(--w-input-font-weight);
+
+  --w-input-border-radius: var(--w-border-radius-2);
+  --w-input-lr-padding: var(--w-padding-2xs);
+  --w-input-height: var(--w-height-sm);
+  --w-input-color-disabled: var(--w-text-color-lighter);
+
+  --w-input-textarea-height: auto;
+  --w-input-textarea-min-height: var(--w-height-3xl);
+
+  .ant-input:not(textarea) {
+    height: var(--w-input-height);
+    color: var(--w-input-color);
+    font-size: var(--w-input-font-size);
+    font-weight: var(--w-input-font-weight);
+    border-radius: var(--w-input-border-radius);
+    border: var(--w-input-border-width) var(--w-input-border-style) var(--w-input-border-color);
+    background-color: var(--w-input-background-color);
+    padding-left: var(--w-input-lr-padding);
+    padding-right: var(--w-input-lr-padding);
+    box-shadow: var(--w-input-box-shadow);
+    line-height: e('calc(var(--w-input-height) - var(--w-input-border-width)*2)');
+
+    &.ant-input-sm {
+      --w-input-font-size: var(--w-input-font-size-sm);
+      --w-input-height: var(--w-height-2xs);
+    }
+
+    &.ant-input-lg {
+      --w-input-font-size: var(--w-input-font-size-lg);
+      --w-input-height: var(--w-height-md);
+    }
+  }
+
+  textarea.ant-input,
+  form textarea.ant-input {
+    height: var(--w-input-textarea-height);
+    min-height: var(--w-input-textarea-min-height);
+    color: var(--w-input-color);
+    font-size: var(--w-input-font-size);
+    font-weight: var(--w-input-font-weight);
+    border-radius: var(--w-input-border-radius);
+    border: var(--w-input-border-width) var(--w-input-border-style) var(--w-input-border-color);
+    background-color: var(--w-input-background-color);
+    padding-left: var(--w-input-lr-padding);
+    padding-right: var(--w-input-lr-padding);
+    box-shadow: var(--w-input-box-shadow);
+    margin-bottom: 0;
+  }
+
+  // 错误提示样式
+  .has-error {
+    &:has(.ant-input:not(.@{calendar-prefix-cls}-picker-input)) {
+      .ant-input {
+        border: var(--w-input-error-border-width) var(--w-input-error-border-style) var(--w-input-error-border-color);
+
+        &:hover {
+          border-color: var(--w-input-error-border-color-hover);
+          box-shadow: var(--w-input-error-box-shadow-hover);
+          border-right-width: var(--w-input-error-border-width) !important;
+        }
+
+        &:focus {
+          border-color: var(--w-input-error-border-color-focus);
+          box-shadow: var(--w-input-error-box-shadow-focus);
+          border-right-width: var(--w-input-error-border-width) !important;
+        }
+      }
+
+      .ant-form-explain,
+      .ant-form-split {
+        color: var(--w-input-error-word-color);
+        font-size: var(--w-input-error-word-font-size);
+        font-weight: var(--w-input-error-word-font-weight);
+      }
+    }
+  }
+
+  // .widget-form-layout .has-error {
+  //   &:has(.ant-input:not(.@{calendar-prefix-cls}-picker-input)) {
+  //     margin-bottom: e('calc(var(--w-input-error-word-font-size) + 4px)');
+
+  //     .ant-form-explain,
+  //     .ant-form-split {
+  //       bottom: e('calc(-4px - var(--w-input-error-word-font-size))');
+  //     }
+  //   }
+  // }
+
+  .ant-input-group,
+  .ant-input-group-wrapper {
+    &-sm {
+      --w-input-height: var(--w-height-2xs);
+    }
+
+    &-lg {
+      --w-input-height: var(--w-height-md);
+    }
+  }
+
+  .ant-input::placeholder {
+    color: var(--w-input-placeholder-color);
+  }
+
+  .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled),
+  .ant-input:hover {
+    border-color: var(--w-input-border-color-hover);
+    box-shadow: var(--w-input-box-shadow-hover);
+    border-right-width: var(--w-input-border-width) !important;
+  }
+
+  .ant-input:focus {
+    border-color: var(--w-input-border-color-focus);
+    border-right-width: var(--w-input-border-width) !important;
+    box-shadow: var(--w-input-box-shadow-focus);
+  }
+
+  .ant-input[disabled] {
+    border-color: var(--w-input-border-color-disabled);
+    color: var(--w-input-color-disabled);
+    background-color: var(--w-input-background-color-disabled);
+  }
+
+  --w-input-count-color: var(--w-text-color-light);
+  --w-input-count-size: var(--w-font-size-sm);
+  --w-input-count-weight: var(--w-font-weight-regular);
+  --w-input-count-right-padding: 0px;
+
+  // 字符数
+  // .ant-input-affix-wrapper:has(.textLengthShow) .ant-input{
+  //   padding-right: var(--w-input-count-right-padding);
+  // }
+  .textLengthShow() {
+    color: var(--w-input-count-color);
+    font-size: var(--w-input-count-size);
+    font-weight: var(--w-input-count-weight);
+    line-height: 1 !important;
+    padding-right: var(--w-input-count-right-padding);
+  }
+
+  .input-textarea {
+    position: relative;
+
+    .textLengthShow {
+      .textLengthShow;
+      // position: absolute;
+      // bottom: 4px;
+      // right: 18px;
+      margin-top: var(--w-margin-3xs);
+      float: right;
+      background: #fff;
+      border-radius: 4px;
+    }
+
+    &.resizeOver {
+      textarea {
+        resize: none;
+      }
+    }
+  }
+
+  .input-password {
+    position: relative;
+
+    .textLengthShow {
+      .textLengthShow;
+      position: absolute;
+      top: 50%;
+      margin-top: e('calc(0px - var(--w-input-count-size)/2)');
+      right: 44px;
+    }
+  }
+
+  .ant-input-affix-wrapper {
+    .textLengthShow {
+      .textLengthShow;
+    }
+  }
+
+  // 允许清空
+  --w-input-clear-font-size: var(--w-font-size-base);
+  --w-input-clear-font-color: var(--w-text-color-lighter);
+  --w-input-clear-right-padding: 0px;
+  --w-input-clear-size-hover: var(--w-font-size-base);
+  --w-input-clear-color-hover: var(--w-text-color-light);
+  --w-input-clear-size-active: var(--w-font-size-base);
+  --w-input-clear-color-active: var(--w-text-color-light);
+
+  .ant-input-affix-wrapper {
+    &:has(.anticon-close-circle) {
+      .anticon-close-circle {
+        font-size: var(--w-input-clear-font-size);
+        color: var(--w-input-clear-font-color);
+        padding-right: var(--w-input-clear-right-padding);
+
+        &:hover {
+          font-size: var(--w-input-clear-size-hover);
+          color: var(--w-input-clear-color-hover);
+        }
+
+        &:active {
+          font-size: var(--w-input-clear-size-active);
+          color: var(--w-input-clear-color-active);
+        }
+      }
+    }
+  }
+
+  // 前置后置
+  --w-input-addon-font-color: var(--w-text-color-dark);
+  --w-input-addon-font-size: var(--w-font-size-base);
+  --w-input-addon-font-weight: var(--w-font-weight-regular);
+  --w-input-addon-arrow-color: var(--w-text-color-light);
+  --w-input-addon-arrow-size: var(--w-font-size-sm);
+  --w-input-addon-bg-color: var(--w-fill-color-light);
+  --w-input-addon-left-padding: var(--w-padding-xs);
+  --w-input-addon-right-padding: var(--w-padding-xs);
+
+  --w-input-addon-font-color-hover: var(--w-primary-color);
+  --w-input-addon-arrow-color-hover: var(--w-text-color-light);
+
+  --w-input-addon-font-color-focus: var(--w-primary-color);
+  --w-input-addon-arrow-color-focus: var(--w-text-color-light);
+
+  .ant-input-group-addon {
+    font-size: var(--w-input-addon-font-size);
+    color: var(--w-input-addon-font-color);
+    font-weight: var(--w-input-addon-font-weight);
+    background-color: var(--w-input-addon-bg-color);
+    padding-left: var(--w-input-addon-left-padding);
+    padding-right: var(--w-input-addon-right-padding);
+    border-color: var(--w-input-border-color);
+
+    .ant-select {
+      font-size: var(--w-input-addon-font-size);
+      color: var(--w-input-addon-font-color);
+      font-weight: var(--w-input-addon-font-weight);
+
+      .ant-select-selection--single {
+        min-height: var(--w-input-height);
+        height: var(--w-input-height);
+
+        .ant-select-selection__rendered {
+          line-height: e('calc(var(--w-input-height) - var(--w-input-border-width)*2)');
+        }
+      }
+
+      &:hover {
+        .ant-select-selection {
+          color: var(--w-input-addon-font-color-hover);
+        }
+
+        .ant-select-arrow {
+          font-size: var(--w-input-addon-arrow-size);
+          color: var(--w-input-addon-arrow-color-hover);
+        }
+      }
+
+      &-open,
+      &-focused {
+        .ant-select-selection {
+          color: var(--w-input-addon-font-color-focus);
+        }
+
+        .ant-select-arrow {
+          font-size: var(--w-input-addon-arrow-size);
+          color: var(--w-input-addon-arrow-color-focus);
+        }
+      }
+    }
+
+    .ant-select-arrow {
+      font-size: var(--w-input-addon-arrow-size);
+      color: var(--w-input-addon-arrow-color);
+    }
+
+    &:first-child {
+      border-top-left-radius: var(--w-input-border-radius);
+      border-bottom-left-radius: var(--w-input-border-radius);
+    }
+
+    &:last-child {
+      border-top-right-radius: var(--w-input-border-radius);
+      border-bottom-right-radius: var(--w-input-border-radius);
+    }
+  }
+
+  // 前缀后缀
+  --w-input-affix-font-size: var(--w-font-size-base);
+  --w-input-affix-font-color: var(--w-text-color-base);
+
+  .ant-input-affix-wrapper {
+    // 前缀
+    .ant-input-prefix {
+      font-size: var(--w-input-affix-font-size);
+      color: var(--w-input-affix-font-color);
+
+      .iconfont {
+        font-size: var(--w-input-affix-font-size);
+      }
+    }
+
+    // 后缀
+    .ant-input-suffix {
+      font-size: var(--w-input-affix-font-size);
+      color: var(--w-input-affix-font-color);
+
+      .iconfont {
+        font-size: var(--w-input-affix-font-size);
+      }
+    }
+  }
+
+  // 密码
+  --w-input-password-font-size: var(--w-font-size-base);
+  --w-input-password-font-color: var(--w-text-color-light);
+  --w-input-password-color-hover: var(--w-text-color-base);
+
+  .ant-input-password,
+  .showPasswordEye {
+    .ant-input-password-icon {
+      font-size: var(--w-input-password-font-size);
+      color: var(--w-input-password-font-color);
+
+      &:hover {
+        color: var(--w-input-password-color-hover);
+      }
+    }
+  }
+}
+
+.widget-form-input,
+.widget-form-serial-number {
+  .textonly {
+    color: var(--w-input-color);
+    font-size: var(--w-input-font-size);
+    font-weight: var(--w-input-font-weight);
+    word-break: break-all;
+  }
+}

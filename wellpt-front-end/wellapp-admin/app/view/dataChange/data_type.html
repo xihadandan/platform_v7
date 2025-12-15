@@ -1,0 +1,99 @@
+<form action="" id="type_module_form" style="margin-top: 15px;">
+    <input type="hidden" id="type_uuid" name="uuid" />
+    <div class="well-form form-horizontal">
+        <div class="form-group">
+            <label class="well-form-label control-label">名称</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="type_name" name="name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label required">ID</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="type_id" name="id">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">编号</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="type_code" name="code">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">业务类别</label>
+            <div class="well-form-control">
+                <input type="text" id="businessTypeId" name="businessTypeId"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">上报单位</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="type_unitName" name="unitName">
+                <input id="type_unitId" name="unitId" type="hidden">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">动态表单</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="formName" name="formName">
+                <input id="formId" name="formId" type="hidden">
+            </div>
+        </div>
+        <div class="form-group" style="display: none;">
+            <label class="well-form-label control-label">终端数据表名称</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="type_tableName" name="tableName">
+            </div>
+        </div>
+        <div class="form-group" style="display: none;">
+            <label class="well-form-label control-label">接收时限(天)</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="type_receiveLimit" name="receiveLimit">
+            </div>
+        </div>
+        <div class="form-group" style="display: none;">
+            <label class="well-form-label control-label">上报时限(天)</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="type_reportLimit" name="reportLimit">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">接口实现模块</label>
+            <div class="well-form-control">
+                <input id="businessId" name="businessId" type="hidden"/></td>
+                <input type="text" class="form-control" id="businessName" name="businessName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label no-suffix"></label>
+            <div class="well-form-control">
+                <input id="type_showToUnit" name="showToUnit" type="checkbox"/><label for="type_showToUnit">可输收件单位</label>
+                <input id="type_retain" name="retain" type="checkbox"/><label for="type_retain">数据留存</label>
+                <input id="type_toSys" name="toSys" type="checkbox"/><label for="type_toSys">查询系统</label>
+                <input id="type_synchronous" name="synchronous" type="checkbox"/><label for="type_synchronous">同步处理</label>
+                <input id="type_merge" name="merge" type="checkbox"/><label for="type_merge">合并发送</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label">单位系统解释</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="unitSysSourceName" name="unitSysSourceName">
+                <input id="unitSysSourceId" name="unitSysSourceId" type="hidden"/></td>
+            </div>
+        </div>
+        <div class="form-group" id="attach" style="display: none;">
+            <label class="well-form-label control-label no-suffix"></label>
+            <div class="well-form-control">
+                <div>
+                    <span class="fileDownLoad text-primary" style="cursor: pointer;text-decoration: underline;"></span> (点击下载)
+                </div>
+                <input id="type_text" type="hidden">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:30px;">
+        <div class="col-sm-12 text-center">
+            <button type="button" class="well-btn w-btn-primary" id="type_btn_save">保存</button>
+        </div>
+    </div>
+</form>

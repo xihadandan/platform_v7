@@ -1,0 +1,10 @@
+{
+  "SystemErrorCode": {
+    "403": "资源不可用, 没有访问页面的权限",
+    "500": "内部服务错误, 服务器遇到意外情况, 无法完成请求",
+    "404": "页面不存在, 用户输入了错误的网址或者用户访问的网站资源已经被移除了",
+    "UnauthorizedAccessToData": "无权限访问数据",
+    "PleaseUseAuthorizedUserToAccessData": "你当前登录的账号无权限访问该数据, 请用有权限的账号访问!",
+    "SwitchAccountLogin": "使用其他账号登录?"
+  }
+}

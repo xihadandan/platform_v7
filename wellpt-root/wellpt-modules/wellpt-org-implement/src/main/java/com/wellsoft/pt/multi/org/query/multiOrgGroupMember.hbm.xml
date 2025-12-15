@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!-- 删除群组的成员  -->
+    <sql-query name="deleteGroupMember">
+        <![CDATA[
+		delete from multi_org_group_member where member_obj_id = :memberId
+	]]>
+    </sql-query>
+
+
+    <sql-query name="queryGroupByMemberIds">
+        <![CDATA[
+		select g.* from multi_org_group g where exists (select 1 from  multi_org_group_member m where
+		g.id=m.group_id and m.member_obj_id in (:members) )
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

@@ -1,0 +1,294 @@
+<table>
+  <tr>
+    <td class="Label">
+      显示值字段
+      <br />
+    </td>
+    <td class="value">
+      <select name="realDisplay_display" id="realDisplay_display">
+        <option value="">--请选择--</option>
+      </select>
+    </td>
+  </tr>
+
+  <!-- realDisplay.real is Deprecated -->
+  <tr style="display: none">
+    <td class="Label">
+      真实值字段
+      <br />
+    </td>
+    <td class="value">
+      <select name="realDisplay_real" id="realDisplay_real">
+        <option value="">--请选择--</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="Label">
+      真实值显示占位符字段
+      <br />
+    </td>
+    <td class="value">
+      <select name="realDisplay_span" id="realDisplay_span">
+        <option value="">--请选择--</option>
+      </select>
+    </td>
+  </tr>
+  <tr class="odd">
+    <td class="Label">备选项来源</td>
+    <td class="value">
+      <input id="optionDataSource_1" type="radio" value="1" name="optionDataSource" />
+      <label for="optionDataSource_1">常量</label>
+      <input id="optionDataSource_2" type="radio" value="2" name="optionDataSource" checked="checked" />
+      <label for="optionDataSource_2">
+        取字典
+        <div id="optionDataSourceTip" style="display: inline-block">
+          <i class="iconfont icon-ptkj-tishishuoming"></i>
+        </div>
+      </label>
+      <input id="optionDataSource_4" type="radio" value="4" name="optionDataSource" checked="checked" />
+      <label for="optionDataSource_4">数据仓库</label>
+    </td>
+  </tr>
+  <!--常量-->
+  <tr class="tr_data" hide="true">
+    <td class="Label">备选项动态设置</td>
+    <td class="value">
+      <input type="checkbox" value="0" name="optionDataAutoSet1" id="optionDataAutoSet1" class="switch" />
+      <label for="optionDataAutoSet1"></label>
+    </td>
+  </tr>
+
+  <tr class="tr_data dataAutoSet1" hide="true">
+    <td class="Label">
+      <font style="color: red">*</font>
+      联动字段
+    </td>
+    <td class="value">
+      <input type="text" id="relateField1" name="relateField1" placeholder="请选择" />
+    </td>
+  </tr>
+  <tr class="tr_data dataAutoSet1" hide="true">
+    <td class="Label">
+      <font style="color: red">*</font>
+      备选项设置
+      <div id="dataOptionTip1" style="display: inline-block">
+        <i class="iconfont icon-ptkj-tishishuoming"></i>
+      </div>
+    </td>
+    <td class="value">
+      <table id="dataOptsList" class="dataOptsList">
+        <thead>
+          <tr>
+            <th>联动字段的值满足的动态条件</th>
+            <th>
+              备选项
+              <div id="dataOptionTip" style="display: inline-block">
+                <i class="iconfont icon-ptkj-tishishuoming"></i>
+              </div>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <select name="conditionOperate" id="">
+                <option value="eq" selected="selected">=</option>
+                <option value="ne">!=</option>
+                <option value="lt">&lt;</option>
+                <option value="gt">&gt;</option>
+                <option value="le">&le;</option>
+                <option value="ge">&ge;</option>
+                <option value="like">包含</option>
+                <option value="nlike">不包含</option>
+              </select>
+              <input type="text" name="conditionContent" style="width: 180px" />
+            </td>
+            <td><input type="text" name="conditionValue" style="width: 180px" /></td>
+            <td>
+              <i class="iconfont icon-ptkj-jiahao plusOptsSet"></i>
+              <i class="iconfont icon-ptkj-jianhao minusOptsSet" style="display: none"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  <tr class="tr_data dataAutoSet2" hide="true">
+    <td class="Label">
+      <font style="color: red">*</font>
+      备选项设置
+    </td>
+    <td class="value">
+      <input
+        type="text"
+        id="optdata"
+        name="optdata"
+        value=""
+        placeholder='例：{"1":"笔记本","2":"台式"}（非数组）或[{value:"1", name:"笔记本"},{value:"2", name:"台式"}]（数组）'
+      />
+    </td>
+  </tr>
+
+  <!--字典-->
+  <tr class="tr_dicCode" hide="true">
+    <td class="Label">备选项动态设置</td>
+    <td class="value">
+      <input type="checkbox" value="0" name="optionDataAutoSet2" id="optionDataAutoSet2" class="switch" />
+      <label for="optionDataAutoSet2"></label>
+    </td>
+  </tr>
+
+  <tr class="tr_dicCode dicAutoSet1" hide="true">
+    <td class="Label">
+      <font style="color: red">*</font>
+      联动字段
+      <div id="relateFieldTip" style="display: inline-block">
+        <i class="iconfont icon-ptkj-tishishuoming"></i>
+      </div>
+    </td>
+    <td class="value">
+      <input type="text" id="relateField2" name="relateField2" placeholder="请选择" />
+    </td>
+  </tr>
+
+  <tr class="tr_dicCode">
+    <td class="Label">
+      <font style="color: red">*</font>
+      字典
+    </td>
+    <td class="value">
+      <div class="dicAutoSet1">根据联动字段的值读取（示例：联动字段【性别】，值【女】时，字典自动读取【女】对应的字典）</div>
+      <div class="dicAutoSet2">
+        <input id="dictName" class="w100" type="text" name="dictName" />
+        <input id="dictCode" type="hidden" class="w100" name="dictCode" />
+        <input type="hidden" id="dictUuid" name="dictUuid" />
+        <ul id="datadict_tree" class="ztree"></ul>
+      </div>
+    </td>
+  </tr>
+
+  <tr class="tr_dicCode">
+    <td class="Label">
+      字典配置
+      <div id="optionDictTip" style="display: inline-block">
+        <i class="iconfont icon-ptkj-tishishuoming"></i>
+      </div>
+    </td>
+    <td class="value">
+      <input type="checkbox" name="" id="showRightBtn" value="true" />
+      <label for="showRightBtn">是否显示右侧更多操作</label>
+      <br />
+      <div class="showRightBtn" style="margin: 10px 0 0; display: none">
+        <input type="checkbox" name="" id="dicCodeAddBtn" value="true" />
+        <label for="dicCodeAddBtn">新增备选项</label>
+        <input type="checkbox" name="" id="dicCodeMoveUp" value="true" />
+        <label for="dicCodeMoveUp">选项上移</label>
+        <input type="checkbox" name="" id="dicCodeMoveDown" value="true" />
+        <label for="dicCodeMoveDown">选项下移</label>
+        <input type="checkbox" name="" id="dicCodeDelBtn" value="true" />
+        <label for="dicCodeDelBtn">删除备选项</label>
+      </div>
+    </td>
+  </tr>
+
+  <!--数据仓库-->
+  <tr class="tr_dataSource" hide="true">
+    <td class="Label">备选项动态设置</td>
+    <td class="value">
+      <input type="checkbox" value="0" name="optionDataAutoSet3" id="optionDataAutoSet3" class="switch" />
+      <label for="optionDataAutoSet3"></label>
+    </td>
+  </tr>
+
+  <tr class="tr_dataSource sourceAutoSet1" hide="true">
+    <td class="Label">
+      <font style="color: red">*</font>
+      联动字段
+    </td>
+    <td class="value">
+      <input type="text" id="relateField3" name="relateField3" placeholder="请选择" />
+    </td>
+  </tr>
+
+  <tr hide="true" class="odd tr_dataSource">
+    <td class="Label">数据仓库</td>
+    <td class="value">
+      <input type="hidden" id="dataSourceText" name="dataSourceText" value="" style="width: 220px" />
+      <input type="text" id="dataSourceId" name="dataSourceId" value="" style="width: 220px" />
+
+      真实值:
+      <select name="dataSourceFieldName" id="dataSourceFieldName" style="width: 90px"></select>
+      显示值:
+      <select name="dataSourceDisplayName" id="dataSourceDisplayName" style="width: 90px"></select>
+    </td>
+  </tr>
+
+  <tr hide="true" class="tr_dataSource">
+    <td class="Label">展开时重新获取数据</td>
+    <td class="value">
+      <input type="checkbox" name="reloadOption" id="reloadOption" value="true" />
+      <label for="reloadOption">是</label>
+    </td>
+  </tr>
+
+  <!-- <tr hide="true" class="tr_dataSource"> <td class="Label">默认条件</td> <td class="value"> <textarea name="defaultCondition" id="defaultCondition" value="" rows="3" cols="85"></textarea> <p class="reloadOptionTip" style="display: none; color: #e30033"> 展开时重新获取数据则默认条件不能为空(全量展示可填 <span>1=1</span> ) </p> </td> </tr> -->
+  <tr class="tr_dataSource">
+    <td class="Label">默认条件</td>
+    <td class="value">
+      <pre style="min-height: 100px" name="defaultCondition" id="defaultCondition"></pre>
+    </td>
+  </tr>
+
+  <tr hide="true" class="tr_dataSource">
+    <td class="Label">其他字段映射</td>
+    <td class="value">
+      <div id="div_ds_field_map_info_toolbar" class="btn-group btn_ds_field_map_info">
+        <button id="btn_add_ds_field_map" type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          新增
+        </button>
+        <button id="btn_delete_ds_field_map" type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          删除
+        </button>
+        <!--<button id="btn_row_up_ds_field_map" type="button" class="btn btn-default"> <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移 </button> <button id="btn_row_down_ds_field_map" type="button" class="btn btn-default"> <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移 </button>-->
+        <button type="button" class="btn btn-default btn-pt-help">
+          帮助说明
+          <span style="display: none" class="pt-help-content">
+            支持${}的表达式，提供以下变量：
+            <ul>
+              <li>value：数据仓库字段对应的值，例如：${value}</li>
+              <li>dataSourceData：数据仓库的选项数据，例如：${dataSourceData.字段名}</li>
+              <li>formData:表单数据，例如：${formData.字段名}</li>
+            </ul>
+          </span>
+        </button>
+      </div>
+      <table id="table_ds_field_map" class="table table_ds_field_map" data-height="430"></table>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="Label">下拉框其他选项</td>
+    <td class="value">
+      <input type="checkbox" name="searchable" id="searchable" value="true" />
+      <label for="searchable">是否显示搜索框</label>
+      <input type="checkbox" name="selectMultiple" id="selectMultiple" value="true" />
+      <label for="selectMultiple">是否开启多选</label>
+      <input type="checkbox" name="selectCheckAll" id="selectCheckAll" value="true" />
+      <label for="selectCheckAll">是否支持全选</label>
+      <input type="checkbox" name="clearAll" id="clearAll" value="true" />
+      <label for="clearAll">是否支持清空已选项</label>
+      <div id="clearAllTip" style="display: inline-block">
+        <i class="iconfont icon-ptkj-tishishuoming"></i>
+      </div>
+      <br />
+      <div class="maxSelectionLength" style="margin: 10px 0 0 10px">
+        <label for="maxSelectionLength">配置最多能选择多少项(值为0时无限制)</label>
+        <input type="number" name="maxSelectionLength" id="maxSelectionLength" min="0" value="0" style="width: 100px" />
+      </div>
+    </td>
+  </tr>
+</table>

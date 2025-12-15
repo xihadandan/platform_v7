@@ -1,0 +1,25 @@
+package com.wellsoft.pt.message.job;
+
+import org.quartz.DisallowConcurrentExecution;
+import org.quartz.JobExecutionContext;
+
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.message.server.impl.JmsMessageConsumer;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+import org.quartz.PersistJobDataAfterExecution;
+
+/**
+ * 即时消息队列任务
+ */
+@PersistJobDataAfterExecution
+@DisallowConcurrentExecution
+public class MessageQueueJob extends Job {
+
+	@Override
+	protected void execute(JobExecutionContext arg0, JobData arg1) {
+		JmsMessageConsumer jmsMessageConsumer = ApplicationContextHolder.getBean(JmsMessageConsumer.class);
+		jmsMessageConsumer.receiveMessage();
+
+	}
+}

@@ -1,0 +1,169 @@
+<div
+  class="widget-toolbar no-border wf_operate operate_group"
+  style="position: absolute; top: 5px; right: 5px"
+  id="mail_button_group"
+></div>
+<form id="webmail_form" class="dyform">
+  <table class="mail-table">
+    <tr class="field">
+      <td class="Label">
+        <font style="color: #f00">*</font>
+        收件人
+      </td>
+      <td style="white-space: nowrap; border-right: 0px; position: relative">
+        <input type="text" class="full-width" id="toUserNameTagInput" />
+        <ul class="user-name-list" style="display: none"></ul>
+      </td>
+      <td style="width: 1px; border-left: 0px">
+        <i class="addOrgUser fa fa-address-book-o" title="添加收件"></i>
+      </td>
+      <td rowspan="6" class="mail_recent_contact_icon_td">
+        <span class="mail_recent_contact_right_icon" title="隐藏右侧列表" id="showOrHideRList"></span>
+      </td>
+      <td rowspan="6" class="mail_recent_contact_td" style="width: 240px">
+        <div style="height: calc(100vh - 80px)">
+          <div class="panel-group" id="mailRightNavAccordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading mail-right-nav-bar" role="tab" id="headingOne">
+                <span
+                  class="collapsed"
+                  role="button"
+                  data-toggle="collapse"
+                  data-parent="#mailRightNavAccordion"
+                  href="#collapseOne"
+                  aria-expanded="false"
+                  aria-controls="collapseOne"
+                >
+                  最近联系人
+                </span>
+                <i id="deleteRecentContact" class="mail-clear-recent-contact fa fa-trash-o" title="清空"></i>
+              </div>
+              <div
+                id="collapseOne"
+                class="scrollbar panel-collapse collapse in mail-right-nav-bar-content"
+                role="tabpanel"
+                aria-labelledby="headingOne"
+                style="overflow: auto; max-height: calc(100vh - 180px)"
+              >
+                <ul id="recentContactUl"></ul>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading mail-right-nav-bar" role="tab" id="headingTwo">
+                <span
+                  class="collapsed"
+                  role="button"
+                  data-toggle="collapse"
+                  data-parent="#mailRightNavAccordion"
+                  href="#mailPaperContainer"
+                  aria-expanded="false"
+                  aria-controls="mailPaperContainer"
+                >
+                  信纸&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+              </div>
+              <div
+                id="mailPaperContainer"
+                class="scrollbar panel-collapse collapse mail-right-nav-bar-content"
+                role="tabpanel"
+                aria-labelledby="headingTwo"
+                style="overflow: auto; max-height: calc(100vh - 180px)"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr class="row-cc field">
+      <td class="Label">抄送</td>
+      <td style="white-space: nowrap; border-right: 0px; position: relative">
+        <input type="text" class="full-width" id="ccUserNameTagInput" />
+        <ul class="user-name-list" style="display: none"></ul>
+      </td>
+      <td style="width: 1px; border-left: 0px">
+        <i class="addOrgUser fa fa-address-book-o" title="添加抄送"></i>
+      </td>
+    </tr>
+    <tr class="row-bcc field">
+      <td class="Label">密送</td>
+      <td style="white-space: nowrap; border-right: 0px; position: relative">
+        <input type="text" class="full-width" id="bccUserNameTagInput" />
+        <ul class="user-name-list" style="display: none"></ul>
+      </td>
+      <td style="width: 1px; border-left: 0px">
+        <i class="addOrgUser fa fa-address-book-o" title="添加密送"></i>
+      </td>
+    </tr>
+    <tr class="field">
+      <td class="Label"></td>
+      <td colspan="2" style="padding: 0px; padding-left: 15px">
+        <div class="cc-bcc-choose">
+          <span>
+            <a class="add-cc">添加抄送</a>
+          </span>
+          <span>
+            <a class="del-cc">删除抄送</a>
+          </span>
+          <span>
+            <a class="add-bcc">添加密送</a>
+          </span>
+          <span>
+            <a class="del-bcc">删除密送</a>
+          </span>
+        </div>
+      </td>
+    </tr>
+    <tr class="field">
+      <td class="Label">
+        <font style="color: #f00">*</font>
+        主题
+      </td>
+      <td colspan="2"><input id="subject" name="subject" type="text" class="full-width" maxlength="120" /></td>
+    </tr>
+    <tr class="field">
+      <td class="Label">附件</td>
+      <td colspan="2">
+        <div id="webmail_file_upload_el"></div>
+      </td>
+    </tr>
+    <tr class="field">
+      <td class="Label">正文</td>
+      <td colspan="2">
+        <textarea id="content" class="" name="content" type="simple"></textarea>
+      </td>
+    </tr>
+    <tr class="field">
+      <td colspan="3">
+        <div class="send_mail_tool_div">
+          <span class="mr10">
+            <font style="color: #f00">*</font>
+            发件人
+          </span>
+          <select id="fromMailAddress" name="fromMailAddress"></select>
+        </div>
+
+        <div class="send_mail_tool_div">
+          <span class="mr10">签名</span>
+          <select id="mailSignatureSelect">
+            <option value="0">不使用</option>
+          </select>
+        </div>
+
+        <div class="send_mail_tool_div">
+          <span class="mr10">其他选项</span>
+          <input type="checkbox" name="priority" id="priority" />
+          <label for="priority">重要</label>
+          <input type="checkbox" name="readReceiptStatus" id="readReceiptStatus" />
+          <label for="readReceiptStatus">请求阅读回执</label>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <input id="mailboxUuid" name="mailboxUuid" type="hidden" />
+  <input id="replyToUserName" name="replyToUserName" type="hidden" />
+  <input id="replyToMailAddress" name="replyToMailAddress" type="hidden" />
+  <input id="transfer" name="transfer" type="hidden" />
+  <input id="reply" name="reply" type="hidden" />
+  <input id="replyAll" name="replyAll" type="hidden" />
+</form>

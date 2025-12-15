@@ -1,0 +1,224 @@
+<div class="container-fluid">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#sn_basic_info" aria-controls="sn_basic_info" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+    </li>
+    <li role="presentation" id="sn_serial_number_maintain_li">
+      <a href="#sn_serial_number_maintain" aria-controls="sn_serial_number_maintain" role="tab" data-toggle="tab" aria-expanded="true">
+        流水号维护
+      </a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="sn_basic_info" style="padding-top: 10px">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label required">名称</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" name="name" />
+            <input type="hidden" id="uuid" name="uuid" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id" class="col-sm-2 control-label">ID</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="id" name="id" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="code" class="col-sm-2 control-label">编号</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="code" name="code" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="code" class="col-sm-2 control-label">分类</label>
+          <div class="col-sm-10">
+            <input type="hidden" class="form-control" id="categoryUuid" name="categoryUuid" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="moduleId" class="col-sm-2 control-label">所属模块</label>
+          <div class="col-sm-10">
+            <input type="hidden" class="form-control" id="moduleId" name="moduleId" readonly />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="moduleId" class="col-sm-2 control-label">使用人</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="ownerNames" name="ownerNames" readonly />
+            <input type="hidden" class="form-control" id="ownerIds" name="ownerIds" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">
+            格式
+            <div class="w-tooltip">
+              <i class="iconfont icon-ptkj-tishishuoming"></i>
+              <div class="w-tooltip-content" style="width: 450px; max-width: 450px">
+                流水号由头部、计数、尾部三部分组件，其中头部、尾部可选
+                <p />
+                样例1、由头部、计数组成的流水号
+                <img src="/static/images/serial-number/serial-number-sample1.jpg" />
+                <p />
+                样例2、由头部、计数、尾部组成的流水号
+                <img src="/static/images/serial-number/serial-number-sample2.jpg" />
+              </div>
+            </div>
+          </label>
+          <div class="col-sm-10">
+            <div class="form-group">
+              <label for="prefix" class="col-sm-2 control-label">头部</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="prefix" name="prefix" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="initialValue" class="col-sm-2 control-label">计数</label>
+              <div class="col-sm-10">
+                <div class="form-group">
+                  <label for="initialValue" class="col-sm-3 control-label">初始值</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="initialValue" name="initialValue" value="1" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="increment" class="col-sm-3 control-label">增量</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="incremental" name="incremental" value="1" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="defaultDigits" class="col-sm-3 control-label">
+                    默认位数
+                    <div class="w-tooltip">
+                      <i class="iconfont icon-ptkj-tishishuoming"></i>
+                      <div class="w-tooltip-content" style="width: 350px; max-width: 350px">
+                        开启：计数的位数不足配置的位数时将自动补0
+                        <p />
+                        关闭：计数的位数按实际数值显示
+                      </div>
+                    </div>
+                  </label>
+                  <div class="col-sm-9">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <div class="switch-box" style="line-height: 36px">
+                          <div class="switch-wrap" id="enableDefaultDigits">
+                            <span class="switch-text switch-open">开启</span>
+                            <span class="switch-radio" data-status="0"></span>
+                            <span class="switch-text switch-close">关闭</span>
+                            <input value="1" style="display: none" class="w-search-option" name="enableDefaultDigits" type="radio" />
+                            <input value="0" style="display: none" class="w-search-option" name="enableDefaultDigits" type="radio" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="defaultDigits" name="defaultDigits" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="suffix" class="col-sm-2 control-label">尾部</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="suffix" name="suffix" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">完整格式</label>
+              <div class="col-sm-10"><label class="control-label full-format"></label></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="enablePointerReset" class="col-sm-2 control-label">
+            计数重置
+            <div class="w-tooltip">
+              <i class="iconfont icon-ptkj-tishishuoming"></i>
+              <div class="w-tooltip-content" style="width: 450px; max-width: 450px">
+                开启：当满足任一计数重置规则时，将自动从初始值重新开始计数
+                <p />
+                &nbsp;&nbsp;&nbsp;&nbsp;按周期重置：计数周期变化时，自动从初始值重新开始计数
+                <p />
+                &nbsp;&nbsp;&nbsp;&nbsp;按变量重置: 指定的变量值变化时，自动从初始值重新开始计数
+                <p />
+                关闭：计数不重置，一直递增
+              </div>
+            </div>
+          </label>
+          <div class="col-sm-10">
+            <div class="row">
+              <div class="col-sm-2">
+                <div class="switch-box" style="line-height: 36px">
+                  <div class="switch-wrap" id="enablePointerReset">
+                    <span class="switch-text switch-open">开启</span>
+                    <span class="switch-radio" data-status="0"></span>
+                    <span class="switch-text switch-close">关闭</span>
+                    <input value="1" style="display: none" class="w-search-option" name="enablePointerReset" type="radio" />
+                    <input value="0" style="display: none" class="w-search-option" name="enablePointerReset" type="radio" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-10">
+                <div class="row enablePointerReset">
+                  <div class="col-sm-4">
+                    <select name="pointerResetType">
+                      <option value="1" selected>按周期重置</option>
+                      <option value="2">按变量重置</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-8">
+                    <div class="pointerResetType pointerResetType-1">
+                      <select name="pointerResetRule1">
+                        <option value="10" selected>按年重置</option>
+                        <option value="20">按月重置</option>
+                        <option value="30">按周重置</option>
+                        <option value="40">按日重置</option>
+                      </select>
+                    </div>
+                    <div class="pointerResetType pointerResetType-2">
+                      <input type="text" class="form-control" id="pointerResetRule2" name="pointerResetRule2" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="nextYearStartDate" class="col-sm-2 control-label">新年度开始时间</label>
+          <div class="col-sm-10">
+            <div id="startDate_datatimepicker"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="code" class="col-sm-2 control-label">备注</label>
+          <div class="col-sm-10">
+            <textarea id="remark" name="remark" rows="3" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12 text-center">
+            <button type="button" class="btn btn-primary" id="btn_save_serialnumber">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="sn_serial_number_maintain" style="padding-top: 10px">
+      <div id="div_sn_maintain_toolbar" class="btn-group btn_sn_maintain_info">
+        <button id="btn_check_sn_record" type="button" class="btn btn-primary btn-sm" title="流水号记录">流水号记录</button>
+        <button id="btn_check_sn_maintain" type="button" class="btn btn-primary btn-sm" title="跳号检测">跳号检测</button>
+        <button id="btn_delete_sn_maintain" type="button" class="btn btn-danger btn-sm" title="删除">删除</button>
+      </div>
+      <table id="table_sn_maintain_info" data-height="600"></table>
+    </div>
+  </div>
+</div>

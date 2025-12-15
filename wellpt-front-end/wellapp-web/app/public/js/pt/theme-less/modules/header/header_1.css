@@ -1,0 +1,92 @@
+/*border-radius function start*/
+/*border-radius function end*/
+/*padding function start*/
+/*padding function end*/
+/*margin function start*/
+/*margin function end*/
+/*text-overflow function start*/
+/*text-overflow function end*/
+/*background function start*/
+/*background function end*/
+/*font function start */
+/*font function end*/
+/*navbar function start*/
+/*navbar function end*/
+/*set modal svg-font color*/
+/*set modal svg-font color*/
+.ui-wHeader .ui-wHeader-mainNavbar {
+  position: relative;
+  min-height: 70px;
+  margin-bottom: 0;
+  border: 0;
+  border-radius: 0;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .ui-wHeader-baseInfo > .ui-wHeader-logo {
+  padding: 10px 5px;
+  margin-left: 15px;
+  height: 70px;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .ui-wHeader-baseInfo > .ui-wHeader-logo img {
+  height: 50px;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .navbar-nav {
+  margin: 0;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .navbar-nav > li {
+  height: 70px;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .navbar-nav > li .badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 2px 5px;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border-radius: 10px;
+  position: absolute;
+  top: 10px;
+  left: 53px;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .navbar-nav > li > a {
+  padding: 10px;
+  line-height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100px;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .navbar-nav > li .ui-wIcon {
+  font-size: 22px;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .wHeaderNavMoreUL .nav-menu-item a {
+  line-height: 30px;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .wHeaderNavMoreUL .nav-menu-item a > span {
+  display: inline-block;
+  font-size: 16px;
+}
+.ui-wHeader .ui-wHeader-mainNavbar .wHeaderNavMoreUL .nav-menu-item a > span:before {
+  font-size: 16px;
+}
+.ui-wHeader.wHeader-default .navbar-nav li {
+  width: 95px;
+}
+.ui-wHeader.wHeader-default .navbar-nav li .ui-wIcon {
+  display: block;
+  margin: 3px auto;
+  width: 25px;
+}
+.ui-wHeader.wheader-type1 .navbar-nav li {
+  width: auto;
+}
+.ui-wHeader.wheader-type1 .navbar-nav li .ui-wIcon {
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: text-bottom;
+}

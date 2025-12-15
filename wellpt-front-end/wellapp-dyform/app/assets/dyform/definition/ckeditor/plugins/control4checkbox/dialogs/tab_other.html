@@ -1,0 +1,251 @@
+<table>
+  <tr>
+    <td class="Label">
+      显示值字段
+      <br />
+    </td>
+    <td class="value">
+      <select name="realDisplay_display" id="realDisplay_display">
+        <option value="">--请选择--</option>
+      </select>
+    </td>
+  </tr>
+  <!-- realDisplay.real is Deprecated -->
+  <tr style="display: none">
+    <td class="Label">
+      真实值字段
+      <br />
+    </td>
+    <td class="value">
+      <select name="realDisplay_real" id="realDisplay_real">
+        <option value="">--请选择--</option>
+      </select>
+    </td>
+  </tr>
+
+  <tr class="odd">
+    <td class="Label">选择模式</td>
+    <td class="value">
+      <input id="selectMode_1" type="radio" value="1" name="selectMode" />
+      <label for="selectMode_1">单选</label>
+      <input id="selectMode_2" type="radio" value="2" name="selectMode" checked="checked" />
+      <label for="selectMode_2">多选</label>
+    </td>
+  </tr>
+
+  <tr id="tr_singleChecksrc" hide="true">
+    <td class="Label">单选设置</td>
+    <td class="value">
+      &nbsp选中：&nbsp;
+      <input type="text" id="singleCheck" name="singleCheck" value="" style="width: 36%" placeholder='{"1":"选中"}' />
+      &nbsp;&nbsp;&nbsp;取消：&nbsp;
+      <input type="text" id="singleUnCheck" name="singleUnCheck" value="" style="width: 36%" placeholder='{"0":"取消"}' />
+    </td>
+  </tr>
+
+  <tr id="tr_optionDataSource">
+    <td class="Label">备选项来源</td>
+    <td class="value">
+      <input id="optionDataSource_1" type="radio" value="1" name="optionDataSource" />
+      <label for="optionDataSource_1">常量</label>
+      <input id="optionDataSource_2" type="radio" value="2" name="optionDataSource" checked="checked" />
+      <label for="optionDataSource_2">
+        取字典
+        <div id="optionDataSourceTip" style="display: inline-block">
+          <i class="iconfont icon-ptkj-tishishuoming"></i>
+        </div>
+      </label>
+      <input id="optionDataSource_4" type="radio" value="4" name="optionDataSource" checked="checked" />
+      <label for="optionDataSource_4">数据仓库</label>
+    </td>
+  </tr>
+  <!--常量-->
+  <tr class="tr_data" hide="true">
+    <td class="Label">备选项动态设置</td>
+    <td class="value">
+      <input type="checkbox" value="0" name="optionDataAutoSet1" id="optionDataAutoSet1" class="switch" />
+      <label for="optionDataAutoSet1"></label>
+    </td>
+  </tr>
+
+  <tr class="tr_data dataAutoSet1" hide="true">
+    <td class="Label">
+      <font style="color: red">*</font>
+      联动字段
+    </td>
+    <td class="value">
+      <input type="text" id="relateField1" name="relateField1" placeholder="请选择" />
+    </td>
+  </tr>
+
+  <tr class="tr_data dataAutoSet1" hide="true">
+    <td class="Label">
+      <font style="color: red">*</font>
+      备选项设置
+      <div id="dataOptionTip1" style="display: inline-block">
+        <i class="iconfont icon-ptkj-tishishuoming"></i>
+      </div>
+    </td>
+    <td class="value">
+      <table id="dataOptsList" class="dataOptsList">
+        <thead>
+          <tr>
+            <th>联动字段的值满足的动态条件</th>
+            <th>
+              备选项
+              <div id="dataOptionTip" style="display: inline-block">
+                <i class="iconfont icon-ptkj-tishishuoming"></i>
+              </div>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <select name="conditionOperate" id="">
+                <option value="eq" selected>=</option>
+                <option value="ne">!=</option>
+                <option value="lt">&lt;</option>
+                <option value="gt">&gt;</option>
+                <option value="le">&le;</option>
+                <option value="ge">&ge;</option>
+                <option value="like">包含</option>
+                <option value="nlike">不包含</option>
+              </select>
+              <input type="text" name="conditionContent" style="width: 180px" />
+            </td>
+            <td><input type="text" name="conditionValue" style="width: 180px" /></td>
+            <td>
+              <i class="iconfont icon-ptkj-jiahao plusOptsSet"></i>
+              <i class="iconfont icon-ptkj-jianhao minusOptsSet" style="display: none"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  <tr class="tr_data dataAutoSet2" hide="true">
+    <td class="Label">
+      <font style="color: red">*</font>
+      备选项设置
+    </td>
+    <td class="value">
+      <input
+        type="text"
+        id="optdata"
+        name="optdata"
+        value=""
+        placeholder='例：{"1":"笔记本","2":"台式"}（非数组）或[{value:"1", name:"笔记本"},{value:"2", name:"台式"}]（数组）'
+      />
+    </td>
+  </tr>
+
+  <!--字典-->
+  <tr class="tr_dicCode" hide="true">
+    <td class="Label">备选项动态设置</td>
+    <td class="value">
+      <input type="checkbox" value="0" name="optionDataAutoSet2" id="optionDataAutoSet2" class="switch" />
+      <label for="optionDataAutoSet2"></label>
+    </td>
+  </tr>
+
+  <tr class="tr_dicCode dicAutoSet1" hide="true">
+    <td class="Label">
+      <font style="color: red">*</font>
+      联动字段
+      <div id="relateFieldTip" style="display: inline-block">
+        <i class="iconfont icon-ptkj-tishishuoming"></i>
+      </div>
+    </td>
+    <td class="value">
+      <input type="text" id="relateField2" name="relateField2" placeholder="请选择" />
+    </td>
+  </tr>
+
+  <tr class="tr_dicCode">
+    <td class="Label">
+      <font style="color: red">*</font>
+      字典
+    </td>
+    <td class="value">
+      <div class="dicAutoSet1">根据联动字段的值读取（示例：联动字段【性别】，值【女】时，字典自动读取【女】对应的字典）</div>
+      <div class="dicAutoSet2">
+        <input id="dictName" class="w100" type="text" name="dictName" />
+        <input id="dictCode" type="hidden" class="w100" type="text" name="dictCode" />
+        <ul id="datadict_tree" class="ztree"></ul>
+      </div>
+    </td>
+  </tr>
+
+  <!--数据仓库-->
+  <tr class="tr_dataSource" hide="true">
+    <td class="Label">备选项动态设置</td>
+    <td class="value">
+      <input type="checkbox" value="0" name="optionDataAutoSet3" id="optionDataAutoSet3" class="switch" />
+      <label for="optionDataAutoSet3"></label>
+    </td>
+  </tr>
+
+  <tr class="tr_dataSource sourceAutoSet1" hide="true">
+    <td class="Label">
+      <font style="color: red">*</font>
+      联动字段
+    </td>
+    <td class="value">
+      <input type="text" id="relateField3" name="relateField3" placeholder="请选择" />
+    </td>
+  </tr>
+
+  <tr class="tr_dataSource" hide="true">
+    <td class="Label">数据仓库</td>
+    <td class="value">
+      <input type="hidden" id="dataSourceText" name="dataSourceText" value="" placeholder="请选择数据仓库" style="width: 240px" />
+      <input type="text" id="dataSourceId" name="dataSourceId" value="" placeholder="请选择数据仓库" style="width: 240px" />
+      真实值:
+      <select name="dataSourceFieldName" id="dataSourceFieldName" style="width: 128px"></select>
+      显示值:
+      <select name="dataSourceDisplayName" id="dataSourceDisplayName" style="width: 128px"></select>
+    </td>
+  </tr>
+
+  <tr id="tr_number">
+    <td class="Label">选中数</td>
+    <td class="value">
+      最小值：&nbsp;
+      <input id="checkboxMin" type="number" name="checkboxMin" style="width: 36%" />
+      &nbsp;&nbsp;&nbsp; 最大值：&nbsp;
+      <input id="checkboxMax" type="number" name="checkboxMax" style="width: 36%" />
+    </td>
+  </tr>
+  <tr id="tr_all">
+    <td class="Label">全选</td>
+    <td class="value">
+      <input id="checkboxAll_1" type="radio" name="checkboxAll" value="0" checked />
+      <label for="checkboxAll_1">否</label>
+      &nbsp;&nbsp;&nbsp;
+      <input id="checkboxAll_2" type="radio" name="checkboxAll" value="1" />
+      <label for="checkboxAll_2">是</label>
+    </td>
+  </tr>
+  <tr id="tr_layout">
+    <td class="Label">排版</td>
+    <td class="value">
+      <input id="selectDirection_1" type="radio" name="selectDirection" value="0" checked />
+      <label for="selectDirection_1">横排</label>
+      &nbsp;&nbsp;&nbsp;
+      <input id="selectDirection_2" type="radio" name="selectDirection" value="1" />
+      <label for="selectDirection_2">竖排</label>
+    </td>
+  </tr>
+  <tr id="tr_align">
+    <td class="Label">对齐</td>
+    <td class="value">
+      <input id="selectAlign_1" type="radio" name="selectAlign" value="0" checked />
+      <label for="selectAlign_1">宽度固定</label>
+      &nbsp;&nbsp;&nbsp;
+      <input id="selectAlign_2" type="radio" name="selectAlign" value="1" />
+      <label for="selectAlign_2">间距固定</label>
+    </td>
+  </tr>
+</table>

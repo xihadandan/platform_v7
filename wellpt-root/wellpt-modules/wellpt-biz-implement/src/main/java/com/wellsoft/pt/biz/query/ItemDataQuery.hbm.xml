@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="bizItemInfoQuery">
+        <![CDATA[
+        ${sql}
+        ]]>
+    </sql-query>
+
+    <sql-query name="bizItemMaterialQuery">
+        <![CDATA[
+        ${sql}
+        ]]>
+    </sql-query>
+
+    <sql-query name="bizItemLimitTimeQuery">
+        <![CDATA[
+        ${sql}
+        ]]>
+    </sql-query>
+
+    <sql-query name="bizItemIncludeItemQuery">
+        <![CDATA[
+        ${sql}
+        ]]>
+    </sql-query>
+
+    <sql-query name="bizItemMutexItemQuery">
+        <![CDATA[
+        ${sql}
+        ]]>
+    </sql-query>
+
+    <sql-query name="bizItemRelateItemQuery">
+        <![CDATA[
+        ${sql}
+        ]]>
+    </sql-query>
+</hibernate-mapping>

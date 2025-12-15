@@ -1,0 +1,6 @@
+
+定时收取邮件 已改为在邮件列表页面js上定时每隔10秒执行一次邮件收取
+
+平台定时收取邮件相关任务代码已移除
+在xxl-job调度任务中心 停止并删除任务： DefaultWebmailClientSyncInboxMailJob 默认Webmail客户端同步收件箱
+

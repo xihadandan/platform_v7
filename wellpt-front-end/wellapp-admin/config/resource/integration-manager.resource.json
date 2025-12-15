@@ -1,0 +1,172 @@
+{
+  "js": {
+    "AppDXExchangeLogListDevelopment": {
+      "path": "/data-integration-mgr/AppDXExchangeLogListDevelopment",
+      "name": "平台应用_数据交换管理_数据交换日志_列表二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment"
+      ]
+    },
+    "AppDataLogWidgetDevelopment": {
+      "path": "/data-integration-mgr/AppDataLogWidgetDevelopment",
+      "name": "平台应用_数据交换_日志跟踪_查看二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "global",
+        "system-admin"
+      ]
+    },
+    "AppSyncManageListDevelopment": {
+      "path": "/data-integration-mgr/AppSyncManageListDevelopment",
+      "name": "平台应用_数据交换_同步管理_列表二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment"
+      ]
+    },
+    "AppDataLogListDevelopment": {
+      "path": "/data-integration-mgr/AppDataLogListDevelopment",
+      "name": "平台应用_数据交换_日志跟踪_列表二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment"
+      ]
+    },
+    "AppDataTransWidgetDevelopment": {
+      "path": "/data-integration-mgr/AppDataTransWidgetDevelopment",
+      "name": "平台应用_数据交换_数据转换_编辑二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "global",
+        "system-admin",
+        "wSelect2"
+      ]
+    },
+    "AppDataSyncWidgetDevelopment": {
+      "path": "/data-integration-mgr/AppDataSyncWidgetDevelopment",
+      "name": "平台应用_数据交换_同步数据_编辑二开",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "ztree",
+        "multiOrg",
+        "comboTree",
+        "wSelect2",
+        "global",
+        "system-admin"
+      ]
+    },
+    "AppDataTransListDevelopment": {
+      "path": "/data-integration-mgr/AppDataTransListDevelopment",
+      "name": "平台应用_数据交换_数据转换_列表二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment"
+      ]
+    },
+    "sysPropertiesWidgetDevelopment": {
+      "path": "/data-integration-mgr/sysPropertiesWidgetDevelopment",
+      "name": "平台应用_数据交换_系统参数设置",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "global",
+        "wSelect2",
+        "system-admin"
+      ]
+    },
+    "AppDXExchangeLogDetailDevelopment": {
+      "path": "/data-integration-mgr/AppDXExchangeLogDetailDevelopment",
+      "name": "平台应用_数据交换管理_数据交换日志_详情二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment"
+      ]
+    },
+    "AppRouteListDevelopment": {
+      "path": "/data-integration-mgr/AppRouteListDevelopment",
+      "name": "平台应用_数据交换_路由规则_列表二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment"
+      ]
+    },
+    "AppDataTypeListDevelopment": {
+      "path": "/data-integration-mgr/AppDataTypeListDevelopment",
+      "name": "平台应用_数据交换_数据类型_列表二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment"
+      ]
+    },
+    "AppRouteWidgetDevelopment": {
+      "path": "/data-integration-mgr/AppRouteWidgetDevelopment",
+      "name": "平台应用_数据交换_路由规则_编辑二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "ztree",
+        "multiOrg",
+        "comboTree",
+        "global",
+        "wSelect2",
+        "system-admin"
+      ]
+    },
+    "AppDataTypeWidgetDevelopment": {
+      "path": "/data-integration-mgr/AppDataTypeWidgetDevelopment",
+      "name": "平台应用_数据交换_数据类型_编辑二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "ztree",
+        "multiOrg",
+        "comboTree",
+        "wSelect2",
+        "global",
+        "system-admin"
+      ]
+    },
+    "AppDataSyncListDevelopment": {
+      "path": "/data-integration-mgr/AppDataSyncListDevelopment",
+      "name": "平台应用_数据交换_同步数据_列表二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment"
+      ]
+    },
+    "AppDIConfigDetailsWidgetDevelopment": {
+      "path": "/data-integration-mgr/AppDIConfigDetailsWidgetDevelopment",
+      "name": "平台管理_数据交换_数据交换配置定义详情_HTML组件二开",
+      "dependencies": [
+        "AppPtMgrDetailsWidgetDevelopment",
+        "multiOrg",
+        "formBuilder",
+        "dataStoreBase",
+        "bootstrap-datetimepicker"
+      ]
+    },
+    "AppDIConfigListViewWidgetDevelopment": {
+      "path": "/data-integration-mgr/AppDIConfigListViewWidgetDevelopment",
+      "name": "平台管理_数据交换_数据交换配置定义列表_视图组件二开",
+      "dependencies": [
+        "AppPtMgrListViewWidgetDevelopment"
+      ]
+    },
+    "AppDILogListViewWidgetDevelopment": {
+      "path": "/data-integration-mgr/AppDILogListViewWidgetDevelopment",
+      "name": "平台管理_数据交换_数据交换日志列表_视图组件二开",
+      "dependencies": [
+        "AppPtMgrListViewWidgetDevelopment"
+      ]
+    },
+    "AppDILogDetailsWidgetDevelopment": {
+      "path": "/data-integration-mgr/AppDILogDetailsWidgetDevelopment",
+      "name": "平台管理_数据交换_数据交换日志详情_HTML组件二开",
+      "dependencies": [
+        "AppPtMgrDetailsWidgetDevelopment",
+        "formBuilder",
+        "dataStoreBase",
+        "bootstrap-datetimepicker"
+      ]
+    }
+  },
+  "css": {}
+}

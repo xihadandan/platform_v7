@@ -1,0 +1,39 @@
+{
+  "orgSelect": {
+    "placeholder": "Please select an organization",
+    "bizOrgLabel": "Business Organization",
+    "selectAll": "Select All",
+    "expand": "Expand",
+    "collapse": "Collapse",
+    "countPreviewUser": "{count} Members",
+    "loading": "Loading",
+    "selectedLabel": "Selected",
+    "dragToSort": "Drag to Sort",
+    "delete": "Delete",
+    "modalTitle": "Select Personnel",
+    "clear": "Clear",
+    "cancelText": "Cancel",
+    "okText": "OK",
+    "userView": "User View",
+    "treeNodeView": "Tree View ",
+    "searchInputPlaceholder": "Enter user name or pinyin to search more",
+    "nextLevel": "Next Level",
+    "all": "All",
+    "resultText": "Search results containing \"{value}\"",
+    "unSelectable": "Unselectable",
+    "message": {
+      "noMoreData": "No more data",
+      "serverError": "Organization service error",
+      "loadDataError": "Failed to load organization data"
+    },
+    "orgOption": {
+      "MyOrg": "My Organization",
+      "MyLeader": "My Leader",
+      "MyDept": "My Department",
+      "MyUnderling": "My Subordinates",
+      "TaskUsers": "Assignees",
+      "TaskDoneUsers": "Completed by",
+      "PublicGroup": "Public Group"
+    }
+  }
+}

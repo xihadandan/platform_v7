@@ -1,0 +1,99 @@
+/**模块主题1**/
+.title2 ul li{
+	margin-bottom: 0;
+}
+.title2 ul .a a{
+	background: url("../images/tit2_bar.jpg");
+	color: #FFFFFF;
+}
+.title2 .nav {
+	border-bottom:2px solid #1473D4;
+}
+.title2 ul .active a {
+	border-top:none;
+	background: url("../images/tit2_bar.jpg");
+	color: #FFFFFF;
+}
+.title2 .nav li a:hover {
+	border-top:none;
+	background: url("../images/tit2_bar.jpg");
+	color: #FFFFFF;
+}
+/**模块主题2**/
+.newoatitle {
+/* 	background: none; */
+/* 	z-index: 11; */
+}
+.newoatitle table{
+	border-collapse: collapse;
+}
+.newoatitle .dataTr {
+    height: 20px;
+    line-height: 20px;
+    cursor: pointer;
+}
+.newoatitle .tr_bg2{
+	background: url("../images/v1_icon.png") repeat-x scroll 0 -300px #FFFFFF;
+}
+.newoatitle .odd{
+	color: #434343;
+	font-family: 黑体;
+	font-size: 15px;
+	height: 31px;
+}
+.newoatitle .even{
+	color: #6D6D6D;
+	font-family: 黑体;
+	font-size: 14px;
+	height: 31px;
+}
+.newoatitle .tr_bg2even{
+	background: #fff;
+}
+.newoatitle .first{
+	background: #fff;
+}
+.newoatitle .even td{
+	color: #ababab;
+	padding-top:0;
+}
+.page_index .newoatitle .first{
+	background: url("../images/v1_icon.png") repeat-x scroll 0 -300px transparent;
+}
+.page_index .newoatitle .tr_bg2{
+	background: url("../images/v1_icon.png") repeat-x scroll 0 -300px transparent;
+}
+.dnrw .table .odd td{
+/* 	padding: 8px 8px 1px 8px; */
+}
+.dnrw .table .even td{
+	padding: 0px 8px 8px 8px;
+}
+.dnrw .table td .checkeds {
+    margin: 5px;
+}
+.dnrw .table td .checkall {
+    margin: 5px;
+}
+.newoatitle .odd:hover {
+    color: #ff4800;
+}
+.newoatitle .operate .tr_bg2{
+    background: url("../images/v1_icon.png") repeat-x scroll 0 -300px #F1F4F5;
+}
+.newoatitle .operate .first{
+    background: none;
+}
+
+
+.dataTr.redClass {
+    color: #FF0000;
+}
+
+.dataTr.yellowClass {
+    color: #FFAA25;
+}
+
+.dataTr.greenClass {
+    color: green;
+}

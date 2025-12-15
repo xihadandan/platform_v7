@@ -1,0 +1,206 @@
+.msg-category-content {
+  // border-right: var(--w-border-color-base) var(--w-border-style-base) var(--w-border-width-base);
+  height: 100%;
+  padding: 12px 20px;
+  position: relative;
+  transition: width 0.1s ease;
+
+  .msg-category-folder {
+    position: absolute;
+    top: 200px;
+    right: -12px;
+    width: 12px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #e8e8e8;
+    border-radius: 0px 12px 12px 0px;
+
+    .iconfont {
+      font-size: 12px;
+    }
+  }
+
+  &.item-width-0 {
+    overflow: hidden;
+    width: 0;
+  }
+}
+
+.msg-category-list {
+  --w-tree-item-background-hover: var(--w-primary-color-2);
+  --w-tree-node-content-wrapper-padding: 0px;
+  margin-top: 15px;
+
+  .msg_category_tree {
+    padding-inline-start: 12px;
+    list-style: none;
+    transition: height 0.3s ease;
+
+    &.item-height-0 {
+      overflow: hidden;
+      height: 0;
+    }
+
+    &.item-height {
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    &.ant-tree li {
+      padding: 0;
+
+      .ant-tree-node-content-wrapper {
+        height: 40px;
+      }
+
+      .ant-tree-switcher-icon {
+        line-height: 40px;
+        color: #999;
+        font-size: var(--w-font-size-base);
+      }
+    }
+  }
+}
+
+.msg-category-list .msg-category-title .icon-folders.hasList {
+  color: #999999;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.msg-category-list .add-msg-category {
+  position: absolute;
+  right: 10px;
+  top: 3px;
+  font-size: 16px;
+  color: var(--w-primary-color);
+  width: 24px;
+  height: 24px;
+  display: block;
+  border: 1px solid #ddd;
+  line-height: 22px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+}
+
+.msg-category-list .msg-category-title {
+  line-height: 30px;
+  color: #666;
+  position: relative;
+  font-size: 0;
+  height: 30px;
+}
+
+.msg-category-list .msg-category-title span {
+  font-size: 14px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.msg-category-list .msg-category-title .icon-folders {
+  color: #ccc;
+  font-size: var(--w-font-size-base);
+  vertical-align: middle;
+  cursor: not-allowed;
+}
+
+.msg-category-list .msg-category-title .icon-folders.hasList {
+  color: #999;
+  cursor: pointer;
+}
+
+.msg-category-list .msg-category-title .icon-folders + i {
+  color: var(--w-primary-color);
+  margin: 0 5px 0 2px;
+  font-size: var(--w-font-size-xl);
+  vertical-align: middle;
+}
+
+.msg-category-list .msg-category-item {
+  position: relative;
+  padding: 8px 12px 8px 12px;
+  transition: all 0.3s;
+  cursor: pointer;
+  list-style: none;
+  border-radius: 4px;
+}
+
+.msg-category-list .msg-category-item.hasSelectCate {
+  background: var(--w-tree-item-background-hover);
+}
+
+.msg-category-list .msg-category-item:hover {
+  background: var(--w-fill-color-light);
+}
+
+.msg-category-list .msg-category-item.active {
+  background: var(--w-tree-item-background-hover);
+}
+
+.msg-category-item span {
+  vertical-align: middle;
+  font-size: var(--w-font-size-base);
+  color: #666;
+}
+
+.msg-category-item span.msg-category-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: e('calc(100% - 70px)');
+  display: inline-block;
+}
+
+.msg-category-item.msg-category-subject span {
+  display: inline-block;
+  max-width: 120px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.msg-category-item span:first-of-type {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  margin-right: 8px;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+}
+
+.msg-category-item .msg-badge {
+  float: right;
+  min-width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  vertical-align: middle;
+  border-radius: 10px;
+  color: #fff;
+  background: #e33033;
+  text-align: center;
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+
+.msg-category-item .icon-operate {
+  display: none;
+  float: right;
+  height: 34px;
+  font-size: var(--w-font-size-lg);
+  color: var(--w-primary-color);
+  cursor: pointer;
+  vertical-align: middle;
+
+  &.ant-dropdown-open {
+    display: inline-block;
+  }
+}
+
+.msg-category-list .msg-category-item:hover .icon-operate {
+  display: inline-block;
+}

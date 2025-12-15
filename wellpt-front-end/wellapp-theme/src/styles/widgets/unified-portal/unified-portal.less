@@ -1,0 +1,531 @@
+/* 统一门户 */
+
+.ui-wUnifiedPortal {
+  .square(100%);
+
+  .portal-wrap {
+    .square(100%);
+
+    overflow: auto;
+    padding-bottom: 0px;
+  }
+}
+
+// 统一门户 - 头部
+.ui-wUnifiedPortal .portal-wrap .portal-header {
+  @unified-portal-header-line-height: (@unified-portal-header-height - 2 * @padding-xs);
+  .size(100%, @unified-portal-header-height);
+
+  padding: @padding-xs @padding-xl @padding-xs @padding-xs;
+  box-sizing: border-box;
+  background: @unified-portal-header-background;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  color: @unified-portal-header-font-color;
+
+  // 统一门户 - 头部 - 左侧区域
+  .portal-header-left {
+    float: left;
+    height: 100%;
+
+    // 统一门户 - 头部 - 左侧区域 - Logo
+    img {
+      height: 100%; // 可以撑起头部左侧区域的 `line-height`
+      vertical-align: middle;
+    }
+
+    // 统一门户 - 头部 - 左侧区域 - 统一门户名称
+    .portal-header-title {
+      position: relative;
+      line-height: @unified-portal-header-title-font-size;
+      margin-left: (@padding-2xl + @unified-portal-header-title-divider-width);
+      vertical-align: middle;
+      display: inline-block;
+      font-size: @unified-portal-header-title-font-size;
+
+      // 统一门户 - 头部 - 左侧区域 - 名称与logo的分隔符
+      &:before {
+        .absolute(0 false false (-(@padding-2xl + @unified-portal-header-title-divider-width) / 2));
+        .size(@unified-portal-header-title-divider-width, 100%);
+
+        content: '';
+        display: block;
+        background: @unified-portal-header-font-color;
+      }
+    }
+  }
+
+  // 统一门户 - 头部 - 右侧区域
+  .portal-header-right {
+    float: right;
+    // line-height: @unified-portal-header-line-height;
+
+    // 统一门户 - 头部 - 右侧区域 - 用户头像
+    .portal-user-avatar {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: @unified-portal-header-avatar-size;
+      line-height: 1;
+    }
+
+    // 统一门户 - 头部 - 右侧区域 - 用户名称
+    .portal-user-name {
+      display: inline-block;
+      margin-left: @margin-xs;
+      vertical-align: middle;
+      font-size: @unified-portal-header-user-name-size;
+    }
+
+    // 统一门户 - 头部 - 右侧区域 - 登出按钮
+    .portal-sign-out {
+      display: inline-block;
+      margin-left: @margin-2xl;
+      vertical-align: middle;
+      font-size: @unified-portal-header-sign-out-btn-size;
+      cursor: pointer;
+    }
+  }
+}
+
+// 统一门户 - 内容
+.ui-wUnifiedPortal .portal-wrap .portal-body {
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  color: @unified-portal-body-font-color;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: calc(100% - 80px);
+  & > div {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: @padding-3xl;
+  }
+
+  // 统一门户 - 内容 - 分类标题
+  .portal-list-title {
+    width: 100%;
+    margin-top: 0;
+    text-align: left;
+    margin-bottom: 0;
+
+    // 统一门户 - 内容 - 分类标题 - (居左布局) 左侧图片
+    .leftImg {
+      display: inline-block;
+    }
+
+    // 统一门户 - 内容 - 分类标题 - (居中布局) 两侧图片
+    .centerImg {
+      display: none;
+    }
+
+    // 统一门户 - 内容 - 分类标题 - 分类名称
+    .portal-list-title-text {
+      position: relative;
+      display: inline-block;
+      font-size: @unified-portal-body-list-title-font-size;
+      line-height: 24px;
+      margin: 0 12px;
+      vertical-align: middle;
+      text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    // 统一门户 - 内容 - 分类标题 - 图片(居中布局)
+    &.titleCenter {
+      text-align: center;
+
+      .centerImg {
+        display: inline-block;
+      }
+
+      .leftImg {
+        display: none;
+      }
+    }
+  }
+
+  // 统一门户 - 内容 - 分类内容
+  .portal-item {
+    width: 100%;
+
+    &:not(:last-of-type) {
+      margin-right: 10px;
+    }
+
+    &.titleCenter {
+      text-align: center;
+    }
+
+    &.itemCenter {
+      text-align: center;
+    }
+
+    // 统一门户 - 内容 - 分类内容 - 应用磁贴
+    .portal-item-box {
+      .square(@unified-portal-body-item-size);
+
+      display: inline-block;
+      padding: 30px 20px;
+      box-sizing: border-box;
+      border-radius: @unified-portal-body-item-border-radius;
+      cursor: pointer;
+      position: relative;
+      margin-right: 10px;
+      vertical-align: top;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+      }
+
+      // 统一门户 - 内容 - 分类内容 - 应用磁贴 - 图标
+      .portal-item-icon {
+        position: relative;
+        .square(@unified-portal-body-item-icon-bg-size);
+
+        line-height: @unified-portal-body-item-icon-bg-size;
+        margin: 0 auto;
+        text-align: center;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+        border-radius: @unified-portal-body-item-icon-bg-border-radius;
+        font-size: 0;
+        background: rgba(255, 255, 255, 0.75);
+
+        img {
+          .square(@unified-portal-body-item-icon-size);
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        i {
+          font-size: @unified-portal-body-item-icon-size;
+          color: @unified-portal-body-item-icon-color;
+          vertical-align: middle;
+        }
+        .badge {
+          background: #e33133;
+          position: absolute;
+          top: -5px;
+          right: -5px;
+        }
+      }
+
+      // 统一门户 - 内容 - 分类内容 - 应用磁贴 - 名称
+      .portal-item-title {
+        .text-overflow();
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* autoprefixer: ignore next */
+        // 编译之后丢失问题
+        -webkit-box-orient: vertical;
+
+        text-align: center;
+        color: @unified-portal-body-item-title-color;
+        line-height: 22px;
+        width: 100%;
+        margin-top: 10px;
+        font-size: @unified-portal-body-item-title-font-size;
+        text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.15);
+      }
+
+      .portal-icon-w,
+      .portal-icon-ip,
+      &.addrIcon img,
+      &.ipIcon img {
+        display: none;
+      }
+
+      &.addrIcon .portal-icon-w,
+      &.ipIcon .portal-icon-ip {
+        display: inline-block;
+        font-style: normal;
+      }
+
+      &.addrIcon .portal-item-icon {
+        background: rgba(81, 110, 201, 0.75);
+      }
+
+      &.ipIcon .portal-item-icon {
+        background: rgba(114, 207, 155, 0.75);
+      }
+    }
+
+    // 统一门户 - 内容 - 分类内容 - 自定义按钮
+    .portal-operate {
+      .absolute(15px false false 165px);
+
+      z-index: 10;
+      transition: all @animation-duration-base;
+
+      .portal-operate-icon {
+        .square(26px);
+
+        display: none;
+        line-height: 26px;
+        border-radius: 50%;
+        font-size: 18px;
+        color: #fff;
+        text-align: center;
+        transition: all @animation-duration-base;
+      }
+
+      .portal-operate-box {
+        .size(110px, 80px);
+
+        margin-top: 3px;
+        display: none;
+        padding: 5px 0;
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        font-size: 14px;
+        color: @text-color-primary;
+
+        .portal-operate-btn {
+          .size(100%, 34px);
+
+          line-height: 34px;
+          padding-left: 15px;
+          text-align: left;
+
+          i {
+            margin-right: 5px;
+          }
+
+          &.active,
+          &:hover {
+            // background: rgba(72, 140, 238, 0.15);
+            background: fade(@primary-color, 15%);
+          }
+        }
+      }
+
+      &:hover {
+        .portal-operate-icon {
+          background: rgba(255, 255, 255, 0.15);
+        }
+
+        .portal-operate-box {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// 统一门户 - 悬浮按钮区域
+.ui-wUnifiedPortal .portal-wrap .portal-set {
+  .fixed(false 0 @unified-portal-suspended-offset-bottom false);
+  width: @unified-portal-suspended-set-width;
+
+  // 统一门户 - 悬浮按钮区域 - 按钮
+  .portal-set-btn {
+    .square(@unified-portal-suspended-set-width);
+
+    line-height: @unified-portal-suspended-set-width;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+    border-radius: @border-radius-base 0px 0px @border-radius-base;
+    cursor: pointer;
+
+    &:last-of-type {
+      margin-top: 4px;
+    }
+
+    // 统一门户 - 悬浮按钮区域 - 按钮 - 图标
+    i {
+      display: block;
+      font-size: @unified-portal-suspended-icon-size;
+      color: @unified-portal-suspended-icon-color;
+    }
+  }
+}
+
+// 统一门户 - 门户设置弹窗
+.ui-wUnifiedPortal .portal-style {
+  .fixed(false (@unified-portal-suspended-set-width + @margin-2xs) @unified-portal-suspended-offset-bottom false);
+  .size(@unified-portal-setting-modal-width, @unified-portal-setting-modal-height);
+
+  display: none;
+  padding: @padding-lg;
+  box-sizing: border-box;
+  background: @unified-portal-setting-modal-background;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+  border-radius: @border-radius-base;
+
+  // 统一门户 - 门户设置弹窗 - 标题
+  .portal-style-title {
+    font-size: @unified-portal-setting-title-font-size;
+    font-weight: bold;
+    color: @unified-portal-setting-title-font-color;
+    line-height: 1;
+    margin-bottom: @margin-lg;
+
+    .portal-style-category {
+      float: right;
+      color: @text-color;
+      font-size: @font-size-base;
+
+      label {
+        position: relative;
+        font-weight: normal;
+
+        &:before {
+          .absolute(0 false false -16px);
+
+          color: @text-color-primary;
+        }
+      }
+    }
+  }
+
+  // 统一门户 - 门户设置弹窗 - 主题设置区域
+  .portal-style-theme {
+    width: 100%;
+    font-size: 0;
+    margin-bottom: 40px;
+
+    // 统一门户 - 门户设置弹窗 - 主题设置区域 - 向左向右按钮
+    .style-theme-prev,
+    .style-theme-next {
+      display: inline-block;
+      font-size: 10px;
+      vertical-align: middle;
+      color: @text-color-light;
+
+      &.disabled {
+        color: @disabled-text-color;
+        cursor: not-allowed;
+      }
+    }
+
+    .style-theme-prev.disabled,
+    .style-theme-next.disabled {
+      color: @disabled-text-color;
+      cursor: not-allowed;
+    }
+
+    // 统一门户 - 门户设置弹窗 - 主题设置区域 - 主题选择列表
+    .portal-theme-wrap {
+      .text-overflow();
+      .size(calc(100% - 72px), @unified-portal-setting-theme-item-size);
+
+      position: relative;
+      width: calc(100% - 72px);
+      margin: 0 @margin-lg;
+      display: inline-block;
+      font-size: 10px;
+      vertical-align: middle;
+      color: @text-color-light;
+
+      .portal-theme-list {
+        .absolute(0 false false 0);
+
+        // 统一门户 - 门户设置弹窗 - 主题设置区域 - 主题选择列表 - 主题备选项
+        .portal-theme-item {
+          .square(@unified-portal-setting-theme-item-size);
+
+          display: inline-block;
+
+          padding: 4px;
+          border: @border-default-dark;
+          border-radius: @border-radius-base;
+          position: relative;
+          box-sizing: border-box;
+          cursor: pointer;
+          margin-right: @border-default-dark;
+
+          // 统一门户 - 门户设置弹窗 - 主题设置区域 - 主题选择列表 - 主题备选项 - 图片
+          img {
+            .square((@unified-portal-setting-theme-item-size - 2 * 5px));
+          }
+
+          // 统一门户 - 门户设置弹窗 - 主题设置区域 - 主题选择列表 - 主题备选项 - 已选标志
+          i {
+            @unified-portal-setting-theme-checked-icon-offset: (
+              (@unified-portal-setting-theme-item-size - @unified-portal-setting-theme-checked-icon-size) / 2
+            );
+            .absolute(@unified-portal-setting-theme-checked-icon-offset false false @unified-portal-setting-theme-checked-icon-offset);
+
+            font-size: @unified-portal-setting-theme-checked-icon-size;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1;
+            display: none;
+          }
+
+          &.isActive {
+            border: @border-width-1 solid @primary-color;
+            padding: 3px;
+
+            i {
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // 统一门户 - 门户设置弹窗 - 布局设置区域
+  .portal-style-layout {
+    width: 100%;
+
+    // 统一门户 - 门户设置弹窗 - 布局设置区域 - 布局项
+    .portal-layout-item {
+      .square(@unified-portal-setting-layout-item-size);
+
+      display: inline-block;
+      line-height: @unified-portal-setting-layout-item-size;
+      border: @border-default-dark;
+      border-radius: @border-radius-base;
+      text-align: center;
+      color: @text-color-lighter;
+      transition: all @animation-duration-base;
+      cursor: pointer;
+      margin-right: @margin-sm;
+
+      // 统一门户 - 门户设置弹窗 - 布局设置区域 - 布局项 - 图标
+      i {
+        font-size: @unified-portal-setting-layout-item-font-size;
+      }
+
+      &:hover,
+      &.active,
+      &.layoutActive {
+        border-color: @primary-color;
+        color: @primary-color;
+      }
+    }
+  }
+}
+
+//  统一门户 - 自定义弹框
+.ui-wUnifiedPortal .nav-block-modal {
+  .choose-wrap .choose-content .choose-item li .icon-wrap,
+  .drag-wrap .drag-box li .icon-wrap {
+    color: @primary-color;
+  }
+
+  .tip {
+    background: @background-primary-lighter;
+    border: @border-width-base solid @primary-3;
+  }
+
+  .modal-footer button {
+    font-size: @font-size-base;
+  }
+
+  .modal-footer button.w-btn-default {
+    background: @component-background;
+    color: @text-color;
+    border: @border-default-dark;
+    transition: all @animation-duration-base ease-in-out;
+
+    &:hover,
+    &.active {
+      color: @primary-color;
+      border-color: @primary-color;
+    }
+  }
+}

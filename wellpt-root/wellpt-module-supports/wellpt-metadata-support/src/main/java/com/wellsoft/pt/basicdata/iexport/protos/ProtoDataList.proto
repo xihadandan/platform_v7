@@ -1,0 +1,19 @@
+syntax = "proto3";
+// 生成的包名
+option java_package="com.wellsoft.pt.basicdata.iexport.protos";
+//生成的java名
+option java_outer_classname = "ProtoData";
+
+message ProtoEntity{
+  string type = 1; //type
+  bytes data = 2; //实体类
+  string treeName = 3;//treeName
+  map<string,bytes> ioAttribute= 4;//序列化属性
+  repeated string fileIds = 5;//附件Ids
+  repeated string parentTypeUuids = 6; //父级type_uuid
+}
+
+message ProtoDataList{
+  repeated ProtoEntity protoEntity = 1;
+  map<string,bytes> attach = 2; //附件map
+}

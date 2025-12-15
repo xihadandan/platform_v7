@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="queryAllModuleSystemTable">
+        <![CDATA[
+		from SystemTable fd
+		where  1=1
+		<if moduleId??>
+		and fd.moduleId =:moduleId
+		</if>
+		<if excludeModuleIds??>
+		and fd.moduleId not in (:excludeModuleIds)
+		</if>
+		<if systemUnitId??>
+		and fd.systemUnitId =:systemUnitId
+		</if>
+	 	 order by fd.modifyTime desc
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

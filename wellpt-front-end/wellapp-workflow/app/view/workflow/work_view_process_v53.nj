@@ -1,0 +1,31 @@
+<div class="ibox-content inspinia-timeline">
+{% for process in workProcesses %}
+
+    <div class="timeline-item {% if process.status =='未完成' %}now{% endif %}">
+			<div class="liucheng-time">
+                {{process.endTime}}
+                {% if process.endTime  %}&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}
+				<strong>{{process.taskName}}</strong>
+			</div>
+			<div class="liucheng-content">
+					{{process.assignee}}&nbsp;&nbsp;&nbsp;{{process.deptName}}&nbsp;&nbsp;&nbsp;{{process.mainJobName}}<br> {{process.actionName}}&nbsp;&nbsp;&nbsp;&nbsp;
+				
+                {% if process.actionType == 'CounterSign' or process.actionType == 'Transfer' %}
+                    ({{process.toUser}}) {{process.opinion}}
+                {% else if process.actionType == 'CopyTo'%}
+                    ({{process.copyUser}}) {{process.opinion}}
+                {% else %}
+                    {{process.opinion}}
+                {% endif %}
+                {% if process.isMobileApp %}(移动端){% endif %}
+				<div class="baidi"></div>
+			</div>
+            {% if process.status == '未完成' %}
+            <div class="liucheng-tongguo"></div>
+            {% endif %}
+            {% if process.status == '办结' %}
+            <div class="liucheng-tongguo pass"></div>
+            {% endif %}
+		</div>
+{% endfor %}
+</div>

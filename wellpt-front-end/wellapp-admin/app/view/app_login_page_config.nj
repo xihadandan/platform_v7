@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% for file in themeFiles %}
+      <link href="{{file}}" rel="stylesheet"/>
+    {% endfor %}
+  </head>
+  <body>
+    <div class="container-fluid" id="login-setting">
+      <div class="row">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="tab-noborder active">
+                <a href="#home" aria-controls="home" role="tab" data-toggle="tab">主页</a>
+              </li>
+              <li role="presentation" class="tab-noborder">
+                <a href="#accountLoginSetting" aria-controls="profile" role="tab" data-toggle="tab">账号密码登录设置</a>
+              </li>
+              {% if systemUnitId != ptId %}
+                <li role="presentation" class="tab-noborder">
+                  <a href="#ssoSetting" aria-controls="messages" role="tab" data-toggle="tab">单点登录设置</a>
+                </li>
+                <li role="presentation" class="tab-noborder">
+                  <a href="#deviceLoginSetting" aria-controls="settings" role="tab" data-toggle="tab">硬件登录设置</a>
+                </li>
+                <li role="presentation" class="tab-noborder">
+                  <a href="#keyLoginSetting" aria-controls="settings" role="tab" data-toggle="tab">电子钥匙盘登录设置</a>
+                </li>
+                <li role="presentation" class="tab-noborder">
+                  <a href="#dingLoginSetting" aria-controls="settings" role="tab" data-toggle="tab">钉钉扫码登录设置</a>
+                </li>
+                <li role="presentation" class="tab-noborder">
+                  <a href="#oauthLoginSetting" aria-controls="settings" role="tab" data-toggle="tab">统一认证登录设置</a>
+                </li>
+              {% endif %}
+              <li style="float: right;">
+                <select class="form-control" id="systemUnitSelect">
+                  <option value="{{ defaultId }}" {% if systemUnitId == defaultId %} selected="selected" {% endif %}>单位默认登录</option>
+                  <option value="{{ ptId }}" {% if systemUnitId == ptId %} selected="selected" {% endif %}>超级管理员登录</option>
+                </select>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="home">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">标题</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="pageTitle" value="{{ po.pageTitle }}"/>
+                      <input type="hidden" value="{{ po.uuid }}" name="uuid" id="uuid"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">背景图</label>
+                    <div class="col-sm-10">
+                      <input type="file" class="loginImages" name="pageBackgroundImage" id="pageBackgroundImage" style="display: none;"/>
+                      <img title="点击图片进行替换" accept=".png" src="{{ backgroundImage }}" id="pageBackgroundImagePreview" style="max-width: 100px;max-height: 100px;cursor:pointer;" onclick="document.getElementById('pageBackgroundImage').click()">
+                      <input type="button" class="btn btn-sm btn-success btn-preview" value="预览" style="vertical-align: bottom;">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">布局风格</label>
+                    <div class="col-sm-10">
+                      <select name="pageStyle" class="form-control" id="pageStyle">
+                        <option value="">默认</option>
+                        <option value="_right" {% if po.pageStyle == '_right' %} selected="selected" {% endif %}>右边风格</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">LOGO图片</label>
+                    <div class="col-sm-10">
+                      <input type="file" class="loginImages" name="pageLogo" id="pageLogo" style="display: none;"/>
+                      <img title="点击图片进行替换" accept=".png" src="{{ headerImage }}" id="pageLogoPreview" style="max-width: 410px;max-height: 90px;cursor:pointer;" onclick="document.getElementById('pageLogo').click()">
+                      <input type="button" class="btn btn-sm btn-success btn-preview" value="预览" style="vertical-align: bottom;">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">页脚内容</label>
+                    <div class="col-sm-10">
+                      <input type="file" id="uploadFile" style="display: none;"/>
+                      <textarea id="footerContent" name="footerContent">{{ po.footerContent }}</textarea>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div role="tabpanel" class="tab-pane vertical-container" id="accountLoginSetting">
+
+                <div id="loginType" class="form-vertical" {% if systemUnitId == ptId %} style="display:none;" {% endif %}>
+                  <div class="pwd-rule-title">登录账号类型</div>
+                  {% for item in loginTypes %}
+                    <legend class="form-group ">
+                      <label class="control-label">
+                        <span class="label-title">
+                          {{item.loginTypeName}}
+                        </span>
+                        <span class="data-alias">
+                          {% if item.loginTypeAlias != null and item.loginTypeAlias != '' %}({{item.loginTypeAlias}}){% endif %}
+                        </span>
+
+                        <div class="control-right">
+                          <span class="btn settings-btn" data='{{item.loginTypeName}}_{{item.userField}}'>设置</span>
+                          <input type="hidden" name="{{item.loginType}}Alias" value="{{ item.loginTypeAlias }}">
+                          {% if item.loginType == "account" %}
+                            <div class="switch-wrap active" style="background-color: white;">
+                              <span class="switch-text switch-close">关闭</span>
+                              <span class="switch-radio" style="border:0px;"></span>
+                              <span class="switch-text switch-open">开启</span></div>
+                            {%else%}
+                            <div class="loginType switch-wrap {% if item.enable == 1 %}active{% endif %}" data-value="{{ item.enable  }}">
+                              <input type="hidden" name="{{item.loginType}}Enable" value="{{ item.enable }}">
+                              <span class="switch-text switch-close">关闭</span>
+                              <span class="switch-radio"></span>
+                              <span class="switch-text switch-open">开启</span>
+                            </div>
+                          {% endif %}
+                        </div>
+                        <p>开启后用户可以使用{{item.loginTypeName}}登录系统，对应用户信息中的“{{item.loginTypeName}}”。</p>
+                      </label>
+                    </legend>
+                  {% endfor %}
+                  <div class='well-form form-horizontal data-import-info' id="aliasSetting" style="display: none;">
+                    <div class='data-import-info-item'>
+                      <label class='item-label' style="width:25%;">账号类型：</label>
+                      <div class="item-value">#loginTypeName#</div>
+                    </div>
+                    <div class='data-import-info-item'>
+                      <label class='item-label' style="width:25%;">对应用户信息：</label>
+                      <div class='item-value'>#loginTypeName#(#userField#)</div>
+                    </div>
+                    <div class='data-import-info-item'>
+                      <label class='item-label' style="width:25%;vertical-align: inherit;">类型别名：</label>
+                      <div class='item-value' style="padding: 7px;"><input class="form-control" id="alias-input" value="#loginTypeAlias#"/>
+                        <p>对账号类型进行重命名，用于类型的页面展示或者用户提示信息</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <form class="form-horizontal">
+                  <div class="pwd-rule-title" {% if systemUnitId == ptId %} style="display:none;" {% endif %}>其他设置</div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">是否启用验证码</label>
+                    <div class="col-sm-8 checkbox-inline">
+                      <input type="checkbox" name="loginBoxAccountCode" id="loginBoxAccountCode" {% if po.loginBoxAccountCode == '0' %} checked="checked" {% endif %}/>
+                      <label for="loginBoxAccountCode" style="font-weight: normal;color:#666;vertical-align: middle;margin-bottom:0;"></label>
+                    </div>
+                  </div>
+                  <div class="form-group" id="loginBoxAccountCodeTypeGroup" {% if po.loginBoxAccountCode !== '0' %} style="display:none" {% endif %}>
+                    <label class="col-sm-3  control-label">验证码类型</label>
+                    <div class="col-sm-8">
+                      <select name="loginBoxAccountCodeType" class="form-control" id="loginBoxAccountCodeType">
+                        <option value="letterAndNumber" {% if  po.loginBoxAccountCodeType == 'letterAndNumber'  %} selected="selected" {% endif %}>字母+数字</option>
+                        <option value="number" {% if po.loginBoxAccountCodeType == 'number' %} selected="selected" {% endif %}>数字</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group" id="ignoreCaseFormGroup" {% if po.loginBoxAccountCode !== '0' or  po.loginBoxAccountCodeType == 'number' %} style="display:none" {% endif %}>
+                    <label class="col-sm-3 control-label">验证码是否区分大小写</label>
+                    <div class="col-sm-8 checkbox-inline">
+                      <input type="checkbox" name="accountCodeIgnoreCase" id="accountCodeIgnoreCase" {% if po.accountCodeIgnoreCase == '0' %} checked="checked" {% endif %}/>
+                      <label for="accountCodeIgnoreCase" style="font-weight: normal;color:#666;vertical-align: middle;margin-bottom:0;"></label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">验证码超时时间</label>
+                    <div class="col-sm-8">
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="loginBoxAccountCodeTimeout" id="loginBoxAccountCodeTimeout" value="{{ po.loginBoxAccountCodeTimeout }}"/>
+                        <div class="input-group-addon">秒</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">是否启用短信验证</label>
+                    <div class="col-sm-8 checkbox-inline">
+                      <input type="checkbox" name="loginBoxAccountSms" id="loginBoxAccountSms" {% if po.loginBoxAccountSms == '0' %} checked="checked" {% endif %}/>
+                      <label for="loginBoxAccountSms" style="font-weight: normal;color:#666;vertical-align: middle;margin-bottom:0;"></label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">短信验证超时时间</label>
+                    <div class="col-sm-8">
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="loginBoxAccountSmsTimeout" id="loginBoxAccountSmsTimeout" value="{{ po.loginBoxAccountSmsTimeout }}"/>
+                        <div class="input-group-addon">秒</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">是否启用记住用户名</label>
+                    <div class="col-sm-8 checkbox-inline">
+                      <input type="checkbox" name="loginBoxAccountRememberUse" id="loginBoxAccountRememberUse" {% if po.loginBoxAccountRememberUse == '0' %} checked="checked" {% endif %}/>
+                      <label for="loginBoxAccountRememberUse" style="font-weight: normal;color:#666;vertical-align: middle;margin-bottom:0;"></label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">是否启用记住密码</label>
+                    <div class="col-sm-8 checkbox-inline">
+                      <input type="checkbox" name="loginBoxAccountRememberPas" id="loginBoxAccountRememberPas" {% if po.loginBoxAccountRememberPas == '0' %} checked="checked" {% endif %}/>
+                      <label for="loginBoxAccountRememberPas" style="font-weight: normal;color:#666;vertical-align: middle;margin-bottom:0;"></label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">是否启用忘记密码</label>
+                    <div class="col-sm-8 checkbox-inline">
+                      <input type="checkbox" name="loginBoxAccountForgetPassw" id="loginBoxAccountForgetPassw" {% if po.loginBoxAccountForgetPassw == '0' %} checked="checked" {% endif %}/>
+                      <label for="loginBoxAccountForgetPassw" style="font-weight: normal;color:#666;vertical-align: middle;margin-bottom:0;"></label>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="ssoSetting">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">是否启用单点登录</label>
+                    <div class="col-sm-10 checkbox-inline">
+                      <input type="checkbox" name="loginBoxCas" class="loginBoxCas" id="loginBoxCas" {% if po.loginBoxCas == '0' %} checked="checked" {% endif %}/>
+                      <label for="loginBoxCas" style="font-weight: normal;color:#666;vertical-align: middle;margin-bottom:0;"></label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">单点地址</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="loginBoxCasUrl" value="{{ po.loginBoxCasUrl }}"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">应用地址</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="loginBoxCasAppUrl" value="{{ po.loginBoxCasAppUrl }}"/>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="deviceLoginSetting">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">是否启用硬件登录</label>
+                    <div class="col-sm-10 checkbox-inline">
+                      <input type="checkbox" name="loginBoxHardware" id="loginBoxHardware" {% if po.loginBoxHardware == '0' %} checked="checked" {% endif %}/>
+                      <label for="loginBoxHardware" style="font-weight: normal;color:#666;vertical-align: middle;margin-bottom:0;"></label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">硬件登录描述</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="loginBoxHardwareDescription" value="{{ po.loginBoxHardwareDescription }}"/>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="keyLoginSetting">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">是否启用电子钥匙盘登录</label>
+                    <div class="col-sm-10 checkbox-inline">
+                      <input type="checkbox" name="loginBoxKey" id="loginBoxKey" {% if po.loginBoxKey == '0' %} checked="checked" {% endif %}/>
+                      <label for="loginBoxKey" style="font-weight: normal;color:#666;vertical-align: middle;margin-bottom:0;"></label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">电子钥匙盘登录描述</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="loginBoxKeyDescription" value="{{ po.loginBoxKeyDescription }}"/>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="dingLoginSetting">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">钉钉扫码登录：</label>
+                    <div class="col-sm-10">
+                      <input type="hidden" id="loginBoxDing" name="loginBoxDing" value="{{ po.loginBoxDing }}">
+                      <div id="isDingLogin" style="top: 4px;" class="switch-wrap {% if po.loginBoxDing==0 %}active{% endif %}" data-value="{{ po.loginBoxDing }}">
+                        <span class="switch-text switch-open">开启</span>
+                        <span class="switch-radio"></span>
+                        <span class="switch-text switch-close">关闭</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dingLoginDetail" {% if po.loginBoxDing!=0 %} style="display: none" {% endif %}>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">二维码区域样式：</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" type="text" name="dingStyle" value="{{ 'border:none;background:#fff;' if po.dingStyle == null or po.dingStyle == '' else po.dingStyle }}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">二维码区域宽度：</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" type="text" name="dingWidth" style="display: inline-block;width:150px;" value="{{ '401' if po.dingWidth == null or po.dingWidth == '' else po.dingWidth }}">
+                        px
+                        <span style="margin-left: 10px;color:#999;">（不代表二维码大小）</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">二维码区域高度：</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" type="text" name="dingHeight" style="display: inline-block;width:150px;" value="{{ '370' if po.dingHeight == null or po.dingHeight == '' else po.dingHeight }}">
+                        px
+                        <span style="margin-left: 10px;color:#999;">（不代表二维码大小）</span>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="oauthLoginSetting">
+                <form class="form-horizontal well-workflow-form">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">统一认证登录：</label>
+                    <div class="col-sm-10">
+                      <input type="hidden" id="enableOauth" name="enableOauth" value="{{ po.enableOauth }}">
+                      <div id="enableOauthSwitch" class="oauth-switch switch-wrap {% if po.enableOauth==1 %}active{% endif %}" data-value="{{ po.enableOauth }}">
+                        <span class="switch-text switch-open">开启</span>
+                        <span class="switch-radio"></span>
+                        <span class="switch-text switch-close">关闭</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group" {% if po.enableOauth!=1 %} style="display:none;" {% endif %}>
+                    <label class="col-sm-2 control-label">默认登录页面：</label>
+                    <div class="col-sm-10 ">
+                      <input type="checkbox" id="enableOauthLogin" name="enableOauthLogin" value="1" {% if po.enableOauth==1 %} checked="checked" {% endif %} style="vertical-align: middle;margin: 0;">
+                      <label for="enableOauthLogin" style="font-weight: normal;color:#666;vertical-align: middle;margin-bottom:0;">统一认证登录</label>
+                    </div>
+                  </div>
+                  <div class="form-group" {% if po.enableOauth!=1 %} style="display:none;" {% endif %}>
+                    <label class="col-sm-2 control-label">自定义登录页面：</label>
+                    <div class="col-sm-10" style="margin-top: 7px;">
+                      <input type="hidden" id="enableCustomizeOauthLogin" name="enableCustomizeOauthLogin" value="{{ po.enableCustomizeOauthLogin }}">
+                      <div id="enableCustomizeOauthLoginSwitch" class="oauth-switch switch-wrap {% if po.enableCustomizeOauthLogin==1 %}active{% endif %}" data-value="{{ po.enableCustomizeOauthLogin }}" style="margin-top: 0;vertical-align: middle;">
+                        <span class="switch-text switch-open">开启</span>
+                        <span class="switch-radio"></span>
+                        <span class="switch-text switch-close">关闭</span>
+                      </div>
+                      <span style="vertical-align: middle;margin-left: 40px;">开启时，使用自定义登录页面，不再使用默认登录页面</span>
+                    </div>
+                  </div>
+                  <div class="form-group" {% if po.enableCustomizeOauthLogin!=1 or po.enableOauth!=1 %} style="display: none;" {% endif %}>
+                    <label class="col-sm-2 control-label required">自定义登录页面URL：</label>
+                    <div class="col-sm-10">
+                      <input type="text" id="customizeOauthLoginUri" name="customizeOauthLoginUri" class="form-control" value="{{ po.customizeOauthLoginUri }}" style="width: 500px;display: inline-block;">
+                      <div class="form-tooltip">
+                        <i class="iconfont icon-ptkj-tishishuoming"></i>
+                        <div class="form-tooltip-content">仅针对当前应用内Web地址生效，请保障Web地址无权限控制，否则登录页面加载时，如果无权限会自动跳转默认登录页面</div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row bottom-btns-bar" style="position:inherit;">
+        <div class=" center-block" style="width: 200px; text-align: center;">
+          <button class="btn btn-primary" id="save">保存</button>
+          <button class="btn btn-success" id="preview-login">预览</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.staticPrefix = '{{ helper.staticPrefix() }}';
+      window.ctx = "";
+      window.backendUrl = '{{ helper.backendUrl() }}';
+      window.csrf = '{{ ctx.csrf | safe }}';
+    </script>
+    <script type="text/javascript" src="{{ helper.staticPrefix() }}/js/jquery/1.12.4/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="{{ helper.staticPrefix() }}/js/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <script type="text/javascript" src="{{ helper.staticPrefix() }}/js/bootstrap-wysiwyg/summernote/summernote.js"></script>
+    <script type="text/javascript" src="{{ helper.staticPrefix() }}/js/jqgrid/js/i18n/grid.locale-cn.js"></script>
+    <script type="text/javascript" src="{{ helper.staticPrefix() }}/js/pt/js/global.js"></script>
+    <script type="text/javascript" src="{{ helper.staticPrefix() }}/login-conf-mgr/app_login_page_config.js"></script>
+  </body>
+</html>

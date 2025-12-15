@@ -1,0 +1,16 @@
+{
+  "js": {
+    "FullTextEvent": {
+      "path": "fulltext-search/FullTextEvent",
+      "name": "FullTextEvent",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "dependencyBootstrapTableModule",
+        "jquery",
+        "layDate",
+        "niceScroll",
+        "wellPagination"
+      ]
+    }
+  }
+}

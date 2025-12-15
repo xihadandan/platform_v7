@@ -1,0 +1,229 @@
+<div id="templatecontainerAttrCfgDiv" title="属性设置">
+  <div>
+    <div class="dyform">
+      <div class="post-sign">
+        <div class="post-detail">
+          <table>
+            <tr>
+              <td class="Label">子表单:</td>
+              <td class="value"><input id="template" style="width: 270px" /></td>
+            </tr>
+            <tr class="odd">
+              <td class="Label">子表单ID:</td>
+              <td class="value"><input type="text" id="template-ID" value="" disabled /></td>
+            </tr>
+            <tr>
+              <td class="Label">模板名称：</td>
+              <td class="value"><input type="text" id="template-name" value="" disabled /></td>
+            </tr>
+            <tr class="odd">
+              <td class="Label">是否脱离子表单:</td>
+              <td class="value">
+                <input type="checkbox" name="showType" id="template-flag" value="1" />
+                <label for="template-flag">是</label>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var callBack = {
+    getTemplateList: function () {
+      return [
+        { id: 0, text: 'enhancement' },
+        { id: 1, text: 'bug' },
+        { id: 2, text: 'duplicate' },
+        { id: 3, text: 'invalid' },
+        { id: 4, text: 'wontfix' }
+      ];
+    },
+    getTemplateHtml: function (templateUuid) {
+      var html =
+        '<table><tbody><tr><td blockcode="dsfsd" class="title" colspan="12">dsfsd</td></tr><tr><td class="label-td">&nbsp;</td><td>&nbsp;</td><td class="label-td">&nbsp;</td><td>&nbsp;</td></tr></tbody></table>';
+      if (templateUuid) {
+        var formDefinition = loadFormDefinition(templateUuid);
+        html = formDefinition.html || html;
+      }
+      return html;
+    },
+    check: function (templateUuid, templateFlag) {},
+    complete: function (templateUuid, templateFlag, templateName) {}
+  };
+
+  var templatecontainer = {};
+
+  templatecontainer.$ = function (selector) {
+    return $(selector, $('#templatecontainerAttrCfgDiv'));
+  };
+  /**
+   * 初始化属性窗口
+   */
+  templatecontainer.initPropertyDialog = function (editor) {
+    // $(".cke_reset_all"  ).removeClass("cke_reset_all");
+    //console.log("initPropertyDialog=============");
+    this.editor = editor;
+    // 编辑区块时,默认移出提示
+    this.editor.removeHintInDesigner();
+
+    var focusedDom = editor.focusedDom; //当前editor被双击的对象(CKEDITOR.dom.node类)
+
+    var templateUuid = '';
+    var templateName = '';
+    //有过设置，采用设置设置过的置
+    if (focusedDom != null && typeof focusedDom != 'undefined') {
+      //兼容老版本数据，设置该td不可编辑
+      templateUuid = focusedDom.getAttribute('templateUuid');
+      templateName = focusedDom.getAttribute('templateName');
+    }
+    $('#template')
+      .wSelect2({
+        remoteSearch: false,
+        serviceName: 'dyFormFacade',
+        queryMethod: 'queryAllMstforms'
+      })
+      .on('change', function () {
+        var templateUuid = $(this).val();
+        var templateName = $(this).select2('data').text;
+        $('#template-name').val(templateName);
+        if (templateUuid && templateName) {
+          var formDefinition = loadFormDefinition(templateUuid);
+          $('#template-ID').val(formDefinition.id); //+ "(V" + formDefinition.version + ")"
+        }
+      })
+      .val(templateUuid)
+      .trigger('change');
+  };
+
+  templatecontainer.exitDialog = function () {
+    this.editor.focusedDom = null;
+    this.$('#template-ID').val('');
+    this.$('#template-name').val('');
+  };
+
+  templatecontainer.fillCkeditor = function () {
+    var templateUuid = this.$('#template').val();
+    var templateName = this.$('#template-name').val();
+    var templateFlag = this.$('#template-flag').is(':checked');
+    //检查blockCode
+    if (templateUuid == '' || templateUuid == undefined) {
+      alert(dymsg.templateIdNotEmpty);
+      return false;
+    }
+
+    var oldtemplateUuid = this.editor.focusedDom ? this.editor.focusedDom.getAttribute('templateUuid') : '';
+    formDefinition.templates = formDefinition.templates || {};
+
+    //检查是block是否重名
+    for (var key in formDefinition.templates) {
+      if (key == oldtemplateUuid) {
+        continue;
+      } else {
+        if (key == templateUuid) {
+          appModal.error(dymsg.templateIdexist);
+          return false;
+        }
+      }
+    }
+
+    // 判断是否字段重复
+    var templateDefinition = loadFormDefinition(templateUuid);
+    var existsFields = {};
+    var conflictFields = [];
+    function findExistsFields(children) {
+      for (var i = 0; i < children.length; i++) {
+        var child = children[i];
+        if (child.nodeType === 'field') {
+          existsFields[child.fieldName] = child;
+          continue;
+        }
+
+        if (child.children && child.children.length) {
+          findExistsFields(child.children);
+        }
+      }
+    }
+    findExistsFields(formDefinition.formTree || []);
+
+    for (var field in templateDefinition.fields) {
+      if (existsFields[field]) {
+        conflictFields.push(field);
+      }
+    }
+    if (conflictFields.length) {
+      appModal.error('主表和子表的字段编码(' + conflictFields.join(', ') + ')冲突！');
+      return false;
+    }
+
+    //回调函数校验
+    if (callBack.check(templateUuid, templateFlag) == 'false') {
+      appModal.error(dymsg.templateIdexist);
+      return false;
+    }
+
+    //如果存在就覆盖，如果不存在就插入
+    var focusedDom = this.editor.focusedDom;
+    if (focusedDom == null || focusedDom.getAttribute('data-is-temp') == 'true') {
+      var html;
+      if (templateFlag) {
+        // html = "<div class='template-wrapper bg' contentEditable= true templateUuid='"+templateUuid+"' templateName='"+templateName+"'  templateFlag="+templateFlag+" ><div class='inner-box'></div></div>";
+        html = callBack.getTemplateHtml(templateUuid);
+      } else {
+        html =
+          "<div class='template-wrapper bg' contentEditable= false templateUuid='" +
+          templateUuid +
+          "' templateName='" +
+          templateName +
+          "' templateFlag=" +
+          templateFlag +
+          "><div class='inner-box filter'></div></div>";
+      }
+      var element = CKEDITOR.dom.element.createFromHtml(html);
+      this.editor.insertElement(element);
+    } else {
+      if (templateFlag == true) {
+        focusedDom.setAttribute('contenteditable', true);
+        $(focusedDom.$).removeClass('bg');
+        $(focusedDom.$).find('.inner-box').removeClass('filter');
+      }
+      focusedDom.setAttribute('templateFlag', templateFlag);
+      focusedDom.setAttribute('templateUuid', templateUuid);
+      focusedDom.setAttribute('templateName', templateName);
+    }
+    var templateHtml = callBack.getTemplateHtml(templateUuid);
+
+    var templateHtml = templateDefinition.html;
+    function getTemplateWrapper(templateUuid) {
+      var templateWrapper = null;
+      var templateWrappers = editor.document.find('.template-wrapper[templateUuid]');
+      for (var i = 0; i < templateWrappers.count(); i++) {
+        if ($(templateWrappers.getItem(i)).attr('templateUuid') === templateUuid) {
+          templateWrapper = templateWrappers.getItem(i);
+          break;
+        }
+      }
+      return templateWrapper;
+    }
+    var templateObj = { templateUuid: templateUuid, templateName: templateName, templateFlag: templateFlag };
+    if (templateFlag) {
+      formDefinition.templateToBlock(templateUuid, templateObj);
+    } else {
+      var templateWrapper = getTemplateWrapper(templateUuid).find('.inner-box');
+      if (templateWrapper) {
+        $(templateWrapper.$).html(templateHtml);
+      }
+      callBack.complete(templateUuid, templateFlag, templateName);
+      // formDefinition.templatecontainers[templateUuid] = {"templateUuid" : templateUuid, "templateName": templateName, "templateFlag": templateFlag};
+      var notAddFields = formDefinition.addTemplate(templateUuid, templateObj);
+      for (var fieldName in notAddFields) {
+        templateWrapper
+          .find('.value[name=' + fieldName + ']')
+          .getItem(0)
+          .remove();
+      }
+    }
+    return true;
+  };
+</script>

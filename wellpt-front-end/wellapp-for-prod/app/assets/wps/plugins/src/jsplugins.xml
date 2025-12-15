@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jsplugins>
+	<jsplugin name="oaassist" url="http://oa.well-soft.com:8096/plugins/v${wpsVersion}/oaassist.7z" type="wps"
+		version="${wpsVersion}" />
+	<!-- <jsplugin name="officialdocassist" url="http://oa.well-soft.com:8096/plugins/officialdocassist.7z" type="wps" version="${wpsVersion}"/> -->
+	<jsplugin name="etoa" url="http://oa.well-soft.com:8096/plugins/v${wpsVersion}/etoa.7z" type="et" version="${wpsVersion}" />
+	<jsplugin name="wppoa" url="http://oa.well-soft.com:8096/plugins/v${wpsVersion}/wppoa.7z" type="wpp" version="${wpsVersion}" />
+</jsplugins>

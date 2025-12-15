@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="groupPublicQuery">
+        <![CDATA[
+      select og.*
+  from (select g.id,g.itype,g.name,g.uuid
+          from org_group g
+         where g.code =:filterCondition
+        union
+        select g.id,g.itype,g.name,g.uuid
+          from (select *
+                  from org_group og
+                 where og.uuid in
+                       (select gg.nested_group_uuid
+                          from org_group_nested_group gg
+                         where gg.group_uuid in
+                               (select ggg.uuid
+                                  from org_group ggg
+                                 where ggg.code =:filterCondition))) g ) og
+ where og.itype = '0'
+ <if isNotBlank(code)>
+   and og.name like '%${code}%'
+    or og.uuid in
+       (select group2_.uuid
+          from org_user user1_, org_group group2_
+         where (group2_.uuid in
+               (select groups3_.group_uuid
+                   from org_group_user groups3_
+                  where user1_.uuid = groups3_.user_uuid))
+           and (user1_.user_name like '%${code}%'  )
+            union
+            select gg.group_uuid from org_group_user gg where gg.user_uuid in
+(select a.uuid
+  from org_user a
+ where exists (select b.entity_uuid
+          from cd_pinyin b
+         where b.entity_uuid = a.uuid
+           and b.type = 'User'
+           and (b.pinyin like '%${code}%' )))
+           )
+      </if>
+
+	]]>
+    </sql-query>
+</hibernate-mapping>

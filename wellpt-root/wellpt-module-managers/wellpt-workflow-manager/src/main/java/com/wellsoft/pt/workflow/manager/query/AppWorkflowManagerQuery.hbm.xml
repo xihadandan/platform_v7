@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <!--模块工作流定义查询-->
+    <sql-query name="appModuleWorkflowDefManagerQuery">
+        <![CDATA[
+    select t1.* from (
+	    select * from(
+		    select t1.uuid                  as uuid,
+		           t1.create_time           as create_time,
+		           t1.creator               as creator,
+		           t1.modifier              as modifier,
+		           t1.modify_time           as modify_time,
+		           t1.rec_ver               as rec_ver,
+		           t1.name                  as name,
+		           t1.id                    as id,
+		           t1.enabled               as enabled,
+		           t1.form_name             as form_name,
+		           t1.form_uuid             as form_uuid,
+		           t1.category              as category,
+		           c.name                   as category_name,
+		           t1.freeed                as freeed,
+		           t1.code                  as code,
+		           t1.version               as version,
+		           t1.flow_schema_uuid      as flow_schema_uuid,
+		           t1.system_unit_id        as system_unit_id,
+		           t1.module_id             as module_id,
+		           t1.system                as system,
+                   t1.tenant                as tenant,
+		           t7.max_version_def_uuid  as max_version_def_uuid,
+		           t1.remark                as remark,
+		           t1.delete_time           as delete_time,
+		           t1.delete_status         as delete_status,
+		           0                        as is_ref
+		      from WF_FLOW_DEFINITION t1
+		      left join (select t5.uuid as max_version_def_uuid, t5.id, t5.version
+		                   from WF_FLOW_DEFINITION t5,
+		                        (select max(t4.version) as version, t4.id
+		                           from WF_FLOW_DEFINITION t4
+		                          group by t4.id) t6
+		                  where t5.id = t6.id
+		                    and t5.version = t6.version) t7
+		        on t1.id = t7.id
+		       and t1.version <> t7.version
+		       left join wf_def_category c
+		       on c.uuid = t1.category
+	       ) t1
+     where 1=1
+     	<if moduleId??>
+        	and t1.module_id=:moduleId
+		</if>
+		<if systemUnitIds?? && (systemUnitIds?size > 0)>
+   			and t1.system_unit_id in (:systemUnitIds)
+    	</if>
+    	<if systemIds?? && (systemIds?size > 0) && isNotBlank(tenantId)>
+            and (
+                exists (
+                    select pm.module_id from app_prod_module pm
+                        left join app_system_info si on pm.prod_version_uuid = si.prod_version_uuid
+                        where t1.module_id = pm.module_id and t1.system is null and si.system in (:systemIds) and si.tenant = :tenantId
+                )
+                or t1.system in (:systemIds)
+            )
+        <elseif systemIds?? && (systemIds?size > 0)>
+            and t1.system in (:systemIds)
+        <elseif isNotBlank(tenantId)>
+            and t1.tenant = :tenantId
+        </if>
+		<if isNotBlank(whereSql)>
+     		and ${whereSql}
+   		</if>
+    	<if categoryUuid??> and t1.category=:categoryUuid</if>
+<if moduleId??>
+    union
+
+    select t1.uuid                  as uuid,
+           t1.create_time           as create_time,
+           t1.creator               as creator,
+           t1.modifier              as modifier,
+           t1.modify_time           as modify_time,
+           t1.rec_ver               as rec_ver,
+           t1.name                  as name,
+           t1.id                    as id,
+           t1.enabled               as enabled,
+           t1.form_name             as form_name,
+           t1.form_uuid             as form_uuid,
+           t1.category              as category,
+           c.name                   as category_name,
+           t1.freeed                as freeed,
+           t1.code                  as code,
+           t1.version               as version,
+           t1.system_unit_id        as system_unit_id,
+           t1.module_id             as module_id,
+           t1.system                as system,
+           t1.tenant                as tenant,
+           ''                       as max_version_def_uuid,
+           t1.remark                as remark,
+           t1.delete_time           as delete_time,
+           t1.delete_status         as delete_status,
+           1                        as is_ref
+      from WF_FLOW_DEFINITION t1
+      inner join WF_FLOW_DEFINITION_REF rr on rr.ref_uuid = t1.uuid
+       left join wf_def_category c on t1.category = c.uuid
+     where 1=1
+        <if moduleId??>
+             and rr.module_id=:moduleId
+             and t1.module_id<>:moduleId
+         </if>
+         <if categoryUuid??> and t1.category=:categoryUuid</if>
+         <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+          </if>
+          ) t1
+        <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+
+    ]]>
+
+
+    </sql-query>
+
+
+</hibernate-mapping>

@@ -1,0 +1,55 @@
+<table>
+		 <tr>
+				<td class="Label">数字类型</td>
+				<td class="value">
+					<select id="dbDataType" name="dbDataType" class="w100">
+						<option value="13">  整数</option>
+						<option value="131">  正整数</option>
+						<option value="132">  负整数</option>
+						<option value="14">  长整数</option>
+						<option value="15">  浮点数</option>
+						<option value="12">  双精度浮点数</option>
+						<option value="17">  number类型</option>
+					</select>
+					 
+				</td>
+			</tr> 
+			
+				<tr id="tr_decimal" style="display:none;">
+				<td class="Label" >小数位数</td>
+				<td class="value">
+				<input type="text"  name="decimal"
+					id="decimal" value="" style="width: 25px;float: left;"/>
+				</td>
+			</tr> 
+			
+			
+			
+			<tr id="tr_plusminus"  class="odd">
+				<td class="Label" >加减功能</td>
+				<td class="value"> 
+				 <label for="plusMark">加</label><input type="checkbox"  name="plusMark" 
+					id="plusMark" value="" style="width: 50px; "/>
+					单位:<input type="text"  name="plusUnit"
+					id="plusUnit" value="1" style="width: 50px; "/>  
+				 <label for="minusMark">减</label><input type="checkbox"  name="minusMark" 
+					id="minusMark" value="" style="width: 50px; "/>
+					单位:<input type="text"  name="minusUnit"
+					id="minusUnit" value="1" style="width: 50px; "/>  
+				</td>
+			</tr>
+			
+			
+			<tr id="tr_number" style="display: none;">
+				<td class="Label" >位数</td>
+				<td class="value" >
+					<div class="tr_td_div_left">
+						<span style="float: left;padding-top: 9px;margin-right: 3px;">精度位(有效数):</span><input type="text" name="precision" id="precision" style="width: 25px;float: left;"/>
+					</div>
+					<div class="tr_td_div_left">
+						<span style="float: left;padding-top: 9px;margin-right: 3px;">小数位:</span><input type="text" name="scale" id="scale" style="width: 25px;float: left;"/>
+					</div>
+				</td>
+			</tr>
+				
+</table>

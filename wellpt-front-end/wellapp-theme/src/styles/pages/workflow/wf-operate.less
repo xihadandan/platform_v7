@@ -1,0 +1,67 @@
+/*
+*
+流程表单 - 右上角操作操作按钮
+
+*/
+.wf_operate {
+  .btn {
+    font-size: @font-size-base;
+
+    .iconfont::before {
+      font-size: @font-size-base + 2;
+      margin-right: 0;
+    }
+  }
+
+  .well-btn {
+    font-size: @font-size-base;
+
+    .iconfont::before {
+      font-size: @font-size-base + 2;
+      margin-right: 0;
+    }
+  }
+
+  .well-btn.iconfont::before {
+    font-size: @font-size-base + 2;
+    margin-right: 0;
+  }
+
+  .btn-group .dropdown-toggle i::before {
+    font-size: @font-size-sm;
+  }
+
+  .btn-group .dropdown-toggle i {
+    margin-left: 6px;
+    line-height: 33px;
+  }
+
+  .dropdown-menu {
+    right: 10px;
+    left: auto;
+    border-radius: 0;
+    margin: 0;
+    line-height: 34px;
+    overflow-x: hidden;
+    // top: 48px;
+
+    li div {
+      width: 100%;
+      text-align: left;
+      max-height: 300px;
+      margin-right: 0px;
+      border: none;
+      background-color: transparent;
+      color: @primary-color;
+      border-radius: 0;
+      padding-right: 10px;
+      line-height: 34px;
+      font-size: @font-size-base;
+
+      &:hover {
+        background-color: @background-primary-light;
+        color: @primary-color;
+      }
+    }
+  }
+}

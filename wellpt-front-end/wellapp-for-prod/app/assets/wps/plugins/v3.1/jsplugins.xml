@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jsplugins>
+	<jsplugin name="oaassist" url="http://dev.wpseco.cn/plugins/v3.1/oaassist.7z" type="wps" version="3.1"/>
+	<!-- <jsplugin name="officialdocassist" url="http://dev.wpseco.cn/plugins/officialdocassist.7z" type="wps" version="1.0"/> -->
+	<jsplugin name="etoa" url="http://dev.wpseco.cn/plugins/v3.1/etoa.7z" type="et" version="2.1"/>
+	<jsplugin name="wppoa" url="http://dev.wpseco.cn/plugins/v3.1/wppoa.7z" type="wpp" version="2.1"/>
+</jsplugins>

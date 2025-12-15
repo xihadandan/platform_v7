@@ -1,0 +1,159 @@
+<form action="" id="rule_conf_form" class="form-widget" style="margin-top: 15px">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#ruleBasicInfo" aria-controls="ruleBasicInfo" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+    </li>
+    <li role="presentation">
+      <a href="#ruleFieldMapping" aria-controls="ruleFieldMapping" role="tab" data-toggle="tab" aria-expanded="true">字段映射</a>
+    </li>
+    <li role="presentation">
+      <a href="#ruleRela" aria-controls="ruleRela" role="tab" data-toggle="tab" aria-expanded="true">关系维护</a>
+    </li>
+    <li role="presentation">
+      <a href="#ruleReverseWrite" aria-controls="ruleReverseWrite" role="tab" data-toggle="tab" aria-expanded="true">字段反写规则</a>
+    </li>
+    <li role="presentation">
+      <a href="#ruleTransListener" aria-controls="ruleTransListener" role="tab" data-toggle="tab" aria-expanded="true">转换侦听</a>
+    </li>
+  </ul>
+  <input type="hidden" id="uuid" name="uuid" />
+  <div class="tab-content" style="margin-top: 15px">
+    <div role="tabpanel" class="tab-pane active" id="ruleBasicInfo">
+      <div class="well-form form-horizontal">
+        <div class="form-group">
+          <label for="ruleName" class="well-form-label control-label">名称</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="ruleName" name="ruleName" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id" class="well-form-label control-label">ID</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" id="id" name="id" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="transferType" class="well-form-label control-label">转换类型</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" name="transferType" id="transferType" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="targetObjId" class="well-form-label control-label">目标单据</label>
+          <div class="well-form-control">
+            <input type="text" class="form-control" name="targetObjName" id="targetObjName" />
+            <input type="hidden" class="form-control" name="targetObjId" id="targetObjId" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="well-form-label control-label no-suffix"></label>
+          <div class="well-form-control">
+            <input type="checkbox" name="isPersist" id="isPersist" />
+            <label for="isPersist">保存单据</label>
+          </div>
+        </div>
+        <div class="form-group sourceObjTr">
+          <label for="sourceObjName" class="well-form-label control-label">源单据</label>
+          <div class="well-form-control">
+            <input type="hidden" class="form-control" name="sourceObjName" id="sourceObjName" />
+            <input type="hidden" class="form-control" name="sourceObjId" id="sourceObjId" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruleFieldMapping">
+      <div class="autoFieldMapping" style="display: none">
+        <div class="title">
+          字段匹配映射
+          <div class="switch-wrap margin-0-15">
+            <input type="hidden" name="autoMapSameColumn" id="autoMapSameColumn" value="0" />
+            <span class="switch-radio"></span>
+          </div>
+          <span class="title-text">字段编码相同的字段自动建立映射关系</span>
+        </div>
+        <div class="autoFieldMappingTable" style="display: none">
+          <div class="keyword_search_toolbar clearfix" style="padding-top: 10px">
+            <div class="keyword-search-wrap pull-left">
+              <span class="search-icon">
+                <i class="iconfont icon-ptkj-sousuochaxun"></i>
+              </span>
+              <input class="form-control" type="text" placeholder="关键字" />
+              <div class="close-icon" style="display: none">
+                <i class="iconfont icon-ptkj-dacha"></i>
+              </div>
+            </div>
+            <div class="pull-left">
+              <button class="well-btn w-btn-primary btn-query" type="button" name="query" title="查询">查询</button>
+            </div>
+          </div>
+          <table id="autoFieldMappingTable" class="subtable"></table>
+        </div>
+        <hr class="margin-20-0" />
+      </div>
+      <div class="title">自定义字段映射</div>
+      <div class="">
+        <button type="button" class="well-btn w-btn-primary btn_subtable_add" id="btn_fieldMappingTable_add">新增</button>
+        <button type="button" class="well-btn w-btn-danger btn_subtable_del" id="btn_fieldMappingTable_del">删除</button>
+      </div>
+      <table id="fieldMappingTable" class="subtable"></table>
+      <p class="tips mt-20">
+        <span>
+          <i class="iconfont icon-ptkj-weixianjinggaotishiyuqi"></i>
+          温馨提示：
+        </span>
+        多次配置同一字段为目标字段时，仅列表中最后一次配置生效。
+      </p>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruleRela">
+      <div class="row">
+        <div class="col-xs-2 text-right">
+          <label for="relaObjName" style="color: #666; font-weight: normal; line-height: 35px">关系单据:</label>
+        </div>
+        <div class="col-xs-9">
+          <input id="relaObjName" name="relaObjName" type="text" />
+          <input type="hidden" id="relaObjId" name="relaObjId" />
+          <input type="hidden" id="relaUuid" name="relaUuid" />
+        </div>
+      </div>
+      <div class="">
+        <button type="button" class="well-btn w-btn-primary btn_subtable_add" id="btn_relaTable_add">新增</button>
+        <button type="button" class="well-btn w-btn-danger btn_subtable_del" id="btn_relaTable_del">删除</button>
+      </div>
+      <table id="relaTable" class="subtable"></table>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruleReverseWrite">
+      <div class="">
+        <button type="button" class="well-btn w-btn-primary btn_subtable_add" id="btn_reverseWriteMappingTable_add">新增</button>
+        <button type="button" class="well-btn w-btn-danger btn_subtable_del" id="btn_reverseWriteMappingTable_del">删除</button>
+      </div>
+      <table id="reverseWriteMappingTable" class="subtable"></table>
+      <p class="tips mt-20">
+        <span>
+          <i class="iconfont icon-ptkj-weixianjinggaotishiyuqi"></i>
+          温馨提示：
+        </span>
+        多次配置同一字段为源字段时，仅列表中最后一次配置生效。
+      </p>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="ruleTransListener">
+      <div class="well-form form-horizontal" id="transListenerCodeType">
+        <div class="form-group">
+          <div class="well-form-control">
+            <input type="radio" id="scriptBeforeTrans" name="trans" />
+            <label for="scriptBeforeTrans">单据转换前侦听代码</label>
+            <input type="radio" id="scriptAfterTrans" name="trans" checked="checked" />
+            <label for="scriptAfterTrans">单据转换后侦听代码</label>
+          </div>
+        </div>
+      </div>
+      <div id="transScriptContainer"></div>
+      <label style="color: red">说明：支持groovy脚本代码</label>
+    </div>
+    <div class="row" style="margin-top: 30px">
+      <div class="col-sm-12 text-center">
+        <button type="button" class="well-btn w-btn-primary" id="bot_rule_btn_save">保存</button>
+        <button type="button" class="well-btn w-btn-primary" id="bot_rule_btn_debug">调试</button>
+      </div>
+    </div>
+  </div>
+</form>

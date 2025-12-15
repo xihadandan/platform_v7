@@ -1,0 +1,170 @@
+/** 头部组件 用户资料弹窗 */
+
+.is-edittind-box .hasEdited,
+.has-edited-box .isEditting {
+  display: none;
+}
+
+.form-widget.has-edited-box .form-horizontal .form-group {
+  margin-bottom: 5px;
+}
+
+.user-info-line .user-info-content .user-info-avatar,
+.form-user-info .well-form .user-info-avatar {
+  width: 18%;
+  display: inline-block;
+  margin-left: 12px;
+  text-align: right;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.user-info-line .user-info-content .user-chief .default-avatar,
+.user-info-line .user-info-content .user-info-avatar .default-avatar,
+.form-user-info .well-form .user-info-avatar .default-avatar {
+  .square(80px);
+
+  border: @border-default;
+  border-radius: 50%;
+  box-sizing: border-box;
+  overflow: hidden;
+  vertical-align: middle;
+  display: inline-block;
+
+  i {
+    font-size: 80px;
+    color: @text-color-primary;
+  }
+}
+
+.user-info-line .user-info-content .user-chief .img,
+.user-info-line .user-info-content .user-info-avatar img,
+.form-user-info .well-form .user-info-avatar img {
+  .square(80px);
+
+  background: #eee;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.form-user-info .well-form .user-info-avatar.hasImg img {
+  display: inline-block;
+}
+
+.form-user-info .well-form .user-info-avatar.hasImg .default-avatar {
+  display: none;
+}
+
+.form-user-info .well-form .user-info-avatar.noImg img {
+  display: none;
+}
+
+.form-user-info .well-form .user-info-avatar.noImg .default-avatar {
+  display: inline-block;
+}
+
+.user-info-line .user-info-content .user-info-avatar .user-info-shadow,
+.form-user-info .well-form .user-info-avatar .user-info-shadow {
+  .square(80px);
+  .absolute(0 0 false false);
+
+  border-radius: 50%;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.user-info-line .user-info-content .user-info-avatar:hover .user-info-shadow,
+.form-user-info .well-form .user-info-avatar:hover .user-info-shadow {
+  display: inline-block;
+}
+
+.user-info-line .user-info-content .user-info-avatar .user-info-shadow i,
+.form-user-info .well-form .user-info-avatar .user-info-shadow i {
+  color: @text-color-inverse;
+  line-height: 80px;
+  cursor: pointer;
+}
+
+.user-info-line .user-info-content .user-info-avatar .user-info-shadow i:hover,
+.form-user-info .well-form .user-info-avatar .user-info-shadow i:hover {
+  color: @text-color-primary;
+}
+
+.form-user-info .well-form .user-info-name {
+  margin-left: 15px;
+  font-size: @font-size-xl;
+  color: @text-color-dark;
+  font-weight: bold;
+}
+
+.user-info-line .user-info-content .user-info-btn,
+.form-user-info .well-form .user-info-btn {
+  margin-left: 15px;
+  padding: 0px 16px;
+  height: 34px;
+  line-height: 34px;
+  color: @text-color-primary;
+  border: @btn-primary-line-border-color;
+  border-radius: @border-radius-base;
+  font-size: @font-size-base;
+  background: transparent;
+  vertical-align: middle;
+}
+
+.user-info-line .user-info-content .user-info-btn:active,
+.form-user-info .well-form .user-info-btn:active {
+  background: @primary-color;
+  color: @text-color-inverse;
+  border: @border-default-primary;
+}
+
+.user-info-line .user-info-content .user-info-btn:hover,
+.form-user-info .well-form .user-info-btn:hover {
+  border: @border-default-primary;
+}
+
+.user-info-line .user-info-content .user-info-btn + input,
+.form-user-info .well-form .user-info-btn + input {
+  .square(0);
+
+  visibility: hidden;
+  display: inline;
+}
+
+.user-info-line .user-info-content .user-info-tip,
+.form-user-info .well-form .user-info-tip {
+  margin-left: 10px;
+  color: @text-color-light;
+  font-size: @font-size-base;
+  line-height: 34px;
+  height: 34px;
+  vertical-align: middle;
+}
+
+.form-user-info .well-form .well-form-label {
+  width: 18%;
+}
+
+.form-user-info .well-form .well-form-control input[type='radio'] {
+  cursor: pointer;
+}
+
+.form-user-info .well-form .well-form-control input:hover {
+  box-shadow: @shadow-active-default !important;
+}
+
+.form-widget.form-user-info .form-horizontal .form-group .control-label {
+  color: @text-color-light;
+}
+
+.form-user-info .well-form .well-form-control {
+  margin-left: 10px;
+  color: @text-color;
+}
+
+.user-info-edited {
+  line-height: 35px;
+  height: 35px;
+  margin-top: -1px;
+}

@@ -1,0 +1,422 @@
+<form action="" id="sys_form" class="form-widget" style="margin-top: 15px;">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#param-tabs-1" aria-controls="param-tabs-1" role="tab" data-toggle="tab" aria-expanded="true">内网同步</a></li>
+        <li role="presentation"><a href="#param-tabs-2" aria-controls="param-tabs-2" role="tab" data-toggle="tab" aria-expanded="true">三规合一</a></li>
+        <li role="presentation"><a href="#param-tabs-3" aria-controls="param-tabs-3" role="tab" data-toggle="tab" aria-expanded="true">部门对接</a></li>
+        <li role="presentation"><a href="#param-tabs-4" aria-controls="param-tabs-4" role="tab" data-toggle="tab" aria-expanded="true">市区联动</a></li>
+        <li role="presentation"><a href="#param-tabs-5" aria-controls="param-tabs-5" role="tab" data-toggle="tab" aria-expanded="true">系统参数</a></li>
+        <li role="presentation"><a href="#param-tabs-7" aria-controls="param-tabs-6" role="tab" data-toggle="tab" aria-expanded="true">网上申报</a></li>
+        <li role="presentation"><a href="#param-tabs-8" aria-controls="param-tabs-7" role="tab" data-toggle="tab" aria-expanded="true">省网对接</a></li>
+    </ul>
+    <div class="tab-content" >
+        <div id="param-tabs-1" role="tabpanel" class="tab-pane active">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label class="well-form-label control-label no-suffix">前置机租户</label>
+                    <div class="well-form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">当前网络</label>
+                    <div class="well-form-control">
+                        <input type="text" name="xt_wl" id="xt_wl">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">失败同步间隔(S)</label>
+                    <div class="well-form-control">
+                        <input type="number" class="form-control" id="syn_fail_agin_interval" name="syn_fail_agin_interval">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">清理同步数据间隔(S)</label>
+                    <div class="well-form-control">
+                        <input type="number" class="form-control" id="syn_clear_table_interval" name="syn_clear_table_interval">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">每个同步周期同步条数</label>
+                    <div class="well-form-control">
+                        <input type="number" class="form-control" id="syn_zq_data_num" name="syn_zq_data_num">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">同步链路超时时间(S)</label>
+                    <div class="well-form-control">
+                        <input type="number" class="form-control" id="syn_offline_timeout" name="syn_offline_timeout" placeholder="300">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">短信通知手机号</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="syn_offline_recipients" name="syn_offline_recipients" placeholder="188XXXXXXXX;182XXXXXXXX">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">离线消息通知内容</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="syn_offline_msgbody" name="syn_offline_msgbody" placeholder="厦门市建设项目联合审批系统提醒您,内外网同步链路离线了,您可以联系管理查看具体原因。">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label no-suffix">前置机租户</label>
+                    <div class="well-form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">前置机租户外网(流出)</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_zh_ww_out" name="qzj_zh_ww_out">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">前置机租户外网(流入)</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_zh_ww_in" name="qzj_zh_ww_in">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">前置机租户内网(流出)</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_zh_nw_out" name="qzj_zh_nw_out">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">前置机租户内网(流入)</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_zh_nw_in" name="qzj_zh_nw_in">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label no-suffix">前置机FTP</label>
+                    <div class="well-form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label no-suffix">外网(流出)</label>
+                    <div class="well-form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">FTP外网(流出)地址</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_ftp_ww_out_host" name="qzj_ftp_ww_out_host">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">FTP外网(流出)用户名</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_ftp_ww_out_username" name="qzj_ftp_ww_out_username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">FTP外网(流出)密码</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_ftp_ww_out_password" name="qzj_ftp_ww_out_password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">FTP外网(流出)端口</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_ftp_ww_out_post" name="qzj_ftp_ww_out_post">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label no-suffix">外网(流入)</label>
+                    <div class="well-form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">FTP外网(流入)地址</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_ftp_ww_in_host" name="qzj_ftp_ww_in_host">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">FTP外网(流入)用户名</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_ftp_ww_in_username" name="qzj_ftp_ww_in_username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">FTP外网(流入)密码</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_ftp_ww_in_password" name="qzj_ftp_ww_in_password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">FTP外网(流入)端口</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_ftp_ww_in_post" name="qzj_ftp_ww_in_post">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label no-suffix">内网(流出)</label>
+                    <div class="well-form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">FTP内网(流出)地址</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_ftp_nw_out_host" name="qzj_ftp_nw_out_host">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">FTP内网(流出)用户名</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_ftp_nw_out_username" name="qzj_ftp_nw_out_username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">FTP内网(流出)密码</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_ftp_nw_out_password" name="qzj_ftp_nw_out_password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">FTP内网(流出)端口</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_ftp_nw_out_post" name="qzj_ftp_nw_out_post">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label no-suffix">内网(流入)</label>
+                    <div class="well-form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">FTP内网(流入)地址</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_ftp_nw_in_host" name="qzj_ftp_nw_in_host">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">FTP内网(流入)用户名</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_ftp_nw_in_username" name="qzj_ftp_nw_in_username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">FTP内网(流入)密码</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_ftp_nw_in_password" name="qzj_ftp_nw_in_password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">FTP内网(流入)端口</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="qzj_ftp_nw_in_post" name="qzj_ftp_nw_in_post">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="param-tabs-2" role="tabpanel" class="tab-pane">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label class="well-form-label control-label ">webservice地址</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="sg_webservice_address" name="sg_webservice_address">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">用户名</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="sg_user_name" name="sg_user_name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">密码</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="sg_user_password" name="sg_user_password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">流程模板编号</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="sg_flow_template_code" name="sg_flow_template_code">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">启用附件</label>
+                    <div class="well-form-control">
+                        <input type="text" id="sg_flow_template_file" name="sg_flow_template_file">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">需上传空间信息文件事项编号</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="sg_upload_gisfile_matters_code" name="sg_upload_gisfile_matters_code">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">多规合一接口_是否只查询策划项目</label>
+                    <div class="well-form-control">
+                        <input type="text" id="sg_query_plan_project" name="sg_query_plan_project"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">多规合一接口_是否只下载用地阶段附件</label>
+                    <div class="well-form-control">
+                        <input type="text" id="sg_download_ydgh_attachment" name="sg_download_ydgh_attachment">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">贺州用户名</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="hz_project_user_id" name="hz_project_user_id">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">贺州密码</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="hz_project_user_password" name="hz_project_user_password">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="param-tabs-3" role="tabpanel" class="tab-pane">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label class="well-form-label control-label ">对接部门组织机构代码</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="dj_org_numbers" name="dj_org_numbers">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">排队号调用地址</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="dj_line_address" name="dj_line_address">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">启用排队号</label>
+                    <div class="well-form-control">
+                        <input type="text" id="dj_line_enable" name="dj_line_enable">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">企业设立_是否启用客户端</label>
+                    <div class="well-form-control">
+                        <input type="text" id="dj_qysl_client_system_enable" name="dj_qysl_client_system_enable">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">企业设立_客户端组织机构代码</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="dj_qysl_client_system_orgcode" name="dj_qysl_client_system_orgcode">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">企业设立_客户端WebService地址</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="dj_qysl_client_system_webservice" name="dj_qysl_client_system_webservice">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">评价系统调用地址</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="evaluation_system_address" name="evaluation_system_address">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="param-tabs-4" role="tabpanel" class="tab-pane">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label class="well-form-label control-label ">启用市区联动</label>
+                    <div class="well-form-control">
+                        <input type="text" name="sqld_enable" id="sqld_enable">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">畅享总线初始化路径</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="sqld_zongxian_init_path" name="sqld_zongxian_init_path">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="param-tabs-5" role="tabpanel" class="tab-pane">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label class="well-form-label control-label ">消息自动弹窗列表展示条数限制</label>
+                    <div class="well-form-control">
+                        <input type="number" class="form-control" id="sys_msg_showlist_num" name="sys_msg_showlist_num">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">系统访问全路径</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="sys_context_path" name="sys_context_path">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="param-tabs-7" role="tabpanel" class="tab-pane">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label class="well-form-label control-label ">启用网上申报对接</label>
+                    <div class="well-form-control">
+                        <input type="text" id="wssb_enable" name="wssb_enable">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">webservice地址</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="wssb_webservice_address" name="wssb_webservice_address">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">网上申报单位</label>
+                    <div class="well-form-control">
+                        <input type="hidden" class="" id="wssb_unitId" name="wssb_unitId">
+                        <input type="text" class="form-control" id="wssb_unitName" name="wssb_unitName">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="param-tabs-8" role="tabpanel" class="tab-pane">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label class="well-form-label control-label ">当前时间提前n分钟(程序取时间)</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="SWDJ_AHEAD_TIME" name="SWDJ_AHEAD_TIME">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">受理上报时间</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="SPXXGX_SL_SB_TIME" name="SPXXGX_SL_SB_TIME">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">审批上报时间</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="SPXXGX_SPGC_TIME" name="SPXXGX_SPGC_TIME">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">审批结果上报时间</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="SPXXGX_SPJG_TIME" name="SPXXGX_SPJG_TIME">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">审批结果(办件删除)上报时间</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="SPXXGX_SPJG_DEL_TIME" name="SPXXGX_SPJG_DEL_TIME">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label ">证照上报时间</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="SPXXGX_ZZ_SB_TIME" name="SPXXGX_ZZ_SB_TIME">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <button id="sys_param_btn_save" type="button" class="well-btn w-btn-primary">保存</button>
+        </div>
+    </div>
+</form>

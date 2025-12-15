@@ -1,0 +1,108 @@
+<div id="custombtndiv">
+	<div class="dyform">
+			<div class="post-sign">
+				<div class="post-detail">
+		<table> 
+			<tr class="odd">
+				<td class="Label">按钮ID</td>
+				<td class="value"><input  type="text" id="btnId" value=""></td> 
+			</tr>
+			<tr>
+				<td class="Label">标签值</td>
+				<td class="value">
+					<input type="text" id="btnLabel" value="">
+				</td> 
+			</tr>
+			<tr class="odd">
+				<td class="Label">宽度</td>
+				<td class="value"><input type="text"  id="btnWidth" value=""></td> 
+			</tr>
+          
+ 	</table>
+ 	</div>
+ 	</div>
+ 	</div>
+ 	
+</div>
+<script type="text/javascript">
+var custombtn = {};
+custombtn.$ =  function(selector){
+	return $(selector, $("#custombtndiv"));
+}
+
+
+/**
+ * 初始化属性窗口
+ */
+ custombtn.initPropertyDialog = function (editor){
+	// $(".cke_reset_all"  ).removeClass("cke_reset_all");
+	this.editor = editor;
+	var focusedDom = editor.focusedDom;//当前editor被双击的对象(CKEDITOR.dom.node类) 
+	
+	var labelText = "";
+	 
+	if(focusedDom != null && (typeof focusedDom) != "undefined"){
+		this.setLabel(focusedDom.getValue());
+		this.setId(focusedDom.getAttribute("id")); 
+		this.setWidth(focusedDom.getStyle("width"));
+	}
+};
+
+custombtn.setLabel = function(label){ 
+	this.$("#btnLabel").val(label);
+	 
+}
+
+custombtn.setId = function(id){
+	 
+	this.$("#btnId").val(id);
+}
+
+custombtn.setWidth = function(width){
+	 
+	this.$("#btnWidth").val(width);
+}
+
+custombtn.exitDialog = function(){
+	$.ControlConfigUtil.exitDialog(this.editor);
+	this.setLabel("");
+	this.setId("");
+	this.setWidth("");
+}
+
+custombtn.fillCkeditor = function(){
+	if(this.editor.focusedDom != null){
+		this.editor.focusedDom.setValue($("#btnLabel").val());
+		this.editor.focusedDom.setStyle("width", this.$("#btnWidth").val());
+		this.editor.focusedDom.setAttribute("id", this.$("#btnId").val());
+	}else{
+	  var html = "";
+		html += "<input type='button' value='" + $("#btnLabel").val() + "' id='" + this.$("#btnId").val() + "' style='width:" + this.$("#btnWidth").val() + "px'>";
+	   var element = CKEDITOR.dom.element.createFromHtml( html );
+		 
+		/* //this.editor.insertHtml(html);
+		var selection = this.editor.getSelection();
+		var elem = selection.getStartElement();
+		if(elem.getParent().getName() == "div" && elem.getParent().getAttribute("class") == "dyform"){
+			alert("请将光标移至白色编辑区内")
+			elem.focus(); 
+			return ;
+		} */
+		
+		 
+		this.editor.insertElement( element );
+	}
+	
+	
+	 	 
+
+	
+	
+	
+	
+}
+
+
+
+
+</script>

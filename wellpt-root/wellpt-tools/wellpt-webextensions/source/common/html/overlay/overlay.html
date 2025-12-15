@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html id="web-developer-overlay" lang="en">
+
+<head>
+<meta charset="utf-8">
+<title>@name@</title>
+<link href="/common/style-sheets/bootstrap.css" rel="stylesheet">
+<link href="overlay.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<ul class="nav nav-tabs">
+		<li id="options-toolbar"><a href="#options-menu" data-toggle="tab"><i class="icon-cogs"></i><span></span></a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div id="options-menu" class="tab-pane">
+			<ul class="list-unstyled">
+				<li><a href="#" id="reset-page"><span></span></a></li>
+			</ul>
+
+			<ul class="list-unstyled">
+				<li><a href="#" id="options"><span></span></a></li>
+				<li><a href="#" id="about"><span></span></a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div id="confirmation" class="alert alert-warning fade in">
+		<span></span>
+		<button id="confirmation-cancel" type="button" class="btn btn-default"></button>
+		<button type="button" class="btn btn-warning"></button>
+	</div>
+
+	<div id="notification" class="alert alert-dismissable alert-success fade in">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<span></span>
+	</div>
+
+	<script src="/common/javascript/jquery/jquery.js"></script>
+	<script src="/common/javascript/webextension-polyfill-0.6.0/browser-polyfill.js"></script>
+	<script src="/common/javascript/bootstrap/tab.js"></script>
+	<script src="/common/javascript/bootstrap/transition.js"></script>
+	<script src="/common/javascript/common.js"></script>
+	<script src="/locales/locales.js"></script>
+	<script src="javascript/overlay.js"></script>
+</body>
+
+</html>

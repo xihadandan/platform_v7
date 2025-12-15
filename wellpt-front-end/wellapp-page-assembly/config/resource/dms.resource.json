@@ -1,0 +1,474 @@
+{
+  "css": {
+    "wMobileFileManager": {
+      "path": "/css/widget/jquery-ui-wMobileFileManager",
+      "name": "数据管理_移动文件库_CSS样式",
+      "order": 26
+    }
+  },
+  "jsTemplate": {
+    "pt-dms-file-box": {
+      "path": "/dms/dms-file-box.html",
+      "name": "数据管理_文件库_文件缩略显示"
+    },
+    "pt-dms-file-box-editable": {
+      "path": "/dms/dms-file-box-editable.html",
+      "name": "数据管理_文件库_文件缩略编辑"
+    },
+    "dataImport": {
+      "path": "/dms/data_import.html",
+      "name": "数据管理操作_数据导入_JS模板"
+    },
+    "pt-dms-file-attributes": {
+      "path": "/dms/dms-file-attributes.html",
+      "name": "数据管理_文件库_文件缩略编辑"
+    }
+  },
+  "js": {
+    "wMobileFileManager": {
+      "path": "/js/ui/widget/mui.wMobileFileManager",
+      "name": "数据管理_移动端文件管理解析",
+      "dependencies": ["mui-wWidget"]
+    },
+    "mui-MobileDefaultFileList": {
+      "path": "/js/ui/widget/mui.MobileDefaultFileList",
+      "name": "数据管理_移动端文件列表二开",
+      "dependencies": ["MobileListDevelopmentBase", "DmsListViewActionBase", "DmsFileServices", "mui-unit"]
+    },
+    "DmsDyformDocumentView": {
+      "path": "js/dms/dyform/DmsDyformDocumentView",
+      "name": "数据管理_单据开发_表单实现",
+      "dependencies": ["DmsDocumentViewDevelopment", "DyformExplain"]
+    },
+    "AppDmsRoleWidgetDevelopment": {
+      "path": "js/dms/AppDmsRoleWidgetDevelopment",
+      "name": "平台应用_数据管理_文件操作权限定义_编辑二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "jquery-validate", "wSelect2", "global", "system-admin"]
+    },
+    "DmsDocExchangerOperateLogView": {
+      "path": "js/dms/docexchanger/DmsDocExchangerOperateLogView",
+      "name": "文档交换_操作日志视图",
+      "dependencies": ["dependencyAppBaseModule", "ListViewWidgetDevelopment", "formBuilder", "DmsDocExchangerDetailsTableHelper"]
+    },
+    "DmsFileManagerListViewCreateDocumentAction": {
+      "path": "js/dms/filemanager/DmsFileManagerListViewCreateDocumentAction",
+      "name": "数据管理_文件库_视图列表_新建文档操作",
+      "dependencies": ["dependencyAppBaseModule", "DmsListViewActionBase"]
+    },
+    "DmsDataLabelListViewAction": {
+      "path": "js/dms/datalabel/DmsDataLabelListViewAction",
+      "name": "数据管理操作_数据标签_标签列表操作",
+      "dependencies": ["dependencyAppBaseModule", "DmsListViewViewAction", "minicolors"]
+    },
+    "DmsDocExchangerSignView": {
+      "path": "js/dms/docexchanger/DmsDocExchangerSignView",
+      "name": "文档交换_签收情况视图",
+      "dependencies": ["dependencyAppBaseModule", "ListViewWidgetDevelopment", "formBuilder", "DmsDocExchangerDetailsTableHelper"]
+    },
+    "DmsDataVersionRightSidebarView": {
+      "path": "js/dms/dyform/DmsDataVersionRightSidebarView",
+      "name": "数据管理_数据历史版本_右侧Tab页视图",
+      "dependencies": ["DmsDyformActionBase"]
+    },
+    "DmsDataImportListViewAction": {
+      "path": "js/dms/dataimport/DmsDataImportListViewAction",
+      "name": "数据管理操作_数据导入_导入列表操作",
+      "dependencies": ["dependencyAppBaseModule", "DmsListViewViewAction", "minicolors", "lodash"]
+    },
+    "DmsDyformSaveNewVersionWithRemarkAction": {
+      "path": "js/dms/dyform/DmsDyformSaveNewVersionWithRemarkAction",
+      "name": "数据管理_视图列表_基础操作开发接口",
+      "dependencies": ["dependencyAppBaseModule", "DmsDyformActionBase"]
+    },
+    "widget_doc_exchanger": {
+      "path": "/js/design/component/widget_doc_exchanger",
+      "name": "数据管理_文档交换器组件定义",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "DmsDocumentViewDevelopment": {
+      "path": "js/dms/DmsDocumentViewDevelopment",
+      "name": "数据管理_文档单据开发接口DmsDocumentViewDevelopment",
+      "dependencies": ["dependencyAppBaseModule", "DmsDataServices", "DmsActionDispatcher"]
+    },
+    "DmsDyformActionBase": {
+      "path": "js/dms/dyform/DmsDyformActionBase",
+      "name": "数据管理_视图列表_基础操作开发接口",
+      "dependencies": ["dependencyAppBaseModule", "DmsDataServices"]
+    },
+    "DmsDataManagementViewDevelopment": {
+      "path": "js/dms/listview/DmsDataManagementViewDevelopment",
+      "name": "数据管理_视图二开",
+      "dependencies": ["ListViewWidgetDevelopment", "DmsListViewActionBase", "DmsDataServices"]
+    },
+    "DmsDataServices": {
+      "path": "js/dms/DmsDataServices",
+      "name": "数据管理_数据服务",
+      "dependencies": ["dependencyAppBaseModule", "md5"]
+    },
+    "DmsListViewWorkFlowApproveAction": {
+      "path": "js/dms/listview/DmsListViewWorkFlowApproveAction",
+      "name": "数据管理操作_视图列表_送审批",
+      "dependencies": ["dependencyAppBaseModule", "DmsListViewActionBase", "WorkFlowApprove"]
+    },
+    "DmsDocExchangeDocumentView": {
+      "path": "js/dms/docexchanger/DmsDocExchangeDocumentView",
+      "name": "数据管理_单据开发_文档交换实现",
+      "dependencies": ["DmsDocumentViewDevelopment", "DyformExplain"]
+    },
+    "AppDmsDataPerListDevelopment": {
+      "path": "js/dms/AppDmsDataPerListDevelopment",
+      "name": "平台应用_数据管理_数据权限定义二开",
+      "dependencies": ["ListViewWidgetDevelopment", "iexportData_V61"]
+    },
+    "DmsDyformViewHistoryVersionAction": {
+      "path": "js/dms/dyform/DmsDyformViewHistoryVersionAction",
+      "name": "数据管理_视图列表_基础操作开发接口",
+      "dependencies": ["dependencyAppBaseModule", "DmsDyformActionBase"]
+    },
+    "DmsDyformViewReadRecordAction": {
+      "path": "js/dms/dyform/DmsDyformViewReadRecordAction",
+      "name": "数据管理_视图列表_基础操作开发接口",
+      "dependencies": ["dependencyAppBaseModule", "DmsDyformActionBase"]
+    },
+    "DmsDocExchangerExtraSendView": {
+      "path": "js/dms/docexchanger/DmsDocExchangerExtraSendView",
+      "name": "文档交换_补充发送情况视图",
+      "dependencies": ["dependencyAppBaseModule", "ListViewWidgetDevelopment", "formBuilder", "DmsDocExchangerDetailsTableHelper"]
+    },
+    "DmsActionDispatcher": {
+      "path": "js/dms/DmsActionDispatcher",
+      "name": "数据管理_操作派发",
+      "dependencies": ["dependencyAppBaseModule", "DmsDataServices"]
+    },
+    "DmsFeedbackDialog": {
+      "path": "js/dms/DmsFeedbackDialog",
+      "name": "数据管理_反馈弹窗",
+      "dependencies": []
+    },
+    "DmsDyformCloseAction": {
+      "path": "js/dms/dyform/DmsDyformCloseAction",
+      "name": "数据管理_表单操作_关闭窗口",
+      "dependencies": ["dependencyAppBaseModule", "DmsDyformActionBase"]
+    },
+    "DmsListViewActionBase": {
+      "path": "js/dms/listview/DmsListViewActionBase",
+      "name": "数据管理_视图列表_基础操作开发接口",
+      "dependencies": ["dependencyAppBaseModule", "DmsDataServices"]
+    },
+    "DmsTagFragment": {
+      "path": "/js/develop/DmsTagFragment",
+      "name": "数据管理_数据标签_片段功能",
+      "dependencies": ["WidgetDevelopment"]
+    },
+    "widget_file_manager": {
+      "path": "/js/design/component/widget_file_manager",
+      "name": "数据管理_文件管理组件定义",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "DmsDocExchangerForwardView": {
+      "path": "js/dms/docexchanger/DmsDocExchangerForwardView",
+      "name": "文档交换_转发情况视图",
+      "dependencies": ["dependencyAppBaseModule", "ListViewWidgetDevelopment", "formBuilder", "DmsDocExchangerDetailsTableHelper"]
+    },
+    "DmsDocExchangerSaveAction": {
+      "path": "js/dms/docexchanger/DmsDocExchangerSaveAction",
+      "name": "数据管理_文档交换_文档交换保存操作",
+      "dependencies": ["dependencyAppBaseModule", "DmsDyformActionBase"]
+    },
+    "DmsDocExcContactBookUnitDevelopment": {
+      "path": "js/dms/docexchanger/DmsDocExcContactBookUnitDevelopment",
+      "name": "文档交换_通讯录单位视图列表",
+      "dependencies": ["ListViewWidgetDevelopment", "wUnit2"]
+    },
+    "widget_mobile_file_manager": {
+      "path": "/js/design/component/widget_mobile_file_manager",
+      "name": "数据管理_移动端文件管理组件定义",
+      "dependencies": ["dependencyUIComponentModule", "comboTree"]
+    },
+    "DmsListViewCopyAction": {
+      "path": "js/dms/listview/DmsListViewCopyAction",
+      "name": "数据管理_视图列表_复制操作",
+      "dependencies": ["dependencyAppBaseModule", "DmsListViewActionBase"]
+    },
+    "DmsDataLabelDevelopment": {
+      "path": "js/dms/datalabel/DmsDataLabelDevelopment",
+      "name": "数据管理_数据标签_标签列表二开",
+      "dependencies": ["ViewDevelopmentBase", "minicolors"]
+    },
+    "DmsFileManagerThumbnailView": {
+      "path": "js/dms/filemanager/DmsFileManagerThumbnailView",
+      "name": "数据管理_文件库_缩略视图",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "dataStoreBase",
+        "DmsFileServices",
+        "DmsFileManagerBreadcrumbNav",
+        "DmsFileOnlineViewer"
+      ]
+    },
+    "DmsFileManagerBreadcrumbNav": {
+      "path": "js/dms/filemanager/DmsFileManagerBreadcrumbNav",
+      "name": "数据管理_文件库_缩略视图",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "dataStoreBase", "DmsFileServices"]
+    },
+    "DmsFileOnlineViewer": {
+      "path": "js/dms/filemanager/DmsFileOnlineViewer",
+      "name": "数据管理_文件库_缩略视图",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "DmsFileServices", "filePreviewApi"]
+    },
+    "jquery-dmsDocumentView": {
+      "path": "js/dms/jquery.dmsDocumentView",
+      "name": "数据管理_文档单据解析_jquery插件dmsDocumentView",
+      "dependencies": ["dependencyAppBaseModule"]
+    },
+    "DmsListViewAddAction": {
+      "path": "js/dms/listview/DmsListViewAddAction",
+      "name": "数据管理_视图列表_新增操作",
+      "dependencies": ["dependencyAppBaseModule", "DmsListViewActionBase"]
+    },
+    "FileManagerWidgetDevelopment": {
+      "path": "/js/develop/FileManagerWidgetDevelopment",
+      "name": "平台基础_视图组件_二开接口",
+      "dependencies": ["WidgetDevelopment"]
+    },
+    "widget_data_management_viewer": {
+      "path": "/js/design/component/widget_data_management_viewer",
+      "name": "数据管理_查看器组件定义",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "DmsDocExchangerAddAction": {
+      "path": "js/dms/docexchanger/DmsDocExchangerAddAction",
+      "name": "数据管理_文档交换_视图列表_新建文档交换操作",
+      "dependencies": ["dependencyAppBaseModule", "DmsListViewActionBase"]
+    },
+    "DmsFileManagerDyformDocumentView": {
+      "path": "js/dms/filemanager/DmsFileManagerDyformDocumentView",
+      "name": "数据管理_文件库_单据开发_表单实现",
+      "dependencies": ["DmsDyformDocumentView"]
+    },
+    "AppFileLibraryListDevelopment": {
+      "path": "js/dms/AppFileLibraryListDevelopment",
+      "name": "平台应用_数据管理_文件库目录管理二开",
+      "dependencies": ["ListViewWidgetDevelopment", "wSelect2", "multiOrg"]
+    },
+    "AppPictureLibViewDevelopment": {
+      "path": "js/dms/AppPictureLibViewDevelopment",
+      "name": "平台应用_数据管理_图片库分类二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "DmsListViewTablePrintAction": {
+      "path": "js/dms/listview/DmsListViewTablePrintAction",
+      "name": "数据管理操作_视图列表_表格套打操作",
+      "dependencies": ["dependencyAppBaseModule", "DmsListViewActionBase"]
+    },
+    "widget_tag_tree": {
+      "path": "/js/design/component/widget_tag_tree",
+      "name": "数据管理_标签树定义",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "DmsFileManagerListViewWidgetDevelopment": {
+      "path": "js/dms/filemanager/DmsFileManagerListViewWidgetDevelopment",
+      "name": "数据管理_文件库_视图二开",
+      "dependencies": ["DmsDataManagementViewDevelopment", "DmsFileServices", "DmsFileManagerBreadcrumbNav", "DmsFileOnlineViewer"]
+    },
+    "DmsListViewEditAction": {
+      "path": "js/dms/listview/DmsListViewEditAction",
+      "name": "数据管理_视图列表_编辑操作",
+      "dependencies": ["dependencyAppBaseModule", "DmsListViewActionBase"]
+    },
+    "AppFolderDefWidgetDevelopment": {
+      "path": "js/dms/AppFolderDefWidgetDevelopment",
+      "name": "平台应用_数据管理_文件夹定义_编辑二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "bootstrapTable",
+        "bootstrapTable_editable",
+        "wSelect2",
+        "multiOrg",
+        "comboTree",
+        "uuid",
+        "global",
+        "system-admin",
+        "formBuilder"
+      ]
+    },
+    "DmsDocExchangerSenderOperateAction": {
+      "path": "js/dms/docexchanger/DmsDocExchangerSenderOperateAction",
+      "name": "数据管理_文档交换_文档交换发件箱操作",
+      "dependencies": [
+        "dependencyAppBaseModule",
+        "DmsDyformActionBase",
+        "formBuilder",
+        "lodash",
+        "bootstrapTable",
+        "bootstrapTable_editable"
+      ]
+    },
+    "DmsDataMarkListViewAction": {
+      "path": "js/datamark/DmsDataMarkListViewAction",
+      "name": "数据管理操作_数据标记_标记列表操作",
+      "dependencies": ["dependencyAppBaseModule", "DmsListViewViewAction", "minicolors"]
+    },
+    "wDataManagementViewer": {
+      "path": "/js/ui/widget/jquery-ui-wDataManagementViewer",
+      "name": "数据管理_查看器组件解析",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "api-wBootstrapTable", "DmsDataServices"]
+    },
+    "AppDmsDataPerWidgetDevelopment": {
+      "path": "js/dms/AppDmsDataPerWidgetDevelopment",
+      "name": "平台应用_数据管理_数据权限定义_编辑二开",
+      "dependencies": ["HtmlWidgetDevelopment", "jquery-form", "jquery-validate", "wSelect2", "ztree", "global", "system-admin"]
+    },
+    "wDocExchanger": {
+      "path": "/js/ui/widget/jquery-ui-wDocExchanger",
+      "name": "数据管理_文档交换器组件解析",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "AppDmsRoleListDevelopment": {
+      "path": "js/dms/AppDmsRoleListDevelopment",
+      "name": "平台应用_数据管理_文件操作权限定义二开",
+      "dependencies": ["ListViewWidgetDevelopment", "iexportData_V61"]
+    },
+    "DmsListViewViewAction": {
+      "path": "js/dms/listview/DmsListViewViewAction",
+      "name": "数据管理_视图列表_查看操作",
+      "dependencies": ["dependencyAppBaseModule", "DmsListViewActionBase"]
+    },
+    "DmsDocExchangerListViewAction": {
+      "path": "js/dms/docexchanger/DmsDocExchangerListViewAction",
+      "name": "数据管理_文档交换_文档交换列表操作",
+      "dependencies": ["dependencyAppBaseModule", "DmsListViewViewAction"]
+    },
+    "AppFolderDefListDevelopment": {
+      "path": "js/dms/AppFolderDefListDevelopment",
+      "name": "平台应用_数据管理_文件夹定义二开",
+      "dependencies": ["ListViewWidgetDevelopment", "iexportData_V61"]
+    },
+    "DmsFileViewAttributes": {
+      "path": "js/dms/filemanager/DmsFileViewAttributes",
+      "name": "数据管理_文件库_查看文件属性",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "multiOrg"]
+    },
+    "DmsDocumentView": {
+      "path": "js/dms/DmsDocumentView",
+      "name": "数据管理_文档单据开发接口DmsDocumentViewDevelopment的默认实现",
+      "dependencies": ["DmsDocumentViewDevelopment"]
+    },
+    "DmsDocExcContactBookDevelopment": {
+      "path": "js/dms/docexchanger/DmsDocExcContactBookDevelopment",
+      "name": "文档交换_通讯录视图列表",
+      "dependencies": ["ListViewWidgetDevelopment", "wUnit2"]
+    },
+    "wMobileDataManagementViewer": {
+      "path": "/js/ui/widget/mui.wMobileDataManagementViewer",
+      "name": "数据管理_查看器组件解析",
+      "dependencies": ["mui-wWidget"]
+    },
+    "wFileManager": {
+      "path": "/js/ui/widget/jquery-ui-wFileManager",
+      "name": "数据管理_文件管理组件解析",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "dependencyZtreeModule",
+        "DmsFileManagerThumbnailView",
+        "DmsFileServices",
+        "wBootstrapTable",
+        "jquery.fileupload",
+        "jquery.iframe-transport",
+        "jquery.fileupload-process"
+      ]
+    },
+    "DmsDocExchangerUrgeView": {
+      "path": "js/dms/docexchanger/DmsDocExchangerUrgeView",
+      "name": "文档交换_催办记录视图",
+      "dependencies": ["dependencyAppBaseModule", "ListViewWidgetDevelopment", "formBuilder", "DmsDocExchangerDetailsTableHelper"]
+    },
+    "widget_mobile_data_management_viewer": {
+      "path": "/js/design/component/widget_mobile_data_management_viewer",
+      "name": "数据管理_查看器组件定义",
+      "dependencies": ["dependencyUIComponentModule"]
+    },
+    "wTagTree": {
+      "path": "/js/ui/widget/jquery-ui-wTagTree",
+      "name": "数据管理_标签树解析",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "metisMenu"]
+    },
+    "DmsDyformWorkFlowApproveAction": {
+      "path": "js/dms/dyform/DmsDyformWorkFlowApproveAction",
+      "name": "数据管理操作_表单单据操作_送审批",
+      "dependencies": ["dependencyAppBaseModule", "DmsDyformActionBase", "WorkFlowApprove"]
+    },
+    "mui-MobileDmsListViewDevelopment": {
+      "path": "/js/ui/widget/mui.MobileDmsListViewDevelopment",
+      "name": "数据管理_手机数据列表二开",
+      "dependencies": ["MobileListDevelopmentBase", "DmsListViewActionBase", "DmsDataServices"]
+    },
+    "DmsDocExchangerDetailsTableHelper": {
+      "path": "js/dms/docexchanger/DmsDocExchangerDetailsTableHelper",
+      "name": "数据管理_文档交换_文档交换详情表格工具类",
+      "dependencies": ["dependencyAppBaseModule", "formBuilder", "lodash", "wFileUpload", "bootstrap-table-pagination", "bootstrapTable_locale_zh-CN", "dataStoreBase"]
+    },
+    "DmsDocExchangerFeedbackView": {
+      "path": "js/dms/docexchanger/DmsDocExchangerFeedbackView",
+      "name": "文档交换_反馈情况视图",
+      "dependencies": ["dependencyAppBaseModule", "ListViewWidgetDevelopment", "formBuilder", "DmsDocExchangerDetailsTableHelper"]
+    },
+    "DmsFileServices": {
+      "path": "js/dms/filemanager/DmsFileServices",
+      "name": "数据管理_文件服务",
+      "dependencies": ["DmsDataServices"]
+    },
+    "DmsDyformPrintAction": {
+      "path": "js/dms/dyform/DmsDyformPrintAction",
+      "name": "数据管理_表单操作_套打",
+      "dependencies": ["dependencyAppBaseModule", "DmsDyformActionBase"]
+    },
+    "DmsDocExchangerReceiverOperateAction": {
+      "path": "js/dms/docexchanger/DmsDocExchangerReceiverOperateAction",
+      "name": "数据管理_文档交换_文档交换收件箱操作",
+      "dependencies": ["dependencyAppBaseModule", "DmsDyformActionBase", "formBuilder", "lodash", "wFileUpload"]
+    },
+    "mui-dmsDocumentView": {
+      "path": "js/dms/mui.dmsDocumentView",
+      "name": "数据管理_文档单据解析_mui插件dmsDocumentView",
+      "dependencies": ["dependencyAppBaseModule"]
+    },
+    "AppDmsDataRangeWidgetDevelopment": {
+      "path": "js/dms/AppDmsDataRangeWidgetDevelopment",
+      "name": "平台应用_数据管理_数据权限范围过滤_编辑二开",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "AppPtMgrDetailsWidgetDevelopment",
+        "jquery-form",
+        "jquery-validate",
+        "wSelect2",
+        "multiOrg",
+        "formBuilder",
+        "global",
+        "system-admin"
+      ]
+    },
+    "DmsActionDevelopment": {
+      "path": "js/dms/DmsActionDevelopment",
+      "name": "数据管理_操作接口",
+      "dependencies": ["dependencyAppBaseModule"]
+    },
+    "DmsDocExchangerBaseView": {
+      "path": "js/dms/docexchanger/DmsDocExchangerBaseView",
+      "name": "文档交换_基本信息视图",
+      "dependencies": ["dependencyAppBaseModule", "ViewDevelopmentBase", "bootstrap-datetimepicker", "layDatePro"]
+    },
+    "DmsDyformPrevOrNextDocumentRefreshAction": {
+      "path": "js/dms/dyform/DmsDyformPrevOrNextDocumentRefreshAction",
+      "name": "数据管理查看器_上一笔或下一笔文档刷新",
+      "dependencies": ["dependencyAppBaseModule", "DmsListViewActionBase"]
+    },
+    "DmsFileViewer": {
+      "path": "js/dms/viewer/dms_file_viewer",
+      "name": "查看文档文件",
+      "dependencies": ["jquery", "commons", "constant", "server", "appContext", "DmsFileOnlineViewer"]
+    }
+  }
+}

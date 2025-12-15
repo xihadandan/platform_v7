@@ -1,0 +1,114 @@
+/*管理操作日志样式 start*/
+.div_search_toolbar .label-formbuilder .search-tooltip {
+  position: relative;
+  display: inline-block;
+}
+.div_search_toolbar .label-formbuilder .search-tooltip i {
+  color: #999;
+  font-weight: normal;
+}
+.div_search_toolbar .label-formbuilder .search-tooltip i:hover + .search-tooltip-content {
+  display: block;
+}
+.div_search_toolbar .label-formbuilder .search-tooltip .search-tooltip-content {
+  display: none;
+  position: absolute;
+  top: -10px;
+  left: 30px;
+  width: 250px;
+  line-height: 20px;
+  padding: 15px;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  text-align: left;
+  color: #999;
+  background: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  z-index: 105;
+}
+
+.div_search_toolbar .label-formbuilder .search-tooltip .search-tooltip-content {
+  top: 30px;
+  left: -100px;
+}
+
+.div_search_toolbar .label-formbuilder .search-tooltip .search-tooltip-content:before {
+  position: absolute;
+  top: -10px;
+  left: 100px;
+  content: '';
+  display: block;
+  border-right: 8px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid #fff;
+}
+.management-log {
+  width: 100%;
+  height: 100%;
+  padding: 20px 5px;
+}
+.management-log .log-row {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #666666;
+  line-height: 20px;
+  background: rgba(72, 140, 238, 0.05);
+  border: 1px solid #e8e8e8;
+}
+.management-log .log-row label {
+  font-weight: bold;
+}
+.management-log .log-row .icon-before,
+.management-log .log-row .icon-after {
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+}
+.log-diff-wrapper {
+  width: 100%;
+}
+.log-diff-wrapper .log-diff-header {
+  border: 1px solid #dddddd;
+  border-bottom: none;
+}
+.log-diff-header .title {
+  position: relative;
+  padding-left: 30px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #333333;
+  background: #f6f6f6;
+}
+.log-diff-header .title:before {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  margin-top: -8px;
+  content: '';
+  display: block;
+  width: 4px;
+  height: 15px;
+  border-radius: 2px;
+  background: @primary-color;
+}
+.log-diff-header .type {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 10px;
+}
+.log-diff-header .type span {
+  padding: 3px 20px;
+  margin-right: 10px;
+  line-height: 1;
+  font-size: 14px;
+  color: #fff;
+}
+/*管理操作日志样式 end*/

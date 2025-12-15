@@ -1,0 +1,63 @@
+.coordinates(@coords:0 false false 0) when not (extract(@coords, 1) = false) {
+  top: extract(@coords, 1);
+}
+.coordinates(@coords:0 false false 0) when not (extract(@coords, 2) = false) {
+  right: extract(@coords, 2);
+}
+.coordinates(@coords:0 false false 0) when not (extract(@coords, 3) = false) {
+  bottom: extract(@coords, 3);
+}
+.coordinates(@coords:0 false false 0) when not (extract(@coords, 4) = false) {
+  left: extract(@coords, 4);
+}
+.coordinates(@coords:0 false false 0) {
+  // 所有可能如上
+}
+
+.coordinates-inside(@width, @height, @valign:top, @halign:left, @xOffset:0, @yOffset:0) when (@valign = top) {
+  top: @yOffset;
+}
+.coordinates-inside(@width, @height, @valign:top, @halign:left, @xOffset:0, @yOffset:0) when (@valign = middle) {
+  top: 50%;
+  margin-top: @yOffset - round(@height / 2);
+}
+.coordinates-inside(@width, @height, @valign:top, @halign:left, @xOffset:0, @yOffset:0) when (@valign = bottom) {
+  bottom: @xOffset;
+}
+.coordinates-inside(@width, @height, @valign:top, @halign:left, @xOffset:0, @yOffset:0) when (@halign = left) {
+  left: @xOffset;
+}
+.coordinates-inside(@width, @height, @valign:top, @halign:left, @xOffset:0, @yOffset:0) when (@halign = center) {
+  left: 50%;
+  margin-left: @xOffset - round(@width / 2);
+}
+.coordinates-inside(@width, @height, @valign:top, @halign:left, @xOffset:0, @yOffset:0) when (@halign = right) {
+  right: @xOffset;
+}
+.coordinates-inside(@width, @height, @valign:top, @halign:left, @xOffset:0, @yOffset:0) {
+  // 所有可能如上
+}
+
+.coordinates-outside(@width, @height, @valign:top, @halign:left, @xOffset:0, @yOffset:0) when (@valign = top) {
+  top: round(@yOffset - @height);
+}
+.coordinates-outside(@width, @height, @valign:top, @halign:left, @xOffset:0, @yOffset:0) when (@valign = middle) {
+  top: 50%;
+  margin-top: @yOffset - round(@height / 2);
+}
+.coordinates-outside(@width, @height, @valign:top, @halign:left, @xOffset:0, @yOffset:0) when (@valign = bottom) {
+  bottom: round(@yOffset - @height);
+}
+.coordinates-outside(@width, @height, @valign:top, @halign:left, @xOffset:0, @yOffset:0) when (@halign = left) {
+  left: round(@xOffset - @width);
+}
+.coordinates-outside(@width, @height, @valign:top, @halign:left, @xOffset:0, @yOffset:0) when (@halign = center) {
+  left: 50%;
+  margin-left: @xOffset - round(@width / 2);
+}
+.coordinates-outside(@width, @height, @valign:top, @halign:left, @xOffset:0, @yOffset:0) when (@halign = right) {
+  right: round(@xOffset - @width);
+}
+.coordinates-outside(@width, @height, @valign:top, @halign:left, @xOffset:0, @yOffset:0) {
+  // 所有可能如上
+}

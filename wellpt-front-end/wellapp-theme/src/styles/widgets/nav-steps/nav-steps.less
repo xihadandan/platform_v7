@@ -1,0 +1,106 @@
+/** 步骤导航组件 */
+
+.ui-wStepNav {
+  // - 下一个步骤/前一个步骤
+  > .next,
+  > .passed {
+    display: none;
+  }
+
+  // - 当前步骤
+  > .active {
+    display: block;
+  }
+
+  // - 步骤头部（进度）
+  .step-header {
+    background: @steps-nav-background;
+    margin-bottom: @margin-sm;
+    padding: @padding-md;
+    text-align: center;
+
+    .step-nav-content {
+      margin: 0 auto;
+      display: inline-block;
+
+      .step-nav-item {
+        float: left;
+        padding: 0 @margin-2xl;
+        position: relative;
+        color: @steps-nav-previous-step-text-color;
+
+        &:before {
+          .absolute(((@steps-nav-step-circle-diameter - @steps-nav-steps-gutter-height) / 2) false false 0);
+          .size((@steps-nav-steps-gutter-width / 2), @steps-nav-steps-gutter-height);
+
+          content: '';
+          background: @steps-nav-steps-gutter-color;
+
+          &:first-child {
+            display: none;
+          }
+        }
+
+        &:after {
+          .absolute(((@steps-nav-step-circle-diameter - @steps-nav-steps-gutter-height) / 2) 0 false false);
+          .size((@steps-nav-steps-gutter-width / 2),  @steps-nav-steps-gutter-height);
+
+          content: '';
+          background: @steps-nav-steps-gutter-color;
+
+          &:last-child {
+            display: none;
+          }
+        }
+
+        .step-nav-num {
+          .square(@steps-nav-step-circle-diameter);
+
+          background: @steps-nav-background;
+          border: @steps-nav-step-border-width solid @border-color-primary;
+          box-sizing: border-box;
+          text-align: center;
+          font-size: @steps-nav-step-number-font-size;
+          line-height: @steps-nav-step-circle-diameter;
+          border-radius: 100%;
+          color: @steps-nav-previous-step-text-color;
+        }
+
+        .step-nav-text {
+          width: @steps-nav-step-circle-diameter;
+          text-align: center;
+          margin: 0;
+        }
+
+        &.active {
+          .step-nav-num {
+            background: @steps-nav-active-step-background-color;
+            color: @steps-nav-active-step-text-color;
+          }
+
+          .step-nav-text {
+            color: @steps-nav-step-description-text-color;
+          }
+        }
+
+        &.next {
+          .step-nav-num {
+            background: @steps-nav-next-step-background-color;
+            border-color: @steps-nav-next-step-background-color;
+            color: @steps-nav-next-step-number-text-color;
+          }
+
+          .step-nav-text {
+            color: @steps-nav-next-step-description-text-color;
+          }
+        }
+      }
+    }
+  }
+
+  // - 步骤底部（上一步/下一步按钮）
+  .step-footer .step-btn-toolbar {
+    text-align: center;
+    padding: @padding-md;
+  }
+}

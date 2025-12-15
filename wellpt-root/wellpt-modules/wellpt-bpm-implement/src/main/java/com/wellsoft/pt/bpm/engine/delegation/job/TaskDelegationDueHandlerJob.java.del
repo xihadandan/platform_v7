@@ -1,0 +1,47 @@
+/*
+ * @(#)2015-3-25 V1.0
+ * 
+ * Copyright 2015 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.bpm.engine.delegation.job;
+
+import org.quartz.JobExecutionContext;
+
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.bpm.engine.delegation.service.TaskDelegationTakeBackService;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+
+/**
+ * Description: 工作委托到期处理
+ *  
+ * @author zhulh
+ * @date 2015-3-25
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2015-3-25.1	zhulh		2015-3-25		Create
+ * </pre>
+ *
+ */
+public class TaskDelegationDueHandlerJob extends Job {
+
+	public static final String KEY_DELEGATION_SETTINGS_UUID = "delegationSettingsUuid";
+	public static final String KEY_TASK_INST_UUID = "taskInstUuid";
+	public static final String KEY_FLOW_INST_UUID = "flowInstUuid";
+	public static final String KEY_TASK_DELEGATION_UUID = "taskDelegationUuid";
+
+	/** 
+	 * (non-Javadoc)
+	 * @see com.wellsoft.pt.task.job.Job#execute(org.quartz.JobExecutionContext, com.wellsoft.pt.task.job.JobData)
+	 */
+	@Override
+	protected void execute(JobExecutionContext context, JobData data) {
+		TaskDelegationTakeBackService taskDelegationTakeBackService = ApplicationContextHolder
+				.getBean(TaskDelegationTakeBackService.class);
+		String taskDelegationUuid = data.getString(KEY_TASK_DELEGATION_UUID);
+		taskDelegationTakeBackService.takeBack(taskDelegationUuid);
+	}
+}

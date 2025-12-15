@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="listByDiConfigUuidOrderBySeqAsc">
+        <![CDATA[
+        select t.*
+		  from DI_DATA_PROCESSOR t
+		  where t.di_config_uuid=:diConfigUuid order by t.seq asc
+    ]]>
+    </sql-query>
+</hibernate-mapping>

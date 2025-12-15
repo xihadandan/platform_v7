@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <!-- 获取新建组织时对应的归属单wselect2使用 -->
+    <sql-query name="queryOrgTypeListForSelect2">
+        <![CDATA[
+		select e.id, e.name
+		from multi_org_type e
+		where e.system_unit_id = :systemUnitId and e.is_forbidden = 0
+		<if isNotBlank( excludeIds )>
+			and e.id not in ( :excludeIds )
+		</if>
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

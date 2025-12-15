@@ -1,0 +1,29 @@
+.fixed-table-header-columns,
+.fixed-table-body-columns {
+  position: absolute;
+  background-color: @component-background;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 100;
+
+  .table {
+    border-right: @border-default-dark;
+
+    &.table-no-bordered {
+      border-right: @border-default-transparent;
+    }
+  }
+}
+
+.fixed-table-header-columns {
+  z-index: 200;
+}
+
+.fixed-table-body-columns table {
+  position: absolute;
+  animation: none;
+}
+
+.fixed-table-header table {
+  table-layout: fixed !important;
+}

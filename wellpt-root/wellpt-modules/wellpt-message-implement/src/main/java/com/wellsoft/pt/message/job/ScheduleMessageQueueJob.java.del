@@ -1,0 +1,38 @@
+package com.wellsoft.pt.message.job;
+
+import com.wellsoft.context.jdbc.support.PagingInfo;
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.message.service.ScheduleMessageQueueService;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+import org.apache.commons.collections.CollectionUtils;
+import org.quartz.JobExecutionContext;
+
+import java.util.Date;
+import java.util.List;
+
+/**
+ * 定时消息任务队列
+ * 移动定时消息到即时消息队列中，通过即时消息队列任务发送
+ */
+public class ScheduleMessageQueueJob extends Job {
+
+
+    @Override
+    protected void execute(JobExecutionContext arg0, JobData arg1) {
+        ScheduleMessageQueueService scheduleMessageQueueService = ApplicationContextHolder.getBean(
+                ScheduleMessageQueueService.class);
+        PagingInfo pagingInfo = new PagingInfo(1, 1000, false);
+        List<String> uuidList = scheduleMessageQueueService.listUuidsBySendTimeLessThanEqual(
+                new Date(), pagingInfo);
+        if (CollectionUtils.isNotEmpty(uuidList)) {
+            for (String uuid : uuidList) {
+                try {
+                    scheduleMessageQueueService.sendScheduleMsg2RealTimeQueue(uuid);
+                } catch (Exception e) {
+                    logger.error("定时消息队列处理异常：", e);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+/* Options styles */
+
+body { min-width: 750px; padding: 70px 0 20px 0; }
+#delete-dialog { display: none; }
+.form-horizontal .btn-default { margin-right: 5px; }
+.help-block:empty { display: none; }
+.navbar-text { background: url(/common/images/logos/16.png) no-repeat 0 2px; padding-left: 20px;background-size: contain;}
+.single .btn-danger { display: none; }
+.tab-content { margin-top: 20px; }
+.table tbody > tr > td { vertical-align: middle; }
+.table tbody > tr.tDnD_whileDrag { background-color: #f5f5f5; }
+.table thead > tr { cursor: auto !important; }
+.table .btn-primary { margin: 0 5px 5px 0; }
+.table-container > .btn-primary { margin-left: 15px; }
+.text-muted { margin: 8px 0 20px 0; }
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5)
+{
+  .navbar-text { background-image: url(/common/images/logos/32.png); background-size: 16px 16px; }
+}
+
+@media (min-width: 768px)
+{
+  .table-container > .btn-primary { margin-left: 0; }
+}
+
+/* Tab styles */
+.nav-tabs > li > a { outline-style: none; }

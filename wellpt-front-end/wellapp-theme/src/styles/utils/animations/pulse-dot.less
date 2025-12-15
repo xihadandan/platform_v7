@@ -1,0 +1,58 @@
+/* 使用方式 `<div class="w-dot w-dot-red"></div>` 或者 `<div class="w-dot w-dot-yellow"></div>` */
+.w-dot {
+  width: 15px;
+  height: 15px;
+  position: relative;
+  display: inline-block;
+
+  ::before {
+    content: '';
+    position: absolute;
+    top: calc((15 - 5) / 2 * 1px);
+    bottom: calc((15 - 5) / 2 * 1px);
+    left: calc((15 - 5) / 2 * 1px);
+    right: calc((15 - 5) / 2 * 1px);
+    border-radius: 50%;
+
+    &.w-dot-red {
+      background-color: rgb(248, 85, 26);
+      box-shadow: 0 0 0px calc((15 - 5) / 2 * 1px) rgba(248, 85, 26, 0.3);
+    }
+
+    &.w-dot-yellow {
+      background-color: rgb(235, 160, 0);
+      box-shadow: 0 0 0px calc((15 - 5) / 2 * 1px) rgba(235, 160, 0, 0.3);
+    }
+  }
+
+  ::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    border-radius: 50%;
+    background: transparent;
+    animation: pulse 2s linear 0s infinite;
+
+    &.w-dot-red {
+      border: 2px solid rgb(248, 85, 26);
+    }
+
+    &.w-dot-yellow {
+      border: 2px solid rgb(235, 160, 0);
+    }
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(calc(5 / 15));
+    opacity: 1;
+  }
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}

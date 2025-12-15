@@ -1,0 +1,145 @@
+{
+  "js": {
+    "AppDyformDesignerSimpleEditDevelopment": {
+      "path": "dyform-mgr/AppDyformDesignerSimpleEditDevelopment",
+      "name": "平台管理_公共资源_表单管理编辑组件二开(simple)",
+      "dependencies": [
+        "jquery",
+        "HtmlWidgetDevelopment",
+        "dyform_constant",
+        "formDefinitionMethod",
+        "AppDyformDesignerSimpleUtils",
+        "AppDyformDesignerSimpleEditExtendDevelopment",
+        "AppDyformPreservedFields",
+        "wCommonPictureLib"
+      ]
+    },
+    "AppDyformDesignerDocEditDevelopment": {
+      "path": "dyform-mgr/AppDyformDesignerDocEditDevelopment",
+      "name": "平台管理_公共资源_表单管理编辑组件二开(doc)",
+      "dependencies": [
+        "jquery",
+        "HtmlWidgetDevelopment",
+        "dyform_constant",
+        "formDefinitionMethod",
+        "AppDyformDesignerDocUtils",
+        "AppDyformDesignerDocEditExtendDevelopment",
+        "AppDyformPreservedFields",
+        "wCommonPictureLib",
+        "docFields"
+      ]
+    },
+    "AppDyformDesignerExtendListDevelopment": {
+      "path": "dyform-mgr/AppDyformDesignerExtendListDevelopment",
+      "name": "平台管理_表单管理扩展列表组件二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppDyformDesignerSimpleUtils": {
+      "path": "dyform-mgr/AppDyformDesignerSimpleUtils",
+      "name": "平台管理_公共资源_表单管理表单定义工具(simple)",
+      "dependencies": ["jquery", "server", "bootstrapTable", "formBuilder"]
+    },
+    "AppDyformDesignerDocUtils": {
+      "path": "dyform-mgr/AppDyformDesignerDocUtils",
+      "name": "平台管理_公共资源_表单管理表单定义工具(doc)",
+      "dependencies": ["jquery", "server", "bootstrapTable", "formBuilder"]
+    },
+    "AppDyformDesignerListDevelopment": {
+      "path": "dyform-mgr/AppDyformDesignerListDevelopment",
+      "name": "平台管理_公共资源_表单管理列表组件二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppDyformPreservedFields": {
+      "path": "dyform-mgr/preservedFields",
+      "name": "平台管理_表单管理关键字工具"
+    },
+    "AppDyformDesignerUtils": {
+      "path": "dyform-mgr/AppDyformDesignerUtils",
+      "name": "平台管理_公共资源_表单管理表单定义工具",
+      "dependencies": ["jquery", "server", "bootstrapTable", "formBuilder"]
+    },
+    "AppDyformCommonFieldSetDevelopment": {
+      "path": "dyform-mgr/AppDyformCommonFieldSetDevelopment",
+      "name": "平台管理_公共资源_表单字段编辑组件二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "dyform_config_js",
+        "jquery",
+        "dyform_constant",
+        "formDefinitionMethod",
+        "AppDyformPreservedFields",
+        "wCommonPictureLib"
+      ]
+    },
+    "AppDyformListViewWidgetDevelopment": {
+      "path": "dyform-mgr/AppDyformListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_表单列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppDyformDesignerSimpleEditExtendDevelopment": {
+      "path": "dyform-mgr/AppDyformDesignerSimpleEditExtendDevelopment",
+      "name": "平台管理_公共资源_表单管理编辑扩展组件二开(simple)",
+      "dependencies": ["jquery", "AppDyformDesignerSimpleUtils"]
+    },
+    "AppDyformDesignerDocEditExtendDevelopment": {
+      "path": "dyform-mgr/AppDyformDesignerDocEditExtendDevelopment",
+      "name": "平台管理_公共资源_表单管理编辑扩展组件二开(doc)",
+      "dependencies": ["jquery", "AppDyformDesignerDocUtils"]
+    },
+    "AppDyformDesignerEditDevelopment": {
+      "path": "dyform-mgr/AppDyformDesignerEditDevelopment",
+      "name": "平台管理_公共资源_表单管理编辑组件二开",
+      "dependencies": [
+        "jquery",
+        "HtmlWidgetDevelopment",
+        "dyform_constant",
+        "formDefinitionMethod",
+        "AppDyformDesignerUtils",
+        "AppDyformDesignerEditExtendDevelopment",
+        "AppDyformPreservedFields",
+        "wCommonPictureLib"
+      ]
+    },
+    "AppDyformFileSourceWidgetDevelopment": {
+      "path": "dyform-mgr/AppDyformFileSourceWidgetDevelopment",
+      "name": "平台应用_表单管理_列表式附件配置_附件来源",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "dependencyUIComponentModule",
+        "HtmlWidgetDevelopment",
+        "formBuilder",
+        "jquery-form",
+        "multiOrg",
+        "global"
+      ]
+    },
+    "AppDyformDesignerEditExtendDevelopment": {
+      "path": "dyform-mgr/AppDyformDesignerEditExtendDevelopment",
+      "name": "平台管理_公共资源_表单管理编辑扩展组件二开",
+      "dependencies": ["jquery", "AppDyformDesignerUtils"]
+    },
+    "AppDyformCommonFieldListDevelopment": {
+      "path": "dyform-mgr/AppDyformCommonFieldListDevelopment",
+      "name": "平台管理_公共资源_表单字段列表组件二开",
+      "dependencies": ["ListViewWidgetDevelopment"]
+    },
+    "AppDyformFileButtonWidgetDevelopment": {
+      "path": "dyform-mgr/AppDyformFileButtonWidgetDevelopment",
+      "name": "平台应用_表单管理_列表式附件配置_附件按钮",
+      "dependencies": [
+        "dependencyBootstrapTableModule",
+        "dependencyUIComponentModule",
+        "HtmlWidgetDevelopment",
+        "formBuilder",
+        "jquery-form",
+        "multiOrg",
+        "global"
+      ]
+    },
+    "docFields": {
+      "path": "dyform-mgr/docFields",
+      "name": "平台应用_交换文档_内置字段",
+      "dependencies": ["global"]
+    }
+  }
+}

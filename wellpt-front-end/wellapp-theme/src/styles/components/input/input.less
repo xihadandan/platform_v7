@@ -1,0 +1,203 @@
+/** 表单 - 文本输入框控件 */
+.well-input {
+  position: relative;
+
+  .well-input-icon {
+    .absolute(0 false 0 false);
+    .square(30px);
+
+    z-index: 100;
+    margin: auto;
+    line-height: 30px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  &.front-icon {
+    input {
+      padding-left: 30px;
+    }
+
+    .well-input-icon {
+      left: 0;
+    }
+  }
+
+  &.end-icon {
+    input {
+      padding-right: 30px;
+    }
+
+    .well-input-icon {
+      right: 0;
+      color: @text-color-light;
+    }
+  }
+}
+
+.well-password-input {
+  position: relative;
+
+  input {
+    padding-right: 30px;
+  }
+
+  .password-eye-btn {
+    &:extend(.text-password-eye-btn);
+  }
+}
+
+.text-password-eye-btn {
+  .absolute(0 0 0 false);
+  .square(30px);
+
+  margin: auto;
+  line-height: 30px;
+  font-size: @font-size-base;
+  text-align: center;
+  cursor: pointer;
+}
+
+.clear-panel-padding .panel-body {
+  padding: 0;
+}
+
+.formbuilder {
+  position: relative;
+  padding-left: 130px;
+  padding-right: 20px;
+
+  .label-formbuilder {
+    position: absolute;
+    left: 0;
+    width: 120px !important;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: right;
+    font-weight: normal;
+  }
+
+  .controls {
+    width: 100% !important;
+    padding: 0;
+  }
+
+  .input-group.date input {
+    border-radius: @border-radius-base!important;
+    padding-right: 25px;
+  }
+
+  .org-select-container i {
+    bottom: auto;
+    line-height: 34px;
+  }
+}
+
+#defineEventJs.formbuilder .controls {
+  width: 20% !important;
+}
+#defineEventJs.formbuilder .controls.eventCodeInputDiv {
+  width: 70% !important;
+}
+
+.input-group-addon,
+.well-input-group-addon {
+  color: @text-color;
+  background: @gray-1;
+}
+
+.input-group-btn .dropdown-toggle {
+  color: @text-color;
+  background: @background-light;
+
+  i {
+    font-size: @font-size-sm;
+  }
+}
+
+.btn-group.open button i {
+  display: inline-block;
+  transform: rotate(180deg);
+}
+
+.btn-group.open .dropdown-toggle {
+  box-shadow: none;
+}
+
+.well-input-group-addon {
+  position: relative;
+  display: table-cell;
+  width: 1%;
+  font-size: @font-size-base;
+  color: @text-color;
+  background: @gray-1;
+  padding: 6px 12px;
+  font-weight: 400;
+  line-height: 1;
+  text-align: left;
+  border: @border-default-lighter;
+  border-radius: @border-radius-base;
+  cursor: pointer;
+
+  i {
+    .absolute(50% 10px false false);
+
+    margin-left: 10px;
+    font-size: @font-size-sm;
+    color: @text-color-light;
+    transform: translateY(-50%);
+    transition: all @animation-duration-fast ease-in-out;
+  }
+
+  &.front-group {
+    border-right: @border-default-transparent;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    + .well-input input {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  &.end-group {
+    border-left: @border-default-transparent;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &.open {
+    border: @border-default-primary;
+
+    i {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+
+  &:hover {
+    border: @border-default-primary;
+  }
+
+  .dropdown-toggle {
+    line-height: normal;
+  }
+
+  .dropdown-menu {
+    padding: 0;
+    min-width: inherit;
+
+    li {
+      padding: 10px;
+      font-size: @item-font-size;
+      color: @item-text-color;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover {
+        color: @item-hover-text-color !important;
+        background-color: @item-hover-background !important;
+      }
+    }
+  }
+}

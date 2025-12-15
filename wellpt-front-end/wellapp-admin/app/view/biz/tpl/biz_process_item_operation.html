@@ -1,0 +1,12 @@
+{@each operations as operation,index}
+<div class="form-group" style="margin-left: 15px">
+  <div>
+    <span>${operation.createTime}</span>
+    <span style="margin-left: 20px">${operation.operatorName}</span>
+  </div>
+  <div>
+    <span style="margin-left: 20px">${operation.operateName}</span>
+    <span style="margin-left: 20px">${operation.opinionText != null ? operation.opinionText : ''}</span>
+  </div>
+</div>
+{@/each}

@@ -1,0 +1,19 @@
+package com.wellsoft.pt.message.job;
+
+import org.quartz.JobExecutionContext;
+
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.message.service.MessageBackupService;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+
+public class Message2BackupJob extends Job {
+
+	@Override
+	protected void execute(JobExecutionContext arg0, JobData arg1) {
+		MessageBackupService backupService = ApplicationContextHolder.getBean(MessageBackupService.class);
+		int backup_during = -1;// 备份之前一个月
+		backupService.BackupMessage(backup_during);
+
+	}
+}

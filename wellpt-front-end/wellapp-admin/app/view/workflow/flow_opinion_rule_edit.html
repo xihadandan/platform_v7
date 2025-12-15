@@ -1,0 +1,63 @@
+<form action="" id="opinion_rule_form" class="form-widget dyform ">
+  <input type="hidden" id="uuid" name="uuid"/>
+  <input type="hidden" id="systemUnitId" name="systemUnitId"/>
+  <div class="well-form form-horizontal">
+    <div class="form-group">
+      <label for="opinionRuleName" class="well-form-label control-label required">规则名称</label>
+      <div class="well-form-control">
+        <input type="text" class="form-control" id="opinionRuleName" name="opinionRuleName" maxlength="50"
+               required="required">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="satisfyCondition" class="well-form-label control-label">校验项</label>
+      <div class="well-form-control">
+        <span class="item_span">满足以下</span>
+        <div style="width: 150px;display: inline-block;">
+          <input class="form-control satisfyCondition" name="satisfyCondition" type="text"/>
+
+        </div>
+        <span class="item_span1">校验项时校验通过</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="work-flow-settings" class="well-form-label control-label"></label>
+      <div class="well-form-control">
+        <div id="opinionRuleItem">
+          <ul class="work-flow-settings" id=""></ul>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="cueWords" class="well-form-label control-label required">提示语
+        <div class="w-tooltip">
+          <i class="iconfont icon-ptkj-tishishuoming"></i>
+          <div class="w-tooltip-content">
+            规则校验未通过时提示用户的提示语
+          </div>
+        </div>
+      </label>
+
+      <div class="well-form-control">
+        <textarea type="text" class="form-control" id="cueWords" name="cueWords" rows="10" maxlength="50"
+                  required="required" oninput="$('#num').text($(this).val().length)"></textarea>
+        <div style="text-align: right;">
+          <span id="num">0</span>/50
+        </div>
+        <input type="checkbox" name="isAlertAutoClose" id="isAlertAutoClose"/>
+        <label for="isAlertAutoClose">提示3s自动关闭</label>
+
+      </div>
+    </div>
+
+  </div>
+  {#
+  <div class="row" style="margin-top:30px;">
+    <div class="col-sm-12 text-center">
+      <button type="button" class="well-btn w-btn-primary" id="opinion_rule_save">保存</button>
+      <button type="button" class="well-btn" id="opinion_rule_cancal">取消</button>
+    </div>
+
+  </div>
+  #}
+</form>

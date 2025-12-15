@@ -1,0 +1,251 @@
+<form action="" id="dyform_common_field_form" style="margin-top: 15px" class="dyform-designer">
+  <!--<ul class="nav nav-tabs" role="tablist">-->
+  <!--<li role="presentation" class="active">-->
+  <!--<a href="#dyform_common_field_basic_info" aria-controls="dyform_common_field_basic_info" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>-->
+  <!--</li>-->
+  <!--</ul>-->
+  <input type="hidden" id="uuid" name="uuid" />
+  <input type="hidden" id="creator" name="creator" />
+  <input type="hidden" id="createTime" name="createTime" />
+  <input type="hidden" id="modifier" name="modifier" />
+  <input type="hidden" id="modifyTime" name="modifyTime" />
+  <input type="hidden" id="scope" name="scope" />
+  <input type="hidden" id="name" name="name" />
+  <input type="hidden" id="displayName" name="displayName" />
+  <input type="hidden" id="definitionJson" name="definitionJson" />
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="dyform_common_field_basic_info" style="padding: 10px 0">
+      <div class="well-form form-horizontal">
+        <div class="form-group">
+          <label class="well-form-label control-label required">所属模块</label>
+          <div class="well-form-control">
+            <input type="hidden" class="form-control" id="dyform_common_field_moduleName" name="moduleName" />
+            <input type="hidden" class="form-control" id="dyform_common_field_moduleId" name="moduleId" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="well-form-label control-label required">所属分类</label>
+          <div class="well-form-control">
+            <input type="hidden" class="form-control" id="dyform_common_field_categoryUuid" name="categoryUuid" />
+            <input type="hidden" class="form-control" id="dyform_common_field_categoryName" name="categoryName" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="well-form-label control-label required">控件类型</label>
+          <div class="well-form-control">
+            <input type="hidden" class="form-control" id="dyform_common_field_controlType" name="controlType" />
+            <input type="hidden" class="form-control" id="dyform_common_field_controlTypeName" name="controlTypeName" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="well-form-label control-label">备注</label>
+          <div class="well-form-control">
+            <textarea class="form-control" id="dyform_common_field_notes" name="notes"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="well-form-label control-label">关联表单</label>
+          <div class="well-form-control" id="associationForm"></div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 20px">
+        <div class="col-sm-12 text-center">
+          <button id="dyform_common_field_btn_next" type="button" class="well-btn w-btn-primary">下一步</button>
+        </div>
+      </div>
+    </div>
+    <div id="dyform_common_field_property" style="display: none; padding: 10px 0">
+      <div id="field-container"></div>
+      <div class="btn-group btn-group-bottom text-center" style="width: 100%; margin-top: 10px">
+        <button id="dyform_common_field_btn_prev" type="button" class="well-btn w-btn-primary">上一步</button>
+        <button id="dyform_common_field_btn_save" type="button" class="well-btn w-btn-primary">保存</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<script src="{{helper.staticPrefix()}}/js/jqueryplugin/jquery.placeholder.min.js"></script>
+
+<script>
+  if (!$.fn.placeholder) {
+    $.fn.placeholder = {
+      input: true,
+      textarea: true
+    };
+  }
+  function selColor(color) {
+    $('#scolor').val(color);
+    $('#subject').css('color', color);
+    $('#fontcolor').css('background-color', color);
+    $('#fontColor').val(color);
+  }
+</script>
+
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/jquery/1.12.4/jquery-migrate-1.4.1.min.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/bootstrap-table/1.11.0/js/bootstrap-table.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/bootstrap/js/bootstrap-tooltip.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/ace/ace_binder.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/bootstrap-editable/js/bootstrap-editable.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/bootstrap-table/1.11.0/js/locale/bootstrap-table-zh-CN.min.js"></script>
+<script
+  type="text/javascript"
+  src="{{helper.staticPrefix()}}/js/bootstrap-table/1.11.0/js/extensions/editable/bootstrap-table-editable.js"
+></script>
+<!--<script type="text/javascript" src="{{helper.staticPrefix()}}/js/bootstrap-editable/js/bootstrap-editable-extensions.js"></script>-->
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/utils/ajaxfileupload.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/utils/json2.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/global.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common/jquery.alerts.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/commons/function.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/validate/js/jquery.validate.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/lodash/3.10.1/lodash.custom.min.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/commons/formDefinitionMethod.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/ztree/3.5.24/js/jquery.ztree.all.fixed.min.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/ztree/3.5.24/js/jquery.ztree.exhide.min.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common2/jquery.common.Core.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common2/jquery.common.ComboTree.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/minicolors/js/jquery.minicolors.js"></script>
+
+<script
+  type="text/javascript"
+  src="{{helper.staticPrefix()}}/dyform/definition/ckeditor/pluginUtils/jquery.wFieldDefinitionUtils.js"
+></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/jqueryui/js/jquery-ui.js"></script>
+
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common/jquery.comboTree.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/commons/FormClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/commons/function.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/commons/validate/additional-methods.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/ckeditor4.5.11/ckeditor.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/definition/ckeditor/dyform_config.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/commons/ckUtils.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/fileupload/js/uuid.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/select2/select2.min.js"></script>
+
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common/jquery.wSelect2.js"></script>
+
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common/jquery.wSelect2Group.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/system_admin.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/multi/org/jquery.multiOrg.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/constant.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/lodash/3.10.1/lodash.custom.min.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/moment/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/commons.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/server.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/formBuilder.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/bootstrap-bootbox/4.4.0/bootbox.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common2/jquery.common.Dialog.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/appModal.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/layer/layer.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/common2/jquery.common.PictureLib.js"></script>
+
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/jquery.wellSelect/wellSelect.js"></script>
+
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/My97DatePicker/WdatePicker.js"></script>
+
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/pt/js/fileupload/well.fileupload.constant.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/utils/ajaxfileupload.src.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/js/utils/ajaxfileupload.js"></script>
+
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wFileUploadClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wCheckBoxClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wCkeditorClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wComboBoxClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wSelectClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wComboSelectClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wComboTreeClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wDatePickerClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wFileUpload4IconClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wFileUploadClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wNumberInputClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wRadioClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wSerialNumberClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wTextAreaClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wTextInputClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wUnitClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wViewDisplayClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wDialogClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wTimeEmployClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wTableViewClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wTagGroupClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wColorClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wSwitchsClass.js"></script>
+<script type="text/javascript" src="{{helper.staticPrefix()}}/dyform/control/controlproperty/wProgressClass.js"></script>
+
+<style type="text/css">
+  #field-container .hongdy > .hongdy_ul {
+    list-style-type: none;
+    background-color: white;
+    padding-inline-start: 0;
+  }
+
+  #field-container .hongdy_ul > .noChose {
+    background-color: #ccc;
+  }
+
+  #field-container .hongdy_ul > .isChose {
+    padding-left: 12px;
+  }
+
+  #field-container td input {
+    width: 100%;
+  }
+
+  #field-container td input[readonly],
+  #field-container td select[readonly] {
+    background-color: #f4f4f4;
+  }
+
+  #field-container input[type='checkbox'],
+  #field-container input[type='radio'] {
+    width: auto !important;
+    height: auto !important;
+    margin: 0 5px;
+    vertical-align: middle;
+  }
+
+  #field-container #basic_info > table,
+  #field-container #check_rule > table,
+  #field-container #check_rule > table,
+  #field-container #event_config > table,
+  #field-container #other > table,
+  #field-container #style > table {
+    width: 96%;
+  }
+
+  #field-container td .tr_td_div_left span {
+    line-height: 24px;
+    float: left;
+    margin-right: 3px;
+  }
+
+  #field-container td .tr_td_div_left input[type='text'] {
+    width: 50px;
+    margin-right: 10px;
+    float: left;
+  }
+</style>
+<script type="text/javascript">
+  if (!window.formBuilder) {
+    window.formBuilder = top.formBuilder;
+  }
+  // comboTree默认追加到body,防止内部剪裁
+  $.extend($.fn.comboTree.defaults, { inbody: true });
+
+  // 加载全局国际化资源
+  I18nLoader.load('/js/pt/js/global');
+  // 加载动态表单定义模块国际化资源
+  I18nLoader.load('/dyform/commons/dyform');
+
+  // 重写部分方法，适配字段配置
+  $.ControlConfigUtil.ctlEditDialogonShow = function (editor, dialog, pluginToolHint) {
+    return;
+  };
+  // 不需要创建布局
+  $.ControlConfigUtil.createControlPlaceHolder = function (_this, imgSrc, field) {};
+  $.ControlConfigUtil.ctlEditDialogOnOk = function (ctl, containerID) {
+    return ctl.collectFormAndFillCkeditor();
+  };
+</script>

@@ -1,0 +1,11 @@
+主要处理历史角色数据有工作台的数据，使其关联系统生成的工作台角色权限数据
+项目重构启动后，登陆
+然后在页面控制台执行：
+JDS.call({
+	service : 'roleFacadeService.initOldWorkbenchRole',
+	data : [],
+	async : false,
+	success : function(result) {
+		console.log(result);
+	}
+});

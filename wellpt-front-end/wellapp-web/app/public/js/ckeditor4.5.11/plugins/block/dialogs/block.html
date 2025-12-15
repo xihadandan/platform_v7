@@ -1,0 +1,169 @@
+<div id="blockAttrCfgDiv" title='属性设置'  style=" height: 150px; width: 400px;overflow: auto;">
+	<div>
+		<div class="dyform">
+			<div class="post-sign">
+				<div class="post-detail">
+	<table>
+		<tr>
+			<td class="Label">区块编码:</td>
+			<td class="value"><input type="text" id="blockCode" value=""></td>
+		</tr>
+		<tr class="odd">
+			<td class="Label">区块标题:</td>
+			<td class="value"><input type="text"  id="blockTitle" value=""></td>
+		</tr>
+		<tr class='custom' >
+			<td class="Label">选择行列：</td>
+			<td class="value" id="radio-options"><input type="radio" name="options" value="2" checked>三行两列<input type="radio"  name="options" value="4">三行四列<input type="radio"  name="options" value="6">三行六列</td>
+		</tr>
+		<tr class='custom odd'>
+			<td class="Label">自定义行列：</td>
+			<td class="value">
+				<span>行：</span><input type="text" style="width:100px;" placeholder="输入行数" class="table_row">
+				<span>列：</span><input type="text" style="width:100px;" placeholder="输入列数" class="table_column" >
+			</td>
+		</tr>
+		<tr>
+			<td class="Label">显示模式:</td>
+			<td class="value">
+				<input type="checkbox" name="showType" id="showType" value="1"/>隐藏
+			</td>
+		</tr>
+		
+	</table>
+			</div>
+		</div>
+	
+		</div>
+		</div>
+</div>
+<script type="text/javascript">
+var block = {};
+
+block.$ =  function(selector){ 
+	return $(selector, $("#blockAttrCfgDiv"));
+} 
+
+/**
+ * 初始化属性窗口
+ */
+ block.initPropertyDialog = function (editor){
+	// $(".cke_reset_all"  ).removeClass("cke_reset_all");
+	//console.log("initPropertyDialog=============");
+	this.editor = editor; 
+	// 编辑区块时,默认移出提示
+	this.editor.removeHintInDesigner(); 
+	
+	var focusedDom = editor.focusedDom;//当前editor被双击的对象(CKEDITOR.dom.node类) 
+	
+	var labelText = "";
+	var blockCode = "";
+	var blockHide = false;
+	//有过设置，采用设置设置过的置
+	if( focusedDom != null && (typeof focusedDom) != "undefined" ){
+		//兼容老版本数据，设置该td不可编辑
+		focusedDom.setAttribute("contentEditable", "false");
+		this.$(".custom").hide();
+		labelText = focusedDom.getText();
+		blockCode = focusedDom.getAttribute("blockCode");
+		blockHide = focusedDom.getAttribute("blockHide") == "true" ? true : false;
+	}
+	
+	this.$("#blockCode").val(blockCode);
+	this.$("#blockTitle").val(labelText);
+	if( blockHide ){
+		this.$("#showType").attr("checked", "true" );	
+	}else{
+		this.$("#showType").removeAttr("checked" );
+	}
+};
+
+
+block.exitDialog = function(){
+	this.editor.focusedDom = null;
+	this.$("#blockTitle").val("");
+	this.$("#blockCode").val("");
+}
+
+block.fillCkeditor = function(){
+	var blockTitle = this.$("#blockTitle").val();
+	var blockCode = this.$("#blockCode").val();
+	var blockHide = "checked" == this.$("#showType").attr("checked");
+	//检查blockCode
+	if( blockCode == "" || blockCode == undefined ){
+		alert(dymsg.blockCodeNotEmpty);
+		return false;
+	}
+	
+	//console.log( this.editor.focusedDom );
+	if(typeof formDefinition.blocks == "undefined" ){
+		formDefinition.blocks = {};
+	}
+	
+	var oldBlockCode = this.editor.focusedDom ? this.editor.focusedDom.getAttribute("blockCode") : "";
+			
+	if(typeof formDefinition.blocks == "undefined" ){
+		formDefinition.blocks = {};
+	}else{
+		//检查是block是否重名
+		for(var key in formDefinition.blocks){ 
+			//console.log( oldBlockCode );
+			//console.log( key );
+			 if( key ==  oldBlockCode){
+				 continue;
+			 }else{
+				if( key == blockCode){
+					alert(dymsg.blockexist);
+					return false;
+				} 
+			 }
+		}
+		//oldBlockTitle = formDefinition.blocks[this.oldBlockCode] && formDefinition.blocks[this.oldBlockCode].blockTitle;
+		//delete formDefinition.blocks[this.oldBlockCode];
+	}
+	var table_row,table_column;
+	var row = this.$('.table_row').val();
+	var column = this.$('.table_column').val();
+	if(row !=="" && column !== ""){
+		table_row = row;
+		table_column = column;
+	}else{
+		table_row = 3;
+		table_column = this.$('input[type="radio"]:checked').val();
+	}
+	//如果存在就覆盖，如果不存在就插入
+	if(this.editor.focusedDom != null){
+		this.editor.focusedDom.setHtml(blockTitle);
+		this.editor.focusedDom.setAttribute("blockCode", blockCode);
+		this.editor.focusedDom.setAttribute("blockHide", blockHide);
+	}else{
+	  var html = "";
+		html += "<table >";		
+		html += "<tr>";
+		// colspan大于2,解决“在右侧插入列”会克隆标题的问题
+		html += "<td class='title' colspan='12' blockCode='" + blockCode +  "'>" +  blockTitle + "</td>";
+		html += "</tr>"; 
+		for(var i=0;i<table_row;i++){
+			html+="<tr>";
+			for(var j=0;j<table_column;j++){
+				if(j%2 ==0){
+					html += "<td class='label-td'>&nbsp;</td>";
+				}else{
+					html += "<td>&nbsp;</td>";
+				}
+			};
+			html+="</tr>";
+		}
+		html += "</table>"; 
+		
+		var element = CKEDITOR.dom.element.createFromHtml( html );
+		this.editor.insertElement( element );
+	}
+	formDefinition.blocks[blockCode] = {"blockTitle" :blockTitle, "blockCode":blockCode, "hide":blockHide};
+	return true;
+}
+
+
+
+
+</script>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <!--模块权限资源查询-->
+    <sql-query name="appSecurityPrivilegeManagerQuery">
+        <![CDATA[
+            select t1.uuid as uuid,
+                   t1.create_time as create_time,
+                   t1.creator as creator,
+                   t1.modifier as modifier,
+                   t1.modify_time as modify_time,
+                   t1.rec_ver as rec_ver,
+                   t1.name as name,
+                   t1.code as code,
+                   t1.app_id as app_id,
+                   t1.remark as remark
+              from audit_privilege t1
+                where system_def=0
+                    <if appId??>
+                        and t1.app_id=:appId
+                    </if>
+                    <if systemUnitIds??>
+                      and t1.system_unit_id in (:systemUnitIds)
+                    </if>
+                    <if isNotBlank(system) || isNotBlank(tenant)>
+                        and (1 = 2
+                            <if isNotBlank(system)>
+                                or t1.system = :system
+                            </if>
+                            <if isBlank(system) && isNotBlank(tenant)>
+                                or t1.tenant = :tenant
+                            </if>
+                            <if isNotBlank(system) && isNotBlank(tenant)>
+                                or exists(
+                                    select pv.uuid from app_prod_version pv
+                                        where pv.version_id = t1.app_id and pv.uuid
+                                        in(select si.prod_version_uuid from app_system_info si where si.system = :system and si.tenant = :tenant)
+                                )
+                                or exists(
+                                    select pm.uuid from app_prod_module pm
+                                        where pm.module_id = t1.app_id and pm.prod_version_uuid
+                                        in(select si.prod_version_uuid from app_system_info si where si.system = :system and si.tenant = :tenant)
+                                )
+                            </if>
+                        )
+                    </if>
+                    <if isNotBlank(whereSql)>
+                        and ${whereSql}
+                    </if>
+                    <if isNotBlank(orderBy)>
+                        ${orderBy}
+                    </if>
+    ]]>
+    </sql-query>
+</hibernate-mapping>

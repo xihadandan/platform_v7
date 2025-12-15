@@ -1,0 +1,47 @@
+.work-view {
+  --w-primary-color: var(--color-primary);
+  --w-success-color: var(--color-success);
+  --w-danger-color: var(--color-error);
+  $w-primary-color: #488cee;
+  $w-success-color: #4cd964;
+  $w-error-color: #dd524d;
+  $--w-primary-color-1: mix($w-primary-color, #fff, 5%);
+  $--w-primary-color-2: mix($w-primary-color, #fff, 10%);
+  $--w-success-color-1: mix($w-success-color, #fff, 5%);
+  $--w-danger-color-1: mix($w-error-color, #fff, 5%);
+
+  --w-border-radius-2: 4px;
+  --w-fill-color-light: #f2f2f2;
+  --w-text-color-darker: #000000;
+  --w-text-color-dark: var(--text-color);
+  --w-text-color-base: var(--text-color-label);
+  --w-text-color-light: var(--text-color-grey);
+  --w-gray-color-2: #fafafa;
+  --w-border-color-light: #e8e8e8;
+
+  --w-padding-xs: 12px;
+  --w-padding-2xs: 8px;
+  --w-margin-xs: 12px;
+
+  --w-font-size-lg: 16px;
+  --w-font-size-base: 14px;
+  --w-font-size-sm: 12px;
+  --w-font-weight-bold: bold;
+}
+
+//自动提交弹框
+.wf-auto-submit-modal {
+  .auto-title {
+    font-size: var(--w-font-size-base);
+    color: var(--w-text-color-darker);
+    margin-bottom: 8px;
+  }
+  .auto-opinion-text {
+    padding: 12px;
+    border-radius: 4px;
+    background-color: var(--w-gray-color-2);
+    line-height: 20px;
+    font-size: var(--w-font-size-base);
+    color: var(--w-text-color-base);
+  }
+}

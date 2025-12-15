@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="queryTableColumnMetadata">
+        <![CDATA[
+			    select
+			    column_name as COLUMN_NAME,
+			    IF(LENGTH(column_comment)=0,column_name,column_comment) as COMMENTS,
+			    data_type  as DATA_TYPE
+                from information_schema.columns
+                where table_name=:tableName
+                and table_schema=:tableSchema
+		]]>
+    </sql-query>
+
+    <sql-query name="queryTableComments">
+        <![CDATA[
+			 select
+			    TABLE_NAME,
+			    TABLE_COMMENT as COMMENTS
+                from information_schema.tables
+                where table_name in :tableName
+                and table_schema='${getSystemProperties('multi.tenancy.tenant.database_name')}'
+		]]>
+    </sql-query>
+
+    <sql-query name="queryTableNamesLike">
+        <![CDATA[
+ 			 select
+			    TABLE_NAME
+                from information_schema.tables
+                where table_name like :tableName
+                and table_schema='${getSystemProperties('multi.tenancy.tenant.database_name')}'
+		]]>
+    </sql-query>
+
+    <sql-query name="existTableColumn">
+        <![CDATA[
+			select
+            1
+            from information_schema.columns
+            where table_name=:tableName
+            and column_name=:columnName
+            and table_schema='${getSystemProperties('multi.tenancy.tenant.database_name')}'
+		]]>
+    </sql-query>
+
+</hibernate-mapping>

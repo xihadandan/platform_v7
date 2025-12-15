@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+// Copyright 2008 Benryan Software Inc.
+// All rights reserved.
+// THIS IS NOT OPEN SOURCE SOFTWARE
+// Benryan Software explicitly denies you the right to copy, modify, 
+// create derivative works, or re-distribute this software. Only licensees of 
+// Word/DAV for Confluence can distribute this software for use with Word/DAV for Confluence.
+-->
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" id="urlLaunchOverlay">
+ <menupopup id="menu_ToolsPopup">
+   <menuitem id="urlLoadPrefsMenu" label="WebDAV Launcher Options" insertbefore="prefSep" oncommand="window.openDialog('chrome://urlload/content/urlLoader.xul', null, 'chrome,centerscreen,dependent');"/>
+</menupopup>
+
+    <script type="text/javascript" src="chrome://urlload/content/chrome-script.js" />
+</overlay>

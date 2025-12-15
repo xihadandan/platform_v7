@@ -1,0 +1,126 @@
+{
+  "name": "wellapp-web",
+  "version": "70.2.0",
+  "description": "平台web",
+  "private": false,
+  "egg": {
+    "declarations": false,
+    "framework": "wellapp-framework"
+  },
+  "dependencies": {
+    "egg-scripts": "3.0.0",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1",
+    "vuex-router-sync": "^5.0.0",
+    "wellapp-admin": "70.2.0",
+    "wellapp-dyform": "70.2.0",
+    "wellapp-for-prod": "70.2.0",
+    "wellapp-framework": "70.2.0",
+    "wellapp-mobile": "70.2.0",
+    "wellapp-page-assembly": "70.2.0",
+    "wellapp-theme": "70.2.0",
+    "wellapp-workflow": "70.2.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-plugin-transform-vue-jsx": "^3.7.0",
+    "babel-preset-env": "^1.6.0",
+    "cross-env": "^7.0.3",
+    "easywebpack-cli": "^3.11.2",
+    "easywebpack-vue": "^4.0.0",
+    "egg-bin": "^4.11.0",
+    "egg-ci": "^1.11.0",
+    "egg-webpack": "^4.0.0",
+    "egg-webpack-vue": "^2.0.0",
+    "eslint": "^5.13.0",
+    "eslint-config-egg": "^7.1.0",
+    "gulp": "^4.0.2",
+    "gulp-rename": "^2.0.0",
+    "gulp-svgo": "^2.2.1",
+    "gulp-svgstore": "^7.0.1",
+    "gulp-tap": "^2.0.0",
+    "husky": "^3.0.4",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "lint-staged": "^9.2.3",
+    "prettier": "^2.0.2",
+    "raw-loader": "^4.0.2",
+    "speed-measure-webpack-plugin": "^1.5.0",
+    "style-resources-loader": "^1.5.0",
+    "url-loader": "4.1.1",
+    "webpack-ant-icon-loader": "^1.0.8",
+    "webpack-bundle-analyzer": "^4.8.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "resolutions": {
+    "egg-core": "4.30.2",
+    "egg-scripts": "3.0.0",
+    "runscript": "1.6.0",
+    "nanopop": "2.3.0",
+    "mime": "3.0.0",
+    "utility": "1.18.0",
+    "cluster-client": "3.6.0",
+    "core-js": "2.6.12",
+    "art-template": "4.13.2",
+    "html-to-image": "1.11.11",
+    "formidable": "2.1.5",
+    "@noble/hashes": "1.1.5",
+    "minimatch": "3.1.2",
+    "undici": "5.28.4",
+    "@paralleldrive/cuid2": "2.2.2"
+  },
+  "scripts": {
+    "start": "egg-scripts start --daemon --title=wellapp-web",
+    "stop": "egg-scripts stop --title=wellapp-web",
+    "dev": "egg-bin dev --port=7001",
+    "debug": "egg-bin debug --port=7001",
+    "debug-web": "cross-env WELLAPP_WEBPACK_TARGET=web egg-bin debug --port=7001",
+    "build": "cross-env easy clean && easy build prod",
+    "build-zip": "cross-env easy clean && easy build prod && easy zip",
+    "svg-sprite": "cross-env wellapp-svg-sprite",
+    "wellapp-build": "cross-env wellapp-cli build",
+    "wellapp-build-help": "cross-env wellapp-cli build --help",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "autod": "autod",
+    "npm-link": "npm link ../wellapp-framework ../wellapp-page-assembly ../wellapp-admin  ../wellapp-dyform ../wellapp-workflow -f"
+  },
+  "ci": {
+    "version": "10"
+  },
+  "author": "wellsoft",
+  "lint-staged": {
+    "../**/!(*.min).{html,js,css}": [
+      "./node_modules/.bin/prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "files": [
+    "app",
+    ".babelrc",
+    "bin",
+    "config",
+    "webpack.config.js",
+    "favicon.png"
+  ]
+}

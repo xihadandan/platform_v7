@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="listMaterialDefinitionQuery">
+        <![CDATA[
+        select
+            t.uuid as uuid,
+            t.name as name,
+            t.code as code
+        from CdMaterialDefinitionEntity t
+        where 1 = 1
+        <if isNotBlank(name)>
+            and lower(t.name) like '%${name?lower_case}%'
+        </if>
+        order by t.code asc
+	]]>
+    </sql-query>
+</hibernate-mapping>

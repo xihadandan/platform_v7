@@ -1,0 +1,393 @@
+.w-form-layout {
+  /* #ifdef APP-PLUS */
+  ::v-deep 
+  /* #endif */
+ > .w-form-layout__section {
+    background-color: transparent;
+    margin-top: var(--w-padding-2xs);
+
+    > .uni-section-header {
+      font-weight: bold;
+      padding: var(--w-padding-3xs) var(--w-padding-xs);
+      font-size: var(--w-font-size-lg);
+    }
+    > .uni-section-content {
+      background-color: var(--w-fill-color-base);
+    }
+  }
+
+  .layout-content {
+    // padding: 0px 12px;
+    &.vertical {
+      .row {
+        flex-direction: column;
+        .label-col {
+          width: 80%;
+        }
+        .content-col {
+          width: unset;
+          padding-left: 12px;
+          margin-top: 6px;
+          margin-bottom: 6px;
+        }
+        .label-col + .content-col {
+          margin-top: 0px;
+          padding-left: 12px;
+        }
+        &.row-horizontal {
+          flex-direction: row;
+
+          .label-col {
+            width: 120px;
+          }
+          .content-col {
+            width: 0;
+            padding-left: 12px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+          }
+          .label-col + .content-col {
+            padding: 0;
+            margin-top: 0px;
+            margin-bottom: 0px;
+          }
+
+          // 内容居右显示
+          &.content-align-right {
+            /* #ifdef APP-PLUS */
+            ::v-deep 
+          /* #endif */
+          * {
+              .uni-easyinput__content-input,
+              .uni-forms-item__error,
+              .textonly,
+              .border-none .uni-select__input-box,
+              .uni-date__x-input,
+              .w-tip,
+              .uni-w-numbox:not(.has-step) .uni-numbox__value,
+              .w-form-text {
+                text-align: right;
+              }
+
+              .uni-w-numbox,
+              .widget-form-numerical-bar__input {
+                justify-content: flex-end;
+                .uni-numbox__value {
+                  text-align: center;
+                }
+              }
+
+              // 数值条
+              .widget-form-numerical-bar {
+                .u-circle-progress {
+                  float: center;
+                }
+              }
+
+              // 开关
+              .uni-w-switch {
+                float: right;
+
+                .uni-switch-input {
+                  margin-right: 0;
+                }
+              }
+              // 颜色
+              .uni-w-color-picker {
+                .uni-w-color-picker__container {
+                  float: right;
+                }
+              }
+              // 树形下拉
+              .custom-tree-select-content {
+                .select-items {
+                  justify-content: flex-end;
+                }
+                .custom-tree-select-content__placeholder {
+                  text-align: right;
+                }
+              }
+
+              // 复选框、单选框
+              .uni-data-checklist {
+                .checklist-group {
+                  justify-content: flex-end;
+
+                  .checklist-box {
+                    justify-content: flex-end;
+                    .checklist-content {
+                      flex: 0;
+                      word-break: keep-all;
+                    }
+
+                    &.is--list {
+                      padding-right: 0;
+                    }
+                  }
+                }
+              }
+
+              //组织选择框
+              .org-input {
+                .org-value-items {
+                  justify-content: flex-end;
+                }
+                &.readonly:not(.empty) {
+                  &:not(.bordered) {
+                    margin-right: -4px;
+                  }
+                  &.bordered {
+                    padding-right: 4px;
+                  }
+                }
+              }
+
+              //级联组件
+              .uni-w-cascader {
+                .uni-w-cascader-input .selected-area {
+                  .selected-list,
+                  &.placeholder {
+                    justify-content: flex-end;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    &.horizontal {
+      // 表单布局水平时，有显示字段名称，有边框的组件除外，其他组件文本居右
+      // 表单布局水平时，多行，附件，富文本按垂直布局展示
+      .row {
+        .content-col {
+          padding-left: 12px;
+        }
+        .label-col + .content-col {
+          padding: 0;
+        }
+
+        // 内容居右显示
+        &.content-align-right {
+          /* #ifdef APP-PLUS */
+          ::v-deep 
+          /* #endif */
+          * {
+            .uni-easyinput__content-input,
+            .uni-easyinput__content-textarea,
+            .uni-forms-item__error,
+            .textonly,
+            .border-none .uni-select__input-box,
+            .uni-date__x-input,
+            .w-tip,
+            .uni-w-numbox:not(.has-step) .uni-numbox__value,
+            .w-form-text {
+              text-align: right;
+            }
+
+            .uni-w-numbox,
+            .widget-form-numerical-bar__input {
+              justify-content: flex-end;
+              .uni-numbox__value {
+                text-align: center;
+              }
+            }
+
+            // 数值条
+            .widget-form-numerical-bar {
+              .u-circle-progress {
+                float: center;
+              }
+            }
+
+            // 开关
+            .uni-w-switch {
+              float: right;
+
+              .uni-switch-input {
+                margin-right: 0;
+              }
+            }
+            // 颜色
+            .uni-w-color-picker {
+              .uni-w-color-picker__container {
+                float: right;
+              }
+            }
+            // 树形下拉
+            .custom-tree-select-content {
+              .select-items {
+                justify-content: flex-end;
+              }
+              .custom-tree-select-content__placeholder {
+                text-align: right;
+              }
+            }
+
+            // 复选框、单选框
+            .uni-data-checklist {
+              .checklist-group {
+                justify-content: flex-end;
+
+                .checklist-box {
+                  justify-content: flex-end;
+                  .checklist-content {
+                    flex: 0;
+                    word-break: keep-all;
+                  }
+
+                  &.is--list {
+                    padding-right: 0;
+                  }
+                }
+              }
+            }
+
+            //组织选择框
+            .org-input {
+              .org-value-items {
+                justify-content: flex-end;
+              }
+              &.readonly:not(.empty) {
+                &:not(.bordered) {
+                  margin-right: -4px;
+                }
+                &.bordered {
+                  padding-right: 4px;
+                }
+              }
+            }
+
+            //级联组件
+            .uni-w-cascader {
+              .uni-w-cascader-input .selected-area {
+                .selected-list,
+                &.placeholder {
+                  justify-content: flex-end;
+                }
+              }
+            }
+            &.content-col > * {
+              > .w-button-group {
+                text-align: right !important;
+                --w-button-group-component-button-margin-bottom: 0px;
+              }
+              .w-scan-code {
+                text-align: right !important;
+              }
+            }
+            &.content-col > * > .w-grid {
+              .col-widget-item > * {
+                > .w-button-group {
+                  padding: 0;
+                  --w-button-group-component-button-margin-bottom: 0px;
+                }
+                .w-scan-code {
+                  padding: 0;
+                }
+              }
+            }
+          }
+        }
+
+        &.row-vertical {
+          flex-direction: column;
+          .label-col {
+            width: 80%;
+          }
+          .content-col {
+            width: unset;
+            margin-top: 6px;
+            margin-bottom: 6px;
+          }
+
+          .label-col + .content-col {
+            margin-top: 0px;
+            padding-left: 12px;
+          }
+        }
+      }
+    }
+
+    .row {
+      display: flex;
+      border-bottom: 1px solid #f4f4f4;
+      padding: 6px 0;
+      position: relative;
+      &:last-child {
+        margin-bottom: 0px;
+      }
+      &.is-required {
+        .label-col {
+          &::before {
+            content: "*";
+            position: absolute;
+            color: var(--w-danger-color);
+            left: -9px;
+            top: 50%;
+            margin-top: -8px;
+          }
+        }
+        .content-col {
+          &::before {
+            content: "*";
+            position: absolute;
+            color: var(--w-danger-color);
+            left: 2px;
+            top: 50%;
+            margin-top: -8px;
+          }
+        }
+        .label-col + .content-col {
+          &::before {
+            content: none;
+          }
+        }
+      }
+    }
+
+    .label-col {
+      flex-shrink: 0;
+      width: 120px;
+      word-break: break-all;
+      padding-right: 8px;
+      display: flex;
+      align-items: center;
+      min-height: var(--w-dyform-form-label-height);
+      margin-left: 12px;
+      position: relative;
+      font-size: var(--w-font-size-md);
+      color: var(--w-text-color-mobile);
+    }
+    .content-col {
+      flex-grow: 1;
+      width: 0;
+      margin-right: 12px;
+      position: relative;
+
+      /* #ifdef APP-PLUS */
+      ::v-deep 
+      /* #endif */
+      .uni-forms-item {
+        padding: 0px;
+        margin: 0px;
+
+        .uni-forms-item__content {
+          display: block;
+          .uni-forms-item__error {
+            position: unset;
+            padding-top: 0;
+            line-height: 20px;
+          }
+        }
+        .uni-forms-item__label {
+          display: none; // 内容区不显示标签。 主表和从表字段code相同时，从表该字段必填时，会显示label
+        }
+      }
+      .uni-forms-item__box {
+        padding: 0px;
+        border: unset;
+      }
+    }
+  }
+}

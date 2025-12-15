@@ -1,0 +1,103 @@
+.spage-total {
+  display: inline-block;
+  margin-right: 20px;
+  line-height: 35px;
+  color: @text-color;
+  font-size: @font-size-base;
+}
+
+.spage-number {
+  display: inline-block;
+  color: @text-color;
+  font-size: @font-size-base;
+
+  button {
+    position: relative;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-left: -1px;
+    padding: 0px 14px;
+    line-height: 33px;
+    border: @border-default-dark;
+    text-align: center;
+    transition: all @animation-duration-base;
+    cursor: pointer;
+    outline: none;
+    background: none;
+    user-select: none;
+    color: @text-color;
+
+    &.active {
+      background: @background-primary;
+      color: @text-color-inverse;
+      border-color: @border-color-primary;
+      z-index: 3;
+
+      &:hover {
+        background: @background-primary;
+        color: @text-color-inverse;
+        border-color: @border-color-primary;
+        z-index: 3;
+      }
+    }
+
+    &:hover {
+      background-color: @gray-4;
+    }
+
+    &.button-disabled {
+      cursor: not-allowed;
+      color: @disabled-text-color;
+    }
+  }
+}
+
+.spage-number .spage-after,
+.spage-before {
+  padding: 0px;
+  width: 40px;
+}
+
+.spage-skip {
+  display: inline-block;
+  margin-left: 20px;
+  line-height: 35px;
+  color: @text-color;
+  font-size: @font-size-base;
+
+  input {
+    .size(45px 35px);
+    box-sizing: border-box;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    border: @border-default-dark;
+    background: none;
+    outline: none;
+    transition: all @animation-duration-base;
+
+    &:focus {
+      border-color: @border-color-primary;
+    }
+  }
+
+  button {
+    display: inline-block;
+    padding: 0px 14px;
+    line-height: 33px;
+    vertical-align: top;
+    color: @text-color;
+    border: @border-default-dark;
+    cursor: pointer;
+    transition: all @animation-duration-base;
+    outline: none;
+    background: none;
+    user-select: none;
+
+    &:hover {
+      background: @background-primary;
+      color: @text-color-inverse;
+      border: @border-default-primary;
+    }
+  }
+}

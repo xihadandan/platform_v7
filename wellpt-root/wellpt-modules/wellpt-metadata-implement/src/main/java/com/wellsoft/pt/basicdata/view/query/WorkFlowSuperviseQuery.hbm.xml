@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="superviseTaskInstanceQuery">
+        <![CDATA[
+	/* 督办任务查询 */
+	select distinct todo_user_name,
+	                todo_user_id,
+	                serial_no,
+	                flow_inst_uuid,
+	                task_name,
+	                task_inst_uuid,
+	                start_time,
+	                title,
+	                create_time,
+	                flow_instance_due_time,
+	                end_time,
+	                flow_instance_name,
+	                data_uuid,
+	                flow_def_id,
+	                creator,
+	                is_active
+	  from (select *
+	          from (select t1.todo_user_name as todo_user_name,
+	                       t1.todo_user_id   as todo_user_id,
+	                       t1.serial_no      as serial_no,
+	                       t1.flow_inst_uuid as flow_inst_uuid,
+	                       t1.name           as task_name,
+	                       t1.uuid           as task_inst_uuid,
+	                       t1.start_time     as start_time,
+	                       t2.title          as title,
+	                       t2.create_time    as create_time,
+	                       t1.due_time       as flow_instance_due_time,
+	                       t2.end_time       as end_time,
+	                       t2.name           as flow_instance_name,
+	                       t2.data_uuid      as data_uuid,
+	                       t2.id             as flow_def_id,
+	                       t2.creator        as creator,
+	                       t2.is_active      as is_active
+	                  from wf_task_instance t1, wf_flow_instance t2
+	                 where t1.flow_inst_uuid = t2.uuid
+	                   and (t1.end_time is null)
+	                   and 1 = 1
+	                   and (exists
+	                        (select aclobjecti10_.object_id_identity
+	                           from acl_object_identity aclobjecti10_
+	                          inner join acl_sid aclsid11_
+	                             on aclobjecti10_.owner_sid = aclsid11_.uuid
+	                          inner join acl_class aclclass12_
+	                             on aclobjecti10_.object_id_class =
+	                                aclclass12_.uuid
+	                          inner join acl_entry aclentries13_
+	                             on aclobjecti10_.uuid =
+	                                aclentries13_.acl_object_identity
+	                          inner join acl_sid aclsid14_
+	                             on aclentries13_.sid = aclsid14_.uuid
+	                          where t1.uuid = aclobjecti10_.object_id_identity
+	                            and aclclass12_.class =
+	                                'com.wellsoft.pt.bpm.engine.entity.TaskInstance'
+	                            and aclentries13_.granting = 1
+	                            and aclentries13_.mask = 2048
+	                            and aclsid14_.principal = 1
+	                            and aclsid14_.sid = :sid))
+	               		<if isNotBlank(whereSql)>
+							${whereSql}
+						</if>
+						and t2.id != 'WF_GZ_TEMPLATE'
+	                 order by t1.start_time desc) v1
+	        union all
+	        select *
+	          from (select t1.todo_user_name as todo_user_name,
+	                       t1.todo_user_id   as todo_user_id,
+	                       t1.serial_no      as serial_no,
+	                       t1.flow_inst_uuid as flow_inst_uuid,
+	                       t1.name           as task_name,
+	                       t1.uuid           as task_inst_uuid,
+	                       t1.start_time     as start_time,
+	                       t2.title          as title,
+	                       t2.create_time    as create_time,
+	                       t1.due_time       as flow_instance_due_time,
+	                       t2.end_time       as end_time,
+	                       t2.name           as flow_instance_name,
+	                       t2.data_uuid      as data_uuid,
+	                       t2.id             as flow_def_id,
+	                       t2.creator        as creator,
+	                       t2.is_active      as is_active
+	                  from wf_task_instance t1
+	                  left join wf_flow_instance t2
+	                    on t1.flow_inst_uuid = t2.uuid
+	                 where t1.start_time =
+	                       (select max(t3.start_time)
+	                          from wf_task_instance t3
+	                         where t3.flow_inst_uuid = t1.flow_inst_uuid)
+	                   and exists
+	                 (select uuid
+	                          from wf_flow_management t4
+	                         where t4.type = 2
+	                           and t4.flow_def_uuid = t1.flow_def_uuid
+	                           and t4.org_id in (:orgIds))
+	                   and ((1 = 1))
+	               		<if isNotBlank(whereSql)>
+							${whereSql}
+						</if>
+						and t2.id != 'WF_GZ_TEMPLATE'
+	                 order by t1.start_time desc) v2 ) order by start_time desc
+	]]>
+    </sql-query>
+
+    <sql-query name="countSuperviseTaskInstanceQuery">
+        <![CDATA[
+	/* 督办任务查询 */
+	select count(distinct task_inst_uuid) as cnt
+	  from (select *
+	          from (select t1.todo_user_name as todo_user_name,
+	                       t1.todo_user_id   as todo_user_id,
+	                       t1.serial_no      as serial_no,
+	                       t1.flow_inst_uuid as flow_inst_uuid,
+	                       t1.name           as task_name,
+	                       t1.uuid           as task_inst_uuid,
+	                       t1.start_time     as start_time,
+	                       t2.title          as title,
+	                       t2.create_time    as create_time,
+	                       t1.due_time       as flow_instance_due_time,
+	                       t2.end_time       as end_time,
+	                       t2.name           as flow_instance_name,
+	                       t2.data_uuid      as data_uuid,
+	                       t2.id             as flow_def_id,
+	                       t2.creator        as creator,
+	                       t2.is_active      as is_active
+	                  from wf_task_instance t1, wf_flow_instance t2
+	                 where t1.flow_inst_uuid = t2.uuid
+	                   and (t1.end_time is null)
+	                   and 1 = 1
+	                   and (exists
+	                        (select aclobjecti10_.object_id_identity
+	                           from acl_object_identity aclobjecti10_
+	                          inner join acl_sid aclsid11_
+	                             on aclobjecti10_.owner_sid = aclsid11_.uuid
+	                          inner join acl_class aclclass12_
+	                             on aclobjecti10_.object_id_class =
+	                                aclclass12_.uuid
+	                          inner join acl_entry aclentries13_
+	                             on aclobjecti10_.uuid =
+	                                aclentries13_.acl_object_identity
+	                          inner join acl_sid aclsid14_
+	                             on aclentries13_.sid = aclsid14_.uuid
+	                          where t1.uuid = aclobjecti10_.object_id_identity
+	                            and aclclass12_.class =
+	                                'com.wellsoft.pt.bpm.engine.entity.TaskInstance'
+	                            and aclentries13_.granting = 1
+	                            and aclentries13_.mask = 2048
+	                            and aclsid14_.principal = 1
+	                            and aclsid14_.sid = :sid))
+	               		<if isNotBlank(whereSql)>
+							${whereSql}
+						</if>
+						and t2.id != 'WF_GZ_TEMPLATE'
+						) v1
+	        union all
+	        select *
+	          from (select t1.todo_user_name as todo_user_name,
+	                       t1.todo_user_id   as todo_user_id,
+	                       t1.serial_no      as serial_no,
+	                       t1.flow_inst_uuid as flow_inst_uuid,
+	                       t1.name           as task_name,
+	                       t1.uuid           as task_inst_uuid,
+	                       t1.start_time     as start_time,
+	                       t2.title          as title,
+	                       t2.create_time    as create_time,
+	                       t1.due_time       as flow_instance_due_time,
+	                       t2.end_time       as end_time,
+	                       t2.name           as flow_instance_name,
+	                       t2.data_uuid      as data_uuid,
+	                       t2.id             as flow_def_id,
+	                       t2.creator        as creator,
+	                       t2.is_active      as is_active
+	                  from wf_task_instance t1
+	                  left join wf_flow_instance t2
+	                    on t1.flow_inst_uuid = t2.uuid
+	                 where t1.start_time =
+	                       (select max(t3.start_time)
+	                          from wf_task_instance t3
+	                         where t3.flow_inst_uuid = t1.flow_inst_uuid)
+	                   and exists
+	                 (select uuid
+	                          from wf_flow_management t4
+	                         where t4.type = 2
+	                           and t4.flow_def_uuid = t1.flow_def_uuid
+	                           and t4.org_id in (:orgIds))
+	                   and ((1 = 1))
+	               		<if isNotBlank(whereSql)>
+							${whereSql}
+						</if>
+						and t2.id != 'WF_GZ_TEMPLATE'
+						) v2 )
+	]]>
+    </sql-query>
+</hibernate-mapping>

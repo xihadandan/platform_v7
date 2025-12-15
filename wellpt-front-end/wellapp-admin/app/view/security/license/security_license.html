@@ -1,0 +1,48 @@
+<form action="" id="security_license_form" class="form-widget" style="margin-top: 15px;">
+    <div class="well-form form-horizontal" id="trialVersion">
+            <div class="form-group">
+                <label class="well-form-label control-label">版本</label>
+                <div class="well-form-control w-h35">
+                    <input type="text" class="form-control" readonly="readonly" value="试用版">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="well-form-label control-label">机器码</label>
+                <div class="well-form-control w-h35">
+                    <input type="text" class="form-control" readonly="readonly" id="machineCode">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="well-form-label control-label">许可授权方式</label>
+                <div class="well-form-control w-h35">
+                    <input type="text" class="form-control" readonly="readonly" value="请将机器码发给产商生成许可证并上传">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="well-form-label control-label">许可证上传</label>
+                <div class="well-form-control">
+                    <input type="file" id="upload" name="upload" accept=".lic" />
+                    <label class="error upload_result_info"></label>
+                    <div class="margin-20">
+                        <input type="button" id="btn_upload"value="上传" class="well-btn w-btn-primary"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="well-form form-horizontal" id="businessEdition" style="display: none">
+            <div class="form-group">
+                <label class="well-form-label control-label">版本</label>
+                <div class="well-form-control w-h35">
+                    <input type="text" class="form-control" readonly="readonly" value="商业版">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="well-form-label control-label">认证状态</label>
+                <div class="well-form-control w-h35">
+                    <input type="text" class="form-control" readonly="readonly"  value="已认证">
+                </div>
+            </div>
+    </div>
+</form>
+

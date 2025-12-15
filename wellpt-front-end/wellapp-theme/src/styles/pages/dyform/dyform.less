@@ -1,0 +1,2322 @@
+// TODO: to be checked
+
+.dyform.dyform-stribe .field:nth-child(2n) {
+  background: #c8e9f5;
+}
+
+.dyform {
+  font-size: @font-size-base;
+  font-family: @font-family;
+  width: auto;
+  background: @component-background;
+
+  h1 {
+    text-align: center;
+  }
+}
+
+.dyform table {
+  width: 100%;
+  border-collapse: collapse;
+
+  td {
+    padding: @padding-3xs;
+    border: @border-default;
+
+    label {
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: inherit;
+      text-rendering: auto;
+      line-height: 35px;
+      position: relative;
+      font-size: @font-size-base;
+      margin: 0 6px;
+      cursor: pointer;
+
+      &:before {
+        font-size: @font-size-lg;
+        margin-right: 3px;
+        vertical-align: top;
+      }
+    }
+
+    &.label-td {
+      width: 10%;
+      min-width: 120px;
+      padding: 7.5px 15px;
+      background: @background-light;
+      text-align: right;
+      color: @text-color-dark;
+      vertical-align: middle;
+
+      label {
+        font-weight: normal;
+      }
+    }
+
+    &.photo-fileup {
+      text-align: center;
+
+      .attach-listSMALL_PHOTO_UUID {
+        display: none;
+      }
+    }
+
+    .editableClass {
+      input[type='radio'] {
+        position: absolute;
+        margin: 5px 0 0 12px;
+        opacity: 0;
+
+        +label:before {
+          content: '\e86f';
+        }
+
+        +label.radiolabel:before {
+          content: '\e86e';
+        }
+
+        &:checked+label:before {
+          content: '\e86e';
+        }
+      }
+
+      input[type='checkbox'] {
+        position: absolute;
+        margin: 5px 0 0 12px;
+        opacity: 0;
+
+        +label:before {
+          content: '\f096';
+          font-family: iconfont !important;
+        }
+
+        &:checked+label:before {
+          content: '\e878';
+        }
+
+        +label.checkboxlabel:before {
+          content: '\e878';
+        }
+      }
+    }
+  }
+}
+
+.dyform .subtab {
+  width: 100%;
+}
+
+.dyform .WdateFmtErr {
+  font-weight: bold;
+  color: @danger-color;
+}
+
+.dyform .select2-container {
+  width: 100%;
+}
+
+.dyform .select2-container .select2-choice,
+.dyform .select2-container-multi .select2-choices {
+  height: 35px;
+  line-height: 35px;
+  border-radius: @border-radius-base;
+  background-image: none;
+  border: @border-default-darker;
+  outline: none;
+
+  span:first-child {
+    width: auto;
+  }
+
+  .select2-arrow {
+    border: 0;
+  }
+}
+
+.dyform .select2-container-active .select2-choice,
+.dyform .select2-container-active .select2-choices {
+  border: @border-default-primary;
+}
+
+.dyform label.label {
+  white-space: normal;
+}
+
+.dyform .ui-jqgrid .ui-jqgrid-htable th div {
+  height: auto;
+}
+
+.dyform label {
+  margin-bottom: 0;
+  font-size: @font-size-base;
+  color: @text-color-dark;
+  display: inline-block;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dyform .title {
+  box-sizing: content-box;
+  position: relative;
+  height: 29px;
+
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+    line-height: 0;
+    clear: both;
+  }
+
+  &.fixed {
+    position: fixed;
+    top: 0;
+    z-index: 99;
+  }
+}
+
+.dyform .fileupload-ico {
+  width: 100%;
+  border-left-width: 2px;
+  padding: 5px 11px;
+
+  .left-counter {
+    color: @primary-2;
+  }
+
+  div>a {
+    padding: 0 11px;
+    position: relative;
+    color: @text-color-inverse;
+    width: 100%;
+    line-height: 17px;
+    text-decoration: none;
+  }
+
+  div a:not(:last-child) {
+    border-right: @border-default-inverse;
+  }
+
+  div input {
+    width: auto;
+    display: inline-block;
+    margin-right: 9px;
+    border: 0;
+    display: none;
+  }
+
+  .newContent,
+  .imposeContent {
+    border: 0;
+    left: 0;
+    top: 32px;
+    text-align: center;
+    padding: @padding-3xs;
+  }
+}
+
+/** 页签 */
+.dyform .tab-design {
+  border: 1px dotted red;
+  padding: @padding-xs;
+
+  .subtab-design {
+    border: 1px dotted green;
+    padding: @padding-xs;
+  }
+}
+
+.dyform .attach-list {
+  border: 1px solid #069dd5;
+  margin-top: 0px;
+
+  li {
+    padding: 5px 0;
+    list-style: none outside none;
+    border: 1px solid #069dd5;
+    margin-left: 0;
+
+    &:hover {
+      background: #c8e9f5;
+    }
+
+    input[type='checkbox'] {
+      width: auto;
+      margin-right: 9px;
+      border: 0;
+      display: none;
+    }
+
+    img {
+      vertical-align: middle;
+      width: 23px;
+    }
+
+    &.icoItem {
+      float: left;
+      width: 90px;
+      padding: 20px 0;
+      text-align: center;
+      cursor: pointer;
+
+      img {
+        width: 48px;
+      }
+
+      >span {
+        width: 90px;
+        display: block;
+      }
+
+      &.bar {
+        border-bottom: 0;
+        border-right: @border-default-inverse;
+      }
+    }
+  }
+
+  .autocut {
+    width: 120px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .bar {
+    background: #13baf8;
+    border-bottom: @border-default-inverse;
+  }
+
+  a {
+    text-decoration: none;
+    color: @text-color-dark;
+
+    img {
+      width: 64px;
+      height: 64px;
+      padding: @padding-xs;
+      border: @border-default-darker;
+    }
+  }
+
+  span {
+    line-height: 18px;
+    text-align: center;
+  }
+}
+
+.dyform #upload_div {
+  padding-top: 5px;
+  height: 42px;
+
+  .add_icon {
+    margin-left: 4px;
+  }
+
+  .btn.btn-success {
+    margin-left: 4px;
+    padding: 2px 14px;
+    color: @text-color-inverse;
+    height: 35px;
+    line-height: 30px;
+    font-size: @font-size-base;
+
+    span {
+      color: @text-color-inverse;
+    }
+  }
+
+  .file_icon {
+    margin-top: 4px;
+    margin-right: 5px;
+    background: none;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    &:before {
+      content: '\f0c6';
+      font-family: iconfont !important;
+      color: @text-color-inverse;
+    }
+  }
+}
+
+.dyform .file-list li {
+  background: #fff;
+  border-bottom: @border-default-light;
+
+  &:hover {
+    background: @gray-4;
+
+    .file_upload_item_buttons {
+      background: @gray-4;
+    }
+  }
+}
+
+.dyform .files_div .file_icon {
+  float: left;
+  width: 19px;
+  line-height: @height-sm;
+}
+
+.dyform .files_div .filename {
+  line-height: @height-sm;
+  font-size: @font-size-base;
+  padding: 0 @padding-xs;
+  float: left;
+  .text-overflow();
+}
+
+.dyform .ui-jqgrid-btable .files_div .filename {
+  max-width: 130px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 0;
+}
+
+.dyform .files_div ._delete_input {
+  width: auto;
+}
+
+.dyform .downloadAll a {
+  text-decoration: none;
+
+  &:hover {
+    color: @warning-color;
+  }
+}
+
+.dyform .attach-listoa_file {
+  margin-bottom: 0;
+
+  input {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.dyform .Validform_checktip span.error {
+  color: @danger-color;
+  font-size: @font-size-base;
+  font-weight: 400;
+  padding: 4px 8px 4px 21px;
+  z-index: 50;
+  position: relative;
+  width: 200px;
+  display: block;
+  line-height: 1;
+
+  &:after {
+    font-size: @font-size-base;
+    content: '\e8b0';
+    font-family: iconfont !important;
+    display: block;
+    left: 0;
+    position: absolute;
+    top: 0;
+    padding: 4px 0;
+  }
+}
+
+.dyform .ui-widget-overlay {
+  background: #aaaaaa url('@{image-url-prefix}/ui-bg_flat_0_aaaaaa_40x100.png') 50% 50% repeat-x;
+  opacity: 0.3;
+}
+
+.ui-jqgrid {
+  margin: 0 auto;
+}
+
+.ui-jqgrid .ui-jqgrid-view {
+  border-color: #069dd5;
+}
+
+.ui-jqgrid .ui-jqgrid-title {
+  line-height: 30px;
+  font-weight: normal;
+  font-family: @font-family;
+  float: none;
+}
+
+.ui-jqgrid .ui-jqgrid-titlebar {
+  height: 40px;
+  font-size: @font-size-base;
+
+  .ui-wbtn-group {
+    float: right;
+  }
+
+  span>button {
+    font-family: @font-family;
+    font-weight: normal;
+    background: #f2f4f8;
+    border: 0;
+    color: @text-color-primary;
+    font-size: @font-size-base;
+    height: 30px;
+    margin-left: 4px;
+    padding: 0 20px;
+    border-radius: @border-radius-base;
+  }
+}
+
+.ui-jqgrid .ui-jqgrid-hdiv {
+  border-bottom: 0;
+  overflow-x: hidden;
+}
+
+.ui-jqgrid .ui-jqgrid-bdiv {
+  margin: 0em;
+  padding: 0;
+  text-align: left;
+  min-height: 50px;
+}
+
+.ui-jqgrid tr.jqgrow td {
+  font-weight: normal;
+  overflow: hidden;
+  height: 22px;
+  padding: 0 2px 0 2px;
+  border-bottom-width: 1px;
+  border-bottom-color: inherit;
+  border-bottom-style: solid;
+  word-break: break-all;
+  white-space: normal;
+}
+
+.ui-jqgrid .ui-jqgrid-bdiv .value {
+  display: block;
+}
+
+.ui-jqgrid .fileupload-ico td {
+  cursor: pointer;
+  border: @border-default-lighter;
+  text-align: center;
+}
+
+.ui-jqgrid .ToolBtn {
+  cursor: pointer;
+  border: @border-default;
+  padding: 2px 6px;
+  line-height: 12pt;
+  background-color: @gray-5;
+}
+
+.ui-jqgrid .ToolBtnOutset {
+  cursor: pointer;
+  border-top: @border-default-inverse;
+  border-right: @border-default-dark;
+  border-bottom: @border-default-dark;
+  border-left: @border-default-inverse;
+  background-color: @gray-5;
+}
+
+.ui-jqgrid .labelclass {
+  -webkit-user-select: text;
+}
+
+.ui-jqgrid .select2-drop {
+  margin-top: -21px;
+}
+
+.dyform #openDiv {
+  .square(20px);
+
+  background-image: url('@{image-url-prefix}/open-close.png');
+  background-position: 0 -1px;
+  display: block;
+  float: left;
+  margin: @margin-2xs;
+  cursor: pointer;
+}
+
+.dyform #notOpenDiv {
+  .square(20px);
+
+  background-image: url('@{image-url-prefix}/open-close.png');
+  background-position: 0 18px;
+  display: block;
+  float: left;
+  margin: @margin-2xs;
+  cursor: pointer;
+}
+
+.bootstrap-datetimepicker-widget table tr td.day,
+.bootstrap-datetimepicker-widget .picker-switch table tr td.day,
+.bootstrap-datetimepicker-widget table tr td,
+.bootstrap-datetimepicker-widget .picker-switch table tr td {
+  text-align: center;
+  padding: @padding-3xs;
+  border-color: @text-color-inverse;
+}
+
+.datepick-wrapper {
+  z-index: 100;
+  display: none;
+
+  input {
+    display: inline-block;
+    width: 100px;
+  }
+}
+
+.input-waiting {
+  background: url('@{image-url-prefix}/waiting.gif') no-repeat scroll 99.5%;
+  background-size: 24px 8px;
+  background-repeat: no-repeat;
+}
+
+#rightSidebarNav {
+  background: transparent !important;
+  width: auto !important;
+
+  >li {
+    display: inline-block !important;
+    width: auto !important;
+    float: none !important;
+    min-width: 77px;
+
+    >a {
+      padding-right: @padding-3xs;
+      padding-left: @padding-3xs;
+    }
+  }
+}
+
+#formDataVersionTable {
+  width: 90%;
+  margin: 0 auto;
+
+  tr td {
+    border: 0px;
+
+    &:first-child {
+      font-weight: bold;
+    }
+  }
+
+  tr {
+    >td:first-child {
+      color: @text-color-primary;
+    }
+
+    >td:nth-child(1n + 2) {
+      background: @primary-2;
+    }
+
+    &:nth-child(even)>td {
+      padding: 0px;
+    }
+
+    &:nth-child(odd)>td:nth-child(1n + 2) {
+      cursor: pointer;
+    }
+  }
+}
+
+.version-line {
+  float: left;
+  padding-right: @padding-md;
+  border-right: @border-default-primary;
+  line-height: 30px;
+  margin-left: @margin-2xs;
+}
+
+/** 表单侧边导航栏样式 */
+.wellpt_form_anchor {
+  .fixed(100px false false 50px);
+
+  width: 200px;
+  padding-left: @padding-lg;
+  border-left: @border-width-1 solid @border-color-light;
+  box-sizing: border-box;
+
+  li {
+    height: 32px;
+    vertical-align: top;
+    font-size: @font-size-lg;
+    color: @text-color-dark;
+    cursor: pointer;
+
+    &.anchor_active {
+      position: relative;
+      color: @text-color-primary;
+
+      &:before {
+        .square(14px);
+        .absolute(3px false false -28px);
+
+        content: '';
+        display: block;
+        border-radius: 50%;
+        background: @primary-color;
+        z-index: 2;
+      }
+
+      &:after {
+        .square(6px);
+        .absolute(7px false false -24px);
+
+        content: '';
+        display: block;
+        border-radius: 50%;
+        background: @component-background;
+        z-index: 2;
+      }
+    }
+  }
+}
+
+.wellpt_form_container {
+  float: right;
+  width: calc(100% - 200px);
+}
+
+/** 回到顶部按钮样式 */
+.backToTop {
+  .fixed(false 0 130px false);
+  .square(40px);
+
+  display: none;
+  padding: @padding-3xs;
+  font-size: @font-size-sm;
+  text-align: center;
+  border-radius: @border-radius-base;
+  background: @text-color-primary;
+  color: @text-color-inverse;
+  cursor: pointer;
+}
+
+/** tagGroup 样式 */
+.dyform td .tag-group {
+  list-style: none;
+
+  .tag-group-item {
+    display: inline-block;
+    overflow: hidden;
+    float: left;
+    margin-bottom: 6px;
+    position: relative;
+
+    span {
+      display: inline-block;
+      padding: 0 @padding-xl 0 @padding-3xs;
+      height: auto;
+      min-height: 22px;
+      line-height: 22px;
+      margin-right: @padding-xl;
+      background: @background-light;
+      border: @border-default-dark;
+      border-radius: @border-radius-base;
+      font-size: @font-size-base;
+      font-weight: 400;
+      color: @text-color;
+      word-break: break-all;
+      vertical-align: middle;
+    }
+
+    i.tag-delete {
+      .absolute(50% 30px false false);
+
+      margin-left: @margin-sm;
+      cursor: pointer;
+      font-size: @font-size-sm;
+      line-height: 1;
+      color: @text-color-light;
+      margin-top: -5px;
+      z-index: 1;
+    }
+
+    &.selected {
+      span {
+        color: @text-color-primary;
+        border-color: @text-color-primary;
+        background: @component-background;
+      }
+
+      i {
+        border-color: @text-color-primary;
+        background: @component-background;
+      }
+    }
+
+    &:hover i.tag-delete {
+      color: @text-color-primary;
+    }
+  }
+
+  .tag-shapes {
+    padding-left: 12px;
+    position: relative;
+
+    span {
+      position: inherit;
+      font-size: @font-size-sm;
+      vertical-align: middle;
+      z-index: 1;
+      border-left: 0;
+      border-radius: 0 @border-radius-base @border-radius-base 0;
+    }
+
+    i.three-angle {
+      .absolute(0 false false 4px);
+      .square(24px);
+
+      display: inline-block;
+      background: @background-light;
+      vertical-align: middle;
+      transform: rotate(45deg);
+      z-index: 0;
+      border: @border-default-dark;
+      border-right: 0;
+      border-top: 0;
+      border-bottom-left-radius: @border-radius-base;
+      box-sizing: content-box;
+    }
+  }
+}
+
+.dyform td span[disabled]>.tag-group {
+  i.tag-delete {
+    /*display: none;*/
+  }
+}
+
+.dyform td .edit-tags {
+  display: inline-block;
+  color: @text-color-primary;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 6px;
+  background: @component-background;
+  border: @border-width-base dashed @border-color-light;
+  border-radius: @border-radius-base;
+  cursor: pointer;
+  font-size: 0;
+
+  &:hover {
+    border-color: @text-color-primary;
+  }
+
+  i {
+    font-size: @font-size-sm;
+  }
+}
+
+.dyform td .tag-focus {
+  border-style: solid;
+  border-color: @text-color-primary;
+  box-shadow: @shadow-active-default;
+}
+
+.dyform td .edit-tags .edit-tags-input {
+  display: none;
+  width: 80px;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none;
+  height: 22px;
+  line-height: 22px;
+  padding: 0;
+  float: left;
+
+  &::placeholder {
+    color: @text-color-lighter;
+  }
+}
+
+.dyform td .add-tags {
+  .square(24px);
+
+  display: inline-block;
+  line-height: 24px;
+  border-radius: @border-radius-base;
+  text-align: center;
+  color: @text-color-inverse;
+  background: @primary-color;
+  position: relative;
+  cursor: pointer;
+  font-size: 0;
+  float: left;
+
+  >i {
+    font-size: @font-size-sm;
+  }
+}
+
+.dyform td .more-tags-box {
+  .absolute(false false -200px 0);
+
+  display: none;
+  min-width: 400px;
+  z-index: 51;
+  background: @component-background;
+  box-shadow: @shadow-popup-default;
+
+  .more-tags-data {
+    padding: @padding-md;
+    max-height: 300px;
+    overflow: auto;
+
+    li {
+      color: @text-color;
+      text-align: left;
+      font-size: @font-size-base;
+      font-weight: 400;
+      line-height: 20px;
+      word-break: break-all;
+
+      &.tag-disabled {
+        cursor: not-allowed;
+        color: @disabled-text-color;
+      }
+
+      &:not(:last-of-type) {
+        margin-bottom: @margin-md;
+      }
+
+      &.tag-selected,
+      &.select-all {
+        color: @text-color-primary;
+      }
+
+      &.option-select-all i {
+        margin-right: @margin-xs;
+        font-size: @font-size-base;
+      }
+
+      .tag-check {
+        .square(14px);
+
+        display: inline-block;
+        margin-right: @margin-xs;
+        vertical-align: baseline;
+        font-size: @font-size-base;
+      }
+    }
+  }
+
+  .tag-operate {
+    padding: @padding-md;
+    text-align: right;
+    border-top: @border-default;
+
+    .tag-operate-btn {
+      padding: @padding-xs @padding-lg;
+      line-height: 1;
+      border: @border-default-dark;
+      background: @component-background;
+      outline: none;
+      font-size: @font-size-base;
+      font-weight: 400;
+      color: @text-color;
+      border-radius: @border-radius-base;
+
+      &:first-of-type {
+        margin-right: @margin-sm;
+        border: @border-default-primary;
+        background: @primary-color;
+        color: @text-color-inverse;
+      }
+    }
+  }
+}
+
+.dyform .editableClass[disabled]>.add-tags,
+.dyform .editableClass[disabled]>.edit-tags,
+.dyform .editableClass[disabled] .tag-group .tag-delete {
+  display: none;
+}
+
+/** tips组件 */
+.dyform .tips-warn .tool-content,
+.dyform .tips-tool .warn-content {
+  display: none;
+}
+
+.dyform .tips-warn {
+  display: block;
+  font-size: 0;
+  padding: @padding-md;
+  box-shadow: @shadow-popup-default;
+  border-radius: @border-radius-base;
+
+  .tips-icon,
+  .tips-content {
+    display: inline-block;
+    font-size: @font-size-base;
+    line-height: 1;
+    vertical-align: middle;
+    color: @warning-color;
+  }
+
+  .tips-icon {
+    font-size: @font-size-xl;
+  }
+}
+
+.dyform .tips-tool {
+  .square(14px);
+
+  display: inline-block;
+  position: relative;
+  margin-left: 4px;
+  vertical-align: middle;
+  border-radius: 50%;
+
+  .tool-content {
+    .square(14px);
+
+    color: @text-color-light;
+    display: inline-block;
+
+    &:before {
+      font-size: @font-size-base;
+      vertical-align: top;
+    }
+
+    &:hover {
+      color: @text-color-primary;
+    }
+  }
+}
+
+.layui-layer-tips.tips-content .layui-layer-content {
+  word-break: break-all;
+  padding: 12px 30px;
+  color: @text-color-light;
+  font-size: @font-size-base;
+  border-radius: @border-radius-base;
+  background: @component-background;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+.layui-layer-tips.tips-content i.layui-layer-TipsL {
+  border-left-color: @text-color-inverse;
+  right: -16px;
+  top: 13px;
+  border-bottom-color: transparent;
+}
+
+.layui-layer-tips.tips-content i.layui-layer-TipsR {
+  left: -16px;
+  top: 13px;
+  border-right-color: @text-color-inverse;
+  border-bottom-color: transparent;
+}
+
+.layui-layer-tips.tips-content i.layui-layer-TipsB {
+  left: 13px;
+  top: -16px;
+  border-bottom-color: @text-color-inverse;
+  border-right-color: transparent;
+}
+
+.layui-layer-tips.tips-content i.layui-layer-TipsT {
+  bottom: -16px;
+  left: 13px;
+  border-top-color: @text-color-inverse;
+  border-right-color: transparent;
+}
+
+/** 颜色控件 */
+.dyform .color-wrap {
+  position: relative;
+
+  @color-selector-item-size: 34px;
+
+  .color-selected {
+    .square(@color-selector-item-size);
+
+    border: @border-default-dark;
+    padding: 4px;
+    display: inline-block;
+
+    li {
+      .square(100%);
+
+      background: #0070c0;
+      border: @border-default-dark;
+      cursor: pointer;
+    }
+
+    &:hover,
+    &.options-open {
+      border: @border-default-primary;
+      box-shadow: @shadow-active-default;
+    }
+  }
+
+  .color-options {
+    .absolute(0 false false @color-selector-item-size);
+
+    border: @border-default-dark;
+    background: @component-background;
+    display: none;
+    transition: all @animation-duration-fast;
+    z-index: 99;
+  }
+
+  .color-list {
+    font-size: 0;
+    padding: 4px;
+  }
+
+  .color-items {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    border: @border-default;
+    cursor: pointer;
+    vertical-align: middle;
+
+    &.iconfont {
+      font-size: @font-size-lg;
+      color: @text-color-inverse;
+      text-align: center;
+      line-height: 24px;
+    }
+
+    &.hasWhite {
+      color: @danger-color;
+    }
+  }
+
+  .color-box {
+    width: 123px;
+  }
+
+  .color-more {
+    padding: 7px 7px 11px;
+    text-align: right;
+    line-height: 1;
+    font-size: @font-size-base;
+    color: @text-color-primary;
+    cursor: pointer;
+
+    i {
+      font-size: 10px;
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+  }
+
+  .color-input {
+    display: none;
+    opacity: 0;
+  }
+}
+
+.color-wrap .color-inline .color-items:not(:first-of-type) {
+  margin-left: 4px;
+}
+
+.color-wrap .color-box .color-items:not(:nth-of-type(4n + 1)) {
+  margin-left: 4px;
+}
+
+.color-wrap .color-box .color-items:nth-of-type(n + 5) {
+  margin-top: 4px;
+}
+
+.color-wrap .minicolors .minicolors-swatch {
+  opacity: 0;
+}
+
+.color-wrap .minicolors .minicolors-panel {
+  display: block;
+  top: 0;
+}
+
+.dyform .color-wrap .show-more-color {
+  border-color: transparent;
+}
+
+.dyform .editableClass[disabled]>.color-wrap,
+.dyform .editableClass[disabled]>.color-wrap .color-selected li {
+  cursor: not-allowed;
+}
+
+/** 按钮开关 */
+.dyform .switch-wrap {
+  position: relative;
+  display: inline-block;
+  min-width: @switch-width;
+  height: @switch-height;
+  padding: 0 7px;
+  outline: none;
+  border-radius: (@switch-height / 2);
+  box-sizing: border-box;
+  background: @switch-closed-background !important;
+  cursor: pointer;
+  transition: border-color @animation-duration-fast, background-color @animation-duration-fast;
+  vertical-align: middle;
+  font-size: 0;
+
+  .switch-radio {
+    .absolute(0 false false 0);
+    .square(@switch-height);
+
+    transition: all @animation-duration-fast;
+    border: @text-color-lighter;
+    border-radius: 50%;
+    background-color: @text-color-inverse !important;
+  }
+
+  .switch-text {
+    display: inline-block;
+    line-height: @switch-height;
+    font-size: @font-size-base;
+    color: @text-color-inverse !important;
+  }
+
+  .switch-open {
+    float: left;
+    padding-right: ((@switch-height / 2) - 2px);
+    display: none;
+  }
+
+  .switch-close {
+    float: right;
+    padding-left: ((@switch-height / 2) - 2px);
+  }
+
+  &.active {
+    background-color: @text-color-primary !important;
+
+    .switch-close {
+      display: none;
+    }
+
+    .switch-open {
+      display: block;
+    }
+
+    .switch-radio {
+      left: calc(100% - @switch-height);
+      border: @border-default-primary;
+    }
+  }
+}
+
+/*进度条*/
+.dyform .progress-wrap {
+  margin: 20px 0;
+  width: 100%;
+  position: relative;
+  line-height: 18px;
+  font-size: 0;
+  user-select: none;
+}
+
+.dyform .progress-content .progress-btn {
+  position: absolute;
+  left: -2px;
+  top: 10px;
+  height: 14px;
+  width: 14px;
+  background: @component-background;
+  border-radius: 50%;
+  border: 2px solid @border-color-primary;
+  margin-top: -14px;
+  cursor: pointer;
+}
+
+.dyform .editableClass[disabled] .progress-content .progress-btn {
+  cursor: not-allowed;
+}
+
+.dyform .progress-content .progress-value {
+  font-size: @font-size-base;
+  position: absolute;
+  top: 20px;
+  color: @text-color-primary;
+  white-space: nowrap;
+  transform: translateX(-25%);
+}
+
+.dyform .progress-wrap .progress-content {
+  display: inline-block;
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+  background-color: @gray-5;
+  width: calc(100% - 130px);
+  height: 6px;
+  position: relative;
+  font-size: 0px;
+  border-radius: @border-radius-base;
+}
+
+.dyform .progress-content div {
+  background-repeat: repeat-x;
+  background-color: @text-color-primary;
+  width: 0;
+  position: absolute;
+  height: 6px;
+  width: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: @border-radius-base;
+}
+
+.dyform .progress-wrap .progress-min,
+.dyform .progress-wrap .progress-max {
+  display: inline-block;
+  font-size: @font-size-base;
+  color: @text-color;
+}
+
+.dyform .progress-wrap .progress-min {
+  width: 50px;
+  text-align: right;
+  padding-right: 10px;
+  box-sizing: border-box;
+}
+
+.dyform .progress-wrap .progress-max {
+  width: 80px;
+  text-align: left;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+.dyform .progress-wrap .progress-content .progress-edit {
+  width: auto;
+  padding: 0 10px;
+  height: 34px;
+  background: @component-background;
+  border: 2px solid @border-color-primary;
+  border-radius: @border-radius-base;
+  font-size: 0;
+  color: @text-color-primary;
+  text-align: center;
+  line-height: 30px;
+  margin-top: -15px;
+}
+
+.dyform .progress-wrap .progress-content .progress-edit span {
+  font-size: @font-size-base;
+  vertical-align: middle;
+  outline: none;
+}
+
+/** 单选和复选按钮 */
+.dyform table td .select-vertical {
+  float: left;
+
+  // &:first-child {
+  //   margin-left: 16px;
+  // }
+
+  &:not(:last-of-type) {
+    margin-right: 30px;
+  }
+}
+
+.dyform table td .editableClass input[type='radio']+label,
+.dyform table td .editableClass input[type='checkbox']+label {
+  font-family: @font-family;
+  font-size: @font-size-base;
+  color: @text-color;
+  padding: 0;
+  margin: 0;
+  line-height: 28px;
+  word-break: break-all;
+  position: relative;
+  padding: 0 10px 0 0;
+}
+
+.dyform table td .editableClass .row input[type='radio']+label,
+.dyform table td .editableClass .row input[type='checkbox']+label {
+  line-height: 20px;
+  vertical-align: text-top;
+  float: initial;
+  padding-bottom: 5px;
+}
+
+.dyform table td .editableClass .select-vertical input[type='radio']+label,
+.dyform table td .editableClass .select-vertical input[type='checkbox']+label {
+  margin-right: 0;
+}
+
+.dyform table td .editableClass input[type='radio']+label:before,
+.dyform table td .editableClass input[type='checkbox']+label:before {
+  color: @text-color-light;
+  margin-right: 8px;
+  // position: absolute;
+  // left: 0;
+}
+
+.dyform table td .editableClass input[type='radio']:checked+label:before,
+.dyform table td .editableClass input[type='checkbox']:checked+label:before,
+.dyform table td .editableClass input[type='radio']:not(:checked)+label:hover:before,
+.dyform table td .editableClass input[type='checkbox']:not(:checked)+label:hover:before,
+.dyform table td .editableClass .selectAll:not(.selected):hover:before {
+  color: @text-color-primary;
+}
+
+.dyform table td .editableClass input[disabled='disabled']+label,
+.dyform table td .editableClass input[disabled='disabled']+label:before,
+.dyform table td .editableClass input[disabled='disabled']:checked+label:before,
+.dyform table td .editableClass .selectAll[disabled='disabled'],
+.dyform table td .editableClass .selectAll[disabled='disabled']:before {
+  cursor: not-allowed;
+}
+
+.dyform table td .editableClass input[disabled='disabled']+label:before,
+.dyform table td .editableClass input[disabled='disabled']:checked+label:before,
+.dyform table td .editableClass .selectAll[disabled='disabled']:before {
+  color: @text-color-lighter;
+}
+
+.dyform table td .editableClass input[type='checkbox']+label:before,
+.dyform table td .editableClass .selectAll:before {
+  content: '\e87e';
+  font-family: iconfont !important;
+}
+
+.dyform table td .editableClass .btn-radio input[type='radio']+label {
+  border: @border-default-dark;
+  min-height: 34px;
+  line-height: 20px;
+  margin: 10px 0 0 0;
+  padding: 7px 25px;
+  border-radius: @border-radius-base;
+}
+
+.dyform table td .editableClass .btn-radio input[type='radio']:not(:checked)+label:hover {
+  border-color: @text-color-primary;
+}
+
+.dyform table td .editableClass .btn-radio>div {
+  display: inline-block;
+}
+
+.dyform table td .editableClass .btn-radio>div:not(:last-of-type) {
+  margin-right: 10px;
+}
+
+.dyform table td .editableClass .btn-radio input[type='radio']+label:before {
+  content: '';
+  font-size: 0;
+  margin: 0;
+}
+
+.dyform table td .editableClass .btn-radio input[type='radio']:checked+label {
+  color: @text-color-primary;
+  border-color: @text-color-primary;
+}
+
+.dyform table td .editableClass .btn-radio input[type='radio']:checked+label:before {
+  content: '\e93b';
+  font-family: iconfont !important;
+  color: @text-color-primary;
+  font-size: 28px;
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  left: initial;
+  line-height: 1;
+  overflow: hidden;
+  border-radius: 0 @border-radius-base 0 0;
+}
+
+.dyform table td .editableClass .btn-radio input[disabled='disabled']+label,
+.dyform table td .editableClass .btn-radio input[disabled='disabled']:checked+label,
+.dyform table td .editableClass .btn-radio input[disabled='disabled']+label:before {
+  color: @text-color;
+  background-color: @background-light;
+  border-color: @border-color-dark;
+}
+
+.dyform table td .editableClass .btn-radio input[disabled='disabled']:checked+label:before {
+  color: @text-color-lighter;
+  background-color: @background-light;
+}
+
+.dyform table td .editableClass .checkbox-all {
+  clear: both;
+  opacity: 0;
+  border-top: @border-default;
+  transition: opacity @animation-duration-fast;
+  padding-left: @padding-md;
+}
+
+.dyform table td .editableClass .selectAll {
+  margin: 0;
+  line-height: 28px;
+  color: @text-color;
+}
+
+.dyform table td .editableClass .selectAll:before {
+  content: '\e8f2';
+  font-family: iconfont !important;
+  color: @text-color-light;
+  margin-right: 8px;
+  font-size: @font-size-lg;
+  vertical-align: top;
+}
+
+.dyform table td .editableClass .selectAll.selected:before {
+  content: '\e8de';
+  font-family: iconfont !important;
+  color: @text-color-primary;
+}
+
+.dyform table td .input-box:hover .checkbox-all {
+  opacity: 1;
+}
+
+.dyform table td .editableClass .input-box .fix-margin {
+  margin-right: 30px;
+  display: inline-block;
+}
+
+.dyform table td .editableClass .input-box .row>div,
+.dyform table td .editableClass .input-box .checkbox-all {
+  padding-left: 0 !important;
+}
+
+.dyform table td .editableClass.label-elem input:checked+label {
+  display: inline-block;
+  padding: 0px 6px;
+}
+
+.dyform table td .editableClass.label-elem input:checked+label::before {
+  display: none;
+}
+
+.dyform table td .editableClass.label-elem input:not(:checked)+label {
+  display: none;
+}
+
+.inline-block {
+  display: inline;
+}
+
+/** tabs 有边框 */
+.nav-tabs>li.tab-border {
+  margin-left: 15px;
+}
+
+.nav-tabs>li.tab-border>a {
+  padding: 10px 20px;
+  color: @text-color-primary;
+  border: @border-default;
+  background: @background-light;
+  border-radius: @border-radius-base @border-radius-base 0px 0px;
+  font-size: @font-size-lg;
+  line-height: 1;
+}
+
+.nav-tabs>li.tab-border>a.tab-disabled,
+.nav-tabs>li.tab-noborder>a.tab-disabled {
+  color: @text-color-lighter;
+}
+
+.nav-tabs>.tab-border.active>a,
+.nav-tabs>.tab-border.active>a:focus,
+.nav-tabs>.tab-border.active>a:hover,
+.nav-tabs>.tab-border>a:hover {
+  color: @text-color-inverse;
+  background: @primary-color;
+  border-color: @text-color-primary;
+}
+
+/** tabs 没有边框 */
+.tab>.tab-content {
+  margin-top: 20px;
+}
+
+.nav-tabs>li.tab-noborder:not(:first-of-type) {
+  margin-left: 30px;
+}
+
+.nav-tabs>li.tab-noborder>a {
+  padding: @padding-xs;
+  border: none;
+  color: @text-color-dark;
+  background: initial;
+  font-size: @font-size-lg;
+}
+
+.nav-tabs>.tab-noborder.active>a,
+.nav-tabs>.tab-noborder.active>a:focus,
+.nav-tabs>.tab-noborder.active>a:hover,
+.nav-tabs>.tab-noborder>a:hover {
+  color: @text-color-primary;
+  border: none;
+  border-bottom: 3px solid @border-color-primary;
+}
+
+.nav-tabs .tab-content {
+  margin-top: @margin-lg;
+}
+
+/** 区块 block */
+.dyform table .title {
+  position: relative;
+  padding-left: @padding-md;
+  margin-bottom: @margin-lg;
+  font-size: @font-size-lg;
+  color: @text-color-dark;
+  border: none;
+  background: none;
+  // border-bottom: @border-default;
+  line-height: 1;
+
+  &:before {
+    .size(@title-decoration-width @title-decoration-height);
+    .absolute(50% false false 0);
+
+    display: block;
+    margin-top: -8px;
+    content: '';
+    background: @title-decoration-color;
+    border-radius: (@title-decoration-width / 2);
+  }
+}
+
+/* Start region: dyform */
+.dyform.dyform-stribe .field:nth-child(2n) {
+  background: #c8e9f5;
+}
+
+.dyform {
+  font-size: @font-size-base;
+  font-family: @font-family;
+  width: auto;
+  background: @dyform-background;
+}
+
+.dyform h1 {
+  text-align: center;
+}
+
+.dyform table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+form.dyform>p {
+  font-size: 0;
+  margin: 0;
+}
+
+.dyform table td.label-td label {
+  font-weight: normal;
+}
+
+.dyform table td.photo-fileup {
+  text-align: center;
+}
+
+.dyform table td.photo-fileup .attach-listSMALL_PHOTO_UUID {
+  display: none;
+}
+
+.dyform table td {
+  padding: @padding-3xs @padding-md;
+  border: @border-default;
+  color: @text-color-dark;
+}
+
+.dyform table td img {
+  word-break: break-word;
+}
+
+.dyform table td .value pre {
+  background: transparent;
+  border: none;
+  color: @text-color;
+  font-size: @font-size-base;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.dyform table td .richText td {
+  border-color: @border-color-dark;
+}
+
+.dyform table td label {
+  display: inline-block;
+  font-size: @font-size-base;
+  font-family: @font-family;
+  text-rendering: auto;
+  line-height: 34px;
+  position: relative;
+  margin: 0 10px 0 0;
+  cursor: pointer;
+
+  &:before {
+    font-size: 16px;
+    margin-right: 3px;
+    vertical-align: top;
+  }
+}
+
+.dyform table td .editableClass.error-style,
+.well-number-input .well-number-input-control.error-style,
+.well-workflow-form .form-group .error-style {
+  border: @border-default-danger;
+  border-radius: @border-radius-base;
+  box-shadow: @shadow-error-default  !important;
+}
+
+.input-group-addon {
+  color: #666;
+  background: #fafafa;
+}
+
+.input-group-btn .dropdown-toggle {
+  color: #666;
+  background: #fafafa;
+}
+
+.input-group-btn .dropdown-toggle i {
+  font-size: 12px;
+}
+
+.btn-group.open button i {
+  display: inline-block;
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.btn-group.open .dropdown-toggle {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  font-size: @font-size-base;
+}
+
+.well-input-group-addon {
+  position: relative;
+  display: table-cell;
+  width: 1%;
+  font-size: @font-size-base;
+  color: @text-color;
+  background: @gray-1;
+  padding: 6px 12px;
+  font-weight: 400;
+  line-height: 1;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.well-input-group-addon i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-left: 10px;
+  font-size: 12px;
+  color: #999;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  transition: all 0.2s ease-in-out;
+}
+
+.well-input-group-addon.front-group {
+  border-right: 1px solid transparent;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.well-input-group-addon.front-group+.well-input input {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.well-input-group-addon.end-group {
+  border-left: 1px solid transparent;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.well-input-group-addon.open,
+.well-input-group-addon:hover {
+  border: 1px solid @border-color-primary;
+}
+
+.well-input-group-addon.open i {
+  -webkit-transform: translateY(-50%) rotate(180deg);
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.well-input-group-addon .dropdown-toggle {
+  line-height: normal;
+}
+
+.well-input-group-addon .dropdown-menu {
+  padding: 0;
+  min-width: inherit;
+}
+
+.well-input-group-addon .dropdown-menu li {
+  padding: 10px;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  cursor: pointer;
+}
+
+.well-input-group-addon .dropdown-menu li:hover {
+  color: @text-color-inverse  !important;
+  background-color: rgba(72, 140, 238, 0.15) !important;
+}
+
+.well-number-input {
+  display: inline-block;
+}
+
+.well-number-input .input-group-addon.minus,
+.well-number-input .input-group-addon.plus {
+  position: relative;
+  color: #999;
+  border: 1px solid #ddd;
+  display: inline-block;
+  height: 35px;
+  line-height: 35px;
+  padding: 0;
+}
+
+.well-number-input .input-group-addon.minus {
+  border-right-color: transparent;
+}
+
+.well-number-input .input-group-addon.plus {
+  border-left-color: transparent;
+}
+
+.well-number-input .well-number-input-control {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+  border: 1px solid #ddd;
+  vertical-align: middle;
+  height: 35px;
+  border-radius: 4px;
+}
+
+.well-number-input .well-number-input-control:hover {
+  border: @border-default-primary;
+  box-shadow: @shadow-active-default;
+}
+
+.well-number-input .well-number-input-control.rightNoRadius {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  width: calc(100% - 35px);
+}
+
+.well-number-input .well-number-input-control.leftNoRadius {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  width: calc(100% - 35px);
+}
+
+.well-number-input .well-number-input-control.rightNoRadius.leftNoRadius {
+  width: calc(100% - 70px);
+}
+
+.well-number-input .form-control {
+  border: none;
+  z-index: 0;
+  /* height: 33px !important; */
+  border-radius: 4px !important;
+  outline: none !important;
+}
+
+.well-number-input .form-control:hover,
+.well-number-input .form-control:focus {
+  border: none;
+  outline: none !important;
+}
+
+.well-number-input .minus:hover,
+.well-number-input .plus:hover {
+  color: @text-color-inverse;
+  border-color: @border-color-primary;
+  box-shadow: 0px 0px 4px 0px rgba(72, 140, 238, 0.5);
+}
+
+.well-number-input .minus.disabled,
+.well-number-input .plus.disabled {
+  color: #ccc;
+  background: rgba(246, 246, 246, 1);
+  border-color: #ddd;
+  box-shadow: 0px 0px 1px 0px rgba(221, 221, 221, 1);
+  cursor: not-allowed !important;
+}
+
+.well-number-input .minus.disabled {
+  border-right: none;
+}
+
+.well-number-input .plus.disabled {
+  border-left: none;
+}
+
+.dyform table td .editableClass input[type='radio'],
+.dyform table td .editableClass input[type='checkbox'] {
+  position: absolute;
+  margin: 5px 0 0 12px;
+  opacity: 0;
+}
+
+.dyform table td .editableClass input[type='radio']+label:before {
+  content: '\e8db';
+  font-family: iconfont !important;
+}
+
+.dyform table td .editableClass input[type='radio']+label.radiolabel:before {
+  content: '\e8d6';
+  font-family: iconfont !important;
+}
+
+.dyform table td .editableClass input[type='radio']:checked+label:before {
+  content: '\e8d6';
+  font-family: iconfont !important;
+}
+
+.dyform table td .editableClass input[type='checkbox']+label:before {
+  content: '\e8f2';
+  font-family: iconfont !important;
+}
+
+.dyform table td .editableClass input[type='checkbox']:checked+label:before {
+  content: '\e8de';
+  font-family: iconfont !important;
+}
+
+.dyform table td .editableClass input[type='checkbox']+label.checkboxlabel:before {
+  content: '\e8de';
+  font-family: iconfont !important;
+}
+
+.dyform .richText ul,
+.dyform .richText p {
+  margin-bottom: 20px;
+  line-height: 30px;
+}
+
+.dyform .subtab {
+  width: 100%;
+}
+
+.dyform .WdateFmtErr {
+  font-weight: bold;
+  color: red;
+}
+
+.dyform .select2-container {
+  width: 100%;
+}
+
+.dyform .select2-container .select2-choice,
+.dyform .select2-container-multi .select2-choices {
+  height: 35px;
+  line-height: 35px;
+  border-radius: @border-radius-base;
+  background-image: none;
+  border: @border-default-light;
+  outline: none;
+
+  span:first-child {
+    width: auto;
+  }
+
+  .select2-arrow {
+    border: 0;
+  }
+}
+
+.dyform .select2-container-active .select2-choice,
+.dyform .select2-container-active .select2-choices {
+  border: @border-default-primary;
+}
+
+.dyform label {
+  margin-bottom: 0;
+  font-size: @font-size-base;
+  color: @text-color-dark;
+  display: inline-block;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+
+  &.label {
+    white-space: normal;
+  }
+}
+
+.dyform .fileupload-ico {
+  width: 100%;
+  border-left-width: 2px;
+  padding: 5px 11px;
+
+  .left-counter {
+    color: @text-color;
+  }
+
+  div {
+    >a {
+      padding: 0 11px;
+      position: relative;
+      color: @text-color;
+      width: 100%;
+      line-height: 17px;
+      text-decoration: none;
+
+      &:not(:last-child) {
+        border-right: @border-default-inverse;
+      }
+    }
+
+    input {
+      width: auto;
+      display: inline-block;
+      margin-right: 9px;
+      border: 0;
+      display: none;
+    }
+  }
+}
+
+.dyform .fileupload-ico .newContent,
+.dyform .fileupload-ico .imposeContent {
+  border: 0;
+  left: 0;
+  top: 32px;
+  text-align: center;
+  padding: @padding-3xs;
+}
+
+.dyform .attach-list {
+  border: 1px solid #069dd5;
+  margin-top: 0px;
+
+  li {
+    padding: 5px 0;
+    list-style: none outside none;
+    border: 1px solid #069dd5;
+    margin-left: 0;
+
+    input[type='checkbox'] {
+      width: auto;
+      margin-right: 9px;
+      border: 0;
+      display: none;
+    }
+
+    img {
+      vertical-align: middle;
+      width: 23px;
+    }
+
+    &:hover {
+      background: #c8e9f5;
+    }
+
+    &.icoItem {
+      float: left;
+      width: 90px;
+      padding: 20px 0;
+      text-align: center;
+      cursor: pointer;
+
+      img {
+        width: 48px;
+      }
+
+      >span {
+        width: 90px;
+        display: block;
+      }
+
+      &.bar {
+        border-bottom: 0;
+        border-right: @border-default-inverse;
+      }
+    }
+  }
+
+  .autocut {
+    .text-overflow();
+    width: 120px;
+  }
+
+  .bar {
+    background: @background-primary-light;
+    border-bottom: @border-default-inverse;
+  }
+
+  a {
+    text-decoration: none;
+    color: @text-color-dark;
+
+    img {
+      .square(64px);
+
+      padding: @padding-xs;
+      border: @border-default-light;
+    }
+
+    span {
+      line-height: 18px;
+      text-align: center;
+    }
+  }
+}
+
+.file-view-menu.dropdown-menu {
+  min-width: 6em;
+}
+
+.file-view-menu>li>a {
+  padding: 3px 14px;
+  color: @text-color;
+
+  i {
+    font-size: @font-size-base;
+    color: @text-color-light;
+    margin-right: 5px;
+  }
+
+  &:hover {
+    background: @item-hover-background;
+    color: @text-color;
+  }
+}
+
+.dyform .ui-jqgrid-btable .files_div .filename {
+  .text-overflow();
+
+  max-width: 130px;
+  padding: 0;
+}
+
+.dyform .attach-listoa_file {
+  margin-bottom: 0;
+
+  input {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.dyform .Validform_checktip span.error {
+  margin-top: 4px;
+  color: @danger-color;
+  font-size: @font-size-base;
+  font-weight: 400;
+  padding: 4px 8px 4px 21px;
+  z-index: 50;
+  position: relative;
+  width: 200px;
+  display: block;
+  line-height: 1;
+
+  &:after {
+    .absolute(0 false false 0);
+    font-size: @font-size-base;
+    content: '\e920';
+    display: block;
+    padding: 4px 0;
+  }
+}
+
+.dyform .ui-widget-overlay {
+  background: #aaa url('@{image-url-prefix}/ui-bg_flat_0_aaaaaa_40x100.png') 50% 50% repeat-x;
+  opacity: 0.3;
+}
+
+/* End region: dyform */
+
+/** Start region: 表单皮肤部分 */
+.dyform .fileupload-ico {
+  border: 1px solid #fafafa;
+  background: #fafafa;
+  color: @text-color;
+
+  div>a:hover {
+    color: #13baf8;
+  }
+}
+
+.dyform .newContent,
+.dyform .imposeContent {
+  background: #069dd5;
+  color: #fff;
+
+  &:hover {
+    background: #057aa6;
+  }
+}
+
+// 表单内单选框和复选框  class='radiolabel' | class='checkboxlabel'
+.dyform table td input[type='radio'] {
+  display: none;
+
+  +label.radiolabel::before {
+    margin-right: 4px;
+    font-size: @font-size-base;
+    font-family: iconfont !important;
+    content: '\e8db';
+    color: @text-color-light;
+  }
+
+  &:checked+label.radiolabel::before {
+    color: @text-color-primary;
+    content: '\e8d6';
+  }
+
+  &:disabled+label.radiolabel::before {
+    color: @disabled-text-color;
+    cursor: not-allowed;
+  }
+}
+
+.dyform table td input[type='checkbox'] {
+  +label.checkboxlabel::before {
+    margin-right: 4px;
+    font-size: @font-size-base;
+    font-family: iconfont !important;
+    content: '\e8f2';
+    color: @text-color-light;
+  }
+
+  &:checked+label.checkboxlabel:before {
+    color: @text-color-primary;
+    content: '\e8de';
+  }
+
+  &:disabled+label.checkboxlabel::before {
+    color: @disabled-text-color;
+    cursor: not-allowed;
+  }
+}
+
+/** End region: 表单皮肤部分 */
+.dyform .files_div .filename.maxWidth55 {
+  max-width: 55%;
+}
+
+.dyform table td input[type='checkbox']:not(.switch) {
+  display: none;
+
+  +label {
+    margin-left: 20px;
+    border-radius: @border-radius-base;
+
+    &:before {
+      content: '\e8f2';
+      font-family: iconfont !important;
+      color: @text-color-light;
+      margin-right: 8px;
+    }
+  }
+
+  &:checked+label:before {
+    color: @text-color-primary;
+    content: '\e8de';
+  }
+
+  &:disabled+label:before {
+    color: @disabled-text-color;
+    cursor: not-allowed;
+  }
+
+  &:first-of-type+label {
+    padding-left: 0;
+  }
+}
+
+// 组织选择控件 专有属性
+.dyform .label-title {
+  position: relative;
+  margin: 10px;
+  font-weight: bold;
+  font-size: @font-size-base;
+
+  &::before {
+    .absolute(0 false false -10px);
+    .size(4px, 100%);
+
+    content: '';
+    border-radius: @border-radius-2;
+    background: @primary-color;
+  }
+}
+
+.dyform {
+  &.article_dyform {
+    p {
+      text-indent: 24px;
+      word-break: break-all;
+
+      &.level_1 {
+        text-indent: 36px;
+      }
+    }
+  }
+
+  .more-split {
+    position: relative;
+    margin: 20px 0 10px;
+    height: 20px;
+
+    // border-top: 1px solid #e8e8e8;
+    .text {
+      .absolute(-15px false false calc(50% - 50px));
+      .size(100px, 31px);
+
+      color: @primary-color;
+      text-align: center;
+      cursor: pointer;
+
+      i {
+        display: inline-block;
+        margin-left: 10px;
+        color: @primary-color;
+        transition: all 0.3s;
+      }
+    }
+
+    +table {
+      display: none;
+    }
+  }
+}
+
+.dyform {
+  .more-split.up {
+    .text {
+      i {
+        transform: rotate(180deg);
+      }
+    }
+
+    +table {
+      display: block;
+    }
+  }
+}
+
+/*用于表单定义*/
+body.dyform table tbody tr {
+  height: 30px;
+  min-height: 30px;
+}

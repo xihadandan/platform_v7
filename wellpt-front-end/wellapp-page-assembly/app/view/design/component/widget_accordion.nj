@@ -1,0 +1,222 @@
+<style>
+  .minicolors-theme-default.minicolors,
+  .minicolors-theme-default .minicolors-input {
+    width: 100%;
+  }
+  .minicolors-theme-default .minicolors-input {
+    height: inherit;
+  }
+  .select2-drop {
+    z-index: 999999;
+  }
+
+</style>
+
+<div id="widget_accordion" class="widget_component">
+  <form id="widget_accordion_tabs_form" class="form-horizontal">
+    <div id="widget_accordion_tabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#widget_accordion_base_info">基础配置</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_accordion_item_config">手风琴配置</a>
+        </li>
+      </ul>
+      <div class="tab-content" style="height: 500px">
+        <div role="tabpanel" class="tab-pane active" id="widget_accordion_base_info">
+          <div class="form-group">
+            <label for="accordion_name" class="col-sm-2 control-label">
+              名称
+              <font color="red">*</font>
+            </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" name="accordion_name" id="accordion_name" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">类型</label>
+            <div class="col-sm-10">
+              <div class="radio-inline">
+                <input type="radio" class="form-control w-configurer-option" id="accordion_type1" name="accordion_type" value="horizontal" checked />
+                <label for="accordion_type1">水平排列</label>
+              </div>
+              <div class="radio-inline">
+                <input type="radio" class="form-control w-configurer-option"  id="accordion_type2" name="accordion_type" value="vertical" />
+                <label for="accordion_type2">垂直排列</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="accordion_height" class="col-sm-2 control-label">
+              组件高度
+              <font color="red">*</font>
+            </label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control w-configurer-option"
+                name="accordion_height"
+                id="accordion_height"
+                placeholder="单位默认px"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="form-control w-configurer-option" name="jsModuleName" id="jsModuleName" />
+              <input type="text" class="form-control w-configurer-option" name="jsModule" id="jsModule" />
+            </div>
+          </div>
+          {% include "./widget_base_info.nj" %}
+        </div>
+        <div role="tabpanel" class="tab-pane w-tab-pane-table" id="widget_accordion_item_config">
+          <div class="row navDataRow">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">手风琴子项</label>
+              <div class="col-sm-10">
+                <div class="row widget_example">
+                  <div class="col-md-4">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-primary btn-sm" id="widget_accordion_add">添加</button>
+                      <button type="button" class="btn btn-primary btn-sm" id="widget_accordion_remove">删除</button>
+                    </div>
+                    <ul id="widget_accordion_tree" class="ztree"></ul>
+                  </div>
+                  <div class="col-md-8" id="widget_accordion_form">
+                    <div class="form-group">
+                      <label for="accordionTree_name" class="col-sm-3 control-label">
+                        名称
+                        <font color="red">*</font>
+                      </label>
+                      <div class="col-sm-9">
+                        <input type="hidden" class="form-control w-nav-tree-option" name="accordionTree_uuid" id="accordionTree_uuid" />
+                        <input type="text" class="form-control w-nav-tree-option" name="accordionTree_name" id="accordionTree_name" />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="accordionTree_backgroundColor" class="col-sm-3 control-label">
+                        背景色
+                        <font color="red">*</font>
+                      </label>
+                      <div class="col-sm-9">
+                        <input
+                          type="text"
+                          class="form-control w-configurer-option"
+                          name="accordionTree_backgroundColor"
+                          id="accordionTree_backgroundColor"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="accordionTree_eventHandler_name" class="col-sm-3 control-label">
+                        事件处理
+                        <font color="red">*</font>
+                      </label>
+                      <div class="col-sm-9">
+                        <input
+                          type="text"
+                          class="form-control w-nav-tree-option"
+                          name="accordionTree_eventHandler_name"
+                          id="accordionTree_eventHandler_name"
+                        />
+                        <input
+                          type="hidden"
+                          class="form-control w-nav-tree-option"
+                          name="accordionTree_eventHandler_id"
+                          id="accordionTree_eventHandler_id"
+                        />
+                        <input
+                          type="hidden"
+                          class="form-control w-nav-tree-option"
+                          name="accordionTree_eventHandler_path"
+                          id="accordionTree_eventHandler_path"
+                        />
+                        <input
+                          type="hidden"
+                          class="form-control w-nav-tree-option"
+                          name="accordionTree_eventHandler_type"
+                          id="accordionTree_eventHandler_type"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="accordionTree_isShowBadge" class="col-sm-3 control-label">徽章</label>
+                      <div class="col-sm-9">
+                        <label class="checkbox-inline">
+                          <input
+                            class="w-accordion-tree-option"
+                            type="checkbox"
+                            id="accordionTree_isShowBadge"
+                            name="accordionTree_isShowBadge"
+                            value="true"
+                          />
+                          <label for="accordionTree_isShowBadge">显示数量</label>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group showBadge accordionTree_BadgeType_select" style="display: none">
+                      <label for="accordionTree_BadgeType" class="col-sm-3 control-label">徽章获取方式</label>
+                      <div class="col-sm-9">
+                        <input
+                          class="w-nav-tree-option form-control"
+                          type="hidden"
+                          id="accordionTree_BadgeType"
+                          name="accordionTree_BadgeType"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="form-group showBadge accordionTree_BadgeType accordionTree_BadgeType_countJs accordionTree_BadgeType_countJs_select"
+                      style="display: none"
+                    >
+                      <label for="accordionTree_BadgeTypeCountJs" class="col-sm-3 control-label">数量统计的JS脚本</label>
+                      <div class="col-sm-9">
+                        <input
+                          class="w-nav-tree-option form-control"
+                          type="hidden"
+                          id="accordionTree_BadgeTypeCountJs"
+                          name="accordionTree_BadgeTypeCountJs"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="form-group showBadge accordionTree_BadgeType accordionTreeBootstrapTableViewGetCount"
+                      js="BootstrapTableViewGetCount"
+                      style="display: none"
+                    >
+                      <label for="accordionTree_BadgeTypeCountJsWBootstrapTable" class="col-sm-3 control-label">表格视图</label>
+                      <div class="col-sm-9">
+                        <input
+                          class="w-nav-tree-option form-control"
+                          type="hidden"
+                          id="accordionTree_BadgeTypeCountJsWBootstrapTable"
+                          name="accordionTree_BadgeTypeCountJsWBootstrapTable"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group showBadge accordionTree_BadgeType accordionTree_BadgeType_datastore" style="display: none">
+                      <label for="accordionTree_BadgeTypeCountDs" class="col-sm-3 control-label">统计数量的数据仓库</label>
+                      <div class="col-sm-9">
+                        <input
+                          type="hidden"
+                          class="w-nav-tree-option form-control"
+                          name="accordionTree_BadgeTypeCountDs"
+                          id="accordionTree_BadgeTypeCountDs"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group navBtnRow">
+                      <button type="button" class="btn btn-primary btn-sm" id="accordionTree_save">保存</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,36 @@
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "modules": false, // esmodule不转换CommonJS 有利于tree shaking
+        "targets": {
+          "browsers": [
+            "> 1%",
+            "last 5 versions",
+            "not ie <= 8"
+          ]
+        },
+        "useBuiltIns": "usage", // polyfill按需引入
+        "corejs": 3
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-syntax-import-meta",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-json-strings",
+    "@babel/plugin-proposal-function-sent",
+    "@babel/plugin-proposal-export-namespace-from",
+    "@babel/plugin-proposal-numeric-separator",
+    "@babel/plugin-proposal-throw-expressions"
+  ]
+}

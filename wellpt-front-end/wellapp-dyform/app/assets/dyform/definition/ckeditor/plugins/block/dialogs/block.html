@@ -1,0 +1,220 @@
+<div id="blockAttrCfgDiv" title="属性设置" style="height: 150px; width: 400px; overflow: auto">
+  <div>
+    <div class="dyform">
+      <div class="post-sign">
+        <div class="post-detail">
+          <table>
+            <tr>
+              <td class="Label required">区块编码:</td>
+              <td class="value"><input type="text" id="blockCode" value="" /></td>
+            </tr>
+            <tr class="odd">
+              <td class="Label required">区块标题:</td>
+              <td class="value"><input type="text" id="blockTitle" value="" /></td>
+            </tr>
+            <tr class="custom">
+              <td class="Label">选择行列：</td>
+              <td class="value" id="radio-options">
+                <input type="radio" name="options" value="2" checked id="radio_option1" />
+                <label for="radio_option1">三行两列</label>
+                <input type="radio" name="options" value="4" id="radio_option2" />
+                <label for="radio_option2">三行四列</label>
+                <input type="radio" name="options" value="6" id="radio_option3" />
+                <label for="radio_option3">三行六列</label>
+              </td>
+            </tr>
+            <tr class="custom odd">
+              <td class="Label">自定义行列：</td>
+              <td class="value">
+                <span>行：</span>
+                <input type="text" style="width: 100px" placeholder="输入行数" class="table_row" />
+                <span>列：</span>
+                <input type="text" style="width: 100px" placeholder="输入列数" class="table_column" />
+              </td>
+            </tr>
+            <tr>
+              <td class="Label">显示模式:</td>
+              <td class="value">
+                <input type="checkbox" name="showType" id="showType" value="1" />
+                <label for="showType">隐藏</label>
+              </td>
+            </tr>
+            <tr class="odd">
+              <td class="Label">是否加入锚点:</td>
+              <td class="value">
+                <input type="checkbox" name="addAnchorPoint" id="addAnchorPoint" value="1" />
+                <label for="addAnchorPoint">是</label>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var block = {};
+
+  block.$ = function (selector) {
+    return $(selector, $('#blockAttrCfgDiv'));
+  };
+
+  /**
+   * 初始化属性窗口
+   */
+  block.initPropertyDialog = function (editor) {
+    // $(".cke_reset_all"  ).removeClass("cke_reset_all");
+    //console.log("initPropertyDialog=============");
+    this.editor = editor;
+    // 编辑区块时,默认移出提示
+    this.editor.removeHintInDesigner();
+    var focusedDom = editor.focusedDom; //当前editor被双击的对象(CKEDITOR.dom.node类)
+    var labelText = '';
+    var blockCode = '';
+    var blockHide = false;
+    var blockAnchor = false;
+
+    // 有过设置，采用设置设置过的置
+    if (focusedDom != null && typeof focusedDom != 'undefined') {
+      //兼容老版本数据，设置该td不可编辑
+      focusedDom.setAttribute('contentEditable', 'false');
+      this.$('.custom').hide();
+      labelText = focusedDom.getText();
+      blockCode = focusedDom.getAttribute('blockCode');
+      blockHide = focusedDom.getAttribute('blockHide') == 'true' ? true : false;
+      blockAnchor = focusedDom.getAttribute('blockAnchor') == 'true' ? true : false;
+    }
+
+    this.$('#blockCode').val(blockCode);
+    this.$('#blockTitle').val(labelText);
+    if (blockHide) {
+      this.$('#showType').attr('checked', 'true');
+    } else {
+      this.$('#showType').removeAttr('checked');
+    }
+
+    if (blockAnchor) {
+      this.$('#addAnchorPoint').attr('checked', 'true');
+    } else {
+      this.$('#addAnchorPoint').removeAttr('checked');
+    }
+  };
+
+  block.exitDialog = function () {
+    this.editor.focusedDom = null;
+    this.$('#blockTitle').val('');
+    this.$('#blockCode').val('');
+  };
+
+  block.fillCkeditor = function () {
+    var blockTitle = this.$('#blockTitle').val();
+    var blockCode = this.$('#blockCode').val();
+    var blockHide = this.$('#showType').attr('checked') === 'checked';
+    var blockAnchor = this.$('#addAnchorPoint').attr('checked') === 'checked';
+
+    // `blockCode` 必填校验
+    if (blockCode == '' || blockCode == undefined) {
+      alert(dymsg.blockCodeNotEmpty);
+      return false;
+    }
+
+    // `blockTitle` 必填校验
+    if (blockTitle == '' || blockTitle == undefined) {
+      alert(dymsg.blockTitleNotEmpty);
+      return false;
+    }
+
+    if (typeof formDefinition.blocks == 'undefined') {
+      formDefinition.blocks = {};
+    }
+
+    // `blockCode` 唯一性检查
+    var oldBlockCode = this.editor.focusedDom ? this.editor.focusedDom.getAttribute('blockCode') : '';
+    for (var key in formDefinition.blocks) {
+      if (key === blockCode && key !== oldBlockCode) {
+        alert(dymsg.blockCodeExist);
+        return false;
+      }
+    }
+
+    // 获得需要区块的行数和列数
+    var table_row;
+    var table_column;
+    var row = this.$('.table_row').val();
+    var column = this.$('.table_column').val();
+    if (row !== '' && column !== '') {
+      table_row = row;
+      table_column = column;
+    } else {
+      table_row = 3;
+      table_column = this.$('input[type="radio"]:checked').val();
+    }
+
+    // 如果存在就覆盖，如果不存在就插入
+    if (this.editor.focusedDom != null) {
+      this.editor.focusedDom.setHtml(blockTitle);
+      this.editor.focusedDom.setAttribute('blockCode', blockCode);
+      this.editor.focusedDom.setAttribute('blockHide', blockHide);
+      this.editor.focusedDom.setAttribute('blockAnchor', blockAnchor);
+
+      var $th = $(this.editor.focusedDom);
+      var $table = $th.closest('table');
+      var oldSymbol = $table.attr('symbol');
+      if (oldSymbol) {
+        $table.attr({ name: blockCode, symbol: blockCode });
+        $table.find('[symbol=' + oldSymbol + ']').attr('symbol', blockCode);
+        $table.find('[container=' + oldSymbol + ']').attr('container', blockCode);
+      }
+    } else {
+      var tbodyHTML = '<tbody class="layout" tree-ignore="1" symbol="${blockCode}" container="${blockCode}">';
+      for (var i = 0; i < table_row; i++) {
+        tbodyHTML += '<tr>';
+        for (var j = 0; j < table_column; j++) {
+          if (j % 2 == 0) {
+            tbodyHTML += '<td class="label-td content" container="${blockCode}"></td>';
+          } else {
+            tbodyHTML += '<td class="content" style="width: ${columnWidth};" container="${blockCode}"></td>';
+          }
+        }
+        tbodyHTML += '</tr>';
+      }
+      tbodyHTML += '</tbody>';
+
+      var blockHTML =
+        '<table' +
+        '    class="container"' +
+        '    type="block"' +
+        '    blockCode="${blockCode}"' +
+        '    symbol="${blockCode}"' +
+        '    blockTitle="${blockTitle}"' +
+        '  >' +
+        '  <thead>' +
+        '    <tr>' +
+        '      <th class="title" colspan="12" blockCode="${blockCode}" blockHide="${blockHide}" blockAnchor="${blockAnchor}">${blockTitle}</th>' +
+        '    </tr>' +
+        '  </thead>' +
+        tbodyHTML +
+        '</table>';
+
+      var html = commons.StringUtils.format(blockHTML, {
+        blockTitle: blockTitle,
+        blockCode: blockCode,
+        blockHide: blockHide ? 'true' : '',
+        blockAnchor: blockAnchor ? 'true' : '',
+        columnWidth: 100 / (table_column / 2) - 10 + '%'
+      });
+
+      var element = CKEDITOR.dom.element.createFromHtml(html);
+      this.editor.insertElement(element);
+    }
+
+    formDefinition.blocks[blockCode] = {
+      blockTitle: blockTitle.trim(),
+      blockCode: blockCode,
+      hide: blockHide,
+      blockAnchor: blockAnchor
+    };
+
+    return true;
+  };
+</script>

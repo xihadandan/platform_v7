@@ -1,0 +1,42 @@
+<form action="" id="org_version_form" class="form-widget">
+    <input type="hidden" id="uuid" name="uuid" />
+    <input type="hidden" id="systemUnitId" name="systemUnitId"/>
+    <div class="well-form form-horizontal">
+        <div class="form-group">
+            <label for="org_ver_name" class="well-form-label control-label required">组织名称</label>
+            <div class="well-form-control">
+                <input type="text" class="form-control" id="org_ver_name" name="name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="functionType" class="well-form-label control-label required">类型</label>
+            <div class="well-form-control">
+                <input id="functionType" name="functionType" type="text"  />
+                <input id="functionTypeName" name="functionTypeName" type="hidden"  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="org_ver_remark" class="well-form-label control-label">备注</label>
+            <div class="well-form-control">
+                <textarea type="text" class="form-control" id="org_ver_remark" name="remark"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="org_ver_status" class="well-form-label control-label">状态</label>
+            <div class="well-form-control">
+                <input id="org_ver_status" name="status" type="checkbox"><label for="org_ver_status">启用</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="well-form-label control-label no-suffix"></label>
+            <div class="well-form-control">
+                <input id="isDefault" name="isDefault" type="checkbox"><label for="isDefault">设置为默认</label>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:30px;">
+        <div class="col-sm-12 text-center">
+            <button type="button" class="well-btn w-btn-primary" id="org_ver_save">保存</button>
+        </div>
+    </div>
+</form>

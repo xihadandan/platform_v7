@@ -1,0 +1,393 @@
+/* 头部组件 - 全文搜索 */
+
+// 全文搜索 - 头部组件输入框
+.ui-wHeader .ui-wHeader-searchNav {
+  display: none;
+  position: absolute;
+  background: @header-search-background;
+  top: 50%;
+  margin-top: -21px;
+
+  // *配置无效，目前搜索框宽度未内联样式，使用JS计算*
+  width: @header-search-width;
+
+  .ui-wHeader-search {
+    .size(@header-search-input-width, @header-search-input-height);
+
+    margin: 0 auto; //((@header-height - @header-search-input-height) / 2) auto;
+    position: relative;
+    padding: 0 @padding-sm;
+    background: rgba(@header-search-input-background, 0.3);
+    // border: @border-default-lighter;
+    border-radius: (@header-search-input-height / 2);
+    min-width: 200px;
+    border: 1px solid rgba(@white, 0.3);
+
+    // 搜索输入框
+    input {
+      width: calc(100% - 60px);
+      display: inline-block;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      height: (@header-search-input-height - 2 * @border-width-base);
+      margin: 1px @margin-2xs 1px 0;
+      box-sizing: border-box;
+      color: @header-text-color;
+
+      &::-webkit-input-placeholder {
+        color: rgba(@white, 0.3);
+      }
+
+      &:hover,
+      &:focus {
+        box-shadow: none !important;
+      }
+    }
+
+    // 搜索输入框 - 清除按钮
+    .icon-ptkj-dacha-xiao {
+      .square(@header-search-input-icon-size);
+
+      display: inline-block;
+      border-radius: 50%;
+      line-height: @header-search-input-icon-size;
+      text-align: center;
+      font-size: @font-size-base;
+      cursor: pointer;
+      vertical-align: middle;
+      margin-right: @margin-2xs;
+      opacity: 0;
+      background: @header-search-input-clear-icon-background;
+      color: @header-search-input-clear-icon-color;
+
+      &:hover {
+        background: @header-search-input-clear-icon-hover-background;
+        color: @header-search-input-clear-icon-hover-color;
+      }
+
+      &.showIcon {
+        opacity: 1;
+      }
+    }
+
+    // 搜索输入框 - 查询按钮
+    .icon-ptkj-sousuochaxun {
+      font-size: @header-search-input-icon-size;
+      color: @header-text-color;
+      cursor: pointer;
+      vertical-align: middle;
+    }
+  }
+}
+
+// 全文搜索 - 搜索结果覆盖层
+.ui-wSearchContainer {
+  .fixed(@header-height false false false);
+  .size(100%, calc(100% - @header-height));
+
+  padding: @padding-xs 0;
+  background: @header-search-container-background;
+  z-index: 2001;
+}
+
+// 全文搜索 - 搜索结果覆盖层 - 标题
+.ui-wSearchContainer .ui-wSearchContainer-title {
+  position: relative;
+  line-height: @header-search-container-title-height;
+  padding: 0 @padding-xl 0 @padding-2xl;
+  box-sizing: border-box;
+  border-bottom: @border-default-light;
+  font-size: @header-search-container-title-font-size;
+  color: @header-search-container-title-text-color;
+
+  &:before {
+    .absolute(50% false false 20px);
+    .size(4px, 15px);
+
+    content: '';
+    display: block;
+    margin-top: -7px;
+    background: @primary-color;
+    border-radius: 2px;
+  }
+
+  i {
+    font-size: @header-search-container-close-icon-size;
+    color: @header-search-container-close-icon-color;
+    float: right;
+    cursor: pointer;
+
+    &:hover {
+      color: @header-search-container-close-icon-hover-color;
+    }
+  }
+}
+
+// 全文搜索 - 搜索结果覆盖层 - 内容
+.ui-wSearchContainer .ui-wSearchContainer-content {
+  padding: 0 @padding-lg;
+}
+
+// 全文搜索 - 搜索结果覆盖层 - 内容 - 搜索框
+.ui-wSearchContainer .ui-wSearchContainer-content .ui-wSearchContainer-input {
+  height: 72px;
+  padding: 19px 0;
+  position: relative;
+  box-shadow: 0px 2px 0px 0px #f0f2f6;
+
+  i.icon-ptkj-dacha,
+  i.icon-ptkj-sousuochaxun {
+    .absolute(50% false false 10px);
+
+    font-size: 18px;
+    color: @text-color-light;
+    margin-top: -9px;
+    line-height: 1;
+  }
+
+  i.icon-ptkj-dacha {
+    left: 280px;
+    font-size: @font-size-base;
+    margin-top: -7px;
+    cursor: pointer;
+  }
+
+  input.form-control {
+    .size(302px, 34px);
+
+    display: inline-block;
+    padding-left: 39px;
+    margin-right: 10px;
+  }
+}
+
+// 全文搜索 - 搜索结果覆盖层 - 内容 - 搜索结果
+.ui-wSearchContainer .ui-wSearchContainer-content .ui-wSearchContainer-result {
+  position: relative;
+  background: @header-search-container-result-background;
+
+  // 全文搜索 - 搜索结果覆盖层 - 内容 - 搜索结果 - 数量统计
+  .ui-wSearchContainer-num {
+    line-height: @header-search-container-title-height;
+    color: @text-color-light;
+    font-size: @font-size-base;
+    padding-left: @padding-xs;
+  }
+
+  // 全文搜索 - 搜索结果覆盖层 - 内容 - 搜索结果 - 条件筛选
+  .ui-wSearchContainer-filter {
+    width: @header-search-container-condition-filter-width;
+    float: right;
+    margin-top: 2px;
+    margin-right: @margin-sm;
+
+    .well-select-selection .well-select-selected-value {
+      font-size: @font-size-base;
+    }
+  }
+
+  // 全文搜索 - 搜索结果覆盖层 - 内容 - 搜索结果 - 时间筛选
+  .ui-wSearchContainer-times {
+    width: @header-search-container-time-filter-width;
+    float: right;
+    margin-top: 2px;
+
+    // 全文搜索 - 搜索结果覆盖层 - 内容 - 搜索结果 - 时间筛选 - 下拉框
+    .ui-wSearchContainer-timesWrap {
+      padding: 0 @padding-xs;
+      height: 34px;
+      line-height: 34px;
+      font-size: @font-size-base;
+      color: @text-color;
+      background: @header-search-container-background;
+      border: @border-default-dark;
+      border-radius: @border-radius-base;
+      cursor: pointer;
+      position: relative;
+
+      &:hover {
+        border-color: @primary-color;
+        box-shadow: @shadow-active-default;
+      }
+    }
+
+    // 全文搜索 - 搜索结果覆盖层 - 内容 - 搜索结果 - 时间筛选 - 弹出框
+    .ui-wSearchContainer-detail {
+      .absolute(38px 0 false false);
+
+      display: none;
+      width: @header-search-container-time-filter-width;
+      background: @header-search-container-background;
+      box-shadow: @shadow-popup-default;
+      z-index: 100;
+
+      &.showSearchDetail {
+        display: block;
+      }
+
+      // 全文搜索 - 搜索结果覆盖层 - 内容 - 搜索结果 - 时间筛选 - 弹出框 - 预设值列表
+      .ui-wSearchContainer-default li {
+        .size(@header-search-container-time-filter-width, 34px);
+
+        position: relative;
+        padding-left: 86px;
+        line-height: 34px;
+        font-size: @dropdown-item-font-size;
+        color: @dropdown-item-font-color;
+        cursor: pointer;
+
+        &:hover {
+          background: @dropdown-hover-item-background;
+        }
+
+        &.active:before {
+          .absolute(0 false false 63px);
+
+          content: '\e8cb';
+          color: @dropdown-hover-item-font-color;
+          font-family: 'iconfont' !important;
+          -webkit-font-smoothing: antialiased;
+        }
+      }
+
+      // 全文搜索 - 搜索结果覆盖层 - 内容 - 搜索结果 - 时间筛选 - 弹出框 - 自定义时间区域
+      .ui-wSearchContainer-custom {
+        background: @header-search-container-time-filter-custom-area-background;
+        color: @text-color;
+        font-size: @font-size-base;
+        padding: 0 @padding-xs;
+
+        // 全文搜索 - 搜索结果覆盖层 - 内容 - 搜索结果 - 时间筛选 - 弹出框 - 自定义时间区域 - 标题
+        .ui-wSearchContainer-custom-title {
+          text-align: center;
+          padding: @padding-xs 0;
+        }
+
+        // 全文搜索 - 搜索结果覆盖层 - 内容 - 搜索结果 - 时间筛选 - 弹出框 - 自定义时间区域 - 确认按钮
+        .ui-wSearchContainer-custom-confirm {
+          text-align: right;
+          padding-bottom: @padding-xs;
+
+          .well-btn {
+            margin-right: 0;
+          }
+        }
+
+        // 全文搜索 - 搜索结果覆盖层 - 内容 - 搜索结果 - 时间筛选 - 弹出框 - 自定义时间区域 - 自定义时间行
+        .ui-wSearchContainer-custom-time {
+          padding-bottom: @padding-xs;
+          line-height: 34px;
+          position: relative;
+
+          // 全文搜索 - 搜索结果覆盖层 - 内容 - 搜索结果 - 时间筛选 - 弹出框 - 自定义时间区域 - 自定义时间行 - 日期控件
+          .form-control {
+            display: inline-block;
+            margin-left: @margin-2xs;
+            width: calc(100% - 20px);
+            vertical-align: middle;
+          }
+
+          // 全文搜索 - 搜索结果覆盖层 - 内容 - 搜索结果 - 时间筛选 - 弹出框 - 自定义时间区域 - 自定义时间行 - 日期图标
+          .icon-ptkj-rilixuanzeriqi {
+            .absolute(0 @padding-xs false false);
+
+            font-size: @font-size-base;
+            color: @text-color-light;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 全文搜索 - 搜索结果覆盖层 - 结果
+.ui-wSearchContainer .full-text-retrieval {
+  overflow: auto;
+
+  li {
+    padding: @padding-md @padding-2xs;
+    border-bottom: @border-default-dark;
+
+    &.full-no-data {
+      border-bottom: none;
+      text-align: center;
+    }
+
+    .result-title {
+      color: @primary-8;
+      font-size: @font-size-lg;
+      line-height: @line-height-base;
+      cursor: pointer;
+
+      &:hover {
+        color: @text-color-primary;
+      }
+    }
+
+    .result-body {
+      color: @text-color;
+      font-size: @font-size-base;
+      margin: @margin-sm 0;
+      line-height: @line-height-base;
+    }
+
+    .result-footer {
+      color: @text-color-light;
+      font-size: @font-size-base;
+
+      span {
+        position: relative;
+        margin-right: 40px;
+        line-height: @line-height-base;
+
+        &:not(:last-of-type):after {
+          .absolute(50% -20px false false);
+          .size(2px, 14px);
+
+          display: block;
+          content: '';
+          margin-top: -7px;
+          background: @gray-7;
+        }
+      }
+    }
+
+    .result-title em,
+    .result-body em {
+      color: @danger-color;
+      font-style: initial;
+    }
+  }
+}
+
+// 全文搜索 - 搜索结果覆盖层 - 分页
+.ui-wSearchContainer .full-text-pagination {
+  width: calc(100% - 40px);
+
+  .absolute(false false @margin-lg @margin-lg);
+}
+
+// 全文搜索 - 样式覆盖表格组件
+.ui-wSearchContainer {
+  .result-table-wrap {
+    overflow: auto;
+  }
+
+  .ui-wSearchContainer-content .bootstrap-table .fixed-table-container {
+    border: none;
+    font-family: @font-family;
+
+    tr {
+      td {
+        border-bottom: @border-default-dark;
+        border-top: none;
+        padding: @padding-md @padding-2xs;
+      }
+
+      &:hover {
+        background: initial;
+      }
+    }
+  }
+}

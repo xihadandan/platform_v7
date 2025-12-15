@@ -1,0 +1,205 @@
+<div id="widget_unit_tree">
+	<form id="widget_unit_tree_form" class="form-horizontal">
+		<div id="widget_tree_tabs">
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#widget_tree_tabs_base_info">基础配置</a></li>
+				<li role="presentation" class="data-source data-source-1"><a href="#widget_tree_tabs_node_info">节点类型配置</a></li>
+				<li role="presentation"><a href="#widget_tree_tabs_button_info">按钮定义</a></li>
+			</ul>
+			<div class="tab-content" style="height: 500px">
+				<div role="tabpanel" class="tab-pane active" id="widget_tree_tabs_base_info">
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">名称<font color="red">*</font></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option" name="name" id="name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="dataSource" class="col-sm-2 control-label">数据来源<font color="red">*</font></label>
+						<div class="col-sm-10 radio">
+							<label>
+								<input type="radio" class="w-configurer-option" value="1" name="dataSource" id="dataSource1"
+									checked="checked" /><label for="dataSource1">自定义接口</label>
+							</label>
+							<label>
+								<input type="radio" class="w-configurer-option" value="2" name="dataSource" id="dataSource2" /><label for="dataSource2">数据仓库</label>
+							</label>
+						</div>
+					</div>
+					<div class="form-group data-source data-source-1">
+						<label for="dataProvider" class="col-sm-2 control-label">来源接口<font color="red">*</font></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option" height="34px" id="dataProvider"
+								name="dataProvider" />
+						</div>
+					</div>
+					<div class="form-group data-source data-source-2">
+						<label for="treeDataStoreName" class="col-sm-2 control-label">数据仓库<font color="red">*</font></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option" name="treeDataStoreName"
+								id="treeDataStoreName" />
+							<input type="hidden" class="form-control w-configurer-option" name="treeDataStoreId"
+								id="treeDataStoreId" />
+						</div>
+					</div>
+					<div class="form-group data-source data-source-2">
+						<label for="treeUniqueColumn" class="col-sm-2 control-label">唯一标识字段<font color="red">*</font></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option treeDsColumnSelect" name="treeUniqueColumn"
+								id="treeUniqueColumn" />
+						</div>
+					</div>
+					<div class="form-group data-source data-source-2">
+						<label for="treeParentColumn" class="col-sm-2 control-label">父级标识字段</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option treeDsColumnSelect" name="treeParentColumn"
+								id="treeParentColumn" />
+						</div>
+					</div>
+					<div class="form-group data-source data-source-2">
+						<label for="treeDisplayColumn" class="col-sm-2 control-label">结点文本字段<font color="red">*</font></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option treeDsColumnSelect" name="treeDisplayColumn"
+								id="treeDisplayColumn" />
+						</div>
+					</div>
+					<div class="form-group data-source data-source-2">
+						<label for="treeRootName" class="col-sm-2 control-label">自定义根节点名称</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option" name="treeRootName" id="treeRootName" />
+						</div>
+					</div>
+					<div class="form-group data-source data-source-2">
+						<label for="isAsync" class="col-sm-2 control-label">异步加载</label>
+						<div class="col-sm-10 radio">
+							<label>
+								<input type="radio" class="w-configurer-option" value="1" name="isAsync" id="isAsync1"
+									checked="checked" /><label for="isAsync1">是</label>
+							</label>
+							<label>
+								<input type="radio" class="w-configurer-option" value="0" name="isAsync" id="isAsync2" /><label for="isAsync2">否</label>
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="dataProvider" class="col-sm-2 control-label">过滤条件</label>
+						<div class="col-sm-10">
+							<pre style="min-height:100px" name="dataFilter" id="dataFilter"></pre>
+							<!-- <input type="text" class="form-control w-configurer-option" height="34px" id="dataFilter"
+								name="dataFilter" /> -->
+							<div id="dataFilterHint"></div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="checkEnable" class="col-sm-2 control-label">节点选择</label>
+						<div class="col-sm-10 ">
+							<label class="checkbox-inline"> <input class="w-configurer-option" type="checkbox" id="checkEnable"
+									name="checkEnable" value="true"><label for="checkEnable">启用</label>
+							</label>
+						</div>
+					</div>
+					<div id="div_check_definition">
+						<div class="form-group">
+							<label for="chkStyle" class="col-sm-2 control-label">选择类型<font color="red">*</font></label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control w-configurer-option" height="34px" id="chkStyle" name="chkStyle"
+									value="p;s" />
+							</div>
+						</div>
+						<div id="div_checkbox_definition">
+							<div class="form-group">
+								<label for="checkedNodeType" class="col-sm-2 control-label">选中影响节点</label>
+								<div class="col-sm-10 ">
+									<input type="text" class="form-control w-configurer-option" height="34px" id="checkedNodeType"
+										name="checkedNodeType" value="p;s" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="uncheckNodeType" class="col-sm-2 control-label">取消影响节点</label>
+								<div class="col-sm-10 ">
+									<input type="text" class="form-control w-configurer-option" height="34px" id="uncheckNodeType"
+										name="uncheckNodeType" value="p;s" />
+								</div>
+							</div>
+						</div>
+						<div id="div_radio_definition">
+							<div class="form-group">
+								<label for="radioType" class="col-sm-2 control-label">单选范围<font color="red">*</font></label>
+								<div class="col-sm-10 ">
+									<input type="text" class="form-control w-configurer-option" height="34px" id="radioType"
+										name="radioType" value="all" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="hasSearch" class="col-sm-2 control-label">搜索</label>
+						<div class="col-sm-10 ">
+							<label class="checkbox-inline"> <input class="w-configurer-option" type="checkbox" id="hasSearch"
+									name="hasSearch" value="true"><label for="hasSearch">启用</label>
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+						<div class="col-sm-10">
+							<input id="jsModule" name="jsModule" type="text" class="form-control w-configurer-option" /> <input
+								id="jsModuleName" name="jsModuleName" type="hidden" class="form-control w-configurer-option" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="customSetting" class="col-sm-2 control-label">自定义配置</label>
+						<div class="col-sm-10">
+							<label class="checkbox-inline"> <input class="w-configurer-option" type="checkbox" id="customSetting"
+									name="customSetting" value="true" style="position: static;"><label for=""></label>
+							</label>
+						</div>
+					</div>
+					<div id="div_ztree_definition">
+						<div class="form-group">
+							<label for="zTreeSetting" class="col-sm-2 control-label">Ztree定义(JSON)</label>
+							<div class="col-sm-10">
+								<textarea type="text" class="form-control w-configurer-option" name="zTreeSetting"
+									id="zTreeSetting"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="width" class="col-sm-2 control-label">宽度</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option" height="34px" name="width" id="width">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="height" class="col-sm-2 control-label">高度</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option " height="34px" name="height" id="height">
+						</div>
+					</div>
+					{% include "./widget_base_info.nj" %}
+				</div>
+				<div role="tabpanel" class="tab-pane " id="widget_tree_tabs_node_info">
+					<table id="table_node_info" class="node_info" data-height="400"></table>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="widget_tree_tabs_button_info">
+					<div id="div_button_info_toolbar" class="btn-group btn_button_info">
+						<button id="btn_add_button" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+						</button>
+						<button id="btn_delete_button" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+						</button>
+						<button id="btn_row_up_button" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+						</button>
+						<button id="btn_row_down_button" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+						</button>
+					</div>
+					<table id="table_button_info" class="definition_info " data-height="400"></table>
+				</div>
+			</div>
+		</div>
+
+	</form>
+</div>

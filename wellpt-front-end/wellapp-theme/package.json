@@ -1,0 +1,28 @@
+{
+  "name": "wellapp-theme",
+  "version": "70.2.0",
+  "description": "平台主题",
+  "private": false,
+  "main": "index.js",
+  "bin": {
+    "wellapp-theme": "./bin/wellapp-theme.js"
+  },
+  "eggPlugin": {
+    "name": "wellappTheme"
+  },
+  "scripts": {
+    "prepublishOnly": "node src/scripts/prepublish.js"
+  },
+  "dependencies": {
+    "clean-css": "^4.2.3",
+    "fs-extra": "^9.0.1",
+    "less": "^4.1.0",
+    "less-plugin-autoprefix": "^2.0.0",
+    "less-plugin-clean-css": "^1.5.1",
+    "minimist": "^1.2.5",
+    "lodash": "^4.17.21",
+    "chalk": "^4.1.0",
+    "wellapp-framework": "70.2.0"
+  },
+  "author": "wellsoft"
+}

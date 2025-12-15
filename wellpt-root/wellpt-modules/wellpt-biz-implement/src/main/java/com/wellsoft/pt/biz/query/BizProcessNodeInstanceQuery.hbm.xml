@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="processNodeInstanceDataStoreQuery">
+        <![CDATA[
+        select t.uuid 			    as uuid,
+               t.create_time	    as create_time,
+               t.creator		    as creator,
+               t.modifier   	    as modifier,
+               t.modify_time    	as modify_time,
+               t.rec_ver        	as rec_ver,
+               t.name             	as name,
+               t.id              	as id,
+               t.title            	as title,
+               t.entity_name        as entity_name,
+               t.entity_id 	        as entity_id,
+               t.form_uuid          as form_uuid,
+               t.data_uuid          as data_uuid,
+               t.start_time         as start_time,
+               t.end_time 		    as end_time,
+               t.state 		        as state,
+               t.process_inst_uuid  as process_inst_uuid,
+               t.process_def_uuid   as process_def_uuid,
+               0                    as item_inst_count
+          from biz_process_node_instance t
+		 where 1 = 1
+		  <if isNotBlank(processInstUuid)>
+            and t.process_inst_uuid = :processInstUuid
+          </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+          <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+        ]]>
+    </sql-query>
+</hibernate-mapping>

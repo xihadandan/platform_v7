@@ -1,0 +1,89 @@
+/* 设计器 */
+.edit-wrapper-slot {
+  .widget-steps-horizontal {
+    .steps-content-container {
+      padding: var(--w-padding-xs) 0;
+    }
+  }
+}
+.steps-status-item {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+  > .ant-input {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  > .ant-btn-link {
+    margin-left: 10px;
+  }
+}
+
+.widget-steps {
+  &.widget-steps-horizontal {
+    .steps-content-container {
+      > .step-content-panel {
+        padding: var(--w-padding-xs) 0;
+      }
+    }
+  }
+  &.widget-steps-vertical {
+    display: flex;
+    .ant-steps-vertical {
+      width: auto;
+      max-width: 200px;
+    }
+    .steps-content-wrapper {
+      flex: 1;
+      overflow: hidden;
+    }
+  }
+  .step-content-panel-inactive {
+    height: 0;
+    padding: 0 !important;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+  > .ant-steps {
+    .ant-steps-item {
+      &.ant-steps-item-custom {
+        .ant-steps-item-icon {
+          width: 32px;
+          height: 32px;
+          border: 1px solid rgba(0, 0, 0, 0.25);
+          .ant-steps-icon {
+            line-height: 1;
+            > .iconfont {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+      &.ant-steps-item-wait {
+        .ant-steps-item-icon {
+          background-color: #fff;
+          border-color: rgba(0, 0, 0, 0.25);
+        }
+      }
+      &.ant-steps-item-process {
+        .ant-steps-item-icon {
+          background-color: #1890ff;
+          border-color: #1890ff;
+        }
+      }
+      &.ant-steps-item-finish {
+        .ant-steps-item-icon {
+          background-color: #fff;
+          border-color: #1890ff;
+        }
+      }
+      &.ant-steps-item-error {
+        .ant-steps-item-icon {
+          background-color: #fff;
+          border-color: #f5222d;
+        }
+      }
+    }
+  }
+}

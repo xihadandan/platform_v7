@@ -1,0 +1,201 @@
+@tag-prefix-cls: ~'@{ant-prefix}-tag';
+
+body {
+  --w-tag-border-color: var(--w-border-color-dark);
+  --w-tag-border-width: var(--w-border-width-base);
+  --w-tag-border-style: var(--w-border-style-base);
+  --w-tag-border-radius: var(--w-border-radius-2);
+  --w-tag-text-color: var(--w-text-color-dark);
+  --w-tag-text-size: var(--w-font-size-sm);
+  --w-tag-text-weight: var(--w-font-weight-regular);
+  --w-tag-background: var(--w-fill-color-light);
+  --w-tag-background-hover: var(--w-fill-color-dark);
+  --w-tag-lr-padding: var(--w-padding-2xs);
+  --w-tag-height: var(--w-height-2xs);
+
+  --w-tag-edit-close-size: var(--w-font-size-sm);
+  --w-tag-edit-close-color: var(--w-text-color-light);
+  --w-tag-edit-margin-right: var(--w-margin-2xs);
+  --w-tag-close-color-hover: var(--w-text-color-light);
+  --w-tag-close-color-active: var(--w-text-color-light);
+
+  --w-tag-error-word-color: var(--w-danger-color);
+  --w-tag-error-word-font-size: var(--w-font-size-base);
+  --w-tag-error-word-font-weight: var(--w-font-weight-regular);
+
+  --w-pt-tag-text-color: var(--w-primary-color);
+  --w-pt-tag-background: var(--w-primary-color-1);
+  --w-pt-tag-background-color: var(--w-primary-color);
+  --w-pt-tag-border-color: transparent;
+  --w-pt-tag-border-color-bordered: var(--w-primary-color-3);
+
+  --w-tag-checkable-border-color: transparent;
+  --w-tag-checkable-background-color: transparent;
+  --w-tag-checkable-text-color-hover: var(--w-primary-color);
+  --w-tag-checkable-border-color-hover: var(--w-primary-color-1);
+  --w-tag-checkable-background-color-hover: var(--w-primary-color-1);
+  --w-tag-text-color-checked: var(--w-text-color-inverse);
+  --w-tag-checkable-border-color-checked: var(--w-primary-color);
+  --w-tag-checkable-background-color-checked: var(--w-primary-color);
+  --w-tag-checkable-opacity-hover: 0.85;
+}
+
+.@{tag-prefix-cls} {
+  height: var(--w-tag-height);
+  line-height: e('calc(var(--w-tag-height) - 2px)');
+  border-radius: var(--w-tag-border-radius);
+  font-size: var(--w-tag-text-size);
+  font-weight: var(--w-tag-text-weight);
+  padding: 0 var(--w-tag-lr-padding);
+
+  &:not([class*='ant-tag-']) {
+    color: var(--w-tag-text-color);
+    background: var(--w-tag-background);
+    border: var(--w-tag-border-width) var(--w-tag-border-style) var(--w-tag-border-color);
+  }
+
+  &.primary-color {
+    background: var(--w-primary-color-1);
+    border-color: var(--w-primary-color-3);
+    color: var(--w-primary-color);
+  }
+
+  &.tag-no-border {
+    border-color: transparent;
+  }
+
+  &.tag-size-default {
+    --w-tag-height: 32px;
+  }
+
+  &.pt-tag {
+    color: var(--w-pt-tag-text-color);
+    background: var(--w-pt-tag-background);
+    border: var(--w-tag-border-width) var(--w-tag-border-style) var(--w-pt-tag-border-color);
+
+    &.bordered {
+      --w-pt-tag-border-color: var(--w-pt-tag-border-color-bordered);
+    }
+
+    &.bg-color {
+      --w-pt-tag-text-color: #ffffff;
+      --w-pt-tag-background: var(--w-pt-tag-background-color);
+    }
+
+    &.danger {
+      --w-pt-tag-text-color: var(--w-danger-color);
+      --w-pt-tag-background: var(--w-danger-color-1);
+      --w-pt-tag-background-color: var(--w-danger-color);
+      --w-pt-tag-border-color-bordered: var(--w-danger-color-3);
+    }
+
+    &.warning {
+      --w-pt-tag-text-color: var(--w-warning-color);
+      --w-pt-tag-background: var(--w-warning-color-1);
+      --w-pt-tag-background-color: var(--w-warning-color);
+      --w-pt-tag-border-color-bordered: var(--w-warning-color-3);
+    }
+
+    &.success {
+      --w-pt-tag-text-color: var(--w-success-color);
+      --w-pt-tag-background: var(--w-success-color-1);
+      --w-pt-tag-background-color: var(--w-success-color);
+      --w-pt-tag-border-color-bordered: var(--w-success-color-3);
+    }
+  }
+}
+
+:root {
+  .@{tag-prefix-cls} {
+    .@{ant-iconfont-css-prefix}-close {
+      font-size: var(--w-tag-edit-close-size);
+    }
+  }
+}
+
+.@{tag-prefix-cls} {
+  margin-right: var(--w-tag-edit-margin-right);
+
+  &:not(.ant-tag-has-color) {
+    .@{ant-iconfont-css-prefix}-close {
+      color: var(--w-tag-edit-close-color);
+
+      &:hover {
+        color: var(--w-tag-close-color-hover);
+      }
+
+      &:active {
+        color: var(--w-tag-close-color-active);
+      }
+    }
+  }
+}
+
+.widget-form-tag {
+  .textonly {
+    color: var(--w-tag-text-color);
+    // font-size: var(--w-tag-text-size); //e('calc(var(--w-tag-text-size) + 2px)');
+    font-weight: var(--w-tag-text-weight);
+  }
+
+  .has-error {
+    .ant-form-explain {
+      color: var(--w-tag-error-word-color);
+      font-size: var(--w-tag-error-word-font-size);
+      font-weight: var(--w-tag-error-word-font-weight);
+    }
+  }
+
+  .ant-tag {
+    &:not([class*='ant-tag-']) {
+      &:has(.anticon-close) {
+        // 有关闭按钮，则表示可以编辑
+        &:hover {
+          background: var(--w-tag-background-hover);
+        }
+      }
+    }
+  }
+}
+
+// .widget-form-layout .widget-form-tag .has-error {
+//   margin-bottom: e('calc(var(--w-tag-error-word-font-size) + 4px)');
+
+//   .ant-form-explain,
+//   .ant-form-split {
+//     bottom: e('calc(-4px - var(--w-tag-error-word-font-size))');
+//   }
+// }
+
+// .readonly {
+//   .@{tag-prefix-cls} {
+//     &:hover {
+//       cursor: not-allowed;
+//     }
+//   }
+// }
+
+.ant-tag-checkable {
+  color: var(--w-tag-text-color);
+  border-color: var(--w-tag-checkable-border-color);
+  background-color: var(--w-tag-checkable-background-color);
+  cursor: pointer;
+
+  &:not(.ant-tag-checkable-checked):hover {
+    color: var(--w-tag-checkable-text-color-hover);
+    background-color: var(--w-tag-checkable-background-color-hover);
+    border-color: var(--w-tag-checkable-border-color-hover);
+    opacity: var(--w-tag-checkable-opacity-hover);
+  }
+
+  &.ant-tag-checkable-checked {
+    background-color: var(--w-tag-checkable-background-color-checked);
+    border-color: var(--w-tag-checkable-border-color-checked);
+    --w-tag-text-color: var(--w-tag-text-color-checked);
+
+    &:active {
+      --w-tag-text-color: var(--w-tag-text-color-checked);
+      background-color: var(--w-tag-checkable-background-color-checked);
+    }
+  }
+}

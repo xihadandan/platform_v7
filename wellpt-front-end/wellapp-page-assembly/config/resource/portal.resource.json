@@ -1,0 +1,43 @@
+{
+  "js": {
+    "AppPortalConfigurer": {
+      "path": "/js/portal/AppPortalConfigurer",
+      "name": "门户配置器",
+      "dependencies": [
+        "jquery",
+        "AppPageDesigner"
+      ]
+    },
+    "start_app_portal_config": {
+      "path": "/js/portal/start_app_portal_config",
+      "name": "发起门户配置",
+      "dependencies": [
+        "jquery",
+        "commons"
+      ]
+    },
+    "app_portal_config": {
+      "path": "/js/portal/app_portal_config",
+      "name": "门户配置",
+      "dependencies": [
+        "jquery",
+        "AppPortalConfigurer"
+      ]
+    },
+    "AppMyPortalListViewWidgetDevelopment": {
+      "path": "/js/portal/AppMyPortalListViewWidgetDevelopment",
+      "name": "平台管理_产品集成_门户_我的门户_视图组件二开",
+      "dependencies": [
+        "ListViewWidgetDevelopment"
+      ]
+    },
+    "show_app_portal_list": {
+      "path": "/js/portal/show_app_portal_list",
+      "name": "显示门户列表",
+      "dependencies": [
+        "dependencyAppBaseModule"
+      ]
+    }
+  },
+  "css": {}
+}

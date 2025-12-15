@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="getUserRecentOpinions">
+        <![CDATA[
+
+		select w.content,w.modify_time from (
+		select content , max(modify_time) modify_time from wf_def_opinion o
+		where o.creator = :userId
+		<if isNotBlank(flowDefId)>
+			and o.flow_def_id = :flowDefId
+		</if>
+		<if isNotBlank(taskId)>
+			and o.task_id = :taskId
+		</if>
+		and exists (
+			select 1 from wf_def_opinion_category c
+			where c.uuid = o.opinion_category_uuid and c.id = :categoryId
+		)
+		<if excludesContent?? && (excludesContent?size > 0) >
+		and o.content not in (:excludesContent)
+		</if>
+		group by content
+		) v , wf_def_opinion w
+		where w.creator = :userId
+		<if isNotBlank(flowDefId)>
+			and w.flow_def_id = :flowDefId
+		</if>
+		<if isNotBlank(taskId)>
+			and w.task_id = :taskId
+		</if>
+		<if isNotBlank(system)>
+			and exists ( select 1 from wf_flow_definition flow where flow.id = w.flow_def_id and flow.system=:system )
+		</if>
+		and v.content = w.content and v.modify_time = w.modify_time
+		<if excludesContent?? && (excludesContent?size > 0)>
+		and w.content not in (:excludesContent)
+		</if>
+		order by w.modify_time desc
+
+	]]>
+    </sql-query>
+
+    <sql-query name="deleteUserRecentOption">
+        <![CDATA[
+		delete from wf_def_opinion w
+		where w.content=:content
+		and exists (
+			select 1 from wf_def_opinion_category o where o.id =:categoryId
+			and o.uuid = w.opinion_category_uuid
+		)
+	]]>
+    </sql-query>
+
+</hibernate-mapping>

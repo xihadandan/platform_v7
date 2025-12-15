@@ -1,0 +1,26 @@
+<table>
+  <tr id="">
+    <td class="Label">显示类型</td>
+    <td class="value">
+      <input id="showMode1" type="radio" value="1" name="showMode" checked="checked" />
+      <label for="showMode1">简单模式</label>
+      <input id="showMode2" type="radio" value="2" name="showMode" />
+      <label for="showMode2">复杂模式</label>
+    </td>
+  </tr>
+  <tr class="odd">
+    <td class="Label">显示模式HTML转义</td>
+    <td class="value">
+      <input type="checkbox" value="html2Escape" name="htmlCodec" id="htmlCodec" />
+      <label for="htmlCodec"></label>
+    </td>
+  </tr>
+  <tr id="tr_onlyreadUrl">
+    <td class="Label">标识地址</td>
+    <td class="value">
+      <input type="text" id="onlyreadUrl" name="onlyreadUrl" />
+      <br />
+      参数格式${fieldName},fieldName为表单字段名称。示例：https://www.baidu.com?pa=${pa}
+    </td>
+  </tr>
+</table>

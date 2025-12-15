@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="isSameFlowForTask">
+        <![CDATA[
+		select distinct d.id
+			  from WF_TASK_INSTANCE t
+			    left join Wf_Flow_Definition d on t.flow_def_uuid = d.uuid
+   		  where t.uuid in (:uuids)
+	]]>
+    </sql-query>
+</hibernate-mapping>

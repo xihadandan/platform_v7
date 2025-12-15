@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="queryAppMyCalendarEventList">
+        <![CDATA[
+		from MyCalendarEventEntity e
+		where 1 = 1 and systemUnitId = :systemUnitId and(
+			( startTime between :startTime and :endTime ) or
+			( endTime between :startTime and :endTime ) or
+			( startTime <:startTime and endTime >:endTime )
+		)
+		<if isNotBlank( belongObjId ) && belongObjId.class.simpleName == "String" >
+			and belongObjId = :belongObjId
+		</if>
+		<if isNotBlank( whereSql )>
+			and ${whereSql}
+		</if>
+	]]>
+    </sql-query>
+
+
+    <sql-query name="queryAppMyCalendarEventListBySection">
+        <![CDATA[
+		from MyCalendarEventEntity
+		where (
+		( to_date(:startDate,'yyyy-MM-dd HH24:mi:ss') >startTime
+			and
+		  to_date(:startDate,'yyyy-MM-dd HH24:mi:ss') <endTime
+		)
+		or
+		( to_date(:endDate,'yyyy-MM-dd HH24:mi:ss')>startTime
+			and
+		  to_date(:endDate,'yyyy-MM-dd HH24:mi:ss')<endTime
+		)
+		 or
+		(startTime>to_date(:startDate,'yyyy-MM-dd HH24:mi:ss')
+		 	and
+		 endTime<to_date(:endDate,'yyyy-MM-dd HH24:mi:ss')
+		 )
+		 )
+		 and calendarCreator=:currentUserId and isFinish=0
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

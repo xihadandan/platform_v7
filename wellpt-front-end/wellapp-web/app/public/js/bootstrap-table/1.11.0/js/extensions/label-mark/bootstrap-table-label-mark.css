@@ -1,0 +1,169 @@
+.label_color_select_div {
+    width: 30px;
+    height: 31px;
+    position: relative;
+    z-index: 1;
+    display: inline-grid;
+    bottom: 1px;
+    left: -1px;
+}
+
+.open_label_ul {
+    overflow: initial !important;
+    max-height: 300px !important;
+}
+
+.label_li_more_icon {
+    float: right;
+}
+
+.label_li_more_icon_down {
+    float: right;
+    transform: rotate(90deg);
+}
+
+.label_li_more_icon_up {
+    float: right;
+    transform: rotate(-90deg);
+}
+
+.label_li_split {
+    border-top: 1px solid #d4cdcd;
+}
+
+.label_name_input {
+    width: 258px !important;
+    position: absolute;
+    left: 20px;
+    top: 58px;
+    padding-left: 35px !important;
+}
+
+.tr_label_div {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    cursor: pointer;
+    outline: 0;
+    margin-left: 4px;
+    top: -1px;
+    zoom: 1;
+}
+
+.tr_label_div:hover {
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, .3);
+    -moz-box-shadow: 0 0 6px rgba(0, 0, 0, .3);
+    box-shadow: 0 0 6px rgba(0, 0, 0, .3)
+}
+
+.tr_label_span {
+    float: left;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0 4px;
+    border-radius: 3px;
+    color: #fff;
+    line-height: 15px;
+    height: 16px;
+}
+
+.tr_label_close {
+    position: relative;
+    color: #fff;
+    width: 0;
+    -webkit-transition: width .3s ease-in-out;
+    -moz-transition: width .3s ease-in-out;
+    -o-transition: width .3s ease-in-out;
+    -ms-transition: width .3s ease-in-out;
+    transition: width .3s ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+    float: left;
+    overflow: hidden;
+    right: 0;
+    top: 0;
+}
+
+.tr_label_span, .tr_label_close {
+    float: left;
+    overflow: hidden;
+    line-height: 15px;
+    height: 16px;
+}
+
+.tr_label_close_x {
+    position: relative;
+    left: 3px;
+    top: -3px;
+    font-weight: 400;
+    text-align: center;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal !important;
+}
+
+.tr_label_div_hover .tr_label_span {
+    border-radius: 3px 0 0 3px;
+}
+
+.tr_label_div_hover .tr_label_close {
+    border-radius: 0 3px 3px 0;
+    width: 14px
+}
+
+.li_label_div {
+    position: relative;
+    left: 157px;
+    top: -34px;
+}
+
+.li_label_div_vertical {
+    position: relative;
+    left: 0px;
+    top: 0px;
+}
+
+.li_label_div_vertical > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    outline: none;
+    text-decoration: none;
+}
+
+.li_label_div_vertical > li > a:hover {
+    color: #262626;
+    text-decoration: none;
+    background-color: #f4f4f4;
+}
+
+/*li:hover > a > .label_li_more_icon_down {*/
+/*transform: rotate(-90deg);*/
+/*}*/
+
+.td-mark-icon-container {
+    display: inline-block;
+}
+
+.td-mark-icon {
+    margin-right: 3px;
+    font-size: 14px !important;
+}
+
+.td-mark-icon-container:hover .td-mark-close-icon {
+    font-weight: bolder;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    top: -9px;
+    left: -4px;
+}
+
+.td-mark-close-icon {
+    display: none;
+}

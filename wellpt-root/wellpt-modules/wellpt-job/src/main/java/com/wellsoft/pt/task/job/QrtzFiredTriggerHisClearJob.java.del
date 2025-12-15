@@ -1,0 +1,26 @@
+package com.wellsoft.pt.task.job;
+
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.task.service.QrtzFiredTriggerHisService;
+import org.quartz.JobExecutionContext;
+
+/**
+ * Description: 定时清理quartz触发器执行历史
+ *
+ * @author chenq
+ * @date 2018/7/13
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本	    修改人		修改日期			修改内容
+ * 2018/7/13    chenq		2018/7/13		Create
+ * </pre>
+ */
+public class QrtzFiredTriggerHisClearJob extends Job {
+    @Override
+    protected void execute(JobExecutionContext context, JobData data) {
+        QrtzFiredTriggerHisService qrtzFiredTriggerHisService = ApplicationContextHolder.getBean(
+                QrtzFiredTriggerHisService.class);
+        qrtzFiredTriggerHisService.deleteAll();
+    }
+}

@@ -1,0 +1,191 @@
+/* 多标签导航 */
+.tag-tab-section {
+  .box();
+
+  overflow: auto;
+  padding-top: @tags-nav-height + 1;
+
+  // 导航区域
+  .tag-tab-wrapper {
+    .box();
+
+    z-index: 20;
+    height: @tags-nav-height;
+    background: @tags-nav-background;
+
+    .tags-nav {
+      .square(100%);
+      position: relative;
+      background: @tags-nav-background;
+      box-shadow: 0px 1px 0px 0px @gray-5;
+      user-select: none;
+
+      // 右键弹窗
+      .tags-nav-menu {
+        @tag-content-top: @tags-nav-height + 1;
+        .absolute( @tag-content-top false false false);
+
+        display: none;
+        margin: 0;
+        padding: @padding-3xs 0;
+        background: @component-background;
+        z-index: 1000;
+        list-style-type: none;
+        border-radius: @tags-popup-border-radius;
+        box-shadow: @tags-popup-shadow;
+
+        li {
+          margin: 0;
+          cursor: pointer;
+          padding-left: @tags-popup-item-padding;
+          padding-right: @tags-popup-item-padding;
+          line-height: @tags-popup-item-height;
+
+          &:hover {
+            background: @tags-popup-selected-hover-item-background;
+          }
+        }
+      }
+
+      // 向左 / 向右 按钮
+      .left-btn,
+      .right-btn {
+        .size(60px, @tags-nav-height);
+
+        display: none;
+        z-index: 10;
+        padding: 0 @padding-md;
+        line-height: @tags-nav-height;
+        font-size: @tags-nav-close-icon-size;
+        color: @tags-nav-icon-color;
+        cursor: pointer;
+
+        &:hover {
+          color: @tags-nav-icon-hover-color;
+        }
+      }
+
+      .left-btn {
+        .absolute(0 false false 0);
+        text-align: left;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+      }
+
+      .right-btn {
+        .absolute(0 0 false false);
+        text-align: right;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 100%);
+      }
+
+      &.show-btn .left-btn,
+      &.show-btn .right-btn {
+        display: block;
+      }
+
+      // 导航区域
+      .scroll-outer {
+        .absolute(0 @tags-nav-height 0 @padding-lg);
+
+        .scroll-body {
+          height: 100%;
+          display: inline-block;
+          padding: 0 4px;
+          position: absolute;
+          overflow: visible;
+          white-space: nowrap;
+          transition: left @animation-duration-slow ease;
+
+          .nav-tag {
+            @minus-border-width: -@border-width-base;
+
+            position: relative;
+            display: inline-block;
+            height: @tags-nav-height;
+            line-height: @tags-nav-height;
+            padding: 0 32px 0 10px;
+            margin-left: @minus-border-width;
+            border-left: @border-default;
+            border-right: @border-default;
+            background: @component-background;
+            font-size: @tags-nav-font-size;
+            vertical-align: middle;
+            opacity: 1;
+            cursor: pointer;
+
+            // 首页导航 (无关闭按钮)
+            &.main-page-nav-tag {
+              padding: 0 10px;
+            }
+
+            // 导航文本
+            .nav-tag-text {
+              color: @tags-nav-font-color;
+            }
+
+            // 导航选中状态
+            &.active {
+              @minus-border-width: -@border-width-base;
+              background: @tags-nav-selected-background-color;
+
+              // 被选中导航上面的标记
+              &::before {
+                .absolute(0 @minus-border-width false @minus-border-width);
+
+                content: '';
+                height: @tags-nav-selected-symbol-width;
+                background: @tags-nav-selected-symbol-background;
+              }
+
+              // 被选中的导航下面无边框
+              &::after {
+                .absolute(false @minus-border-width @minus-border-width @minus-border-width);
+
+                content: '';
+                height: @border-width-base;
+                background: @tags-nav-selected-background-color;
+              }
+
+              .nav-tag-text {
+                color: @tags-nav-selected-font-color;
+              }
+            }
+
+            // 导航关闭按钮
+            .nav-tag-close {
+              .absolute(0 0 false false);
+              .size(32px, @tags-nav-height);
+
+              display: block;
+              text-align: center;
+              line-height: @tags-nav-height;
+              color: @tags-nav-icon-color;
+
+              i {
+                font-size: @tags-nav-close-icon-size;
+              }
+
+              &:hover {
+                color: @tags-nav-icon-hover-color;
+              }
+            }
+          }
+        }
+      }
+
+      &.show-btn .scroll-outer {
+        left: 40px;
+        right: 68px;
+        overflow: hidden;
+      }
+    }
+  }
+
+  // 内容区域
+  .tag-tab-content-wrapper {
+    @tag-content-top: @tags-nav-height + 1;
+    .absolute(@tag-content-top 0 0 0);
+
+    padding: @padding-lg;
+    overflow: auto;
+  }
+}

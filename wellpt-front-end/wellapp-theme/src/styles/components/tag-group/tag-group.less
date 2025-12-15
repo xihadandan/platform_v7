@@ -1,0 +1,231 @@
+/** 标签组 */
+.tag-group {
+  list-style: none;
+
+  .tag-group-item {
+    display: inline-block;
+    overflow: hidden;
+    float: left;
+    margin-bottom: @margin-2xs;
+    position: relative;
+
+    span {
+      display: inline-block;
+      padding: 0 24px 0 6px;
+      height: auto;
+      min-height: 22px;
+      line-height: 22px;
+      margin-right: @margin-2xs;
+      background: @background-light;
+      border: @border-default-darker;
+      border-radius: @border-radius-base;
+      font-size: @font-size-base;
+      font-weight: 400;
+      color: @text-color;
+      word-break: break-all;
+      vertical-align: middle;
+    }
+
+    i.tag-delete {
+      .absolute(50% 11px false false);
+
+      margin-left: @margin-sm;
+      cursor: pointer;
+      font-size: @font-size-sm;
+      line-height: 1;
+      color: @text-color-light;
+      margin-top: -5px;
+      z-index: 1;
+
+      &:hover {
+        color: @text-color-primary;
+      }
+    }
+
+    &.selected {
+      span {
+        color: @text-color-primary;
+        border-color: @border-color-primary;
+        background: @component-background;
+      }
+
+      i {
+        border-color: @border-color-primary;
+        background: @component-background;
+      }
+    }
+  }
+}
+
+.tag-group .tag-shapes {
+  padding-left: @padding-sm;
+  position: relative;
+
+  span {
+    position: inherit;
+    font-size: @font-size-sm;
+    vertical-align: middle;
+    z-index: 1;
+    border-left: 0;
+    border-radius: 0 @border-radius-base @border-radius-base 0;
+  }
+
+  i.three-angle {
+    .absolute(0 false false 4px);
+    .square(24px);
+
+    display: inline-block;
+    background: @background-light;
+    vertical-align: middle;
+    transform: rotate(45deg);
+    z-index: 0;
+    border: @border-default-dark;
+    border-right: 0;
+    border-top: 0;
+    border-bottom-left-radius: @border-radius-base;
+    box-sizing: content-box;
+  }
+}
+
+.edit-tags {
+  float: left;
+  // display: inline-block;
+  color: @text-color-primary;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 @padding-3xs;
+  background: @component-background;
+  border: @border-width-base dashed @border-color-dark;
+  border-radius: @border-radius-base;
+  cursor: pointer;
+  font-size: 0;
+
+  &:hover {
+    border-color: @border-color-primary;
+  }
+
+  i {
+    font-size: @font-size-base;
+  }
+}
+
+.tag-focus {
+  border-style: solid;
+  border-color: @text-color-primary;
+  box-shadow: @shadow-active-default;
+
+  .edit-tags-input {
+    display: none;
+    width: 80px;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none;
+    height: 22px;
+    line-height: 22px;
+    padding: 0;
+    float: left;
+
+    &::placeholder {
+      color: @disabled-text-color;
+    }
+  }
+}
+
+.add-tags {
+  // display: inline-block;
+
+  .square(24px);
+
+  line-height: 24px !important;
+  border-radius: @border-radius-base;
+  text-align: center;
+  color: @text-color-inverse;
+  background: @primary-color;
+  position: relative;
+  cursor: pointer;
+  font-size: 0;
+  float: left;
+
+  > i {
+    font-size: @font-size-sm;
+  }
+}
+
+.more-tags-box {
+  display: none;
+  min-width: 400px;
+  position: absolute;
+  bottom: -200px;
+  left: 0;
+  z-index: 51;
+  background: @component-background;
+  box-shadow: @shadow-popup-default;
+
+  .more-tags-data {
+    padding: @padding-md;
+    max-height: 300px;
+    overflow: auto;
+
+    li {
+      color: @text-color;
+      text-align: left;
+      font-size: @font-size-base;
+      font-weight: 400;
+      line-height: 20px;
+      word-break: break-all;
+
+      &.tag-disabled {
+        cursor: not-allowed;
+        color: @disabled-text-color;
+      }
+
+      .tag-check {
+        .square(14px);
+
+        display: inline-block;
+        margin-right: @margin-xs;
+        vertical-align: baseline;
+        font-size: @font-size-base;
+      }
+
+      &:not(:last-of-type) {
+        margin-bottom: 12px;
+      }
+
+      &.tag-selected,
+      &.select-all {
+        color: @text-color-primary;
+      }
+
+      &.option-select-all i {
+        margin-right: @margin-xs;
+        font-size: @font-size-base;
+      }
+    }
+  }
+
+  .tag-operate {
+    padding: @padding-md;
+    text-align: right;
+    border-top: @border-default;
+
+    .tag-operate-btn {
+      padding: @padding-xs @padding-lg;
+      line-height: 1;
+      border: @border-default-darker;
+      background: @component-background;
+      outline: none;
+      font-size: @font-size-base;
+      font-weight: 400;
+      color: @text-color;
+      border-radius: @border-radius-base;
+
+      &:first-of-type {
+        margin-right: @margin-sm;
+        border: @border-default-primary;
+        background: @primary-color;
+        color: @text-color-inverse;
+      }
+    }
+  }
+}

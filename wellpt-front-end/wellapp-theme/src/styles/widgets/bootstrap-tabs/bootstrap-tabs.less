@@ -1,0 +1,155 @@
+/** 标签页组件 */
+/** 样式主要继承自 `bootstrap.tabs.less` */
+
+/** @deprecated - 未用到样式 */
+
+.ui-wBootstrapTabs.tabs-theme1 {
+  .nav-tabs {
+    border-color: @border-default-light;
+
+    >li>a {
+      background: @primary-color;
+      color: @text-color-inverse;
+
+      &:hover,
+      &:focus {
+        background: @component-background;
+        color: @text-color-primary;
+        border-color: @border-default-light;
+        border-bottom-color: transparent;
+      }
+    }
+
+    >li.active>a {
+      background: @primary-color;
+      color: @text-color-inverse;
+      border-color: @border-color-primary;
+      border-bottom-color: transparent;
+    }
+  }
+
+  .tab-content {
+    background: @component-background;
+    padding-top: @padding-xs;
+  }
+}
+
+
+.ui-wBootstrapTabs {
+
+  .tab-content {
+    background: @white;
+    padding-top: @padding-4xs;
+  }
+
+  // 左侧和右侧的不做处理
+  .nav-tabs:not(.tabs-left):not(.tabs-right) {
+    background-color: @background-light;
+    position: relative;
+    padding-left: @padding-md;
+    border-bottom: 0;
+
+    &::before {
+      content: " ";
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background-color: @border-color-base;
+      bottom: 0;
+      left: 0;
+    }
+
+    >li {
+      margin-top: @margin-2xs;
+      margin-right: @margin-lg;
+
+      >a {
+        border: @border-default-transparent;
+        color: @text-color-dark;
+        padding: 0 @padding-md;
+        line-height: @height-md;
+        font-size: 15px;
+
+        &:hover,
+        &:focus {
+          color: @text-color-primary-hover;
+          background-color: @white;
+          border: @border-default;
+          border-bottom: @border-default-transparent;
+        }
+      }
+
+      &.active {
+        >a {
+          color: @text-color-primary;
+          background-color: @white;
+          border: @border-default;
+          border-bottom: @border-default-transparent;
+        }
+      }
+    }
+  }
+
+  // 导航栏左右移动
+  .bootstrap-tabs-container {
+    background-color: @background-light;
+    position: relative;
+    width: 100%;
+    min-width: 145px;
+    z-index: 2;
+
+    &::before {
+      content: " ";
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background-color: @border-color-base;
+      bottom: 0;
+      left: 0;
+    }
+
+    .nav-tabs-prev,
+    .nav-tabs-next,
+    .nav-tabs-more {
+      position: absolute;
+      font-size: @font-size-base;
+      top: @margin-2xs;
+      line-height: @height-md;
+      color: @text-color-primary;
+
+      :hover {
+        color: @text-color-primary;
+      }
+    }
+
+    .nav-tabs-prev {
+      left: 10px;
+    }
+
+    .nav-tabs-next {
+      right: 35px;
+    }
+
+    .nav-tabs-more {
+      right: 10px;
+    }
+
+    .nav-tabs-box {
+      width: initial;
+      overflow: hidden;
+
+      .nav-tabs {
+        white-space: nowrap;
+        position: relative;
+        transition: transform .3s;
+        float: left;
+        display: inline-flex;
+        display: -webkit-inline-flex;
+        transition: transform .3s;
+        min-width: 100%;
+        padding: 0 @padding-md;
+      }
+
+    }
+  }
+}

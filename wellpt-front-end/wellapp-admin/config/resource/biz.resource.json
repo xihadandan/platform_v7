@@ -1,0 +1,172 @@
+{
+  "js": {
+    "AppBizCategoryAndBusinessTreeDevelopment": {
+      "path": "biz-mgr/AppBizCategoryAndBusinessTreeDevelopment",
+      "name": "平台管理_业务流程管理_业务分类及业务树二开",
+      "dependencies": [
+        "HtmlWidgetDevelopment",
+        "ztree",
+        "system-admin",
+        "bootstrapTable",
+        "bootstrapTable_editable",
+        "wBootstrapTable",
+        "ajaxfileupload",
+        "slimScroll"
+      ]
+    },
+    "AppBizProcessDefinitionListViewWidgetDevelopment": {
+      "path": "biz-mgr/AppBizProcessDefinitionListViewWidgetDevelopment",
+      "name": "平台管理_业务流程管理_业务流程定义列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppBizProcessDefinitionDetailsWidgetDevelopment": {
+      "path": "biz-mgr/AppBizProcessDefinitionDetailsWidgetDevelopment",
+      "name": "平台管理_业务流程管理_业务流程定义详情_HTML组件二开",
+      "dependencies": [
+        "AppPtMgrDetailsWidgetDevelopment",
+        "multiOrg",
+        "formBuilder",
+        "dataStoreBase",
+        "bootstrap-datetimepicker",
+        "slimScroll",
+        "AppBizProcessDefinitionItemSituationConfig",
+        "AppBizProcessDefinitionItemWorkflowBiMilestoneConfig"
+      ]
+    },
+    "AppBizProcessDefinitionProcessNodeConditionDialog": {
+      "path": "biz-mgr/AppBizProcessDefinitionProcessNodeConditionDialog",
+      "name": "平台管理_业务流程管理_业务流程定义过程节点条件",
+      "dependencies": ["AppPtMgrCommons"]
+    },
+    "AppBizProcessDefinitionDispenseFormConfigDialog": {
+      "path": "biz-mgr/AppBizProcessDefinitionDispenseFormConfigDialog",
+      "name": "平台管理_业务流程管理_业务流程定义_业务事项表单分发配置",
+      "dependencies": ["AppPtMgrCommons"]
+    },
+    "AppBizProcessDefinitionItemSituationConfig": {
+      "path": "biz-mgr/AppBizProcessDefinitionItemSituationConfig",
+      "name": "平台管理_业务流程管理_业务流程定义_业务事项办理情形配置",
+      "dependencies": ["AppPtMgrCommons"]
+    },
+    "AppBizProcessDefinitionTemplateDialog": {
+      "path": "biz-mgr/AppBizProcessDefinitionTemplateDialog",
+      "name": "平台管理_业务流程管理_业务流程定义_配置项模板管理弹出框",
+      "dependencies": ["AppPtMgrCommons", "AppBizProcessDefinitionItemWorkflowBiMilestoneConfig"]
+    },
+    "AppBizDefinitionTemplateListViewWidgetDevelopment": {
+      "path": "biz-mgr/AppBizDefinitionTemplateListViewWidgetDevelopment",
+      "name": "平台管理_业务流程管理_业务流程配置项模板_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppBizProcessDefinitionItemWorkflowBiMilestoneConfig": {
+      "path": "biz-mgr/AppBizProcessDefinitionItemWorkflowBiMilestoneConfig",
+      "name": "平台管理_业务流程管理_业务流程定义_业务事项工作流集成里程碑配置",
+      "dependencies": ["AppPtMgrCommons"]
+    },
+    "AppBizProcessDefinitionItemWorkflowBiNewItemConfig": {
+      "path": "biz-mgr/AppBizProcessDefinitionItemWorkflowBiNewItemConfig",
+      "name": "平台管理_业务流程管理_业务流程定义_业务事项工作流集成发起事项配置",
+      "dependencies": ["AppPtMgrCommons"]
+    },
+    "AppBizTagListViewWidgetDevelopment": {
+      "path": "biz-mgr/AppBizTagListViewWidgetDevelopment",
+      "name": "平台管理_业务流程管理_业务标签列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppBizTagDetailsWidgetDevelopment": {
+      "path": "biz-mgr/AppBizTagDetailsWidgetDevelopment",
+      "name": "平台管理_业务流程管理_业务标签定义详情_HTML组件二开",
+      "dependencies": ["AppPtMgrDetailsWidgetDevelopment", "multiOrg", "formBuilder", "dataStoreBase", "bootstrap-datetimepicker"]
+    },
+    "AppBizItemDefinitionListViewWidgetDevelopment": {
+      "path": "biz-mgr/AppBizItemDefinitionListViewWidgetDevelopment",
+      "name": "平台管理_业务流程管理_业务事项定义列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppBizItemDefinitionDetailsWidgetDevelopment": {
+      "path": "biz-mgr/AppBizItemDefinitionDetailsWidgetDevelopment",
+      "name": "平台管理_业务流程管理_业务事项定义详情_HTML组件二开",
+      "dependencies": ["AppPtMgrDetailsWidgetDevelopment", "multiOrg", "formBuilder", "dataStoreBase", "bootstrap-datetimepicker"]
+    },
+    "AppBizProcessItemInstanceListViewWidgetDevelopment": {
+      "path": "biz-mgr/AppBizProcessItemInstanceListViewWidgetDevelopment",
+      "name": "平台管理_业务流程管理_业务事项办件列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppBizProcessNodeInstanceListViewWidgetDevelopment": {
+      "path": "biz-mgr/AppBizProcessNodeInstanceListViewWidgetDevelopment",
+      "name": "平台管理_业务流程管理_过程节点办件列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "AppBizProcessInstanceListViewWidgetDevelopment": {
+      "path": "biz-mgr/AppBizProcessInstanceListViewWidgetDevelopment",
+      "name": "平台应用_业务流程管理_业务流程办件列表_视图组件二开",
+      "dependencies": ["AppPtMgrListViewWidgetDevelopment"]
+    },
+    "app-biz-start-process-item": {
+      "path": "biz-mgr/start_process_item",
+      "name": "平台应用_业务流程管理_发起业务事项",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "BizProcessItemCancelAction": {
+      "path": "biz-mgr/BizProcessItemCancelAction",
+      "name": "平台应用_业务流程管理_业务事项撤回",
+      "dependencies": ["dependencyJQueryUIWidgetModule"]
+    },
+    "BizDataView": {
+      "path": "biz-mgr/BizDataView",
+      "name": "平台应用_业务流程管理_业务数据单据实现",
+      "dependencies": ["DmsDocumentViewDevelopment", "DyformExplain"]
+    },
+    "BizProcessItemView": {
+      "path": "biz-mgr/BizProcessItemView",
+      "name": "平台应用_业务流程管理_业务事项单据实现",
+      "dependencies": ["BizDataView", "WorkFlowInteraction", "WorkFlowErrorHandler"]
+    },
+    "BizWorkViewIntegrationFragment": {
+      "path": "biz-mgr/BizWorkViewIntegrationFragment",
+      "name": "平台应用_业务流程管理_流程集成_流程片段二开",
+      "dependencies": ["WorkFlowInteraction"]
+    },
+    "BizProcessNodeView": {
+      "path": "biz-mgr/BizProcessNodeView",
+      "name": "平台应用_业务流程管理_过程节点单据实现",
+      "dependencies": ["BizDataView"]
+    },
+    "BizProcessView": {
+      "path": "biz-mgr/BizProcessView",
+      "name": "平台应用_业务流程管理_业务流程单据实现",
+      "dependencies": ["BizDataView"]
+    }
+  },
+  "jsTemplate": {
+    "biz-process-definition-node-condition": {
+      "path": "/biz/tpl/biz_process_definition_node_condition.html",
+      "name": "平台管理_业务流程管理_业务流程定义过程节点条件"
+    },
+    "biz-dispense-form-config": {
+      "path": "/biz/tpl/biz_dispense_form_config.html",
+      "name": "平台管理_业务流程管理_业务流程定义_表单分发配置"
+    },
+    "biz-item-situation-config": {
+      "path": "/biz/tpl/biz_item_situation_config.html",
+      "name": "平台管理_业务流程管理_业务流程定义_事项办理情形配置"
+    },
+    "biz-item-situation-config-condition": {
+      "path": "/biz/tpl/biz_item_situation_config_condition.html",
+      "name": "平台管理_业务流程管理_业务流程定义_事项办理情形配置条件"
+    },
+    "biz-item-workflow-bi-milestone-config": {
+      "path": "/biz/tpl/biz_item_workflow_bi_milestone_config.html",
+      "name": "平台管理_业务流程管理_业务流程定义_事项办理工作流集成里程碑配置"
+    },
+    "biz-choose-process-item-by-process-definition": {
+      "path": "/biz/tpl/biz_choose_process_item_by_process_definition.html",
+      "name": "平台管理_业务流程管理_根据业务流程定义选择业务事项"
+    },
+    "biz-process-item-operation": {
+      "path": "/biz/tpl/biz_process_item_operation.html",
+      "name": "平台应用_业务流程管理_业务办件事项办理过程"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="dataQuery">
+        <![CDATA[
+		 /* 查询文件库 */
+		select *
+  		from (select * from s_data t where exists (select 1 from (select uuid from s_directory start with uuid=${directoryUuid} connect by prior uuid= parent_uuid) p where p.uuid=t.directory_uuid)
+	        and (select count(1) from acl_entry t01,acl_sid t02 where t01.sid=t02.uuid and exists (select 1 from (select uuid from s_directory start with uuid=${directoryUuid} connect by uuid = prior parent_uuid) p where p.uuid=t01.object_id_identity) and t02.sid in (${sids}) and t01.mask in (${masks}) and t01.granting=1)>0
+	        union all
+	        select * from s_data t where exists (select 1 from (select uuid from s_directory start with uuid=${directoryUuid} connect by prior uuid= parent_uuid) p where p.uuid=t.directory_uuid)
+	        and exists (select 1 from acl_entry t01,acl_sid t02 where t01.sid=t02.uuid and t01.object_id_identity=t.uuid and t02.sid in (${sids}) and t01.mask in (${masks}) and t01.granting=1)
+	     ) o
+	]]>
+    </sql-query>
+</hibernate-mapping>

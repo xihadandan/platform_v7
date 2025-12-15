@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="updateUseCapacity">
+        <![CDATA[
+		 UPDATE WM_MAIL_USE_CAPACITY set capacity_used=capacity_used + :increasement
+		 where 1=1
+		 <if userId??>
+		 	and user_id =:userId
+		 </if>
+		 <if mailbox??>
+		 	and mailbox=:mailbox
+		 </if>
+
+	]]>
+    </sql-query>
+
+    <sql-query name="updateMailUserAccountUseCapacity">
+        <![CDATA[
+		 UPDATE wm_mail_user set USED_CAPACITY=USED_CAPACITY + :increasement
+		 where
+		 IS_INNER_USER=1
+		  <if limit?? && increasement gt 0 >
+		  and  (LIMIT_CAPACITY*1024*1024) >= USED_CAPACITY + :increasement
+		  </if>
+		 and  USER_ID =:userId
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

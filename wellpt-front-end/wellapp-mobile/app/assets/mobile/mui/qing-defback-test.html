@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>YUNZHIJIA TEST</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>云之家APP退回绑定回调-测试</title>
+	</head>
+
+	<body>
+		<span class="desc">云之家APP退回绑定回调兼容性测试</span>
+		<p>andriod:首次加载页面时,绑定的回调不执行,做一次跳转后,退回绑定有效.</p>
+		<button type="button">跳转</button>
+		<script src="js/qingjs.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			XuntongJSBridge.call('defback', {}, function(result) {
+				alert("回调成功:" + window.history.length);
+			});
+			var a = document.getElementsByTagName("button")[0];
+			a.addEventListener("click", function(){
+				location.href = 'qing-defback-test.html?hl=' + window.history.length;
+			}, false)
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,691 @@
+@CHARSET "UTF-8";
+/* 办理过程表格CSS开始 */
+.view_process_table {
+	border: 1px solid #999;
+	border-collapse: collapse;
+}
+
+.view_process_table th { /* 	border: 1px solid #999; */
+	background: none repeat scroll 0 0 #0F599C;
+	color: #fff;
+	font-weight: normal;
+	font-size: 14px;
+	height: 24px;
+	/* 	background: none repeat scroll 0 0 #8DB3E2; */
+	font-weight: normal;
+}
+
+.view_process_table td {
+	border: 1px solid #999;
+	font-size: 12px;
+	height: 24px;
+	min-width: 50px;
+}
+
+.view_process_table .th1,.view_process_table .td1 {
+	width: 70px;
+}
+
+.view_process_table .th2,.view_process_table .td2 {
+	width: 70px;
+}
+
+.view_process_table .th3,.view_process_table .td3 {
+	width: 300px;
+}
+
+.view_process_table .th6,.view_process_table .td6 {
+	width: 70px;
+	display: none;
+}
+
+.view_process_table .th7,.view_process_table .th8,.view_process_table .td7,.view_process_table .td8
+	{
+	width: 40px;
+}
+
+.view_process_table .th,.view_process_table .th10,.view_process_table .td9,.view_process_table .td10
+	{
+	width: 110px;
+}
+
+.view_process_list {
+	margin: 0 15px 0 25px;
+	width: auto;
+}
+
+.view_process_header,.share_flow_header {
+	background: none repeat scroll 0 0 #0F599C;
+	/* 	width: 875px; */
+	height: 29px;
+	border-right: 1px solid #FFF;
+	font: 12px/1.5 arial;
+	display: none;
+}
+
+.view_process_header a,.share_flow_header a {
+	display: block;
+	padding: 5px 15px 0 15px;
+	color: #FFF;
+	text-decoration: none;
+	padding: 6px 15px 0 15px;
+}
+
+.view_process_content,.share_flow_content {
+	display: block;
+	width: 910px;
+	padding-bottom: 30px;
+}
+
+.share_flow_content {
+	margin: 0 15px 0 25px;
+}
+/* 办理过程表格CSS结束 */
+
+/* 签署意见开始 */
+#toolbar .wf_opinion {
+	position: relative;
+}
+
+.wf_opinion .sign-opinion-value {
+	float: left;
+	margin-left: 20px;
+}
+
+/* 签署意见——下拉框开始 */
+.wf_opinion .opinion-select {
+	padding: 0px;
+	margin: 0px;
+	width: 88px;
+	font-size: 11px;
+	height: 24px;
+	text-align: left;
+}
+
+.wf_opinion .opinion-select-label {
+	border-radius: 0 0 0 0;
+	height: 24px;
+	line-height: 24px;
+	text-align: left;
+	color: #0F599C;
+}
+
+.wf_opinion .chosen-single {
+	border-radius: 0 0 0 0;
+}
+
+.wf_opinion .chosen-single {
+	background: none repeat scroll 0 0 #FAFAFA;
+	box-shadow: none;
+	height: 24px;
+	line-height: 24px;
+	text-align: left;
+	color: #0F599C;
+	border-top: 1px solid #D6D8D7;
+	border-right: 1px solid #E7E8E9;
+	border-bottom: 1px solid #D5D9DC;
+	border-left: 1px solid #DFE1E0;
+}
+
+.wf_opinion .chosen-container-active .chosen-single {
+	border-color: #4492C9;
+}
+
+.wf_opinion .chosen-drop {
+	color: #0F599C;
+	text-align: left;
+}
+
+.wf_opinion .chosen-container-active .chosen-drop {
+	border-color: #4492C9;
+}
+/* 签署意见——下拉框结束 */
+/* 签署意见——文本输入域开始 */
+.collapse {
+	position: relative;
+	height: 0;
+	overflow: hidden;
+	-webkit-transition: height 0.35s ease;
+	-moz-transition: height 0.35s ease;
+	-o-transition: height 0.35s ease;
+	transition: height 0.35s ease;
+}
+
+.collapse.in {
+	height: auto;
+}
+
+.wf_opinion .sign-opinion-input {
+	border: none;
+	vertical-align: top;
+	position: absolute;
+	z-index: 1;
+	left: 115px;
+	width: 540px;
+	height: 26px;
+}
+
+.sign-opinion-input textarea {
+	float: left;
+	margin: 0;
+	padding: 2px;
+	border-top: 1px solid #D6D8D7;
+	width: 504px;
+	height: 20px;
+	overflow: hidden;
+}
+
+.sign-opinion-input .dropdown {
+	margin-top: 1px;
+}
+
+.wf_opinion .sign-open {
+	cursor: pointer;
+	right: 30px;
+	bottom: 0px;
+	height: 15px;
+	width: 15px;
+	position: absolute;
+	background: url("../../../../resources/theme/images/v1_icon.png")
+		no-repeat scroll 0 -200px transparent;
+}
+
+.wf_opinion .sign-close {
+	cursor: pointer;
+	right: 30px;
+	bottom: 0px;
+	height: 15px;
+	width: 15px;
+	position: absolute;
+	background:
+		url("../../../../resources/theme/images/v1_icon_top_close.png")
+		no-repeat scroll 0 0 transparent;
+}
+
+/* 签署意见——文本输入域结束 */
+/* 签署意见——意见选择开始 */
+.btn-sign-opinion {
+	margin-top: 2px;
+	height: 22px;
+	width: 22px;
+	background:
+		url("../../../../resources/pt/images/workflow/sign_opinion_0.png")
+		no-repeat;
+	float: left;
+}
+
+.open .btn-sign-opinion {
+	background:
+		url("../../../../resources/pt/images/workflow/sign_opinion_1.png")
+		no-repeat;
+}
+
+.wf_opinion .accordion {
+	border: none;
+	margin: 0px;
+	padding: 0px;
+	border-top: 1px solid #DDD6D4;
+	border-bottom: 1px solid #D9D5D8;
+	border-top: 1px solid #DDD6D4;
+}
+
+.wf_opinion .accordion-group {
+	margin-bottom: 1px;
+	border: none;
+}
+
+.wf_opinion .accordion-body {
+	background-color: #FFF;
+	border: none;
+}
+
+.wf_opinion .accordion-inner {
+	border: 1px solid #C3C3C3;
+	padding: 0px;
+}
+
+.wf_opinion .accordion-inner ul {
+	overflow: auto;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+.wf_opinion .accordion-inner ul li {
+	margin: 0px;
+	padding: 8px 15px;
+	border-bottom: 1px solid #D9D9D9;
+	text-align: left;
+	line-height: 20px;
+}
+
+.wf_opinion .accordion-inner ul li:hover {
+	background: none;
+	background-color: #3399FF;
+	color: #FFF;
+	cursor: pointer;
+}
+
+.wf_opinion .accordion-inner ul li a {
+	max-width: 260px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 0px;
+	margin: 0px;
+}
+
+.wf_opinion .dropdown-menu li>a {
+	clear: both;
+	color: #333;
+	display: block;
+	font-weight: normal;
+	line-height: 20px;
+	white-space: nowrap;
+}
+
+.wf_opinion .accordion-inner ul li a:hover {
+	background: none;
+	background-color: #3399FF;
+	cursor: pointer;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.wf_opinion .accordion-inner-single {
+	border: none;
+	padding: 0px;
+}
+
+.wf_opinion .accordion-inner-single ul li:hover {
+	background-color: #0081c2;
+}
+
+.wf_opinion .accordion-inner-single ul li a:hover {
+	background-color: #0081c2;
+}
+
+.wf_opinion .dropdown-custom {
+	border-radius: 0 0 0 0 !important;
+	border: 1px solid #A1A1A1;
+	padding-bottom: 1px;
+	background: #EFEFEF;
+	min-width: 262px;
+}
+
+.wf_opinion .dropdown-custom>li>a {
+	padding: 0px;
+	margin: 0px;
+}
+
+.wf_opinion .nav-header {
+	text-align: right;
+}
+
+.wf_opinion .nav-header .icon-cog-blue {
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	background: url('../../../../resources/pt/images/workflow/process.png')
+		no-repeat scroll -102px -97px transparent;
+}
+
+.wf_opinion .nav-header span {
+	cursor: pointer;
+	color: #174C92;
+}
+
+.wf_opinion .nav-header span:hover {
+	color: #FF7200;
+}
+
+.wf_opinion .accordion {
+	margin-bottom: 0px;
+}
+
+.wf_opinion .navbar {
+	float: right;
+	padding: 0px;
+	margin: 0px;
+	border: none;
+	padding: 0px;
+}
+
+.wf_opinion .navbar .nav,.wf_opinion .navbar-inner {
+	min-height: 22px;
+	width: 22px;
+	height: 22px;
+	width: 22px;
+}
+
+.wf_opinion .nav>li>a {
+	padding: 0px;
+}
+
+.wf_opinion .dropdown>.dropdown-menu.pull-right:before,.dropdown-menu.pull-right.dropdown-caret:before
+	{
+	left: auto;
+	right: 9px;
+}
+
+.wf_opinion .dropdown>.dropdown-menu:before,.dropdown-menu.dropdown-caret:before
+	{
+	border-bottom: 7px solid rgba(0, 0, 0, 0.2);
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	display: inline-block;
+	left: 9px;
+	position: absolute;
+	top: -7px;
+}
+
+.wf_opinion .accordion-heading {
+	background-color: #0F5A9C;
+	position: relative;
+}
+
+.wf_opinion .accordion-heading .accordion-toggle:after {
+	color: #4C8FBD;
+	display: inline-block;
+	font-family: FontAwesome;
+	font-size: 16px;
+	line-height: 18px;
+	position: absolute;
+	right: 6px;
+	text-align: center;
+	width: 14px;
+}
+
+.wf_opinion .accordion-heading .accordion-toggle {
+	color: #F8FFFF;
+	position: relative;
+	color: #F8FFFF;
+	text-align: left;
+}
+
+.wf_opinion .accordion-heading .accordion-toggle-icon {
+	bottom: 11px;
+	right: 11px;
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	position: absolute;
+	background: url('../../../../resources/pt/images/workflow/process.png')
+		no-repeat scroll -69px -91px transparent;
+}
+
+.wf_opinion .accordion-heading .accordion-toggle-icon.collapsed {
+	background: url('../../../../resources/pt/images/workflow/process.png')
+		no-repeat scroll -69px -121px transparent;
+}
+
+.wf_opinion .accordion-heading a {
+	text-decoration: none;
+}
+
+.wf_opinion .accordion-heading .accordion-toggle.collapsed:after {
+	color: #667799;
+}
+
+.wf_opinion .accordion-heading .accordion-toggle:after {
+	color: #4C8FBD;
+	display: inline-block;
+	font-family: FontAwesome;
+	font-size: 16px;
+	line-height: 18px;
+	position: absolute;
+	right: 6px;
+	text-align: center;
+	width: 14px;
+}
+
+.wf_opinion .accordion-heading .accordion-toggle.collapsed {
+	color: #F8FFFF;
+	color: #F8FFFF;
+	font-weight: normal;
+	color: #F8FFFF;
+}
+/* 签署意见——意见选择结束 */
+/* 签署意见结束 */
+
+/* 办理过程图形过程开始 */
+#process {
+	margin: 0 auto;
+	margin-top: 14px;
+	width: 875px;
+	padding: 22px 0 40px 0px;
+	min-width: 875px;
+}
+
+#process .proce {
+	width: 120px;
+	height: 20px;
+	float: left;
+	position: relative;
+}
+
+#process .proce1 {
+	margin-left: 45px;
+	width: 125px;
+	background: url('../../../../resources/pt/images/workflow/process.png')
+		no-repeat scroll -111px -14px transparent;
+}
+
+#process .proce2 {
+	width: 219px;
+	background: url('../../../../resources/pt/images/workflow/process.png')
+		repeat-x scroll -17px -35px transparent;
+}
+
+#process .proce2_start {
+	margin-left: 49px;
+	width: 122px;
+	background: url('../../../../resources/pt/images/workflow/process.png')
+		repeat-x scroll -114px -35px transparent;
+}
+
+#process .proce3 {
+	width: 205px;
+	background: url('../../../../resources/pt/images/workflow/process.png')
+		no-repeat scroll -31px -55px transparent;
+}
+
+#process .proce4 {
+	width: 160px;
+	background: url('../../../../resources/pt/images/workflow/process.png')
+		no-repeat scroll -108px -74px transparent;
+}
+
+.proce ul {
+	margin-top: -20px;
+	position: absolute;
+	width: 320px;
+	list-style: none;
+	text-align: center;
+	margin-left: -22px;
+	padding: 0px;
+}
+
+.proce1 ul {
+	margin-left: -41px;
+}
+
+.proce2 ul {
+	width: 467px;
+}
+
+.proce2_start ul {
+	width: 274px;
+}
+
+.proce3 ul {
+	width: 440px;
+}
+
+.proce ul li.tx1,.proce ul li.tx2 {
+	font-size: 12px;
+	color: #686868;
+}
+
+.proce ul li.tx2 {
+	margin-top: 17px;
+}
+
+.proce ul li.tx3 {
+	color: #686868;
+}
+
+.view_process {
+	height: 20px;
+	line-height: 20px;
+}
+
+.view_process .view_process_img {
+	height: 15px;
+	background: url('../../../../resources/pt/images/workflow/process.png')
+		no-repeat scroll -220px -94px transparent;
+}
+
+.view_process .view_process_img:hover {
+	cursor: pointer;
+}
+
+.view_process a {
+	height: 20px;
+	padding-left: 20px;
+	font-size: 12px;
+	color: #2468A9;
+	text-decoration: none;
+}
+
+.view_process a:hover {
+	color: #FF7200;
+	text-decoration: none;
+}
+/* 办理过程图形过程结束 */
+/* add by huanglinchuan 2014.10.18 begin*/
+/*modified by huanglinchuan 2014.10.27 begin*/
+.floatHeader{
+	position:fixed; z-index:2; top:0px;height:92px;border-bottom:2px solid #cccccc;
+}
+/*modified by huanglinchuan 2014.10.27 end*/
+.formHeader_top0{
+	margin-top:0px !important;
+}
+/* add by huanglinchuan 2014.10.18 end*/
+#dlg_choose_specific_user .query-fields, #dlg_choose_one_user .query-fields {
+	float: right;
+}
+.wf-dlg .radio input[type="radio"], .checkbox input[type="checkbox"] {
+	margin-left: 0px;
+}
+
+/* mobile css */
+#dateView{
+    margin: 0;
+    padding: 0;
+}
+#dateView .item a{
+	background-color: #f6f6f6;
+    border-top: 1px solid #ddd;
+    color: #333;
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+#dateView .item a h1{
+    font-size: 18px;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+#dateView .item a h1 span{
+	color: #808080;
+    float: right;
+    font-size: 14px;
+    margin-right: 5px;
+    margin-top: 1px;	
+}
+#dateView .item a h3 {
+    font-size: 16px;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#dateView .item a p {
+    color: #808080;
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.wf_mobi_header {
+	left: 0;
+    position: fixed;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+	background: none repeat scroll 0 0 #000 !important;
+	height: 43px;
+}
+.wf_mobi_header_btn {
+	position : absolute;
+	top: 0.24em;
+}
+.wf_mobi_header_img {
+    height: 35px;
+    margin-left: 0;
+    margin-top: -2px;
+    width: 35px;
+}
+.form_toolbar {
+	background: none repeat scroll 0 0 rgba(61, 177, 224, 1);
+}
+.sign-opinion-input > .navbar .nav-header > span {
+	display: none;
+}
+.wf_operate_menu {
+	display: none;
+	position: absolute;
+	right: 14px;
+	top: 98px;
+	width: 150px;
+	z-index: 1000;
+	text-align: left;
+}
+ul.user-to-choose {
+	list-style: none;
+	margin: 5px 0 5px 0;
+	padding: 0px;
+}
+ul.user-to-choose li {
+	border-bottom: 1px solid #ccc;
+}
+.wf_operate button, .wf_operate button:hover {
+	background: none;
+	height: 3em;
+	width: 4em;
+	font-size: 2em;
+}
+.wf_operate .headImg {
+	margin-left: 1em;
+}
+.sign-opinion-input > textarea {
+	height: 3em;
+	max-height: 6em;
+}
+.wf_opinion .sign-open {
+	bottom: -22px;
+	display: none;
+}
+.btn-sign-opinion {
+	display: none;
+}
+.sign-opinion-input > .navbar {
+	display: none;
+}

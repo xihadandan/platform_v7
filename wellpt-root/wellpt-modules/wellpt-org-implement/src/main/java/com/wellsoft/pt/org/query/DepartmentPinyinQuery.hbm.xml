@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="departmentPinyinQuery">
+        <![CDATA[
+		from Department department
+		where 1 = 1 and (
+			lower(department.name) like '%${name?lower_case}%'
+			or lower(department.shortName) like '%${shortName?lower_case}%'
+			or exists (
+				select entityUuid from Pinyin pinyin
+				where pinyin.entityUuid = department.uuid
+				and pinyin.type = 'Department'
+				and lower(pinyin.pinyin) like '${pinyin?lower_case}%'
+			)
+		)
+		order by code asc,name
+	]]>
+    </sql-query>
+</hibernate-mapping>

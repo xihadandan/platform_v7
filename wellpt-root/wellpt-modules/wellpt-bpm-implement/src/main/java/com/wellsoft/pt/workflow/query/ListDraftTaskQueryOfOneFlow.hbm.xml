@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="listDraftTaskQueryOfOneFlow">
+        <![CDATA[
+		select
+			   ${dyformFields},
+		       t2.reserved_text1   as reserved_text1,
+		       t2.reserved_text2   as reserved_text2,
+		       t2.reserved_text3   as reserved_text3,
+		       t2.reserved_text4   as reserved_text4,
+		       t2.reserved_text5   as reserved_text5,
+		       t2.reserved_text6   as reserved_text6,
+		       t2.reserved_text7   as reserved_text7,
+		       t2.reserved_text8   as reserved_text8,
+		       t2.reserved_text9   as reserved_text9,
+		       t2.reserved_text10  as reserved_text10,
+		       t2.reserved_text11  as reserved_text11,
+		       t2.reserved_text12  as reserved_text12,
+		       t2.reserved_number1 as reserved_number1,
+		       t2.reserved_number2 as reserved_number2,
+		       t2.reserved_number3 as reserved_number3,
+		       t2.reserved_date1   as reserved_date1,
+		       t2.reserved_date2   as reserved_date2,
+		       t2.uuid             as flow_inst_uuid,
+		       t2.title            as flow_title,
+		       t2.start_user_id    as flow_start_user_id,
+		       t2.start_time       as flow_start_time,
+		       t2.end_time         as flow_end_time,
+		       t2.is_active        as is_active,
+		       t3.id               as flow_id,
+		       t3.uuid             as flow_def_uuid,
+		       t3.name             as flow_name,
+		       t3.category         as flow_category
+		       <if isNotBlank(joinProjectionClause)>
+		        , ${joinProjectionClause}
+		       </if>
+		  from ${dyformTableName} d1
+		  inner join wf_flow_instance t2 on t2.data_uuid = d1.uuid
+		  left join wf_task_instance t1 on t2.uuid = t1.flow_inst_uuid
+		  left join wf_flow_definition t3 on t3.uuid = t2.flow_def_uuid
+		  <if isNotBlank(joinTableClause)>
+            ${joinTableClause}
+          </if>
+		  where t3.uuid = :flowDefUuid
+		  /* 草稿状态是没有环节实例数据的，所以 task_inst_uuid is null */
+		  and t1.uuid is null
+			<if isNotBlank(whereSql)>
+				and ( ${whereSql} )
+			</if>
+			<if isNotBlank(reqUserId)>
+				and d1.creator =:reqUserId
+			</if>
+			<if isNotBlank(orderBy)>
+				${orderBy}
+			</if>
+	]]>
+    </sql-query>
+</hibernate-mapping>

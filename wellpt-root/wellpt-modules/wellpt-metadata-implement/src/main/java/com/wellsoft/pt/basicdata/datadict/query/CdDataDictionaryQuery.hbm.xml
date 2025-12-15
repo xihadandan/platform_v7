@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!--  数据字典查询 -->
+    <sql-query name="cdDataDictionaryQuery">
+        <![CDATA[
+        select * from (
+            select
+                t1.uuid as uuid,
+                t1.create_time as create_time,
+                t1.creator as creator,
+                t1.modifier as modifier,
+                t1.modify_time as modify_time,
+                t1.rec_ver as rec_ver,
+                t1.system as system,
+                t1.tenant as tenant,
+                t1.name as name,
+                t1.code as code,
+                t1.ext_definition_json as ext_definition_json,
+                t1.module_id as module_id,
+                t1.category_uuid as category_uuid,
+                t1.remark as remark,
+                t3.user_name as modifier_name,
+                t2.name as category_name,
+                t2.type as category_type,
+                t4.name as module_name
+            from
+                cd_data_dictionary t1
+            left join cd_data_dictionary_category t2 on
+                t1.category_uuid = t2.uuid
+            left join user_info t3 on
+                t1.modifier = t3.user_id
+            left join app_module t4 on
+                t1.module_id = t4.id
+        )   t
+            where 1=1
+            <if moduleId??>
+                and t.module_id = :moduleId
+            </if>
+            <if systemUuid??>
+                and t.module_id in(
+                    select pi.data_id from app_product_integration pi where pi.app_system_uuid = :systemUuid and pi.data_type = '2'
+                    )
+            </if>
+            <if productUuid??>
+                and t.module_id in(
+                    select pi.data_id from app_product_integration pi where pi.app_product_uuid = :productUuid and pi.data_type = '2'
+                    )
+            </if>
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            </if>
+            <if isBlank(orderBy)>
+               order by t.modify_time desc
+            </if>
+    ]]>
+    </sql-query>
+
+
+    <!--  数据字典使用查询 -->
+    <sql-query name="cdDataDictionaryUsedQuery">
+        <![CDATA[
+        select * from (
+            select
+                d.uuid as uuid,
+                d.create_time as create_time,
+                d.creator as creator,
+                d.modifier as modifier,
+                d.modify_time as modify_time,
+                d.rec_ver as rec_ver,
+                d.system as system,
+                d.tenant as tenant,
+                d.name as name,
+                d.code as code,
+                d.module_id as module_id,
+                d.category_uuid as category_uuid,
+                d.remark as remark,
+                t_.function_uuid as function_uuid,
+                t_.function_name as function_name,
+                t_.function_item_name as function_item_name,
+                t_.function_type as function_type,
+                t_.function_module_name as function_module_name,
+                t_.modifier_name as modifier_name,
+                c.name as category_name,
+                c.type as category_type,
+                t_.module_name as module_name
+            from cd_data_dictionary d
+                left join(
+                    select
+                        t4.uuid as uuid,
+                        t2.data_def_uuid as function_uuid,
+                        t2.data_def_name as function_name,
+                        t2.item_name as function_item_name,
+                        nvl2(t2.uuid, t2.data_def_type, '') as function_type,
+                        t8.name as function_module_name,
+                        t6.user_name as modifier_name,
+                        t5.name as category_name,
+                        t5.type as category_type,
+                        t7.name as module_name
+                    from
+                        app_data_def_ref_resource t2
+                        left join app_function t3 on t2.app_function_uuid = t3.uuid
+                        left join cd_data_dictionary t4 on t3.code = t4.code
+                        left join cd_data_dictionary_category t5 on t4.category_uuid = t5.uuid
+                        left join user_info t6 on t4.modifier = t6.user_id
+                        left join app_module t7 on t7.id = t4.module_id
+                        left join app_module t8 on t8.id = t2.module_id
+                        where t3.type = 'cdDataDictionary'
+                            <if moduleId??>
+                                and t4.module_id = :moduleId
+                            </if>
+                    union all
+                    select
+                        t4.uuid as uuid,
+                        t1.uuid as function_uuid,
+                        t1.name as function_name,
+                        '' as function_item_name,
+                        nvl2(t1.uuid, 'appPageDefinition', '') as function_type,
+                        t8.name as function_module_name,
+                        t6.user_name as modifier_name,
+                        t5.name as category_name,
+                        t5.type as category_type,
+                        t7.name as module_name
+                    from
+                        app_page_definition t1
+                        left join app_page_resource t2 on t1.uuid = t2.app_page_uuid
+                        left join app_function t3 on t2.app_function_uuid = t3.uuid
+                        left join cd_data_dictionary t4 on t3.code = t4.code
+                        left join cd_data_dictionary_category t5 on t4.category_uuid = t5.uuid
+                        left join user_info t6 on t4.modifier = t6.user_id
+                        left join app_module t7 on t7.id = t4.module_id
+                        left join app_module t8 on t8.id = t1.app_id
+                        where t3.type = 'cdDataDictionary'
+                            <if moduleId??>
+                                and t4.module_id = :moduleId
+                            </if>
+                ) t_ on d.uuid = t_.uuid
+                left join cd_data_dictionary_category c on d.category_uuid = c.uuid
+                where 1 = 1
+                    <if uuids?? && (uuids?size > 0)>
+                        and d.uuid in (:uuids)
+                    </if>
+                    <if moduleId??>
+                        and d.module_id = :moduleId
+                    </if>
+        )   t
+            where 1=1
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            </if>
+            <if isBlank(orderBy)>
+               order by t.modify_time desc, t.function_type
+            </if>
+    ]]>
+    </sql-query>
+
+
+    <!--  数据字典引用查询 -->
+    <sql-query name="cdDataDictionaryRefQuery">
+        <![CDATA[
+        select * from (
+            select
+                <if distinct>
+                    distinct
+                </if>
+                t4.uuid as uuid,
+                t4.create_time as create_time,
+                t4.creator as creator,
+                t4.modifier as modifier,
+                t4.modify_time as modify_time,
+                t4.rec_ver as rec_ver,
+                t4.system as system,
+                t4.tenant as tenant,
+                t4.name as name,
+                t4.code as code,
+                t4.module_id as module_id,
+                t4.category_uuid as category_uuid,
+                t4.remark as remark,
+                <if !distinct>
+                    t4.ext_definition_json as ext_definition_json,
+                    t2.data_def_uuid as function_uuid,
+                    t2.data_def_name as function_name,
+                    t2.item_name as function_item_name,
+                    nvl2(t2.uuid, t2.data_def_type, '') as function_type,
+                    t8.name as function_module_name,
+                </if>
+                t6.user_name as modifier_name,
+                t5.name as category_name,
+                t5.type as category_type,
+                t7.name as module_name
+            from
+                app_data_def_ref_resource t2
+                left join app_function t3 on t2.app_function_uuid = t3.uuid
+                left join cd_data_dictionary t4 on t3.code = t4.code
+                left join cd_data_dictionary_category t5 on t4.category_uuid = t5.uuid
+                left join user_info t6 on t4.modifier = t6.user_id
+                left join app_module t7 on t7.id = t4.module_id
+                left join app_module t8 on t8.id = t2.module_id
+                where t3.type = 'cdDataDictionary' and t2.module_id = :moduleId
+                    and (t4.module_id <> :moduleId or t4.module_id is null)
+            union all
+            select
+                <if distinct>
+                    distinct
+                </if>
+                t4.uuid as uuid,
+                t4.create_time as create_time,
+                t4.creator as creator,
+                t4.modifier as modifier,
+                t4.modify_time as modify_time,
+                t4.rec_ver as rec_ver,
+                t4.system as system,
+                t4.tenant as tenant,
+                t4.name as name,
+                t4.code as code,
+                t4.module_id as module_id,
+                t4.category_uuid as category_uuid,
+                t4.remark as remark,
+                <if !distinct>
+                    t4.ext_definition_json as ext_definition_json,
+                    t1.uuid as function_uuid,
+                    t1.name as function_name,
+                    '' as function_item_name,
+                    nvl2(t1.uuid, 'appPageDefinition', '') as function_type,
+                    t8.name as function_module_name,
+                </if>
+                t6.user_name as modifier_name,
+                t5.name as category_name,
+                t5.type as category_type,
+                t7.name as module_name
+            from
+                app_page_definition t1
+                left join app_page_resource t2 on t1.uuid = t2.app_page_uuid
+                left join app_function t3 on t2.app_function_uuid = t3.uuid
+                left join cd_data_dictionary t4 on t3.code = t4.code
+                left join cd_data_dictionary_category t5 on t4.category_uuid = t5.uuid
+                left join user_info t6 on t4.modifier = t6.user_id
+                left join app_module t7 on t7.id = t4.module_id
+                left join app_module t8 on t8.id = t1.app_id
+                where t3.type = 'cdDataDictionary' and t1.app_id = :moduleId
+                    and (t4.module_id <> :moduleId or t4.module_id is null)
+        )   t
+            where 1=1
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            </if>
+             <if isBlank(orderBy)>
+               order by t.modify_time desc
+            </if>
+    ]]>
+    </sql-query>
+
+</hibernate-mapping>

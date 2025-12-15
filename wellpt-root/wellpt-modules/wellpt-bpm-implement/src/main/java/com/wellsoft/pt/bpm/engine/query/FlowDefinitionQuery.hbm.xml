@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <sql-query name="getFlowDefinitionListByIds">
+        <![CDATA[
+        select *
+		from wf_flow_definition fd
+		where id in ( :ids)
+	]]>
+    </sql-query>
+    <sql-query name="queryAllModuleFlowDefs">
+        <![CDATA[
+         select t1.uuid           as uuid,
+		       t1.create_time    as create_time,
+		       t1.category       as category,
+		       t2.name           as category_name,
+		       t1.name           as name,
+		       t1.id             as id,
+		       t1.code           as code,
+		       t1.version        as version,
+		       t1.form_uuid      as form_uuid,
+		       t1.form_name      as form_name,
+		       t1.enabled        as enabled,
+		       t1.is_mobile_show as is_mobile_show,
+		       t1.pc_show_flag as pc_show_flag,
+		       t1.freeed         as freeed,
+		       t1.equal_flow_id  as equal_flow_id,
+		       t1.remark         as remark,
+		       t1.system_unit_id as system_unit_id,
+		       t1.delete_status as delete_status,
+		       t1.delete_time as delete_time
+		  from wf_flow_definition t1 inner join (
+		  			select t.id as id, max(t.version) as version
+	                   from wf_flow_definition t
+	                   group by t.id
+		  		) t1_ on t1.id = t1_.id and t1.version = t1_.version
+		  		left join wf_def_category t2
+		            on t1.category = t2.uuid
+		  		where t1.module_id in (:moduleId)
+		  	order by t1.create_time desc
+
+	]]>
+    </sql-query>
+
+    <sql-query name="listFlowDefinitionQuery">
+        <![CDATA[
+		select t1.uuid           as uuid,
+		       t1.create_time    as create_time,
+		       t1.category       as category,
+		       t2.name           as category_name,
+		       t1.name           as name,
+		       t1.id             as id,
+		       t1.code           as code,
+		       t1.version        as version,
+		       t1.form_uuid      as form_uuid,
+		       t1.form_name      as form_name,
+		       t1.enabled        as enabled,
+		       t1.is_mobile_show as is_mobile_show,
+		       t1.pc_show_flag as pc_show_flag,
+		       t1.freeed         as freeed,
+		       t1.equal_flow_id  as equal_flow_id,
+		       t1.remark         as remark,
+		       t1.system_unit_id as system_unit_id,
+		       t1.delete_status as delete_status,
+		       t1.delete_time as delete_time
+		  from wf_flow_definition t1
+		  <if isNotBlank(distinctVersion)>
+		  		inner join (
+		  			select t.id as id, max(t.version) as version
+	                   from wf_flow_definition t
+	                   <if isNotBlank(systemId)>
+                           where 1 = 1 and (
+                                    exists (
+                                        select pm.module_id from app_prod_module pm
+                                            left join app_system_info si on pm.prod_version_uuid = si.prod_version_uuid
+                                            where t.module_id = pm.module_id and t.system is null and si.system = :systemId
+                                    )
+                                    or t.system = :systemId
+                                )
+                       </if>
+	                   group by t.id, t.enabled
+	                   having t.enabled = 1
+		  		) t1_ on t1.id = t1_.id and t1.version = t1_.version
+		  </if>
+		  <if recentUse?? && recentUse>
+		    inner join cd_recent_use t3 on t1.id = t3.object_id_identity
+		  </if>
+		  left join wf_def_category t2
+		    on t1.category = t2.uuid
+		 where 1 = 1
+		 	<if recentUse?? && recentUse>
+		 		and t3.module_id = 'WORKFLOW' and t3.user_id in (:sids)
+		 	</if>
+			<if isNotBlank(uuid) || isNotBlank(uuids) || isNotBlank(id) || isNotBlank(ids) || isNotBlank(name)
+				|| isNotBlank(category) || isNotBlank(enabled) || isNotBlank(mobileShow) || isNotBlank(systemUnitId)
+				|| isNotBlank(systemUnitIds) || isNotBlank(systemId)>
+				<if isNotBlank(uuid)>
+					and t1.uuid = :uuid
+				</if>
+				<if isNotBlank(uuids)>
+					and t1.uuid in(:uuids)
+				</if>
+				<if isNotBlank(id)>
+					and t1.id = :id
+				</if>
+				<if isNotBlank(ids)>
+					and t1.id in(:ids)
+				</if>
+				<if isNotBlank(name)>
+					and t1.name = :name
+				</if>
+				<if isNotBlank(category)>
+					and t1.category = :category
+				</if>
+				<if isNotBlank(enabled)>
+                    and t1.enabled = :enabled
+                </if>
+				<if isNotBlank(mobileShow)>
+                    and t1.is_mobile_show = :mobileShow
+                </if>
+                <if isNotBlank(pcShowFlag)>
+                    and t1.pc_show_flag = :pcShowFlag
+                </if>
+                <if isNotBlank(systemUnitId)>
+					and (t1.system_unit_id = :systemUnitId or t1.system_unit_id is null)
+				</if>
+				<if isNotBlank(systemUnitIds)>
+					and (t1.system_unit_id in(:systemUnitIds) or t1.system_unit_id is null)
+				</if>
+				<if isNotBlank(systemId) && recentUse?? && recentUse>
+				    and t1.system = :systemId
+				</if>
+			</if>
+            <if isNotBlank(moduleId)>
+                and t1.module_id = :moduleId
+            </if>
+            <if isNotBlank(systemId)>
+                and (
+                        exists (
+                            select pm.module_id from app_prod_module pm
+                                left join app_system_info si on pm.prod_version_uuid = si.prod_version_uuid
+                                where t1.module_id = pm.module_id and t1.system is null and si.system = :systemId
+                        )
+                        or t1.system = :systemId
+                    )
+            </if>
+			<if isNotBlank(widthPermission)>
+				and (exists (select 1
+                  from acl_entry a1
+                 inner join acl_sid a2
+                    on a1.sid = a2.uuid
+                 where t1.uuid = a1.object_id_identity
+                   and a1.granting = 1
+                   and a1.mask in(:masks)
+                   and a2.sid in(:sids)))
+			</if>
+			<if isNotBlank(likeQuery)>
+				and ( 1 = 2
+				<if isNotBlank(idLike)>
+					or t1.id like '%${idLike}%'
+				</if>
+				<if isNotBlank(nameLike)>
+					or t1.name like '%${nameLike}%'
+				</if>
+				<if isNotBlank(categoryLike)>
+					or t1.category like '%${categoryLike}%'
+				</if>
+				)
+			</if>
+			<if recentUse?? && recentUse>
+				order by t3.use_time desc
+			<else>
+				<if isNotBlank(orderBy)>
+					order by ${orderBy}
+				</if>
+				<if isNotBlank(orderString)>
+					${orderString}
+				</if>
+			</if>
+	]]>
+    </sql-query>
+
+    <sql-query name="queryAllWorkflowDefinition">
+        <![CDATA[
+		from FlowDefinition fd
+		where  1=1
+		<if moduleId??>
+		and fd.moduleId =:moduleId
+		</if>
+		<if excludeModuleIds??>
+		and fd.moduleId not in (:excludeModuleIds)
+		</if>
+		<if systemUnitId??>
+		and fd.systemUnitId =:systemUnitId
+		</if>
+	 	 order by fd.modifyTime desc
+	]]>
+    </sql-query>
+
+    <sql-query name="getFlowDefinitionDetail">
+        <![CDATA[
+		from FlowDefinition fd
+		where  1=1
+		and fd.uuid =:uuid
+	]]>
+    </sql-query>
+
+    <sql-query name="getListByIdsOrCategoryUuids">
+        <![CDATA[
+        select *
+		from wf_flow_definition fd
+		where id in ( :uuids)
+		or CATEGORY in ( :uuids)
+	]]>
+    </sql-query>
+
+</hibernate-mapping>

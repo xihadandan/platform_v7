@@ -1,0 +1,1279 @@
+@font-face {
+  font-family: 'ant-iconfont'; /* Project id 4738351 */
+  src: url('/static/css/pt/ant-iconfont/iconfont.woff2?t=1730974057230') format('woff2'),
+    url('/static/css/pt/ant-iconfont/iconfont.woff?t=1730974057230') format('woff'),
+    url('/static/css/pt/ant-iconfont/iconfont.ttf?t=1730974057230') format('truetype'),
+    url('/static/css/pt/ant-iconfont/iconfont.svg?t=1730974057230#iconfont') format('svg');
+}
+
+.ant-iconfont {
+  font-family: 'ant-iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ant-iconfont.book:before {
+  content: '\e87f';
+}
+
+.ant-iconfont.bell:before {
+  content: '\e880';
+}
+
+.ant-iconfont.bars:before {
+  content: '\e881';
+}
+
+.ant-iconfont.bank:before {
+  content: '\e882';
+}
+
+.ant-iconfont.barcode:before {
+  content: '\e883';
+}
+
+.ant-iconfont.audit:before {
+  content: '\e884';
+}
+
+.ant-iconfont.api:before {
+  content: '\e885';
+}
+
+.ant-iconfont.audio:before {
+  content: '\e886';
+}
+
+.ant-iconfont.appstore:before {
+  content: '\e887';
+}
+
+.ant-iconfont.account-book:before {
+  content: '\e888';
+}
+
+.ant-iconfont.alert:before {
+  content: '\e889';
+}
+
+.ant-iconfont.apartment:before {
+  content: '\e88a';
+}
+
+.ant-iconfont.cloud-server:before {
+  content: '\e872';
+}
+
+.ant-iconfont.ci:before {
+  content: '\e873';
+}
+
+.ant-iconfont.calculator:before {
+  content: '\e874';
+}
+
+.ant-iconfont.carry-out:before {
+  content: '\e875';
+}
+
+.ant-iconfont.car:before {
+  content: '\e876';
+}
+
+.ant-iconfont.camera:before {
+  content: '\e877';
+}
+
+.ant-iconfont.calendar:before {
+  content: '\e878';
+}
+
+.ant-iconfont.bug:before {
+  content: '\e879';
+}
+
+.ant-iconfont.bulb:before {
+  content: '\e87a';
+}
+
+.ant-iconfont.block:before {
+  content: '\e87b';
+}
+
+.ant-iconfont.build:before {
+  content: '\e87c';
+}
+
+.ant-iconfont.branches:before {
+  content: '\e87d';
+}
+
+.ant-iconfont.border:before {
+  content: '\e87e';
+}
+
+.ant-iconfont.database:before {
+  content: '\e864';
+}
+
+.ant-iconfont.crown:before {
+  content: '\e865';
+}
+
+.ant-iconfont.customer-service:before {
+  content: '\e866';
+}
+
+.ant-iconfont.compass:before {
+  content: '\e867';
+}
+
+.ant-iconfont.container:before {
+  content: '\e868';
+}
+
+.ant-iconfont.credit-card:before {
+  content: '\e869';
+}
+
+.ant-iconfont.cloud-upload:before {
+  content: '\e86a';
+}
+
+.ant-iconfont.coffee:before {
+  content: '\e86b';
+}
+
+.ant-iconfont.cluster:before {
+  content: '\e86c';
+}
+
+.ant-iconfont.code:before {
+  content: '\e86d';
+}
+
+.ant-iconfont.contacts:before {
+  content: '\e86e';
+}
+
+.ant-iconfont.cloud-sync:before {
+  content: '\e86f';
+}
+
+.ant-iconfont.cloud-download:before {
+  content: '\e870';
+}
+
+.ant-iconfont.cloud:before {
+  content: '\e871';
+}
+
+.ant-iconfont.environment:before {
+  content: '\e856';
+}
+
+.ant-iconfont.export:before {
+  content: '\e857';
+}
+
+.ant-iconfont.experiment:before {
+  content: '\e858';
+}
+
+.ant-iconfont.dollar:before {
+  content: '\e859';
+}
+
+.ant-iconfont.ellipsis:before {
+  content: '\e85a';
+}
+
+.ant-iconfont.exception:before {
+  content: '\e85b';
+}
+
+.ant-iconfont.download:before {
+  content: '\e85c';
+}
+
+.ant-iconfont.disconnect:before {
+  content: '\e85d';
+}
+
+.ant-iconfont.desktop:before {
+  content: '\e85e';
+}
+
+.ant-iconfont.dislike:before {
+  content: '\e85f';
+}
+
+.ant-iconfont.deployment-unit:before {
+  content: '\e860';
+}
+
+.ant-iconfont.dashboard:before {
+  content: '\e861';
+}
+
+.ant-iconfont.copyright:before {
+  content: '\e862';
+}
+
+.ant-iconfont.control:before {
+  content: '\e863';
+}
+
+.ant-iconfont.file-unknown:before {
+  content: '\e848';
+}
+
+.ant-iconfont.file:before {
+  content: '\e849';
+}
+
+.ant-iconfont.file-text:before {
+  content: '\e84a';
+}
+
+.ant-iconfont.file-protect:before {
+  content: '\e84b';
+}
+
+.ant-iconfont.file-pdf:before {
+  content: '\e84c';
+}
+
+.ant-iconfont.file-ppt:before {
+  content: '\e84d';
+}
+
+.ant-iconfont.file-jpg:before {
+  content: '\e84e';
+}
+
+.ant-iconfont.file-excel:before {
+  content: '\e84f';
+}
+
+.ant-iconfont.file-done:before {
+  content: '\e850';
+}
+
+.ant-iconfont.file-image:before {
+  content: '\e851';
+}
+
+.ant-iconfont.file-exclamation:before {
+  content: '\e852';
+}
+
+.ant-iconfont.euro:before {
+  content: '\e853';
+}
+
+.ant-iconfont.file-add:before {
+  content: '\e854';
+}
+
+.ant-iconfont.eye:before {
+  content: '\e855';
+}
+
+.ant-iconfont.fork:before {
+  content: '\e83a';
+}
+
+.ant-iconfont.gift:before {
+  content: '\e83b';
+}
+
+.ant-iconfont.folder:before {
+  content: '\e83c';
+}
+
+.ant-iconfont.file-markdown:before {
+  content: '\e83d';
+}
+
+.ant-iconfont.frown:before {
+  content: '\e83e';
+}
+
+.ant-iconfont.funnel-plot:before {
+  content: '\e83f';
+}
+
+.ant-iconfont.file-zip:before {
+  content: '\e840';
+}
+
+.ant-iconfont.file-sync:before {
+  content: '\e841';
+}
+
+.ant-iconfont.folder-open:before {
+  content: '\e842';
+}
+
+.ant-iconfont.eye-invisible:before {
+  content: '\e843';
+}
+
+.ant-iconfont.folder-add:before {
+  content: '\e844';
+}
+
+.ant-iconfont.filter:before {
+  content: '\e845';
+}
+
+.ant-iconfont.fire:before {
+  content: '\e846';
+}
+
+.ant-iconfont.flag:before {
+  content: '\e847';
+}
+
+.ant-iconfont.gateway:before {
+  content: '\e82c';
+}
+
+.ant-iconfont.key:before {
+  content: '\e82d';
+}
+
+.ant-iconfont.interaction:before {
+  content: '\e82e';
+}
+
+.ant-iconfont.hdd:before {
+  content: '\e82f';
+}
+
+.ant-iconfont.global:before {
+  content: '\e830';
+}
+
+.ant-iconfont.idcard:before {
+  content: '\e831';
+}
+
+.ant-iconfont.import:before {
+  content: '\e832';
+}
+
+.ant-iconfont.home:before {
+  content: '\e833';
+}
+
+.ant-iconfont.inbox:before {
+  content: '\e834';
+}
+
+.ant-iconfont.file-word:before {
+  content: '\e835';
+}
+
+.ant-iconfont.hourglass:before {
+  content: '\e836';
+}
+
+.ant-iconfont.heart:before {
+  content: '\e837';
+}
+
+.ant-iconfont.gold:before {
+  content: '\e838';
+}
+
+.ant-iconfont.file-search:before {
+  content: '\e839';
+}
+
+.ant-iconfont.lock:before {
+  content: '\e824';
+}
+
+.ant-iconfont.loading:before {
+  content: '\e825';
+}
+
+.ant-iconfont.loading-3-quarters:before {
+  content: '\e826';
+}
+
+.ant-iconfont.link:before {
+  content: '\e827';
+}
+
+.ant-iconfont.layout:before {
+  content: '\e828';
+}
+
+.ant-iconfont.history:before {
+  content: '\e829';
+}
+
+.ant-iconfont.insurance:before {
+  content: '\e82a';
+}
+
+.ant-iconfont.laptop:before {
+  content: '\e82b';
+}
+
+.ant-iconfont.mail:before {
+  content: '\e822';
+}
+
+.ant-iconfont.line:before {
+  content: '\e823';
+}
+
+.ant-iconfont.pay-circle:before {
+  content: '\e813';
+}
+
+.ant-iconfont.paper-clip:before {
+  content: '\e814';
+}
+
+.ant-iconfont.percentage:before {
+  content: '\e815';
+}
+
+.ant-iconfont.notification:before {
+  content: '\e816';
+}
+
+.ant-iconfont.number:before {
+  content: '\e817';
+}
+
+.ant-iconfont.monitor:before {
+  content: '\e818';
+}
+
+.ant-iconfont.money-collect:before {
+  content: '\e819';
+}
+
+.ant-iconfont.more:before {
+  content: '\e81a';
+}
+
+.ant-iconfont.menu:before {
+  content: '\e81b';
+}
+
+.ant-iconfont.mobile:before {
+  content: '\e81c';
+}
+
+.ant-iconfont.medicine-box:before {
+  content: '\e81d';
+}
+
+.ant-iconfont.message:before {
+  content: '\e81e';
+}
+
+.ant-iconfont.meh:before {
+  content: '\e81f';
+}
+
+.ant-iconfont.man:before {
+  content: '\e820';
+}
+
+.ant-iconfont.like:before {
+  content: '\e821';
+}
+
+.ant-iconfont.read:before {
+  content: '\e805';
+}
+
+.ant-iconfont.reconciliation:before {
+  content: '\e806';
+}
+
+.ant-iconfont.pushpin:before {
+  content: '\e807';
+}
+
+.ant-iconfont.pull-request:before {
+  content: '\e808';
+}
+
+.ant-iconfont.property-safety:before {
+  content: '\e809';
+}
+
+.ant-iconfont.qrcode:before {
+  content: '\e80a';
+}
+
+.ant-iconfont.profile:before {
+  content: '\e80b';
+}
+
+.ant-iconfont.printer:before {
+  content: '\e80c';
+}
+
+.ant-iconfont.project:before {
+  content: '\e80d';
+}
+
+.ant-iconfont.picture:before {
+  content: '\e80e';
+}
+
+.ant-iconfont.pound:before {
+  content: '\e80f';
+}
+
+.ant-iconfont.poweroff:before {
+  content: '\e810';
+}
+
+.ant-iconfont.play-square:before {
+  content: '\e811';
+}
+
+.ant-iconfont.phone:before {
+  content: '\e812';
+}
+
+.ant-iconfont.share-alt:before {
+  content: '\e7f6';
+}
+
+.ant-iconfont.security-scan:before {
+  content: '\e7f7';
+}
+
+.ant-iconfont.setting:before {
+  content: '\e7f8';
+}
+
+.ant-iconfont.select:before {
+  content: '\e7f9';
+}
+
+.ant-iconfont.search:before {
+  content: '\e7fa';
+}
+
+.ant-iconfont.schedule:before {
+  content: '\e7fb';
+}
+
+.ant-iconfont.safety-certificate:before {
+  content: '\e7fc';
+}
+
+.ant-iconfont.scan:before {
+  content: '\e7fd';
+}
+
+.ant-iconfont.save:before {
+  content: '\e7fe';
+}
+
+.ant-iconfont.safety:before {
+  content: '\e7ff';
+}
+
+.ant-iconfont.red-envelope:before {
+  content: '\e800';
+}
+
+.ant-iconfont.rocket:before {
+  content: '\e801';
+}
+
+.ant-iconfont.rest:before {
+  content: '\e802';
+}
+
+.ant-iconfont.reload:before {
+  content: '\e803';
+}
+
+.ant-iconfont.robot:before {
+  content: '\e804';
+}
+
+.ant-iconfont.solution:before {
+  content: '\e7e6';
+}
+
+.ant-iconfont.thunderbolt:before {
+  content: '\e7e7';
+}
+
+.ant-iconfont.team:before {
+  content: '\e7e8';
+}
+
+.ant-iconfont.tag:before {
+  content: '\e7e9';
+}
+
+.ant-iconfont.sync:before {
+  content: '\e7ea';
+}
+
+.ant-iconfont.tablet:before {
+  content: '\e7eb';
+}
+
+.ant-iconfont.star:before {
+  content: '\e7ec';
+}
+
+.ant-iconfont.table:before {
+  content: '\e7ed';
+}
+
+.ant-iconfont.shopping-cart:before {
+  content: '\e7ee';
+}
+
+.ant-iconfont.switcher:before {
+  content: '\e7ef';
+}
+
+.ant-iconfont.shop:before {
+  content: '\e7f0';
+}
+
+.ant-iconfont.sound:before {
+  content: '\e7f1';
+}
+
+.ant-iconfont.shopping:before {
+  content: '\e7f2';
+}
+
+.ant-iconfont.smile:before {
+  content: '\e7f3';
+}
+
+.ant-iconfont.skin:before {
+  content: '\e7f4';
+}
+
+.ant-iconfont.shake:before {
+  content: '\e7f5';
+}
+
+.ant-iconfont.video-camera:before {
+  content: '\e7d7';
+}
+
+.ant-iconfont.wallet:before {
+  content: '\e7d8';
+}
+
+.ant-iconfont.user-add:before {
+  content: '\e7d9';
+}
+
+.ant-iconfont.usergroup-delete:before {
+  content: '\e7da';
+}
+
+.ant-iconfont.user:before {
+  content: '\e7db';
+}
+
+.ant-iconfont.transaction:before {
+  content: '\e7dc';
+}
+
+.ant-iconfont.usb:before {
+  content: '\e7dd';
+}
+
+.ant-iconfont.user-delete:before {
+  content: '\e7de';
+}
+
+.ant-iconfont.upload:before {
+  content: '\e7df';
+}
+
+.ant-iconfont.unlock:before {
+  content: '\e7e0';
+}
+
+.ant-iconfont.trophy:before {
+  content: '\e7e1';
+}
+
+.ant-iconfont.tags:before {
+  content: '\e7e2';
+}
+
+.ant-iconfont.tool:before {
+  content: '\e7e3';
+}
+
+.ant-iconfont.trademark:before {
+  content: '\e7e4';
+}
+
+.ant-iconfont.to-top:before {
+  content: '\e7e5';
+}
+
+.ant-iconfont.wifi:before {
+  content: '\e7d4';
+}
+
+.ant-iconfont.woman:before {
+  content: '\e7d5';
+}
+
+.ant-iconfont.usergroup-add:before {
+  content: '\e7d6';
+}
+
+.ant-iconfont.border-inner:before {
+  content: '\e7cd';
+}
+
+.ant-iconfont.arrow-right:before {
+  content: '\e7ce';
+}
+
+.ant-iconfont.border-outer:before {
+  content: '\e7cf';
+}
+
+.ant-iconfont.arrow-up:before {
+  content: '\e7d0';
+}
+
+.ant-iconfont.arrow-left:before {
+  content: '\e7d1';
+}
+
+.ant-iconfont.arrows-alt:before {
+  content: '\e7d2';
+}
+
+.ant-iconfont.arrow-down:before {
+  content: '\e7d3';
+}
+
+.ant-iconfont.border-verticle:before {
+  content: '\e7c4';
+}
+
+.ant-iconfont.caret-left:before {
+  content: '\e7c5';
+}
+
+.ant-iconfont.border-right:before {
+  content: '\e7c6';
+}
+
+.ant-iconfont.caret-down:before {
+  content: '\e7c7';
+}
+
+.ant-iconfont.border-bottom:before {
+  content: '\e7c8';
+}
+
+.ant-iconfont.border-top:before {
+  content: '\e7c9';
+}
+
+.ant-iconfont.border-horizontal:before {
+  content: '\e7ca';
+}
+
+.ant-iconfont.border-left:before {
+  content: '\e7cb';
+}
+
+.ant-iconfont.backward:before {
+  content: '\e7cc';
+}
+
+.ant-iconfont.logout:before {
+  content: '\e7b1';
+}
+
+.ant-iconfont.pic-center:before {
+  content: '\e7b2';
+}
+
+.ant-iconfont.login:before {
+  content: '\e7b3';
+}
+
+.ant-iconfont.left:before {
+  content: '\e7b4';
+}
+
+.ant-iconfont.left-square:before {
+  content: '\e7b5';
+}
+
+.ant-iconfont.left-circle:before {
+  content: '\e7b6';
+}
+
+.ant-iconfont.fullscreen-exit:before {
+  content: '\e7b7';
+}
+
+.ant-iconfont.fullscreen:before {
+  content: '\e7b8';
+}
+
+.ant-iconfont.fast-backward:before {
+  content: '\e7b9';
+}
+
+.ant-iconfont.down-circle:before {
+  content: '\e7ba';
+}
+
+.ant-iconfont.fast-forward:before {
+  content: '\e7bb';
+}
+
+.ant-iconfont.forward:before {
+  content: '\e7bc';
+}
+
+.ant-iconfont.down-square:before {
+  content: '\e7bd';
+}
+
+.ant-iconfont.enter:before {
+  content: '\e7be';
+}
+
+.ant-iconfont.down:before {
+  content: '\e7bf';
+}
+
+.ant-iconfont.double-right:before {
+  content: '\e7c0';
+}
+
+.ant-iconfont.double-left:before {
+  content: '\e7c1';
+}
+
+.ant-iconfont.caret-up:before {
+  content: '\e7c2';
+}
+
+.ant-iconfont.caret-right:before {
+  content: '\e7c3';
+}
+
+.ant-iconfont.step-backward:before {
+  content: '\e79e';
+}
+
+.ant-iconfont.swap-right:before {
+  content: '\e79f';
+}
+
+.ant-iconfont.swap-left:before {
+  content: '\e7a0';
+}
+
+.ant-iconfont.right-square:before {
+  content: '\e7a1';
+}
+
+.ant-iconfont.step-forward:before {
+  content: '\e7a2';
+}
+
+.ant-iconfont.shrink:before {
+  content: '\e7a3';
+}
+
+.ant-iconfont.right-circle:before {
+  content: '\e7a4';
+}
+
+.ant-iconfont.rollback:before {
+  content: '\e7a5';
+}
+
+.ant-iconfont.radius-upright:before {
+  content: '\e7a6';
+}
+
+.ant-iconfont.right:before {
+  content: '\e7a7';
+}
+
+.ant-iconfont.radius-upleft:before {
+  content: '\e7a8';
+}
+
+.ant-iconfont.retweet:before {
+  content: '\e7a9';
+}
+
+.ant-iconfont.radius-bottomright:before {
+  content: '\e7aa';
+}
+
+.ant-iconfont.radius-bottomleft:before {
+  content: '\e7ab';
+}
+
+.ant-iconfont.PlayCircleOutlined:before {
+  content: '\e7ac';
+}
+
+.ant-iconfont.pic-right:before {
+  content: '\e7ad';
+}
+
+.ant-iconfont.menu-unfold:before {
+  content: '\e7ae';
+}
+
+.ant-iconfont.pic-left:before {
+  content: '\e7af';
+}
+
+.ant-iconfont.menu-fold:before {
+  content: '\e7b0';
+}
+
+.ant-iconfont.vertical-align-middle:before {
+  content: '\e795';
+}
+
+.ant-iconfont.up-square:before {
+  content: '\e796';
+}
+
+.ant-iconfont.vertical-right:before {
+  content: '\e797';
+}
+
+.ant-iconfont.vertical-align-top:before {
+  content: '\e798';
+}
+
+.ant-iconfont.up-circle:before {
+  content: '\e799';
+}
+
+.ant-iconfont.vertical-left:before {
+  content: '\e79a';
+}
+
+.ant-iconfont.vertical-align-bottom:before {
+  content: '\e79b';
+}
+
+.ant-iconfont.swap:before {
+  content: '\e79c';
+}
+
+.ant-iconfont.up:before {
+  content: '\e79d';
+}
+
+.ant-iconfont.fall:before {
+  content: '\e790';
+}
+
+.ant-iconfont.bar-chart:before {
+  content: '\e791';
+}
+
+.ant-iconfont.dot-chart:before {
+  content: '\e792';
+}
+
+.ant-iconfont.box-plot:before {
+  content: '\e793';
+}
+
+.ant-iconfont.area-chart:before {
+  content: '\e794';
+}
+
+.ant-iconfont.exclamation-circle:before {
+  content: '\e77f';
+}
+
+.ant-iconfont.exclamation:before {
+  content: '\e780';
+}
+
+.ant-iconfont.clock-circle:before {
+  content: '\e781';
+}
+
+.ant-iconfont.close:before {
+  content: '\e782';
+}
+
+.ant-iconfont.close-circle:before {
+  content: '\e783';
+}
+
+.ant-iconfont.close-square:before {
+  content: '\e784';
+}
+
+.ant-iconfont.check-square:before {
+  content: '\e785';
+}
+
+.ant-iconfont.check:before {
+  content: '\e786';
+}
+
+.ant-iconfont.check-circle:before {
+  content: '\e787';
+}
+
+.ant-iconfont.pie-chart:before {
+  content: '\e788';
+}
+
+.ant-iconfont.stock:before {
+  content: '\e789';
+}
+
+.ant-iconfont.radar-chart:before {
+  content: '\e78a';
+}
+
+.ant-iconfont.sliders:before {
+  content: '\e78b';
+}
+
+.ant-iconfont.rise:before {
+  content: '\e78c';
+}
+
+.ant-iconfont.fund:before {
+  content: '\e78d';
+}
+
+.ant-iconfont.line-chart:before {
+  content: '\e78e';
+}
+
+.ant-iconfont.heat-map:before {
+  content: '\e78f';
+}
+
+.ant-iconfont.stop:before {
+  content: '\e773';
+}
+
+.ant-iconfont.warning:before {
+  content: '\e774';
+}
+
+.ant-iconfont.question-circle:before {
+  content: '\e775';
+}
+
+.ant-iconfont.question:before {
+  content: '\e776';
+}
+
+.ant-iconfont.plus-circle:before {
+  content: '\e772';
+}
+
+.ant-iconfont.plus:before {
+  content: '\e777';
+}
+
+.ant-iconfont.plus-square:before {
+  content: '\e778';
+}
+
+.ant-iconfont.pause-circle:before {
+  content: '\e779';
+}
+
+.ant-iconfont.pause:before {
+  content: '\e77a';
+}
+
+.ant-iconfont.minus-circle:before {
+  content: '\e771';
+}
+
+.ant-iconfont.minus:before {
+  content: '\e77b';
+}
+
+.ant-iconfont.issues-close:before {
+  content: '\e77c';
+}
+
+.ant-iconfont.minus-square:before {
+  content: '\e77d';
+}
+
+.ant-iconfont.info:before {
+  content: '\e770';
+}
+
+.ant-iconfont.info-circle:before {
+  content: '\e77e';
+}
+
+.ant-iconfont.align-center:before {
+  content: '\e76f';
+}
+
+.ant-iconfont.line-height:before {
+  content: '\e754';
+}
+
+.ant-iconfont.italic:before {
+  content: '\e763';
+}
+
+.ant-iconfont.drag:before {
+  content: '\e752';
+}
+
+.ant-iconfont.highlight:before {
+  content: '\e764';
+}
+
+.ant-iconfont.form:before {
+  content: '\e765';
+}
+
+.ant-iconfont.font-colors:before {
+  content: '\e753';
+}
+
+.ant-iconfont.font-size:before {
+  content: '\e766';
+}
+
+.ant-iconfont.edit:before {
+  content: '\e767';
+}
+
+.ant-iconfont.delete:before {
+  content: '\e751';
+}
+
+.ant-iconfont.diff:before {
+  content: '\e768';
+}
+
+.ant-iconfont.dash:before {
+  content: '\e769';
+}
+
+.ant-iconfont.copy:before {
+  content: '\e76a';
+}
+
+.ant-iconfont.column-width:before {
+  content: '\e750';
+}
+
+.ant-iconfont.column-height:before {
+  content: '\e76b';
+}
+
+.ant-iconfont.bold:before {
+  content: '\e76c';
+}
+
+.ant-iconfont.bg-colors:before {
+  content: '\e76d';
+}
+
+.ant-iconfont.align-left:before {
+  content: '\e74f';
+}
+
+.ant-iconfont.align-right:before {
+  content: '\e76e';
+}
+
+.ant-iconfont.sort-descending:before {
+  content: '\e756';
+}
+
+.ant-iconfont.zoom-out:before {
+  content: '\e757';
+}
+
+.ant-iconfont.zoom-in:before {
+  content: '\e758';
+}
+
+.ant-iconfont.undo:before {
+  content: '\e759';
+}
+
+.ant-iconfont.unordered-list:before {
+  content: '\e75a';
+}
+
+.ant-iconfont.strikethrough:before {
+  content: '\e75b';
+}
+
+.ant-iconfont.sort-ascending:before {
+  content: '\e75c';
+}
+
+.ant-iconfont.underline:before {
+  content: '\e75d';
+}
+
+.ant-iconfont.snippets:before {
+  content: '\e75e';
+}
+
+.ant-iconfont.radius-setting:before {
+  content: '\e755';
+}
+
+.ant-iconfont.scissor:before {
+  content: '\e75f';
+}
+
+.ant-iconfont.small-dash:before {
+  content: '\e760';
+}
+
+.ant-iconfont.redo:before {
+  content: '\e761';
+}
+
+.ant-iconfont.ordered-list:before {
+  content: '\e762';
+}

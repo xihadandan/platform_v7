@@ -1,0 +1,46 @@
+<!-- 类目数据，仅在类目轴为category类型时候，才显示 -->
+
+<fieldset
+  id="category_data"
+  style="display: none; padding-left: 16px; padding-right: 16px"
+>
+  <legend>类目数据</legend>
+  <div class="form-group">
+    <div
+      id="div_category_data_info_toolbar"
+      class="btn-group btn_category_data_info"
+    >
+      <button id="btn_add_category_data" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+      </button>
+      <button
+        id="btn_delete_category_data"
+        type="button"
+        class="btn btn-default"
+      >
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+      </button>
+      <button
+        id="btn_row_up_category_data"
+        type="button"
+        class="btn btn-default"
+      >
+        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span
+        >上移
+      </button>
+      <button
+        id="btn_row_down_category_data"
+        type="button"
+        class="btn btn-default"
+      >
+        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span
+        >下移
+      </button>
+    </div>
+    <table
+      id="table_category_data_info"
+      class="definition_info"
+      data-height="230"
+    ></table>
+  </div>
+</fieldset>

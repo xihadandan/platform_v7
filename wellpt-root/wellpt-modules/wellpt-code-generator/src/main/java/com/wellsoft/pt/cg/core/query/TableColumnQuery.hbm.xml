@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="tableColumnQuery">
+        <![CDATA[
+		select t1.COLUMN_NAME as column_name,t1.DATA_TYPE as data_type, t2.COMMENTS as remark
+		  from all_tab_columns t1, all_col_comments t2
+		 where t1.TABLE_NAME = t2.TABLE_NAME
+		   and t1.COLUMN_NAME = t2.COLUMN_NAME
+		   and t1.TABLE_NAME = :tableName
+		   and t1.OWNER = t2.OWNER
+		   and t1.OWNER = :owner
+	]]>
+    </sql-query>
+</hibernate-mapping>

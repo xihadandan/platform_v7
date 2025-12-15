@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>表单设计</title>
+<style>
+.dytable_form {font: 12px/1.5 arial;}
+.dytable_form .post-sign .filter{width:880px;margin:15px auto 0;}
+.dytable_form .post-sign .filter-form{height:40px;}
+.dytable_form .post-sign .filter-form li{float:left;display:inline;margin:0 37px 0 18px;padding:4px 
+12px;border:1px solid #d7d7d7;line-height:25px;color:#0f599c;}
+.post-sign .post-sign .filter-form li input{margin-left:13px;padding:3px 5px 4px;line-
+height:18px;border:0 none;border-left:1px solid #d7d7d7;}
+
+.dytable_form .post-sign .post-detail{width:880px;margin:15px auto 0;}
+.dytable_form .post-sign .post-detail table{width:100%;margin-top:10px;}
+.dytable_form .post-sign .post-detail td{height:29px;padding:0 15px;border-right:1px solid #fff;}
+.dytable_form .post-sign .post-detail .Label{width:110px;}
+.dytable_form .post-sign .post-detail .odd td{background:#f7f7f7;white-space: nowrap;}
+.dytable_form .post-sign .post-detail .odd td select {padding: 0;margin: 0;width:133px;}
+
+.dytable_form .post-sign .post-info{margin-top:2px;}
+.dytable_form .post-sign .post-info .post-hd{height:30px;padding:0 10px;background:#0f599c;}
+.dytable_form .post-sign .post-info .post-hd h3{float:left;font-weight:normal;color:#fff;margin: 0;padding: 0;}
+.dytable_form .post-sign .post-info .post-hd .extral{float:right;margin-top:5px;color:#fff;cursor: pointer;margin-left:12px;margin-top:2px;}
+.dytable_form .post-sign .post-info .post-hd .extral .Body_col {border:0px outset;background-color:#0F599C;color: #FFFFFF;cursor: pointer;}
+.dytable_form .post-sign .post-info .post-hd a:link,.post-sign .post-info .post-hd a:visited{margin:0 
+8px;color:#fff;}
+.dytable_form .post-sign .post-info .post-bd{padding:15px 0;}
+.dytable_form .post-sign .post-info .attach-list{height:100px;}
+.dytable_form .post-sign .post-info .attach-list li{float:left;width:120px;text-align:center;list-style: none outside none;}
+.dytable_form .post-sign .post-info .attach-list .bar{border: 1px solid;}
+.dytable_form .post-sign .post-info .attach-list a img{width:64px;height:64px;padding:10px;border:1px solid #d4d0c8;}
+.dytable_form .post-sign .post-info .attach-list a{text-decoration:none;color:#434343;}
+.dytable_form .post-sign .post-info .attach-list span{display:block;line-height:25px;text-align:center;}
+.dytable_form .post-sign .post-detail .title {background: none repeat scroll 0 0 #0F599C;color:#fff;}
+</style>
+</head>
+
+<body>
+  <div class="dytable_form">
+   <div class="post-sign">	
+	<div class="post-detail">
+	<!-- 表类型(tableType):1主表,2从表 -->
+	<table width="100%"  tableType="1" id="002" editType="1">
+	 <tr class="title">
+	    <td class="Label" colspan="4">登记信息</td>
+	  </tr>
+	  <tr class="odd">
+	    <td class="Label">公文种类</td>
+	    <td class="value">
+			<input type="text" name="gongwen_type" id="gongwen_type"/>
+	    </td>
+		<td class="Label">文件来源</td>
+	    <td class="value">
+			<input type="radio" name="file_laiyuan" id="file_laiyuan_1" value="1"></input><label for="file_laiyuan_1">网上</label>
+			<input type="radio" name="file_laiyuan" id="file_laiyuan_2" value="2"></input><label for="file_laiyuan_2">纸质</label>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td class="Label">标题</td>
+	    <td class="value" colspan="3">
+			<input type="text" name="shouwen_biaoti" id="shouwen_biaoti" style="width:100%"/>
+	    </td>
+	  </tr>
+	  <tr class="odd">
+	    <td class="Label">文号</td>
+	    <td class="value">
+			<input type="text" name="text_number" id="text_number"/>
+	    </td>
+		<td class="Label">来文单位</td>
+	    <td class="value">
+	    	<select name="dispatch_unit" id="dispatch_unit" style="width:133px;">
+				<option value="1">福州</option>
+				<option value="2">厦门</option>
+			</select>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td class="Label">收文日期</td>
+	    <td class="value">
+			<input type="text" name="shouwen_date" id="shouwen_date">
+	    </td>
+		<td class="Label">原文日期</td>
+	    <td class="value">
+			<input type="text" name="yuanwen_date" id="yuanwen_date">
+	    </td>
+	  </tr>
+		<tr class="odd">
+		<td class="Label">缓急</td>
+	    <td class="value" colspan="3">
+	    	<select name="emergency_degree" id="emergency_degree" style="width:133px;">
+				<option value="1">一般</option>
+				<option value="2">紧急</option>
+			</select>
+	    </td>
+		</tr>
+		<tr>
+			<td class="Label">承办单位</td>
+			<td class="value" colspan="3">
+			<input type="checkbox" name="shili_ziduan" id="shili_ziduan_1" value="人事部门|U0000000039">人事部门
+			<input type="checkbox" name="shili_ziduan" id="shili_ziduan_2" value="政策法规处|U0000000041"><label for="shili_ziduan_2">政策法规处</label>
+			<input type="checkbox" name="shili_ziduan" id="shili_ziduan_3" value="业务处室A|U0000000043"><label for="shili_ziduan_3">业务处室A</label>
+			<input type="checkbox" name="shili_ziduan" id="shili_ziduan_4" value="业务处室B|U0000000045"><label for="shili_ziduan_4">业务处室B</label>
+			<input type="checkbox" name="shili_ziduan" id="shili_ziduan_5" value="业务处室C|U0000000047"><label for="shili_ziduan_5">业务处室C</label>
+			</td>
+		</tr>
+
+	   <tr class="title">
+	    <td class="Label" colspan="4">审批意见</td>
+	  </tr>
+	   <tr class="odd">
+	    <td class="Label">拟办意见</td>
+	    <td class="value" colspan="3">
+	    	<input type="text" id="todo_idea" name="todo_idea"/>
+	    </td>
+	  </tr>	
+	   <tr>
+	    <td class="Label">领导批办意见</td>
+	    <td class="value" colspan="3">
+	        <input type="text" id="lead_idea" name="lead_idea"/>
+	    </td>
+	  </tr>	
+	   <tr class="title">
+		<td class="Label" colspan="3">附件</td> 
+		<td><input id="fileupload" name="fileupload" type="text"></td>
+	  </tr>
+	</table>
+	</div>
+  </div>
+  </div>
+</body>
+</html>

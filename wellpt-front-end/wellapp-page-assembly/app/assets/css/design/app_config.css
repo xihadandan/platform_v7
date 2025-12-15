@@ -1,0 +1,559 @@
+body {
+	padding-top: 50px;
+	padding-bottom: 40px;
+	margin-left: 200px;
+	/*overflow-x: hidden;*/ /* 固定容器宽度 */
+	-webkit-transition: margin 500ms ease;
+	-moz-transition: margin 500ms ease;
+	-ms-transition: margin 500ms ease;
+	-o-transition: margin 500ms ease;
+	transition: margin 500ms ease;
+}
+
+@media ( max-width : 980px) {
+	/* Enable use of floated navbar text */
+	.navbar-text.pull-right {
+		float: none;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+}
+
+@media ( max-width : 979px) {
+	.navbar-fixed-top {
+		position: fixed;
+	}
+}
+
+.navbar-inverse .brand {
+	width: 180px;
+	color: #fff;
+}
+
+.brand img {
+	float: left;
+	margin: 2px 10px 0 0;
+}
+
+.brand .label {
+	position: relative;
+	left: 10px;
+	top: -3px;
+	font-weight: normal;
+	font-size: 9px;
+	background: #666;
+	-webkit-box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.7);
+	-moz-box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.7);
+	box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.edit .zone {
+	margin: 10px;
+	padding: 30px 15px 15px;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px;
+	position: relative;
+	word-wrap: break-word;
+}
+
+.edit .zone:after {
+	background-color: #F5F5F5;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px 0 4px 0;
+	color: #9DA0A4;
+	content: "Container";
+	font-size: 12px;
+	font-weight: bold;
+	left: -1px;
+	padding: 3px 7px;
+	position: absolute;
+	top: -1px;
+}
+
+.sidebar-nav {
+	position: fixed;
+	width: 200px;
+	left: 0px;
+	bottom: 0;
+	top: 44px;
+	background: #ccc;
+	padding: 9px 0;
+	z-index: 10;
+	-webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	transition: all 500ms ease;
+}
+
+.sidebar-nav .nav-header {
+	cursor: pointer;
+	font-size: 14px;
+	color: #fff;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-nav .nav-header span.label {
+	font-size: 10px; /*padding-bottom:0;*/
+	position: relative;
+	top: -1px;
+}
+
+.sidebar-nav .nav-header i.icon-plus {
+	
+}
+
+.sidebar-nav .nav-header .popover {
+	color: #999;
+	text-shadow: none;
+}
+
+.popover-info {
+	position: relative;
+}
+
+.popover-info .popover {
+	display: none;
+	top: -12.5px;
+	left: 15px;
+}
+
+.popover-info:hover .popover {
+	display: block;
+	opacity: 1;
+	width: 400px;
+}
+
+.popover-info:hover .popover .arrow {
+	top: 23px;
+}
+
+.sidebar-nav .accordion-group {
+	border: none;
+}
+
+.boxes {
+	
+}
+
+.sidebar-nav li {
+	line-height: 2em;
+/* 	导航浮动 */
+/* 	overflow-y: auto; */
+/* 	overflow-x: hidden; */
+}
+
+.sidebar-nav .box {
+	line-height: 25px;
+	width: 170px;
+	height: 25px;
+}
+
+.sidebar-nav .preview {
+	display: block;
+	color: #666;
+	font-size: 14px;
+/*  	margin-top: 2px; */
+ 	/* line-height 与 font-size 的计算值之差（在 CSS 中成为“行间距”）分为两半，分别加到一个文本行内容的顶部和底部。可以包含这些内容的最小框就是行框。 */
+/* 	line-height: 50%; */
+}
+
+.sidebar-nav .preview input {
+	width: 90px;
+	padding: 0 10px;
+	background: #bbb;
+	font-size: 10px;
+	color: #999;
+	line-height: 20px;
+	height: 20px;
+	position: relative;
+	top: -1px;
+}
+
+.sidebar-nav .view {
+	display: none;
+}
+
+.sidebar-nav .remove, .sidebar-nav .configuration {
+	display: none;
+}
+
+.sidebar-nav .boxes {
+	display: none;
+}
+
+.zone .preview {
+	display: none;
+}
+
+.zone .box .view {
+	display: block;
+	padding-top: 30px;
+}
+
+.ui-draggable-dragging .view {
+	display: block;
+}
+/*.zone .ui-sortable-placeholder { outline: 5px dotted #ddd; visibility: visible!Important; border-radius: 4px; }*/
+.ui-sortable-placeholder {
+	outline: 1px dashed #ddd;
+	visibility: visible !Important;
+	border-radius: 4px;
+}
+
+.edit .drag {
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+}
+
+.box, .lyrow {
+	position: relative;
+}
+
+.edit .zone .lyrow .drag {
+	top: 5px;
+	right: 80px;
+	z-index: 10;
+}
+
+.edit .zone .box .drag {
+	top: 5px;
+}
+
+.edit .zone .configuration {
+	position: absolute;
+	top: 3px;
+	z-index: 10;
+	right: 140px;
+	white-space: nowrap;
+}
+
+.edit .zone .remove {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	z-index: 10;
+}
+
+.zone .configuration {
+	filter: alpha(opacity = 0);
+	opacity: 0;
+	-webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	transition: all 500ms ease;
+}
+
+.zone .drag, .zone .remove {
+	filter: alpha(opacity = 20);
+	opacity: 0.2;
+	-webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	transition: all 500ms ease;
+}
+
+.zone .lyrow:hover>.drag, .zone .lyrow:hover>.configuration, .zone .lyrow:hover>.remove, .zone .box:hover .drag, .zone .box:hover .configuration,
+	.zone .box:hover .remove {
+	filter: alpha(opacity = 100);
+	opacity: 1;
+}
+
+.edit .zone .row:before {
+	background-color: #F5F5F5;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px 0 4px 0;
+	color: #9DA0A4;
+	content: "Row";
+	font-size: 12px;
+	font-weight: bold;
+	left: -1px;
+	line-height: 2;
+	padding: 3px 7px;
+	position: absolute;
+	top: -1px;
+}
+
+
+/* .edit .zone .row-layout { */
+/* 	padding-top: 8px; */
+/* 	padding-left: 4px; */
+/*     padding-right: 4px; */
+/* } */
+
+/* .edit .zone .row-layout:before { */
+/* 	content: none; */
+/* } */
+
+.edit .zone .ui-layout-container {
+	min-height: 600px;
+}
+
+.edit .zone .ui-layout-container>.ui-layout-resizer {
+	background: #DDDDDD;
+    border: 1px solid #A6C9E2;
+    border-width: 0;
+}
+
+.zone .row {
+	background-color: #F5F5F5;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-box-shadow: inset 0 1px 13px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: inset 0 1px 13px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0 1px 13px rgba(0, 0, 0, 0.1);
+	border: 1px solid #DDDDDD;
+	border-radius: 4px 4px 4px 4px;
+	margin: 15px 0;
+	position: relative;
+	padding: 25px 14px 0;
+}
+
+.zone .row-fluid {
+	background-color: #FFFFFF;
+}
+
+.edit .column:after {
+	background-color: #F5F5F5;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px 0 4px 0;
+	color: #9DA0A4;
+	content: "Column";
+	font-size: 12px;
+	font-weight: bold;
+	left: -1px;
+	padding: 3px 7px;
+	position: absolute;
+	top: -1px;
+}
+
+
+.edit .columnholder:after {
+	background-color: #F5F5F5;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px 0 4px 0;
+	color: #9DA0A4;
+	content: "Placeholder";
+	font-size: 12px;
+	font-weight: bold;
+	left: -1px;
+	padding: 3px 7px;
+	position: absolute;
+	top: -1px;
+}
+
+.column {
+/* 	background-color: #FFFFFF; */
+/* 	border: 1px solid #DDDDDD; */
+/* 	border-radius: 4px 4px 4px 4px; */
+/* 	margin: 15px 0; */
+/* 	padding: 39px 19px 24px; */
+/* 	position: relative; */
+}
+
+
+.column {
+	background-color: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px 4px 4px 4px;
+	margin: 15px 0;
+	padding: 39px 19px 24px;
+	position: relative;
+}
+
+.columnholder {
+	background-color: #F5F5F5;
+	border: 1px dashed #DDDDDD;
+	border-radius: 4px 4px 4px 4px;
+	margin: 15px 0;
+	padding: 39px 19px 24px;
+	position: relative;
+}
+
+.zone .lyrow .ui-selecting {
+    background: #ccc;
+}
+
+.zone .lyrow .ui-selected {
+    background: #999;
+}
+
+.zone .view .show {
+    display:block !Important;
+}
+
+.zone .view .hide {
+    display: none !Important;
+}
+
+/* preview */
+body.devpreview {
+	margin-left: 0px;
+}
+
+.devpreview .sidebar-nav {
+	left: -200px;
+	-webkit-transition: all 0ms ease;
+	-moz-transition: all 0ms ease;
+	-ms-transition: all 0ms ease;
+	-o-transition: all 0ms ease;
+	transition: all 0ms ease;
+}
+
+.devpreview .drag, .devpreview .configuration, .devpreview .remove,.devpreview .status-bar {
+	display: none !Important;
+}
+
+.sourcepreview .column, .sourcepreview .row, .sourcepreview .zone .box {
+	margin: 0px 0;
+	padding: 0px;
+	background: none;
+	border: none;
+	-webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.00);
+	-moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.00);
+	box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.00);
+}
+
+.devpreview .zone .box, .devpreview .zone .row {
+	padding-top: 0;
+	background: none;
+}
+
+.devpreview .zone .column {
+	padding-top: 19px;
+	padding-bottom: 19px;
+}
+
+#download-layout {
+	display: none;
+}
+
+#editorModal textarea, #downloadModal textarea {
+	width: 100%;
+	resize: none;
+	min-height: 280px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#editorModal .modal-dialog,#downloadModal .modal-dialog,#pageProperties .modal-dialog {
+	width: 75%;
+}
+
+a.language-selected {
+	font-style: italic;
+	font-weight: bold;
+}
+
+.nav-list {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 0;
+}
+
+.sidebar-nav .sidebar-shortcuts {
+    text-align: center;
+    min-height: 40px;
+    margin-bottom: 0;
+    overflow: hidden;
+    position: relative;
+    border: 0 solid;
+}
+
+.sidebar-nav .sidebar-shortcuts-large {
+    line-height: 37px;
+}
+
+.sidebar-nav .sidebar-shortcuts-large>.btn {
+    text-align: center;
+    width: 41px;
+    line-height: 24px;
+    padding: 0;
+    border-width: 4px;
+}
+
+.grid, .grid * {
+  box-sizing: border-box;
+}
+
+
+.grid-chooser + .grid {
+    background: rgba(0,0,0,0.2);
+    position: relative;
+    padding: 0px;/* IE溢出 */
+    display: none;
+}
+
+.grid-chooser:focus + .grid {
+   display: block;
+}
+
+.grid-chooser + .grid .grid-row:first-child .square:first-child .inner {
+   background: rgba(0,0,0,0.4);
+}
+
+.grid-chooser + .grid .square:first-child {
+    margin-top: 0;
+}
+
+.grid-chooser + .grid .square {
+    height: 100%;
+    float: left;
+    padding: 1px;
+}
+.grid-chooser + .grid .square:hover .inner, .grid-chooser + .grid .square.highlight .inner {
+    background: rgba(0,0,0,0.4)
+}
+
+
+.grid-chooser + .grid .grid-row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.inner {
+    height: 100%;
+    width: 100%;
+    border-radius: 3px;
+    background: rgba(0,0,0,0.2);
+}
+
+
+.ui-effects-transfer {
+    border: 1px dotted black;
+}
+
+.modal-body>.tab-content>.tab-pane {
+    /* min-height: 400px; */
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#pageProperties .modal-body {
+	height: 400px;
+    overflow-y: auto;
+	overflow-x: hidden;
+}
+
+legend {
+	margin-bottom: 5px;
+}
+
+input.error { border: 1px solid red; }
+label.error {
+  padding-left: 16px;
+  padding-bottom: 2px;
+  font-weight: bold;
+  color: red;
+}
+
+
+/*   */
+

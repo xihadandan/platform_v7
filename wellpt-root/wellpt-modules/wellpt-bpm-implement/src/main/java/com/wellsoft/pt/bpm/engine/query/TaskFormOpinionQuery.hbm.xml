@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="getTaskFormOpinionUpdateText">
+        <![CDATA[
+		select 'update ' || t3.name || ' t set t.' || t1.field_name || '= ''' ||
+       t1.content || ''' where t.uuid = ''' || t1.data_uuid || '''' as update_text
+  from wf_task_form_opinion t1
+ inner join wf_flow_instance t2
+    on t1.flow_inst_uuid = t2.uuid
+ inner join dyform_form_definition t3
+    on t2.form_uuid = t3.uuid
+   and t1.flow_inst_uuid = :flowInstUuid
+	]]>
+    </sql-query>
+</hibernate-mapping>

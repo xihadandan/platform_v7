@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="roleByCategoryQuery">
+        <![CDATA[
+		from Role role where 1 = 1
+		<if isNotBlank(systemUnitId)>
+			and role.systemUnitId = :systemUnitId
+		</if>
+		<if isNotBlank(code)|| isNotBlank(name) || isNotBlank(remark)>
+			and (1 = 2
+				<if isNotBlank(code)>
+					or lower(role.code) like '%${code?lower_case}%'
+				</if>
+				<if isNotBlank(name)>
+					or lower(role.name) like '%${name?lower_case}%'
+				</if>
+				<if isNotBlank(remark)>
+					or lower(role.remark) = lower(:remark)
+				</if>
+			)
+		</if>
+		and role.categoryUuid in (:categoryUuids)
+		order by ${orderBy}
+	]]>
+    </sql-query>
+</hibernate-mapping>

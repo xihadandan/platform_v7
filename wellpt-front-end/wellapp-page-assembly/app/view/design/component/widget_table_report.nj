@@ -1,0 +1,133 @@
+<!-- <%@ include file="/pt/common/taglibs.jsp" %> -->
+<link href="{{ helper.staticPrefix() }}/css/design/app_widget_configurer.css" rel="stylesheet"/>
+<div id="widget_bootstrap_table">
+  <form id="widget_bootstrap_table_form" class="form-horizontal">
+    <div id="widget_bootstrap_table_tabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#widget_report_base_info">基础信息</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_report_table_info">报表展示</a>
+        </li>
+      </ul>
+      <div class="tab-content" style="height: 500px">
+        <div role="tabpanel" class="tab-pane active" id="widget_report_base_info">
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label required">名称</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" name="name" id="name"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reportFileConfig" class="col-sm-2 control-label required">报表配置</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="w-configurer-option" name="reportFileConfigName" id="reportFileConfigName"/>
+              <input type="text" class="form-control w-configurer-option" height="34px" id="reportFileConfig" name="reportFileConfig"/>
+              <input type="hidden" class="w-configurer-option" name="reportFileStorePrefix" id="reportFileStorePrefix"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reportOperation" class="col-sm-2 control-label required">报表操作</label>
+            <div class="col-sm-10">
+              <input type="text" class="w-configurer-option" name="reportOperation" id="reportOperation" style="width: 100%"/>
+              <input type="hidden" class="form-control w-configurer-option" height="34px" id="reportOperationName" name="reportOperationName"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="embedJS" class="col-sm-2 control-label">报表内脚本</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" name="embedJS" id="embedJS"/>
+              <input type="hidden" class="form-control w-configurer-option" height="34px" name="embedJSName" id="embedJSName"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" name="jsModule" id="jsModule"/>
+              <input type="hidden" class="form-control w-configurer-option" height="34px" name="jsModuleName" id="jsModuleName"/>
+            </div>
+          </div>
+          <div class="form-group" id="report_field_qry">
+            <label for="div_parameter_search_info_toolbar" class="col-sm-2 control-label">报表参数查询</label>
+            <div class="col-sm-10">
+              <div id="div_parameter_search_info_toolbar" class="btn-group btn_field_search_info">
+                <button id="btn_add_parameter" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                </button>
+                <button id="btn_delete_parameter" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                </button>
+                <button id="btn_row_up_parameter" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+                </button>
+                <button id="btn_row_down_parameter" type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+                </button>
+              </div>
+              <table id="table_parameter_search_info" class="definition_info" data-height="430"></table>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane report_type_panel" id="widget_report_table_info">
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label required">报表宽度设置</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input class="w-configurer-option" type="checkbox" id="tableAdjust" name="tableAdjust" value="true"/>
+                <label for="tableAdjust">报表表格宽度自适应</label>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">查询条件默认</label>
+            <div class="col-sm-10" style="margin-top: 7px;">
+              <div class="switch-wrap active">
+                <input type="hidden" value="1" name="reportFolder" id="reportFolder" class="w-configurer-option">
+                <span class="switch-text switch-open">展开</span>
+                <span class="switch-radio"></span>
+                <span class="switch-text switch-close" style="display: none">折叠</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lazyData" class="col-sm-2 control-label">数据初始化</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input type="checkbox" id="lazyData" name="lazyData" class="w-configurer-option"/>
+                <label for="lazyData">初始化时不加载数据</label>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fixRows" class="col-sm-2 control-label">表头冻结设置</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <input type="number" id="fixRows" name="fixRows" class="w-configurer-option" min="0" default="1" step="1" onkeyup="this.value=this.value.replace(/\D/g,'')"/>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pageTip" class="col-sm-2 control-label">数据分页设置</label>
+            <div class="col-sm-10">
+              <label class="checkbox-inline">
+                <label for="pageTip" style="color:#cccccc">不支持自定义分页及分页数组, 请在UReport中设置分页</label>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group report-export-filename" style="display: none">
+            <label for="exportFileName" class="col-sm-2 control-label required">导出文件名</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" height="34px" id="exportFileName" name="exportFileName"/>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=10"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="Cache-Control" content="no-store"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta name="google" value="notranslate"/>
+    <meta name="referrer" content="no-referrer"/>
+    <title>{{workBean.title}}</title>
+
+    {% include "dyform/dyform_css.nj" %}
+
+    {% for c in css %}
+      <link href="{{c.path}}" rel="stylesheet"/>
+    {% endfor %}
+
+    <body>
+      <div class="container-fluid original-content">
+        <div class="row">
+          <div class="widget-box widget-color-blue">
+            <div class="widget-header fixed">
+              <div class="widget-header-fill-top"></div>
+              <h5 class="widget-title" title="{{workBean.title}}">{{workBean.title}}</h5>
+              <div class="widget-toolbar no-border wf_operate" style="display: none">
+                <div class="multi-user-operation-container" title="多人同时办理">
+                  <span class="badge" style="display:none;">1</span>
+                  <div class="tip">
+                    <span>
+                      <label>xxx</label>
+                      <label>已提交数据，可能存在冲突，请在备份后刷新获取！</label>
+                    </span>
+                    <i class="iconfont icon-ptkj-shixinjiantou-shang"></i>
+                    <i class="iconfont icon-del icon-ptkj-dacha"></i>
+                  </div>
+                  <ul class="mutli-user-operation-list"></ul>
+                </div>
+                {% for btn in workBean.buttons %}
+                  <button btnid="{{btn.id}}" btntype="{{btn.btnSource}}" name="{{btn.code}}" hash="{{btn.hash}}" btnparams="{{btn.eventParams}}" targetposition="{{btn.targetPosition}}" class="btn well-btn {{btn.className}}" style="display: none">
+                    {{btn.name}}
+                  </button>
+                {% endfor %}
+                {% if workBean.aclRole == 'TODO' %}
+                  <button id="lxqpMode" btnid="B004040" name="B004040" class="btn well-btn w-btn-primary w-line-btn">
+                    <i class="iconfont icon-ptkj-lianxuqianpimoshi"></i>进入连续签批</button>
+                {% endif %}
+              </div>
+              <div class="widget-header-fill-bottom"></div>
+            </div>
+            <div class="widget-body row">
+              <div class="widget-main ace-scroll scroll-disabled" style="position: relative; width: 100%">
+                <form id="wf_form" method="post" class="cleanform" style="display: none">
+                  <input type="hidden" id="wf_flowDefUuid" value="{{workBean.flowDefUuid}}"/>
+                  <input type="hidden" id="wf_flowDefId" value="{{workBean.flowDefId}}"/>
+                  <input type="hidden" id="wf_flowInstUuid" value="{{workBean.flowInstUuid}}"/>
+                  <input type="hidden" id="wf_taskInstUuid" value="{{workBean.taskInstUuid}}"/>
+                  <input type="hidden" id="wf_taskId" value="{{workBean.taskId}}"/>
+                  <input type="hidden" id="wf_taskName" value="{{workBean.taskName}}"/>
+                  <input type="hidden" id="wf_taskIdentityUuid" value="{{workBean.taskIdentityUuid}}"/>
+                  <input type="hidden" id="wf_formUuid" value="{{workBean.formUuid}}"/>
+                  <input type="hidden" id="wf_defaultVFormUuid" value="{{workBean.defaultVFormUuid}}"/>
+                  <input type="hidden" id="wf_defaultMFormUuid" value="{{workBean.defaultMFormUuid}}"/>
+                  <input type="hidden" id="wf_dataUuid" value="{{workBean.dataUuid}}"/>
+                  <input type="hidden" id="wf_customJsModule" value="{{workBean.customJsModule}}"/>
+                  <input type="hidden" id="wf_customJsFragmentModule" value="{{workBean.customJsFragmentModule}}"/>
+                  <input type="hidden" id="wf_title" value="{{workBean.title}}"/>
+                  <input type="hidden" id="wf_aclRole" value="{{workBean.aclRole}}"/>
+                  <input type="hidden" id="wf_serialNoDefId" value="{{workBean.serialNoDefId}}"/>
+                  <input type="hidden" id="wf_suspensionState" value="{{workBean.suspensionState}}"/>
+                  <input type="hidden" id="wf_isFirstTaskNode" value="{{workBean.isFirstTaskNode}}"/>
+                  <input type="hidden" id="wf_signOpinionModel" value="{{workBean.signOpinionModel}}"/>
+                  <input type="hidden" id="wf_opinionLabel" value="{{workBean.opinionLabel}}"/>
+                  <input type="hidden" id="wf_opinionValue" value="{{workBean.opinionValue}}"/>
+                  <input type="hidden" id="wf_opinionText" value="{{workBean.opinionText}}"/>
+                  <input type="hidden" id="wf_custom_global_script_url" value="{{workBean.globalScriptUrl}}"/>
+                  <input type="hidden" id="wf_canEditForm" value="{{workBean.canEditForm}}"/>
+                  <input type="hidden" id="wf_multiSubmitType" value="{{workBean.multiSubmitType}}"/>
+                  {% for key, value in workBean.extraParams %}
+                    <input id="{{key}}" name="{{key}}" type="hidden" value="{{value}}"/>
+                  {% endfor %}
+                </form>
+                <!-- 动态表单 -->
+                <form id="dyform"></form>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-4 col-sm-4">
+            <div class="tabs-container wf-opinion-tabs"></div>
+          </div>
+        </div>
+        <div class="row row-sign-opinion-text" style="display: none">
+          <div class="col-sm-9 opinion-box">
+            <div class="sign_opinion_text">
+              <span class="sign-inner-text">签署意见</span>
+            </div>
+            <input type="text" name="sign_opinion_text" class="form-control" placeholder="签署意见"/>
+          </div>
+          <div class="col-sm-3">
+            <div class="tab-pane fade in active wf-opinion-recent-snapshop">
+              <div class="list-group"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-sidebar animated sidebar-open work-process-viewer">
+          <div class="right-sidebar-close guanbi"></div>
+          <div class="sidebar-container" style="overflow: hidden; width: auto; height: 100%">
+            <div class="tab-content">
+              <div id="tab-1" class="tab-pane active work-process-tab-pane">
+                <div class="ibox-content inspinia-timeline" style="display: none"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="widget-footer-fill-top original-content"></div>
+    </body>
+    {% if paceDisabled === false %}
+      {# 禁止 pace 进度跟踪websocket请求 #}
+      <script type="text/javascript" data-pace-options='{"ajax":{"trackWebSockets":false}}' src="{{helper.staticPrefix()}}/js/pace/pace.min.js"></script>
+    {% endif %}
+    <script type="text/javascript" src="{{helper.staticPrefix()}}/js/requirejs/require.js"></script>
+    <script>
+
+      var ctx = '';
+      window.staticPrefix = '{{helper.staticPrefix()}}';
+      window.backendUrl = '{{helper.backendUrl()}}';
+      var WebApp = WebApp || {};
+      WebApp.pageDefinition = {};
+      WebApp.configJsModules = {};
+      WebApp.jsTemplates = {};
+      requirejs.onError = function (error) {
+        throw error;
+      }
+
+      requirejs.config({{ requirejsConfigJSON | safe }});
+
+      require(['appModal'], function () {
+        appModal.showMask()
+
+        require({{javascriptsJson |safe}}, function () {
+          require(["js/app"], function () {
+            require(["workflow/js/work/work_view_v53"]);
+          });
+        });
+      })
+    </script>
+  </html>

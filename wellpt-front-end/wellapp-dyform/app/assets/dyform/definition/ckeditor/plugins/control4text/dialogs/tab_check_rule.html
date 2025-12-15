@@ -1,0 +1,78 @@
+<table>
+  <tr class="odd">
+    <td class="Label check-rule-label" rowspan="2" id="checkRuleLabel">校验规则</td>
+    <td class="value">
+      <input type="checkbox" name="fieldCheckRules" id="checkRule_1" value="1" onclick="checkMust(this)" />
+      <label for="checkRule_1">非空</label>
+      <input type="checkbox" name="fieldCheckRules" id="checkRule_5" value="5" onclick="checkUnique(this)" />
+      <label for="checkRule_5">全局唯一</label>
+      <input type="checkbox" name="fieldCheckRules" id="checkRule_6" value="5" onclick="checkUnitUnique(this)" />
+      <label for="checkRule_6">单位内唯一</label>
+      <input type="hidden" name="unitUnique" id="unitUnique" />
+    </td>
+  </tr>
+
+  <tr>
+    <td class="value">
+      <select name="contentFormat" id="contentFormat" style="display: block; float: left">
+        <option value="10" selected="selected">普通</option>
+        <option value="11">URL</option>
+        <option value="12" style="font-size: 10px">EMAIL</option>
+        <option value="13" style="font-size: 11px">身份证</option>
+        <option value="14" style="font-size: 12px">电话</option>
+        <option value="15" style="font-size: 12px">手机</option>
+        <option value="17" style="font-size: 12px">邮编</option>
+        <option value="16" style="font-size: 12px">自定义</option>
+      </select>
+    </td>
+  </tr>
+
+  <tr class="odd" id="customizeRegularTextRow">
+    <td class="value">
+      <textarea
+        placeholder="自定义正则规则"
+        style="width: 90%; background: #fff"
+        rows="4"
+        name="customizeRegularText"
+        id="customizeRegularText"
+      ></textarea>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="Label check-rule-label">校验方式</td>
+    <td class="value">
+      <input type="radio" name="checkType" id="checkOnInput" value="1" />
+      <label for="checkOnInput">实时校验</label>
+      <input type="radio" name="checkType" id="checkOnBlue" value="2" />
+      <label for="checkOnBlue">失去焦点时校验</label>
+    </td>
+  </tr>
+
+  <tr class="odd">
+    <td class="Label check-rule-label">校验事件管理</td>
+    <td class="value" id="validateEventManageContainer">
+      <div>data为参数，值为当前控件的值</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="Label check-rule-label">非空校验提示</td>
+    <td class="value"><input type="text" name="noNullValidateReminder" id="noNullValidateReminder" /></td>
+  </tr>
+
+  <tr class="odd">
+    <td class="Label check-rule-label">唯一校验提示</td>
+    <td class="value"><input type="text" name="uniqueValidateReminder" id="uniqueValidateReminder" /></td>
+  </tr>
+
+  <tr>
+    <td class="Label check-rule-label">正则校验提示</td>
+    <td class="value"><input type="text" id="regularValidateReminder" /></td>
+  </tr>
+
+  <tr class="odd">
+    <td class="Label check-rule-label">事件校验提示</td>
+    <td class="value"><input type="text" id="eventValidateReminder" /></td>
+  </tr>
+</table>

@@ -1,0 +1,176 @@
+<div id="widget_bootstrap_tabs" class="widget_component">
+  <form id="widget_bootstrap_tabs_form" class="form-horizontal">
+    <div id="widget_tree_tabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#widget_tree_tabs_base_info">基础配置</a>
+        </li>
+        <li role="presentation">
+          <a href="#widget_tree_tabs_tabs_info2">页签配置</a>
+        </li>
+      </ul>
+      <div class="tab-content" style="height: 500px">
+        <div role="tabpanel" class="tab-pane active" id="widget_tree_tabs_base_info">
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">名称<font color="red">*</font>
+            </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control w-configurer-option" name="name" id="name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="tabStyle" class="col-sm-2 control-label">页签风格</label>
+            <div class="col-sm-10">
+              <select class="form-control w-configurer-option" name="tabStyle" id="tabStyle">
+                <option value="top" selected="selected">顶部风格</option>
+                <option value="left">左侧风格</option>
+                <option value="right">右侧风格</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group tab-style tab-style-left tab-style-right">
+            <label for="tabColspan" class="col-sm-2 control-label">页签导航宽度比例</label>
+            <div class="col-sm-10">
+              <select class="form-control w-configurer-option" name="tabColspan" id="tabColspan">
+                <option value="1" selected="selected">1/12</option>
+                <option value="2">2/12</option>
+                <option value="3" selected="selected">3/12</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+            <div class="col-sm-10">
+              <input type="hidden" class="form-control w-configurer-option" name="jsModuleName" id="jsModuleName"/>
+              <input type="text" class="form-control w-configurer-option" name="jsModule" id="jsModule"/>
+            </div>
+          </div>
+          {% include "./widget_base_info.nj" %}
+        </div>
+        <div role="tabpanel" class="tab-pane w-tab-pane-table" id="widget_tree_tabs_tabs_info2">
+          <div class="row navDataRow">
+            <div class="form-group">
+              <label for="navData" class="col-sm-2 control-label">导航数据</label>
+              <div class="col-sm-10">
+                <div class="row widget_example">
+                  <div class="col-md-4">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-primary btn-sm" id="widget_bootstrap_tabs_nav_add">添加</button>
+                      <button type="button" class="btn btn-primary btn-sm" id="widget_bootstrap_tabs_nav_remove">删除</button>
+                    </div>
+                    <ul id="widget_bootstrap_tabs_nav_tree" class="ztree"></ul>
+                  </div>
+                  <div class="col-md-8" id="widget_bootstap_tabs_form">
+                    <div class="form-group">
+                      <label for="navTree_name" class="col-sm-3 control-label">名称<font color="red">*</font>
+                      </label>
+                      <div class="col-sm-9">
+                        <input type="hidden" class="form-control w-nav-tree-option" name="navTree_uuid" id="navTree_uuid"/>
+                        <input type="text" class="form-control w-nav-tree-option" name="navTree_name" id="navTree_name"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="navTree_icon_className" class="col-sm-3 control-label">图标</label>
+                      <div class="col-sm-9 has-feedback">
+                        <input type="hidden" name="navTree_icon_className" id="navTree_icon_className" class="form-control w-nav-tree-option"/>
+                        <span id="navTreeIconSnap" class="" aria-hidden="true"></span>
+                        <button type="button" class="well-btn w-btn-primary" id="navTreeIconSelectBtn">选择图标</button>
+                        <button type="button" class="well-btn w-btn-danger" id="navTreeIconRemoveBtn" style="display: none">移除图标</button>
+                      </div>
+                    </div>
+                    <div class="form-group not-drag-component">
+                      <label for="navTree_eventHandler_name" class="col-sm-3 control-label">事件处理</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control w-nav-tree-option" name="navTree_eventHandler_name" id="navTree_eventHandler_name"/>
+                        <input type="hidden" class="form-control w-nav-tree-option" name="navTree_eventHandler_id" id="navTree_eventHandler_id"/>
+                        <input type="hidden" class="form-control w-nav-tree-option" name="navTree_eventHandler_path" id="navTree_eventHandler_path"/>
+                        <input type="hidden" class="form-control w-nav-tree-option" name="navTree_eventHandler_type" id="navTree_eventHandler_type"/>
+                      </div>
+                    </div>
+                    <div class="form-group not-drag-component">
+                      <label class="col-sm-3 control-label">锚点设置</label>
+                      <div class="col-sm-9 radio">
+                        <label>
+                          <input type="radio" class="w-nav-tree-option" value="1" name="eventHashType" id="eventHashType1"/>
+                          <label for="eventHashType1">指定锚点</label>
+                        </label>
+                        <label>
+                          <input type="radio" class="w-nav-tree-option" value="2" name="eventHashType" id="eventHashType2"/>
+                          <label for="eventHashType2">自定义</label>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group eventHashTypeRow eventHashType1 not-drag-component">
+                      <label class="col-sm-3 control-label"></label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control w-nav-tree-option" autocomplete="off" name="eventHashTree" id="eventHashTree"/>
+                      </div>
+                    </div>
+                    <div class="form-group eventHashTypeRow eventHashType2 not-drag-component">
+                      <label class="col-sm-3 control-label">
+                        <span class="wTooltip icon iconfont icon-ptkj-mianxingwenxintishi">
+                          <span class="wTooltipText">锚点格式：/{组件ID}/{菜单、导航、页签等ID}</span>
+                        </span>
+                      </label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control w-nav-tree-option" name="eventHash" id="eventHash"/>
+                      </div>
+                    </div>
+                    <div class="form-group not-drag-component">
+                      <label class="col-sm-3 control-label">页签操作</label>
+                      <div class="col-sm-9 ">
+                        <label class="checkbox-inline">
+                          <input class="w-nav-tree-option" type="checkbox" id="navTree_clickTabToRefresh" name="navTree_clickTabToRefresh" value="false">
+                          <label for="navTree_clickTabToRefresh">点击页签进行刷新</label>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group not-drag-component">
+                      <label for="navTree_isShowBadge" class="col-sm-3 control-label">徽章</label>
+                      <div class="col-sm-9 ">
+                        <label class="checkbox-inline">
+                          <input class="w-nav-tree-option" type="checkbox" id="navTree_isShowBadge" name="navTree_isShowBadge" value="true">
+                          <label for="navTree_isShowBadge">显示数量</label>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group not-drag-component showBadge navTree_BadgeType_select" style="display: none;">
+                      <label for="navTree_BadgeType" class="col-sm-3 control-label">徽章获取方式</label>
+                      <div class="col-sm-9">
+                        <input class="w-nav-tree-option form-control" type="hidden" id="navTree_BadgeType" name="navTree_BadgeType">
+                      </div>
+                    </div>
+                    <div class="form-group not-drag-component showBadge navTree_BadgeType
+                                            navTree_BadgeType_countJs navTree_BadgeType_countJs_select" style="display: none;">
+                      <label for="navTree_BadgeTypeCountJs" class="col-sm-3 control-label">数量统计的JS脚本</label>
+                      <div class="col-sm-9">
+                        <input class="w-nav-tree-option form-control" type="hidden" id="navTree_BadgeTypeCountJs" name="navTree_BadgeTypeCountJs">
+                      </div>
+                    </div>
+                    <div class="form-group not-drag-component showBadge navTree_BadgeType navTree_BadgeType_countJs" js="BootstrapTableViewGetCount" style="display: none;">
+                      <label for="navTree_BadgeTypeCountJsWBootstrapTable" class="col-sm-3 control-label">表格视图</label>
+                      <div class="col-sm-9">
+                        <input class="w-nav-tree-option form-control" type="hidden" id="navTree_BadgeTypeCountJsWBootstrapTable" name="navTree_BadgeTypeCountJsWBootstrapTable">
+                      </div>
+                    </div>
+                    <div class="form-group not-drag-component showBadge navTree_BadgeType navTree_BadgeType_datastore" style="display: none;">
+                      <label for="navTree_BadgeTypeCountDs" class="col-sm-3 control-label">统计数量的数据仓库</label>
+                      <div class="col-sm-9">
+                        <input type="hidden" class="w-nav-tree-option form-control" name="navTree_BadgeTypeCountDs" id="navTree_BadgeTypeCountDs"/>
+                      </div>
+                    </div>
+                    <div class="form-group navBtnRow">
+                      <button type="button" class="btn btn-primary btn-sm" id="navTree_save">保存</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

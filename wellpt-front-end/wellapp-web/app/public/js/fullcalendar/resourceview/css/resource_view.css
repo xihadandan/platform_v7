@@ -1,0 +1,405 @@
+.resource-view {
+  position: absolute;
+  top: 80px;
+  left: 0px;
+}
+
+.resource-view .toolbar {
+  text-align: center;
+  padding: 10px;
+}
+
+.resource-view .toolbar .left-tools,
+.resource-view .toolbar .center-tools,
+.resource-view .toolbar .right-tools {
+  text-align: center;
+  display: inline-block;
+}
+
+.resource-view .toolbar .left-tools h2,
+.resource-view .toolbar .center-tools h2,
+.resource-view .toolbar .right-tools h2 {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.resource-view .table-wrapper {
+  overflow-x: auto;
+  position: relative;
+}
+
+.resource-view .table-wrapper .prevMonthWeek,
+.resource-view .table-wrapper .nextMonthWeek {
+  background: #efefef;
+}
+
+.resource-view .table-wrapper .today {
+  background: rgba(72, 140, 238, 0.05);
+}
+
+.resource-view .table-wrapper .table thead tr td .resourse-type {
+  width: 100px;
+}
+
+.resource-view .table-wrapper .table {
+  border-collapse: collapse;
+  margin-bottom: 0;
+}
+
+.resource-view .table-wrapper .table thead tr td .month-date-num {
+  width: 55px;
+}
+
+.resource-view .table-wrapper .table thead tr td .day-date-num {
+  padding: 8px;
+  min-width: 40px;
+}
+
+.resource-view .table-wrapper .table thead tr td.day {
+  padding: 0;
+  border: 0;
+  border-right: 1px solid #e8e8e8;
+}
+
+.resource-view .table-wrapper .table tbody tr td {
+  padding: 0;
+  position: relative;
+}
+
+.resource-view .table-wrapper .table tbody tr td .resource-name,
+.resource-view .table-wrapper .table tbody tr td .day-count,
+.resource-view .table-wrapper .table tbody tr td .month-count,
+.resource-view .table-wrapper .table tbody tr td .week-count {
+  padding: 15px 5px;
+}
+
+.resource-view .table-wrapper .table tbody tr td .resource-name {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100px;
+  overflow: hidden;
+}
+
+.resource-view .table-wrapper .table tbody tr td .month-count,
+.resource-view .table-wrapper .table tbody tr td .week-count {
+  color: #666;
+}
+
+.resource-view .table-wrapper .table tbody tr td.day::before,
+.resource-view .table-wrapper .table tbody tr td.week::before,
+.resource-view .table-wrapper .table tbody tr td.month::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  /* width: 3px; */
+}
+
+.resource-view .table-wrapper .event-box {
+  position: absolute;
+  top: 38px;
+  right: 0;
+  width: 100%;
+  padding-left: 120px;
+}
+
+.resource-view .table-wrapper .event-box .type-event {
+  position: relative;
+  height: 51px;
+}
+
+.resource-view .table-wrapper .event-box .type-event:after {
+  content: '';
+  display: table;
+  visibility: hidden;
+  height: 0;
+  clear: both;
+}
+
+.resource-view .table-wrapper .event-box .day-event {
+  position: absolute;
+  top: 0;
+  height: 50px;
+  margin-bottom: 1px;
+  background: #448fff;
+  color: #fff;
+  float: left;
+}
+
+.resource-view .table-wrapper .event-box .across-day-event {
+  position: absolute;
+  top: 0;
+  height: 50px;
+  margin-bottom: 1px;
+  background: #448fff;
+  color: #fff;
+  float: left;
+  font-size: 10px;
+}
+
+.resource-view .table-wrapper .event-box .allday-event {
+  width: 100%;
+}
+
+/* 资源日历组件用到的css*/
+.ui-wFullCalendar .calendar-panel {
+  position: relative;
+}
+
+.fc-time-grid-event.fc-short .fc-time:before {
+  content: attr(data-full);
+}
+
+.ui-wFullCalendar .fc-event {
+  border-left: 2px #488cee solid;
+}
+
+.tab-max-height-500 .tab-content {
+  max-height: 500px;
+  overflow: auto;
+}
+
+#div_event_list {
+  max-height: 360px;
+  overflow: auto;
+}
+
+.fc-view .fc-header.panel-heading {
+  height: 30px;
+  line-height: 30px;
+}
+
+.fc-time-grid-event .fc-time {
+  font-size: 0.85em;
+  white-space: normal !important;
+}
+
+td.fc-sat,
+td.fc-sun {
+  background: #fafafa;
+}
+
+#div_calendar_item_form,
+#div_calendar_view_form {
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#div_calendar_item_form .form-group,
+#div_calendar_view_form .form-group {
+  margin: 0px;
+}
+
+#div_calendar_item_form .form-group .controls,
+#div_calendar_view_form .form-group .controls {
+  margin: 0px;
+  padding: 10px;
+  /*border-top: 1px #ccc solid;*/
+  /*border-right: 1px #ccc solid;*/
+  height: 56px;
+}
+
+#div_calendar_item_form .label-filed,
+#div_calendar_view_form .control-label {
+  width: 10%;
+  min-width: 120px;
+  padding: 15px 15px;
+  background: #f1f1f1;
+  text-align: right;
+  margin: 0px;
+  height: 56px;
+  border-left: 1px #ccc solid;
+  border-top: 1px #ccc solid;
+  border-right: 1px #ccc solid;
+}
+
+#div_calendar_item_form .row:last-child .label-filed,
+#div_calendar_item_form .row:last-child .controls {
+  border-bottom: 1px #ccc solid;
+}
+
+#div_calendar_view_form .row:last-child .control-label,
+#div_calendar_view_form .row:last-child .controls {
+  border-bottom: 1px #ccc solid;
+}
+
+#div_calendar_view_form .form-group .controls span:first-child {
+  display: inline-block;
+  padding-top: 5px;
+}
+
+#div_calendar_item_form .form-group,
+#div_calendar_view_form .form-group {
+  padding-left: 140px;
+}
+#div_calendar_item_form .form-group .control-label,
+#div_calendar_view_form .form-group .control-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 140px !important;
+  height: auto;
+}
+#div_calendar_item_form .form-group .control-label .label-span,
+#div_calendar_view_form .form-group .control-label .label-span {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  height: 20px;
+  margin-top: -10px;
+  line-height: 20px;
+  text-align: right;
+}
+#div_calendar_item_form .form-group .controls,
+#div_calendar_view_form .form-group .controls {
+  width: 100% !important;
+  height: auto;
+}
+
+.fc-event-container .fc-event {
+  padding-left: 8px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 14px;
+}
+
+.fc-event-container .fc-event::before {
+  background: rgba(255, 255, 255, 0.7);
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 2px;
+}
+
+.fc-day-grid-event .fc-time {
+  font-weight: 400;
+}
+
+.fc-day-grid-event .fc-title {
+  color: #333;
+}
+
+.fc-event {
+  box-shadow: none;
+}
+
+.fc-day-number {
+  color: #666;
+}
+
+.fc-other-month .fc-day-number {
+  color: #ccc;
+}
+
+.fc-day-header.fc-sat,
+.fc-day-header.fc-sun {
+  background-color: #f1f1f1;
+}
+
+.fc-more-cell .fc-more {
+  float: right;
+  margin: 8px;
+  border: 1px solid #488cee;
+  border-radius: 18px;
+  padding: 4px 8px;
+}
+
+.fc-agendaDay-view .fc-head {
+  display: none;
+}
+
+#div_event_list .event-box {
+  border-top: 1px solid #e8e8e8;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+#div_event_list .event-box:first-child {
+  margin-top: 0;
+  border-top: none;
+}
+
+#div_event_list .event-box table {
+  margin-bottom: 2px;
+}
+
+#div_event_list .event-box .table > tbody > tr > td {
+  border-color: transparent;
+}
+
+.ui-dialog .resource-view .view-table .day-count,
+.ui-dialog .resource-view .view-table .week-count,
+.ui-dialog .resource-view .view-table .month-count {
+  display: none;
+}
+
+.ui-wMyCalendar .resource-view .available::before,
+.ui-wMyCalendar .resource-view .outdate::before {
+  left: 0 !important;
+}
+
+.ui-dialog .ui-wMyCalendar .resource-view .selected {
+  background-color: #e33033;
+  opacity: 0.15;
+}
+
+.ui-dialog .ui-wMyCalendar .resource-view .selected::before {
+  content: unset !important;
+}
+
+.ui-dialog .ui-wMyCalendar .resource-view .occupied {
+  border-left-color: #ffb3bc;
+  border-right-color: #ffb3bc;
+}
+
+.ui-dialog .ui-wMyCalendar .resource-view .occupied + :not(.occupied) {
+  border-left-color: #e8e8e8;
+  border-right-color: #e8e8e8;
+}
+
+.ui-dialog .ui-wMyCalendar .resource-view .occupied + .occupied::before {
+  left: 0px;
+}
+
+.ui-dialog .resource-view {
+  top: 52px !important;
+}
+
+.ui-dialog .resource-view .view-table thead {
+  background: #f6f6f6;
+}
+
+.ui-dialog .resource-view .view-table thead td {
+  border-bottom: 0;
+  border-right: 1px solid #e8e8e8 !important;
+  text-align: center;
+}
+
+.ui-dialog .ui-wMyCalendar {
+  padding: 0;
+}
+
+.ui-dialog .resource-view .resource-events .resource-event .occupied {
+  z-index: 2;
+  background-color: #e33033;
+  color: transparent;
+}
+
+.ui-dialog .resource-view .resource-events .resource-event .occupied::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 3px;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+}

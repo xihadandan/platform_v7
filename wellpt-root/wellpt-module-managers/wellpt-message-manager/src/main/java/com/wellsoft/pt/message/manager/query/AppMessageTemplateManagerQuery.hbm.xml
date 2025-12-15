@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <!--模块数据仓库查询-->
+    <sql-query name="appModuleMsgTemplateDefManagerQuery">
+        <![CDATA[
+    select t1.* from (
+    select t1.uuid as uuid,
+           t1.create_time as create_time,
+           t1.creator as creator,
+           t1.modifier as modifier,
+           t1.modify_time as modify_time,
+           t1.rec_ver as rec_ver,
+           t1.name as name,
+           t1.id as id,
+           t1.code as code,
+           t1.system_unit_id as system_unit_id,
+           t1.module_id as module_id,
+           t1.classify_uuid as classify_uuid,
+           t1.classify_name as classify_name,
+           t1.callback_json as callback_json,
+           t1.reminder_type as reminder_type,
+           0 as is_ref
+      from msg_message_template t1
+     where 1=1
+        <if moduleId??>
+        and t1.module_id=:moduleId
+		 </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+
+    union
+
+    select t1.uuid as uuid,
+           t1.create_time as create_time,
+           t1.creator as creator,
+           t1.modifier as modifier,
+           t1.modify_time as modify_time,
+           t1.rec_ver as rec_ver,
+           t1.name as name,
+           t1.id as id,
+           t1.code as code,
+           t1.system_unit_id as system_unit_id,
+           t1.module_id as module_id,
+           t1.classify_uuid as classify_uuid,
+           t1.classify_name as classify_name,
+           t1.callback_json as callback_json,
+           t1.reminder_type as reminder_type,
+           1 as is_ref
+      from msg_message_template t1, msg_message_template_ref rr
+     where rr.ref_uuid = t1.uuid
+        <if moduleId??>
+             and rr.module_id=:moduleId
+             and t1.module_id<>:moduleId
+         </if>
+         <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+          ) t1
+        <if isNotBlank(orderBy)>
+            ${orderBy}
+          </if>
+
+    ]]>
+
+
+    </sql-query>
+
+
+</hibernate-mapping>

@@ -1,0 +1,53 @@
+<form action="" id="business_manage_form" style="margin-top: 15px">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#business_manage_basic_info" aria-controls="business_manage_basic_info" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+        </li>
+        <li role="presentation">
+            <a href="#business_manage_role" aria-controls="business_manage_role" role="tab" data-toggle="tab" aria-expanded="true">业务角色人员</a>
+        </li>
+    </ul>
+    <input type="hidden" id="category_uuid" name="uuid">
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="business_manage_basic_info" style="padding-top: 10px;">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label for="business_manage_name" class="well-form-label control-label">业务类别</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="business_manage_name" name="name" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="business_manage_deptValue" class="well-form-label control-label">业务单位</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="business_manage_deptValue" name="manageDeptValue" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="business_manage_userValue" class="well-form-label control-label">业务负责人</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="business_manage_userValue" name="manageUserValue" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="business_manage_role" style="padding-top: 10px;">
+            <div id="div_business_manage_toolbar" class="btn-group">
+                <button id="btn_add_business_manage" type="button" class="well-btn w-btn-primary">
+                    <i class="iconfont icon-ptkj-jiahao" aria-hidden="true"></i>新增
+                </button>
+                <button id="btn_delete_business_manage" type="button" class="well-btn w-btn-danger">
+                    <i class="iconfont icon-ptkj-shanchu" aria-hidden="true"></i>删除
+                </button>
+            </div>
+            <table id="business_manage_table" class=""></table>
+        </div>
+    </div>
+    <div class="row" style="margin-top:30px;">
+        <div class="col-sm-12 text-center">
+            <button type="button" class="well-btn w-btn-primary" id="business_manage_btn_save">保存</button>
+        </div>
+    </div>
+    </div>
+</form>
+

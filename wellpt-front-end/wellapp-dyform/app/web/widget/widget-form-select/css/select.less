@@ -1,0 +1,90 @@
+@select-prefix-cls: ~'ant-select';
+
+.widget-form-select {
+  .search-loading-div {
+    position: absolute;
+    top: 0;
+    background: var(--w-fill-color-base);
+    width: 100%;
+    height: 100%;
+    min-height: 100px;
+    text-align: center;
+    padding-top: 30px;
+  }
+
+  &.select-tree {
+    .ant-select-selection--multiple .ant-select-search--inline {
+      display: none;
+    }
+
+    .ant-select-open {
+      .ant-select-selection--multiple .ant-select-search--inline {
+        // width: 100%;
+        display: inline-block;
+
+        .ant-select-search__field {
+          min-width: 100px;
+        }
+      }
+    }
+  }
+
+  &.ant-select-dropdown--multiple {
+    .ant-select-dropdown-menu-item {
+      padding-left: 36px;
+      padding-right: var(--w-select-item-lr-padding);
+      --w-select-item-color-icon: var(--w-checkbox-border-color);
+
+      .ant-select-selected-icon {
+        color: var(--w-select-item-color-icon);
+        left: 12px;
+        font-weight: var(--w-font-weight-regular);
+        font-size: var(--w-checkbox-size);
+        text-shadow: none;
+      }
+
+      &:has(.edit-dict-operation-select-more-icon) {
+        .ant-select-selected-icon {
+          margin-right: 28px;
+        }
+      }
+
+      &.ant-select-dropdown-menu-item-selected {
+        --w-select-item-bg-selected: var(--w-select-item-bg);
+        --w-select-item-color-selected: var(--w-select-item-text-color);
+
+        .@{select-prefix-cls}-selected-icon {
+          --w-select-item-color-icon: var(--w-checkbox-color);
+
+          &::before {
+            content: '\e8de'; //pticon iconfont icon-ptkj-duoxuan-yixuan
+          }
+        }
+
+        &:hover {
+          &:not(.ant-select-dropdown-menu-item-disabled) {
+            .@{select-prefix-cls}-selected-icon {
+              --w-select-item-color-icon: var(--w-checkbox-color);
+            }
+          }
+        }
+
+        &.ant-select-dropdown-menu-item-disabled {
+          .@{select-prefix-cls}-selected-icon {
+            --w-select-item-color-icon: var(--w-checkbox-disabled-color);
+            color: var(--w-select-item-color-icon);
+          }
+        }
+      }
+
+      &:hover {
+        &:not(.ant-select-dropdown-menu-item-selected) {
+          .@{select-prefix-cls}-selected-icon {
+            --w-select-item-color-icon: var(--w-checkbox-color);
+            color: var(--w-select-item-color-icon);
+          }
+        }
+      }
+    }
+  }
+}

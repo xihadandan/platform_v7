@@ -1,0 +1,49 @@
+/*
+ * @(#)2018年12月18日 V1.0
+ * 
+ * Copyright 2018 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.bpm.engine.delegation.job;
+
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.bpm.engine.delegation.DelegationExecutor;
+import com.wellsoft.pt.bpm.engine.entity.FlowDelegationSettings;
+import com.wellsoft.pt.bpm.engine.service.FlowDelegationSettingsService;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+import org.apache.commons.lang.StringUtils;
+import org.quartz.JobExecutionContext;
+
+/**
+ * Description: 如何描述该类
+ *  
+ * @author zhulh
+ * @date 2018年12月18日
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2018年12月18日.1	zhulh		2018年12月18日		Create
+ * </pre>
+ *
+ */
+public class TaskDelegationCurrentWorkDueHandlerJob extends Job {
+
+	/** 
+	 * (non-Javadoc)
+	 * @see com.wellsoft.pt.task.job.Job#execute(org.quartz.JobExecutionContext, com.wellsoft.pt.task.job.JobData)
+	 */
+	@Override
+	protected void execute(JobExecutionContext jobExecutionContext, JobData jobData) {
+		FlowDelegationSettingsService flowDelegationSettingsService = ApplicationContextHolder
+				.getBean(FlowDelegationSettingsService.class);
+		DelegationExecutor delegationExecutor = ApplicationContextHolder.getBean(DelegationExecutor.class);
+		String delegationSettingsUuid = jobData.getString("delegationSettingsUuid");
+		if (StringUtils.isNotBlank(delegationSettingsUuid)) {
+			FlowDelegationSettings delegationSettings = flowDelegationSettingsService.getOne(delegationSettingsUuid);
+			delegationExecutor.delegationCurrentWork(delegationSettings);
+		}
+	}
+
+}

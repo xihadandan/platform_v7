@@ -1,0 +1,423 @@
+body {
+
+  // 边框变量
+  --w-input-number-border-color: var(--w-border-color-light);
+  --w-input-number-border-width: var(--w-border-width-base);
+  --w-input-number-border-style: var(--w-border-style-base);
+  --w-input-number-border-color-focus: var(--w-primary-color);
+  --w-input-number-border-color-hover: var(--w-primary-color);
+  --w-input-number-border-color-disabled: var(--w-input-number-border-color);
+  --w-input-number-error-border-color: var(--w-danger-color);
+  --w-input-number-error-border-color-hover: var(--w-danger-color);
+  --w-input-number-error-border-color-focus: var(--w-danger-color);
+  --w-input-number-error-border-style: var(--w-input-number-border-style);
+  --w-input-number-error-border-width: var(--w-border-width-base);
+
+  // 阴影
+  --w-input-number-box-shadow: none;
+  --w-input-number-box-shadow-hover: none;
+  --w-input-number-box-shadow-focus: 0 0 2px 0px var(--w-input-number-border-color-focus);
+  --w-input-number-error-box-shadow-focus: none;
+  --w-input-number-error-box-shadow-hover: 0 0 2px 0px var(--w-input-number-error-border-color-focus);
+  // 背景
+  --w-input-number-background-color: var(--w-fill-color-base);
+  --w-input-number-background-color-disabled: var(--w-fill-color-light);
+
+  // (缺省)文字颜色
+  --w-input-number-color: var(--w-text-color-dark);
+  --w-input-number-placeholder-color: var(--w-text-color-lighter);
+  --w-input-number-error-word-color: var(--w-input-number-error-border-color);
+
+  --w-input-number-font-size-sm: var(--w-font-size-base);
+  --w-input-number-font-size-lg: var(--w-font-size-base-lg);
+  --w-input-number-font-size: var(--w-font-size-base);
+  --w-input-number-error-word-font-size: var(--w-input-number-font-size);
+
+  --w-input-number-font-weight: var(--w-font-weight-regular);
+  --w-input-number-error-word-font-weight: var(--w-input-number-font-weight);
+
+  --w-input-number-border-radius: var(--w-border-radius-2);
+  --w-input-number-lr-padding: var(--w-padding-2xs);
+  --w-input-number-height: var(--w-height-sm);
+  --w-input-number-color-disabled: var(--w-text-color-lighter);
+
+  /* star数字输入框上下加减按钮 */
+  --w-input-number-handler-border-color: var(--w-border-color-light);
+  --w-input-number-handler-border-style: var(--w-border-style-base);
+  --w-input-number-handler-border-width: var(--w-border-width-base);
+  --w-input-number-handler-bg-color: var(--w-fill-color-base);
+  --w-input-number-handler-font-color: var(--w-text-color-dark);
+  --w-input-number-handler-font-size: var(--w-font-size-sm);
+  --w-input-number-handler-lr-padding: var(--w-padding-3xs);
+
+  --w-input-number-handler-bg-color-hover: var(--w-fill-color-base);
+  --w-input-number-handler-font-color-hover: var(--w-primary-color);
+
+  --w-input-number-handler-bg-color-active: var(--w-fill-color-light);
+  --w-input-number-handler-font-color-active: var(--w-primary-color);
+
+  --w-input-number-handler-border-color-disabled: var(--w-border-color-light);
+  --w-input-number-handler-border-style-disabled: var(--w-border-style-base);
+  --w-input-number-handler-border-width-disabled: var(--w-border-width-base);
+  --w-input-number-handler-bg-color-disabled: var(--w-fill-color-light);
+  --w-input-number-handler-font-color-disabled: var(--w-text-color-lighter);
+
+
+
+  // 数字输入框
+  .ant-input-number {
+    height: var(--w-input-number-height);
+    color: var(--w-input-number-color);
+    font-size: var(--w-input-number-font-size);
+    border-radius: var(--w-input-number-border-radius);
+    border: var(--w-input-number-border-width) var(--w-input-number-border-style) var(--w-input-number-border-color);
+    background-color: var(--w-input-number-background-color);
+    box-shadow: var(--w-input-number-box-shadow);
+    line-height: e('calc(var(--w-input-number-height) - var(--w-input-number-border-width)*2)');
+    padding: 0;
+
+    &-input-wrap {
+      .ant-input-number-input {
+        padding-left: var(--w-input-number-lr-padding);
+        padding-right: var(--w-input-number-lr-padding);
+        font-weight: var(--w-input-number-font-weight);
+        // box-shadow: var(--w-input-number-box-shadow);
+
+        // &:hover {
+        //   box-shadow: var(--w-input-number-box-shadow-hover);
+        // }
+
+        // &:focus {
+        //   box-shadow: var(--w-input-number-box-shadow-focus);
+        // }
+      }
+    }
+
+    &:hover,
+    &.theme-input-number-hover {
+      border-color: var(--w-input-number-border-color-hover);
+      box-shadow: var(--w-input-number-box-shadow-hover);
+      border-right-width: var(--w-input-number-border-width) !important;
+    }
+
+    &:focus,
+    &.theme-input-number-focus {
+      border-color: var(--w-input-number-border-color-focus);
+      box-shadow: var(--w-input-number-box-shadow-focus);
+      border-right-width: var(--w-input-number-border-width) !important;
+    }
+
+    &-handler-wrap {
+      border-top-right-radius: var(--w-input-number-border-radius);
+      border-bottom-right-radius: var(--w-input-number-border-radius);
+      width: e('calc(var(--w-input-number-handler-lr-padding)*2 + 14px)');
+      border-left-color: var(--w-input-number-handler-border-color);
+      min-width: 22px;
+
+      .ant-input-number-handler-up {
+        border-top-right-radius: var(--w-input-number-border-radius);
+      }
+
+      .ant-input-number-handler-down {
+        border-top: var(--w-input-number-handler-border-width) var(--w-input-number-handler-border-style) var(--w-input-number-handler-border-color);
+        border-bottom-right-radius: var(--w-input-number-border-radius);
+      }
+
+      .ant-input-number-handler {
+
+        &.ant-input-number-handler-up,
+        &.ant-input-number-handler-down {
+
+          .ant-input-number-handler-up,
+          .ant-input-number-handler-down {
+
+            &-inner {
+              right: e('calc(var(--w-input-number-handler-lr-padding) + var(--w-input-number-handler-font-size)/6)');
+              color: var(--w-input-number-handler-font-color);
+              font-size: var(--w-input-number-handler-font-size);
+            }
+          }
+
+          .ant-input-number-handler-up {
+            &-inner {
+              margin-top: e('calc(0px - var(--w-input-number-handler-font-size)/2.5)');
+            }
+          }
+
+          .ant-input-number-handler-down {
+            &-inner {
+              margin-top: e('calc(0px - var(--w-input-number-handler-font-size)/2.5)');
+            }
+          }
+        }
+
+        &-up,
+        &-down {
+          background: var(--w-input-number-handler-bg-color);
+
+          &:hover {
+            background: var(--w-input-number-handler-bg-color-hover);
+          }
+
+          &:focus,
+          &:active {
+            background: var(--w-input-number-handler-bg-color-active);
+          }
+        }
+
+        &:hover {
+
+          .ant-input-number-handler-up,
+          .ant-input-number-handler-down {
+
+            &-inner {
+              color: var(--w-input-number-handler-font-color-hover);
+              font-size: var(--w-input-number-handler-font-size);
+            }
+          }
+        }
+
+        &:focus,
+        &:active {
+
+          .ant-input-number-handler-up,
+          .ant-input-number-handler-down {
+
+            &-inner {
+              color: var(--w-input-number-handler-font-color-active);
+              font-size: var(--w-input-number-handler-font-size);
+            }
+          }
+        }
+
+      }
+    }
+
+
+
+  }
+
+  .ant-input-group-sm,
+  .ant-input-number-sm {
+    --w-input-number-height: var(--w-height-2xs);
+    --w-input-number-font-size: var(--w-input-number-font-size-sm);
+  }
+
+  .ant-input-group-lg,
+  .ant-input-number-lg {
+    --w-input-number-height: var(--w-height-md);
+    --w-input-number-font-size: var(--w-input-number-font-size-lg);
+  }
+
+  .ant-input-number-input {
+    height: e('calc(var(--w-input-number-height) - var(--w-input-number-border-width)*2)');
+    border-radius: var(--w-input-number-border-radius);
+
+    &::placeholder {
+      color: var(--w-input-number-placeholder-color);
+    }
+  }
+
+  .ant-input-number-disabled {
+    color: var(--w-input-number-color-disabled);
+    border-color: var(--w-input-number-border-color-disabled);
+    background-color: var(--w-input-number-background-color-disabled);
+  }
+
+  // 错误提示样式
+  .has-error {
+
+    &:has(.ant-input-number) {
+
+      .ant-input-number {
+        border: var(--w-input-number-error-border-width) var(--w-input-number-error-border-style) var(--w-input-number-error-border-color);
+        line-height: e('calc(var(--w-input-number-height) - var(--w-input-number-error-border-width)*2)');
+
+        .ant-input-number-input {
+          height: e('calc(var(--w-input-number-height) - var(--w-input-number-error-border-width)*2)');
+          border-width: 0;
+
+          &:hover {
+            border-width: 0;
+            box-shadow: none;
+          }
+
+          &:focus {
+            border-width: 0;
+            box-shadow: none;
+          }
+        }
+
+        &:hover {
+          border-color: var(--w-input-number-error-border-color-hover);
+          box-shadow: var(--w-input-number-error-box-shadow-hover);
+          border-right-width: var(--w-input-number-error-border-width) !important;
+        }
+
+        &:focus {
+          border-color: var(--w-input-number-error-border-color-focus);
+          box-shadow: var(--w-input-number-error-box-shadow-focus);
+          border-right-width: var(--w-input-number-error-border-width) !important;
+        }
+
+        &.theme-input-number-hover {
+          border-color: var(--w-input-number-error-border-color-hover);
+          box-shadow: var(--w-input-number-error-box-shadow-hover);
+          border-right-width: var(--w-input-number-error-border-width) !important;
+        }
+
+        &.theme-input-number-focus {
+          border-color: var(--w-input-number-error-border-color-focus);
+          box-shadow: var(--w-input-number-error-box-shadow-focus);
+          border-right-width: var(--w-input-number-error-border-width) !important;
+        }
+      }
+
+      .ant-form-explain,
+      .ant-form-split {
+        color: var(--w-input-number-error-word-color);
+        font-size: var(--w-input-number-error-word-font-size);
+        font-weight: var(--w-input-number-error-word-font-weight);
+      }
+
+      .ant-input-group.ant-input-group-compact.theme-input-number-focus {
+        .ant-input-number {
+          border-color: var(--w-input-number-error-border-color-focus);
+          box-shadow: var(--w-input-number-error-box-shadow-focus);
+          border-right-width: var(--w-input-number-error-border-width) !important;
+        }
+      }
+
+    }
+  }
+
+  // .widget-form-layout .has-error {
+  //   &:has(.ant-input-number) {
+  //     margin-bottom: e('calc(var(--w-input-number-error-word-font-size) + 4px)');
+
+  //     .ant-form-explain,
+  //     .ant-form-split {
+  //       bottom: e('calc(-4px - var(--w-input-number-error-word-font-size))');
+  //     }
+  //   }
+  // }
+
+  .widget-form-input-number {
+    .textonly {
+      color: var(--w-input-number-color);
+      font-size: var(--w-input-number-font-size);
+      font-weight: var(--w-input-number-font-weight);
+    }
+
+    .ant-input-group-compact:has(.ant-input-number) {
+      >*:first-child {
+        border-top-left-radius: var(--w-input-number-border-radius);
+        border-bottom-left-radius: var(--w-input-number-border-radius);
+      }
+
+      >*:last-child {
+        border-right-width: var(--w-input-number-border-width);
+        border-top-right-radius: var(--w-input-number-border-radius);
+        border-bottom-right-radius: var(--w-input-number-border-radius);
+      }
+
+      &.theme-input-number-focus {
+        .ant-input-number {
+          border-right-width: var(--w-input-number-border-width) !important;
+          border-color: var(--w-input-number-border-color-focus);
+          box-shadow: var(--w-input-number-box-shadow-focus);
+        }
+      }
+
+      &.theme-input-number-hover {
+        .ant-input-number {
+          border-right-width: var(--w-input-number-border-width);
+          border-color: var(--w-input-number-border-color-hover);
+          box-shadow: var(--w-input-number-box-shadow-hover);
+        }
+      }
+
+      &:has([type="button"]) {
+        .hiddenStep .ant-input-number-handler-wrap {
+          display: none;
+        }
+
+        >*:first-child {
+          &:not([disabled="disabled"]) {
+            border: var(--w-input-number-border-width) var(--w-input-number-border-style) var(--w-input-number-border-color);
+          }
+
+          margin-right: 0px;
+        }
+
+        >*:last-child {
+          &:not([disabled="disabled"]) {
+            border: var(--w-input-number-border-width) var(--w-input-number-border-style) var(--w-input-number-border-color);
+          }
+        }
+
+        .ant-input-number {
+          border-right: 0;
+          border-left: 0;
+          border-radius: 0;
+          margin-right: 0px;
+
+          .ant-input-number-input {
+            border-radius: 0 !important;
+          }
+        }
+
+        .ant-btn:not([disabled="disabled"]) {
+          min-width: 32px;
+          width: auto;
+          height: var(--w-input-number-height);
+          line-height: e('calc(var(--w-input-number-height) - var(--w-input-number-border-width)*2)');
+          padding: 0 var(--w-input-number-handler-lr-padding);
+          background: var(--w-input-number-handler-bg-color);
+          color: var(--w-input-number-handler-font-color);
+          font-size: var(--w-input-number-handler-font-size);
+          box-shadow: var(--w-input-number-box-shadow);
+
+          &:hover {
+            border-color: var(--w-input-number-border-color-hover);
+            background: var(--w-input-number-handler-bg-color-hover);
+            box-shadow: var(--w-input-number-box-shadow-hover);
+            color: var(--w-input-number-handler-font-color-hover);
+          }
+
+          &:focus,
+          &:active {
+            border-color: var(--w-input-number-border-color-focus);
+            background: var(--w-input-number-handler-bg-color-active);
+            box-shadow: var(--w-input-number-box-shadow-focus);
+            color: var(--w-input-number-handler-font-color-active);
+          }
+        }
+      }
+
+      .ant-btn[disabled="disabled"] {
+        min-width: 32px;
+        width: auto;
+        height: var(--w-input-number-height);
+        line-height: e('calc(var(--w-input-number-height) - var(--w-input-number-border-width)*2)');
+        padding: 0 var(--w-input-number-handler-lr-padding);
+
+        border: var(--w-input-number-border-width) var(--w-input-number-border-style) var(--w-input-number-border-color-disabled);
+        background: var(--w-input-number-handler-bg-color-disabled);
+        color: var(--w-input-number-handler-font-color-disabled);
+        font-size: var(--w-input-number-handler-font-size);
+
+        &:hover {
+          color: var(--w-input-number-handler-font-color-disabled) !important;
+          border: var(--w-input-number-border-width) var(--w-input-number-border-style) var(--w-input-number-border-color-disabled) !important;
+          background: var(--w-input-number-handler-bg-color-disabled) !important;
+          box-shadow: none !important;
+        }
+      }
+
+    }
+  }
+
+  /* end数字输入框上下加减按钮 */
+
+}

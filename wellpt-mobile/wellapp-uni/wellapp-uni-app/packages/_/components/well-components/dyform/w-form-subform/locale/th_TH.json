@@ -1,0 +1,47 @@
+{
+  "WidgetSubform": {
+    "subform": "แบบฟอร์มย่อย",
+    "selectAll": "เลือกทั้งหมด",
+    "noData": "ไม่มีข้อมูล",
+    "notFoundData": "ไม่พบข้อมูล",
+    "modalEditButtonTitle": "แก้ไขข้อมูลในหน้าต่างลอย",
+    "uploadFilePlaceMessage": "คลิกหรือลากไฟล์มาที่พื้นที่นี้เพื่ออัปโหลด",
+    "downloadImportTemplateFilePrefixText": "ดาวน์โหลดเทมเพลตนำเข้า",
+    "uploadDoneImportFilePrefixText": "อัปโหลดแล้ว",
+    "successImportFileResultPrefixText": "นำเข้าสำเร็จ",
+    "selectImportColumnModalTitle": "เลือกคอลัมน์ส่งออก",
+    "defaultTabPaneTitle": "แท็บ",
+    "column": {
+      "operation": "การดำเนินการ",
+      "serialNumber": "ลำดับ"
+    },
+    "search": {
+      "confirmButtonTitle": "ค้นหา",
+      "resetButtonTitle": "รีเซ็ต",
+      "collapseButtonText": "ซ่อน",
+      "searchMoreText": "เพิ่มเติม"
+    },
+    "button": {
+      "addRow": "เพิ่ม",
+      "delRow": "ลบ",
+      "importRow": "นำเข้า",
+      "exportRow": "ส่งออก",
+      "editRow": "แก้ไข",
+      "copyRow": "คัดลอกแถว",
+      "insertRow": "แทรกแถว",
+      "appendRow": "เพิ่มแถว",
+      "moveUpRow": "เลื่อนขึ้น",
+      "moveDownRow": "เลื่อนลง",
+      "save": "บันทึก",
+      "new": "เพิ่มใหม่",
+      "view": "ดูรายละเอียด"
+    },
+    "message": {
+      "unDeleteDefaultRow": "ข้อมูลแถวที่ {indexs} เป็นข้อมูลเริ่มต้นที่ไม่สามารถลบได้",
+      "formatXls": "อนุญาตเฉพาะไฟล์รูปแบบ xls หรือ xlsx เท่านั้น",
+      "nodataExport": "ไม่มีข้อมูลที่จะส่งออก",
+      "unSelectedExport": "ไม่ได้เลือกข้อมูลเพื่อส่งออก",
+      "unSelectedColumnExport": "ไม่ได้เลือกคอลัมน์เพื่อส่งออก"
+    }
+  }
+}

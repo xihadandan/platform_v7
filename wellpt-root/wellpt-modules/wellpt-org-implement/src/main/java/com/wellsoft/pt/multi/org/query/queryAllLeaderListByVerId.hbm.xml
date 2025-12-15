@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!-- 获取一个组织版本的所有上下级领导关系 -->
+    <sql-query name="queryAllLeaderListByVerId">
+        <![CDATA[
+		select l.*, NVL(e1.name, u.USER_NAME) AS job_name, e2.name as underling_name from (
+				select l1.uuid, l1.target_obj_id as job_id, l1.ele_id as underling_id ,  l1.leader_type
+				from multi_org_element_leader l1 where l1.ele_org_version_id = :orgVersionId and l1.leader_type in (0,1)
+		) l
+		LEFT JOIN MULTI_ORG_USER_ACCOUNT u ON l.job_id = u.id
+		left join multi_org_element e1 on l.job_id = e1.id
+		left join multi_org_element e2 on l.underling_id = e2.id
+		order by job_id asc
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

@@ -1,0 +1,108 @@
+.page_ {
+	margin-left: 5px;
+	padding-top: 4px;
+	float: left;
+	color: #666666;
+	height: 16px;
+	text-align: center;
+	border: 1px;
+	font-size: 12px;
+}
+.txt_page_no {
+    background-color: #FFFFFF;
+    border: 1px solid #E7E7E7;
+    float: left;
+    font-size: 12px;
+    height: 19px;
+    margin-left: 5px;
+    text-align: center;
+    width: 60px;
+    cursor:pointer;
+}
+
+.txt_page {
+	cursor:pointer;
+   background-color: #FFFFFF;
+    border: 1px solid #E7E7E7;
+    float: left;
+    font-size: 12px;
+    height: 19px;
+    margin-left: 5px;
+    text-align: center;
+    width: 60px;
+}
+
+.txt_page_ {
+	cursor:pointer;
+   background-color: #FFFFFF;
+    border: 1px solid #E7E7E7;
+    float: left;
+    font-size: 12px;
+    height: 19px;
+    margin-left: 5px;
+    text-align: center;
+    width: 60px;
+}
+
+.writ_page {
+	 color: #666666;
+    float: left;
+    font-size: 12px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.nub_page {
+ background: none repeat scroll 0 0 #E2E8EB;
+    border-color: #FFFFFF #BEC6CE #BEC6CE #FFFFFF;
+    border-style: solid;
+    border-width: 1px;
+    color:#0000000;
+    cursor: pointer;
+    float: left;
+    height: 19px;
+    margin-left: 5px;
+    padding: 0 6px;
+    text-align: center;
+}
+
+
+.nub_page_ {
+	 background-color: #FFFFFF;
+    border-color: #BEC6CE #FFFFFF #FFFFFF #BEC6CE;
+    border-style: solid;
+    border-width: 1px;
+    color: #000000;
+    cursor: pointer;
+    float: left;
+    height: 19px;
+    margin-left: 5px;
+    padding: 0 6px;
+    text-align: center;
+}
+
+.input_text {
+    border: 1px solid #D7D7D7;
+    color: #666666;
+    float: left;
+    font-size: 12px;
+    height: 16px;
+    width: 20px;
+
+}
+
+.input_btn {
+ background: none repeat scroll 0 0 #E2E8EB;
+    border-color: #FFFFFF #BEC6CE #BEC6CE #FFFFFF;
+    border-style: solid;
+    border-width: 1px;
+    color: #666666;
+    cursor: pointer;
+    float: left;
+    font-size: 12px;
+    margin-left: 5px;
+    text-align: center;
+	line-height:20px;
+	height:20px;
+	padding:0px;
+}

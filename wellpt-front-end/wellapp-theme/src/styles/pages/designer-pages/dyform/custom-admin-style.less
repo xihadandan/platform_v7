@@ -1,0 +1,422 @@
+.dyform-designer {
+  font-family: @font-family;
+
+  .ui-dialog .ui-dialog-titlebar {
+    height: 30px;
+  }
+
+  .ui-dialog .ui-dialog-title {
+    line-height: 27px;
+    font-size: 16px;
+  }
+
+  .ui-dialog .ui-dialog-content {
+    position: relative;
+    border: 0;
+    padding: 0.5em 1em;
+    background: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    zoom: 1;
+    clear: both;
+  }
+
+  /* TR overrides */
+  .ui-tabs .ui-tabs-nav li {
+    outline: none;
+    border: @border-default;
+    background-color: @gray-1;
+
+    &:hover {
+      cursor: pointer;
+      background-color: @gray-5;
+    }
+
+    &.ui-tabs-active {
+      background-color: @background-primary;
+      color: #fff;
+    }
+  }
+
+  .ui-tabs .ui-tabs-nav li a {
+    float: left;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal;
+    outline: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .ui-tabs .ui-tabs-nav li.ui-tabs-active a,
+  .ui-tabs .ui-tabs-nav li.ui-state-disabled a,
+  .ui-tabs .ui-tabs-nav li.ui-tabs-loading a {
+    cursor: text;
+    font-weight: bold;
+  }
+
+  .ui-tabs .ui-tabs-panel {
+    /*overflow: auto*/
+  }
+
+  /* Component containers
+----------------------------------*/
+  .ui-widget {
+    font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+    font-size: 12px;
+  }
+
+  .ui-widget .ui-widget {
+    font-size: 11px;
+  }
+
+  .ui-widget input,
+  .ui-widget select,
+  .ui-widget textarea,
+  .ui-widget button {
+    font-family: 'Microsoft YaHei';
+    font-size: 12px;
+  }
+
+  /* Interaction states
+----------------------------------*/
+  .ui-button {
+    font-weight: normal;
+  }
+
+  /* .ui-widget input, .ui-widget select, .ui-widget textarea { width: 265px; } */
+  .ui-widget input[type='checkbox'],
+  .ui-widget input[type='radio'] {
+    width: 15px;
+  }
+
+  .ui-jqgrid td input,
+  .ui-jqgrid td select .ui-jqgrid td textarea {
+    width: auto;
+  }
+
+  .ui-jqgrid .ui-pg-selbox {
+    width: auto;
+  }
+
+  .ui-jqgrid .ui-jqgrid-htable th div {
+    font-size: 12px;
+    line-height: 17px;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .ui-jqgrid .ui-icon-asc {
+    margin-left: 1px;
+  }
+
+  .ui-jqgrid .ui-icon-desc {
+  }
+
+  /* 后台管理左边按钮、右边按�? */
+  .btn-group.btn-group-bottom {
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  .btn-group.btn-group-top {
+    margin-bottom: 5px;
+  }
+  /* 查询按钮靠右 */
+  .btn-group.btn-group-top > .query-fields {
+    float: right;
+  }
+
+  #tabs-5 #customButton {
+    border-collapse: collapse;
+  }
+
+  #tabs-5 #customButton td {
+    border: 1px solid #a6c9e2;
+    text-align: center;
+  }
+  /****警告框开�?*****/
+  #popup_title {
+    background: url('../../theme/images/v1_icon.png') repeat-x scroll 0 -53px transparent;
+    height: 27px;
+    padding-top: 3px;
+  }
+
+  #popup_title_name {
+    color: #ffffff;
+    font-size: 15px;
+    text-indent: 15px;
+    float: left;
+  }
+
+  #popup_close {
+    background: url('../../theme/images/v1_close.png') no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    float: right;
+    height: 20px;
+    margin-top: 5px;
+    width: 20px;
+  }
+
+  #popup_close:hover {
+    background: url('../../theme/images/v1_close2.png') no-repeat scroll 0 0 transparent;
+  }
+
+  #popup_content {
+    height: 120px;
+  }
+
+  #close_button_div {
+    text-align: center;
+  }
+
+  #popup_message_div {
+    height: 100px;
+  }
+
+  #popup_message_icon {
+    float: left;
+    height: 50px;
+    margin-left: 30px;
+    margin-top: 30px;
+    width: 50px;
+    background: url('../../theme/images/v1_alert.png') no-repeat scroll 0 0 transparent;
+  }
+
+  #popup_message {
+    float: left;
+    font-size: 14px;
+    height: 60px;
+    margin-left: 10px;
+    padding-top: 40px;
+    width: 300px;
+  }
+
+  #close_time_div {
+    text-align: center;
+  }
+  /****警告框结�?*****/
+
+  /* 后台管理table宽度100%，多行文本框的文本靠上对齐，表单域宽�?100% */
+  .tabs table {
+    width: 100%;
+  }
+
+  .tabs table td.align-top {
+    vertical-align: top;
+    padding-top: 5px;
+  }
+
+  .tabs table td input.full-width,
+  select.full-width,
+  textarea.full-width {
+    width: 100%;
+  }
+
+  .tabs table td .select2-container .select2-choice > .select2-chosen {
+    min-width: 100px;
+    width: 300px;
+    max-width: 100%;
+  }
+  /* jquery layout�?�? */
+  .ui-layout-toggler-west {
+    border: 0;
+  }
+
+  .ui-layout-toggler-west div {
+    width: 8px;
+    height: 25px; /* 3x 35 = 105 total height */
+  }
+
+  .ui-layout-west {
+    padding: 0;
+    /* IMPORTANT - remove padding so pane can 'collapse' to 0-width */
+  }
+
+  .ui-layout-west > div,
+  .ui-layout-center > div {
+    margin: 10px;
+  }
+
+  .ui-layout-center {
+    padding: 0;
+    /* IMPORTANT - remove padding so pane can 'collapse' to 0-width */
+  }
+
+  .btnToggler {
+    /* 	background: #00C; */
+    background: url('../../pt/images/layout_move_left.png') no-repeat scroll 0 0 transparent;
+  }
+
+  .btnExpand {
+    /* 	background: #090; */
+    background: url('../../pt/images/layout_move_right.png') no-repeat scroll 0 0 transparent;
+  }
+
+  .btnReset {
+    /* 	background: #C00; */
+    cursor: w-resize;
+    background: url('../../pt/images/layout_drag.png') no-repeat scroll 0 0 transparent;
+  }
+  /* jquery layout结束 */
+
+  /* jquery validate�?�? */
+  label.error {
+    color: red;
+  }
+  /* jquery validate结束 */
+
+  /*dialog////////////////////////////////////////////*/
+  .ui-dialog {
+    padding: 0;
+  }
+
+  .ui-dialog.ui-widget-content {
+    border: 0;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 30px;
+  }
+
+  .ui-dialog .ui-dialog-titlebar {
+    background: @primary-6;
+    border-radius: 0;
+    border: none;
+  }
+
+  .ui-dialog .ui-dialog-buttonpane {
+    text-align: center;
+  }
+
+  .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    float: none;
+  }
+
+  .ui-dialog .ui-dialog-buttonset .ui-button {
+    background: #5bb3db;
+    border: 0 none;
+    height: 35px;
+    line-height: 25px;
+    margin: 15px;
+    overflow: hidden;
+    padding: 5px 30px;
+    color: #fff;
+    border-radius: 3px;
+    outline: none;
+  }
+
+  .ui-dialog .ui-dialog-buttonset .ui-button .ui-button-text {
+    padding: 0;
+    font-size: 14px;
+    font-weight: normal;
+  }
+
+  .ui-dialog .ui-dialog-buttonset .ui-button:last-child {
+    background: #c2c2c2;
+  }
+
+  .ui-dialog .ui-dialog-buttonset .ui-button:hover {
+    background: #469fc7;
+    border: 0;
+  }
+
+  .ui-dialog .ui-dialog-buttonset .ui-button:last-child:hover {
+    background: #999;
+  }
+
+  .ui-dialog .ui-dialog-buttonpane {
+    border: 0;
+  }
+
+  input.input-disabled {
+    background: #f4f4f4;
+  }
+
+  #div_parentEleTree .ui-button-text-only .ui-button-text {
+    padding: 0.1em 1em;
+  }
+
+  .bs-bars button {
+    border-width: 2px;
+    padding: 3px 9px;
+    /*border: 1px solid #b6b6b6 !important;*/
+    margin-right: 3px;
+    color: #fff;
+    background-color: #c2c2c2;
+    border-color: #c2c2c2;
+  }
+
+  th.bs-checkbox > .th-inner {
+    text-align: center !important;
+  }
+
+  .bs-bars button:hover {
+    color: #333;
+    background-color: #d4d4d4;
+    border-color: #8c8c8c;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .clearfix:after {
+    content: '.';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .clearfix {
+    zoom: 1;
+  }
+
+  .cke_dialog_contents_body .cke_dialog_ui_html .post-detail .ui-tabs-panel {
+    min-height: 400px;
+  }
+
+  #propertiesDialog .panel {
+    margin-bottom: 8px;
+  }
+
+  #propertiesDialog .panel .panel-title {
+    line-height: 35px;
+    font-size: 14px;
+  }
+
+  #propertiesDialog .panel .panel-title .toggle-switcher {
+    color: #999999;
+    cursor: pointer;
+  }
+
+  #propertiesDialog .panel .panel-title .panel-title-text {
+    margin-left: 4px;
+    margin-right: 8px;
+  }
+
+  #propertiesDialog .panel .bootstrap-table {
+    border: 1px solid rgb(221, 221, 221);
+  }
+
+  #propertiesDialog .panel .bootstrap-table thead tr {
+    background: @background-light;
+  }
+
+  #propertiesDialog .panel .bootstrap-table tbody tr {
+    background: transparent;
+  }
+
+  #propertiesDialog .panel .bootstrap-table tbody tr:hover {
+    background: @background-light;
+  }
+
+  #propertiesDialog .panel .well-btn {
+    cursor: pointer;
+    background: transparent;
+    color: #488cee;
+  }
+
+  #propertiesDialog .panel .well-btn:active {
+    color: #488cee;
+    width: initial;
+  }
+}

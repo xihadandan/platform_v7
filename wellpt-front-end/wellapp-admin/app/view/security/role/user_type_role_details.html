@@ -1,0 +1,105 @@
+<style>
+  .ul_waitselect label {
+    font-weight: normal;
+    height: auto !important;
+  }
+
+  .ul_selected li {
+    padding: 2px 20px 2px 2px;
+  }
+
+  .ul_selected li .icon {
+    opacity: 0;
+    float: right;
+    color: #999999;
+    margin: 0;
+    width: 0;
+  }
+
+  .ul_selected li:hover {
+    cursor: pointer;
+    background: #e4eefc;
+  }
+
+  .ul_selected li:hover .icon {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  .side-span-label {
+    margin-bottom: 10px;
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  .role-qry-close-icon {
+    opacity: 0;
+  }
+
+  .keyword-search-wrap:hover .role-qry-close-icon {
+    opacity: 1;
+  }
+
+  .roleSelections .ul_selected span,
+  .roleSelections .ul_waitselect label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .roleSelections .ul_selected span {
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+</style>
+
+<div class="container-fluid" style="background-color: white; padding-top: 10px">
+  <ul class="nav nav-tabs" role="tablist"></ul>
+
+  <div class="tab-content"></div>
+  <div class="row" style="margin-top: 80px">
+    <div class="col-sm-12 text-center">
+      <button type="button" class="btn btn-primary" id="btn_save_user_type_role">保存</button>
+    </div>
+  </div>
+
+  <div style="display: none" id="userTypeRoleTemplate">
+    <li role="presentation" class="{2}">
+      <a href="#{0}" aria-controls="{0}" role="tab" data-toggle="tab" aria-expanded="true">{1}</a>
+    </li>
+
+    <div role="tabpanel" class="tab-pane {1}" id="{0}" style="padding-top: 10px">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="keyword_search_toolbar clearfix" style="padding-top: 10px">
+            <div class="keyword-search-wrap pull-left">
+              <span class="search-icon">
+                <i class="iconfont icon-ptkj-sousuochaxun"></i>
+              </span>
+              <input class="form-control role-qry-input" type="text" placeholder="关键字" />
+              <div class="close-icon role-qry-close-icon">
+                <i class="iconfont icon-ptkj-dacha"></i>
+              </div>
+            </div>
+            <button class="well-btn w-btn-primary btn-query" type="button" name="query" title="查询" style="">查询</button>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-sm-6">
+          <span class="side-span-label">选择角色 :</span>
+          <div class="roleSelections form-widget" style="border: 1px solid #cbc9c9; height: 400px; padding: 10px; overflow-y: auto">
+            <ul class="ul_waitselect" type="{0}"></ul>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <span class="side-span-label">已选角色 :</span>
+          <div class="roleSelections" style="border: 1px solid #cbc9c9; height: 400px; padding: 10px; overflow-y: auto">
+            <ul id="{0}_ul_selected" class="ul_selected" type="{0}"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>TreeGrid for BootstrapTable 3.0.x</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="../../../../../../resources/bootstrap/3.3.7/css/bootstrap.css">
+<link rel="stylesheet" href="../../../../../../resources/bootstrap-table/1.11.0/css/bootstrap-table.css">
+
+
+<script type="text/javascript" src="../../../../../../resources/jquery/1.12.4/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="../../../../../../resources/bootstrap/3.3.7/js/bootstrap.js"></script>
+<script type="text/javascript" src="../../../../../../resources/bootstrap-table/1.11.0/js/bootstrap-table.js"></script>
+<script type="text/javascript" src="./bootstrap-table-treegrid.js"></script>
+<script>
+	
+</script>
+</head>
+
+<body>
+	<div class="container">
+		<div id="toolbar">
+		<button id="expandAllNodes" type="button" class="btn btn-default">expandAllNodes</button>
+		<button id="collapseAllNodes" type="button" class="btn btn-default">collapseAllNodes</button>
+		<button id="toggleTreeView" type="button" class="btn btn-default">toggleTreeView</button>
+		</div>
+		<table class="table tree">
+		</table>
+		<br><br><br><br>
+		<table class="table treeNode">
+		</table>
+	</div>
+	<!-- /container -->
+
+
+	<!-- Bootstrap core JavaScript
+        ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+</body>
+<script type="text/javascript">
+
+	var treeColumns = [ {
+		field : "id",
+		title : "id"
+	}, {
+		sortable : true,
+		field : "name",
+		title : "name"
+	}, {
+		field : "Url",
+		title : "Url"
+	}, 
+	{
+		field : "parentId",
+		title : "parentId"
+	}, {
+		field : "level",
+		title : "level"
+	}, {
+		field : "CreateTime",
+		title : "CreateTime"
+	} ];
+	var treeData = [ {
+		id : 1,
+		name : "系统设置",
+		Url : null,
+		parentId : null,
+		CreateTime : null
+	}, {
+		id : 2,
+		name : "菜单管理",
+		Url : "/Systems/Menu/Index",
+		parentId : 1,
+		CreateTime : null,
+	}, {
+		id : 3,
+		name : "订单管理",
+		Url : null,
+		parentId : null,
+		CreateTime : "2017-05-31 17:05:27"
+	}, {
+		id : 4,
+		name : "基础数据",
+		Url : null,
+		parentId : null,
+		CreateTime : "2017-05-31 17:05:55"
+	}, {
+		id : 5,
+		name : "新增订单",
+		Url : "/order/add",
+		parentId : 3,
+		CreateTime : "2017-05-31 17:07:03"
+	}, {
+		id : 6,
+		name : "新增订单2(beforeExpand vs beforeCollapse false)",
+		Url : "/order/add",
+		parentId : 5,
+		CreateTime : "2017-05-31 17:07:03"
+	}, {
+		id : 7,
+		name : "新增订单4",
+		Url : "/order/add",
+		parentId : 6,
+		CreateTime : "2017-05-31 17:07:03"
+	}, {
+		id : 8,
+		name : "新增订单5",
+		Url : "/order/add",
+		parentId : 7,
+		CreateTime : "2017-05-31 17:07:03"
+	}, {
+		id : 9,
+		name : "新增订单6",
+		Url : "/order/add",
+		parentId : 6,
+		CreateTime : "2017-05-31 17:07:03"
+	} ];
+	
+	var treeData2 = [ {
+		id : 1,
+		name : "系统设置",
+		Url : null,
+		CreateTime : null,
+		children : [{
+			id : 2,
+			name : "菜单管理",
+			Url : "/Systems/Menu/Index",
+			CreateTime : null
+		}]
+	}, {
+		id : 3,
+		name : "订单管理",
+		Url : null,
+		CreateTime : "2017-05-31 17:05:27",
+		children : [{
+			id : 5,
+			name : "新增订单",
+			Url : "/order/add",
+			CreateTime : "2017-05-31 17:07:03",
+			children : [{
+				id : 6,
+				name : "新增订单2(beforeExpand vs beforeCollapse false)",
+				Url : "/order/add",
+				CreateTime : "2017-05-31 17:07:03",
+				children : [{
+					id : 7,
+					name : "新增订单4",
+					Url : "/order/add",
+					CreateTime : "2017-05-31 17:07:03"
+				},
+				{
+					id : 8,
+					name : "新增订单5",
+					Url : "/order/add",
+					CreateTime : "2017-05-31 17:07:03"
+				}]
+			},
+			{
+				id : 9,
+				name : "新增订单6",
+				Url : "/order/add",
+				CreateTime : "2017-05-31 17:07:03"
+			}]
+		}]
+	}, {
+		id : 4,
+		name : "基础数据",
+		Url : null,
+		CreateTime : "2017-05-31 17:05:55"
+	}];
+
+	$(document).ready(function() {
+		var $bootstrapTable = $('table.tree');
+		$bootstrapTable.bootstrapTable({
+			columns : treeColumns,
+			data : treeData,
+			toolbar : '#toolbar',
+			sidePagination : 'client',
+			pagination : false,
+			treeCollapseAll : false,// 是否全部展开
+			treeView : true,
+			treeField : "name",// treeView视图字段
+			fieldId : "id",
+			parentIdField : "parentId",
+			clickToSelect : true
+		});
+		$bootstrapTable.on("beforeExpand.bs.table expand.bs.table beforeCollapse.bs.table collapse.bs.table" , function(event, row){
+			console.log(row);
+			if(row && row.name && row.name.indexOf(event.type) > 0){
+				debugger
+				return false;
+			}
+		});
+		
+		$('div#toolbar').on("click" , "button[type=button]", function(event, row){
+			var $target = $(event.target);
+			if($target && $target.attr("id")){
+				$bootstrapTable.bootstrapTable($target.attr("id"));
+			}
+		});
+		
+		$('table.treeNode').bootstrapTable({
+			columns : treeColumns,
+			data : treeData2,
+			sidePagination : 'client',
+			pagination : false,
+			treeCollapseAll : false,// 是否全部展开
+			treeView : true,
+			treeField : "name",// treeView视图字段
+			fieldId : "id",
+			parentIdField : "parentId",
+			clickToSelect : true
+		});
+	});
+	
+	
+</script>
+</html>

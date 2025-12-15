@@ -1,0 +1,520 @@
+/** 流程签署意见 */
+
+// 流程签署意见 - 最近使用/常用意见 页签
+#rightMenuTabContainer .sidebar-tab-opinion .tab-content {
+  .tab-pane {
+    padding: 0 15px 0 10px;
+  }
+
+  // 常用意见
+  #wf-opinion-common {
+    position: relative;
+    padding-right: 0;
+  }
+}
+
+// 流程签署意见 - 上面的最近使用/常用意见面板
+.wf-opinion .tabs-right {
+  width: calc(100% - 30px) !important;
+  margin-left: 15px;
+  margin-top: 15px;
+  padding-top: 0;
+  border-radius: @border-radius-base;
+  border: @border-default;
+
+  // 流程签署意见 - 最近使用/常用意见面板 - 导航条
+  .nav-tabs {
+    background: @background-light;
+    padding: 0 15px;
+    box-sizing: border-box;
+
+    > li {
+      > a {
+        height: 40px;
+        line-height: 38px;
+        padding: 0 5px;
+        color: @text-color-dark;
+        border: none;
+        background: transparent;
+
+        &:before {
+          .absolute(false false 0 100%);
+          .size(0 3px);
+
+          content: '';
+          background: transparent;
+          transition: @animation-duration-base all cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+      }
+
+      &:hover > a {
+        color: @text-color-primary;
+        border: none;
+        background: transparent;
+      }
+
+      &.active {
+        > a,
+        > a:focus,
+        > a:hover {
+          border: none;
+          background: transparent;
+          color: @text-color-primary;
+        }
+
+        > a:focus:before,
+        > a:before {
+          left: 0;
+          width: 100%;
+          background: @background-primary;
+        }
+      }
+
+      &:not(:first-of-type) {
+        margin-left: 30px;
+      }
+    }
+  }
+
+  .tab-content {
+    border: none;
+  }
+}
+
+.work-process-viewer .nav-tabs > li {
+  > a {
+    height: 40px;
+    line-height: 38px;
+    color: @text-color-dark;
+    border: none;
+    background: transparent;
+    margin-bottom: 0;
+    padding: 0;
+    position: relative;
+
+    &:before {
+      .absolute(false false 0 100%);
+      .size(0 3px);
+
+      content: '';
+      background: transparent;
+      transition: @animation-duration-base all cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+  }
+
+  &:hover > a {
+    border: none;
+    background: transparent;
+  }
+
+  &.active {
+    > a {
+      border: none;
+      background: transparent;
+      color: @text-color-primary;
+    }
+
+    > a:focus:before,
+    > a:before {
+      left: 0;
+      width: 100%;
+      background: @background-primary;
+    }
+  }
+}
+
+// 意见签署框
+.sidebar-tab-opinion .sign-opinion-container {
+  width: calc(100% - 30px);
+  margin: @margin-md;
+  border: none;
+  box-shadow: none;
+
+  + .row {
+    padding: 0 @padding-md;
+  }
+
+  .panel-heading {
+    border: @border-default-dark;
+    border-bottom: none;
+    border-radius: @border-radius-base @border-radius-base 0 0;
+  }
+
+  .panel-body {
+    padding: 0;
+    // height: 210px;
+    overflow-y: auto;
+
+    textarea {
+      border-radius: 0 0 @border-radius-base @border-radius-base;
+      border-color: @border-color-dark;
+      box-shadow: none;
+      height: 160px;
+      outline: none;
+      color: @text-color;
+      font-size: @font-size-base;
+      //border-top: 0;
+
+      &:focus,
+      &:hover {
+        box-shadow: none !important;
+        border: @border-default-dark !important;
+      }
+    }
+
+    .sign_opinion_radio {
+      border-left: @border-width-base @border-style-base @border-color-dark;
+      border-right: @border-width-base @border-style-base @border-color-dark;
+      padding: 8px 8px 0;
+
+      .btn-primary-radio {
+        max-width: 100%;
+
+        & > span {
+          .text-truncate();
+          max-width: 120px;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .wf-opinion .tabs-right {
+    margin-top: 12px;
+  }
+
+  .sidebar-tab-opinion .sign-opinion-container {
+    margin-top: 12px;
+
+    .panel-heading {
+      padding: 8px 15px;
+
+      .panel-title {
+        font-size: @font-size-base;
+      }
+    }
+  }
+
+  .sidebar-tab-opinion {
+    .btn[name='btn_ok'] {
+      margin-right: 0;
+    }
+  }
+
+  .wf-opinion .nav-tabs > li > a,
+  .work-process-viewer .nav-tabs > li > a {
+    height: 34px;
+    line-height: 32px;
+  }
+}
+
+// 最近使用 / 常用意见 列表
+.wf-opinion .list-group {
+  max-height: 206px;
+  overflow: auto;
+  margin-bottom: 0px;
+}
+
+#rightMenuContainer .sidebar-tab-opinion .tab-content .tab-pane.opinion-recent,
+#rightMenuContainer .sidebar-tab-opinion .tab-content .tab-pane.opinion-common {
+  padding-right: 0;
+}
+
+.wf-opinion .opinion-recent .list-group,
+.wf-opinion .opinion-common .list-group {
+  min-height: 206px;
+  height: 206px;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+
+.wf-opinion .tab-content {
+  position: relative;
+}
+
+// 意见管理弹窗打开按钮
+.wf-opinion .tab-content > span.wf-opinion-mgr {
+  .absolute(-30px 12px false false);
+
+  cursor: pointer;
+  color: @text-color-light;
+
+  &:hover {
+    color: @text-color-primary;
+  }
+}
+
+.wf-opinion .list-group a.list-group-item,
+a.list-group-item > p,
+.user-opinion-list .list-group a.list-group-item {
+  max-height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  margin-bottom: 1px;
+  padding: 0px @padding-3xs;
+}
+
+.wf-opinion .list-group a.list-group-item {
+  // 意见文本
+  .item-text {
+    .text-overflow();
+    .size(calc(100% - 100px), 40px);
+
+    color: @text-color;
+    display: inline-block;
+  }
+
+  // 签署并提交 按钮
+  .sign-btn {
+    background: @primary-color;
+    color: @text-color-inverse;
+    padding: 0 @padding-xs;
+    font-size: @font-size-base;
+    border-radius: @border-radius-base;
+    height: 24px;
+    line-height: 24px;
+    border: none;
+    margin-top: @margin-xs;
+  }
+}
+
+a.list-group-item.editing,
+a.list-group-item:focus,
+a.list-group-item:hover,
+button.list-group-item:focus,
+button.list-group-item:hover {
+  background: @item-hover-background;
+}
+
+.public-opinion-list .list-group a.list-group-item:not(.disabled):focus,
+.public-opinion-list .list-group a.list-group-item:not(.disabled):hover {
+  background: @item-hover-background;
+  box-shadow: none;
+}
+
+.wf-opinion .wf-opinion-summernote ~ .note-editor {
+  margin-bottom: 0px;
+}
+
+.wf_opinion .sign-opinion-text {
+  max-height: 200px;
+}
+
+#toolbar .wf_opinion {
+  position: relative;
+}
+
+.wf_opinion .sign-opinion-value {
+  float: left;
+  margin-left: 20px;
+}
+
+.list-group-item:first-child {
+  border: none;
+  border-radius: 0;
+}
+
+.list-group-item:last-child {
+  border-radius: 0;
+}
+
+.list-group .list-group-item {
+  border: none;
+}
+
+.opinion-recent .list-group .list-group-item,
+.opinion-common .list-group .list-group-item {
+  border-bottom: @border-default;
+}
+
+.list-group .list-group-item.disabled {
+  color: @disabled-text-color;
+  background: transparent;
+}
+
+.panel-title .sign-inner-text {
+  color: @text-color-dark;
+
+  + i {
+    cursor: pointer;
+    color: @text-color-light;
+
+    &:hover {
+      color: @text-color-primary;
+    }
+  }
+}
+
+/** 签署意见 全屏 */
+.bootbox .modal-dialog .modal-ignore.full-close {
+  .absolute(40px 5px false false);
+
+  padding: @padding-md;
+  color: @text-color-light;
+  background: @component-background;
+  box-shadow: @shadow-popup-default;
+  border-radius: @border-radius-base;
+  z-index: 1;
+
+  span {
+    line-height: 1;
+    margin-left: 0;
+    position: relative;
+
+    &.close-full-tips {
+      color: @text-color-primary;
+      margin-left: @margin-md;
+    }
+  }
+
+  &:before {
+    .absolute(-8px 11px false false);
+
+    content: '';
+    display: block;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 8px solid @component-background;
+  }
+}
+
+.bootbox.full-screen-opinion .modal-body .bootbox-body {
+  padding-top: 0;
+
+  textarea {
+    .size(100% 580px);
+
+    border: none;
+    box-shadow: none;
+    outline: none;
+    color: @text-color;
+    font-size: @font-size-base;
+    &:hover,
+    &:focus {
+      box-shadow: none !important;
+      border: none !important;
+    }
+  }
+}
+
+.bootbox .modal-dialog .rollback-task-tag {
+  display: inline-block;
+  margin: 3px;
+  padding: 0 @padding-2xs;
+  font-size: @font-size-sm;
+  line-height: 22px;
+  color: @danger-color;
+  background: #fceaea;
+  border: 1px solid #f5b6b7;
+  border-radius: @border-radius-base;
+}
+
+.opinion-full-screen {
+  .box(fixed);
+  .square(100%);
+
+  display: none;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999999;
+
+  .panel {
+    .size(980px 620px);
+
+    margin: 80px auto;
+    border-radius: 0;
+
+    .panel-heading {
+      position: relative;
+      height: 40px;
+
+      .opinion-full-tips {
+        .absolute(false 5px -50px false);
+
+        padding: @padding-md;
+        color: @text-color-light;
+        background: @component-background;
+        box-shadow: @shadow-popup-default;
+        border-radius: @border-radius-base;
+
+        span {
+          margin-left: @margin-md;
+          color: @text-color-primary;
+          font-size: @font-size-base;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .panel-title {
+      font-size: @font-size-lg;
+      color: @text-color-light;
+    }
+  }
+}
+
+.opinion_task_dyform_asyn {
+  font-size: @font-size-base;
+  margin-left: -5px;
+  margin-top: 5px;
+
+  .opinion_task_dyform_asyn_name {
+    color: @text-color-dark;
+    background: @gray-3;
+    padding: 3px 5px;
+    display: inline-block;
+  }
+
+  .opinion_task_dyform_asyn_field {
+    color: @text-color;
+    background: #f0f2f6;
+    margin-top: 1px;
+    padding: 5px;
+    word-break: break-all;
+    min-height: 30px;
+  }
+}
+
+.btn-primary-radio {
+  background: #f0f2f6;
+  border: @border-width-base @border-style-base #edf4fd;
+  border-radius: @border-radius-base;
+  color: @text-color;
+  font-size: @font-size-base;
+  margin-bottom: 8px;
+  margin-right: 5px;
+
+  span {
+    vertical-align: top;
+  }
+
+  i {
+    font-size: @font-size-xl;
+    color: @text-color-inverse;
+    border: @border-width-base @border-style-base @border-color-darker;
+    border-radius: 20px;
+
+    &::before {
+      content: '\e612';
+    }
+  }
+
+  &.active {
+    background: @background-primary-light;
+    border: @border-default-primary;
+
+    i {
+      font-size: @font-size-sm;
+      color: @text-color-inverse;
+      background: @primary-color;
+      border: 1px solid transparent;
+      border-radius: 20px;
+      padding: 2px 3px 3px 3px;
+
+      &:before {
+        content: '\e8cb';
+      }
+    }
+  }
+}

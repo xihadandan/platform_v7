@@ -1,0 +1,122 @@
+// 预览面板
+.ant-input.theme-input-hover,
+.ant-input.theme-input-textarea-hover {
+  border-color: var(--w-input-border-color-hover);
+  box-shadow: var(--w-input-box-shadow-hover);
+}
+
+.ant-input.theme-input-focus,
+.ant-input.theme-input-textarea-focus {
+  border-color: var(--w-input-border-color-focus);
+  box-shadow: var(--w-input-box-shadow-focus);
+}
+
+.has-error {
+
+  .ant-input.theme-input-error-hover,
+  .ant-input.theme-input-textarea-error-hover {
+    border-color: var(--w-input-error-border-color-hover);
+  }
+
+  .ant-input.theme-input-error-focus,
+  .ant-input.theme-input-textarea-error-focus {
+    border-color: var(--w-input-error-border-color-focus);
+    box-shadow: var(--w-input-error-box-shadow-focus);
+  }
+}
+
+.theme-input-textarea-clear {
+  .ant-input {
+    // height: auto;
+  }
+}
+
+.ant-radio {
+  vertical-align: middle;
+}
+
+span.ant-radio+* {
+  vertical-align: middle;
+}
+
+.theme-radio-base {
+  .ant-descriptions-row:nth-child(1) {
+    display: none;
+  }
+}
+
+.theme-radio-group-width {
+  &.ant-radio-group {
+    .ant-radio-wrapper {
+      margin-right: var(--w-radio-group-width-mr);
+    }
+  }
+}
+
+.theme-radio-group-item {
+  &.ant-radio-group {
+    .ant-radio-wrapper {
+      margin-right: var(--w-radio-group-item-mr);
+    }
+  }
+}
+
+
+body .widget-form-input-number .ant-input-group-compact.theme-input-number-handler {
+  .ant-input-number {
+    .ant-input-number-handler-wrap {
+      opacity: 1;
+    }
+  }
+
+  &.theme-input-number-hover {
+    .ant-btn:not([disabled="disabled"]) {
+      border-color: var(--w-input-number-border-color-hover);
+      background: var(--w-input-number-handler-bg-color-hover);
+      box-shadow: var(--w-input-number-box-shadow-hover);
+      color: var(--w-input-number-handler-font-color-hover);
+    }
+
+    .ant-input-number-handler-wrap {
+      .ant-input-number-handler {
+
+        &-up,
+        &-down {
+          background: var(--w-input-number-handler-bg-color-hover);
+
+          &-inner {
+            color: var(--w-input-number-handler-font-color-hover);
+            font-size: var(--w-input-number-handler-font-size);
+          }
+        }
+
+      }
+    }
+  }
+
+  &.theme-input-number-focus {
+    .ant-btn:not([disabled="disabled"]) {
+      border-color: var(--w-input-number-border-color-focus);
+      background: var(--w-input-number-handler-bg-color-active);
+      box-shadow: var(--w-input-number-box-shadow-focus);
+      color: var(--w-input-number-handler-font-color-active);
+    }
+
+    .ant-input-number-handler-wrap {
+      .ant-input-number-handler {
+
+        &-up,
+        &-down {
+          background: var(--w-input-number-handler-bg-color-active);
+
+          &-inner {
+            color: var(--w-input-number-handler-font-color-active);
+            font-size: var(--w-input-number-handler-font-size);
+          }
+        }
+
+      }
+    }
+  }
+
+}

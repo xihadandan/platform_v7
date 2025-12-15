@@ -1,0 +1,19 @@
+{
+  "WidgetDataManagerView": {
+    "categoryTo": "จัดหมวดหมู่ไปที่",
+    "selectTag": "เลือกแท็ก",
+    "colorOkText": "ตกลง",
+    "newTag": "สร้างแท็กใหม่",
+    "column": {
+      "collect": "เก็บข้อมูล",
+      "focus": "สนใจ"
+    },
+    "message": {
+      "pleaseSelectRow": "โปรดเลือกแถว",
+      "serverError": "มีข้อผิดพลาดของเซิร์ฟเวอร์",
+      "pleaseSelectTag": "โปรดเลือกแท็ก",
+      "saveTagSuccess": "บันทึกแท็กสำเร็จ",
+      "saveSuccess": "บันทึกสำเร็จ"
+    }
+  }
+}

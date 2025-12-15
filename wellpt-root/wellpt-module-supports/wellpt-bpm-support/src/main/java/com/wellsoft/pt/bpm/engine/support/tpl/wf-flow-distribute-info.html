@@ -1,0 +1,47 @@
+<div class="wf-distribute-info">
+    {@each distributeInfos as distributeData,batchIndex}
+    <div class="distribute-info-header">
+		<span style="font-weight: bold; font-size: 15px;">
+			{@if distributeData.title != null && distributeData.title != ""}
+				${distributeData.title}
+			{@else}
+				信息分发
+			{@/if}
+			{@if distributeInfos.length > 1}
+				${distributeInfos.length - batchIndex}
+			{@/if}
+		</span>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="col-order">序号</th>
+            <th>分发人</th>
+            <th>分发时间</th>
+            <th>分发内容</th>
+            <th>附件</th>
+        </tr>
+        </thead>
+        <tbody>
+        {@each distributeData.distributeInfos as distributeInfo,index}
+        <tr>
+            <td>${parseInt(index) + 1}</td>
+            <td>${distributeInfo.distributorName}</td>
+            <td>${distributeInfo.createTime}</td>
+            <td>${distributeInfo.content}</td>
+            <td>
+                <div class="distribute-info-attach" distributeDataIndex="${batchIndex}" distributeInfoIndex="${index}">
+                    {@each distributeInfo.logicFileInfos as logicFileInfo,fileIndex}
+                    <div class="row">
+                        <p class="filename" fileId="${logicFileInfo.fileID}" style="display:block;float:left;"
+                           title="123.def">${logicFileInfo.fileName}</p>
+                    </div>
+                    {@/each}
+                </div>
+            </td>
+        </tr>
+        {@/each}
+        </tbody>
+    </table>
+    {@/each}
+</div>

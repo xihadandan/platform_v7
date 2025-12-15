@@ -1,0 +1,34 @@
+{
+  "quill": {
+    "defaultFontFamily": "Default Font",
+    "defaultFontSize": "Default Size",
+    "fontFamily": {
+      "songti": "Song",
+      "heiti": "Gothic",
+      "kaiti": "KaiTi",
+      "fangsong": "FangSong",
+      "lishu": "Clerical Script",
+      "youyuan": "YouYuan",
+      "weiruanyahei": "Microsoft YaHei"
+    },
+    "bold": "Bold",
+    "italic": "Italic",
+    "underline": "Underline",
+    "minusIndent": "Decrease Indent",
+    "addIndent": "Increase Indent",
+    "backgroundColor": "Background Color",
+    "fontColor": "Font Color",
+    "align": "Alignment",
+    "leftAlign": "Left Align",
+    "centerAlign": "Center Align",
+    "rightAlign": "Right Align",
+    "justifyAlign": "Justify Align",
+    "ordered": "Ordered List",
+    "bullet": "Bullet List",
+    "insertImage": "Insert Image",
+    "insertLink": "Insert Link",
+    "sourceCode": "Source Code",
+    "maximize": "Maximize",
+    "recover": "Recover"
+  }
+}

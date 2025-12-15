@@ -1,0 +1,57 @@
+<div id="attrCfgDiv" title="属性设置" style="overflow: hidden" class="file-library-config">
+  <div>
+    <div class="dyform">
+      <div class="post-sign">
+        <div class="post-detail">
+          <div id="file-library-tabs" style="max-height: 600px; overflow-y: auto">
+            <ul>
+              <li><a href="#basic_info">基本属性</a></li>
+              <li><a href="#column_define">列定义</a></li>
+            </ul>
+            <div id="basic_info">
+              <table>
+                <tr style="display: none">
+                  <td class="Label">文件夹目录ID</td>
+                  <td class="value">
+                    <input type="text" id="id" name="id" class="w100" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="Label">文件夹目录设置</td>
+                  <td class="value">
+                    <input type="text" id="relaFileLibraryText" name="relaFileLibraryText" />
+                    <input type="hidden" id="relaFileLibraryId" name="relaFileLibraryId" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="Label">文件夹目录ID</td>
+                  <td class="value">
+                    <input type="text" id="relaFileLibraryWidgetId" name="relaFileLibraryWidgetId" readonly="readonly" />
+                    <br />
+                    <label>表单页面可通过ID值获取到文件夹目录组件，例如：DyformFacade.getTableView('wBootstrapTable_12adf1')</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="Label">默认条件</td>
+                  <td class="value">
+                    <input type="text" name="defaultCondition" id="defaultCondition" value="" class="w100" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="Label">编辑模式</td>
+                  <td class="value">
+                    <input type="radio" id="showType" name="showType" value="5" />
+                    <label for="showType">隐藏</label>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div id="column_define">
+              <table id="file_library_columns"></table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

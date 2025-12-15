@@ -1,0 +1,60 @@
+/*
+ * @(#)2014-9-12 V1.0
+ * 
+ * Copyright 2014 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.integration.support;
+
+import org.apache.commons.lang.exception.ExceptionUtils;
+import org.quartz.JobExecutionContext;
+import org.springframework.stereotype.Component;
+
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.integration.service.ExchangeDataSynSQLDService;
+import com.wellsoft.pt.security.util.IgnoreLoginUtils;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+
+/**
+ * 
+ * Description: 统计集美区数据同步发送调用总线次数任务
+ * 
+ * @author xujianjia
+ * @date 2016年12月19日
+ * @version 1.0
+ * 
+ *          <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2016年12月19日.1	xujianjia		2016年12月19日		Create
+ * </pre>
+ *
+ */
+@Component
+public class SynchronousSQLDJMTriggerOutTask extends Job {
+	private static boolean locked;
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see com.wellsoft.pt.task.job.Job#execute(org.quartz.JobExecutionContext,
+	 *      com.wellsoft.pt.task.job.JobData)
+	 */
+	@Override
+	protected void execute(JobExecutionContext executionContext, JobData jobData) {
+		if (locked) {
+			return;
+		}
+		try {
+			locked = true;
+			ExchangeDataSynSQLDService exchangeDataSynSQLDService = ApplicationContextHolder
+					.getBean(ExchangeDataSynSQLDService.class);
+			exchangeDataSynSQLDService.triggerCountOut();
+		} catch (Exception e) {
+			logger.error(ExceptionUtils.getStackTrace(e));
+		} finally {
+			locked = false;
+			IgnoreLoginUtils.logout();
+		}
+	}
+}

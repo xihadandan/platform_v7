@@ -1,0 +1,12 @@
+{
+  "WidgetGridstack": {
+    "resetDefault": "คืนค่าเป็นค่าเริ่มต้น",
+    "resetDefaultLayout": "คืนค่าตัวอักษรเริ่มต้น",
+    "resetDefaultLayoutTips": "คุณแน่ใจหรือไม่ว่าต้องการคืนค่าตัวอักษรเริ่มต้น?",
+    "drapLayout": "ลากเค้าโครง",
+    "start": "เริ่มต้น",
+    "saveAndEnd": "บันทึกและเสร็จสิ้น",
+    "saveAndEndDragLayout": "บันทึกและสิ้นสุดเค้าโครงการลากt",
+    "startDragLayout": "เริ่มลากเค้าโครง"
+  }
+}

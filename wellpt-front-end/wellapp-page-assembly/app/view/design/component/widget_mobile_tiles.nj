@@ -1,0 +1,75 @@
+
+<div id="widget_mobile_tiles">
+	<form id="widget_mobile_tiles_form" class="form-horizontal">
+		<div id="widget_mobile_tiles_tabs">
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#widget_mobile_tiles_tabs_base_info">基础信息</a></li>
+				<li role="presentation"><a href="#widget_mobile_tiles_tabs_grid_cell_info">磁贴信息</a></li>
+			</ul>
+
+			<div class="tab-content" style="height: 500px">
+				<div role="tabpanel" class="tab-pane active" id="widget_mobile_tiles_tabs_base_info">
+					<div class="form-group">
+						<label for="height" class="col-sm-2 control-label">名称</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option " height="34px" name="name"
+								id="name">
+						</div>
+					</div>
+          <div class="form-group">
+						<label for="iconClassName" class="col-sm-2 control-label">图标</label>
+						<div class="col-sm-10">
+							<input type="hidden" class="form-control w-configurer-option" name="iconClassName" id="iconClassName"> 
+              <span id="iconClassNameSpan"></span>
+							<button type="button" class="btn btn-danger" id="logoFileImageRemoveBtn">删除</button>
+							<button type="button" class="btn btn-primary" id="logoFileImageSelectBtn">选择图标</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="height" class="col-sm-2 control-label">磁贴风格</label>
+						<div class="col-sm-10 checkbox">
+              <select id="mode" name="mode" class="form-control w-configurer-option" >
+                <option value="standard" selected>标准</option>
+                <option value="large">大磁贴</option>
+                <option value="square">方形</option>
+              </select>
+						</div>
+					</div>
+
+          <div class="form-group">
+						<label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option"
+								height="34px" name="jsModule" id="jsModule">
+							<input type="hidden" class="form-control w-configurer-option" name="jsModuleName" id="jsModuleName">
+						</div>
+					</div>
+          <div class="form-group">
+						<label for="uniJsModule" class="col-sm-2 control-label">uni-app二开组件名</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option" name="uniJsModule" id="uniJsModule">
+						</div>
+					</div>
+          {% include "./widget_base_info.nj" %}
+				</div>
+				<div role="tabpanel" class="tab-pane" id="widget_mobile_tiles_tabs_grid_cell_info">
+					<div id="div_button_info_toolbar" class="btn-group btn_button_info">
+						<button id="btn_add_button" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+						</button>
+						<button id="btn_delete_button" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+						</button>
+						<button id="btn_row_up_button" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+						</button>
+						<button id="btn_row_down_button" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+						</button>
+					</div>
+					<table id="table_tile_info" class="grid_cell_info" data-height="400"></table>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

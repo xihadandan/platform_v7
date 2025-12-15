@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>公用编辑器</title>
+    <!--/resources/pt/css/app/base.css?v=6.0.0.0-SNAPSHOT.094723-->
+    <link rel="stylesheet"
+          href="../../css/font-awesome/4.7.0/css/font-awesome.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="../../css/wellsoft-font/style.css"/>
+    <link href="../bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="../jquery/1.12.4/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="./min/ace.js"></script>
+    <script type="text/javascript" src="./min/ext-language_tools.js"></script>
+    <script type="text/javascript" src="./min/ext-zoom_win.js"></script>
+    <script type="text/javascript" src="./min/ext-code_his.js"></script>
+    <script type="text/javascript" src="./min/ext-code_var_snippets.js"></script>
+    <style>
+        html, body, h1, h2, h3, h4, h5, h6, hr, p, iframe, dl, dt, dd, ul, ol, li, pre, form, button, input, textarea, th, td, fieldset {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body style="margin: 0px">
+<pre id="aceCodeEditor" style="min-height:300px;margin:0px;padding: 0px!important;">
+
+</pre>
+</body>
+<script>
+    var getQueryString = function (name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var values = window.location.search.substr(1).match(reg);
+        if (values != null) {
+            return values[2] != 'null' ? unescape(values[2]) : null;
+        }
+    }
+    //代码编辑框初始化
+    var aceCodeEditor = ace.edit("aceCodeEditor");
+    var theme = getQueryString('theme');
+    var codeHis = getQueryString('codeHis');
+    codeHis = $.extend({}, {
+        enable: false,
+        codeType: null,
+        relaBusizUuid: null
+    }, JSON.parse(codeHis));
+    var varSnippets = getQueryString('varSnippets');
+
+    theme = theme ? theme : 'chrome';
+    aceCodeEditor.setTheme("ace/theme/" + theme);
+
+    var mode = getQueryString('mode');
+    mode = mode ? mode : 'javascript';
+    var id = getQueryString('id');
+    aceCodeEditor.session.setMode("ace/mode/" + mode);
+    var readOnly = getQueryString('readOnly');
+    readOnly = readOnly === 'true';
+    //默认值设置
+    if (window.parent && window.parent.aceEvent && window.parent.aceEvent[id]) {
+        var defaultValue = window.parent.aceEvent[id].defaultValue();
+        if (defaultValue != null)
+            aceCodeEditor.setValue(defaultValue);
+    }
+    //启用提示菜单
+    ace.require("ace/ext/language_tools");
+    ace.require("ace/ext/zoom_win");
+    ace.require('ace/ext/code_var_snippets');
+    aceCodeEditor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true,
+        showPrintMargin: false,
+        enableCodeHis: codeHis,
+        enableVarSnippets: varSnippets,
+        readOnly: readOnly
+    });
+
+    //值变更事件
+    // $("#aceCodeEditor").on('keyup', 'textarea', function () {
+    //     if (window.parent && window.parent.aceEvent && window.parent.aceEvent[id]) {
+    //         window.parent.aceEvent[id].valueChange(aceCodeEditor.getValue());
+    //     }
+    // });
+
+    //值变更事件
+    aceCodeEditor.on('change', function () {
+        if (window.parent && window.parent.aceEvent && window.parent.aceEvent[id]) {
+            window.parent.aceEvent[id].valueChange(aceCodeEditor.getValue());
+        }
+    });
+
+
+    window.aceCodeEditor = aceCodeEditor;
+
+
+</script>
+</html>

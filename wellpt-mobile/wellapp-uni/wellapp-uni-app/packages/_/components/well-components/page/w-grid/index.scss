@@ -1,0 +1,76 @@
+.w-grid {
+  // 分隔线
+  &.dividingLine {
+    > .w-row {
+      height: 100%;
+      > .w-col {
+        position: relative;
+        overflow: auto;
+        transition: width 0.1s linear;
+        &:not(:last-child) {
+          border-right: 1px solid var(--w-border-color-light);
+        }
+
+        &.col-collapse {
+          transition: width 0.1s linear;
+        }
+        > .grid-sider-trigger {
+          position: absolute;
+          top: 50%;
+          margin-top: -24px;
+          z-index: 2;
+          height: 48px;
+          width: 20px;
+          line-height: 48px;
+          text-align: center;
+          background-color: var(--w-fill-color-base);
+          color: var(--w-text-color-mobile);
+          font-size: 10px;
+          opacity: 1;
+          transition: left 0.15s linear, opacity 0.3s linear;
+          cursor: pointer;
+
+          &.left {
+            left: 0px;
+            border-radius: 0px 4px 4px 0px;
+            border: 1px solid var(--w-border-color-lighter);
+            border-left: 0;
+          }
+          &.right {
+            right: 0px;
+            border-radius: 4px 0px 0px 4px;
+            border: 1px solid var(--w-border-color-lighter);
+            border-right: 0;
+          }
+        }
+      }
+    }
+    &.rowDisplay {
+      > .w-row > .w-col:not(:last-child) {
+        border-right: 0px;
+        border-bottom: 1px solid var(--w-border-color-light);
+      }
+    }
+  }
+  .col-widget-item > * {
+    > .w-button-group,
+    > .w-scan-code {
+      padding: var(--w-padding-xs) var(--w-padding-md) 0;
+    }
+  }
+  &.hasScroll {
+    > .w-row {
+      height: 100%;
+      > .w-col {
+        overflow: auto;
+      }
+    }
+  }
+  &:not(.dividingLine) {
+    > .w-row.flex {
+      > .w-col + .w-col {
+        padding-left: var(--w-padding-xs); // 仅对弹性布局生效，默认布局用gutter
+      }
+    }
+  }
+}

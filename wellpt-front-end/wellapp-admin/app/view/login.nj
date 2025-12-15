@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ loginConfig.data.pageTitle }}</title>
+  </head>
+  <script type="text/javascript">
+    var ctx = '';
+    var backendURL = '{{ helper.backendUrl() }}';
+  </script>
+  <script type="text/javascript" src="{{ helper.staticPrefix() }}/js/jquery/1.12.4/jquery-1.12.4.min.js"></script>
+  {% if loginConfig.data.pageStyle == '_right' %}
+    <link rel="stylesheet" type="text/css" href="{{ helper.staticPrefix() }}/js/pt/login/right/login.css?v={{ helper.resVer() }}"/>
+    <script type="text/javascript" src="{{ helper.staticPrefix() }}/js/pt/login/right/initPage.js?v={{ helper.resVer() }}"></script>
+  {% else %}
+    <link rel="stylesheet" type="text/css" href="{{ helper.staticPrefix() }}/js/pt/login/def/login.css?v={{ helper.resVer() }}"/>
+    <script type="text/javascript" src="{{ helper.staticPrefix() }}/js/pt/login/def/initPage.js?v={{ helper.resVer() }}"></script>
+  {% endif %}
+  <script type="text/javascript" src="{{ helper.staticPrefix() }}/js/utils/json2.js?v={{ helper.resVer() }}"></script>
+  <script type="text/javascript" src="{{ helper.staticPrefix() }}/js/utils/md5.js?v={{ helper.resVer() }}"></script>
+  <script type="text/javascript" src="{{ helper.staticPrefix() }}/js/utils/base64.js?v={{ helper.resVer() }}"></script>
+  <script type="text/javascript" src="{{ helper.staticPrefix() }}/js/pt/js/global.js?v={{ helper.resVer() }}"></script>
+  <script type="text/javascript" src="{{ helper.staticPrefix() }}/js/crypto-js/crypto-js.js?v={{ helper.resVer() }}"></script>
+  <script type="text/javascript" src="{{ helper.staticPrefix() }}/js/pt/login/domain_login.js?v={{ helper.resVer() }}"></script>
+  {% if loginConfig.data.loginBoxHardware == '0' %}
+    <script type="text/javascript" src="{{ helper.staticPrefix() }}/js/pt/login/cert_login.js?v={{ helper.resVer() }}"></script>
+  {% endif %}
+  {% if loginConfig.data.loginBoxKey == '0' %}
+    <script type="text/javascript" src="{{ helper.staticPrefix() }}/js/pt/login/key_login.js?v={{ helper.resVer() }}"></script>
+  {% endif %}
+  <body>
+    {% if loginConfig.data.pageStyle == '_right' %}
+      {% include "./login_right_style.nj" %}
+    {% else %}
+      <div class="content" {% if loginConfig.data.pageBackgroundImageBase64 %} style="background-image: {{ loginConfig.data.pageBackgroundImageBase64 }}" {% endif %}>
+        <div class="box">
+          <div class="header" {% if loginConfig.data.pageLogoBase64 %} style="background-image: {{ loginConfig.data.pageLogoBase64 }}" {% endif %}>
+            <span>{{ loginConfig.data.pageTitle }}</span>
+          </div>
+          <div class="nav">
+            <ul>
+              <li target="account" data-source="1">
+                <span class="spanA">账号登录</span>
+              </li>
+              {% if loginConfig.data.loginBoxHardware == '0' %}
+                <li target="hardware" data-source="2">
+                  <span>硬件登录</span>
+                </li>
+              {% endif %}
+              {% if loginConfig.data.loginBoxKey == '0' %}
+                <li target="key" data-source="3">
+                  <span>电子钥匙盘登录</span>
+                </li>
+              {% endif %}
+              {% if loginConfig.data.loginBoxCode == '0' %}
+                <li target="code">
+                  <span>扫码登录</span>
+                </li>
+              {% endif %}
+              {% if loginConfig.data.loginBoxDing == '0' %}
+                <li target="ding" data-source="5">
+                  <span>钉钉扫码登录</span>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+          <div class="login">
+            <div class="account">
+              <ul>
+                <li class="username-li select">
+                  <input type="text" id="username" placeholder="{{ loginConfig.data.userNamePlaceholder }}" autofocus="autofocus">
+                </li>
+                <li class="password-li">
+                  <input type="password" id="password" placeholder="请输入密码">
+                  <a href="javascript:void(0);"></a>
+                </li>
+                {% if loginConfig.data.loginBoxAccountCode == '0' %}
+                  <li class="image-verify-li">
+                    <input type="text" id='image-verify' placeholder="请输入验证码" ignore-case="{{ loginConfig.data.accountCodeIgnoreCase }}">
+                    <span title="点击图片更换验证码">
+                      {{ loginConfig.data.svgCaptcha | safe }}
+                    </span>
+                  </li>
+                {% endif %}
+                {% if loginConfig.data.loginBoxAccountSms == '0' %}
+                  <li class="sms-verify-li">
+                    <input type="text" id='sms-verify' placeholder="请输入验证码">
+                    <span id="sendSms">获取验证码</span>
+                  </li>
+                {% endif %}
+                <li class="button-li">
+                  <button type="button" {% if loginConfig.data.isPreview %} disabled="disabled" {% endif %}>登录</button>
+                </li>
+                {% if loginConfig.data.loginBoxAccountRememberUse == '0' or loginConfig.data.loginBoxAccountRememberPas == '0' or loginConfig.data.loginBoxAccountForgetPassw == '0' %}
+                  <li class="operating-li">
+                    {% if loginConfig.data.loginBoxAccountRememberUse == '0' %}
+                      <a class="remember-username">记住账号</a>
+                    {% endif %}
+                    {% if loginConfig.data.loginBoxAccountRememberPas == '0' %}
+                      <a class="remember-password">记住密码</a>
+                    {% endif %}
+                    {% if loginConfig.data.loginBoxAccountForgetPassw == '0' %}
+                      <a class="forget-password">忘记密码？</a>
+                    {% endif %}
+                    <a class="download-app">扫一扫，用手机版办公？<img src="/mobile/app/qrcode"></a>
+                  </li>
+                {% endif %}
+                {% if loginConfig.data.enableOauth == '1' and loginConfig.data.enableOauthLogin == '0' %}
+                  <li class="goto-oauth2-login">
+                    <a href="/login/oauth2">去统一认证登录 >></a>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+            {% if loginConfig.data.loginBoxHardware == '0' %}
+              <div class="hardware" style="display: none;">
+                <ul>
+                  <li class="image-li"></li>
+                  <li class="desc-li">{{ loginConfig.data.loginBoxHardwareDescription }}</li>
+                  <li class="button-li">
+                    <button type="button" {% if loginConfig.data.isPreview %} disabled="disabled" {% endif %}>登录</button>
+                  </li>
+                </ul>
+              </div>
+            {% endif %}
+            {% if loginConfig.data.loginBoxKey == '0' %}
+              <div class="key" style="display: none;">
+                <ul>
+                  <li class="password-li">
+                    <input type="password" name="keyPin" placeholder="请输入密码">
+                    <a href="javascript:void(0);"></a>
+                  </li>
+                  <li class="desc-li">{{ loginConfig.data.loginBoxKeyDescription }}</li>
+                  <li class="button-li">
+                    <button type="button" {% if loginConfig.data.isPreview %} disabled="disabled" {% endif %}>登录</button>
+                  </li>
+                </ul>
+              </div>
+            {% endif %}
+            {% if loginConfig.data.loginBoxCode == '0' %}
+              <div class="code" style="display: none;">
+                <ul>
+                  <li class="image-li">
+                    <img src="{{ helper.staticPrefix() }}/pt/login/def/imgs/hardware.png">
+                  </li>
+                  <li class="desc-li">使用移动办公APP登录</li>
+                  <li class="download-li">
+                    <a href="javascript:void(0);" target="_blank">下载移动办公APP</a>
+                  </li>
+                </ul>
+              </div>
+            {% endif %}
+            <div class="ding qrcode" id="dingCode" style="display: none;"></div>
+          </div>
+          {% if error %}
+            <div class="error-div">
+              {{ error }}
+            </div>
+          {% endif %}
+        </div>
+        <div class="footer">{{ loginConfig.data.footerContent | safe }}</div>
+      </div>
+    {% endif %}
+    <form action="/login" method="post" id="loginForm" name="loginForm" class="hidden">
+      <input id="j_username" name="username" type="hidden"/>
+      <input id="j_password" name="password" type="hidden"/>
+      <input id="j_verify_code" name="j_verify_code" type="hidden"/>
+      <input id="j_lnalg_code" name="j_lnalg_code" type="hidden" value="1"/>
+      <input id="j_pwdalg_code" name="j_pwdalg_code" type="hidden" value="2"/>
+      <input id="unitId" name="unitId" type="hidden"/>
+      <input id="loginType" name="loginType" type="hidden" value="{{ loginType }}"/>
+      <input id="textCert" name="textCert" type="hidden"/>
+      <input id="textSignData" name="textSignData" type="hidden"/>
+      <input id="idNumber" name="idNumber" type="hidden"/>
+      <input id="loginSource" name="loginSource" type="hidden" value="1"/>
+      <input id="certType" name="certType" type="hidden"/>
+      <input type="hidden" name="j_pwd_encrypt_key" id="pwdEncryptKey" value="{{ loginConfig.data.pwdEncryptKey }}"/>
+      <input type="hidden" name="j_pwd_encrypt_type" id="pwdEncryptType" value="{{ loginConfig.data.passwordEncryptType }}"/>
+      {% if loginConfig.data.loginBoxDing == '0' %}
+        <input id="dingCodeStyle" name="dingCodeStyle" type="hidden" value="{{ loginConfig.data.dingStyle }}"/>
+        <input id="dingCodeWidth" name="dingCodeWidth" type="hidden" value="{{ loginConfig.data.dingWidth }}"/>
+        <input id="dingCodeHeight" name="dingCodeHeight" type="hidden" value="{{ loginConfig.data.dingHeight }}"/>
+      {% endif %}
+      <input id="loginUrl" name="loginUrl" type="hidden" value="{{ loginConfig.data.unitLoginPageUri }}"/>
+    <input id="userOs" name="userOs" type="hidden"/>
+    <input id="browser" name="browser" type="hidden"/>
+    <input id="browserVersion" name="browserVersion" type="hidden"/>
+    </form>
+  </body>
+</html></body></html>

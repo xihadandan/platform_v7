@@ -1,0 +1,3 @@
+module.exports = {
+  'Bad credentials': '用户名或密码错误'
+};

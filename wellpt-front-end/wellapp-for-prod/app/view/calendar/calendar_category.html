@@ -1,0 +1,93 @@
+<div class="msg-category-content calendar-category" id="calendar_category_content" style="min-height: 600px">
+  <div class="msg-category-wrap">
+    <div class="input-box">
+      <input id="fullCalendarName" type="text" value="" placeholder="搜索" />
+      <i id="searchCalendarCategory" class="iconfont icon-ptkj-sousuochaxun" style="color: #488cee"></i>
+      <i id="deleteCalendarCategory" class="iconfont icon-ptkj-dacha-xiao"></i>
+    </div>
+    <hr />
+    <div class="msg-category-list">
+      <div class="msg-category-title">
+        <i class="iconfont icon-ptkj-shixinjiantou-you icon-folders hide"></i>
+        <i class="iconfont icon-ptkj-fenlei"></i>
+        <input type="checkbox" id="calendar-category-checkall" class="well-ui-checkbox noclick" />
+        <label for="calendar-category-checkall" class="noclick"></label>
+        <span id="calendarAllCategory">全部</span>
+        <i id="addCalendarCategory" class="iconfont icon-ptkj-jiahao add-msg-category"></i>
+      </div>
+      <ul id="calendar_category_tree"></ul>
+    </div>
+  </div>
+  <div class="msg-category-folder hide"><i class="iconfont icon-ptkj-zuoshouzhan"></i></div>
+</div>
+<style>
+  input.well-ui-checkbox,
+  input.well-ui-checkbox {
+    display: none;
+  }
+
+  label input.well-ui-checkbox,
+  label input.well-ui-checkbox {
+    display: inline-block;
+  }
+
+  input.well-ui-checkbox + label,
+  input.well-ui-checkbox + label {
+    position: relative;
+    line-height: 24px;
+    height: 24px;
+    float: initial;
+    font-size: 16px;
+    color: #666;
+    font-family: iconfont !important;
+    font-weight: normal;
+  }
+
+  input.well-ui-checkbox + label:before,
+  input.well-ui-checkbox + label:before {
+    top: 2px;
+    position: relative;
+  }
+
+  input.well-ui-checkbox + label:before,
+  input.well-ui-checkbox + label:before {
+    content: '\e8f2';
+  }
+
+  input.well-ui-checkbox:checked + label:before,
+  input.well-ui-checkbox:checked + label:before {
+    content: '\e8de';
+    color: #488cee;
+  }
+
+  input.well-ui-checkbox[disabled='disabled'] + label:before,
+  input.well-ui-checkbox[disabled='disabled'] + label:before {
+    color: #c3b8b8;
+  }
+
+  .calendar-category,
+  .calendar-category + .ui-wMyCalendar {
+    border: solid 1px #ddd;
+  }
+
+  .calendar-category .msg-category-content {
+    width: auto;
+    border-width: 0px;
+  }
+
+  .calendar-category .msg-category-wrap > .input-box {
+    border-bottom: solid 1px #ddd;
+  }
+
+  .calendar-category .msg-category-list .msg-category-title {
+    padding-left: 22px;
+  }
+
+  .calendar-category .msg-category-item span.msg-category-text {
+    width: calc(100% - 80px);
+  }
+
+  .calendar-category .msg-category-item .icon-operate {
+    line-height: 34px;
+  }
+</style>

@@ -1,0 +1,110 @@
+#login-setting {
+  .tab-pane {
+    margin-top: 10px;
+  }
+
+  .bottom-btns-bar {
+    position: fixed;
+    background-color: #f5f5f5;
+    bottom: 20px;
+    width: 100%;
+    padding: 5px;
+  }
+
+  /**账号密码登录样式*/
+  .vertical-container {
+    width: 900px;
+    min-width: 800px;
+    margin: 15px auto 50px;
+  }
+
+  .form-vertical .form-group {
+    font-size: 14px;
+  }
+
+  .form-vertical .form-group .control-label {
+    margin: 0 0 10px 40px;
+  }
+
+  .control-label .label-title {
+    font-weight: bold;
+    color: #000;
+  }
+
+  legend .control-right {
+    margin-right: 40px;
+    float: right;
+  }
+
+  legend .btn {
+    margin-right: 20px;
+    color: @primary-color;
+    cursor: pointer;
+    height: 20px;
+  }
+}
+
+.custom-login-config {
+  .btn-radio {
+    display: inline-block;
+    border: @border-default-dark;
+    min-height: 34px;
+    line-height: 20px;
+    padding: 7px 25px;
+    border-radius: @border-radius-base;
+    cursor: pointer;
+    &.active {
+      position: relative;
+      color: @text-color-primary;
+      border-color: @text-color-primary;
+      &:before {
+        content: '\e93b';
+        font-family: iconfont !important;
+        color: @text-color-primary;
+        font-size: 28px;
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        left: initial;
+        line-height: 1;
+        overflow: hidden;
+        border-radius: 0 @border-radius-base 0 0;
+      }
+    }
+    &.btn-disabled {
+      cursor: not-allowed;
+      color: #999;
+    }
+  }
+  .login-url {
+    width: 400px;
+    border: @border-default-dark;
+    border-radius: @border-radius-base;
+    font-size: 0;
+    &-content {
+      width: 230px;
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 14px;
+      color: #666;
+      background-color: #eee;
+      height: 35px;
+      border-radius: 4px 0 0 4px;
+      line-height: 35px;
+      padding: 0 5px;
+    }
+    &-tag {
+      border-left: @border-default-dark;
+      display: inline-block;
+      vertical-align: middle;
+      width: 167px;
+      input {
+        border: none;
+      }
+    }
+    &-tip {
+      color: #999;
+      margin-top: 5px;
+    }
+  }
+}

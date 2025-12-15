@@ -1,0 +1,1281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="listTaskQuery">
+        <![CDATA[
+		select
+			<if isBlank(projectionClause)>
+			   t1.uuid             as uuid,
+		       t1.rec_ver          as rec_ver,
+		       t1.creator          as creator,
+		       t1.create_time      as create_time,
+		       t1.modifier         as modifier,
+		       t1.modify_time      as modify_time,
+		       t3.id               as flow_def_id,
+		       t3.uuid             as flow_def_uuid,
+		       t3.name             as flow_name,
+		       t3.category         as flow_category,
+		       t2.uuid             as flow_inst_uuid,
+		       t2.title            as title,
+		       t2.start_user_id    as flow_start_user_id,
+		       t2.start_user_name  as flow_start_user_name,
+		       t2.start_department_id as flow_start_department_id,
+		       t2.start_department_name as flow_start_department_name,
+		       t2.start_time       as flow_start_time,
+		       t2.end_time         as flow_end_time,
+		       t2.is_active        as is_active,
+		       t1.name             as task_name,
+		       t1.id               as task_id,
+		       t1.form_uuid        as form_uuid,
+		       t1.data_uuid        as data_uuid,
+		       t1.serial_no        as serial_no,
+		       t1.owner            as owner,
+		       t1.assignee         as pre_operator_id,
+		       t1.assignee_name    as pre_operator_name,
+		       t1.todo_user_id     as todo_user_id,
+		       t1.todo_user_name   as todo_user_name,
+		       t1.action           as action,
+		       t1.action_type      as action_type,
+		       t1.start_time       as start_time,
+		       t1.end_time         as end_time,
+		       t1.alarm_time       as alarm_time,
+		       t1.due_time         as due_time,
+		       t1.timing_state     as timing_state,
+		       t1.alarm_state      as alarm_state,
+		       t1.over_due_state   as over_due_state,
+		       t1.suspension_state as suspension_state,
+		       t5.is_topping       as is_topping,
+		       t2.reserved_text1   as reserved_text1,
+		       t2.reserved_text2   as reserved_text2,
+		       t2.reserved_text3   as reserved_text3,
+		       t2.reserved_text4   as reserved_text4,
+		       t2.reserved_text5   as reserved_text5,
+		       t2.reserved_text6   as reserved_text6,
+		       t2.reserved_text7   as reserved_text7,
+		       t2.reserved_text8   as reserved_text8,
+		       t2.reserved_text9   as reserved_text9,
+		       t2.reserved_text10  as reserved_text10,
+		       t2.reserved_text11  as reserved_text11,
+		       t2.reserved_text12  as reserved_text12,
+		       t2.reserved_number1 as reserved_number1,
+		       t2.reserved_number2 as reserved_number2,
+		       t2.reserved_number3 as reserved_number3,
+		       t2.reserved_date1   as reserved_date1,
+		       t2.reserved_date2   as reserved_date2
+			<else>
+				${projectionClause}
+			</if>
+		  from
+		  <if isNotBlank(widthPermission)>
+		    (
+		        select * from wf_task_instance t
+		        where
+		        <if defaultSuspensionState??>
+		            t.suspension_state in(0, 4) and
+		        </if>
+		            exists (select 1 from acl_task_entry a1
+                        where t.uuid = a1.object_id_identity
+                            ${authWhere}
+                            and sid in (:userSids))
+		    ) t1
+		  <else>
+		    wf_task_instance t1
+		  </if>
+		  left join (
+		        select t2_.*, t6.user_name as start_user_name, '' as start_department_name
+		        from wf_flow_instance t2_ left join user_info t6 on t2_.start_user_id = t6.user_id
+		    ) t2
+		    on t1.flow_inst_uuid = t2.uuid
+		  left join wf_flow_definition t3
+		    on t1.flow_def_uuid = t3.uuid
+          left join (
+                <if isBlank(taskInstanceToppingSelectClause)>
+                select t4.task_inst_uuid, t4.is_topping, t4.low_priority as low_priority_ from wf_task_instance_topping t4
+                <else>
+                ${taskInstanceToppingSelectClause}
+                </if>
+                <if isNotBlank(widthPermission)>
+                    where t4.user_id = :currentUserId
+                </if>
+                <if isBlank(widthPermission)>
+                    where 1 = 2
+                </if>
+                ) t5
+            on t1.uuid = t5.task_inst_uuid
+		 	<if isNotBlank(joinClause)>
+		 		${joinClause}
+		 	</if>
+		 	<if isNotBlank(joinTableClause)>
+		 		${joinTableClause}
+		 	</if>
+		 where 1 = 1
+		    <if suspensionStates??>
+		        and t1.suspension_state in (:suspensionStates)
+		    </if>
+		 	<if isBlank(whereSql)>
+			 	<if isNotBlank(flowDefId)>
+					and t3.id = :flowDefId
+				</if>
+			 	<if isNotBlank(flowDefIds)>
+					and t3.id in (:flowDefIds)
+				</if>
+			 	<if isNotBlank(flowDefUuid)>
+					and t1.flow_def_uuid = :flowDefUuid
+				</if>
+				<if isNotBlank(flowDefUuids)>
+					and t1.flow_def_uuid in (:flowDefUuids)
+				</if>
+			 	<if isNotBlank(flowName)>
+					and t3.name = :flowName
+				</if>
+				<if isNotBlank(flowCategory)>
+					and t3.category = :flowCategory
+				</if>
+			 	<if isNotBlank(flowInstUuid)>
+					and t2.uuid = :flowInstUuid
+				</if>
+			 	<if isNotBlank(title)>
+					and t2.title = :title
+				</if>
+			 	<if isNotBlank(flowStartUserId)>
+					and t2.start_user_id = :flowStartUserId
+				</if>
+			 	<if isNotBlank(flowStartTime)>
+					and t2.start_time = :flowStartTime
+				</if>
+				<if isNotBlank(flowEndTime)>
+					and t2.end_time = :flowEndTime
+				</if>
+				<if isNotBlank(flowEndTimeIsNull)>
+					and ${flowEndTimeIsNull}
+				</if>
+				<if isNotBlank(flowEndTimeIsNotNull)>
+					and ${flowEndTimeIsNotNull}
+				</if>
+				<if isNotBlank(isActive)>
+					and t2.is_active = :isActive
+				</if>
+				<if isNotBlank(taskName)>
+					and t1.name = :taskName
+				</if>
+				<if isNotBlank(taskId)>
+					and t1.id = :taskId
+				</if>
+				<if isNotBlank(taskIds)>
+					and t1.id in (:taskIds)
+				</if>
+				<if isNotBlank(formUuid)>
+					and t1.form_uuid = :formUuid
+				</if>
+				<if isNotBlank(dataUuid)>
+					and t1.data_uuid = :dataUuid
+				</if>
+				<if isNotBlank(serialNo)>
+					and t1.serial_no = :serialNo
+				</if>
+				<if isNotBlank(owner)>
+					and t1.owner = :owner
+				</if>
+				<if isNotBlank(preOperatorId)>
+					and t1.assignee = :preOperatorId
+				</if>
+				<if isNotBlank(preOperatorName)>
+                    and t1.assignee_name = :preOperatorName
+                </if>
+				<if isNotBlank(todoUserId)>
+					and t1.todo_user_id = :todoUserId
+				</if>
+				<if isNotBlank(todoUserName)>
+					and t1.todo_user_name = :todoUserName
+				</if>
+				<if isNotBlank(action)>
+					and t1.action = :action
+				</if>
+				<if isNotBlank(actionType)>
+					and t1.action_type = :actionType
+				</if>
+				<if isNotBlank(startTime)>
+					and t1.start_time = :startTime
+				</if>
+				<if isNotBlank(endTime)>
+					and t1.end_time = :endTime
+				</if>
+				<if isNotBlank(endTimeIsNull)>
+					and ${endTimeIsNull}
+				</if>
+				<if isNotBlank(alarmTime)>
+					and t1.alarm_time = :alarmTime
+				</if>
+				<if isNotBlank(alarmTimeBefore)>
+					and t1.alarm_time < :alarmTimeBefore
+				</if>
+				<if isNotBlank(alarmTimeAfter)>
+					and t1.alarm_time > :alarmTimeAfter
+				</if>
+				<if isNotBlank(dueTime)>
+					and t1.due_time = :dueTime
+				</if>
+				<if isNotBlank(dueTimeBefore)>
+					and t1.due_time < :dueTimeBefore
+				</if>
+				<if isNotBlank(dueTimeAfter)>
+					and t1.due_time > :dueTimeAfter
+				</if>
+				<if isNotBlank(timingState)>
+					and t1.timing_state = :timingState
+				</if>
+				<if isNotBlank(alarmState)>
+					and t1.alarm_state = :alarmState
+				</if>
+				<if isNotBlank(overDueState)>
+					and t1.over_due_state = :overDueState
+				</if>
+				<if isNotBlank(suspensionState)>
+					and t1.suspension_state = :suspensionState
+				</if>
+				<if isNotBlank(reservedText1)>
+					and t2.reserved_text1 = :reservedText1
+				</if>
+				<if isNotBlank(reservedText2)>
+					and t2.reserved_text2 = :reservedText2
+				</if>
+				<if isNotBlank(reservedText3)>
+					and t2.reserved_text3 = :reservedText3
+				</if>
+				<if isNotBlank(reservedText4)>
+					and t2.reserved_text4 = :reservedText4
+				</if>
+				<if isNotBlank(reservedText5)>
+					and t2.reserved_text5 = :reservedText5
+				</if>
+				<if isNotBlank(reservedText6)>
+					and t2.reserved_text6 = :reservedText6
+				</if>
+				<if isNotBlank(reservedText7)>
+					and t2.reserved_text7 = :reservedText7
+				</if>
+				<if isNotBlank(reservedText8)>
+					and t2.reserved_text8 = :reservedText8
+				</if>
+				<if isNotBlank(reservedText9)>
+					and t2.reserved_text9 = :reservedText9
+				</if>
+				<if isNotBlank(reservedText10)>
+					and t2.reserved_text10 = :reservedText10
+				</if>
+				<if isNotBlank(reservedText11)>
+					and t2.reserved_text11 = :reservedText11
+				</if>
+				<if isNotBlank(reservedText12)>
+					and t2.reserved_text12 = :reservedText12
+				</if>
+				<if isNotBlank(reservedNumber1)>
+					and t2.reserved_number1 = :reservedNumber1
+				</if>
+				<if isNotBlank(reservedNumber2)>
+					and t2.reserved_number2 = :reservedNumber2
+				</if>
+				<if isNotBlank(reservedNumber3)>
+					and t2.reserved_number3 = :reservedNumber3
+				</if>
+				<if isNotBlank(reservedDate1)>
+					and t2.reserved_date1 = :reservedDate1
+				</if>
+				<if isNotBlank(reservedDate2)>
+					and t2.reserved_date2 = :reservedDate2
+				</if>
+				<if isNotBlank(reservedText8s)>
+					and t2.reserved_text8 in (:reservedText8s)
+				</if>
+				<if isNotBlank(reservedText10s)>
+					and t2.reserved_text10 in (:reservedText10s)
+				</if>
+			</if>
+            <if flowDefId?? && flowDefId?is_enumerable && (flowDefId?size gt 0)>
+                and t3.id in :flowDefId
+            <elseif isNotBlank(flowDefId)>
+                and t3.id = :flowDefId
+            </if>
+            <if isNotBlank(flowCategory)>
+                and t3.category = :flowCategory
+            </if>
+			<if isNotBlank(whereSql)>
+				and (1 = 2 or (${whereSql}))
+			</if>
+			<if isNotBlank(currentSystem)>
+			    and t2.system = :currentSystem
+			</if>
+			<if isNotBlank(likeQuery)>
+				and (
+				<if likeQueryConnector=='and'>
+					1 = 1
+				</if>
+				<if likeQueryConnector=='or'>
+					1 = 2
+				</if>
+				<if isNotBlank(flowDefIdLike)>
+					${likeQueryConnector} t3.id like '%${flowDefIdLike}%'
+				</if>
+				<if isNotBlank(flowNameLike)>
+					${likeQueryConnector} t3.name like '%${flowNameLike}%'
+				</if>
+				<if isNotBlank(titleLike)>
+					${likeQueryConnector} t2.title like '%${titleLike}%'
+				</if>
+				<if isNotBlank(taskNameLike)>
+					${likeQueryConnector} t1.name like '%${taskNameLike}%'
+				</if>
+				<if isNotBlank(taskIdLike)>
+					${likeQueryConnector} t1.id like '%${taskIdLike}%'
+				</if>
+				<if isNotBlank(serialNoLike)>
+					${likeQueryConnector} t1.serial_no like '%${serialNoLike}%'
+				</if>
+				<if isNotBlank(preOperatorNameLike)>
+                    ${likeQueryConnector} t1.assignee_name like '%${preOperatorNameLike}%'
+                </if>
+				<if isNotBlank(todoUserIdLike)>
+					${likeQueryConnector} t1.todo_user_id like '%${todoUserIdLike}%'
+				</if>
+				<if isNotBlank(todoUserNameLike)>
+					${likeQueryConnector} t1.todo_user_name like '%${todoUserNameLike}%'
+				</if>
+				<if isNotBlank(reservedText1Like)>
+					${likeQueryConnector} t2.reserved_text1 like '%${reservedText1Like}%'
+				</if>
+				<if isNotBlank(reservedText2Like)>
+					${likeQueryConnector} t2.reserved_text2 like '%${reservedText2Like}%'
+				</if>
+				<if isNotBlank(reservedText3Like)>
+					${likeQueryConnector} t2.reserved_text3 like '%${reservedText3Like}%'
+				</if>
+				<if isNotBlank(reservedText4Like)>
+					${likeQueryConnector} t2.reserved_text4 like '%${reservedText4Like}%'
+				</if>
+				<if isNotBlank(reservedText5Like)>
+					${likeQueryConnector} t2.reserved_text5 like '%${reservedText5Like}%'
+				</if>
+				<if isNotBlank(reservedText6Like)>
+					${likeQueryConnector} t2.reserved_text6 like '%${reservedText6Like}%'
+				</if>
+				<if isNotBlank(reservedText7Like)>
+					${likeQueryConnector} t2.reserved_text7 like '%${reservedText7Like}%'
+				</if>
+				<if isNotBlank(reservedText8Like)>
+					${likeQueryConnector} t2.reserved_text8 like '%${reservedText8Like}%'
+				</if>
+				<if isNotBlank(reservedText9Like)>
+					${likeQueryConnector} t2.reserved_text9 like '%${reservedText9Like}%'
+				</if>
+				<if isNotBlank(reservedText10Like)>
+					${likeQueryConnector} t2.reserved_text10 like '%${reservedText10Like}%'
+				</if>
+				<if isNotBlank(reservedText11Like)>
+					${likeQueryConnector} t2.reserved_text11 like '%${reservedText11Like}%'
+				</if>
+				<if isNotBlank(reservedText12Like)>
+					${likeQueryConnector} t2.reserved_text12 like '%${reservedText12Like}%'
+				</if>
+				)
+			</if>
+			<if isNotBlank(orderBy)>
+				order by ${orderBy}
+			</if>
+			<if isNotBlank(orderString)>
+				${orderString}
+			</if>
+	]]>
+    </sql-query>
+
+    <sql-query name="countTaskQuery">
+        <![CDATA[
+		select
+			   t1.uuid             as uuid
+		  from
+		  <if isNotBlank(widthPermission)>
+		    (
+		        select * from wf_task_instance t
+		        where
+		        <if defaultSuspensionState??>
+		            t.suspension_state in(0, 4) and
+		        </if>
+		            exists (select 1 from acl_task_entry a1
+                        where t.uuid = a1.object_id_identity
+                            ${authWhere}
+                            and sid in (:userSids))
+		    ) t1
+		  <else>
+		    wf_task_instance t1
+		  </if>
+		  left join (
+		        select t2_.*, t6.user_name as start_user_name, '' as start_department_name
+		        from wf_flow_instance t2_ left join user_info t6 on t2_.start_user_id = t6.user_id
+		    ) t2
+		    on t1.flow_inst_uuid = t2.uuid
+		  left join wf_flow_definition t3 on t1.flow_def_uuid = t3.uuid
+		  <if isNotBlank(joinTableClause)>
+		    ${joinTableClause}
+		  </if>
+		 where 1 = 1
+		    <if suspensionStates??>
+		        and t1.suspension_state in (:suspensionStates)
+		    </if>
+		 	<if isBlank(whereSql)>
+			 	<if isNotBlank(flowDefId)>
+					and t3.id = :flowDefId
+				</if>
+			 	<if isNotBlank(flowDefIds)>
+					and t3.id in (:flowDefIds)
+				</if>
+			 	<if isNotBlank(flowDefUuid)>
+					and t1.flow_def_uuid = :flowDefUuid
+				</if>
+				<if isNotBlank(flowDefUuids)>
+					and t1.flow_def_uuid in (:flowDefUuids)
+				</if>
+			 	<if isNotBlank(flowName)>
+					and t3.name = :flowName
+				</if>
+				<if isNotBlank(flowCategory)>
+					and t3.category = :flowCategory
+				</if>
+			 	<if isNotBlank(flowInstUuid)>
+					and t2.uuid = :flowInstUuid
+				</if>
+			 	<if isNotBlank(title)>
+					and t2.title = :title
+				</if>
+			 	<if isNotBlank(flowStartUserId)>
+					and t2.start_user_id = :flowStartUserId
+				</if>
+			 	<if isNotBlank(flowStartTime)>
+					and t2.start_time = :flowStartTime
+				</if>
+				<if isNotBlank(flowEndTime)>
+					and t2.end_time = :flowEndTime
+				</if>
+				<if isNotBlank(flowEndTimeIsNull)>
+					and ${flowEndTimeIsNull}
+				</if>
+				<if isNotBlank(flowEndTimeIsNotNull)>
+					and ${flowEndTimeIsNotNull}
+				</if>
+				<if isNotBlank(isActive)>
+					and t2.is_active = :isActive
+				</if>
+				<if isNotBlank(taskName)>
+					and t1.name = :taskName
+				</if>
+				<if isNotBlank(taskId)>
+					and t1.id = :taskId
+				</if>
+				<if isNotBlank(taskIds)>
+					and t1.id in (:taskIds)
+				</if>
+				<if isNotBlank(formUuid)>
+					and t1.form_uuid = :formUuid
+				</if>
+				<if isNotBlank(dataUuid)>
+					and t1.data_uuid = :dataUuid
+				</if>
+				<if isNotBlank(serialNo)>
+					and t1.serial_no = :serialNo
+				</if>
+				<if isNotBlank(owner)>
+					and t1.owner = :owner
+				</if>
+				<if isNotBlank(preOperatorId)>
+					and t1.assignee = :preOperatorId
+				</if>
+				<if isNotBlank(preOperatorName)>
+                    and t1.assignee_name = :preOperatorName
+                </if>
+				<if isNotBlank(todoUserId)>
+					and t1.todo_user_id = :todoUserId
+				</if>
+				<if isNotBlank(todoUserName)>
+					and t1.todo_user_name = :todoUserName
+				</if>
+				<if isNotBlank(action)>
+					and t1.action = :action
+				</if>
+				<if isNotBlank(actionType)>
+					and t1.action_type = :actionType
+				</if>
+				<if isNotBlank(startTime)>
+					and t1.start_time = :startTime
+				</if>
+				<if isNotBlank(endTime)>
+					and t1.end_time = :endTime
+				</if>
+				<if isNotBlank(endTimeIsNull)>
+					and ${endTimeIsNull}
+				</if>
+				<if isNotBlank(alarmTime)>
+					and t1.alarm_time = :alarmTime
+				</if>
+				<if isNotBlank(alarmTimeBefore)>
+					and t1.alarm_time < :alarmTimeBefore
+				</if>
+				<if isNotBlank(alarmTimeAfter)>
+					and t1.alarm_time > :alarmTimeAfter
+				</if>
+				<if isNotBlank(dueTime)>
+					and t1.due_time = :dueTime
+				</if>
+				<if isNotBlank(dueTimeBefore)>
+					and t1.due_time < :dueTimeBefore
+				</if>
+				<if isNotBlank(dueTimeAfter)>
+					and t1.due_time > :dueTimeAfter
+				</if>
+				<if isNotBlank(timingState)>
+					and t1.timing_state = :timingState
+				</if>
+				<if isNotBlank(alarmState)>
+					and t1.alarm_state = :alarmState
+				</if>
+				<if isNotBlank(overDueState)>
+					and t1.over_due_state = :overDueState
+				</if>
+				<if isNotBlank(suspensionState)>
+					and t1.suspension_state = :suspensionState
+				</if>
+				<if isNotBlank(reservedText1)>
+					and t2.reserved_text1 = :reservedText1
+				</if>
+				<if isNotBlank(reservedText2)>
+					and t2.reserved_text2 = :reservedText2
+				</if>
+				<if isNotBlank(reservedText3)>
+					and t2.reserved_text3 = :reservedText3
+				</if>
+				<if isNotBlank(reservedText4)>
+					and t2.reserved_text4 = :reservedText4
+				</if>
+				<if isNotBlank(reservedText5)>
+					and t2.reserved_text5 = :reservedText5
+				</if>
+				<if isNotBlank(reservedText6)>
+					and t2.reserved_text6 = :reservedText6
+				</if>
+				<if isNotBlank(reservedText7)>
+					and t2.reserved_text7 = :reservedText7
+				</if>
+				<if isNotBlank(reservedText8)>
+					and t2.reserved_text8 = :reservedText8
+				</if>
+				<if isNotBlank(reservedText9)>
+					and t2.reserved_text9 = :reservedText9
+				</if>
+				<if isNotBlank(reservedText10)>
+					and t2.reserved_text10 = :reservedText10
+				</if>
+				<if isNotBlank(reservedText11)>
+					and t2.reserved_text11 = :reservedText11
+				</if>
+				<if isNotBlank(reservedText12)>
+					and t2.reserved_text12 = :reservedText12
+				</if>
+				<if isNotBlank(reservedNumber1)>
+					and t2.reserved_number1 = :reservedNumber1
+				</if>
+				<if isNotBlank(reservedNumber2)>
+					and t2.reserved_number2 = :reservedNumber2
+				</if>
+				<if isNotBlank(reservedNumber3)>
+					and t2.reserved_number3 = :reservedNumber3
+				</if>
+				<if isNotBlank(reservedDate1)>
+					and t2.reserved_date1 = :reservedDate1
+				</if>
+				<if isNotBlank(reservedDate2)>
+					and t2.reserved_date2 = :reservedDate2
+				</if>
+				<if isNotBlank(reservedText8s)>
+					and t2.reserved_text8 in (:reservedText8s)
+				</if>
+				<if isNotBlank(reservedText10s)>
+					and t2.reserved_text10 in (:reservedText10s)
+				</if>
+			</if>
+            <if flowDefId?? && flowDefId?is_enumerable && (flowDefId?size gt 0)>
+                and t3.id in :flowDefId
+            <elseif isNotBlank(flowDefId)>
+                and t3.id = :flowDefId
+            </if>
+            <if isNotBlank(flowCategory)>
+                and t3.category = :flowCategory
+            </if>
+			<if isNotBlank(whereSql)>
+				and (1 = 2 or (${whereSql}))
+			</if>
+			<if isNotBlank(currentSystem)>
+			    and t2.system = :currentSystem
+			</if>
+			<if isNotBlank(likeQuery)>
+				and (
+				<if likeQueryConnector=='and'>
+					1 = 1
+				</if>
+				<if likeQueryConnector=='or'>
+					1 = 2
+				</if>
+				<if isNotBlank(flowDefIdLike)>
+					${likeQueryConnector} t3.id like '%${flowDefIdLike}%'
+				</if>
+				<if isNotBlank(flowNameLike)>
+					${likeQueryConnector} t3.name like '%${flowNameLike}%'
+				</if>
+				<if isNotBlank(titleLike)>
+					${likeQueryConnector} t2.title like '%${titleLike}%'
+				</if>
+				<if isNotBlank(taskNameLike)>
+					${likeQueryConnector} t1.name like '%${taskNameLike}%'
+				</if>
+				<if isNotBlank(taskIdLike)>
+					${likeQueryConnector} t1.id like '%${taskIdLike}%'
+				</if>
+				<if isNotBlank(serialNoLike)>
+					${likeQueryConnector} t1.serial_no like '%${serialNoLike}%'
+				</if>
+				<if isNotBlank(preOperatorNameLike)>
+                    ${likeQueryConnector} t1.assignee_name like '%${preOperatorNameLike}%'
+                </if>
+				<if isNotBlank(todoUserIdLike)>
+					${likeQueryConnector} t1.todo_user_id like '%${todoUserIdLike}%'
+				</if>
+				<if isNotBlank(todoUserNameLike)>
+					${likeQueryConnector} t1.todo_user_name like '%${todoUserNameLike}%'
+				</if>
+				<if isNotBlank(reservedText1Like)>
+					${likeQueryConnector} t2.reserved_text1 like '%${reservedText1Like}%'
+				</if>
+				<if isNotBlank(reservedText2Like)>
+					${likeQueryConnector} t2.reserved_text2 like '%${reservedText2Like}%'
+				</if>
+				<if isNotBlank(reservedText3Like)>
+					${likeQueryConnector} t2.reserved_text3 like '%${reservedText3Like}%'
+				</if>
+				<if isNotBlank(reservedText4Like)>
+					${likeQueryConnector} t2.reserved_text4 like '%${reservedText4Like}%'
+				</if>
+				<if isNotBlank(reservedText5Like)>
+					${likeQueryConnector} t2.reserved_text5 like '%${reservedText5Like}%'
+				</if>
+				<if isNotBlank(reservedText6Like)>
+					${likeQueryConnector} t2.reserved_text6 like '%${reservedText6Like}%'
+				</if>
+				<if isNotBlank(reservedText7Like)>
+					${likeQueryConnector} t2.reserved_text7 like '%${reservedText7Like}%'
+				</if>
+				<if isNotBlank(reservedText8Like)>
+					${likeQueryConnector} t2.reserved_text8 like '%${reservedText8Like}%'
+				</if>
+				<if isNotBlank(reservedText9Like)>
+					${likeQueryConnector} t2.reserved_text9 like '%${reservedText9Like}%'
+				</if>
+				<if isNotBlank(reservedText10Like)>
+					${likeQueryConnector} t2.reserved_text10 like '%${reservedText10Like}%'
+				</if>
+				<if isNotBlank(reservedText11Like)>
+					${likeQueryConnector} t2.reserved_text11 like '%${reservedText11Like}%'
+				</if>
+				<if isNotBlank(reservedText12Like)>
+					${likeQueryConnector} t2.reserved_text12 like '%${reservedText12Like}%'
+				</if>
+				)
+			</if>
+	]]>
+    </sql-query>
+
+    <!-- 工作数据按计时状态分组取总数 -->
+    <sql-query name="groupAndCountTaskByTimingStateQuery">
+        <![CDATA[
+		  select
+			t1.timing_state as timing_state, count(t1.timing_state) as reserved_number1
+		  from wf_task_instance t1
+		  left join wf_flow_instance t2
+		    on t1.flow_inst_uuid = t2.uuid
+		  left join wf_flow_definition t3
+		    on t1.flow_def_uuid = t3.uuid
+		 where 1 = 1
+		 	<if isBlank(whereSql)>
+			 	<if isNotBlank(flowDefId)>
+					and t3.id = :flowDefId
+				</if>
+			 	<if isNotBlank(flowDefIds)>
+					and t3.id in (:flowDefIds)
+				</if>
+			 	<if isNotBlank(flowDefUuid)>
+					and t1.flow_def_uuid = :flowDefUuid
+				</if>
+				<if isNotBlank(flowDefUuids)>
+					and t1.flow_def_uuid in (:flowDefUuids)
+				</if>
+			 	<if isNotBlank(flowName)>
+					and t3.name = :flowName
+				</if>
+				<if isNotBlank(flowCategory)>
+					and t3.category = :flowCategory
+				</if>
+			 	<if isNotBlank(flowInstUuid)>
+					and t2.uuid = :flowInstUuid
+				</if>
+			 	<if isNotBlank(title)>
+					and t2.title = :title
+				</if>
+			 	<if isNotBlank(flowStartUserId)>
+					and t2.start_user_id = :flowStartUserId
+				</if>
+			 	<if isNotBlank(flowStartTime)>
+					and t2.start_time = :flowStartTime
+				</if>
+				<if isNotBlank(flowEndTime)>
+					and t2.end_time = :flowEndTime
+				</if>
+				<if isNotBlank(flowEndTimeIsNull)>
+					and ${flowEndTimeIsNull}
+				</if>
+				<if isNotBlank(flowEndTimeIsNotNull)>
+					and ${flowEndTimeIsNotNull}
+				</if>
+				<if isNotBlank(isActive)>
+					and t2.is_active = :isActive
+				</if>
+				<if isNotBlank(taskName)>
+					and t1.name = :taskName
+				</if>
+				<if isNotBlank(taskId)>
+					and t1.id = :taskId
+				</if>
+				<if isNotBlank(taskIds)>
+					and t1.id in (:taskIds)
+				</if>
+				<if isNotBlank(formUuid)>
+					and t1.form_uuid = :formUuid
+				</if>
+				<if isNotBlank(dataUuid)>
+					and t1.data_uuid = :dataUuid
+				</if>
+				<if isNotBlank(serialNo)>
+					and t1.serial_no = :serialNo
+				</if>
+				<if isNotBlank(owner)>
+					and t1.owner = :owner
+				</if>
+				<if isNotBlank(preOperatorId)>
+					and t1.assignee = :preOperatorId
+				</if>
+				<if isNotBlank(preOperatorName)>
+                    and t1.assignee_name = :preOperatorName
+                </if>
+				<if isNotBlank(todoUserId)>
+					and t1.todo_user_id = :todoUserId
+				</if>
+				<if isNotBlank(todoUserName)>
+					and t1.todo_user_name = :todoUserName
+				</if>
+				<if isNotBlank(action)>
+					and t1.action = :action
+				</if>
+				<if isNotBlank(actionType)>
+					and t1.action_type = :actionType
+				</if>
+				<if isNotBlank(startTime)>
+					and t1.start_time = :startTime
+				</if>
+				<if isNotBlank(endTime)>
+					and t1.end_time = :endTime
+				</if>
+				<if isNotBlank(endTimeIsNull)>
+					and ${endTimeIsNull}
+				</if>
+				<if isNotBlank(alarmTime)>
+					and t1.alarm_time = :alarmTime
+				</if>
+				<if isNotBlank(alarmTimeBefore)>
+					and t1.alarm_time < :alarmTimeBefore
+				</if>
+				<if isNotBlank(alarmTimeAfter)>
+					and t1.alarm_time > :alarmTimeAfter
+				</if>
+				<if isNotBlank(dueTime)>
+					and t1.due_time = :dueTime
+				</if>
+				<if isNotBlank(dueTimeBefore)>
+					and t1.due_time < :dueTimeBefore
+				</if>
+				<if isNotBlank(dueTimeAfter)>
+					and t1.due_time > :dueTimeAfter
+				</if>
+				<if isNotBlank(timingState)>
+					and t1.timing_state = :timingState
+				</if>
+				<if isNotBlank(alarmState)>
+					and t1.alarm_state = :alarmState
+				</if>
+				<if isNotBlank(overDueState)>
+					and t1.over_due_state = :overDueState
+				</if>
+				<if isNotBlank(suspensionState)>
+					and t1.suspension_state = :suspensionState
+				</if>
+				<if isNotBlank(reservedText1)>
+					and t2.reserved_text1 = :reservedText1
+				</if>
+				<if isNotBlank(reservedText2)>
+					and t2.reserved_text2 = :reservedText2
+				</if>
+				<if isNotBlank(reservedText3)>
+					and t2.reserved_text3 = :reservedText3
+				</if>
+				<if isNotBlank(reservedText4)>
+					and t2.reserved_text4 = :reservedText4
+				</if>
+				<if isNotBlank(reservedText5)>
+					and t2.reserved_text5 = :reservedText5
+				</if>
+				<if isNotBlank(reservedText6)>
+					and t2.reserved_text6 = :reservedText6
+				</if>
+				<if isNotBlank(reservedText7)>
+					and t2.reserved_text7 = :reservedText7
+				</if>
+				<if isNotBlank(reservedText8)>
+					and t2.reserved_text8 = :reservedText8
+				</if>
+				<if isNotBlank(reservedText9)>
+					and t2.reserved_text9 = :reservedText9
+				</if>
+				<if isNotBlank(reservedText10)>
+					and t2.reserved_text10 = :reservedText10
+				</if>
+				<if isNotBlank(reservedText11)>
+					and t2.reserved_text11 = :reservedText11
+				</if>
+				<if isNotBlank(reservedText12)>
+					and t2.reserved_text12 = :reservedText12
+				</if>
+				<if isNotBlank(reservedNumber1)>
+					and t2.reserved_number1 = :reservedNumber1
+				</if>
+				<if isNotBlank(reservedNumber2)>
+					and t2.reserved_number2 = :reservedNumber2
+				</if>
+				<if isNotBlank(reservedNumber3)>
+					and t2.reserved_number3 = :reservedNumber3
+				</if>
+				<if isNotBlank(reservedDate1)>
+					and t2.reserved_date1 = :reservedDate1
+				</if>
+				<if isNotBlank(reservedDate2)>
+					and t2.reserved_date2 = :reservedDate2
+				</if>
+				<if isNotBlank(reservedText8s)>
+					and t2.reserved_text8 in (:reservedText8s)
+				</if>
+				<if isNotBlank(reservedText10s)>
+					and t2.reserved_text10 in (:reservedText10s)
+				</if>
+			</if>
+			<if isNotBlank(whereSql)>
+				and (1 = 2 or ${whereSql})
+			</if>
+			<if isNotBlank(currentSystem)>
+			    and t2.system = :currentSystem
+			</if>
+			<if isNotBlank(likeQuery)>
+				and (
+				<if likeQueryConnector=='and'>
+					1 = 1
+				</if>
+				<if likeQueryConnector=='or'>
+					1 = 2
+				</if>
+				<if isNotBlank(flowDefIdLike)>
+					${likeQueryConnector} t3.id like '%${flowDefIdLike}%'
+				</if>
+				<if isNotBlank(flowNameLike)>
+					${likeQueryConnector} t3.name like '%${flowNameLike}%'
+				</if>
+				<if isNotBlank(titleLike)>
+					${likeQueryConnector} t2.title like '%${titleLike}%'
+				</if>
+				<if isNotBlank(taskNameLike)>
+					${likeQueryConnector} t1.name like '%${taskNameLike}%'
+				</if>
+				<if isNotBlank(taskIdLike)>
+					${likeQueryConnector} t1.id like '%${taskIdLike}%'
+				</if>
+				<if isNotBlank(serialNoLike)>
+					${likeQueryConnector} t1.serial_no like '%${serialNoLike}%'
+				</if>
+				<if isNotBlank(preOperatorNameLike)>
+                    ${likeQueryConnector} t1.assignee_name like '%${preOperatorNameLike}%'
+                </if>
+				<if isNotBlank(todoUserIdLike)>
+					${likeQueryConnector} t1.todo_user_id like '%${todoUserIdLike}%'
+				</if>
+				<if isNotBlank(todoUserNameLike)>
+					${likeQueryConnector} t1.todo_user_name like '%${todoUserNameLike}%'
+				</if>
+				<if isNotBlank(reservedText1Like)>
+					${likeQueryConnector} t2.reserved_text1 like '%${reservedText1Like}%'
+				</if>
+				<if isNotBlank(reservedText2Like)>
+					${likeQueryConnector} t2.reserved_text2 like '%${reservedText2Like}%'
+				</if>
+				<if isNotBlank(reservedText3Like)>
+					${likeQueryConnector} t2.reserved_text3 like '%${reservedText3Like}%'
+				</if>
+				<if isNotBlank(reservedText4Like)>
+					${likeQueryConnector} t2.reserved_text4 like '%${reservedText4Like}%'
+				</if>
+				<if isNotBlank(reservedText5Like)>
+					${likeQueryConnector} t2.reserved_text5 like '%${reservedText5Like}%'
+				</if>
+				<if isNotBlank(reservedText6Like)>
+					${likeQueryConnector} t2.reserved_text6 like '%${reservedText6Like}%'
+				</if>
+				<if isNotBlank(reservedText7Like)>
+					${likeQueryConnector} t2.reserved_text7 like '%${reservedText7Like}%'
+				</if>
+				<if isNotBlank(reservedText8Like)>
+					${likeQueryConnector} t2.reserved_text8 like '%${reservedText8Like}%'
+				</if>
+				<if isNotBlank(reservedText9Like)>
+					${likeQueryConnector} t2.reserved_text9 like '%${reservedText9Like}%'
+				</if>
+				<if isNotBlank(reservedText10Like)>
+					${likeQueryConnector} t2.reserved_text10 like '%${reservedText10Like}%'
+				</if>
+				<if isNotBlank(reservedText11Like)>
+					${likeQueryConnector} t2.reserved_text11 like '%${reservedText11Like}%'
+				</if>
+				<if isNotBlank(reservedText12Like)>
+					${likeQueryConnector} t2.reserved_text12 like '%${reservedText12Like}%'
+				</if>
+				)
+			</if>
+			<if isNotBlank(widthPermission)>
+				and (exists (select 1 from acl_task_entry a1
+                        where t1.uuid = a1.object_id_identity
+                            ${authWhere}
+                            and sid in (:userSids)))
+			</if>
+			group by t1.timing_state
+		]]>
+    </sql-query>
+
+    <!-- 工作数据按流程定义ID分组取总数 -->
+    <sql-query name="groupAndCountTaskByFlowDefIdQuery">
+        <![CDATA[
+		  select
+			t3.id as flow_def_id, t3.id as reserved_text1, t3.name as flow_name, count(t3.id) as reserved_number1
+		  from wf_task_instance t1
+		  left join wf_flow_instance t2
+		    on t1.flow_inst_uuid = t2.uuid
+		  left join wf_flow_definition t3
+		    on t1.flow_def_uuid = t3.uuid
+		 where 1 = 1
+		 	<if isBlank(whereSql)>
+			 	<if isNotBlank(flowDefId)>
+					and t3.id = :flowDefId
+				</if>
+			 	<if isNotBlank(flowDefIds)>
+					and t3.id in (:flowDefIds)
+				</if>
+			 	<if isNotBlank(flowDefUuid)>
+					and t1.flow_def_uuid = :flowDefUuid
+				</if>
+				<if isNotBlank(flowDefUuids)>
+					and t1.flow_def_uuid in (:flowDefUuids)
+				</if>
+			 	<if isNotBlank(flowName)>
+					and t3.name = :flowName
+				</if>
+				<if isNotBlank(flowCategory)>
+					and t3.category = :flowCategory
+				</if>
+			 	<if isNotBlank(flowInstUuid)>
+					and t2.uuid = :flowInstUuid
+				</if>
+			 	<if isNotBlank(title)>
+					and t2.title = :title
+				</if>
+			 	<if isNotBlank(flowStartUserId)>
+					and t2.start_user_id = :flowStartUserId
+				</if>
+			 	<if isNotBlank(flowStartTime)>
+					and t2.start_time = :flowStartTime
+				</if>
+				<if isNotBlank(flowEndTime)>
+					and t2.end_time = :flowEndTime
+				</if>
+				<if isNotBlank(flowEndTimeIsNull)>
+					and ${flowEndTimeIsNull}
+				</if>
+				<if isNotBlank(flowEndTimeIsNotNull)>
+					and ${flowEndTimeIsNotNull}
+				</if>
+				<if isNotBlank(isActive)>
+					and t2.is_active = :isActive
+				</if>
+				<if isNotBlank(taskName)>
+					and t1.name = :taskName
+				</if>
+				<if isNotBlank(taskId)>
+					and t1.id = :taskId
+				</if>
+				<if isNotBlank(taskIds)>
+					and t1.id in (:taskIds)
+				</if>
+				<if isNotBlank(formUuid)>
+					and t1.form_uuid = :formUuid
+				</if>
+				<if isNotBlank(dataUuid)>
+					and t1.data_uuid = :dataUuid
+				</if>
+				<if isNotBlank(serialNo)>
+					and t1.serial_no = :serialNo
+				</if>
+				<if isNotBlank(owner)>
+					and t1.owner = :owner
+				</if>
+				<if isNotBlank(preOperatorId)>
+					and t1.assignee = :preOperatorId
+				</if>
+				<if isNotBlank(preOperatorName)>
+                    and t1.assignee_name = :preOperatorName
+                </if>
+				<if isNotBlank(todoUserId)>
+					and t1.todo_user_id = :todoUserId
+				</if>
+				<if isNotBlank(todoUserName)>
+					and t1.todo_user_name = :todoUserName
+				</if>
+				<if isNotBlank(action)>
+					and t1.action = :action
+				</if>
+				<if isNotBlank(actionType)>
+					and t1.action_type = :actionType
+				</if>
+				<if isNotBlank(startTime)>
+					and t1.start_time = :startTime
+				</if>
+				<if isNotBlank(endTime)>
+					and t1.end_time = :endTime
+				</if>
+				<if isNotBlank(endTimeIsNull)>
+					and ${endTimeIsNull}
+				</if>
+				<if isNotBlank(alarmTime)>
+					and t1.alarm_time = :alarmTime
+				</if>
+				<if isNotBlank(alarmTimeBefore)>
+					and t1.alarm_time < :alarmTimeBefore
+				</if>
+				<if isNotBlank(alarmTimeAfter)>
+					and t1.alarm_time > :alarmTimeAfter
+				</if>
+				<if isNotBlank(dueTime)>
+					and t1.due_time = :dueTime
+				</if>
+				<if isNotBlank(dueTimeBefore)>
+					and t1.due_time < :dueTimeBefore
+				</if>
+				<if isNotBlank(dueTimeAfter)>
+					and t1.due_time > :dueTimeAfter
+				</if>
+				<if isNotBlank(timingState)>
+					and t1.timing_state = :timingState
+				</if>
+				<if isNotBlank(alarmState)>
+					and t1.alarm_state = :alarmState
+				</if>
+				<if isNotBlank(overDueState)>
+					and t1.over_due_state = :overDueState
+				</if>
+				<if isNotBlank(suspensionState)>
+					and t1.suspension_state = :suspensionState
+				</if>
+				<if isNotBlank(reservedText1)>
+					and t2.reserved_text1 = :reservedText1
+				</if>
+				<if isNotBlank(reservedText2)>
+					and t2.reserved_text2 = :reservedText2
+				</if>
+				<if isNotBlank(reservedText3)>
+					and t2.reserved_text3 = :reservedText3
+				</if>
+				<if isNotBlank(reservedText4)>
+					and t2.reserved_text4 = :reservedText4
+				</if>
+				<if isNotBlank(reservedText5)>
+					and t2.reserved_text5 = :reservedText5
+				</if>
+				<if isNotBlank(reservedText6)>
+					and t2.reserved_text6 = :reservedText6
+				</if>
+				<if isNotBlank(reservedText7)>
+					and t2.reserved_text7 = :reservedText7
+				</if>
+				<if isNotBlank(reservedText8)>
+					and t2.reserved_text8 = :reservedText8
+				</if>
+				<if isNotBlank(reservedText9)>
+					and t2.reserved_text9 = :reservedText9
+				</if>
+				<if isNotBlank(reservedText10)>
+					and t2.reserved_text10 = :reservedText10
+				</if>
+				<if isNotBlank(reservedText11)>
+					and t2.reserved_text11 = :reservedText11
+				</if>
+				<if isNotBlank(reservedText12)>
+					and t2.reserved_text12 = :reservedText12
+				</if>
+				<if isNotBlank(reservedNumber1)>
+					and t2.reserved_number1 = :reservedNumber1
+				</if>
+				<if isNotBlank(reservedNumber2)>
+					and t2.reserved_number2 = :reservedNumber2
+				</if>
+				<if isNotBlank(reservedNumber3)>
+					and t2.reserved_number3 = :reservedNumber3
+				</if>
+				<if isNotBlank(reservedDate1)>
+					and t2.reserved_date1 = :reservedDate1
+				</if>
+				<if isNotBlank(reservedDate2)>
+					and t2.reserved_date2 = :reservedDate2
+				</if>
+				<if isNotBlank(reservedText8s)>
+					and t2.reserved_text8 in (:reservedText8s)
+				</if>
+				<if isNotBlank(reservedText10s)>
+					and t2.reserved_text10 in (:reservedText10s)
+				</if>
+			</if>
+			<if isNotBlank(whereSql)>
+				and (1 = 2 or ${whereSql})
+			</if>
+			<if isNotBlank(currentSystem)>
+			    and t2.system = :currentSystem
+			</if>
+			<if isNotBlank(likeQuery)>
+				and (
+				<if likeQueryConnector=='and'>
+					1 = 1
+				</if>
+				<if likeQueryConnector=='or'>
+					1 = 2
+				</if>
+				<if isNotBlank(flowDefIdLike)>
+					${likeQueryConnector} t3.id like '%${flowDefIdLike}%'
+				</if>
+				<if isNotBlank(flowNameLike)>
+					${likeQueryConnector} t3.name like '%${flowNameLike}%'
+				</if>
+				<if isNotBlank(titleLike)>
+					${likeQueryConnector} t2.title like '%${titleLike}%'
+				</if>
+				<if isNotBlank(taskNameLike)>
+					${likeQueryConnector} t1.name like '%${taskNameLike}%'
+				</if>
+				<if isNotBlank(taskIdLike)>
+					${likeQueryConnector} t1.id like '%${taskIdLike}%'
+				</if>
+				<if isNotBlank(serialNoLike)>
+					${likeQueryConnector} t1.serial_no like '%${serialNoLike}%'
+				</if>
+				<if isNotBlank(preOperatorNameLike)>
+                    ${likeQueryConnector} t1.assignee_name like '%${preOperatorNameLike}%'
+                </if>
+				<if isNotBlank(todoUserIdLike)>
+					${likeQueryConnector} t1.todo_user_id like '%${todoUserIdLike}%'
+				</if>
+				<if isNotBlank(todoUserNameLike)>
+					${likeQueryConnector} t1.todo_user_name like '%${todoUserNameLike}%'
+				</if>
+				<if isNotBlank(reservedText1Like)>
+					${likeQueryConnector} t2.reserved_text1 like '%${reservedText1Like}%'
+				</if>
+				<if isNotBlank(reservedText2Like)>
+					${likeQueryConnector} t2.reserved_text2 like '%${reservedText2Like}%'
+				</if>
+				<if isNotBlank(reservedText3Like)>
+					${likeQueryConnector} t2.reserved_text3 like '%${reservedText3Like}%'
+				</if>
+				<if isNotBlank(reservedText4Like)>
+					${likeQueryConnector} t2.reserved_text4 like '%${reservedText4Like}%'
+				</if>
+				<if isNotBlank(reservedText5Like)>
+					${likeQueryConnector} t2.reserved_text5 like '%${reservedText5Like}%'
+				</if>
+				<if isNotBlank(reservedText6Like)>
+					${likeQueryConnector} t2.reserved_text6 like '%${reservedText6Like}%'
+				</if>
+				<if isNotBlank(reservedText7Like)>
+					${likeQueryConnector} t2.reserved_text7 like '%${reservedText7Like}%'
+				</if>
+				<if isNotBlank(reservedText8Like)>
+					${likeQueryConnector} t2.reserved_text8 like '%${reservedText8Like}%'
+				</if>
+				<if isNotBlank(reservedText9Like)>
+					${likeQueryConnector} t2.reserved_text9 like '%${reservedText9Like}%'
+				</if>
+				<if isNotBlank(reservedText10Like)>
+					${likeQueryConnector} t2.reserved_text10 like '%${reservedText10Like}%'
+				</if>
+				<if isNotBlank(reservedText11Like)>
+					${likeQueryConnector} t2.reserved_text11 like '%${reservedText11Like}%'
+				</if>
+				<if isNotBlank(reservedText12Like)>
+					${likeQueryConnector} t2.reserved_text12 like '%${reservedText12Like}%'
+				</if>
+				)
+			</if>
+			<if isNotBlank(widthPermission)>
+				and (exists (select 1 from acl_task_entry a1
+                        where t1.uuid = a1.object_id_identity
+                            ${authWhere}
+                            and sid in (:userSids)))
+			</if>
+			group by t3.id, t3.name
+		]]>
+    </sql-query>
+
+    <sql-query name="listTodoTaskCategoryCountQuery">
+        <![CDATA[
+            select * from (
+                select t2.id        as id,
+                       t2.name      as name,
+                       t3.uuid      as category_uuid,
+                       t3.name      as category_name,
+                       count(t2.id) as count
+                from wf_task_instance t1
+                         left join wf_flow_instance t4 on t1.flow_inst_uuid = t4.uuid
+                         left join wf_flow_definition t2 on t1.flow_def_uuid = t2.uuid
+                         left join wf_def_category t3 on t3.uuid = t2.category
+                where t1.suspension_state in (0, 4) and t4.uuid is not null
+                  and exists(select 1
+                             from acl_task_entry a1
+                             where t1.uuid = a1.object_id_identity
+                                ${authWhere}
+                                and a1.sid in (:userSids))
+                group by t2.id, t2.name, t3.uuid, t3.name
+            ) t
+            where 1 = 1
+            <if isNotBlank(whereSql)>
+                and ${whereSql}
+            </if>
+            <if isNotBlank(orderBy)>
+                ${orderBy}
+            </if>
+        ]]>
+    </sql-query>
+
+</hibernate-mapping>

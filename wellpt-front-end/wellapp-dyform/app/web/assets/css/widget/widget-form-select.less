@@ -1,0 +1,25 @@
+/* 当选项数据未加载时候，隐藏处理已选值，避免出现已选效果变动现象 */
+.widget-form-select.select-option-unloaded .ant-select-selection__rendered > ul .ant-select-selection__choice {
+  display: none;
+}
+
+.select-group-divider {
+  display: table;
+  white-space: nowa;
+  width: 100%;
+  white-space: nowrap;
+  background: transparent;
+}
+.select-group-divider > label {
+  padding-right: 10px;
+}
+
+.select-group-divider::after {
+  position: relative;
+  top: 50%;
+  display: table-cell;
+  width: 98%;
+  border-top: 1px solid #e8e8e8;
+  transform: translateY(50%);
+  content: '';
+}

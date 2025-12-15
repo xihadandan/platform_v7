@@ -1,0 +1,75 @@
+
+<style>
+.widget-template-container .data-type-constant>.form-group {
+	margin-left: -25px;
+	margin-right: -25px;
+}
+
+.widget-template-container .fixed-table-toolbar .bs-bars, .fixed-table-toolbar .columns, .fixed-table-toolbar .search {
+	margin-top: 0px;
+}
+</style>
+<div id="widget_tag_tree">
+	<form id="widget_tag_tree_form" class="form-horizontal">
+		<div id="widget_tag_tree_tabs">
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#widget_tag_tree_tabs_base_info">基础信息</a></li>
+			</ul>
+			<div class="tab-content" style="height: 500px">
+				<div role="tabpanel" class="tab-pane active" id="widget_tag_tree_tabs_base_info">
+					<div class="form-group">
+						<label for="name" class="col-xs-2 control-label">名称</label>
+						<div class="col-xs-10">
+							<input type="text" class="form-control w-configurer-option" name="name" id="name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-2 control-label" for="dataType">数据来源</label>
+						<div class="col-xs-10 controls">
+							<label class="radio-inline "> <input value="1" class="w-configurer-option" checked="" name="dataType" id="dataType1"
+								type="radio"><label for="dataType1">常量</label>
+							</label>
+              <label class="radio-inline"> <input value="2" class="w-configurer-option" name="dataType" type="radio" id="dataType2"><label for="dataType2">数据字典</label>
+							</label>
+              <label class="radio-inline"> <input value="3" class="w-configurer-option" name="dataType" type="radio" id="dataType3"><label for="dataType3">数据仓库</label>
+							</label>
+              <label class="radio-inline"> <input value="4" class="w-configurer-option" name="dataType" type="radio" id="dataType4"><label for="dataType4">年份</label>
+							</label>
+						</div>
+					</div>
+					<div class="data-type data-type-1">
+						<label class="col-xs-2 control-label" for="dataDic">常量</label>
+						<div class="col-xs-10 controls data-type-constant"></div>
+					</div>
+					<div class="form-group data-type data-type-2">
+						<label class="col-xs-2 control-label" for="dataDic">数据字典</label>
+						<div class="col-xs-10 controls">
+							<input type="text" class="form-control w-configurer-option" name="dataDic" id="dataDic" style="display:none;">
+							<input type="text" class="form-control " name="dataDicName" id="dataDicName">
+						</div>
+					</div>
+					<div class="form-group data-type data-type-3">
+						<label class="col-xs-2 control-label" for="">数据仓库</label>
+						<div class="col-xs-10 controls">
+							<input type="hidden" class="w-configurer-option" name="dataStoreName" id="dataStoreName" /> <input type="text"
+								class="form-control w-configurer-option" height="34px" id="dataStoreId" name="dataStoreId" />
+						</div>
+					</div>
+					<div class="form-group data-type data-type-3">
+						<label class="col-xs-2 control-label" for="">真实值字段</label>
+						<div class="col-xs-10 controls">
+							<input type="text" class="form-control w-configurer-option" name="valueColumn" id="valueColumn" />
+						</div>
+					</div>
+					<div class="form-group data-type data-type-3">
+						<label class="col-xs-2 control-label" for="">显示值字段</label>
+						<div class="col-xs-10 controls">
+							<input type="text" class="form-control w-configurer-option" name="textColumn" id="textColumn" />
+						</div>
+					</div>
+					<div class="form-group data-type data-type-4"></div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

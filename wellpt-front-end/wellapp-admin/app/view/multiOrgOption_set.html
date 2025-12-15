@@ -1,0 +1,61 @@
+<form action="" id="org_option_form" style="margin-top: 15px" class="form-widget">
+    <input type="hidden" id="uuid" name="uuid" />
+    <input type="hidden" id="systemUnitId" name="systemUnitId"/>
+        <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label for="org_option_name" class="well-form-label control-label required">名称</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="org_option_name" name="name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="org_option_id" class="well-form-label control-label required">ID</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" name="id" id="org_option_id">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="org_option_code" class="well-form-label control-label required">编号</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="org_option_code" name="code">
+                    </div>
+                </div>
+                <div class="form-group group-enable">
+                    <label for="org_option_remark" class="well-form-label control-label">状态</label>
+                    <div class="well-form-control">
+                        <input type="radio" class="form-control" id="org_option_isEnable1" name="isEnable" value="1" style="margin-top: 10px">
+                        <label for="org_option_isEnable1" class="iconfont">启用</label>
+                        <input type="radio" class="form-control" id="org_option_isEnable0" name="isEnable" value="0" style="margin-top: 10px">
+                        <label for="org_option_isEnable0" class="iconfont">禁用</label>
+                    </div>
+                </div>
+                <div class="form-group group-show">
+                    <label class="well-form-label control-label no-suffix">默认显示</label>
+                    <div class="well-form-control">
+                        <input type="radio" class="form-control" id="org_option_isShow1" name="isShow" value="1" style="margin-top: 10px">
+                        <label for="org_option_isShow1" class="iconfont">是<span style="opacity: 0;">是</span></label>
+                        <input type="radio" class="form-control" id="org_option_isShow0" name="isShow" value="0" style="margin-top: 10px">
+                        <label for="org_option_isShow0" class="iconfont">否</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label no-suffix">展现样式</label>
+                    <div class="well-form-control" id="option-style">
+						<span id="style-tree" style='background-color:rgba(236, 243, 253, 1);border-color:rgba(163, 197, 246, 1);font-size:13px;color:#488CEE;display:none;border-width: 1px;margin-right: 4px;padding: 2px 10px;border-style: solid;border-radius: 4px;'>组织树</span>
+						<span id="style-list" style='background-color:rgba(237, 248, 234, 1);border-color:rgba(165, 218, 153, 1);font-size:13px;color:#4BB633;display:none;border-width: 1px;margin-right: 4px;padding: 2px 10px;border-style: solid;border-radius: 4px;'>人员列表</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="org_option_remark" class="well-form-label control-label">备注</label>
+                    <div class="well-form-control">
+                        <textarea class="form-control" id="org_option_remark" name="remark"></textarea>
+                    </div>
+                </div>
+            </div>
+        <div class="row" style="margin-top:20px;">
+            <div class="col-sm-12 text-center">
+                <button type="button" class="well-btn w-btn-primary" id="btn_options_save">保存</button>
+            </div>
+        </div>
+</form>
+

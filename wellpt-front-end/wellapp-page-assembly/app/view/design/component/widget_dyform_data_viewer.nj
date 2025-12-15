@@ -1,0 +1,80 @@
+
+<div id="widget_dyform_data_viewer">
+	<form id="widget_dyform_data_viewer_form" class="form-horizontal">
+		<div id="widget_tree_tabs">
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a
+					href="#widget_tree_tabs_base_info">基础配置</a></li>
+				<li role="presentation"><a href="#widget_tree_tabs_field_info">表单字段配置</a></li>
+			</ul>
+			<div class="tab-content" style="height: 500px">
+				<div role="tabpanel" class="tab-pane active"
+					id="widget_tree_tabs_base_info">
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">名称<font color="red">*</font></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option"
+								name="name" id="name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="formName" class="col-sm-2 control-label">对应表单<font color="red">*</font></label>
+						<div class="col-sm-10">
+							<input type="text" class="w-configurer-option" name="formName" id="formName" /> <input type="hidden"
+								class="form-control w-configurer-option" height="34px" id="formUuid" name="formUuid" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="dataUuid" class="col-sm-2 control-label">对应数据</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control w-configurer-option"
+								height="34px" id="dataUuid" name="dataUuid" />
+							<div class="col-sm-12">
+								若没有配，则采用该表单对应的用户归属单位的第一条记录
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="isEdit" class="col-sm-2 control-label">是否可编辑</label>
+						<div class="col-sm-10 ">
+							<label class="checkbox-inline"> <input
+								class="w-configurer-option" type="checkbox" id="isEdit"
+								name="isEdit" value="true">是
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="jsModule" class="col-sm-2 control-label">JS模块</label>
+						<div class="col-sm-10">
+							<input type="hidden" class="form-control w-configurer-option" name="jsModuleName" id="jsModuleName" /> 
+							<input type="text" class="form-control w-configurer-option" name="jsModule" id="jsModule" />
+						</div>
+					</div>
+					{% include "./widget_base_info.nj" %}
+				</div>
+				<div role="tabpanel" class="tab-pane "
+					id="widget_tree_tabs_field_info">
+					<div id="div_column_toolbar" class="btn-group btn_column_info">
+						<button id="btn_add_column" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+						</button>
+						<button id="btn_delete_column" type="button"
+							class="btn btn-default">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+						</button>
+						<button id="btn_row_up_column" type="button"
+							class="btn btn-default">
+							<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+						</button>
+						<button id="btn_row_down_column" type="button"
+							class="btn btn-default">
+							<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+						</button>
+					</div>
+					<table id="table_field_info" class="field_info" data-height="400"></table>
+				</div>
+			</div>
+		</div>
+
+	</form>
+</div>

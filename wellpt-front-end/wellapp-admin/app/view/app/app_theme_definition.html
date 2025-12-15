@@ -1,0 +1,49 @@
+<div>
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tabs_basic_info" data-toggle="tab" aria-expanded="true">基本信息</a></li>
+  </ul>
+  <div class="tab-content">
+    <div id="tabs_basic_info" class="tab-pane fade active in form-horizontal">
+      <input id="uuid" name="uuid" type="hidden" />
+      <input id="recVer" name="recVer" type="hidden" />
+      <input id="definitionJsonUuid" name="definitionJsonUuid" type="hidden" />
+      <div class="form-group">
+        <label class="col-sm-2 control-label required" for="name">名称</label>
+        <div class="col-sm-10"><input id="name" class="form-control" name="name" type="text" /></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label required" for="id">ID</label>
+        <div class="col-sm-10"><input id="id" class="form-control" name="id" type="text" /></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label required" for="code">编号</label>
+        <div class="col-sm-10"><input id="code" class="form-control" name="code" type="text" /></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="sortOrder">排序号</label>
+        <div class="col-sm-10"><input id="sortOrder" class="form-control" name="sortOrder" type="text" /></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="type">应用于</label>
+        <div class="col-sm-10"><input id="applyTo" class="form-control" name="applyTo" type="text" /></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="title"></label>
+        <div class="col-sm-10">
+          <input id="enabled" class="form-control" name="enabled" type="checkbox" />
+          <label for="enabled">启用</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="remark">备注</label>
+        <div class="col-sm-10"><textarea id="remark" class="form-control" name="remark"></textarea></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+    <button id="btn_save" class="btn btn-primary" type="button">保存</button>
+    <button id="btn_config" class="btn btn-primary" type="button">配置</button>
+  </div>
+</div>

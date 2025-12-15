@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "streetsidesoftware.code-spell-checker",
+    "gruntfuggly.todo-tree",
+    "dbaeumer.vscode-eslint",
+    "shd101wyy.markdown-preview-enhanced",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "mhutchie.git-graph",
+    "vscode-icons-team.vscode-icons",
+    "eseom.nunjucks-template",
+    "douglaszaltron.nunjucks-vscode-extensionpack"
+  ]
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="getLatestVersionWidgetDefinitionByIdQuery">
+        <![CDATA[
+		select *
+		  from app_widget_definition t1
+		 where t1.id = :id
+		   and exists
+		 (select t2.uuid
+		          from app_page_definition t2
+		         inner join app_widget_definition t3
+		            on t2.uuid = t3.app_page_uuid
+		         inner join (select max(t.version) as max_version
+		                      from (select t4.version as version
+		                              from app_page_definition t4
+		                             where exists
+		                             (select t5.app_page_uuid
+		                                      from app_widget_definition t5
+		                                     where t5.id = :id
+		                                       and t4.uuid = t5.app_page_uuid)
+		                             group by t4.version) t) t6
+		            on t2.version = t6.max_version
+		         where t3.id = :id
+		           and t2.uuid = t1.app_page_uuid)
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

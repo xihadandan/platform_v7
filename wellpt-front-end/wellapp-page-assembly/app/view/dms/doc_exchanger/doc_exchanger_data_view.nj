@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=10">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-store"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta name="google" value="notranslate">
+    <title>{{ title }}</title>
+    {% for c in css %}
+      <link href="{{c.path}}" rel="stylesheet">
+    {% endfor %}
+  </head>
+
+  <body>
+    <div class="container-fluid" id="doc_exc_body" {% if docExchangeRecordStatus == 'WAIT_SIGN' %} style="display: none;" {% endif %}>
+      <div class="row">
+        <div class="widget-box widget-color-blue">
+          <div class="widget-header fixed">
+            <div class="widget-header-fill-top"></div>
+            <h5 class="widget-title">{{title}}</h5>
+            <div class="widget-toolbar no-border dms-widget-toolbar"></div>
+            <div class="widget-header-fill-bottom"></div>
+          </div>
+          <div class="widget-body">
+            <ul class="nav nav-tabs" role="tablist" id="docExchangeTabs">
+              <li role="presentation" class="active tab-border">
+                <a href="#tab_base_info" executejsmodule="DmsDocExchangerBaseView">基础信息</a>
+              </li>
+
+              <li role="presentation" style="display: none;" class="tab-border" id="sign-tab">
+                <a href="#tab_sign_info" executejsmodule="DmsDocExchangerSignView">签收情况</a>
+              </li>
+
+              <li role="presentation" style="display: none;" class="tab-border" id="feedback-tab">
+                <a href="#tab_feedback_info" executejsmodule="DmsDocExchangerFeedbackView">反馈情况</a>
+              </li>
+
+              <li role="presentation" style="display: none;" id="urge_info_li" class="tab-border">
+                <a href="#tab_urge_info" executejsmodule="DmsDocExchangerUrgeView">催办记录</a>
+              </li>
+              <li role="presentation" style="display: none;" id="extra_send_info_li" class="tab-border">
+                <a href="#tab_extra_send_info" executejsmodule="DmsDocExchangerExtraSendView">补发记录</a>
+              </li>
+              <li role="presentation" style="display: none;" id="forward_info_li" class="tab-border">
+                <a href="#tab_forward_info" executejsmodule="DmsDocExchangerForwardView">转发记录</a>
+              </li>
+              <li role="presentation" style="display: none;" class="tab-border">
+                <a href="#tab_operation_info" executejsmodule="DmsDocExchangerOperateLogView">操作日志</a>
+              </li>
+
+            </ul>
+
+            <div class="tab-content" style="padding-bottom: 10px; min-height: calc( 100vh - 128px );">
+              <div class="widget-main ace-scroll scroll-disabled tab-pane active" role="tabpanel" style="position: relative;" id="tab_base_info">
+                <!-- 业务数据 -->
+                <form name="dms-data-form" action="dms_data_dyform_view" class="display-none">
+                  <input type="hidden" id="dms_dmsId" name="dms_dmsId" value="{{dms_id}}">
+
+                  <input type="hidden" id="dms_documentViewModule" name="dms_documentViewModule" value="{{documentViewModule}}">
+                  <input type="hidden" id="dms_formUuid" name="dms_formUuid" value="{{formUuid}}">
+                  <input type="hidden" id="dms_dataUuid" name="dms_dataUuid" value="{{dataUuid}}">
+                  <input type="hidden" id="target" name="target" value="{{target}}">
+                  <input type="hidden" id="dms_acId" name="dms_acId" value="{{acId}}">
+                  {% for key, value in extraParams %}
+                    <input id="{{key}}" name="{{key}}" type="hidden" value="{{value}}"/>
+                  {% endfor %}
+
+                  <input type="hidden" id="dms_docExchangeRecordUuid" name="dms_docExchangeRecordUuid" value="{{docExchangeRecordUuid}}">
+                  <input type="hidden" id="dms_docExchangeConfigUuid" name="dms_docExchangeConfigUuid" value="{{docExchangeConfigUuid}}">
+                  <input type="hidden" id="dms_docExchangeRecordStatus" name="dms_docExchangeRecordStatus" value="{{docExchangeRecordStatus}}">
+                  <input type="hidden" id="dms_recordDto" name="dms_recordDto" value="{{recordDto}}">
+                  <input type="hidden" id="dms_configDto" name="dms_configDto" value="{{configDto}}">
+                  <input type="hidden" id="dms_dyformDto" name="dms_dyformDto" value="{{dyformDto}}">
+                  <input type="hidden" id="dms_defaultValue" name="dms_defaultValue" value="{{defaultValue}}">
+                  <input type="hidden" id="dms_dataType" name="dms_dataType" value="{{dataType}}"/>
+
+                </form>
+
+                <!-- 动态表单 -->
+                <form id="dyform" class="dyform"></form>
+
+                <!-- 文档交换记录表单数据 -->
+                <form class="dyform doc_exchange_container"></form>
+
+              </div>
+
+              <div class="widget-main ace-scroll scroll-disabled tab-pane" role="tabpanel" style="position: relative;" id="tab_sign_info">
+                <div class="doc_exchange_container" style="margin-top:1.5em;"></div>
+              </div>
+              <div class="widget-main ace-scroll scroll-disabled tab-pane" role="tabpanel" style="position: relative;" id="tab_feedback_info">
+                <div class="doc_exchange_container" style="margin-top:1.5em;"></div>
+              </div>
+              <div class="widget-main ace-scroll scroll-disabled tab-pane" role="tabpanel" style="position: relative;" id="tab_urge_info">
+                <div class="doc_exchange_container" style="margin-top:1.5em;"></div>
+              </div>
+              <div class="widget-main ace-scroll scroll-disabled tab-pane" role="tabpanel" style="position: relative;" id="tab_operation_info">
+                <div class="doc_exchange_container" style="margin-top:1.5em;"></div>
+              </div>
+
+              <div class="widget-main ace-scroll scroll-disabled tab-pane" role="tabpanel" style="position: relative;" id="tab_forward_info">
+                <div class="doc_exchange_container" style="margin-top:1.5em;"></div>
+              </div>
+              <div class="widget-main ace-scroll scroll-disabled tab-pane" role="tabpanel" style="position: relative;" id="tab_extra_send_info">
+                <div class="doc_exchange_container" style="margin-top:1.5em;"></div>
+              </div>
+
+            </div>
+          </div>
+
+          <div id="docExchangerConf" class="hide">
+            <input type="checkbox" field="isUrge" {% if isUrge %} checked="checked" {% endif %}>
+            <input type="checkbox" field="isEncrypt" {% if isEncrypt %} checked="checked" {% endif %}>
+            <input type="checkbox" field="isFeedback" {% if isFeedback %} checked="checked" {% endif %}>
+            <input type="checkbox" field="isSign" {% if isSign %} checked="checked" {% endif %}>
+            <input type="checkbox" field="isNotify" {% if isNotify %} checked="checked" {% endif %}>
+            <input type="hidden" id="flowUuid" value="{{flowUuid}}">
+            <select id="docEncryptionLevel">
+              <option value="">&nbsp;</option>
+              {% for de in docEncryptionLevelMaps %}
+                <option value="{{loop.index0}}">{{de.name}}</option>
+              {% endfor %}
+            </select>
+            <select id="docUrgeLevel">
+              <option value="">&nbsp;</option>
+              {% for du in docUrgeLevelMaps %}
+                <option value="{{loop.index0}}">{{du.name}}</option>
+              {% endfor %}
+            </select>
+            <span class="editableClass notify-way">
+              {% for nt in notifyWaysMaps %}
+                <input type="checkbox" name="notifyWay" value="{{nt.code}}" id="nw_{{loop.index0}}" way="{{nt.type}}">
+                <label for="nw_{{loop.index0}}">{{nt.name}}</label>
+              {% endfor %}
+
+            </span>
+          </div>
+
+          <div class="widget-footer-fill-top"></div>
+          {# <div class="footer fixed"></div> #}
+        </div>
+      </div>
+    </div>
+
+  </body>
+  {% if paceDisabled === false %}
+    {# 禁止 pace 进度跟踪websocket请求 #}
+    <script type="text/javascript" data-pace-options='{"ajax":{"trackWebSockets":false}}' src="{{helper.staticPrefix()}}/js/pace/pace.min.js"></script>
+  {% endif %}
+  <script type="text/javascript" src="{{helper.staticPrefix()}}/js/requirejs/require.js"></script>
+  <script>
+    var ctx = '';
+    window.staticPrefix = '{{helper.staticPrefix()}}';
+    var WebApp = WebApp || {};
+    WebApp.widgetDefinitions = {
+      '{{dms_id}}': {{ widgetConfigurationJSON | safe }}
+    };
+    WebApp.pageDefinition = {};
+    WebApp.configJsModules = {};
+    WebApp.extraParams = {{ extraParamsJSON | safe }};
+
+    requirejs.onError = function (error) {
+      throw error;
+    }
+
+    requirejs.config({{ requirejsConfigJSON | safe }});
+
+    require({{javascriptsJson |safe}}, function () {
+      require(["js/app"], function () {
+        require(["js/dms/document/dms_doc_exchanger_view"]);
+      });
+    });
+  </script>
+
+</html>

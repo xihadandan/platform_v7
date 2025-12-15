@@ -1,0 +1,58 @@
+/*钉钉接入_多部门人员审核*/
+.mul-dep-container {
+  .prompt {
+    color: @text-color-dark;
+    padding-left: 25px;
+  }
+
+  .mul-dep__content {
+    border: @border-default;
+    margin-bottom: 27px;
+    position: relative;
+
+    .mul-dep__content-header {
+      padding: 12px 25px;
+      display: flex;
+      justify-content: space-between;
+      background: rgba(72, 140, 238, 0.05);
+      box-shadow: 0px -1px 0px 0px #e8e8e8;
+    }
+
+    .mul-dep__content-content {
+      position: relative;
+      min-height: 200px;
+
+      input[disabled] {
+        cursor: not-allowed !important;
+      }
+    }
+
+    .mul-dep__content-content ul li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 18px;
+
+      .well-input-group {
+        position: relative;
+        width: 525px;
+
+        .input-icon + i {
+          .absolute(8px 10px false false);
+          font-size: @font-size-base;
+        }
+      }
+    }
+  }
+}
+
+// 列表 提示
+.mul-depelopment-list-header-tip {
+  font-size: @font-size-base;
+  padding: 5px 0 0 10px;
+
+  i {
+    margin-right: 8px;
+    font-size: @font-size-base;
+  }
+}

@@ -1,0 +1,1 @@
+npm install --production & npm install egg-scripts & tar -zcvf ../../release.tgz .

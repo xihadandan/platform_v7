@@ -1,0 +1,37 @@
+/**
+  单位选择器
+*/
+
+.unit-content {
+  .unit-table {
+    // 操作按钮
+    .form_operate {
+      margin: 0px;
+      padding: 0px 0px 0px 10px;
+      height: 34px;
+      line-height: 34px;
+      background-color:  @background-light;
+      border-top: 1px solid #e8e8e8;
+
+      button {
+        border-radius: 4px;
+        cursor: pointer;
+        display: inline-block;
+        height: @btn-sm-height;
+        padding: 0 6px;
+        margin-top: 4px;
+        line-height: 16px;
+        background: none;
+        color: @text-color-primary;
+        border: 1px solid @btn-primary-border-color;
+        outline: none;
+
+        &:hover {
+          border: 1px solid @btn-primary-hover-border-color;
+          // background-color: @btn-primary-hover-background-color;
+          // color: @btn-primary-hover-font-color;
+        }
+      }
+    }
+  }
+}

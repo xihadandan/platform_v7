@@ -1,0 +1,71 @@
+{
+  "WidgetTable": {
+    "selectAll": "เลือกทั้งหมด",
+    "noData": "ไม่มีข้อมูล",
+    "notFoundData": "ไม่พบข้อมูล",
+    "column": {
+      "serialNumber": "ลำดับ",
+      "operation": "การดำเนินการ"
+    },
+    "switchToCardView": "สลับเป็นมุมมองบัตร",
+    "switchToTableView": "สลับเป็นมุมมองตาราง",
+    "loadMore": "โหลดเพิ่มเติม",
+    "selectExportColumn": "เลือกคอลัมน์สำหรับส่งออก",
+    "clickOrDragToUpload": "คลิกหรือลากไฟล์มาที่นี่เพื่ออัปโหลด",
+    "importModal": {
+      "downloadImportTemplate": "ดาวน์โหลดเทมเพลต",
+      "uploadFinished": "อัปโหลดแล้ว",
+      "importResultText": "ผลลัพธ์ของการนำเข้า",
+      "importSuccessText": "สำเร็จ",
+      "importFailText": "ล้มเหลว",
+      "importModalTitle": "นำเข้าข้อมูล",
+      "importModalOkText": "นำเข้า",
+      "importErrorTitle": "ข้อผิดพลาดในการนำเข้า",
+      "importErrorContent": "ไฟล์ที่นำเข้าถูกเข้ารหัสหรือรูปแบบเนื้อหาไม่ถูกต้อง กรุณาตรวจสอบและนำเข้าอีกครั้ง"
+    },
+    "exportModal": {
+      "pleaseSelectExportRow": "โปรดเลือกแถวที่จะส่งออก",
+      "exportingTip": "กำลังส่งออกข้อมูล",
+      "exportFileTitleHead": "ส่งออกข้อมูล"
+    },
+    "message": {
+      "totalPageContent": "ทั้งหมด {totalPages} หน้า / {total} รายการ",
+      "totalCountContent": "ทั้งหมด {total} รายการ",
+      "uploadFileFormatError": "อนุญาตเฉพาะไฟล์รูปแบบ xls หรือ xlsx เท่านั้น",
+      "errorWorkflowIdExplain": "การวิเคราะห์กระบวนการผิดพลาด โปรดยืนยันการกำหนดค่ากระบวนการของข้อมูลถูกต้อง"
+    },
+    "search": {
+      "keywordPlaceholder": "คำหลัก",
+      "searchAllOption": "ทั้งหมด",
+      "searchButtonText": "ค้นหา",
+      "more": "เพิ่มเติม",
+      "resetButtonText": "รีเซ็ต",
+      "collapse": "ยุบทอด"
+    },
+    "customTable": {
+      "sort": "ลากเรียงลำดับ",
+      "title": "ปรับแต่งตาราง",
+      "freezeTableLabel": "แช่แข็งตาราง",
+      "freezeBeforeLabel": "ก่อน",
+      "freezeAfterLabel": "หลัง",
+      "columnLabel": "คอลัมน์",
+      "tip1": "ตั้งค่าคอลัมน์ที่แช่แข็ง คอลัมน์ที่แช่แข็งจะไม่ได้รับผลกระทบจากการเลื่อนไปมา",
+      "tip2": "การตั้งค่าคอลัมน์ที่แช่แข็งเป็น 0 หมายความว่าไม่มีคอลัมน์ที่แช่แข็ง",
+      "tip3": "เปิดใช้งานคอลัมน์ที่แช่แข็ง โดยคอลัมน์การดำเนินการจะถูกแช่แข็งโดยค่าเริ่มต้น",
+      "tip4": "เมื่อแช่แข็ง n คอลัมน์หลังจากนี้ n ไม่รวมคอลัมน์การดำเนินการ",
+      "tip5": "เมื่อแช่แข็ง n คอลัมน์ก่อนหน้านี้ n ไม่รวมคอลัมน์ลำดับ",
+      "tip6": "คอลัมน์ภายในกลุ่มส่วนหัวจะถูกจัดเรียงตามลำดับการกำหนดค่ากลุ่มส่วนหัว",
+      "tip7": "ในคอลัมน์ที่แสดงแบบกลุ่ม ตำแหน่งคอลัมน์ที่อยู่หน้าสุดคือตำแหน่งที่แทรกกลุ่ม",
+      "fixedColumnLabel": "คอลัมน์คงที่",
+      "cancelButtonText": "ยกเลิก",
+      "resetButtonText": "คืนค่าเป็นค่าเริ่มต้น",
+      "okButtonText": "ตกลง",
+      "nameColumn": "ชื่อ",
+      "savingTip": "กำลังบันทึก...",
+      "saveServerError": "ข้อผิดพลาดของบริการข้อมูลตารางที่ปรับแต่ง"
+    },
+    "pleaseSelectRecord": "โปรดเลือกบันทึก!",
+    "time": "เวลา",
+    "size": "ขนาด"
+  }
+}

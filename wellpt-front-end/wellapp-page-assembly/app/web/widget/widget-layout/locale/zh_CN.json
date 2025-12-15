@@ -1,0 +1,14 @@
+{
+  "WidgetLayout": {
+    "home": "首页",
+    "more": "更多",
+    "expand": "展开",
+    "collapse": "收起",
+    "closeLeftTabs": "关闭左侧标签页",
+    "closeRightTabs": "关闭右侧标签页",
+    "refresh": "刷新",
+    "close": "关闭",
+    "closeOtherTabs": "关闭其他标签页",
+    "closeAllTabs": "关闭全部标签页"
+  }
+}

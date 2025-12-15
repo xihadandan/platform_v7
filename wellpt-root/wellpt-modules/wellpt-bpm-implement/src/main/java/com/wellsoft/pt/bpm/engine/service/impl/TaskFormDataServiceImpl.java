@@ -1,0 +1,30 @@
+/*
+ * @(#)2013-3-17 V1.0
+ *
+ * Copyright 2013 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.bpm.engine.service.impl;
+
+import com.wellsoft.pt.bpm.engine.service.TaskFormDataService;
+import com.wellsoft.pt.jpa.service.impl.BaseServiceImpl;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * Description: 如何描述该类
+ *
+ * @author zhulh
+ * @version 1.0
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2013-3-17.1	zhulh		2013-3-17		Create
+ * </pre>
+ * @date 2013-3-17
+ */
+@Service
+@Transactional
+public class TaskFormDataServiceImpl extends BaseServiceImpl implements TaskFormDataService {
+
+}

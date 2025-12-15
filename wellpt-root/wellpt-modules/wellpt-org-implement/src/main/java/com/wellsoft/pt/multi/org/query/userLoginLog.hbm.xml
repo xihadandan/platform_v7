@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="userLoginLogQuery">
+        <![CDATA[
+    select l.uuid, l.login_ip,l.login_source,l.login_time,a.id as user_id,a.user_name,a.login_name,l.user_os,l.browser,l.browser_version
+     from org_user_login_log l
+    , multi_org_user_account a
+    where l.user_uuid=a.uuid
+      <if isNotBlank(whereSql)>
+        and ${whereSql}
+      </if>
+    <if isNotBlank(orderBy)>
+        ${orderBy}
+      </if>
+    ]]>
+
+
+    </sql-query>
+</hibernate-mapping>

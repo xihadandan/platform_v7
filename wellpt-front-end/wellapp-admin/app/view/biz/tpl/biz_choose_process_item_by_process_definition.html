@@ -1,0 +1,75 @@
+<div class="container-fluid">
+  {@if processDefinition}
+  <div>
+    <label>业务流程名称:</label>
+    <span>${processDefinition.name}</span>
+    <p />
+  </div>
+  {@/if}
+  <ul class="nav nav-tabs" role="tablist">
+    {@each processNodes as processNode,index}
+    <li role="presentation" class="{@if index == 0} active{@/if}">
+      <a href="#${processNode.id}" aria-controls="${processNode.id}" role="tab" data-toggle="tab" aria-expanded="true">
+        ${processNode.name}
+      </a>
+    </li>
+    {@/each}
+  </ul>
+  <div class="tab-content">
+    {@each processNodes as processNode,index}
+    <div role="tabpanel" class="tab-pane {@if index == 0} active{@/if}" id="${processNode.id}" style="padding-top: 10px">
+      {@if processNode.nodes != null && processNode.nodes.length > 0}
+      <div class="children-nodes-${processNode.id}"></div>
+      <p />
+      {@/if}
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="col-checkbox">
+              <input type="checkbox" name="checkAll" style="display: inline-block" />
+            </th>
+            <th>办理事项</th>
+            <th>当前办理情况</th>
+          </tr>
+        </thead>
+        <tbody>
+          {@each processNode.items as item,itemIndex}
+          <tr>
+            <td class="td-checkbox" style="vertical-align: middle">
+              <input
+                id="${item.id}"
+                type="checkbox"
+                name="checkOne"
+                processNodeId="${processNode.id}"
+                processItemId="${item.id}"
+                itemCode="${item.itemCode}"
+                itemtype="${item.itemType}"
+                style="display: inline-block"
+              />
+            </td>
+            <td class="item-name">
+              <label for="${item.id}">${item.itemName}</label>
+              {@if item.itemType == '30' && item.dispenseItem} {@each item.includeItemDtos as includeItem,includeItemIndex}
+              <div>
+                <input
+                  id="${includeItem.id}"
+                  type="checkbox"
+                  name="checkIncludeItem"
+                  processItemId="${includeItem.id}"
+                  itemCode="${includeItem.itemCode}"
+                  style="display: inline-block"
+                />
+                <label for="${includeItem.id}" style="margin-left: -18px; margin-top: 4px">${includeItem.itemName}</label>
+                <span stateId="${includeItem.id}" class="item-state">未办理</span>
+              </div>
+              {@/each} {@/if}
+            </td>
+            <td stateId="${item.id}" class="item-state">未办理</td>
+          </tr>
+          {@/each}
+        </tbody>
+      </table>
+    </div>
+    {@/each}
+  </div>
+</div>

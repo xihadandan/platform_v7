@@ -1,0 +1,7 @@
+content urlload content/
+overlay chrome://browser/content/browser.xul chrome://urlload/content/urlLoaderOverlay.xul
+
+interfaces components/nsIUrlOpener.xpt
+component {CCC68874-E4B6-11DC-818D-337A55D89593} components/URLLauncher.js
+contract @benryan.com/url/launch;1 {CCC68874-E4B6-11DC-818D-337A55D89593}
+category JavaScript-global-constructor URLLauncher @benryan.com/url/launch;1

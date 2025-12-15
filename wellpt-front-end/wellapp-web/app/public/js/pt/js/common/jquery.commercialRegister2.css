@@ -1,0 +1,109 @@
+.commercial_register0 {
+    overflow-y: auto;
+}
+.ssdjb{
+	width: 1320px;
+}
+.ssdjb_column_row.indexFirst,
+.ssdjb_column_row_content.indexFirst{
+	border-left: 1px solid;
+}
+.ssdjb_column_row.indexFirst.rowFirst,
+.ssdjb_column_row_content.indexFirst.rowFirst,
+.ssdjb_column_row.indexFirst.rowlast,
+.ssdjb_column_row_content.indexFirst.rowlast {
+	border-left: none;
+}
+.rowFirstDiv{
+	border-left: 1px solid;
+    border-top: 1px solid;
+    bottom: -1px;
+    position: absolute;
+}
+.rowFirstDiv2{
+/* 	border-left: 1px solid; */
+    border-top: 1px solid;
+    bottom: -1px;
+    position: absolute;
+}
+.rowMiddleDiv{
+	position: absolute;
+	top: 0;
+	border-bottom: 1px solid;
+}
+.rowLastDiv{
+	position: absolute;
+	top: 0;
+	border-left: 1px solid;
+	border-bottom: 1px solid;
+}
+.rowFirstDiv.rowLastDiv{
+	border-bottom: medium none;
+	border-top: medium none;
+	border-left: medium none;
+}
+.ssdjb_column_row{
+	position: relative;
+}
+.ssdjb_column_row_type{
+    position: absolute;
+    width: 35px;
+}
+.ssdjb_column_row_content {
+	width: 100%;
+	height: 100%;
+	padding: 10px 0;
+}
+.iconDiv{
+	height: 20px;
+}
+.column2 .ssdjb_column_row_content .arrow,.column4 .haveChild .ssdjb_column_row_content .arrow{
+	width: 60%;
+}
+.column8 .ssdjb_column_row_content .arrow,.column6 .twoIndex .ssdjb_column_row_content .arrow,
+.column2 .ssdjb_column_row_content_last .arrow{
+	width:0;
+}
+.ssdjb_column_row_content .arrow {
+	background-color: #000;
+	width: 100%;
+	margin-top: 10px;
+	height: 1px;
+	position: absolute;
+	left: 40%;
+}
+.ssdjb_column_row_content .icon.gary {
+	color: #ccc;
+}
+.ssdjb_column_row_content .arrow.gary {
+    background-color: #CCCCCC;
+}
+.ssdjb_column_row_content .icon {
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 2px solid #67C2EF;
+    border-radius: 50em;
+    font-size: 13px;
+    font-weight: bold;
+    height: 20px;
+    left: 40%;
+    position: absolute;
+    text-align: center;
+    width: 20px;
+    z-index: 2;
+}
+.icon.point {
+    cursor: pointer;
+}
+.ssdjb_column_row_content .task {
+	width: 150px;
+	height: 20px;
+	text-align: center;
+}
+.ssdjb_column_row_content .time {
+	width: 150px;
+	height: 20px;
+	text-align: center;
+}
+.time.red {
+    color: #FF0000;
+}

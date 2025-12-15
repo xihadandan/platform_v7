@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="userPinyinQuery">
+        <![CDATA[
+		from User user
+		where 1 = 1 and (
+			lower(user.loginName) like '%${loginName?lower_case}%'
+			or lower(user.userName) like '%${userName?lower_case}%'
+			or exists (
+				select entityUuid from Pinyin pinyin
+				where pinyin.entityUuid = user.uuid
+				and pinyin.type = 'User'
+				and lower(pinyin.pinyin) like '${pinyin?lower_case}%'
+			)
+		)
+		order by code asc,userName
+	]]>
+    </sql-query>
+</hibernate-mapping>

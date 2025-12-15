@@ -1,0 +1,81 @@
+1、支持et新建
+2、处理一些undefined报错
+Index: WebContent/resources/wps/plugins/src/etoa_2.1/js/module/oastart.js
+===================================================================
+--- WebContent/resources/wps/plugins/src/etoa_2.1/js/module/oastart.js	(revision 198975)
++++ WebContent/resources/wps/plugins/src/etoa_2.1/js/module/oastart.js	(working copy)
+@@ -128,12 +128,12 @@
+         suffix = suffixObj.Value
+     }
+     //如果后缀不为空就转换文件并上传
+-    if (suffix.length > 0) {
+-        var suffixArr = suffix.split("|");
+-        ChangeAndUpload(suffixArr, uploadPath);
+-    } else {
++//    if (suffix.length > 0) {
++//        var suffixArr = suffix.split("|");
++//        ChangeAndUpload(suffixArr, uploadPath);
++//    } else {
+         wps.OAAssist.UploadFile(name, path, uploadPath, "file", cb ? cb : "OnSuccess", "OnFail");
+-    }
++//    }
+ }
+ 
+ //在线编辑保存文件
+Index: WebContent/resources/wps/plugins/src/etoa_2.1/js/function/openDoc.js
+===================================================================
+--- WebContent/resources/wps/plugins/src/etoa_2.1/js/function/openDoc.js	(revision 198975)
++++ WebContent/resources/wps/plugins/src/etoa_2.1/js/function/openDoc.js	(working copy)
+@@ -20,9 +20,9 @@
+             wps.EtApplication().UserName = params[key];
+             propAddDefault(prop, key, params[key]);
+         } else if (key === "openType") { // 打开方式
+-            openType(params[key])
++            // openType(params[key]); // TODO 设置只读模式
+         } else if (key === "revisionCtrl") {
+-            OnOpenRevisionClickedFromWeb(params[key])
++            // OnOpenRevisionClickedFromWeb(params[key])
+             // OnShowRevisionClickedFromWeb(params[key])
+         } else if (["picturesPath", "redHeadsPath", "getPicturePath", "getRedHeadPath",
+                 "picHeight", "picWidth", "originWidthHeight", "validatePath", "searchPicturePath",
+Index: WebContent/resources/wps/plugins/src/etoa_2.1/js/common.js
+===================================================================
+--- WebContent/resources/wps/plugins/src/etoa_2.1/js/common.js	(revision 198975)
++++ WebContent/resources/wps/plugins/src/etoa_2.1/js/common.js	(working copy)
+@@ -194,6 +194,7 @@
+     clock += mm;
+     return (clock);
+ }
++var CurentTime = currentTime;
+ 
+ var chinese = ['〇', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+ 
+@@ -371,7 +372,7 @@
+         var path = wps.OAAssist.DownloadFile(fileUrl);
+         doc = wps.EtApplication().Workbooks.Open(path, false, false);
+     } else {
+-        if (activeDoc && (docName.indexOf("文档") != -1 || docName.indexOf("文字文稿1") != -1)) {
++        if (activeDoc && (activeDoc.Name.indexOf("文档") != -1 || activeDoc.Name.indexOf("工作簿") != -1)) {
+             doc = activeDoc;
+         } else {
+             doc = wpsApp.Workbooks.Add();
+@@ -380,15 +381,15 @@
+          // 如果日后版本更新了，这里也要修改，有获得temp路径的方法   wps.Env.GetTempPath()
+         if(wps.Env&&wps.Env.GetTempPath){
+             if (params.newFileName) {
+-                doc.SaveAs2(wps.Env.GetTempPath()+"/" + params.newFileName);
++                doc.SaveAs(wps.Env.GetTempPath()+"/" + params.newFileName);
+             } else if(doc.FullName.indexOf('C:') == -1) {
+-                doc.SaveAs2(wps.Env.GetTempPath() +"/"+ currentTime());
++                doc.SaveAs(wps.Env.GetTempPath() +"/"+ currentTime());
+             }
+         }else{
+             if (params.newFileName) {
+-                doc.SaveAs2("C:/Users/Public/Workbooks/" + params.newFileName);
++                doc.SaveAs("C:/Users/Public/Workbooks/" + params.newFileName);
+             } else if(doc.FullName.indexOf('C:') == -1) {
+-                doc.SaveAs2("C:/Users/Public/Workbooks/" + currentTime());
++                doc.SaveAs("C:/Users/Public/Workbooks/" + currentTime());
+             }
+         }
+     }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="countFlowManagement">
+        <![CDATA[
+	select count(uuid)
+	  from FlowManagement t1
+	 where t1.type = :type
+	   and exists (select distinct t2.flowDefUuid
+	          from TaskInstance t2
+	         where t2.uuid = :taskInstUuid
+	           and t1.flowDefUuid = t2.flowDefinition.uuid)
+	   and t1.orgId in (:orgIds)
+	]]>
+    </sql-query>
+</hibernate-mapping>

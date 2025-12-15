@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!-- 供给jqgrid分页使用 -->
+
+
+    <sql-query name="queryUserAccountListForPage">
+        <![CDATA[
+			select a.*, e.sex, e.english_name, e.employee_number, e.mobile_phone, i.job_ids, i.dept_ids 
+			from multi_org_user_account a
+			left join multi_org_user_info e on a.id = e.user_id
+			left join multi_org_user_work_info i on a.id = i.user_id
+			where 1 = 1
+			<if isNotBlank( jobSql )>
+				and ( ${jobSql} )
+			</if>
+			<if isNotBlank( name )>
+				and ( 
+					a.user_name like '%${name}%'  ESCAPE '\\' or
+					a.login_name like '%${name}%'  ESCAPE '\\' or
+					e.english_name like '%${name}%'  ESCAPE '\\'
+				)  
+			</if>
+			<if isNotBlank( type )>
+				and ( 
+					a.type = :type 
+				)  
+			</if>
+			<if isNotBlank( systemUnitId )>
+				and ( 
+					a.system_unit_id = :systemUnitId 
+				)  
+			</if>
+			<if isNotBlank(orderBy)>
+				order by ${orderBy}
+			</if>
+			
+	]]>
+    </sql-query>
+
+</hibernate-mapping>

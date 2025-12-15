@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+    <tlib-version>2.0</tlib-version>
+    <jsp-version>1.2</jsp-version>
+    <short-name>cms</short-name>
+    <uri>/wellpt/tags/cms</uri>
+    <display-name>table-tag</display-name>
+    <description>jqgird标签</description>
+    <tag>
+        <name>cmspage</name>
+        <tag-class>com.wellsoft.pt.cms.tag.CmsTag</tag-class>
+        <body-content>JSP</body-content>
+    </tag>
+
+</taglib>

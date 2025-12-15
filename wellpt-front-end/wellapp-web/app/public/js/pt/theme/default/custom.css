@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+/* 项目自定义CSS */
+
+.content .col-xs-7 .tab-pane .panel-body .col-xs-12 {
+  padding: 0;
+  overflow: visible;
+}
+
+/*项目中个别表格不需要省略处理的样式*/
+
+.ui-wBootstrapTable.td-nowrap .fixed-table-container .fixed-table-body table tbody > tr > td {
+  width: 100px;
+  overflow: visible;
+  white-space: initial;
+  word-wrap: break-word;
+  /* text-overflow: ellipsis; */
+  color: #404040;
+  background: #fff;
+  vertical-align: middle;
+  padding: 8px;
+  border-right: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+}

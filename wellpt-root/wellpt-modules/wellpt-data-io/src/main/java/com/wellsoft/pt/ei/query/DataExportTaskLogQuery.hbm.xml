@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="exportChildCount">
+        <![CDATA[
+		select log.data_type   as parentName,
+		       log.data_child_type   as name,
+		       count(1) as count
+		  from DATA_EXPORT_TASK_LOG log, DATA_EXPORT_TASK task
+		  where log.task_uuid in (:taskUuids)
+		  and log.task_uuid = task.uuid
+		  and log.export_time >= task.reexport_time
+		  group by log.data_type, log.data_child_type
+	]]>
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,77 @@
+/** 权限管理 - 角色页面 */
+
+// 权限管理 - 角色页面 - 角色/权限页签
+#role_privilege_info {
+  padding-left: 10px;
+
+  .keyword_search_toolbar {
+    padding-left: 0px;
+
+    .keyword-search-wrap {
+      width: 130px;
+    }
+  }
+
+  .role_privilege_tree {
+    margin-top: 8px;
+    height: 415px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: @border-default;
+
+    .ztree-row a {
+      width: 70%;
+
+      > span:not(.button) {
+        .text-overflow();
+
+        display: inline-block;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+// 权限管理 - 角色页面 - 角色/权限页签 - 已选角色/权限
+#selectedRolePrivilege {
+  height: 458px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: @border-default;
+  padding: 8px;
+
+  li {
+    .text-overflow();
+
+    height: 28px;
+    padding: 4px;
+
+    .delete-btn {
+      display: none;
+
+      &:hover {
+        background-color: @text-color-primary;
+      }
+    }
+
+    &:hover {
+      background-color: @item-hover-background;
+
+      .delete-btn {
+        display: block;
+        color: @text-color-light;
+        float: right;
+        margin-right: 4px;
+        font-size: @font-size-lg;
+        cursor: pointer;
+      }
+
+      .name {
+        .text-overflow();
+
+        display: inline-block;
+        width: calc(100% - 20px);
+      }
+    }
+  }
+}

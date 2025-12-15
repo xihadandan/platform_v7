@@ -1,0 +1,39 @@
+{
+  "uni-datetime-picker": {
+    "selectMonth": "选择年月",
+    "selectDate": "选择日期",
+    "selectTime": "选择时间",
+    "selectDateTime": "选择日期时间",
+    "startDate": "开始日期",
+    "endDate": "结束日期",
+    "startTime": "开始时间",
+    "endTime": "结束时间",
+    "ok": "确定",
+    "clear": "清除",
+    "cancel": "取消",
+    "year": "年",
+    "month": "月",
+    "day": "日",
+    "hour": "时",
+    "minute": "分",
+    "second": "秒"
+  },
+  "uni-calender": {
+    "SUN": "日",
+    "MON": "一",
+    "TUE": "二",
+    "WED": "三",
+    "THU": "四",
+    "FRI": "五",
+    "SAT": "六",
+    "confirm": "确认"
+  },
+  "uni-w-picker": {
+    "year": "年",
+    "month": "月",
+    "day": "日",
+    "hour": "时",
+    "minute": "分",
+    "second": "秒"
+  }
+}

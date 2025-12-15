@@ -1,0 +1,52 @@
+/* 公文交换预览页 */
+.docExchangeTable > thead > tr > th {
+  background: @gray-2;
+  font-weight: 400;
+  color: @text-color-dark;
+}
+
+.docExchangeCheckbox {
+  display: none;
+
+  + label {
+    .relative();
+
+    display: inline-block;
+    cursor: pointer;
+    padding-left: @padding-xl;
+    margin-right: @margin-xl;
+    font-size: 13px;
+
+    &::before {
+      .absolute(false false false 0);
+
+      content: '\e8f2';
+      font-family: iconfont !important;
+      font-size: @font-size-lg;
+      margin-right: @margin-sm;
+      border-radius: @border-radius-2;
+    }
+  }
+
+  &:checked + label:before {
+    content: '\e8de';
+    font-family: iconfont !important;
+    font-size: @font-size-lg;
+    color: @primary-6;
+    text-align: center;
+  }
+}
+
+.div-bootstraptable-formbuilder .bootstrap-table .dmsDocExchangeTable > tbody > tr > td {
+  padding: 8px;
+}
+
+.label-height-table td.label-td {
+  line-height: @height-md !important;
+}
+
+.doc_exchange_container .div-bootstraptable-formbuilder {
+	border: 1px solid #ddd;
+    padding: 0;
+	margin: 0 15px;
+}

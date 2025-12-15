@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="listByYearQuery">
+        <![CDATA[
+		select
+			t1.uuid as uuid,
+			t1.holiday_uuid as holiday_uuid,
+			t2.name as holiday_name,
+			t3.instance_date as holiday_instance_date,
+			t1.year as year,
+			t1.from_date as from_date,
+			t1.to_date as to_date,
+			t1.makeup_date as makeup_date,
+			t1.remark as remark,
+			t1.system as system,
+			t1.tenant as tenant
+		from
+			ts_holiday_schedule t1
+		left join ts_holiday t2 on
+			t1.holiday_uuid = t2.uuid
+		left join ts_holiday_instance t3 on
+			t1.holiday_uuid = t3.holiday_uuid
+			and t1.year = t3.year
+		where
+			t1.year = :year
+			and t1.system_unit_id = :systemUnitId
+			<if isNotBlank(systemId)>
+                and t1.system = :systemId
+            </if>
+	]]>
+    </sql-query>
+</hibernate-mapping>

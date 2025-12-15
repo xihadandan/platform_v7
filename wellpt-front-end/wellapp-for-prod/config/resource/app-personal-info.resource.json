@@ -1,0 +1,9 @@
+{
+  "js": {
+    "app_personal_info": {
+      "path": "personalinfo/personal_info",
+      "name": "平台应用_个人信息",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "wCommonPictureLib"]
+    }
+  }
+}

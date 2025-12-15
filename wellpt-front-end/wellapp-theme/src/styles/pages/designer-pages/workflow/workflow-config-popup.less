@@ -1,0 +1,191 @@
+/**
+  * 流程设计器 - 各种设置**弹窗中**的表单
+  *
+  * Demo
+  * ```html
+  * <div class="modal">
+  *   <div class="modal-body">
+  *     <div class="workflow-popup">
+  *       <div class="well-form">
+  *         <div class="form-group">
+  *           <label class="well-form-label"></label>
+  *           <div class="well-form-control">
+  *             <input />
+  *           </div>
+  *         </div>
+  *       </div>
+  *     </div>
+  *   </div>
+  * </div>
+  * ```
+  */
+
+.workflow-popup .well-form {
+  margin-top: 0;
+
+  .well-form-label {
+    width: 15%;
+  }
+
+  &.label-widening .well-form-label {
+    width: 20%;
+  }
+
+  .well-form-control {
+    width: 70%;
+    min-height: 35px;
+
+    &.no-left-label {
+      margin-left: 15%;
+    }
+
+    input {
+      height: 34px;
+      vertical-align: baseline;
+
+      &[type='radio'] + label,
+      &[type='checkbox'] + label {
+        margin-right: 0;
+        padding-left: 5px;
+      }
+    }
+
+    .switch-wrap {
+      margin-top: 7px;
+    }
+
+    .multiBox {
+      position: relative;
+      padding: 5px;
+      border: @border-width-base dashed @border-color-base;
+      border-radius: @border-radius-base;
+
+      > ul {
+        width: 100%;
+
+        > li {
+          position: relative;
+          margin-bottom: 5px;
+          padding: 8px 40px 8px 7px;
+          background: @gray-2;
+          border-radius: @border-radius-base;
+
+          .label {
+            font-size: @font-size-base;
+            font-weight: normal;
+            color: @text-color;
+          }
+        }
+      }
+
+      .assignCtl {
+        .text {
+          float: left;
+          width: 30px;
+          line-height: 34px;
+          text-align: center;
+        }
+
+        .half-ctl {
+          float: left;
+          width: calc(50% - 30px);
+        }
+      }
+    }
+
+    #templateIdWrap {
+      .multiBox {
+        display: none;
+      }
+
+      .show-control .multiBox {
+        display: block;
+      }
+    }
+
+    .timerWarnBox ul li .timerWarnBox-item {
+      position: relative;
+      color: @text-color;
+
+      .num {
+        display: inline-block;
+        width: 52px;
+        margin: 0 5px;
+      }
+
+      .select {
+        display: inline-block;
+        width: 180px;
+      }
+
+      .label {
+        position: absolute;
+        left: 0;
+        top: 15px;
+        padding: 0;
+        font-weight: normal;
+        color: @text-color;
+      }
+
+      .checkbox {
+        width: 500px;
+      }
+    }
+
+    .delete-btn {
+      .absolute(50% 0 false false);
+
+      width: 26px;
+      min-width: auto;
+      margin-top: -13px;
+      padding: 0;
+      text-align: center;
+      background: transparent;
+
+      i {
+        margin-right: 0;
+      }
+
+      &:active {
+        background: @primary-color;
+      }
+    }
+
+    .inner-form-group {
+      position: relative;
+      margin-top: 5px;
+      padding-left: 80px;
+
+      label {
+        .absolute(0 false false 0);
+
+        width: 80px;
+        line-height: 35px;
+        padding-top: 0 !important;
+      }
+    }
+
+    .showLimitTimeCtl {
+      float: left;
+      width: 50%;
+    }
+    .field-validate-checkbox {
+      display: inline-block;
+      vertical-align: middle;
+      & + .w-tooltip {
+        vertical-align: middle;
+        line-height: 1;
+        margin-left: 5px;
+        .w-tooltip-content {
+          width: 250px;
+        }
+      }
+    }
+  }
+
+  .timeLimitType .well-form-control > div {
+    display: inline-block;
+    width: 49.5%;
+    vertical-align: middle;
+  }
+}

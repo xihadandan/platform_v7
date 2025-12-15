@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!--得到浏览监控列表-->
+    <sql-query name="getRepoFileInfoByUUID">
+        <![CDATA[
+    	select * from repo_file where uuid=:uuid
+	]]>
+    </sql-query>
+
+    <sql-query name="queryFileHistory">
+        <![CDATA[
+		select t.uuid,
+		       t.file_name,
+		       t.file_size,
+		       ua.user_name as creator,
+		       t.create_time,
+		       t.source,
+		       t.physical_file_id,
+		       t.orig_uuid
+		  from repo_file t
+		  left join user_info ua
+            on t.creator = ua.user_id
+		 where (exists (select 1
+		                  from repo_file tt
+		                 where (t.orig_uuid = tt.orig_uuid or t.uuid = tt.orig_uuid)
+		                   and tt.uuid = :fileID) or t.orig_uuid = :fileID or
+		        t.uuid = :fileID)
+		 order by t.create_time desc
+	]]>
+    </sql-query>
+
+
+    <sql-query name="queryFileWaitUpload">
+        <![CDATA[
+		 select t.uuid,t.file_uuid as fileid, t.md5 ,t.file_name as filename from REPO_FILE_WAIT_UPLOAD t where t.fail_count <= :failCnt and data_lock = 0
+		 and (t.retry_time is null or t.retry_time <=:retryTime)
+		 order by t.create_time asc
+	]]>
+    </sql-query>
+
+    <sql-query name="updateFileWaitUploadLock">
+        <![CDATA[
+        update FileWaitUploadEntity set dataLock = 1 where uuid=:uuid
+	]]>
+    </sql-query>
+
+</hibernate-mapping>

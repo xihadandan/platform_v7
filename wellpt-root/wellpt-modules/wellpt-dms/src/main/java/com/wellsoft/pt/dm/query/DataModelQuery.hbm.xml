@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <sql-query name="dataModelKeywordQuery">
+        <![CDATA[
+		from DataModelEntity
+		 where 1=1
+		 <if isNotBlank( system )>
+		    and system = :system
+		 </if>
+		 <if isNotBlank( type )>
+		    and type = :type
+		 </if>
+		 <if isNotBlank( keyword )>
+		   and (
+               name like '%' || :keyword || '%'
+               or id like '%' || :keyword || '%'
+
+		   )
+		 </if>
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+		 <if isNotBlank( orderBy )>
+			 ${orderBy}
+		 </if>
+	]]>
+    </sql-query>
+
+    <sql-query name="dataModelTableDataQuery">
+        <![CDATA[
+		from ${tableName}
+		 where 1=1
+		  <if isNotBlank(whereSql)>
+            and ${whereSql}
+          </if>
+		 <if isNotBlank( orderBy )>
+			 ${orderBy}
+		 </if>
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

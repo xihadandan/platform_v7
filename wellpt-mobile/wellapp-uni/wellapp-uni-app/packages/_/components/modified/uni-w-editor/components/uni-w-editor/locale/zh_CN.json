@@ -1,0 +1,38 @@
+{
+  "quill": {
+    "defaultFontFamily": "默认字体",
+    "defaultFontSize": "默认",
+    "fontFamily": {
+      "songti": "宋体",
+      "heiti": "黑体",
+      "kaiti": "楷体",
+      "fangsong": "仿宋",
+      "lishu": "隶书",
+      "youyuan": "幼圆",
+      "weiruanyahei": "微软雅黑"
+    },
+    "bold": "加粗",
+    "italic": "倾斜",
+    "underline": "下划线",
+    "minusIndent": "减少缩进量",
+    "addIndent": "增加缩进量",
+    "backgroundColor": "背景颜色",
+    "color": "字体颜色",
+    "align": "对齐",
+    "leftAlign": "左对齐",
+    "centerAlign": "居中对齐",
+    "rightAlign": "右对齐",
+    "justifyAlign": "两端对齐",
+    "ordered": "有序列表",
+    "bullet": "无序列表",
+    "insertImage": "插入图片",
+    "sourceCode": "源代码",
+    "maximize": "最大化",
+    "recover": "恢复",
+
+    "more": "更多",
+    "fontSize": "字体大小",
+    "selectAlignType": "请选择对齐方式",
+    "select": "请选择"
+  }
+}

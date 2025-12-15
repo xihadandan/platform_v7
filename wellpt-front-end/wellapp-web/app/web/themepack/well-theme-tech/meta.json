@@ -1,0 +1,16 @@
+{
+	"id": "88319939319955456",
+	"title": "科技感",
+	"class": "well-theme-tech",
+	"colors": [
+		"#1677FF",
+		"#13C2C2",
+		"#2F54EB"
+	],
+	"fontSizes": [
+		{
+			"label": "默认字号",
+			"value": "14px"
+		}
+	]
+}

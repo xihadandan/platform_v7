@@ -1,0 +1,37 @@
+/*
+ * @(#)2012-11-8 V1.0
+ * 
+ * Copyright 2012 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.task.job;
+
+import org.quartz.JobExecutionContext;
+
+/**
+ * Description: 初始化任务，目前没有使用集群，暂时使用类初始化数据
+ *  
+ * @author zhulh
+ * @date 2012-11-8
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本		修改人		修改日期			修改内容
+ * 2012-11-8.1	zhulh		2012-11-8		Create
+ * </pre>
+ *
+ */
+public class InitJobDetailJob extends Job {
+
+	/** 
+	 * (non-Javadoc)
+	 * @see com.wellsoft.pt.task.job.Job#execute(com.wellsoft.pt.task.job.JobData)
+	 */
+	@Override
+	protected void execute(JobExecutionContext context, JobData data) {
+		logger.debug("InitJobDetailJob execute");
+		//		SchedulerService schedulerService = ApplicationContextHolder.getBean(SchedulerService.class);
+		//		schedulerService.initJobs();
+	}
+
+}

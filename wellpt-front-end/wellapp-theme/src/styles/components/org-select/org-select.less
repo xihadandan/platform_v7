@@ -1,0 +1,242 @@
+/* 组织选择美化 */
+.org-select-container {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border-width: 0px;
+  position: relative;
+  display: inline-block;
+  zoom: 1;
+  vertical-align: middle;
+  outline: none;
+  cursor: pointer;
+
+  .org-label {
+    cursor: pointer;
+  }
+}
+
+.org-select-container[readonly] .org-select {
+  background: @background-lighter;
+}
+.org-select-container[readonly],
+.org-select-container[readonly] .org-select,
+.org-select-container[readonly] .org-select li.org-entity,
+.org-select-container[readonly] .org-select li.org-entity:before,
+.org-select-container[readonly] .org-select li .org-label {
+  cursor: not-allowed;
+}
+
+.org-select-container > i.icon {
+  .absolute(0 8px 0 false);
+  .square(14px);
+
+  margin: auto;
+  line-height: 14px;
+  color: @text-color-light;
+}
+
+.org-select-container > .org-select {
+  margin: 0;
+  height: auto;
+  min-height: 34px;
+  padding: 2px 32px 2px 11px;
+  position: relative;
+  cursor: text;
+  overflow: hidden;
+  border-radius: @border-radius-base;
+  background-color: @component-background;
+  outline: none;
+}
+
+.org-select-container:not(.error-style) > .org-select {
+  border: @border-default-dark;
+
+  &:hover {
+    border-color: @border-color-primary!important;
+    box-shadow: @shadow-active-default;
+  }
+}
+
+.org-select > .org-entity {
+  float: left;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  font-size: @font-size-base;
+  line-height: 28px;
+  color: @text-color;
+  cursor: default;
+
+  user-select: none;
+}
+
+/* normal style */
+
+.org-entity:before {
+  content: ';';
+  width: 8px;
+  display: inline-block;
+}
+
+.org-entity:first-child:before {
+  display: none;
+}
+/* normal style end */
+
+/* style1 */
+.org-style1 .org-entity:before {
+  width: 12px;
+}
+
+.org-style1 .V + .V:before,
+.org-style1 .O + .O:before,
+.org-style1 .J + .J:before,
+.org-style1 .D + .D:before,
+.org-style1 .B + .B:before,
+.org-style1 .E + .E:before,
+.org-style1 .U + .U:before {
+  content: ',';
+  width: 8px;
+}
+/* style1 end */
+
+/* style2 */ /* (先实现style3的情况下，实现style2) */
+.org-style2 .org-entity {
+  line-height: 16px;
+  border-radius: 4px;
+  padding: 3px 5px;
+  margin: 2px 5px 2px 0px;
+  background-color: @background-lighter;
+  border: @border-default-dark;
+}
+
+.org-style2 .V + .V.org-entity,
+.org-style2 .O + .O.org-entity,
+.org-style2 .J + .J.org-entity,
+.org-style2 .D + .D.org-entity,
+.org-style2 .B + .B.org-entity,
+.org-style2 .E + .E.org-entity,
+.org-style2 .U + .U.org-entity {
+  border-radius: @border-radius-base;
+  padding: 3px 5px 3px 2px;
+  margin: 2px 5px 2px -11px; /* padding-right + marging-right + border-right-width = 11px*/
+  border: @border-default-dark;
+  border-left-width: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.org-style2 .V + .V:before,
+.org-style2 .O + .O:before,
+.org-style2 .J + .J:before,
+.org-style2 .D + .D:before,
+.org-style2 .B + .B:before,
+.org-style2 .E + .E:before,
+.org-style2 .U + .U:before {
+  content: ',';
+  width: 8px;
+  line-height: 16px;
+  background: none;
+}
+
+/* style2 end */
+
+/* style3 */
+.org-style3 .org-entity {
+  line-height: 18px;
+  border-radius: 4px;
+  padding: 3px 5px 3px 20px;
+  margin: 2px 5px 2px 0;
+  background-color: @background-lighter;
+  border: @border-default-dark;
+
+  &:before {
+    .absolute(4px false false 4px);
+    .square(14px);
+
+    content: '';
+    line-height: 0;
+    margin: 0px 6px 0px 0px;
+    display: inline-block;
+    vertical-align: middle;
+    border: 0 none;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+  }
+
+  &.no-icon {
+    padding-left: 5px;
+
+    &::before {
+      display: none;
+    }
+  }
+}
+
+/* style3 end */
+.org-style2 .org-entity:before,
+.org-style3 .org-entity:before {
+  .square(14px);
+
+  content: '';
+  line-height: 0;
+  margin: 0px 6px 0px 0px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 0 none;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+
+.org-style2 .U:before,
+.org-style3 .U:before {
+  background: url('@{image-url-prefix}/person.png') no-repeat;
+  background-size: contain;
+}
+
+.org-style2 .B:before,
+.org-style3 .B:before,
+.org-style2 .E:before,
+.org-style3 .E:before {
+  background: url('@{image-url-prefix}/orgtree.png') no-repeat;
+  background-size: contain;
+}
+
+.org-style2 .C:before,
+.org-style3 .C:before,
+.org-style2 .D:before,
+.org-style3 .D:before {
+  background: url('@{image-url-prefix}/department.png') no-repeat;
+  background-size: contain;
+}
+
+.org-style2 .J:before,
+.org-style3 .J:before {
+  background: url('@{image-url-prefix}/job.png') no-repeat;
+  background-size: contain;
+}
+
+.org-style2 .V:before,
+.org-style2 .O:before,
+.org-style3 .V:before,
+.org-style3 .O:before {
+  background: url('@{image-url-prefix}/company.png') no-repeat;
+  background-size: contain;
+}
+
+.org-style2 .DU:before,
+.org-style2 .G:before,
+.org-style3 .DU:before,
+.org-style3 .G:before {
+  background: url('@{image-url-prefix}/group.png') no-repeat;
+  background-size: contain;
+}

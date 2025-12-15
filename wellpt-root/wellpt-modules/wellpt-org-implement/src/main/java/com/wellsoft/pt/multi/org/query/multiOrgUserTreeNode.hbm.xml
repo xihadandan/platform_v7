@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="queryUserByOrgTreeNode">
+        <![CDATA[
+		select t.*, a.user_name as name, a.code, a.remark,a.login_name as short_name,a.user_name_py as user_name_py,i.sex as sex
+		from multi_org_user_tree_node t
+		left join multi_org_user_account a on t.user_id = a.id
+		left join multi_org_user_info i on t.user_id = i.user_id
+		where t.org_version_id = :orgVersionId and a.IS_FORBIDDEN = 0
+		<if isNotBlank( eleId )>
+			and t.ele_id = :eleId 
+		</if> 
+		ORDER BY a.CODE asc
+	]]>
+    </sql-query>
+
+    <sql-query name="updateUserEleIdByOrgVersion">
+        <![CDATA[
+		update multi_org_user_tree_node t set t.ele_id = :newEleId
+		where t.org_version_id = :orgVersionId and ele_id = :oldEleId
+	]]>
+    </sql-query>
+
+    <sql-query name="deleteUserFromTreeNode">
+        <![CDATA[
+		delete from multi_org_user_tree_node
+		where user_id = :userId
+	]]>
+    </sql-query>
+
+    <sql-query name="querOrgUsers">
+        <![CDATA[
+		SELECT
+            moua.*,
+            moui.*
+        FROM
+		<if isNotBlank( idPrefix ) && idPrefix=='J'>
+            (
+        SELECT
+            DISTINCT a.id AS id,
+            a.*
+        FROM
+            MultiOrgUserAccount a,
+            MultiOrgUserTreeNode b
+        WHERE
+            a.id = b.userId
+            AND a.isForbidden = 0
+            AND b.orgVersionId = :orgVersionId
+            AND b.eleId = :eleId )moua
+		<else>
+                (
+            SELECT
+            DISTINCT a.id AS id,
+            a.*
+        FROM
+            MultiOrgUserAccount a,
+            MultiOrgUserTreeNode b,
+            MultiOrgTreeNode c
+        WHERE
+            a.id = b.userId
+            AND b.orgVersionId = c.orgVersionId
+            AND b.eleId = c.eleId
+            AND a.isForbidden = 0
+            AND b.orgVersionId = :orgVersionId
+            AND c.eleIdPath LIKE :eleIdPath )moua
+		</if>	
+            LEFT JOIN MultiOrgUserInfo moui ON
+            moua.id = moui.userId
+        ORDER BY
+            a.code
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

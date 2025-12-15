@@ -1,0 +1,41 @@
+<html>
+<meta charset="utf-8">
+<title>套用红头</title>
+</head>
+
+<body>
+    <script type="text/javascript" src='js/main.js'></script>
+    <script type="text/javascript" src='./js/module/redHead.js'></script>
+    <script language="JavaScript">
+        function selectTemplate() {
+            var obj = document.getElementById("templates");
+            var index = obj.selectedIndex;
+            var value = obj.options[index].getAttribute("value");
+            var path = obj.options[index].getAttribute("path");
+            var rep_bk = obj.options[index].getAttribute("rep_bk");
+            var rep_text = obj.options[index].getAttribute("rep_text");
+
+            var templateDoc = {};
+            templateDoc.name = value;
+            templateDoc.replaceBookMark = rep_bk;
+            templateDoc.replaceText = rep_text;
+
+            var fun = insertRedHeadDocFromWps;
+            fun(path, templateDoc);
+
+            window.opener = null;
+            window.open('', '_self', '');
+            window.close();
+        }
+    </script>
+    <select id="templates" size=5>
+        <!--这里可以写死，也可以写成ajax动态拉取。-->
+        <option selected="selected" value="中共深圳市龙华区委文件" rep_bk="zhengwen" rep_text="正文" path="http://dev.wpseco.cn/wps-oa/redHead/getFileData/12">中共深圳市龙华区委文件</option>
+        <option value="中国共产党深圳市龙华区委员会" rep_bk="zhengwen" rep_text="正文" path="http://dev.wpseco.cn/wps-oa/redHead/getFileData/13">中国共产党深圳市龙华区委员会</option>
+        <option value="中国共产党深圳市龙华区委员会-深龙华委字" rep_bk="zhengwen" rep_text="正文" path="http://dev.wpseco.cn/wps-oa/redHead/getFileData/14">中国共产党深圳市龙华区委员会-深龙华委字</option>
+    </select>
+    <br/>
+    <button type="button" onClick="wps.ExecFunc('selectTemplate()')">选择模板</button>
+</body>
+
+</html>

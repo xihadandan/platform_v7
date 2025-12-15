@@ -1,0 +1,58 @@
+<div id="attrCfgDiv" title="属性设置" style="overflow: hidden" class="table-view-config">
+  <div>
+    <div class="dyform">
+      <div class="post-sign">
+        <div class="post-detail">
+          <div id="table-view-tabs" style="max-height: 600px; overflow-y: auto">
+            <ul>
+              <li><a href="#basic_info">基本属性</a></li>
+              <li><a href="#column_define">列定义</a></li>
+            </ul>
+            <div id="basic_info">
+              <table>
+                <tr style="display: none">
+                  <td class="Label">视图ID</td>
+                  <td class="value">
+                    <input type="text" id="id" name="id" class="w100" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="Label">视图设置</td>
+                  <td class="value">
+                    <input type="text" id="relaTableViewText" name="relaTableViewText" />
+                    <input type="hidden" id="relaTableViewId" name="relaTableViewId" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="Label">视图ID</td>
+                  <td class="value">
+                    <input type="text" id="relaTableViewWidgetId" name="relaTableViewWidgetId" readonly="readonly" />
+                    <br />
+                    <label>表单页面可通过ID值获取到视图组件，例如：DyformFacade.getTableView('wBootstrapTable_12adf1')</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="Label">默认条件</td>
+                  <td class="value">
+                    <input type="text" name="defaultCondition" id="defaultCondition" value="" class="w100" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="Label">编辑模式</td>
+                  <td class="value">
+                    <input type="radio" id="showType" name="showType" value="5" />
+                    <label for="showType">隐藏</label>
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+            <div id="column_define">
+              <table id="table_view_columns"></table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

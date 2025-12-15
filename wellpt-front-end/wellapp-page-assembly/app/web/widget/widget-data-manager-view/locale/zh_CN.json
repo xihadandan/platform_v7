@@ -1,0 +1,19 @@
+{
+  "WidgetDataManagerView": {
+    "categoryTo": "分类至",
+    "selectTag": "选择标签",
+    "colorOkText": "确定",
+    "newTag": "新建标签",
+    "column": {
+      "collect": "收藏",
+      "focus": "关注"
+    },
+    "message": {
+      "pleaseSelectRow": "请选择行",
+      "serverError": "服务异常",
+      "pleaseSelectTag": "请选择标签",
+      "saveTagSuccess": "标签保存成功",
+      "saveSuccess": "保存成功"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<table>
+	<tr class="odd" style="display: none;">
+			<td class="Label">文本样式</td>
+			<td class="value">	
+				<select name="contentFormat" id="contentFormat" style="display: block;float: left;width: 112px;">
+					<option value="10" selected="selected">普通</option>
+					<option value="11" >URL</option>
+					<option value="12" style="font-size:10px;">EMAIL</option>
+					<option value="13" style="font-size:11px;">身份证</option>
+					<option value="14" style="font-size:12px;" >电话</option>
+					<option value="15" style="font-size:12px;" >手机</option>
+				</select>
+			</td>
+	</tr>
+		 
+	<tr  style="display: none;">
+		<td class="Label">校验规则</td>
+		<td class="value">
+			<input type="checkbox" name="fieldCheckRules" id="checkRule_1" value="1"  onclick="checkMust(this)"/><label for="checkRule_1">非空</label>
+			<input type="checkbox" name="fieldCheckRules" id="checkRule_5" value="5" onclick="checkUnique(this)" /><label for="checkRule_5">全局唯一</label>
+			<input type="checkbox" name="fieldCheckRules" id="checkRule_6" value="5" onclick="checkUnitUnique(this)" /><label for="checkRule_6">单位内唯一</label>
+			<input type="hidden" name="unitUnique" id="unitUnique" />
+		</td>
+	</tr> 
+	
+</table>

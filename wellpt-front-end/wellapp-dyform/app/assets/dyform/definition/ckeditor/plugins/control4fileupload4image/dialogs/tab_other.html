@@ -1,0 +1,140 @@
+<table>
+  <tr>
+    <td class="Label">
+      显示类操作权限设置
+      <div class="w-property-help">
+        <i class="iconfont icon-ptkj-tishishuoming"></i>
+        <div class="w-property-help-popup">显示类操作：不会影响数据存储的操作</div>
+      </div>
+    </td>
+    <td class="value">
+      <span>内置按钮：</span>
+      <input type="checkbox" name="oppower" id="oppower_4" value="4" />
+      <label for="oppower_4">预览</label>
+      <input type="checkbox" name="oppower" id="oppower_2" value="2" />
+      <label for="oppower_2">下载</label>
+    </td>
+  </tr>
+
+  <tr class="odd">
+    <td class="Label">
+      编辑类操作权限设置
+      <div class="w-property-help">
+        <i class="iconfont icon-ptkj-tishishuoming"></i>
+        <div class="w-property-help-popup">编辑类操作：会影响数据存储的操作</div>
+      </div>
+    </td>
+    <td class="value">
+      <span>内置按钮：</span>
+      <input type="checkbox" name="oppower" id="oppower_1" value="1" />
+      <label for="oppower_1">添加</label>
+      <input type="checkbox" name="oppower" id="oppower_3" value="3" />
+      <label for="oppower_3">删除</label>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="Label">允许文件名重复</td>
+    <td class="value">
+      <!-- <input type="checkbox" name="allowFileNameRepeat" id="allowFileNameRepeat" value="1" checked />
+            <label for="allowFileNameRepeat">允许</label> -->
+      <div class="switch-wrap active" id="allowFileNameRepeat"><span class="switch-radio" data-status="1"></span></div>
+    </td>
+  </tr>
+
+  <tr class="odd">
+    <td class="Label">允许的附件大小（M）</td>
+    <td class="value"><input type="text" class="w100" name="fileMaxSize" id="fileMaxSize" /></td>
+  </tr>
+
+  <tr>
+    <td class="Label">允许多个附件</td>
+    <td class="value">
+      <!-- <input type="checkbox" name="allowMulti" id="allowMulti" value="1" /> <label for="allowMulti">允许</label> -->
+      <div class="switch-wrap active" id="allowMulti"><span class="switch-radio" data-status="1"></span></div>
+      <span>开启时，添加的附件，是在原有的基础上继续添加；关闭时，添加的附件，是自动覆盖原有的</span>
+    </td>
+  </tr>
+
+  <tr class="fileMaxNum odd">
+    <td class="Label">允许的附件数量</td>
+    <td class="value">
+      <input type="text" class="w100" name="fileMaxNum" id="fileMaxNum" />
+    </td>
+  </tr>
+
+  <tr>
+    <td class="Label">像素校验</td>
+    <td class="value">
+      <div class="switch-wrap" id="pixelCheck"><span class="switch-radio" data-status="0"></span></div>
+      <span>开启时，将根据像素要求进行校验，满足要求才可上传；关闭时，像素要求不做校验</span>
+    </td>
+  </tr>
+
+  <tr class="tr_pixel odd">
+    <td class="Label">
+      <font style="color: #f00; display: none">*</font>
+      像素要求
+    </td>
+    <td class="value">
+      宽
+      <input type="text" id="imgWidth" style="width: 120px" />
+      px
+      <span style="margin: 0 20px">*</span>
+      高
+      <input type="text" id="imgHeight" style="width: 120px" />
+      px
+    </td>
+  </tr>
+
+  <tr>
+    <td class="Label">允许的文件扩展名</td>
+    <td class="value">
+      <input type="text" class="w100" name="fileExt" id="fileExt" placeholder="['png', 'gif', 'jpeg']" />
+      <br />
+      (
+      <font color="red">如果值为空表示允许上传任意扩展名的附件,值的格式必须符合JSON数组规范，除非允许所有格式时则为空</font>
+      )
+    </td>
+  </tr>
+
+  <tr class="odd">
+    <td class="Label">
+      添加操作的类型
+      <div class="w-property-help">
+        <i class="iconfont icon-ptkj-tishishuoming"></i>
+        <div class="w-property-help-popup">
+          <p>1、本地上传：无法从系统图片库中进行选择，只能自行上传图片</p>
+          <p>2、从图片库选择：只能从系统图片库中进行选择，无法自行上传图片</p>
+          <p>3、从图片库选择+上传维护：既能从系统图片库中进行选择，同时维护图片库的图片，也能自行上传图片</p>
+        </div>
+      </div>
+    </td>
+    <td class="value">
+      <input type="radio" name="operationMode" id="operationMode_1" value="1" />
+      <label for="operationMode_1">本地上传</label>
+      <input type="radio" name="operationMode" id="operationMode_2" value="2" />
+      <label for="operationMode_2">从图片库选择</label>
+      <input type="radio" name="operationMode" id="operationMode_3" value="3" />
+      <label for="operationMode_3">从图片库选择+上传维护</label>
+    </td>
+  </tr>
+
+  <tr class="" id="tr_picLibCategory">
+    <td class="Label required">图片库分类</td>
+    <td class="value">
+      <span>
+        已选择
+        <span id="selectedPicLibCategories" style="font-weight: bold">0</span>
+        个分类
+      </span>
+
+      <span id="selectCategories">
+        <a class="hyperlink">选择分类</a>
+      </span>
+      <span>
+        <a class="hyperlink" target="_blank" id="picLibLink">配置分类</a>
+      </span>
+    </td>
+  </tr>
+</table>

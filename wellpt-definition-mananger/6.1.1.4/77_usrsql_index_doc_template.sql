@@ -1,0 +1,31 @@
+
+insert into INDEX_DOC_TEMPLATE
+  (UUID,
+   CREATE_TIME,
+   CREATOR,
+   MODIFIER,
+   MODIFY_TIME,
+   REC_VER,
+   TITLE_EXPS,
+   CONTENT_EXPS,
+   CREATOR_EXPS,
+   CREATE_TIME_FIELD,
+   MODIFY_TIME_FIELD,
+   URL,
+   NAME,
+   TYPE)
+values
+  ('4d8a1316c-1cd5-430d-a99b-759dea86a62',
+   '11-SEP-20 02.51.18.000000 PM',
+   'U0000000059',
+   'U0000000059',
+   '14-SEP-20 11.08.45.351000 AM',
+   6,
+   '${流程标题}${流程名称}${发起人姓名}${年}',
+   '${流程标题}${流程名称}${流程ID}${流程编号}${发起人姓名}${发起人所在部门名称}${年}${月}${日}',
+   '${发起人姓名}',
+   'createTime',
+   'modifyTime',
+   '/workflow/work/v53/view/work?taskInstUuid=${taskInstanceUuid}'||chr(38)|| 'flowInstUuid=${flowInstanceUuid}',
+   '流程',
+   'workflow');

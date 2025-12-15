@@ -1,0 +1,46 @@
+<form id="workingTimePlan">
+  <div class="work-plan">
+    <div class="work-plan-header">
+      <div class="work-header-text">
+        <span>工作时间方案</span>
+        <i class="iconfont icon-ptkj-lishi" style="display: none"></i>
+      </div>
+      <div>
+        <button type="button" class="well-btn w-btn-primary btn-save-plan">保存</button>
+        <button type="button" class="well-btn w-btn-primary w-line-btn btn-save-plan-version">保存新版本</button>
+        <button type="button" class="well-btn w-btn-primary w-line-btn btn-check-version">查看版本历史</button>
+        <button type="button" class="well-btn w-btn-primary w-line-btn btn-history-time">历史工作时间</button>
+      </div>
+    </div>
+    <div class="work-plan-body">
+      <div class="title">基本信息</div>
+      <div class="work-body-info">
+        <div class="field">
+          <div class="label-td">
+            <font style="color: #f00">*</font>
+            名称
+          </div>
+          <div><input id="name" name="name" type="text" class="form-control" /></div>
+        </div>
+        <div class="field">
+          <div class="label-td">编号</div>
+          <div><input id="code" name="code" type="text" class="form-control" /></div>
+        </div>
+      </div>
+      <div class="title">工作时间</div>
+      <button type="button" class="well-btn w-btn-primary addWorkTimePlan">
+        <i class="iconfont icon-ptkj-jiahao"></i>
+        添加工作时间安排
+      </button>
+      <div class="holiday_arrangement_list"></div>
+      <div class="title">节假日安排</div>
+      <div class="holiday_arrangement_right">
+        <button type="button" class="well-btn w-btn-primary addHoliday">
+          <i class="iconfont icon-ptkj-jiahao"></i>
+          添加节假日
+        </button>
+        <div class="holiday-content"></div>
+      </div>
+    </div>
+  </div>
+</form>

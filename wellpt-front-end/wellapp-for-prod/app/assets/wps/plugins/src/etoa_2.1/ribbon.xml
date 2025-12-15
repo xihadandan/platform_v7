@@ -1,0 +1,19 @@
+<customUI xmlns="http://schemas.microsoft.com/office/2006/01/customui" onLoad="OnOATabLoad" >
+  <ribbon startFromScratch="false">
+    <tabs>
+      <tab id="WPSExtOfficeTab" label="OA助手" getEnabled="OnGetEnabled" getVisible="OnGetVisible" >
+        <group id="OAFuncGroup" label="OA公文基本功能">
+          <button id="btnSaveAsFile" label="保存本地" getLabel="OnGetLabel"  onAction="OnAction"  getEnabled="OnGetEnabled"   getVisible="OnGetVisible"   getImage="GetImage" size="large" />
+          <button id="btnUploadOA" label="上传OA文件"  getLabel="OnGetLabel"   onAction="OnAction" getEnabled="OnGetEnabled"  getVisible="OnGetVisible" getImage="GetImage" size="large" />
+        </group>
+        <group id="OAPartnerGroup" label="OA通用功能按钮组">
+          <button id="btnImportDoc" label="导入表格"  getLabel="OnGetLabel" onAction="OnAction" getEnabled="OnGetEnabled"  getVisible="OnGetVisible"  getImage="GetImage" size="large" />
+        </group>
+        <group id="OAPartnerGroup" label="OA常规功能按钮组">
+          <button id="btnPrintDOC" label="打印公文"  getLabel="OnGetLabel"  onAction="OnAction"   getEnabled="OnGetEnabled"  getVisible="OnGetVisible" getImage="GetImage" size="large" />
+          <!-- <button id="btnCloseDOC" label="打印公文"  getLabel="OnGetLabel"  onAction="OnAction"   getEnabled="OnGetEnabled"  getVisible="OnGetVisible" getImage="GetImage" size="large" /> -->
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+  </customUI>

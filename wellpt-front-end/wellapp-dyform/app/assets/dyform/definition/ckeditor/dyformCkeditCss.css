@@ -1,0 +1,11 @@
+@import url(../../../js/bootstrap/3.3.7/css/bootstrap.min.css);
+@import url(../../../dyform/css/explain/dyform.css);
+@import url(../../../js/pt/theme/default/default.css);
+@import url(../../../css/pt-iconfont/iconfont.css);
+.dyform table td .value{
+	display:block;
+}
+
+.drop_focus_td {
+	border:2px dotted red !important;
+}

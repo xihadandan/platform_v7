@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID"
+         version="3.0">
+    <display-name>wellpt</display-name>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath*:/applicationContext-core.xml
+            classpath*:/applicationContext-security.xml
+            classpath*:/applicationContext-cache.xml
+            classpath*:/applicationContext-aop.xml
+            classpath*:/applicationContext-quartz.xml
+            classpath*:/applicationContext-cxf.xml
+            <!-- 			classpath*:/applicationContext-mq-embedded.xml -->
+            <!-- 			classpath*:/applicationContext-jms.xml -->
+            <!-- classpath*:/applicationContext-jms-integration.xml -->
+            classpath*:/applicationContext-ad.xml
+            <!-- 			classpath*:/applicationContext-james.xml -->
+            classpath*:/applicationContext-org.xml
+            classpath*:/applicationContext-cis.xml
+            classpath*:/selectivedata/applicationContext-pt.xml
+            classpath*:/mobile/applicationContext-mobile.xml
+            classpath*:/app/applicationContext-app.xml
+        </param-value>
+    </context-param>
+
+    <!-- UTF-8 Encoding -->
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- Resource HttpRequest -->
+    <filter>
+        <filter-name>resourceFilter</filter-name>
+        <filter-class>com.wellsoft.pt.core.web.ResourceHttpRequestHandlerFilter</filter-class>
+        <init-param>
+            <param-name>location</param-name>
+            <param-value>/resources/</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>resourceFilter</filter-name>
+        <url-pattern>/resources/*</url-pattern>
+    </filter-mapping>
+
+    <!-- Security filter -->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <!--  	<filter>  -->
+    <!-- 		<filter-name>sitemesh</filter-name> -->
+    <!--  		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class> -->
+    <!--  	</filter> -->
+    <!--  	<filter-mapping> -->
+    <!--  		<filter-name>sitemesh</filter-name> -->
+    <!--  		<url-pattern>/sitemesh/*</url-pattern> -->
+    <!--  	</filter-mapping> -->
+
+    <!-- JTA环境下不支持session重新打开 -->
+    <!-- <filter> -->
+    <!-- <filter-name>hibernateOpenSessionInViewFilter</filter-name> -->
+    <!-- <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class> -->
+    <!-- <init-param> <param-name>singleSession</param-name> <param-value>true</param-value> </init-param> -->
+    <!-- <init-param> -->
+    <!-- <param-name>excludeSuffixs</param-name> -->
+    <!-- <param-value>js,css,jpg,gif,htm,html</param-value> -->
+    <!-- </init-param> -->
+    <!-- </filter> -->
+    <!-- <filter-mapping> -->
+    <!-- <filter-name>hibernateOpenSessionInViewFilter</filter-name> -->
+    <!-- <url-pattern>/*</url-pattern> -->
+    <!-- <dispatcher>REQUEST</dispatcher> -->
+    <!-- <dispatcher>FORWARD</dispatcher> -->
+    <!-- </filter-mapping> -->
+
+    <!-- fineReport -->
+    <servlet>
+        <servlet-name>ReportServer</servlet-name>
+        <servlet-class>com.fr.web.ReportServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReportServer</servlet-name>
+        <url-pattern>/ReportServer</url-pattern>
+    </servlet-mapping>
+
+    <!-- ocx附件上传服务端 -->
+    <servlet>
+        <servlet-name>ocxFileupload</servlet-name>
+        <servlet-class>com.wellsoft.pt.repository.web.OcxFileUpload</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ocxFileupload</servlet-name>
+        <url-pattern>/ocxFileupload</url-pattern>
+    </servlet-mapping>
+
+    <!-- RequestContextListener to set the Locale -->
+    <listener>
+        <listener-class>com.wellsoft.pt.security.core.request.CustomRequestContextListener</listener-class>
+    </listener>
+
+    <!-- Creates the Spring Container shared by all Servlets and Filters -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>com.wellsoft.pt.core.dao.hibernate.SessionFactoryBasedMultiTenancyListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>
+    </listener>
+
+    <!-- WebService Facade -->
+    <servlet>
+        <servlet-name>WebServiceFacadeServlet</servlet-name>
+        <servlet-class>com.wellsoft.pt.integration.support.WebServiceFacadeServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>WebServiceFacadeServlet</servlet-name>
+        <url-pattern>/wsfacade/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- CXF WebService -->
+    <servlet>
+        <servlet-name>CXFServlet</servlet-name>
+        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CXFServlet</servlet-name>
+        <url-pattern>/webservices/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Processes application requests -->
+    <servlet>
+        <servlet-name>wellptServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:/applicationContext-mvc.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>dwr-invoker</servlet-name>
+        <servlet-class>
+            org.directwebremoting.servlet.DwrServlet
+        </servlet-class>
+        <init-param>
+            <param-name>crossDomainSessionSecurity</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>allowScriptTagRemoting</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>classes</param-name>
+            <param-value>java.lang.Object</param-value>
+        </init-param>
+        <init-param>
+            <param-name>activeReverseAjaxEnabled</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>initApplicationScopeCreatorsAtStartup</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>maxWaitAfterWrite</param-name>
+            <param-value>3000</param-value>
+        </init-param>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>logLevel</param-name>
+            <param-value>WARN</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>wellptServlet</servlet-name>
+        <url-pattern>/dwr/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>wellptServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <!-- 正文 -->
+    <servlet>
+        <servlet-name>FormBodyUpload</servlet-name>
+        <servlet-class>com.wellsoft.pt.dytable.support.FormBodyUploadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FormBodyUpload</servlet-name>
+        <url-pattern>/fileUpload</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>240</session-timeout>
+    </session-config>
+
+    <!-- 条形码生成servlert -->
+    <!-- 	<servlet>  -->
+    <!-- 		<servlet-name>BarcodeServlet</servlet-name>  -->
+    <!-- 		<servlet-class>com.wellsoft.pt.ldx.servlet.BarcodeGenServlet</servlet-class>  -->
+    <!-- 	</servlet> -->
+
+    <!-- 	<servlet-mapping>  -->
+    <!-- 		<servlet-name>BarcodeServlet</servlet-name>  -->
+    <!-- 		<url-pattern>/barCode</url-pattern>  -->
+    <!-- 	</servlet-mapping> -->
+    <!-- 	<servlet> -->
+    <!-- 	    <servlet-name>KbBarcodeServlet</servlet-name> -->
+    <!-- 	    <servlet-class>com.wellsoft.pt.ldx.servlet.KbBarcodeServlet</servlet-class> -->
+    <!-- 	  </servlet> -->
+    <!-- 	  <servlet-mapping> -->
+    <!-- 	    <servlet-name>KbBarcodeServlet</servlet-name> -->
+    <!-- 	    <url-pattern>/KbBarcode</url-pattern> -->
+    <!-- 	  </servlet-mapping> -->
+
+    <security-constraint>
+        <web-resource-collection>
+            <url-pattern>/*</url-pattern>
+            <http-method>PUT</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>DELETE</http-method>
+            <http-method>TRACE</http-method>
+        </web-resource-collection>
+        <auth-constraint></auth-constraint>
+    </security-constraint>
+
+    <!-- <error-page> -->
+    <!-- <exception-type>java.lang.Throwable</exception-type> -->
+    <!-- <location>/pt/common/500.jsp</location> -->
+    <!-- </error-page> -->
+    <!-- <error-page> -->
+    <!-- <error-code>500</error-code> -->
+    <!-- <location>/pt/common/500.jsp</location> -->
+    <!-- </error-page> -->
+    <!-- <error-page> -->
+    <!-- <error-code>404</error-code> -->
+    <!-- <location>/pt/common/404.jsp</location> -->
+    <!-- </error-page> -->
+    <!-- <error-page> -->
+    <!-- <error-code>403</error-code> -->
+    <!-- <location>/pt/common/403.jsp</location> -->
+    <!-- </error-page> -->
+
+    <jsp-config>
+        <taglib>
+            <taglib-uri>/wellpt/tags/privilege</taglib-uri>
+            <taglib-location>/WEB-INF/tld/privilege.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/wellpt/tags/table</taglib-uri>
+            <taglib-location>/WEB-INF/tld/table.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>default.html</welcome-file>
+        <welcome-file>default.htm</welcome-file>
+        <welcome-file>default.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

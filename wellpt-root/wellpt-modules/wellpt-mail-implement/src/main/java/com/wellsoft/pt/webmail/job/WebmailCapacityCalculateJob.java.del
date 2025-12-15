@@ -1,0 +1,48 @@
+package com.wellsoft.pt.webmail.job;
+
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+import com.wellsoft.pt.webmail.entity.WmMailUserEntity;
+import com.wellsoft.pt.webmail.service.WmMailUseCapacityService;
+import com.wellsoft.pt.webmail.service.WmMailUserService;
+import org.quartz.JobExecutionContext;
+
+import java.util.List;
+
+/**
+ * Description: 平台邮件——用户已使用空间计算
+ *
+ * @author chenq
+ * @date 2019/7/20
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本	    修改人		修改日期			修改内容
+ * 2019/7/20    chenq		2019/7/20		Create
+ * </pre>
+ */
+public class WebmailCapacityCalculateJob extends Job {
+
+    @Override
+    protected void execute(JobExecutionContext context, JobData data) {
+        WmMailUserService wmMailUserService = ApplicationContextHolder.getBean(
+                WmMailUserService.class);
+        List<WmMailUserEntity> userEntityList = wmMailUserService.listAll();
+        WmMailUseCapacityService wmMailUseCapacityService = ApplicationContextHolder.getBean(
+                WmMailUseCapacityService.class);
+        for (WmMailUserEntity userEntity : userEntityList) {
+            if (userEntity.getIsInnerUser()) {
+                try {
+                    wmMailUseCapacityService.saveUserUseCapacityInitial(userEntity.getUserId(),
+                            true);
+
+                } catch (Exception e) {
+                    logger.error("计算用户邮件使用空间异常：", e);
+                }
+            }
+        }
+
+
+    }
+}

@@ -1,0 +1,54 @@
+
+	-- 名称：mysql递归查询存储过程
+	-- 入:@table  表名[varchar(200)]
+	-- 入:@field  要查询返回的字段名(例如:  name,age,remark)[text]
+	-- 入:@order  返回结果的排序(例如 name desc,age asc)[text]
+	-- 入:@idName 主键列名[varchar(200)]
+	-- 入:@pidName父键列名[varchar(200)]
+	-- 入:@id     主键值[varchar(200)],不能为null,如果值是null,说明要查询全部,请自己查询
+	-- 入:@upDown 向上级联还是向下级联,1=上 0=下[int]
+	-- 入:@self   是否包含自己 1=是 0=否[int]
+	-- 入:@where  查询条件，例如： AND name='1'
+	-- 返回查询结果集
+	DROP PROCEDURE IF EXISTS Query_Dg;
+	CREATE PROCEDURE Query_Dg
+	(
+	IN table_   VARCHAR(200),
+	IN field_   TEXT,
+	IN order_   TEXT,
+	IN idName_  VARCHAR(200),
+	IN pidName_ VARCHAR(200),
+	IN id_      VARCHAR(200),
+	IN upDown_  INT,
+	IN self_    INT,
+	IN where_   TEXT
+	)
+	BEGIN
+	DECLARE _sqlStr VARCHAR(4000);  -- 动态sql
+	DECLARE _idParam VARCHAR(4000);  -- id存放的变量
+	DECLARE _idSet VARCHAR(4000);  -- 结果
+	SET @_idSet = '';
+	-- 查询id开始
+	IF(self_ = 1)THEN -- 包含自己
+	SET @_idSet = id_;
+	END IF;
+	-- 递归开始
+	IF(upDown_ = 1)THEN -- 向上递归
+	SET @_sql = CONCAT('SELECT ',pidName_,' INTO @_idParam FROM ',table_,' WHERE ',idName_,' = ? ',where_);
+	ELSE  -- 向下递归
+	SET @_sql = CONCAT('SELECT GROUP_CONCAT(',idName_,') INTO @_idParam FROM ',table_,' WHERE FIND_IN_SET(',pidName_,', ?) > 0 ',where_);
+	END IF;
+	SET @_idParam = id_;    -- 输入参数使用时不能 @
+	PREPARE _sqlStr FROM @_sql;
+	EXECUTE _sqlStr USING @_idParam;
+	WHILE @_idParam IS NOT NULL DO
+	SET @_idSet = CONCAT(@_idSet,',',@_idParam);
+	EXECUTE _sqlStr USING @_idParam;
+	END WHILE;
+	-- 查询id结束
+	SET @_sql = CONCAT('SELECT ',field_,' FROM ',table_,' WHERE FIND_IN_SET(',idName_,', ? ) > 0 ',where_, ' order by ',order_); -- 查询
+	DEALLOCATE PREPARE _sqlStr; -- 解除预编译
+	PREPARE _sqlStr FROM @_sql; -- 重新预编译
+	EXECUTE _sqlStr USING @_idSet;
+	DEALLOCATE PREPARE _sqlStr;
+	END

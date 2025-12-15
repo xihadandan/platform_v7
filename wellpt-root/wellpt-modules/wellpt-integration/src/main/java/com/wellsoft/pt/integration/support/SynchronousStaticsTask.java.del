@@ -1,0 +1,49 @@
+/*
+ * @(#)2013-10-30 V1.0
+ * 
+ * Copyright 2013 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.integration.support;
+
+import org.quartz.JobExecutionContext;
+
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.integration.service.ExchangeDataSynService;
+import com.wellsoft.pt.integration.service.SynDataStaticsService;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+
+/**
+ * 
+ * Description: 同步检测心跳任务
+ *  
+ * @author zhongzh
+ * @date 2014-12-10
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2014-12-10.1	zhongzh		2014-12-10		Create
+ * </pre>
+ *
+ */
+public class SynchronousStaticsTask extends Job {
+
+	/** 
+	 * 如何描述该方法
+	 * 
+	 * (non-Javadoc)
+	 * @see com.wellsoft.pt.task.job.Job#execute(org.quartz.JobExecutionContext, com.wellsoft.pt.task.job.JobData)
+	 */
+	@Override
+	protected void execute(JobExecutionContext arg0, JobData arg1) {
+		// 更新心跳
+		ExchangeDataSynService exchangeDataSynService = ApplicationContextHolder.getBean(ExchangeDataSynService.class);
+		if (exchangeDataSynService.beat()) { // 保存离线现场
+			// online:更新统计
+			SynDataStaticsService synDataStaticsService = ApplicationContextHolder.getBean(SynDataStaticsService.class);
+			synDataStaticsService.updateRecord();
+		}
+	}
+}

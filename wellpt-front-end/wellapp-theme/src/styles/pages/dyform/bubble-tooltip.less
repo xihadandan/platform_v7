@@ -1,0 +1,111 @@
+/* 表单校验结果提示窗口 */
+
+#bubble_tooltip {
+  .absolute(100px 3px false false);
+
+  width: 300px;
+  display: none;
+  background-color: @component-background;
+  box-shadow: @shadow-popup-default;
+
+  // 表单校验结果提示窗口 - 标题
+  .bubble_top {
+    height: 40px;
+    text-align: left;
+    line-height: 40px;
+    font-weight: normal;
+    background: @primary-color;
+    color: @text-color-inverse;
+    padding-left: @padding-md;
+
+    > div {
+      display: inline-block;
+    }
+
+    > i {
+      float: right;
+      margin-right: @margin-md;
+      font-size: @font-size-sm;
+      color: @text-color-inverse;
+    }
+  }
+
+  // 表单校验结果提示窗口 - 内容
+  .bubble_middle {
+    background-repeat: repeat-y;
+    background-position: bottom left;
+    padding-left: @padding-md;
+    padding-right: @padding-md;
+    padding-bottom: @padding-2xs;
+
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+
+    // 表单校验结果提示窗口 - 内容 - 错误清单
+    #bubble_tooltip_content {
+      list-style: outside none none;
+      margin-left: 0;
+      margin-bottom: @margin-3xs;
+      margin-top: 4px;
+
+      li {
+        height: 34px;
+        line-height: 34px;
+        padding-left: 2px;
+
+        &:not(:last-of-type) {
+          box-shadow: 0px @border-width-base 0px 0px @border-color-base;
+        }
+
+        i {
+          color: @text-color;
+          font-size: 10px;
+          float: right;
+        }
+
+        a {
+          .text-truncate();
+          .size(100%, 34px);
+
+          color: @text-color;
+          text-decoration: none;
+          display: inline-block;
+        }
+
+        &:hover {
+          i {
+            color: @text-color-primary;
+          }
+
+          a {
+            cursor: pointer;
+            color: @text-color-primary;
+          }
+        }
+
+        &.invisible-field a {
+          width: initial;
+
+          &::after {
+            content: '(隐藏)';
+            color: @danger-color;
+            margin-left: @margin-xs;
+          }
+        }
+      }
+    }
+
+    span {
+      .relative((-@margin-xs) false false false);
+
+      font-size: @font-size-sm;
+    }
+  }
+
+  // 表单校验结果提示窗口 - 底部
+  .bubble_bottom {
+    .relative(-6px false false false);
+
+    background-repeat: no-repeat;
+  }
+}

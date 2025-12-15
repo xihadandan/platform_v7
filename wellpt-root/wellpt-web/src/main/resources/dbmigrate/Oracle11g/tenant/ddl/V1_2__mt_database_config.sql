@@ -1,0 +1,1 @@
+alter table MT_DATABASE_CONFIG add DEFAULT_DB_TEMPLATE clob;

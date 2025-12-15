@@ -1,0 +1,392 @@
+/**  签署管理——弹出框开始 */
+
+.dlg-opinion-mgr {
+  > .nav-tabs {
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+    border: none;
+  }
+
+  .alert-info {
+    font-size: @font-size-base;
+    color: @text-color;
+    border: 1px solid #e4eefc;
+    background: #f6f9fe;
+    height: 42px;
+    line-height: 42px;
+    padding: 0 15px;
+    margin-top: 10px;
+    margin-bottom: 0;
+
+    > i {
+      color: @text-color-primary;
+      font-size: @font-size-xl;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    span.info-close i {
+      cursor: pointer;
+      color: @text-color-light;
+      font-size: 10px;
+
+      &:hover {
+        color: @text-color-primary;
+      }
+    }
+  }
+
+  .alert-danger {
+    background-color: transparent;
+    color: @danger-color;
+    float: left;
+    line-height: 34px;
+    margin-left: 10px;
+    font-size: @font-size-base;
+
+    i {
+      margin-right: 7px;
+    }
+  }
+
+  .list-group .item-text-tip {
+    text-align: center;
+    margin-top: 95px;
+    font-size: @font-size-base;
+    color: @text-color-light;
+  }
+}
+
+// 意见管理弹窗 - 最近使用列表
+.dlg-opinion-mgr .recent_opinion_list {
+  height: 402px;
+  margin-top: 10px;
+  border: @border-default;
+
+  .list-group-item {
+    position: relative;
+    color: @text-color;
+    max-height: initial;
+    line-height: 20px;
+    padding: 4px;
+    margin-bottom: 0;
+    cursor: initial;
+
+    i {
+      color: @text-color-light;
+      font-size: 10px;
+      cursor: pointer;
+
+      &:hover {
+        color: @text-color-primary;
+      }
+    }
+
+    .group-item-text {
+      display: inline-block;
+      width: 820px;
+      vertical-align: middle;
+      word-break: break-all;
+      padding: 6px 0 6px 20px;
+      border: @border-default-transparent;
+
+      + span {
+        vertical-align: middle;
+        display: inline-block;
+        margin-left: 10px;
+      }
+    }
+
+    &:hover {
+      background: @item-hover-background !important;
+    }
+
+    &.initStyle:before {
+      .absolute(17px false false 10px);
+      .square(6px);
+
+      content: '';
+      border-radius: 50%;
+      display: block;
+      background: #ccc;
+    }
+
+    &:not(:last-of-type) {
+      box-shadow: none;
+    }
+  }
+}
+
+// 意见管理弹窗 - 我的常用意见列表
+.dlg-opinion-mgr .user-opinion-list {
+  .list-group {
+    height: 209px;
+    min-height: 209px;
+    overflow: auto;
+
+    .list-group-item {
+      position: relative;
+      color: @text-color;
+      max-height: initial;
+      line-height: 20px;
+      padding: 4px;
+      margin-bottom: 0;
+      cursor: initial;
+
+      // 意见名称
+      .group-item-text {
+        display: inline-block;
+        width: 347px;
+        vertical-align: middle;
+        word-break: break-all;
+        padding: 6px 0 6px 20px;
+        border: @border-default-transparent;
+
+        + span {
+          vertical-align: middle;
+          display: inline-block;
+          margin-left: 10px;
+
+          // 操作按钮
+          i {
+            color: @text-color-light;
+            font-size: 10px;
+            cursor: pointer;
+
+            &:hover {
+              color: @text-color-primary;
+            }
+
+            &:not(:first-of-type) {
+              margin-right: 20px;
+              font-size: @font-size-base;
+            }
+
+            &.glyphicon-remove {
+              position: absolute;
+              top: 1em;
+              right: 1em;
+            }
+
+            &.glyphicon-arrow-down {
+              position: absolute;
+              top: 1em;
+              right: 3em;
+            }
+
+            &.glyphicon-arrow-up {
+              position: absolute;
+              top: 1em;
+              right: 5em;
+            }
+          }
+        }
+
+        &.isEditable {
+          padding: 6px 8px;
+          background: @component-background;
+          border-radius: @border-radius-base;
+          border: @border-default-dark;
+        }
+
+        &[contentEditable]:focus {
+          outline: none;
+          box-sizing: border-box;
+        }
+      }
+
+      // 操作按钮
+      i {
+        &.glyphicon-remove {
+          position: absolute;
+          top: 1em;
+          right: 1em;
+        }
+
+        &.glyphicon-arrow-down {
+          position: absolute;
+          top: 1em;
+          right: 3em;
+        }
+
+        &.glyphicon-arrow-up {
+          position: absolute;
+          top: 1em;
+          right: 5em;
+        }
+
+        &:hover {
+          color: @text-color-primary;
+        }
+
+        &:not(:first-of-type) {
+          margin-right: 20px;
+          font-size: @font-size-base;
+        }
+      }
+
+      &.initStyle:before {
+        .absolute(17px false false 10px);
+        .square(6px);
+
+        content: '';
+        border-radius: 50%;
+        display: block;
+        background: #ccc;
+      }
+    }
+  }
+}
+
+// 意见管理弹窗 - 添加常用意见面板
+.dlg-opinion-mgr .custom-add-opinion {
+  border: @border-default;
+  padding: 0;
+  height: 422px;
+
+  // 意见管理弹窗 - 添加常用意见面板 - 选择/手动输入面板
+  > .nav-tabs {
+    background:  @background-light;
+    padding-left: 6px;
+    padding-top: 6px;
+
+    li {
+      a {
+        height: 35px;
+        line-height: 35px;
+        color: @text-color-dark;
+        padding: 0 20px;
+
+        &:hover {
+          color: @text-color-primary;
+          background: transparent;
+          border-color: transparent;
+        }
+      }
+
+      &.active a {
+        color: @text-color-primary;
+
+        &:hover {
+          color: @text-color-primary;
+          background: #fff;
+          border: @border-default-dark;
+          border-bottom-color: transparent;
+        }
+
+        &:focus {
+          color: @text-color-primary;
+        }
+      }
+
+      &:not(:first-of-type) {
+        margin-left: 15px;
+      }
+    }
+  }
+
+  > .tab-content {
+    padding-right: 0;
+
+    .panel {
+      height: 422px;
+      border-radius: 0;
+      border: @border-default;
+      box-shadow: none;
+
+      .user-opinion-title {
+        padding-left: 10px;
+        position: relative;
+        color: @text-color-dark;
+        font-size: @font-size-base;
+
+        &:before {
+          .absolute(3px false false -4px);
+          .size(@title-decoration-width @title-decoration-height);
+
+          display: block;
+          background: @title-decoration-color;
+          border-radius: @title-border-radius;
+        }
+      }
+    }
+  }
+
+  + div {
+    padding-right: 0;
+
+    .panel-body {
+      height: 376px;
+      padding: 0;
+    }
+  }
+
+  // 意见管理弹窗 - 从意见库选择 - 搜索框
+  .opinion_search {
+    width: calc(100% - 20px);
+    border: @border-default-dark;
+    border-radius: @border-radius-base;
+    margin: 10px auto;
+
+    input {
+      display: inline-block;
+      width: calc(100% - 30px);
+      border: none;
+      outline: none;
+
+      &:focus {
+        border: none !important;
+        box-shadow: none !important;
+      }
+    }
+
+    span {
+      font-size: @font-size-2xl;
+      color: @text-color-primary;
+      vertical-align: middle;
+    }
+  }
+
+  // 意见管理弹窗 - 从意见库选择 - 意见库意见列表
+  .public-opinion-list {
+    border-top: @border-default;
+
+    .list-group {
+      height: 300px;
+      min-height: 300px;
+      max-height: 320px;
+      overflow: auto;
+
+      .search-no-opinion {
+        padding: 10px;
+        display: inline-block;
+        font-size: @font-size-base;
+        color: @text-color-light;
+      }
+    }
+  }
+
+  // 意见管理弹窗 - 手动输入
+  #custom_input {
+    // 意见管理弹窗 - 手动输入 - 输入框
+    textarea {
+      border: none;
+      height: 340px;
+      box-shadow: none;
+      outline: none;
+
+      &:focus {
+        border: none !important;
+        box-shadow: none !important;
+      }
+    }
+
+    // 意见管理弹窗 - 手动输入 - 添加按钮
+    .custom-input-btn {
+      height: 39px;
+      background: @background-light;
+      border-top: @border-default;
+      text-align: right;
+      padding: 2px 4px 2px 0;
+    }
+  }
+}

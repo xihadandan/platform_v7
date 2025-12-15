@@ -1,0 +1,52 @@
+<form action="" id="app_function_form" style="margin-top: 15px">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#org_option_basic_info" aria-controls="org_option_basic_info" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+        </li>
+    </ul>
+    <input type="hidden" id="uuid" name="uuid" />
+    <input type="hidden" id="recVer" name="recVer" />
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="org_option_basic_info" style="padding-top: 10px;">
+            <div class="well-form form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="well-form-label control-label">名称</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id" class="well-form-label control-label">ID</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" name="id" id="id">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="code" class="well-form-label control-label">编号</label>
+                    <div class="well-form-control">
+                        <input type="text" class="form-control" id="code" name="code">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="type" class="well-form-label control-label">类型</label>
+                    <div class="well-form-control">
+                        <select class="form-control" id="type" name="type"></select>
+                    </div>
+                </div>
+                <div class="form-group hide">
+                    <label for="remark" class="well-form-label control-label">备注</label>
+                    <div class="well-form-control">
+                        <textarea class="form-control" id="remark" name="remark"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="well-form-label control-label">详细信息</label>
+                    <div class="well-form-control">
+                        <div class="jsonview"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

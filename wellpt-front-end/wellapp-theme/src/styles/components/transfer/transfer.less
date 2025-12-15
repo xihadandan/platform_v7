@@ -1,0 +1,67 @@
+/** 穿梭框  */
+// #FIXME: 平台大部分穿梭框未使用该样式！
+
+#transfer-selectable-area {
+  height: 385px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: @border-default;
+  padding: 8px;
+
+  li {
+    .text-overflow();
+    height: 28px;
+
+    > label {
+      .text-overflow();
+
+      span {
+        font-weight: normal;
+      }
+    }
+
+    &:hover {
+      background-color: @item-hover-background;
+      span.item-label {
+        .text-overflow();
+
+        display: inline-block;
+        width: 92%;
+      }
+    }
+  }
+}
+
+#transfer-selected-area {
+  height: 430px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: @border-default;
+  padding: 8px;
+
+  li {
+    .text-overflow();
+    height: 28px;
+
+    .delete-btn {
+      display: none;
+      cursor: pointer;
+      color: @text-color-light;
+      font-size: @item-icon-size;
+      float: right;
+      margin-right: 4px;
+
+      &:hover {
+        color: @item-hover-text-color;
+      }
+    }
+
+    &:hover {
+      background-color: @item-hover-background;
+
+      .delete-btn {
+        display: block;
+      }
+    }
+  }
+}

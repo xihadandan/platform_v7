@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+
+    {% for file in themeFiles %}
+    <link href="{{file}}" rel="stylesheet" />
+    {% endfor %}
+  </head>
+  <body style="background: #fff">
+    <form id="taskForm" name="taskForm">
+      <div class="fixed-tabs">
+        <ul class="nav nav-tabs tab-style-btns" role="tablist" style="overflow: visible; height: auto">
+          <li class="active">
+            <a href="#baseSetting" data-toggle="tab" aria-expanded="true">基本设置</a>
+          </li>
+          <li class="">
+            <a href="#authSetting" data-toggle="tab">权限设置</a>
+          </li>
+          <li class="">
+            <a href="#formSetting" data-toggle="tab">表单设置</a>
+          </li>
+          <li class="">
+            <a href="#transSetting" data-toggle="tab">流转设置</a>
+          </li>
+          <li class="">
+            <a href="#advancedSetting" data-toggle="tab">高级设置</a>
+          </li>
+        </ul>
+      </div>
+      <div class="tab-content" style="padding: 80px 10px 10px">
+        <div class="tab-pane subtab active" name="baseSetting" id="baseSetting">
+          <div id="" class="well-workflow-form" name="">
+            <div class="form-group">
+              <label class="sub-label">
+                <span class="required"></span>
+                <span>名称</span>
+              </label>
+              <input type="text" class="form-control" placeholder="" id="name" name="name" />
+            </div>
+            <div class="form-group">
+              <label class="sub-label">
+                <span class="required"></span>
+                <span>ID</span>
+              </label>
+              <input type="text" class="form-control" placeholder="" id="id" name="id" />
+            </div>
+            <div class="form-group">
+              <label class="sub-label">
+                <span>编号</span>
+              </label>
+              <input type="text" class="form-control" placeholder="" id="sn" name="sn" />
+            </div>
+            <div class="form-group" style="margin-bottom: 0">
+              <input name="Duser1" id="Duser1" type="hidden" />
+              <input name="user1" id="user1" type="hidden" />
+              <input name="user2" id="user2" type="hidden" />
+              <input name="user4" id="user4" type="hidden" />
+              <input name="user8" id="user8" type="hidden" />
+              <input name="Duser16" id="Duser16" type="hidden" />
+              <input name="user16" id="user16" type="hidden" />
+              <label>办理人设置</label>
+              <div id="isSetUser" class="controls">
+                <input type="radio" name="isSetUser" id="isSetUser_2" value="2" checked="checked" />
+                <label class="radio-inline" for="isSetUser_2">由前一环节办理人指定</label>
+                <input type="radio" name="isSetUser" id="isSetUser_1" value="1" />
+                <label class="radio-inline" for="isSetUser_1">指定办理人</label>
+              </div>
+              <div class="work-flow-set-users clearfix">
+                <div class="pull-right" style="width: 80px">
+                  <div id="handler" class="setMembers well-btn w-btn-primary w-noLine-btn" data-title="选择办理人">
+                    <i class="iconfont icon-ptkj-shezhi"></i>
+                    设置
+                  </div>
+                  <!-- <span class="work-flow-set-tips">（未设置时默认由前一环节办理人指定）</span> -->
+                  <div data-type="user" class="clearAll well-btn w-btn-primary w-noLine-btn">
+                    <i class="iconfont icon-ptkj-shanchu"></i>
+                    清空
+                  </div>
+                </div>
+                <div id="Dusers" class="hasHandler work-flow-handler-list pull-left" style="width: 300px"></div>
+              </div>
+            </div>
+            <div class="work-flow-more">
+              更多
+              <i class="iconfont icon-ptkj-xianmiaoshuangjiantou-xia"></i>
+            </div>
+            <div class="more-content" style="display: none">
+              <div class="form-group">
+                <label class="sub-label">找不到办理人时</label>
+                <select id="isSetUserEmpty" name="isSetUserEmpty" class="form-control">
+                  <option value="0">由前一环节办理人指定</option>
+                  <option value="1" selected="selected">自动进入下一个环节</option>
+                  <option value="2">指定其他办理人</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <input type="hidden" class="form-control" name="emptyToTask" id="emptyToTask" style="display: none" />
+                <input
+                  type="hidden"
+                  class="form-control"
+                  name="DemptyToTask"
+                  id="DemptyToTask"
+                  placeholder="请选择环节"
+                  style="display: none"
+                />
+              </div>
+              <div class="form-group">
+                <div
+                  id="DemptyToUsers"
+                  name="DemptyToUsers"
+                  class="well-form-control org-select-container org-style3"
+                  style="display: none"
+                >
+                  <input id="DemptyToUser1" name="DemptyToUser1" type="hidden" />
+                  <input id="emptyToUser1" name="emptyToUser1" type="hidden" />
+                  <input id="emptyToUser2" name="emptyToUser2" type="hidden" />
+                  <input id="emptyToUser4" name="emptyToUser4" type="hidden" />
+                  <input id="emptyToUser8" name="emptyToUser8" type="hidden" />
+                  <input id="DemptyToUser16" name="DemptyToUser16" type="hidden" />
+                  <input id="emptyToUser16" name="emptyToUser16" type="hidden" />
+                  <ul class="org-select"></ul>
+                  <i class="icon iconfont icon-ptkj-zuzhixuanze"></i>
+                </div>
+              </div>
+              <div id="alertOthers" class="form-group control">
+                <input type="checkbox" id="emptyNoteDone" value="1" />
+                <label class="" for="emptyNoteDone">办理人为空提交时消息通知已办理人</label>
+              </div>
+              <div class="form-group">
+                <label class="sub-label">存在多个办理人时</label>
+                <div class="control">
+                  <input type="checkbox" id="isSelectAgain" name="isSelectAgain" value="1" />
+                  <label for="isSelectAgain">由前一环节办理人选择具体办理人</label>
+                  <div class="second-checkbox">
+                    <input type="checkbox" id="isOnlyOne" name="isOnlyOne" value="1" />
+                    <label for="isOnlyOne">只能选择一个办理人</label>
+                  </div>
+                  <input type="checkbox" id="isAnyone" name="isAnyone" value="1" />
+                  <label for="isAnyone">只需要一个人办理完成即进入下一环节</label>
+                  <input type="checkbox" id="isByOrder" name="isByOrder" value="1" />
+                  <label for="isByOrder">按人员顺序依次办理</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="sub-label">与前一环节办理人相同时</label>
+                <input type="text" id="sameUserSubmit" name="sameUserSubmit" class="form-control" />
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0">
+              <input name="DtransferUser1" id="DtransferUser1" type="hidden" />
+              <input name="transferUser1" id="transferUser1" type="hidden" />
+              <input name="transferUser2" id="transferUser2" type="hidden" />
+              <input name="transferUser4" id="transferUser4" type="hidden" />
+              <input name="transferUser8" id="transferUser8" type="hidden" />
+              <input name="DtransferUser16" id="DtransferUser16" type="hidden" />
+              <input name="transferUser16" id="transferUser16" type="hidden" />
+              <label>转办人员设置</label>
+              <div id="isSetTransferUser" class="controls">
+                <input type="radio" name="isSetTransferUser" id="isSetTransferUser_2" value="2" checked="checked" />
+                <label class="radio-inline" for="isSetTransferUser_2">可转办全组织</label>
+                <input type="radio" name="isSetTransferUser" id="isSetTransferUser_1" value="1" />
+                <label class="radio-inline" for="isSetTransferUser_1">指定转办范围</label>
+              </div>
+              <div class="work-flow-set-transfer-users clearfix">
+                <div class="pull-right" style="width: 80px">
+                  <div id="transfer" class="setMembers well-btn w-btn-primary w-noLine-btn" data-title="选择办理人">
+                    <i class="iconfont icon-ptkj-shezhi"></i>
+                    设置
+                  </div>
+                  <!-- <span class="work-flow-set-tips">（未设置时默认由前一环节办理人指定）</span> -->
+                  <div data-type="transferUser" class="clearAll well-btn w-btn-primary w-noLine-btn">
+                    <i class="iconfont icon-ptkj-shanchu"></i>
+                    清空
+                  </div>
+                </div>
+                <div id="DtransferUsers" class="hasHandler work-flow-handler-list pull-left" style="width: 300px"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input id="DcopyUser1" name="DcopyUser1" type="hidden" />
+              <input id="copyUser1" name="copyUser1" type="hidden" />
+              <input id="copyUser2" name="copyUser2" type="hidden" />
+              <input id="copyUser4" name="copyUser4" type="hidden" />
+              <input id="copyUser8" name="copyUser8" type="hidden" />
+              <input id="DcopyUser16" name="DcopyUser16" type="hidden" />
+              <input id="copyUser16" name="copyUser16" type="hidden" />
+              <label>
+                <span>抄送设置</span>
+              </label>
+              <div>
+                <div id="copySetting" class="switch-wrap">
+                  <span class="switch-radio" data-value="0"></span>
+                  <input value="1" style="display: none" class="w-search-option" name="copySetting" type="radio" />
+                  <input value="0" style="display: none" class="w-search-option" name="copySetting" type="radio" />
+                </div>
+              </div>
+              <div id="isSetCopyUser" class="copy-container" style="display: none">
+                <div class="controls">
+                  <input type="radio" name="isSetCopyUser" id="isSetCopyUser_2" value="2" />
+                  <label class="radio-inline" for="isSetCopyUser_2">由前一环节办理人指定</label>
+                  <input type="radio" name="isSetCopyUser" id="isSetCopyUser_1" value="1" />
+                  <label class="radio-inline" for="isSetCopyUser_1">指定抄送人</label>
+                  <input type="radio" name="isSetCopyUser" id="isSetCopyUser_3" value="3" class="hide" />
+                </div>
+                <div class="work-flow-set-copy-users clearfix">
+                  <div class="pull-right" style="width: 70px">
+                    <div id="copy" class="setMembers well-btn w-btn-primary w-noLine-btn" data-title="选择抄送人">
+                      <i class="iconfont icon-ptkj-shezhi"></i>
+                      设置
+                    </div>
+                    <!-- <span class="work-flow-set-tips">（未设置时默认由前一环节办理人指定）</span> -->
+                    <div data-type="copyUser" class="clearAll well-btn w-btn-primary w-noLine-btn">
+                      <i class="iconfont icon-ptkj-shanchu"></i>
+                      清空
+                    </div>
+                  </div>
+                  <div id="DcopyUsers" class="work-flow-handler-list" style="width: 290px"></div>
+                  <input type="checkbox" name="isConfirmCopyUser" id="isConfirmCopyUser" value="1" />
+                  <label for="isConfirmCopyUser">前一环节办理人可二次选择抄送人</label>
+                </div>
+                <div class="form-group" style="margin-top: 15px">
+                  <label class="sub-label" for="copyUserCondition">抄送前置条件</label>
+                  <div>
+                    <textarea class="form-control" name="copyUserCondition" id="copyUserCondition" cols="30" rows="5"></textarea>
+                    <div>
+                      <div>
+                        环节变量使用${taskId}、${fromTaskId}、${toTaskId}，
+                        动态表单变量使用${dyform.表单字段}。变量支持>、>=、<、<=、==、!=、contains、not
+                        contains等操作。多个条件用逻辑与&&、逻辑或||、左右括号等组合。
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input id="Dmonitor1" name="Dmonitor1" type="hidden" />
+              <input id="monitor1" name="monitor1" type="hidden" />
+              <input id="monitor2" name="monitor2" type="hidden" />
+              <input id="monitor4" name="monitor4" type="hidden" />
+              <input id="monitor8" name="monitor8" type="hidden" />
+              <label>
+                <span>督办设置</span>
+              </label>
+              <div>
+                <div id="superviseSetting" class="switch-wrap">
+                  <span class="switch-radio" data-value="0"></span>
+                  <input value="1" style="display: none" class="w-search-option" name="superviseSetting" type="radio" />
+                  <input value="0" style="display: none" class="w-search-option" name="superviseSetting" type="radio" />
+                </div>
+              </div>
+              <div id="isSetMonitor" class="supervise-container" style="display: none">
+                <div class="controls">
+                  <input type="radio" name="isSetMonitor" id="isSetMonitor_2" value="2" />
+                  <label class="radio-inline" for="isSetMonitor_2">由前一环节办理人指定</label>
+                  <input type="radio" name="isSetMonitor" id="isSetMonitor_1" value="1" />
+                  <label class="radio-inline" for="isSetMonitor_1">指定督办人</label>
+                </div>
+                <div class="work-flow-set-monitor clearfix">
+                  <div class="pull-right" style="width: 70px">
+                    <div id="supervise" class="setMembers well-btn w-btn-primary w-noLine-btn" data-title="选择督办人">
+                      <i class="iconfont icon-ptkj-shezhi"></i>
+                      设置
+                    </div>
+                    <div data-type="monitor" class="clearAll well-btn w-btn-primary w-noLine-btn">
+                      <i class="iconfont icon-ptkj-shanchu"></i>
+                      清空
+                    </div>
+                  </div>
+                  <div id="Dmonitors" class="work-flow-handler-list" style="width: 290px"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input type="hidden" id="isAllowApp" name="isAllowApp" value="1" />
+              <label>
+                <span>允许移动端审批</span>
+              </label>
+              <div>
+                <div id="mobileApproval" class="switch-wrap active">
+                  <span class="switch-radio" data-value="1"></span>
+                  <input value="1" style="display: none" class="w-search-option" name="mobileApproval" type="radio" />
+                  <input value="0" style="display: none" class="w-search-option" name="mobileApproval" type="radio" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane subtab" name="authSetting" id="authSetting">
+          <div class="well-workflow-form">
+            <div class="form-group" id="startRightContainer">
+              <label for="">发起权限</label>
+              <div class="set-and-clear clearfix">
+                <div id="startAuthSet" class="well-btn w-btn-primary w-noLine-btn">
+                  <i class="iconfont icon-ptkj-shezhi"></i>
+                  设置
+                </div>
+                <div id="startAuthClear" class="clearAll well-btn w-btn-primary w-noLine-btn">
+                  <i class="iconfont icon-ptkj-shanchu"></i>
+                  清空
+                </div>
+              </div>
+              <ul class="work-flow-auth-list" id="startRights"></ul>
+            </div>
+            <div class="form-group">
+              <input type="hidden" name="DTaskRight" />
+              <label for="">待办权限</label>
+              <div class="set-and-clear clearfix">
+                <div id="waitAuthSet" class="well-btn w-btn-primary w-noLine-btn">
+                  <i class="iconfont icon-ptkj-shezhi"></i>
+                  设置
+                </div>
+                <div class="clearAll well-btn w-btn-primary w-noLine-btn">
+                  <i class="iconfont icon-ptkj-shanchu"></i>
+                  清空
+                </div>
+              </div>
+              <ul class="work-flow-auth-list" id="rights"></ul>
+            </div>
+            <div class="form-group">
+              <input type="hidden" name="DOption" />
+              <label class="sub-label">
+                待办意见立场
+                <div class="form-tooltip">
+                  <i class="iconfont icon-ptkj-tishishuoming"></i>
+                  <div class="form-tooltip-content">
+                    设置意见立场选项，办理人可表明所签署意见的立场或性质，对签署的文字语义进行简要注解、概括，也可用于办理人意见投票等场景。
+                  </div>
+                </div>
+              </label>
+              <div class="switch-box">
+                <div class="switch-wrap" id="enableOpinionPosition">
+                  <span class="switch-text switch-open"></span>
+                  <span class="switch-radio" data-status="0"></span>
+                  <span class="switch-text switch-close"></span>
+                  <input value="1" style="display: none" class="w-search-option" name="enableOpinionPosition" type="radio" />
+                  <input value="0" style="display: none" class="w-search-option" name="enableOpinionPosition" type="radio" />
+                </div>
+                <span class="tip-text" style="display: none">开启</span>
+              </div>
+              <div class="controls enableOpinionPosition" style="display: none">
+                <div class="set-and-clear clearfix">
+                  <div id="defaultOpinions" class="well-btn w-noLine-btn">
+                    <i class="iconfont icon-ptkj-shezhi"></i>
+                    默认设置
+                  </div>
+                </div>
+                <div style="border: 1px solid #ddd; border-radius: 4px">
+                  <ul
+                    class="work-flow-other-list"
+                    id="opinionList"
+                    style="margin-bottom: 5px; padding-left: 18px; padding-right: 10px"
+                  ></ul>
+                  <div class="set-and-clear clearfix" style="margin-bottom: 5px; padding-left: 18px; padding-right: 10px">
+                    <div id="addOpinions" class="well-btn w-btn-primary well-btn-sm w-noLine-btn">
+                      <i class="iconfont icon-ptkj-jiahao"></i>
+                      添加
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <input type="checkbox" name="requiredOpinionPosition" id="requiredOpinionPosition" />
+                <label for="requiredOpinionPosition">意见立场必填</label>
+                <br />
+                <label class="sub-label" for="">办理过程显示设置</label>
+                <div style="margin-left: 1em">
+                  <input type="checkbox" name="showUserOpinionPosition" id="showUserOpinionPosition" />
+                  <label for="showUserOpinionPosition">显示用户意见立场值</label>
+                  <br />
+                  <input type="checkbox" name="showOpinionPositionStatistics" id="showOpinionPositionStatistics" />
+                  <label for="showOpinionPositionStatistics">显示意见立场统计</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="hidden" name="DTaskDoneRight" />
+              <label for="">已办权限</label>
+              <div class="set-and-clear clearfix">
+                <div id="handleAuthSet" class="well-btn w-btn-primary w-noLine-btn">
+                  <i class="iconfont icon-ptkj-shezhi"></i>
+                  设置
+                </div>
+                <div class="clearAll well-btn w-btn-primary w-noLine-btn">
+                  <i class="iconfont icon-ptkj-shanchu"></i>
+                  清空
+                </div>
+              </div>
+              <ul class="work-flow-auth-list" id="doneRights"></ul>
+            </div>
+            <div class="form-group">
+              <input type="hidden" name="DTaskMonitorRight" />
+              <label for="">督办权限</label>
+              <div class="set-and-clear clearfix">
+                <div id="superviseAuthSet" class="well-btn w-btn-primary w-noLine-btn">
+                  <i class="iconfont icon-ptkj-shezhi"></i>
+                  设置
+                </div>
+                <div class="clearAll well-btn w-btn-primary w-noLine-btn">
+                  <i class="iconfont icon-ptkj-shanchu"></i>
+                  清空
+                </div>
+              </div>
+              <ul class="work-flow-auth-list" id="monitorRights"></ul>
+            </div>
+            <div class="form-group">
+              <input type="hidden" name="DTaskAdminRight" />
+              <label for="">监控权限</label>
+              <div class="set-and-clear clearfix">
+                <div id="monitorAuthSet" class="well-btn w-btn-primary w-noLine-btn">
+                  <i class="iconfont icon-ptkj-shezhi"></i>
+                  设置
+                </div>
+                <div class="clearAll well-btn w-btn-primary w-noLine-btn">
+                  <i class="iconfont icon-ptkj-shanchu"></i>
+                  清空
+                </div>
+              </div>
+              <ul class="work-flow-auth-list" id="adminRights"></ul>
+            </div>
+            <div class="work-flow-more">
+              更多
+              <i class="iconfont icon-ptkj-xianmiaoshuangjiantou-xia"></i>
+            </div>
+            <div class="more-content" style="display: none">
+              <div class="form-group">
+                <label for="">自定义操作</label>
+                <div class="set-and-clear clearfix">
+                  <div id="customAuthSet" class="well-btn w-btn-primary w-noLine-btn">
+                    <i class="iconfont icon-ptkj-shezhi"></i>
+                    设置
+                  </div>
+                  <div class="clearAll well-btn w-btn-primary w-noLine-btn">
+                    <i class="iconfont icon-ptkj-shanchu"></i>
+                    清空
+                  </div>
+                </div>
+                <ul class="work-flow-other-list" id="customRightList"></ul>
+              </div>
+              <div class="form-group">
+                <label class="sub-label" for="">最大权限粒度</label>
+                <select id="granularity" name="granularity" class="form-control">
+                  <option value="" selected="selected"></option>
+                  <option value="A">动态</option>
+                  <option value="U">用户</option>
+                  <option value="J">职位</option>
+                  <option value="D">部门</option>
+                  <option value="S">单位</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane subtab" name="formSetting" id="formSetting">
+          <div class="well-workflow-form">
+            <div class="form-group">
+              <label class="sub-label">
+                表单可编辑
+                <div class="w-tooltip">
+                  <i class="iconfont icon-ptkj-tishishuoming"></i>
+                  <div class="w-tooltip-content">
+                    <p>
+                      1、开启：表单可编辑，前端显示的表单字段是否可编辑，读取环节中表单字段的设置，表单字段不可编辑时的显示样式，读取表单定义中控件的设置
+                    </p>
+                    <p>2、关闭：表单不可编辑，前端显示的表单字段均不可编辑，显示样式读取表单定义中控件的设置</p>
+                  </div>
+                </div>
+              </label>
+              <div>
+                <input type="hidden" name="canEditForm" id="canEditForm" value="0" />
+                <div id="editForm" class="switch-wrap">
+                  <span class="switch-radio" data-value="0"></span>
+                  <input value="1" style="display: none" class="w-search-option" name="editForm" type="radio" />
+                  <input value="0" style="display: none" class="w-search-option" name="editForm" type="radio" />
+                </div>
+              </div>
+            </div>
+            <div class="form-group clearfix">
+              <label for="">
+                表单字段
+                <div class="w-tooltip">
+                  <i class="iconfont icon-ptkj-tishishuoming"></i>
+                  <div class="w-tooltip-content">设置当前环节的办理人可查看、可编辑或者必填的字段</div>
+                </div>
+              </label>
+              <div class="form-right">
+                <i class="form-search-del iconfont icon-ptkj-dacha-xiao" style="display: none"></i>
+                <i class="form-search iconfont icon-ptkj-sousuochaxun"></i>
+                <div>
+                  <input type="text" data-table="formFieldTable" class="field-input form-control" style="width: 180px" />
+                </div>
+                <i class="form-set-more iconfont icon-ptkj-danchuang" title="更多"></i>
+              </div>
+            </div>
+            <table class="table table-bordered no-table-borders" id="formFieldTable" style="border-bottom: 1px solid #ddd"></table>
+            <div class="form-group clearfix" style="margin-top: 15px">
+              <label for="">
+                表单布局
+                <div class="w-tooltip">
+                  <i class="iconfont icon-ptkj-tishishuoming"></i>
+                  <div class="w-tooltip-content">设置当前环节的办理人可见的表单布局，例如页签、区块等</div>
+                </div>
+              </label>
+              <div class="form-right">
+                <i class="form-search-del iconfont icon-ptkj-dacha-xiao" style="display: none"></i>
+                <i class="form-search iconfont icon-ptkj-sousuochaxun"></i>
+                <div>
+                  <input type="text" data-table="formLayoutTable" class="field-input form-control" style="width: 180px" />
+                </div>
+              </div>
+            </div>
+            <table class="table table-bordered no-table-borders" id="formLayoutTable" style="border-bottom: 1px solid #ddd"></table>
+            <div class="form-group" style="margin-top: 15px">
+              <div>
+                <label for="">
+                  展示表单
+                  <div class="w-tooltip">
+                    <i class="iconfont icon-ptkj-tishishuoming"></i>
+                    <div class="w-tooltip-content">为当前环节的办理人设置指定的表单展示形式</div>
+                  </div>
+                </label>
+              </div>
+              <input id="DForm" name="DForm" type="text" placeholder="请选择" />
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane subtab" name="transSetting" id="transSetting">
+          <div class="well-workflow-form">
+            <div class="form-group">
+              <label class="sub-label">
+                <span>分支模式</span>
+              </label>
+              <div class="controls">
+                <input type="radio" name="forkMode" id="forkMode_1" value="1" checked="checked" />
+                <label class="radio-inline" for="forkMode_1">单一分支</label>
+                <input type="radio" name="forkMode" id="forkMode_2" value="2" />
+                <label class="radio-inline" for="forkMode_2">分支模式</label>
+                <input type="checkbox" name="chooseForkingDirection" id="chooseForkingDirection" value="1" />
+                <label class="radio-inline many-flow-content" for="chooseForkingDirection" style="display: none">提交时可选择流向</label>
+              </div>
+            </div>
+            <div class="many-flow-content" style="display: none">
+              <div class="form-group">
+                <label class="sub-label">
+                  <span>业务组织</span>
+                </label>
+                <div class="controls">
+                  <input type="text" name="businessType" id="businessType" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="sub-label">
+                  <span>业务角色</span>
+                </label>
+                <div class="controls">
+                  <input type="text" name="businessRole" id="businessRole" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="sub-label">
+                  <span>跟进人员</span>
+                </label>
+                <div class="controls">
+                  <div id="DbranchTaskMonitors" name="DbranchTaskMonitors" class="well-form-control org-select-container org-style3">
+                    <input name="DbranchTaskMonitor1" type="hidden" />
+                    <input name="branchTaskMonitor1" type="hidden" />
+                    <input name="branchTaskMonitor2" type="hidden" />
+                    <input name="branchTaskMonitor4" type="hidden" />
+                    <input name="branchTaskMonitor8" type="hidden" />
+                    <ul class="org-select"></ul>
+                    <i class="icon iconfont icon-ptkj-zuzhixuanze"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" style="margin: 0">
+                <label>
+                  <span>办理进度</span>
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="sub-label">
+                  <span>显示位置</span>
+                </label>
+                <input type="text" name="undertakeSituationPlaceHolder" id="undertakeSituationPlaceHolder" />
+              </div>
+              <div class="form-group">
+                <label class="sub-label">
+                  <span>列表标题表达式</span>
+                </label>
+                <div class="showCustomTitle_expression btn-container">
+                  <div id="undertakeSituationTitleExpression"></div>
+                  <div id="setUundertakeSituationTitleExpression" class="well-btn w-btn-primary well-btn-sm w-noLine-btn" title="设置">
+                    <i class="iconfont icon-ptkj-shezhi"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="sub-label">
+                  <span>按钮配置</span>
+                </label>
+                <div class="control">
+                  <div id="btnSettingTable">
+                    <div class="btn-group btn_set_info" id="div_set_toolbar">
+                      <div id="btn_add_set" class="well-btn w-btn-primary well-btn-sm mr0">增加</div>
+                      <div id="btn_delete_set" class="well-btn w-btn-primary well-btn-sm mr0">删除</div>
+                      <div id="btn_row_up_set" class="well-btn w-btn-primary well-btn-sm mr0">上移</div>
+                      <div id="btn_row_down_set" class="well-btn w-btn-primary well-btn-sm mr0">下移</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="sub-label" style="margin-bottom: 0">
+                  <span>列配置</span>
+                </label>
+                <div class="control" style="margin-top: -25px">
+                  <div class="btn-group btn_column_info" id="div_column_toolbar">
+                    <div id="btn_add_columns" class="well-btn w-btn-primary well-btn-sm mr0">增加</div>
+                    <div id="btn_edit_column" class="well-btn w-btn-primary well-btn-sm mr0">编辑</div>
+                    <div id="btn_delete_column" class="well-btn w-btn-primary well-btn-sm mr0">删除</div>
+                    <div id="btn_row_up_column" class="well-btn w-btn-primary well-btn-sm mr0">上移</div>
+                    <div id="btn_row_down_column" class="well-btn w-btn-primary well-btn-sm mr0">下移</div>
+                  </div>
+                  <table id="columnSettingTable"></table>
+                </div>
+              </div>
+              <div class="form-group" style="margin-bottom: 0">
+                <label>
+                  <span>信息分发</span>
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="sub-label">
+                  <span>显示位置</span>
+                </label>
+                <input type="text" name="infoDistributionPlaceHolder" id="infoDistributionPlaceHolder" />
+              </div>
+              <div class="form-group">
+                <label class="sub-label">
+                  <span>列表标题表达式</span>
+                </label>
+                <div class="showCustomTitle_expression btn-container">
+                  <div id="infoDistributionTitleExpression"></div>
+                  <div id="setInfoDistributionTitleExpression" class="well-btn w-btn-primary well-btn-sm w-noLine-btn" title="设置">
+                    <i class="iconfont icon-ptkj-shezhi"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>
+                  <span>操作记录</span>
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="sub-label">
+                  <span>显示位置</span>
+                </label>
+                <input type="text" name="operationRecordPlaceHolder" id="operationRecordPlaceHolder" />
+              </div>
+              <div class="form-group">
+                <label class="sub-label">
+                  <span>列表标题表达式</span>
+                </label>
+                <div class="showCustomTitle_expression btn-container">
+                  <div id="operationRecordTitleExpression"></div>
+                  <div id="setOperationRecordTitleExpression" class="well-btn w-btn-primary well-btn-sm w-noLine-btn" title="设置">
+                    <i class="iconfont icon-ptkj-shezhi"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="sub-label">
+                <span>聚合模式</span>
+              </label>
+              <div class="controls">
+                <input type="radio" name="joinMode" id="joinMode_1" value="1" />
+                <label class="radio-inline" for="joinMode_1">单路</label>
+                <input type="radio" name="joinMode" id="joinMode_2" value="2" />
+                <label class="radio-inline" for="joinMode_2">聚合</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="sub-label">
+                <span>退回设置</span>
+              </label>
+              <div class="control">
+                <input type="checkbox" id="allowReturnAfterRollback" name="allowReturnAfterRollback" value="1" />
+                <label for="allowReturnAfterRollback">退回后允许直接提交至本环节</label>
+                <div class="second-checkbox">
+                  <input type="checkbox" id="onlyReturnAfterRollback" name="onlyReturnAfterRollback" value="1" />
+                  <label for="onlyReturnAfterRollback">仅允许提交至本环节</label>
+                </div>
+                <br />
+                <input type="checkbox" id="notRollback" name="notRollback" value="1" />
+                <label for="notRollback">本环节不可被退回</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane subtab" name="advancedSetting" id="advancedSetting">
+          <div class="well-workflow-form">
+            <div class="form-group">
+              <input type="hidden" name="DRemark" />
+              <label for="">
+                信息记录
+                <div class="w-tooltip">
+                  <i class="iconfont icon-ptkj-tishishuoming"></i>
+                  <div class="w-tooltip-content">添加本环节需要记录到表单的信息， 例如环节办理意见、办理人等</div>
+                </div>
+              </label>
+              <ul class="work-flow-other-list" id="recordsList"></ul>
+              <div id="addInfoRecord" class="well-btn w-btn-primary well-btn-sm w-noLine-btn">
+                <i class="iconfont icon-ptkj-jiahao"></i>
+                添加
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">
+                打印模板
+                <div class="w-tooltip">
+                  <i class="iconfont icon-ptkj-tishishuoming"></i>
+                  <div class="w-tooltip-content">添加仅供本环节使用的打印模板（需要配置套打权限）</div>
+                </div>
+              </label>
+              <input id="printTemplate" name="printTemplate" type="hidden" />
+              <input id="printTemplateId" name="printTemplateId" type="hidden" />
+              <input id="printTemplateUuid" type="text" name="printTemplateUuid" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="snName">
+                生成流水号
+                <div class="w-tooltip">
+                  <i class="iconfont icon-ptkj-tishishuoming"></i>
+                  <div class="w-tooltip-content">当流程流转至本环节时，自动生成流水号</div>
+                </div>
+              </label>
+              <input type="text" id="snName" name="snName" placeholder="请选择" class="form-control" />
+              <input type="hidden" id="serialNo" name="serialNo" />
+            </div>
+            <div class="form-group">
+              <label>其他</label>
+            </div>
+            <div class="form-group">
+              <label class="sub-label" for="customJsModuleName">加载JS模块</label>
+              <input type="text" id="customJsModuleName" name="customJsModuleName" placeholder="请选择" class="form-control" />
+              <input id="customJsModule" name="customJsModule" type="hidden" />
+            </div>
+            <div class="form-group">
+              <label class="sub-label" for="listenerName">事件监听</label>
+              <input type="text" id="listenerName" name="listenerName" placeholder="请选择" class="form-control" />
+              <input type="hidden" id="listener" name="listener" />
+            </div>
+            <div class="form-group">
+              <label class="sub-label" for="">事件脚本</label>
+              <ul class="work-flow-settings" id="eventScripts"></ul>
+              <div id="addEventScript" class="well-btn w-btn-primary well-btn-sm w-noLine-btn">
+                <i class="iconfont icon-ptkj-jiahao"></i>
+                添加
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <script src="/static/js/requirejs/2.3.2/require.min.js"></script>
+    <script
+      type="text/javascript"
+      src="/jsexplainer/requirejsConfigScript.js?ids=jquery,bootstrap,global,select2,wellSelect,wSelect2,multiOrg,wCommonDialog,bootstrapTable,bootstrapTable_editable,formBuilder,wComboTree,jqueryWorkflow,workflowCommon,wellEasyTable,design_app_event,uuid,linkProperties"
+    ></script>
+    <script>
+      var ctx = '';
+      require(['js/requirejs/domReady'], function (domReady) {
+        domReady(function () {
+          require([
+            'jquery',
+            'bootstrap',
+            'global',
+            'select2',
+            'wellSelect',
+            'wSelect2',
+            'multiOrg',
+            'bootstrapTable',
+            'bootstrapTable_editable',
+            'formBuilder',
+            'wCommonComboTree',
+            'wCommonDialog',
+            'wComboTree',
+            'jqueryWorkflow',
+            'workflowCommon',
+            'wellEasyTable',
+            'design_app_event',
+            'uuid',
+            'linkProperties'
+          ], function () {
+            if (parent.goWorkFlow.curTaskObj) {
+              setTaskProperty();
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

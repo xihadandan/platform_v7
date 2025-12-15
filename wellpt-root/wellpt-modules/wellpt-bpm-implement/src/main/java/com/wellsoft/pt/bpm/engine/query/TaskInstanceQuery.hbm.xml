@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="getTaskInstancesByFlowInstUuid">
+        <![CDATA[
+		from TaskInstance t where t.flowInstance.uuid = :flowInstUuid
+	]]>
+    </sql-query>
+
+    <sql-query name="listTodoUserIdsByParentFlowInstUuidWithExcludeFlowInstUuid">
+        <![CDATA[
+		select
+			t1.todo_user_id
+		from
+			wf_task_instance t1
+		where
+			t1.end_time is null
+			and exists (
+			select
+				t2.uuid
+			from
+				wf_flow_instance t2
+			where
+				t2.parent_flow_inst_uuid = :parentFlowInstUuid
+				and t2.end_time is null
+				and t2.uuid <> :excludeFlowInstUuid
+				and t2.uuid = t1.flow_inst_uuid)
+	]]>
+    </sql-query>
+</hibernate-mapping>

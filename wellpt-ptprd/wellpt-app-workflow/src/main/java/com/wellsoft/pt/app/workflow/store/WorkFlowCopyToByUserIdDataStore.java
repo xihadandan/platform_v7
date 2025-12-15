@@ -1,0 +1,67 @@
+/*
+ * @(#)2017-01-06 V1.0
+ *
+ * Copyright 2017 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.app.workflow.store;
+
+import com.wellsoft.context.jdbc.support.QueryItem;
+import com.wellsoft.pt.jpa.criteria.QueryContext;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Description: 工作流程_抄送_指定用户
+ *
+ * @author zhulh
+ * @version 1.0
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2017-01-06.1	zhulh		2017-01-06		Create
+ * </pre>
+ * @date 2017-01-06
+ */
+@Component
+public class WorkFlowCopyToByUserIdDataStore extends WorkFlowCopyToDataStore {
+
+    private String handoverUserId;
+
+    /**
+     * (non-Javadoc)
+     *
+     * @see com.wellsoft.app.workflow.store.WorkFlowDataStoreQuery#getQueryName()
+     */
+    @Override
+    public String getQueryName() {
+        return "工作流程_抄送__指定用户";
+    }
+
+    @Override
+    protected List<String> getSids() {
+        List<String> sids = new ArrayList<String>();
+        sids.add(this.handoverUserId);
+        return sids;
+    }
+
+    @Override
+    public List<QueryItem> query(QueryContext context) {
+
+        this.handoverUserId = (String) context.getQueryParams().get("handoverUserId");
+        return super.query(context);
+    }
+
+    /**
+     * (non-Javadoc)
+     *
+     * @see com.wellsoft.pt.jpa.criteria.AbstractQueryInterface#getOrder()
+     */
+    @Override
+    public int getOrder() {
+        return 80;
+    }
+
+}

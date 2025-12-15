@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="groupTreeQuery">
+        <![CDATA[
+		from Group group where 1 = 1
+		<if isNotBlank(name) || isNotBlank(code) || isNotBlank(remark)>
+			and (1 = 2
+				<if isNotBlank(name)>
+					or lower(group.name) like '%${name?lower_case}%'
+				</if>
+				<if isNotBlank(code)>
+					or lower(group.code) like '%${code?lower_case}%'
+				</if>
+				<if isNotBlank(principalLeaderNames)>
+					or lower(group.remark) like '%${principalLeaderNames?lower_case}%'
+				</if>
+			)
+		</if>
+		order by code asc,name
+	]]>
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <sql-query name="getListByUuids">
+        <![CDATA[
+		select *
+		from cd_print_template
+		where uuid in ( :printTemplateUuidList)
+		 order by code asc, name asc
+	]]>
+    </sql-query>
+
+    <sql-query name="getTemplateListByTypes">
+        <![CDATA[
+		select *
+		from cd_print_template
+		where CATEGORY in ( :categoryUuids)
+		 order by code asc, name asc
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

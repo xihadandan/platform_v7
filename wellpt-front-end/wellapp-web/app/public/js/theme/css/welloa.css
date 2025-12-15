@@ -1,0 +1,91 @@
+/**页面主题部分**/
+body {
+	background-color: #FFF;
+	margin: 0;
+	padding: 0;
+	color: #666666;
+    font-family: "宋体";
+    font-size: 12px;
+    text-align: left;
+	background: url("../images/container_bg.jpg") repeat-x scroll 0 0 transparent;
+}
+.dnrw{
+	color: #666666;
+    font-family: "宋体";
+    font-size: 12px;
+    text-align: left;
+}
+.dnrw ul{
+	margin-bottom: 0px;
+	background: url("../images/tit1.jpg") repeat-x scroll 0 0 transparent;
+}
+.dnrw .nav-tabs li{
+	font-size: 14px;
+ 	width: 90px;
+ 	border-right: 1px solid #ddd;
+}
+.dnrw ul li a{
+	color: #999999;
+	margin-right:0;
+}
+.dnrw ul .active a{
+	border-top:2px solid #1473D4;
+	color: #1473D4;
+	font-weight: bold;
+	border-left: none;
+	border-right: none;
+}
+.nav li a:hover{
+	color: #1473D4;
+	font-weight: bold;
+	border-top:2px solid #1473D4;
+	background-color: #fff;
+	border-left: none;
+	border-right: none;
+}
+
+.nav .active a:hover{
+	color: #1473D4;
+	font-weight: bold;
+	border-top:2px solid #1473D4;
+	background-color: #fff;
+	border-left: none;
+	border-right: none;
+}
+.dnrw td{
+	border-top: medium none;
+    height: 19px;
+    padding:4px 10px 4px 10px;
+    /***
+    overflow: hidden;
+    display: block;
+    float:left;
+    
+    word-break:keep-all;
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;**/
+}
+.dnrw .table {
+	margin-bottom: 10px;
+}
+.dnrw .table tbody{
+	border-top: none;
+}
+.more{
+	color: #999999;
+	padding-right: 10px;
+    padding-top: 7px;
+    cursor: pointer;
+}
+.tab-content{
+	overflow: hidden;
+}
+/**视图列响应效果**/
+.dataTr:hover{
+	background-color: #ddd;
+	cursor: pointer;
+}
+.sortAble:hover{
+	cursor: pointer;
+}

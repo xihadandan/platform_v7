@@ -1,0 +1,165 @@
+// 底部弹出框头部标题样式
+.pt-popop-title {
+  padding: 14px 5rem 8px;
+  font-size: var(--w-font-size-base);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  .left {
+    position: absolute;
+    left: 10px;
+  }
+
+  .center {
+    flex: 1;
+    text-align: center;
+    font-size: var(--w-font-size-lg);
+    color: $uni-main-color;
+    font-weight: bold;
+    word-break: break-all;
+  }
+
+  .right {
+    position: absolute;
+    right: 10px;
+  }
+}
+.pt-nav-bar {
+  .uni-nav-bar-text {
+    font-weight: bold;
+    font-size: 16px;
+  }
+}
+
+.dashbord-timingState {
+  --dashbord-timingState-background-color: var(--w-primary-color-1);
+  --dashbord-timingState-text-color: var(--w-primary-color);
+  display: flex;
+  align-items: center;
+  // background: linear-gradient(to bottom, var(--dashbord-timingState-background-color), #ffffff);
+  .tag {
+    background-color: var(--dashbord-timingState-background-color);
+    color: var(--dashbord-timingState-text-color);
+    border-radius: 4px;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 4px;
+    font-size: var(--w-font-size-base);
+    flex-shrink: 0;
+    margin-left: var(--w-margin-xs);
+    font-weight: normal;
+  }
+  &.solid {
+    --dashbord-timingState-background-color: var(--w-primary-color);
+    --dashbord-timingState-text-color: #ffffff;
+  }
+
+  &.dashbord-circle-overdue {
+    --dashbord-timingState-background-color: var(--w-danger-color-1);
+    --dashbord-timingState-text-color: var(--w-danger-color);
+    &.solid {
+      --dashbord-timingState-background-color: var(--w-danger-color);
+      --dashbord-timingState-text-color: #ffffff;
+    }
+  }
+
+  &.dashbord-circle-due {
+    --dashbord-timingState-background-color: var(--w-warning-color-1);
+    --dashbord-timingState-text-color: var(--w-warning-color);
+    &.solid {
+      --dashbord-timingState-background-color: var(--w-warning-color);
+      --dashbord-timingState-text-color: #ffffff;
+    }
+  }
+
+  &.dashbord-circle-alarm {
+    --dashbord-timingState-background-color: var(--w-warning-color-3);
+    --dashbord-timingState-text-color: var(--w-warning-color);
+    &.solid {
+      --dashbord-timingState-background-color: var(--w-warning-color-4);
+      --dashbord-timingState-text-color: #ffffff;
+    }
+  }
+
+  &.dashbord-circle-normal {
+  }
+}
+
+// 标签
+.pt-tag {
+  --w-pt-tag-text-color: var(--w-text-color-light);
+  --w-pt-tag-font-size: var(--w-font-size-sm);
+  --w-pt-tag-padding: 4px;
+  --w-pt-tag-background: var(--w-gray-color-3);
+  --w-pt-tag-border-radius: var(--w-border-radius-2);
+  --w-pt-tag-border-color: var(--w-border-color-dark);
+  --w-pt-tag-border-width: 1px;
+  --w-pt-tag-border-style: solid;
+  --w-pt-tag-max-width: 120px;
+  --w-pt-tag-margin: 0;
+  --w-pt-line-height: 1;
+
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--w-pt-tag-text-color);
+  font-size: var(--w-pt-tag-font-size);
+  line-height: var(--w-pt-line-height);
+  padding: var(--w-pt-tag-padding);
+  background-color: var(--w-pt-tag-background);
+  display: inline-block;
+  vertical-align: middle;
+  border: var(--w-pt-tag-border-width) var(--w-pt-tag-border-style) var(--w-pt-tag-border-color);
+  border-radius: var(--w-pt-tag-border-radius);
+  width: auto;
+  max-width: var(--w-pt-tag-max-width);
+  margin: var(--w-pt-tag-margin);
+
+  &.pt-tag-primary {
+    --w-pt-tag-text-color: var(--w-primary-color);
+    --w-pt-tag-background: var(--w-primary-color-1);
+    --w-pt-tag-background-color: var(--w-primary-color);
+    --w-pt-tag-border-color: var(--w-primary-color-3);
+  }
+  &.pt-tag-danger {
+    --w-pt-tag-text-color: var(--w-danger-color);
+    --w-pt-tag-background: var(--w-danger-color-1);
+    --w-pt-tag-background-color: var(--w-danger-color);
+    --w-pt-tag-border-color: var(--w-danger-color-3);
+  }
+  &.pt-tag-warning {
+    --w-pt-tag-text-color: var(--w-warning-color);
+    --w-pt-tag-background: var(--w-warning-color-1);
+    --w-pt-tag-background-color: var(--w-warning-color);
+    --w-pt-tag-border-color: var(--w-warning-color-3);
+  }
+  &.pt-tag-success {
+    --w-pt-tag-text-color: var(--w-success-color);
+    --w-pt-tag-background: var(--w-success-color-1);
+    --w-pt-tag-background-color: var(--w-success-color);
+    --w-pt-tag-border-color: var(--w-success-color-3);
+  }
+  &.pt-tag-sub {
+    --w-pt-tag-text-color: var(--w-sub-color);
+    --w-pt-tag-background: var(--w-sub-color-1);
+    --w-pt-tag-background-color: var(--w-sub-color);
+    --w-pt-tag-border-color: var(--w-sub-color-3);
+  }
+
+  &.border-none {
+    --w-pt-tag-border-color: var(--w-pt-tag-background);
+  }
+
+  &.bg-color {
+    --w-pt-tag-text-color: #ffffff;
+    --w-pt-tag-background: var(--w-pt-tag-background-color);
+  }
+}
+
+/* 搜索框样式 */
+.uni-searchbar .uni-searchbar__box {
+  background-color: var(--bg-search-bar-color) !important;
+}

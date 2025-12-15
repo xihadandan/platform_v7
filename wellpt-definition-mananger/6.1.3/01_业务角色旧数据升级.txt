@@ -1,0 +1,16 @@
+升级配置在表单组织控件关联角色中的数据
+需求：http://zen.well-soft.com:81/zentao/story-view-3462.html
+项目重构启动后，登陆
+然后在页面控制台执行：
+
+JDS.call({
+	service : 'formRoleFacadeService.handleDyformRoleUpdate',
+	data : [],
+	async : false,
+	success : function(result) {
+		console.log(result);
+	},
+	error: function(error) {
+	    console.log(error);
+	}
+});

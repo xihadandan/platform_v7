@@ -1,0 +1,146 @@
+/** 图片附件 */
+
+// - 上传限制提示
+.ui-image-container > span.tip {
+  color: @text-color-light;
+  margin-left: @margin-lg;
+  font-size: @font-size-sm;
+}
+
+// - 图片列表 + 上传按钮
+.ui-image-container > ul {
+  display: inline-block;
+
+  // 图片附件 - 图片
+  > li[filename] {
+    display: inline-block;
+    position: relative;
+    border-radius: @border-radius-base;
+    padding: @margin-2xs;
+    border: 1px solid @border-color-dark;
+    margin-right: 20px;
+    vertical-align: middle;
+
+    // 图片 - 操作按钮
+    button[type='button'] {
+      display: none;
+      color: @text-color-primary;
+      background: @component-background;
+      z-index: 10;
+      margin-top: -18px;
+
+      &.filename {
+        .absolute(50% false false 12px);
+
+        display: none !important;
+        font-size: @font-size-lg;
+      }
+
+      &.download_input {
+        .absolute(85% false false 48%);
+        .square(24px);
+
+        background: @component-background;
+        color: @text-color-primary;
+        font-size: @font-size-base;
+        border-radius: @border-radius-base;
+      }
+
+      &._delete_input {
+        .absolute(85% 12px false calc(48% + 28px));
+        .square(24px);
+
+        background: @component-background;
+        color: @text-color-primary;
+        font-size: @font-size-base;
+        border-radius: @border-radius-base;
+      }
+
+      &:hover {
+        color: @text-color-inverse;
+        background: @primary-color;
+      }
+    }
+
+    .img-preview {
+      .absolute(5px false false 5px);
+      .square(110px);
+
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 9;
+      display: none;
+    }
+
+    &.active {
+      button[type='button'] {
+        display: inline-block;
+      }
+
+      .img-preview {
+        display: block;
+      }
+    }
+  }
+
+  // 图片附件 - 上传按钮
+  > li.btn-image-uploader {
+    display: inline-block;
+    vertical-align: middle;
+    padding: @padding-3xs;
+    border-radius: @border-radius-base;
+    background: @background-light;
+    border: @border-width-base dashed @border-color-dark;
+
+    .file_icon {
+      .size(10px, 20px);
+      background: url('@{image-url-prefix}/file-upload/v1_icon4.png') no-repeat scroll -63px 4px transparent;
+      display: block;
+      float: left;
+      margin-right: 10px;
+    }
+
+    .add_icon {
+      margin-left: 4px;
+      cursor: pointer;
+    }
+
+    .file_source_css {
+      .size(100%, 28px);
+      .absolute(0 false false 0);
+
+      cursor: pointer;
+      margin: 0;
+      opacity: 0;
+    }
+
+    .fileupload_css {
+      .square(100%);
+      .absolute(false false 0 0);
+
+      z-index: -1;
+      cursor: pointer;
+      margin: 0px;
+      opacity: 0;
+    }
+
+    &:hover {
+      border-color: @border-color-primary;
+    }
+
+    .fileinput-button2 {
+      width: calc(100% - 2 * @margin-2xs);
+      height: 100%;
+
+      display: inline-block;
+      background: @background-light !important;
+      color: @text-color-primary !important;
+      border-color: @border-color-primary;
+      border-width: 0px;
+
+      > .icon-ptkj-jiahao {
+        margin-top: 24%;
+        font-size: @font-size-3xl;
+      }
+    }
+  }
+}

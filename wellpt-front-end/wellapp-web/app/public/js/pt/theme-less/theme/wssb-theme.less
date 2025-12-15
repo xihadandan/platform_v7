@@ -1,0 +1,692 @@
+@import '../variables/wssb-variables.less';
+@import '../mixin/mixin.less';
+//头部皮肤
+.ui-wHeader {
+  .navbar-danger {
+    background: @danger;
+  }
+  .navbar-primary {
+    background: @primary;
+  }
+  .navbar-info {
+    background: @info;
+  }
+  .navbar-warning {
+    background: @warning;
+  }
+  .navbar-success {
+    background: @success;
+  }
+  .navbar-default {
+    background: @default;
+  }
+  .navbar-inverse {
+    background: @inverse;
+  }
+  .navbar-themeColor {
+    background: @themebgcolor;
+  }
+  &.wHeader-default {
+    .navbar-nav {
+      > li > a {
+        color: @white;
+      }
+      > li.item-0 {
+        background: #50ccf0;
+      }
+      > li.item-1 {
+        background: #fabb3d;
+      }
+      > li.item-2 {
+        background: #ab4ee0;
+      }
+      > li.item-3 {
+        background: #78cd51;
+      }
+      > li.item-4 {
+        background: #ea4c89;
+      }
+      > li.item-5 {
+        background: #00aced;
+      }
+    }
+  }
+  &.wheader-type1 {
+    .navbar-nav {
+      > li {
+        > a {
+          color: @fontBaseColor;
+          &:hover,
+          &:focus {
+            background: none;
+          }
+        }
+        &:hover {
+          > a {
+            background: none;
+            color: @warning;
+          }
+        }
+      }
+    }
+    .navbar-danger,
+    .navbar-primary,
+    .navbar-info,
+    .navbar-warning,
+    .navbar-success,
+    .navbar-inverse {
+      li {
+        a {
+          color: @white;
+        }
+      }
+    }
+  }
+}
+
+.ui-wNavbar {
+  .navbar-danger {
+    .setNavbarColor(@danger);
+  }
+  .navbar-primary {
+    .setNavbarColor(@primary);
+  }
+  .navbar-info {
+    .setNavbarColor(@info);
+  }
+  .navbar-warning {
+    .setNavbarColor(@warning);
+  }
+  .navbar-success {
+    .setNavbarColor(@success);
+  }
+  .navbar-default {
+    .setNavbarColor(@default);
+  }
+  .navbar-inverse {
+    .setNavbarColor(@inverse);
+  }
+  .navbar-themeColor {
+    .setNavbarColor(@primary);
+  }
+}
+
+.ui-wPanel {
+  .panel-heading {
+    .background(@themebgcolor,@fontBaseColor);
+    .panel-title {
+      .panel-icon {
+        &:before {
+          display: inline-block;
+          width: 25px;
+          height: 25px;
+          background: @primary;
+          text-align: center;
+          line-height: 25px;
+          color: @white;
+        }
+      }
+    }
+    .badge {
+      .background(@primary,@white);
+    }
+    .panel-view-more {
+      color: @fontBaseColor;
+    }
+    .panel-heading-query {
+      .form-control {
+        opacity: 1;
+        border-color: @borderColor;
+      }
+      .btn-default {
+        border-color: @borderColor;
+        .background(@primary,@white);
+      }
+    }
+    .hover .form-control {
+      background: @white;
+      border-color: @borderColor;
+    }
+    .panel-heading-query:hover .btn-default,
+    .panel-heading-query.hover .btn-default {
+      .background(@primary,@white);
+      border-color: @primary;
+    }
+  }
+}
+
+.ui-wFooter {
+  .background(@themebgcolor,@fontBaseColor);
+  .help-info {
+    color: @fontBaseColor;
+    a {
+      color: @fontBaseColor;
+    }
+    .fa:hover {
+      color: @primary;
+    }
+  }
+}
+
+.bootbox {
+  .modal-dialog {
+    .modal-header {
+      background: @primary;
+      .modal-title,
+      .close {
+        color: @white;
+      }
+    }
+  }
+}
+.layui-layer {
+  .layui-layer-title {
+    .background(@primary,@white);
+  }
+}
+.ui-dialog {
+  .ui-widget-header {
+    .background(@themebgcolor,@white);
+    border: 1px solid @themebgcolor;
+  }
+}
+
+.ui-wLeftSidebar {
+  background: lighten(@themebgcolor, 40%);
+  .metismenu {
+    .metismenuul {
+      > .nav-menu-item {
+        > a {
+          .background(@themebgcolor,@fontBaseColor);
+          .badge {
+            .background(@primary,@white);
+          }
+        }
+        > a:hover,
+        > a:focus,
+        > a:active {
+          color: @primary;
+        }
+      }
+    }
+    .nav-menu-item.nav-menu-active > a {
+      color: @primary;
+    }
+    .nav-menu-item.nav-menu-active > a {
+      .badge {
+        .background(@primary,@white);
+      }
+    }
+    .collapse {
+      > .nav-menu-item.subnav-menu-item,
+      > .nav-menu-item.thirdnav-menu-item {
+        > a {
+          color: @fontBaseColor;
+        }
+      }
+      > .nav-menu-item.subnav-menu-item:hover,
+      .nav-menu-item.subnav-menu-item:focus,
+      .nav-menu-item.subnav-menu-item:active,
+      > .nav-menu-item.thirdnav-menu-item:hover,
+      .nav-menu-item.thirdnav-menu-item:focus,
+      .nav-menu-item.thirdnav-menu-item:active {
+        > a {
+          color: @themebgcolor;
+        }
+        background: @primary;
+      }
+      > .subnav-menu-item.nav-menu-active,
+      .thirdnav-menu-item.nav-menu-active {
+        > a {
+          color: @white;
+        }
+        .background(@primary,@white);
+      }
+    }
+  }
+  .icon-nav {
+    .icon-nav-item {
+      background: @themebgcolor;
+      i {
+        color: @primary;
+      }
+      &:hover,
+      &.selected {
+        .background(@primary,@white);
+        i {
+          color: @white;
+        }
+      }
+    }
+  }
+}
+
+.second-page {
+  .menu-sidebar {
+    background: lighten(@themebgcolor, 50%);
+  }
+}
+
+.folder-tree.ztree {
+  li {
+    a.curSelectedNode {
+      background: lighten(@themebgcolor, 40%);
+      border: 1px solid lighten(@themebgcolor, 30%);
+      color: @fontBaseColor;
+      opacity: 1;
+    }
+  }
+}
+
+.widget-box {
+  > .widget-header {
+    background: @themebgcolor;
+    > .widget-title {
+      color: @white;
+    }
+  }
+  .widget-body {
+    background: @bodybg;
+    .nav-tabs {
+      li {
+        a {
+          color: @fontBaseColor;
+        }
+      }
+      li.active {
+        a {
+          color: @themebgcolor;
+        }
+      }
+    }
+  }
+  .footer.fixed {
+    .form-control {
+      border: 1px solid @themebgcolor;
+    }
+    .row-sign-opinion-text {
+      .sign_opinion_text {
+        .background(@themebgcolor,@white);
+      }
+    }
+    .row-sign-opinion-text {
+      .wf-opinion-recent-snapshop {
+        .list-group-item {
+          border-bottom: 1px solid @themebgcolor;
+        }
+      }
+    }
+    .wf-opinion {
+      .list-group {
+        a {
+          border-bottom: 1px @bodybg solid;
+          &:hover {
+            .background(@bodybg, @themebgcolor);
+          }
+        }
+      }
+    }
+    .tabs-container {
+      .nav-tabs {
+        li {
+          a:hover {
+            background: @bodybg;
+          }
+          &.active {
+            a {
+              color: @themebgcolor;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.right-sidebar {
+  .nav-tabs {
+    .background(@themebgcolor,@white);
+    > li {
+      > a {
+        border: 1px solid @themebgcolor;
+        .background(@white,@themebgcolor);
+        &:hover {
+          color: white;
+          border: 1px solid @themebg-darker;
+          background-color: @themebg-darker;
+        }
+      }
+      &.active {
+        > a {
+          border: 1px solid @themebgcolor;
+          .background(@themebgcolor,@white);
+        }
+      }
+    }
+  }
+}
+
+.ui-wBootstrapTable {
+  .fixed-table-pagination {
+    .pagination {
+      li {
+        a:focus,
+        a:hover {
+          .background(@primary,@white);
+          border-color: @primary;
+        }
+      }
+      .active {
+        a,
+        a:focus,
+        a:hover {
+          .background(@primary,@white);
+          border-color: @primary;
+        }
+      }
+    }
+  }
+}
+
+.ui-jqgrid {
+  .ui-jqgrid-titlebar {
+    .background(@dyform-color,@fontBaseColor);
+    border-color: @borderColor;
+  }
+}
+
+.ui-wBootstrapTabs {
+  .nav-tabs {
+    border-color: @themebgcolor;
+    > li {
+      > a {
+        .background(@themebgcolor,@fontBaseColor);
+        &:hover,
+        &:focus {
+          .background(@white,@primary);
+          border: none;
+          border-bottom: 2px solid @primary;
+        }
+      }
+      &.active {
+        > a {
+          .background(@white,@primary);
+          border: none;
+          border-bottom: 2px solid @primary;
+        }
+      }
+    }
+  }
+  .tab-content {
+    background: @white;
+    padding-top: 9px;
+  }
+}
+
+//收藏图标样式
+.jquery-ui-favorite:before {
+  content: url('../../../theme/images/star-off.png');
+}
+.jquery-ui-favorite.favorite:before {
+  content: url('../../../theme/images/star-on.png');
+}
+//收藏图标样式结束
+
+/*formBuilder.js中构建bootstrap风格控件用到的样式开始*/
+.div-bootstraptable-formbuilder {
+  padding: 0 15px;
+}
+.label-formbuilder {
+  padding-top: 7px;
+}
+.formbuilder input[type='text'],
+.formbuilder textarea {
+  width: 100%;
+}
+.formbuilder .minicolors-theme-default.minicolors {
+  width: 100%;
+}
+.formbuilder .minicolors-theme-default .minicolors-input {
+  height: inherit;
+  width: 100%;
+  display: inline-block;
+  padding-left: 26px;
+}
+.formbuilder .input-loading {
+  padding-right: 20px;
+  background: url('images/loading2.gif') no-repeat scroll right center transparent !important;
+}
+/*formBuilder.js中构建bootstrap风格控件用到的样式结束*/
+
+/* 数据管理开始 */
+.dms-history-version-table td.remark {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 200px;
+}
+/* 数据管理结束 */
+
+/* 浏览器加载进度条开始 */
+.pace {
+  height: 2px;
+}
+.pace .pace-progress {
+  height: 2px;
+  opacity: 0;
+}
+.pace .pace-activity {
+  background-image: none;
+}
+/* 浏览器加载进度条结束 */
+
+/* 右键菜单开始  */
+.modal-open .ui-menu {
+  background-color: #ccc;
+  border: 1px solid #000;
+  z-index: 9999;
+  width: 5em;
+  padding: 0 5px;
+}
+.modal-open .ui-menu-item .ui-icon {
+  background-image: none;
+}
+
+.modal-open .ui-menu-item .ui-state-active {
+  background: none;
+  border: none;
+}
+/* 右键菜单结束  */
+
+/*物品管理弹框样式*/
+.dlg-goods-to-outbound table td input.form-control {
+  width: 100%;
+}
+.dlg-goods-to-outbound table td .help-block {
+  white-space: normal;
+}
+/*物品管理弹框样式*/
+
+/*日程模块*/
+.fc .fc-toolbar > * > * {
+  margin: 0;
+}
+/*日程模块*/
+
+/* select2开始 */
+form .select2-container {
+  padding: 0 !important;
+}
+
+form .select2-container .select2-choice {
+  height: 35px;
+}
+
+form .select2-container .select2-choice span {
+  line-height: 35px;
+}
+/* select2结束 */
+
+/*审批环节*/
+.choose-next-task {
+  .radio-inline.label-formbuilder {
+    display: block;
+  }
+  .radio-inline + .radio-inline {
+    margin: 0;
+  }
+}
+
+/*表单皮肤部分*/
+.dyform {
+  .title {
+    .background(@dyform-color,@fontBaseColor);
+    border-bottom: 1px solid;
+    border-color: @borderColor;
+  }
+  .fileupload-ico {
+    border: 1px solid @borderColor;
+    .background(@dyform-color,@fontBaseColor);
+    div {
+      > a:hover {
+        color: @themebg-lighter;
+      }
+    }
+  }
+  .newContent,
+  .imposeContent {
+    .background(@dyform-color,@fontBaseColor);
+    &:hover {
+      background: @themebg-darker;
+    }
+  }
+  table {
+    td {
+      input[type='radio'] + label:before {
+        color: @primary;
+      }
+      input[type='radio'] + label.radiolabel:before {
+        color: @primary;
+      }
+      input[type='radio']:checked + label:before {
+        color: @primary;
+      }
+      input[type='radio']:disabled + label:before {
+        color: @disable;
+        cursor: not-allowed;
+      }
+      input[type='checkbox'] + label:before {
+        color: @primary;
+      }
+      input[type='checkbox']:checked + label:before {
+        color: @primary;
+      }
+      input[type='checkbox']:disabled + label:before {
+        color: @disable;
+        cursor: not-allowed;
+      }
+      input[type='checkbox'] + label.checkboxlabel:before {
+        color: @primary;
+      }
+    }
+  }
+  .fileUpdateload {
+    .background(@themebgcolor,@white);
+    border: 1px solid @themebgcolor;
+  }
+}
+/*表单皮肤部分*/
+
+/*penel*/
+.wssb-panel > .panel-heading {
+  border-bottom: 0;
+}
+/*flex*/
+.wssb-flex {
+  display: flex;
+  justify-content: space-between;
+}
+/*我的项目*/
+.wssb-project {
+  .bootstrap-table .fixed-table-toolbar {
+    padding: 0 5px;
+    box-sizing: border-box;
+    background: #f3f7fd;
+  }
+  .fixed-table-toolbar .btn-group > .btn {
+    border-radius: 0 !important;
+  }
+}
+.wssb-material .fixed-table-toolbar .btn-group > .btn {
+  border-radius: 0 !important;
+}
+
+/*我的办件*/
+.wssb-office,
+.wssb-record,
+.wssb-order,
+.wssb-pretrial,
+.wssb-message,
+.wssb-licence {
+  .bootstrap-table .fixed-table-toolbar {
+    padding-right: 5px;
+    box-sizing: border-box;
+    background: #f3f7fd;
+  }
+  .fixed-table-toolbar {
+    background: #f3f7fd;
+  }
+  .fixed-table-toolbar .div_header_toolbar > .btn {
+    width: 114px;
+    margin: 0;
+    color: #444;
+    background: transparent;
+    border: none;
+    border-right: 1px solid #ddd;
+    border-radius: 0 !important;
+    outline: none;
+  }
+  .fixed-table-toolbar .div_header_toolbar > .btn:hover {
+    color: #01a5ff;
+    background: transparent;
+  }
+}
+.wssb-span {
+  margin-right: 40px;
+}
+.wssb-tags {
+  background: #f3f7fd;
+  .nav-tabs > li {
+    &.active > a,
+    &.active > a:hover {
+      background: transparent;
+      border-top: 2px solid #01a5ff;
+      border-bottom: none;
+      border-radius: 0;
+      color: #01a5ff;
+    }
+    &:first-of-type:after {
+      content: '|';
+      color: #ddd;
+      position: absolute;
+      right: 0;
+      top: 6px;
+      font-size: 18px;
+    }
+    & > a {
+      border: none;
+      background: transparent;
+    }
+    & > a:hover {
+      background: transparent;
+      border-bottom: none;
+      border-radius: 0;
+      color: #404040;
+    }
+    & > a:focus {
+      background: transparent;
+      border-bottom: none;
+      border-radius: 0;
+    }
+  }
+}

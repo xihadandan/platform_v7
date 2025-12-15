@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="${contextPath}/ureport/res/ureport-asserts/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+    <title>${title}</title>
+    <style type="text/css" id="_ureport_table_style">
+        ${style}
+    </style>
+    <script type="text/javascript" src="${contextPath}/ureport/res/ureport-asserts/venderjs/jquery.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/ureport/res/ureport-asserts/venderjs/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="${contextPath}/ureport/res/ureport-asserts/venderjs/Chart.bundle.min.js"></script>
+    <script type="text/javascript"
+            src="${contextPath}/ureport/res/ureport-asserts/venderjs/chartjs-plugin-datalabels.min.js"></script>
+    <script type="text/javascript"
+            src="${contextPath}/ureport/res/ureport-asserts/venderjs/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="${contextPath}/ureport/res/ureport-asserts/js/preview.bundle.js"></script>
+</head>
+<body style="margin:5px">
+${upSearchFormHtml}
+#if($tools.show)
+<div style="border:solid 1px #ddd;border-radius:5px;height:35px;width:100%;margin-bottom:5px;background:#f8f8f8">
+    <div style="text-align:${reportAlign}">
+        #if($tools.print)
+        <button type="button" class="btn btn-default ureport-print"
+                style="display:inline-block;padding:0;background:#f8f8f8;border:none;margin:3px" title="在线打印">
+            <img src='${contextPath}/ureport/res/ureport-asserts/icons/print.svg' width="20px" height="20px">
+        </button>
+        #end
+        #if($tools.pdfPrint)
+        <button type="button" class="btn btn-default ureport-pdf-direct-print"
+                style="display:inline-block;padding:0;background:#f8f8f8;border:none;margin:3px" title="PDF在线打印">
+            <img src='${contextPath}/ureport/res/ureport-asserts/icons/pdf-direct-print.svg' width="20px" height="20px">
+        </button>
+        #end
+        #if($tools.pdfPreviewPrint)
+        <button type="button" class="btn btn-default ureport-pdf-print"
+                style="display:inline-block;padding:0;background:#f8f8f8;border:none;margin:3px" title="PDF在线预览打印">
+            <img src='${contextPath}/ureport/res/ureport-asserts/icons/pdf-print.svg' width="20px" height="20px">
+        </button>
+        #end
+        #if($tools.pdf)
+        <button type="button" class="btn btn-default ureport-export-pdf"
+                style="display:inline-block;padding:0;background:#f8f8f8;border:none;margin:3px" title="导出PDF">
+            <img src='${contextPath}/ureport/res/ureport-asserts/icons/pdf.svg' width="20px" height="20px">
+        </button>
+        #end
+        #if($tools.word)
+        <button type="button" class="btn btn-default ureport-export-word"
+                style="display:inline-block;padding:0;background:#f8f8f8;border:none;margin:3px" title="导出WORD">
+            <img src='${contextPath}/ureport/res/ureport-asserts/icons/word.svg' width="20px" height="20px">
+        </button>
+        #end
+        #if($tools.excel)
+        <button type="button" class="btn btn-default ureport-export-excel"
+                style="display:inline-block;padding:0;background:#f8f8f8;border:none;margin:3px" title="导出EXCEL">
+            <img src='${contextPath}/ureport/res/ureport-asserts/icons/excel.svg' width="20px" height="20px">
+        </button>
+        #end
+        #if($tools.pagingExcel)
+        <button type="button" class="btn btn-default ureport-export-excel-paging"
+                style="display:inline-block;padding:0;background:#f8f8f8;border:none;margin:3px" title="分页导出EXCEL">
+            <img src='${contextPath}/ureport/res/ureport-asserts/icons/excel-paging.svg' width="20px" height="20px">
+        </button>
+        #end
+        #if($tools.sheetPagingExcel)
+        <button type="button" class="btn btn-default ureport-export-excel-paging-sheet"
+                style="display:inline-block;padding:0;background:#f8f8f8;border:none;margin:3px"
+                title="分页分Sheet导出EXCEL">
+            <img src='${contextPath}/ureport/res/ureport-asserts/icons/excel-with-paging-sheet.svg' width="20px"
+                 height="20px">
+        </button>
+        #end
+        #if($tools.paging)
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    style="background:#f8f8f8;border:none;color:#337ab7">
+                #if($pageIndex>0)
+                分页查看
+                #else
+                全部数据
+                #end
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                #if($hasTools)
+                <li><a href="${contextPath}/ureport/preview?_u=${file}&_t=${_t}&${customParameters}"
+                       style="color:#337ab7">全部数据</a></li>
+                #else
+                <li><a href="${contextPath}/ureport/preview?_u=${file}&${customParameters}"
+                       style="color:#337ab7">全部数据</a></li>
+                #end
+                #if($hasTools)
+                <li><a href="${contextPath}/ureport/preview?_u=${file}&_i=1&_t=${_t}&${customParameters}"
+                       style="color:#337ab7">分页查看</a></li>
+                #else
+                <li><a href="${contextPath}/ureport/preview?_u=${file}&_i=1&${customParameters}" style="color:#337ab7">分页查看</a>
+                </li>
+                #end
+            </ul>
+        </div>
+        #end
+        #if($totalPageWithCol>0)
+        <span id='pagingContainer' style="font-size:14px;margin-left:1px;color:#337ab7">
+			共<span id='totalPageLabel'>${totalPageWithCol}</span>页
+			<select id="pageSelector" class="form-control"
+                    style="display:inline-block;width:inherit;font-size:13px;height:28px;margin-top:2px">
+				#foreach($index in [1..$totalPageWithCol])
+				<option>${index}</option>
+				#end
+			</select>
+			<span id='pageLinkContainer'></span>
+		</span>
+        #end
+    </div>
+</div>
+#end
+${downSearchFormHtml}
+<div id="_ureport_table" style="float:${reportAlign}">
+    ${content}
+</div>
+<iframe name="_print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+<iframe name="_print_pdf_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+<script type="text/javascript">
+    (function (jQuery) {
+
+        jQuery.fn.fixedHeader = function (options) {
+            var config = {
+                topOffset: 0,
+                bgColor: 'white'
+            };
+            if (options) {
+                jQuery.extend(config, options);
+            }
+
+            return this.each(function () {
+                var o = jQuery(this);
+
+                var jQuerywin = jQuery(window)
+                        , jQueryhead = jQuery('thead.header', o)
+                        , isFixed = 0;
+                var headTop = jQueryhead.length && jQueryhead.offset().top - config.topOffset;
+
+                function processScroll() {
+                    if (!o.is(':visible')) return;
+                    if (jQuery('thead.header-copy').length) {
+                        jQuery('thead.header-copy').width(jQueryhead.width());
+                        var i, scrollTop = jQuerywin.scrollTop();
+                    }
+                    var t = jQueryhead.length && jQueryhead.offset().top - config.topOffset;
+                    if (!isFixed && headTop != t) {
+                        headTop = t;
+                    }
+                    if (scrollTop >= headTop && !isFixed) {
+                        isFixed = 1;
+                    } else if (scrollTop <= headTop && isFixed) {
+                        isFixed = 0;
+                    }
+                    isFixed ? jQuery('thead.header-copy', o).show().offset({left: jQueryhead.offset().left}).css(
+                            {'background-color': config.bgColor})
+                            : jQuery('thead.header-copy', o).hide();
+                    headerCopyRectify();
+                }
+
+                function headerCopyRectify() {
+                    o.find('thead.header > tr > td').each(function (i, h) {
+                        var w = jQuery(h).width();
+                        o.find('thead.header-copy> tr > td:eq(' + i + ')').width(w)
+                    });
+                }
+
+                jQuerywin.on('scroll', processScroll);
+                jQuerywin.on('resize', processScroll);
+
+                jQueryhead.on('click', function () {
+                    if (!isFixed) setTimeout(function () {
+                        jQuerywin.scrollTop(jQuerywin.scrollTop() - 47)
+                    }, 10);
+                })
+
+                jQueryhead.clone(true).removeClass('header').addClass('header-copy header-fixed').css({
+                    'position': 'fixed',
+                    'top': config['topOffset']
+                }).appendTo(o);
+                o.find('thead.header-copy').width(jQueryhead.width());
+
+                headerCopyRectify();
+                jQueryhead.css({
+                    margin: '0 auto',
+                    width: o.width()
+                });
+                processScroll();
+
+
+            });
+        };
+
+    })(jQuery);
+
+</script>
+<script type="text/javascript">
+    window._server = "${contextPath}/ureport";
+    window.formElements = [];
+    $(document).ready(function () {
+
+        buildPaging(${pageIndex},${totalPageWithCol});
+
+        #if($intervalRefreshValue > 0)
+        _intervalRefresh($intervalRefreshValue, $totalPageWithCol);
+        #end
+        _buildChartDatas($chartDatas);
+
+        ${searchFormJs}
+        function doSearch() {
+            submitSearchForm("${file}", "${customParameters}");
+        }
+
+        var customParameters = '${customParameters}';
+        var parameterString = customParameters.split('&');
+        var parameters = {};
+        for (var i = 0, len = parameterString.length; i < len; i++) {
+            var p = parameterString[i].split("=");
+            parameters[p[0]] = p[1];
+        }
+        if (parameters['wiframe']) {
+            var data = {
+                id: parameters['wiframe'],
+                height: window.innerHeight
+            }
+            window.parent.postMessage(JSON.stringify(data), '*');
+        }
+        if (parameters['wtableAdjust']) {
+            jQuery("table").css('width', 'auto');
+        }
+
+        if (parameters.jsPath) {
+            var jsPathArr = parameters
+                    .jsPath
+                    .split('|')
+                    .map(function (js) {
+                        return parameters.origin + js;
+                    })
+
+            for (var i = 0; i < jsPathArr.length; i++) {
+                jQuery.getScript(jsPathArr[i]);
+            }
+        }
+        if (parameters['fixRows'] != undefined) {
+            var fixRows = parseInt(parameters['fixRows']);
+            if (fixRows > 0) {
+                var _table = jQuery("#_ureport_table").find('table');
+                jQuery('<thead>', {'class': 'header'}).insertBefore(jQuery('tbody'));
+                var _thead = _table.find('thead');
+                for (var i = 0; i < fixRows; i++) {
+                    _thead.append(_table.find('tr:eq(' + i + ')'));
+                }
+                $('table').fixedHeader();
+            }
+        }
+
+    });
+</script>
+</body>
+</html>

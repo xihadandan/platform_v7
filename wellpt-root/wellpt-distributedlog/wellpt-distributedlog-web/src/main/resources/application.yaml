@@ -1,0 +1,19 @@
+log:
+  redis:
+    redisNodes:  192.168.0.215:6379
+    password:  wellsoft
+    masterName:
+  #  mq:
+  #    namesrvAddr:  192.168.0.116:19876
+  esNodes:  localhost:9200
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss.SSS
+    time-zone: GMT+8
+  application:
+    name:  分布式日志应用
+server:
+  port: 6080
+  servlet:
+    context-path: /distributedlog

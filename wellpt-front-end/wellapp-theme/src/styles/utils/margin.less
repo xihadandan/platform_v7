@@ -1,0 +1,128 @@
+.margin-positions() {
+  mt: margin-top;
+  mb: margin-bottom;
+  ml: margin-left;
+  mr: margin-right;
+}
+
+.margin-size() {
+  lg: margin-lg;
+  md: margin-md;
+  sm: margin-sm;
+  xs: margin-xs;
+  xss: margin-2xs;
+}
+
+// 生成4个方向 * 5种尺寸的外边距 `margin`
+each(.margin-positions(), .(@position, @key){
+  each(.margin-size(),.(@value, @size){
+    .@{key}-@{size} {
+      @{position}: @@value;
+    };
+  });
+});
+
+// 兼容旧样式 来源于 'default-less'
+// @deprecated
+.mr0 {
+  margin-right: 0 !important;
+}
+.ml10 {
+  margin-left: 10px;
+}
+.ml20 {
+  margin-left: 20px !important;
+}
+.mt10 {
+  margin-top: 10px !important;
+}
+.mb0 {
+  margin-bottom: 0 !important;
+}
+.mb5 {
+  margin-bottom: 5px !important;
+}
+.mb10 {
+  margin-bottom: 10px !important;
+}
+.mb15 {
+  margin-bottom: 15px !important;
+}
+.mb20 {
+  margin-bottom: 20px !important;
+}
+
+// 兼容旧样式 来源于 'base.css'
+// @deprecated
+.margin-20 {
+  margin: 20px !important;
+}
+.margin-15 {
+  margin: 15px !important;
+}
+.margin-10 {
+  margin: 10px !important;
+}
+.margin-5 {
+  margin: 5px !important;
+}
+.margin-0 {
+  margin: 0px !important;
+}
+.margin-0-15 {
+  margin: 0px 15px;
+}
+.margin-0-10 {
+  margin: 0px 10px;
+}
+.margin-0-5 {
+  margin: 0px 5px;
+}
+.margin-10-15 {
+  margin: 10px 15px;
+}
+.margin-5-15 {
+  margin: 5px 15px;
+}
+.margin-15-0 {
+  margin: 15px 0px;
+}
+.margin-20-0 {
+  margin: 20px 0px;
+}
+.margin-15-10 {
+  margin: 15px 10px;
+}
+.margin-15-5 {
+  margin: 15px 5px;
+}
+.margin-10-0 {
+  margin: 10px 0px;
+}
+.margin-10-5 {
+  margin: 10px 5px;
+}
+.margin-10-15 {
+  margin: 10px 15px;
+}
+.margin-5-0 {
+  margin: 5px 0px;
+}
+.margin-5-10 {
+  margin: 5px 10px;
+}
+.margin-5-15 {
+  margin: 5px 15px;
+}
+.mr-20 {
+  margin-right: 20px !important;
+}
+.ml-20 {
+  margin-left: 20px !important;
+}
+.mb-10 {
+  margin-bottom: 10px !important;
+}
+.mt-20 {
+  margin-top: 20px !important;
+}

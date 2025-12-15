@@ -1,0 +1,347 @@
+.widget-subform {
+  // padding: 0px 20px;
+  margin-bottom: var(--w-margin-2xs);
+  .subform-title {
+    color: var(--w-primary-color);
+    font-size: var(--w-font-size-lg);
+    label {
+      font-weight: 700;
+    }
+  }
+  .search-form {
+    padding: 0px 0px 12px 12px;
+
+    // background: #fafafa;
+    // margin-bottom: 8px;
+    // border-radius: 4px;
+    // border: 1px solid #efefef;
+    // padding: 12px;
+
+    .ant-form-item.advance-search-field-form-item {
+      margin: 0px 16px 12px 0px !important;
+    }
+
+    .ant-form-item.field-widget {
+      margin-right: 0px !important;
+      margin-bottom: 0px !important;
+      &.widget-form-tag {
+        margin-top: 7px;
+      }
+    }
+  }
+  .widget-subform-header-button {
+    padding: 10px 0px 10px 10px;
+  }
+  .subform-header-divider {
+    border-collapse: separate;
+    &::after {
+      width: 0px;
+    }
+  }
+  .widget-subform-tabs {
+    > .ant-tabs-top-bar {
+      .tab-title-label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-wrap: nowrap;
+        max-width: 250px;
+        display: block;
+        margin-right: 8px;
+      }
+      .close-icon {
+        color: #999 !important;
+        font-size: 14px;
+        position: absolute;
+        right: -10px;
+        padding: 3px 5px 3px 3px;
+        top: 9px;
+      }
+      .validate-error {
+        position: absolute;
+        top: -5px;
+        right: -12px;
+        .ant-badge-status-error::after {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: 1px solid red;
+          border-radius: 50%;
+          -webkit-animation: antStatusProcessing 1.2s ease-in-out infinite;
+          animation: antStatusProcessing 1.2s ease-in-out infinite;
+          content: '';
+        }
+      }
+    }
+  }
+  .widget-subform-inline {
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-bottom: 20px;
+
+    .check-all {
+      color: var(--w-primary-color);
+    }
+
+    > .ant-divider {
+      margin: 0px;
+      padding: 16px 0;
+    }
+
+    .widget-subform-inline-wrapper.collapsed {
+      display: none;
+    }
+  }
+
+  .widget-subform-inline-container {
+    margin-bottom: 20px;
+    > .ant-card {
+      > .ant-card-head {
+        display: none;
+      }
+      &.show-title > .ant-card-head {
+        display: block;
+        padding-left: 5px;
+        .ant-card-head-title {
+          color: var(--w-primary-color);
+          font-weight: 700;
+          font-size: var(--w-font-size-lg);
+        }
+      }
+    }
+  }
+
+  .widget-subform-inline-container.selected {
+    // outline: 1px solid #dee1e5 !important;
+    // box-shadow: 4px 4px 5px #dee1e5;
+  }
+
+  .widget-subform-inline-empty {
+    outline: 1px solid #e8e8e8 !important;
+    padding: 20px 0;
+    margin: 0px;
+  }
+
+  .widget-subform-table {
+    .ant-table-title {
+      padding: 0px;
+      border: unset !important;
+      > div {
+        line-height: 32px;
+        margin-bottom: var(--w-margin-2xs);
+        > label {
+          font-weight: var(--w-font-weight-semibold);
+        }
+      }
+    }
+
+    .subform-modal-edit-col {
+      .indent-level-1,
+      .indent-level-1 + .ant-table-row-expand-icon {
+        display: none;
+      }
+
+      .ant-table-row-expand-icon {
+        margin: 0px;
+      }
+    }
+
+    .ant-table-row-expand-icon + div[data-index] {
+      display: inline-block;
+    }
+
+    .ant-table-wrapper {
+      .ant-table-footer {
+        padding: 0px;
+        border: unset;
+        background: transparent;
+      }
+
+      &.collapsed {
+        .ant-table-content {
+          display: none;
+        }
+
+        .ant-table-pagination {
+          display: none;
+        }
+      }
+    }
+
+    .ant-form-item {
+      margin-bottom: 0px;
+
+      .textonly {
+        display: block;
+        line-height: 1.5 !important;
+      }
+
+      .ant-calendar-picker {
+        max-width: 100%;
+      }
+    }
+
+    .ant-table-row-cell-ellipsis {
+      .ant-form-item {
+        .textonly {
+          display: -webkit-box;
+          overflow: hidden;
+          white-space: normal !important;
+          text-overflow: ellipsis;
+          word-wrap: break-word;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          word-break: break-all;
+        }
+      }
+      .ant-table-column-title {
+        display: -webkit-box;
+        overflow: hidden;
+        white-space: normal !important;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
+      }
+    }
+
+    th.align-center {
+      text-align: center;
+    }
+
+    th.align-left {
+      text-align: left;
+    }
+
+    th.align-right {
+      text-align: right;
+    }
+
+    .subform-modal-edit-col {
+      padding: 0px;
+    }
+
+    label[issubformcell='true'] {
+      &.overflow-ellipsis {
+        display: -webkit-box;
+        overflow: hidden;
+        white-space: normal !important;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
+
+        p {
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+
+    // 有固定列时，主表列宽不能自适应，将fixed改成unset
+    // .ant-table-scroll > .ant-table-body > .ant-table-fixed {
+    //   table-layout: unset;
+    // }
+    // .ant-table-bordered .ant-table-fixed-right table {
+    //   border-left: none;
+    // }
+  }
+
+  .export-col-checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+
+    > .ant-checkbox-wrapper {
+      width: 180px;
+
+      > span:last-child {
+        max-width: 160px;
+        display: inline-block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        text-align: right;
+        vertical-align: bottom;
+      }
+    }
+  }
+}
+
+.widget-form-layout .content-col {
+  &:has(> .widget-subform) {
+    padding: 0px 12px !important;
+  }
+
+  .widget-subform {
+    padding: 0px !important;
+    margin-bottom: 12px;
+  }
+}
+
+.widget-subform-table .ant-table-content > .ant-table-body {
+  width: 100%;
+  overflow-x: auto;
+
+  .ant-form-item.field-widget {
+    padding: 0;
+
+    & > .ant-form-item.field-widget {
+      width: 100%;
+    }
+  }
+}
+
+.widget-subform-table .ant-table-content {
+  .ant-table-tbody > tr > td,
+  .ant-table-thead > tr > th {
+    padding: var(--w-padding-2xs) var(--w-padding-sm);
+  }
+
+  .ant-table-tbody > tr > td {
+    // 组织选择框居中显示
+    .org-select-component {
+      vertical-align: middle;
+    }
+  }
+}
+
+.modify-scroll-position {
+  .ant-table-thead > tr > th .ant-table-header-column {
+    // white-space: nowrap;
+    // text-wrap: nowrap;
+  }
+
+  .ant-table-placeholder {
+    width: 100%;
+    z-index: 5;
+  }
+}
+
+.check-all.ant-checkbox-wrapper {
+  .ant-checkbox + span {
+    word-break: break-all;
+    white-space: nowrap;
+    text-wrap: nowrap;
+  }
+}
+
+.widget-subform-descriptions {
+  &.ant-descriptions-bordered {
+    .ant-descriptions-item-label {
+      width: 120px;
+      background-color: var(--w-gray-color-4);
+      padding: 0px 0px 0px var(--w-padding-sm);
+    }
+
+    .ant-descriptions-item-content {
+      padding: var(--w-padding-3xs) var(--w-padding-sm);
+
+      .ant-form-item.field-widget {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

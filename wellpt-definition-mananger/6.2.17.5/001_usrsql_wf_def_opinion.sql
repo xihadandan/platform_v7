@@ -1,0 +1,1 @@
+create index WF_DO_BATCH_IDX on wf_def_opinion (creator, flow_def_id, task_id);

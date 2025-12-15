@@ -1,0 +1,87 @@
+<div class="form-widget" style="margin-top: 15px;">
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="row" style="margin-bottom: 15px;">
+                <button type="button" id="btn_range_add" class="well-btn w-btn-primary">新增</button>
+                <button type="button" id="btn_range_del" class="well-btn w-btn-danger">删除</button>
+            </div>
+            <table id="dms_data_permission_range_list" ></table>
+        </div>
+        <div class="col-xs-7 col-xs-offset-1">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#range-tabs-1" aria-controls="range-tabs-1" role="tab" data-toggle="tab" aria-expanded="true">基本信息</a>
+                </li>
+                <li role="presentation">
+                    <a href="#range-tabs-2" aria-controls="range-tabs-2" role="tab" data-toggle="tab" aria-expanded="true">数据规则</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="range-tabs-1">
+                    <form action="" id="dms_data_permission_range_form" class="form-widget">
+                        <input id="id" name="id" type="hidden" />
+                        <div class="well-form form-horizontal">
+                            <div class="form-group">
+                                <label for="name" class="well-form-label control-label required">名称</label>
+                                <div class="well-form-control">
+                                    <input type="text" class="form-control" id="name" name="name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="type" class="well-form-label control-label">对象类别</label>
+                                <div class="well-form-control">
+                                    <input type="text" id="type" name="type">
+                                </div>
+                            </div>
+                            <div class="form-group range-type range-type-1">
+                                <label for="owner" class="well-form-label control-label">数据所有者</label>
+                                <div class="well-form-control table current-user-info-table">
+                                    <input id="currentUserInfo_0" name="currentUserInfo" value="currentUserId" type="checkbox" /><label for="currentUserInfo_0">当前用户</label>
+                                    <input id="currentUserInfo_1" name="currentUserInfo" value="currentUserJobId" type="checkbox" /><label for="currentUserInfo_1">当前用户职位</label>
+                                    <input id="currentUserInfo_2" name="currentUserInfo" value="currentUserDepartmentId" type="checkbox" /><label for="currentUserInfo_2">当前用户部门</label>
+                                    <input id="currentUserInfo_3" name="currentUserInfo" value="currentUserBusinessUnitId" type="checkbox" /><label for="currentUserInfo_3">当前用户所在业务单位</label>
+                                    <input id="currentUserInfo_4" name="currentUserInfo" value="currentUserUnitId" type="checkbox" /><label for="currentUserInfo_4">当前用户所在单位</label>
+                                </div>
+                            </div>
+                            <div class="form-group range-type range-type-2">
+                                <label for="ownerName" class="well-form-label control-label">数据所有者</label>
+                                <div class="well-form-control">
+                                    <input type="text" class="form-control" id="ownerName" name="ownerName">
+                                    <input type="hidden" id="owner" name="owner">
+                                </div>
+                            </div>
+                            <div class="form-group range-type range-type-1 range-type-2">
+                                <label for="ownerName" class="well-form-label control-label no-suffix"></label>
+                                <div class="well-form-control">
+                                    <input id="includeSuperiorOrg" name="includeSuperiorOrg" type="checkbox" /><label for="includeSuperiorOrg">包含上级组织节点</label>
+                                    <input id="includeSiblingOrg" name="includeSiblingOrg" type="checkbox" /><label for="includeSiblingOrg">包含同级组织节点</label>
+                                    <input id="includeSubordinateOrg" name="includeSubordinateOrg" type="checkbox" /><label for="includeSubordinateOrg">包含下级组织节点</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ownerFieldName" class="well-form-label control-label">所有者字段</label>
+                                <div class="well-form-control">
+                                    <input type="text" class="form-control" id="ownerFieldName" name="ownerFieldName">
+                                    <input type="hidden" id="ownerFieldDisplayName" name="ownerFieldDisplayName">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="range-tabs-2">
+                    <div class="row" style="margin:15px 0;">
+                        <button id="btn_range_rule_add" type="button" class="well-btn w-btn-primary">新增</button>
+                        <button id="btn_range_rule_del" type="button" class="well-btn w-btn-danger">删除</button>
+                        <button id="btn_range_rule_up" type="button" class="well-btn w-btn-primary">上移</button>
+                        <button id="btn_range_rule_down" type="button" class="well-btn w-btn-primary">下移</button>
+                    </div>
+                    <table id="dms_data_permission_range_rule_list"></table>
+                </div>
+                <div class="row text-center" style="margin-top:30px;">
+                    <button type="button" class="well-btn w-btn-primary" id="range_btn_save">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

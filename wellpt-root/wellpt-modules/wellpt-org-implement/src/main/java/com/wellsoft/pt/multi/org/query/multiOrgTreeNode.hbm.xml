@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!-- 获取指定组织版本的所有节点数据 因为后面需要转化成树结构，所以必须是先按全路径升序排序，同级目录下，另外按编码升序排 所以该SQL语句排序顺序不能修改
+    order by r.ele_id_path asc
+     -->
+    <sql-query name="queryAllNodeOfOrgVersionByEleIdPath">
+        <![CDATA[
+		select r.*, e.uuid as ele_uuid, e.code, e.name, e.short_name, e.sap_code, e.remark, e.type, e.system_unit_id
+		from multi_org_tree_node r
+		left join multi_org_element e on r.ele_id = e.id
+		where r.org_version_id = :orgVersionId
+		and r.ele_id_path like '${eleIdPath}%'
+		<if isNotBlank(eleType)>
+		  and e.type = :eleType
+		</if>
+        <if eleTypes?? && (eleTypes?size > 0)>
+          and e.type in (:eleTypes)
+        </if>
+	]]>
+    </sql-query>
+
+
+    <sql-query name="queryOrgTreeNodeListForPage">
+        <![CDATA[
+		select * from (
+			select r.*, e.uuid as ele_uuid, e.code, e.name, e.short_name, e.sap_code, e.remark, e.type, e.system_unit_id
+			from multi_org_tree_node r
+			left join multi_org_element e on r.ele_id = e.id
+			where r.ele_id != :versionId
+			and r.org_version_id = :versionId
+			<if isNotBlank( eleIdPath )>
+				and r.ele_id_path like '${eleIdPath}%'
+			</if>
+			<if isNotBlank( otherSysUnitId )>
+				and r.json_params like  '%${otherSysUnitId}%'
+			</if>
+			<if eleTypes?? && (eleTypes?size > 0)>
+			  and e.type in (:eleTypes)
+			</if>
+			<if isNotBlank(name) || isNotBlank(sapCode) || isNotBlank(remark)>
+			 and (1 = 2
+				<if isNotBlank( name )>
+	                or e.name like '${name}'
+	            </if>
+	            <if isNotBlank( sapCode )>
+	                or e.sap_code like '${sapCode}'
+	            </if>
+	            <if isNotBlank( remark )>
+	                or e.remark like '${remark}'
+	            </if>
+			 )
+			</if>
+		)  order by ${orderBy}
+	]]>
+    </sql-query>
+
+    <sql-query name="getNode">
+        <![CDATA[
+		select r.*, e.uuid as ele_uuid,  e.code, e.name, e.short_name, e.sap_code, e.remark, e.type , e.system_unit_id
+		from multi_org_tree_node r, multi_org_element e
+		where r.ele_id = e.id and r.uuid = :uuid
+	]]>
+    </sql-query>
+
+
+    <!-- 批量更新所有子节点的ele_name_path和ele_id_path全路径 -->
+    <sql-query name="updateEleIdPathAndEleNamePathOfChildrenNodes">
+        <![CDATA[
+		update multi_org_tree_node set
+			ele_id_path = replace( ele_id_path, :oldIdPathPrev, :newIdPathPrev),
+			org_version_id = :newOrgVersionId
+		where ele_id_path like '${oldIdPathPrev}%'  and org_version_id = :oldOrgVersionId
+	]]>
+    </sql-query>
+
+    <!-- 获取一个节点元素被其他版本引用的情况 -->
+    <sql-query name="queryOtherOrgVersionListByEleId">
+        <![CDATA[
+		select * from multi_org_tree_node
+		where ele_id = :eleId and org_version_id != :orgVersionId
+	]]>
+    </sql-query>
+
+    <!-- 通过组织元素ID获取对应的的组织树节点信息 -->
+    <sql-query name="queryTreeNodeByEleId">
+        <![CDATA[
+		select r.*, e.uuid as ele_uuid, e.code, e.name, e.short_name, e.sap_code, e.remark, e.type, e.system_unit_id
+		from multi_org_tree_node r, multi_org_element e
+		where r.ele_id = e.id and e.id = :eleId
+	]]>
+    </sql-query>
+
+    <sql-query name="queryOrgTreeNodeByEleIdPaths">
+        <![CDATA[
+		select r.*, e.uuid as ele_uuid, e.code, e.name, e.short_name, e.sap_code, e.remark, e.type, e.system_unit_id
+		from multi_org_tree_node r, multi_org_element e
+		where r.ele_id = e.id and r.ele_id_path in (:eleIdPaths)
+	]]>
+    </sql-query>
+
+    <sql-query name="getNodeByEleIdAndOrgVersion">
+        <![CDATA[
+		select r.*, e.uuid as ele_uuid, e.code, e.name, e.short_name, e.sap_code, e.remark, e.type , e.system_unit_id
+		from multi_org_tree_node r, multi_org_element e
+		where r.ele_id = e.id and r.org_version_id = :orgVersionId
+		and e.id = :eleId
+	]]>
+    </sql-query>
+
+    <!-- 获取引用了 versionId的其他组织版本 -->
+    <sql-query name="queryParentSystemUnitOrg">
+        <![CDATA[
+		select * from multi_org_tree_node r
+		where r.ele_id = :versionId and r.org_version_id != :versionId
+	]]>
+    </sql-query>
+
+    <sql-query name="queryJobListWithDutyByVersionId">
+        <![CDATA[
+		select r.*, e.uuid as ele_uuid, e.code, e.name, e.short_name, e.sap_code, e.remark, e.type , e.system_unit_id, d.duty_id
+		from multi_org_tree_node r, multi_org_element e
+		left join multi_org_job_duty d on e.id = d.job_id
+		where r.ele_id = e.id and r.org_version_id = :versionId
+		and d.duty_id is not null
+	]]>
+    </sql-query>
+
+    <sql-query name="queryJobListWithDutyByVersionIdList">
+        <![CDATA[
+		select r.*, e.uuid as ele_uuid, e.code, e.name, e.short_name, e.sap_code, e.remark, e.type , e.system_unit_id, d.duty_id
+		from multi_org_tree_node r, multi_org_element e
+		left join multi_org_job_duty d on e.id = d.job_id
+		where r.ele_id = e.id and r.org_version_id in (:versionIdList)
+		and d.duty_id is not null
+		<if isNotBlank(keyword)>
+            and (e.name like '%' || :keyword || '%')
+          </if>
+	]]>
+    </sql-query>
+
+    <sql-query name="getOtherSystemUnitByOrgVersionId">
+        <![CDATA[
+		select * from multi_org_tree_node r
+		where r.org_version_id = :versionId and r.JSON_PARAMS like '%${systemUnitId}%'
+	]]>
+    </sql-query>
+
+
+    <sql-query name="queryJobNodeListOfCurrentVerisonByDutyId">
+        <![CDATA[
+		select r.*, e.uuid as ele_uuid, e.code, e.name, e.short_name, e.sap_code, e.remark, e.type , e.system_unit_id
+		from multi_org_tree_node r
+		left join multi_org_element e on r.ele_id = e.id
+		left join multi_org_job_duty d on e.id = d.job_id
+		left join multi_org_version v on v.id = r.org_version_id
+		where v.status = 1 and d.duty_id = :dutyId
+	]]>
+    </sql-query>
+
+    <!-- 获取指定组织版本指定节点下面的所有职位节点-->
+    <sql-query name="queryJobListByEleIdPath">
+        <![CDATA[
+		select r.*, e.uuid as ele_uuid, e.code, e.name, e.short_name, e.sap_code, e.remark, e.type, e.system_unit_id
+		from multi_org_tree_node r
+		left join multi_org_element e on r.ele_id = e.id
+		where r.org_version_id = :orgVersionId
+		and r.ele_id_path like '${eleIdPath}%'
+		and e.type = 'J'
+	]]>
+    </sql-query>
+
+    <!-- 清空一个组织树，只保留原始单位一个节点-->
+    <sql-query name="clearOrgTree">
+        <![CDATA[
+		delete from multi_org_tree_node
+		where org_version_id = :orgVersionId and ele_id_path not in ( :orgVersionId, :eleIdPath )
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

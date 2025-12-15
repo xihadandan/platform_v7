@@ -1,0 +1,230 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.wellsoft</groupId>
+    <artifactId>wellpt-web</artifactId>
+    <version>5.3.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+
+        <!-- Servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+            <!-- <scope>provided</scope> -->
+        </dependency>
+
+        <dependency>
+            <groupId>com.wellsoft</groupId>
+            <artifactId>wellpt-parent</artifactId>
+            <version>5.3.1-SNAPSHOT</version>
+            <type>pom</type>
+        </dependency>
+
+        <!-- 数据管理 -->
+        <dependency>
+            <groupId>com.wellsoft</groupId>
+            <artifactId>wellpt-dms</artifactId>
+            <version>5.3.1-SNAPSHOT</version>
+        </dependency>
+        <!-- 平台手机 -->
+        <dependency>
+            <groupId>com.wellsoft</groupId>
+            <artifactId>wellpt-mobile</artifactId>
+            <version>5.3.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- 平台应用 -->
+        <!-- 个人信息 -->
+        <dependency>
+            <groupId>com.wellsoft</groupId>
+            <artifactId>wellpt-app-personalinfo</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- 公告 -->
+        <dependency>
+            <groupId>com.wellsoft</groupId>
+            <artifactId>wellpt-app-notice</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- 工作流程 -->
+        <dependency>
+            <groupId>com.wellsoft</groupId>
+            <artifactId>wellpt-app-workflow</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                    <exclude>**/system.properties</exclude>
+                    <exclude>**/system-jdbc.properties</exclude>
+                    <exclude>**/system-james.properties</exclude>
+                    <exclude>**/system-cache.properties</exclude>
+                    <exclude>**/quartz.properties</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/test/resources</directory>
+                <includes>
+                    <include>**/system.properties</include>
+                    <include>**/system-jdbc.properties</include>
+                    <include>**/system-james.properties</include>
+                    <include>**/system-cache.properties</include>
+                    <include>**/quartz.properties</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <encoding>UTF-8</encoding>
+                    <!-- <compilerArguments> -->
+                    <!-- <extdirs>D:\well-soft\apache-tomcat-7.0.32\lib;WebContent\WEB-INF\lib</extdirs> -->
+                    <!-- </compilerArguments> -->
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <warSourceDirectory>WebContent</warSourceDirectory>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>Well-Soft-Central</id>
+            <name>Well Soft Central Repository</name>
+            <url>http://nexus.well-soft.com:81/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>Well-Soft-Releases</id>
+            <name>Well Soft Releases Repository</name>
+            <url>http://nexus.well-soft.com:81/nexus/content/repositories/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>Well-Soft-Snapshots</id>
+            <name>Well Soft Snapshots Repository</name>
+            <url>http://nexus.well-soft.com:81/nexus/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>Well-Soft-Thirdparty</id>
+            <name>Well Soft Snapshots Thirdparty</name>
+            <url>http://nexus.well-soft.com:81/nexus/content/repositories/thirdparty/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>Well-Soft-Central</id>
+            <name>Well Soft Central Repository</name>
+            <url>http://nexus.well-soft.com:81/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>Well-Soft-Releases</id>
+            <name>Well Soft Releases Repository</name>
+            <url>http://nexus.well-soft.com:81/nexus/content/repositories/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>Well-Soft-Snapshots</id>
+            <name>Well Soft Snapshots Repository</name>
+            <url>http://nexus.well-soft.com:81/nexus/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>Well-Soft-Thirdparty</id>
+            <name>Well Soft Snapshots Thirdparty</name>
+            <url>http://nexus.well-soft.com:81/nexus/content/repositories/thirdparty/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

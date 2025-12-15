@@ -1,0 +1,336 @@
+/* FILE MANAGER */
+.ui-wFileManager{
+	height:100%;
+}
+
+.file-manager-toolbar .columns-left {
+	margin-right: 5px;
+}
+
+.file-manager-toolbar .columns-right {
+	margin-left: 5px;
+}
+
+.file-manager-toolbar .columns label {
+	display: block;
+	padding: 3px 20px;
+	clear: both;
+	font-weight: normal;
+	line-height: 1.428571429;
+}
+
+.file-manager-toolbar .bs-bars, .file-manager-toolbar .search, .file-manager-toolbar .columns {
+	position: relative;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	line-height: 34px;
+}
+
+.file-manager-toolbar .dropdown-menu {
+	text-align: left;
+	max-height: 300px;
+	overflow: auto;
+}
+
+.file-manager-toolbar .btn-group>.btn-group {
+	display: inline-block;
+	margin-left: -1px !important;
+}
+
+.file-manager-toolbar .btn-group>.btn-group>.btn {
+	border-radius: 0;	
+}
+.file-manager-toolbar .btn-group>.btn{
+	margin: 0 5px;
+    border-radius: 4px !important;
+}
+/* .file-manager-toolbar .btn-group>.btn-group:first-child>.btn {
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.file-manager-toolbar .btn-group>.btn-group:last-child>.btn {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+} */
+
+.file-manager-toolbar .btn-query>i, .file-manager-toolbar .btn-reset>i {
+	margin-right: 5px;
+	vertical-align: -1px;
+}
+.folder-tree-container{
+	width: 265px;
+    overflow-y: auto;
+    height: 100%;
+}
+.file-manager-container .fm-checkbox {
+	margin-left: 15px;
+}
+
+.file-box {
+	float: left;
+	width: 250px;
+	height: 155px;
+}
+
+.file-box-hover .file {
+	box-shadow: 1px 1px 8px rgba(0,0,0,0.4);
+}
+
+.file-manager h5 {
+	text-transform: uppercase;
+}
+
+.file-manager {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+	height:100%;
+	position:relative;
+}
+.file-manager-nav,.file-manager-view{
+	height:100%;
+	overflow-y:auto;
+	background:#fff;
+}
+.file-manager-nav{
+	position: absolute;
+    left: 0;
+    top: 0;
+    width: 250px;
+    overflow: hidden;
+}
+.file-manager-view{
+	margin-left:265px;	
+	padding:0 15px;
+}
+.folder-list li a {
+	color: #666666;
+	display: block;
+	padding: 5px 0;
+}
+
+.folder-list li {
+	border-bottom: 1px solid #e7eaec;
+	display: block;
+}
+
+.folder-list li i {
+	margin-right: 8px;
+	color: #3d4d5d;
+}
+
+.category-list li a {
+	color: #666666;
+	display: block;
+	padding: 5px 0;
+}
+
+.category-list li {
+	display: block;
+}
+
+.category-list li i {
+	margin-right: 8px;
+	color: #3d4d5d;
+}
+
+.category-list li a .text-navy {
+	color: #1ab394;
+}
+
+.category-list li a .text-primary {
+	color: #1c84c6;
+}
+
+.category-list li a .text-info {
+	color: #23c6c8;
+}
+
+.category-list li a .text-danger {
+	color: #EF5352;
+}
+
+.category-list li a .text-warning {
+	color: #F8AC59;
+}
+
+.file-manager h5.tag-title {
+	margin-top: 20px;
+}
+
+.tag-list li {
+	float: left;
+}
+
+.tag-list li a {
+	font-size: 10px;
+	background-color: #f3f3f4;
+	padding: 5px 12px;
+	color: inherit;
+	border-radius: 2px;
+	border: 1px solid #e7eaec;
+	margin-right: 5px;
+	margin-top: 5px;
+	display: block;
+}
+
+.file {
+	padding: 0;
+	background-color: #ffffff;
+	position: relative;
+	margin: 0 -10px;
+	box-shadow: 1px 1px 8px rgba(0,0,0,0.2);
+	cursor:pointer;
+	transition:all 0.3s;
+}
+
+.file:hover{
+	box-shadow: 1px 1px 8px rgba(0,0,0,0.4);
+}
+.file-manager .hr-line-dashed {
+	margin: 15px 0;
+}
+
+.file .icon, .file .image {
+	height: 100px;
+	overflow: hidden;
+}
+
+.file .icon {
+	padding: 15px 10px;
+	text-align: center;
+}
+
+.file .icon .thumbnail {
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+	margin: 10px 7.5px;
+	float:left;
+}
+
+.file-control {
+	color: inherit;
+	font-size: 11px;
+	margin-right: 10px;
+}
+
+.file-control.active {
+	text-decoration: underline;
+}
+
+.file .icon i {
+	font-size: 60px;
+	color: #069dd5;
+	line-height: 75px;
+    padding-left: 10px;
+	float:left;
+}
+
+.file .file-information {
+	float: right;
+    width: 140px;
+    text-align: left;
+    padding-top: 10px;
+    font-size: 12px;
+}
+
+.file .file-information p{
+	line-height:1.6;
+	margin:0;
+}
+
+.file .file-information p.file-type,.file .file-information p.creat-time{
+	color:#999;
+}
+
+.file .file-information p span {
+	display:inline-block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 70px;
+    vertical-align: middle;
+}
+
+.file-name small {
+	color: #676a6c;
+}
+
+.file .file-name-editable {
+	height: 40px;
+}
+
+.file .file-name-editable input {
+	width: 118px;
+}
+
+.file .file-checkbox {
+	position: absolute;
+	top: 5px;
+	left: 10px;
+}
+
+.corner {
+	position: absolute;
+	display: inline-block;
+	width: 0;
+	height: 0;
+	line-height: 0;
+	border: 0.6em solid transparent;
+	border-right: 0.6em solid #f1f1f1;
+	border-bottom: 0.6em solid #f1f1f1;
+	right: 0em;
+	bottom: 0em;
+}
+
+a.compose-mail {
+	padding: 8px 10px;
+}
+
+.mail-search {
+	max-width: 300px;
+}
+
+.modal-dialog  .folder-tree-container {
+	height: 200px;
+	overflow: auto;
+	width: 100%;
+}
+.folder-tree-container .folder-tree{
+	margin-right:15px;
+}
+/* 新建标签 */
+.modal-dialog .tag-dialog .minicolors {
+	top: 6px;
+	left: 3px;
+}
+
+.file-box .file-tags{
+	border-top:1px solid #eee;
+	height:40px;	
+	padding:10px;
+}
+.file-box .file-tags>span{
+	display: inline-block;
+    vertical-align: top;
+	line-height:20px;
+}
+.file-box .dms-file-tags {
+	display:inline-block;
+}
+
+.dms-file-tags .dms-tag {
+	color: #fff;
+    vertical-align: top;
+    margin-left: 5px;
+    border-radius: 3px 0 0 3px;
+    width: 37px;
+    height:20px;
+    line-height:20px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

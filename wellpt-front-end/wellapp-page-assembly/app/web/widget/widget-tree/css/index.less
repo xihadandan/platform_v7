@@ -1,0 +1,50 @@
+.widget-tree {
+  .hasSearch {
+    padding-top: var(--w-padding-xs);
+  }
+
+  .ant-tree-directory.tree-more-operations {
+    li .ant-tree-node-content-wrapper {
+      --w-tree-node-content-wrapper-display: inline-flex;
+
+      .ant-tree-iconEle + .ant-tree-title {
+        width: e('calc(100% - var(--w-tree-iconEle-width))');
+      }
+
+      .ant-tree-title {
+        width: 100%;
+        display: flex;
+        .widget-tree-title {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: inline-block;
+          vertical-align: middle;
+          flex-grow: 1;
+        }
+
+        .widget-tree-operations {
+          flex-shrink: 0;
+          // float: right;
+          // position: relative;
+
+          // > div {
+          //   position: absolute;
+          //   right: var(--w-padding-2xs);
+          // }
+        }
+      }
+    }
+  }
+
+  // 搜索情况下，仅展示匹配节点以及其父级节点（隐藏不相关的节点）
+  .ant-tree.search {
+    .ant-tree-treenode-switcher-close {
+      display: none;
+    }
+
+    .ant-tree-treenode-switcher-close:has(.matched) {
+      display: block;
+    }
+  }
+}

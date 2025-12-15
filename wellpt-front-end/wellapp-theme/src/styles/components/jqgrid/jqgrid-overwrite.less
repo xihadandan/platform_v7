@@ -1,0 +1,86 @@
+/* ui-jqgrid overwrite */
+.ui-jqgrid {
+  margin: 0 auto;
+
+  .ui-jqgrid-view {
+    border-color: @border-color-primary;
+  }
+
+  .ui-jqgrid-title {
+    line-height: 30px;
+    font-weight: normal;
+    font-family: @font-family;
+    float: none;
+  }
+}
+
+.ui-jqgrid .ui-jqgrid-titlebar {
+  height: 40px;
+  font-size: @font-size-base;
+
+  .ui-wbtn-group {
+    float: right;
+  }
+
+  span > button {
+    font-family: @font-family;
+    font-weight: normal;
+    background-color: @gray-6;
+    border: 0;
+    color: @text-color-primary;
+    font-size: @font-size-base;
+    height: 30px;
+    margin-left: 4px;
+    padding: 0 @padding-lg;
+    border-radius: @border-radius-base;
+  }
+}
+
+.ui-jqgrid .ui-jqgrid-hdiv {
+  border-bottom: 0;
+  overflow-x: hidden;
+}
+
+.ui-jqgrid .ui-jqgrid-bdiv {
+  position: relative;
+  margin: 0em;
+  padding: 0;
+  overflow: visible;
+  text-align: left;
+  min-height: 50px;
+
+  .ui-jqgrid-btable tbody td {
+    overflow: visible;
+  }
+
+  .value {
+    display: block;
+  }
+}
+
+.ui-jqgrid .fileupload-ico td {
+  cursor: pointer;
+  border: @border-default-lighter;
+  text-align: center;
+}
+
+.ui-jqgrid .ToolBtn {
+  cursor: pointer;
+  border: @border-default;
+  padding: 2px 6px;
+  line-height: 12pt;
+  background-color: @gray-6;
+}
+
+.ui-jqgrid .ToolBtnOutset {
+  cursor: pointer;
+  border-top: @border-default-inverse;
+  border-right: @border-default;
+  border-bottom: @border-default;
+  border-left: @border-default-inverse;
+  background-color: @gray-6;
+}
+
+.ui-jqgrid .select2-drop {
+  margin-top: -21px;
+}

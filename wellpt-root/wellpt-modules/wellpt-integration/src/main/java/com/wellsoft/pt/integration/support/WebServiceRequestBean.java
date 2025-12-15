@@ -1,0 +1,136 @@
+/*
+ * @(#)2013-11-8 V1.0
+ *
+ * Copyright 2013 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.integration.support;
+
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * Description: 如何描述该类
+ *
+ * @author zhulh
+ * @version 1.0
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2013-11-8.1	zhulh		2013-11-8		Create
+ * </pre>
+ * @date 2013-11-8
+ */
+public class WebServiceRequestBean implements Serializable {
+    /**
+     * 如何描述serialVersionUID
+     */
+    private static final long serialVersionUID = 1283779791181821539L;
+
+    private String from;
+
+    private String to;
+
+    private String cc;
+
+    private String bcc;
+
+    private String typeId;
+
+    private String batchId;
+
+    private List<DataItemBean> dataList;
+
+    /**
+     * @return the from
+     */
+    public String getFrom() {
+        return from;
+    }
+
+    /**
+     * @param from 要设置的from
+     */
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    /**
+     * @return the to
+     */
+    public String getTo() {
+        return to;
+    }
+
+    /**
+     * @param to 要设置的to
+     */
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    /**
+     * @return the cc
+     */
+    public String getCc() {
+        return cc;
+    }
+
+    /**
+     * @param cc 要设置的cc
+     */
+    public void setCc(String cc) {
+        this.cc = cc;
+    }
+
+    /**
+     * @return the bcc
+     */
+    public String getBcc() {
+        return bcc;
+    }
+
+    /**
+     * @param bcc 要设置的bcc
+     */
+    public void setBcc(String bcc) {
+        this.bcc = bcc;
+    }
+
+    /**
+     * @return the typeId
+     */
+    public String getTypeId() {
+        return typeId;
+    }
+
+    /**
+     * @param typeId 要设置的typeId
+     */
+    public void setTypeId(String typeId) {
+        this.typeId = typeId;
+    }
+
+    /**
+     * @return the batchId
+     */
+    public String getBatchId() {
+        return batchId;
+    }
+
+    /**
+     * @param batchId 要设置的batchId
+     */
+    public void setBatchId(String batchId) {
+        this.batchId = batchId;
+    }
+
+    public List<DataItemBean> getDataList() {
+        return dataList;
+    }
+
+    public void setDataList(List<DataItemBean> dataList) {
+        this.dataList = dataList;
+    }
+
+}

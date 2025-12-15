@@ -1,0 +1,2 @@
+alter table BIZ_FORM_STATE_HISTORY
+    modify TRIGGER_TYPE VARCHAR2(50);

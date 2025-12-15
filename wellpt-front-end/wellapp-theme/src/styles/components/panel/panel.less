@@ -1,0 +1,333 @@
+// 面板 - 内容区域
+.ui-wPanel .panel-body {
+
+  // 面板 - 内容区域 - 内容标题
+  .panel-tab-header {
+    height: @panel-content-header-height;
+    line-height: @panel-content-header-height;
+    background: @gray-3;
+    border-bottom: @border-default;
+    position: relative;
+    z-index: 12;
+    padding: 0 15px;
+
+    .nav-tabs {
+      margin-top: 0;
+      border-bottom: 0;
+
+      >li {
+        margin-right: @margin-lg;
+
+        >a {
+          color: @text-color-dark;
+          font-size: @panel-content-header-tab-font-size;
+          border: none;
+          background-color: inherit;
+          padding: 0 @padding-md;
+          line-height: @panel-content-header-height - 1;
+          border-radius: @border-radius-base @border-radius-base 0 0;
+
+          &:hover,
+          &:focus {
+            color: @panel-content-header-tab-hover-color;
+          }
+        }
+
+        &.active>a {
+          color: @panel-content-header-tab-hover-color;
+
+          &::after {
+            content: " ";
+            width: 100%;
+            height: 2px;
+            background-color: @border-color-primary;
+            position: absolute;
+            bottom: 1px;
+            left: 0;
+          }
+
+          span {
+            color: @danger-color;
+          }
+        }
+      }
+    }
+
+    // 面板 - 内容区域 - 内容标题 - 搜索
+    .search-wrapper {
+      position: relative;
+      margin-top: @margin-2xs;
+    }
+
+    // 面板 - 内容区域 - 内容标题 - 更多
+    .panel-view-more a {
+      color: @panel-header-title-view-more-color;
+      text-decoration: none;
+
+      &:hover {
+        color: @panel-header-title-view-more-hover-color;
+      }
+    }
+
+    &.has-panel-header {
+      // margin-top: @margin-sm;
+      padding-left: @padding-xs;
+      background: @gray-3;
+      border-bottom: @border-default-dark;
+
+      // 面板 - 内容区域 - 内容标题 - 导航
+      .nav-tabs {
+        margin-top: @margin-2xs;
+        border-bottom: none;
+
+        >li {
+
+          >a {
+            border: @border-default-transparent;
+            line-height: @panel-content-header-height - @margin-2xs - 1; //37px
+            color: @panel-content-header-text-color;
+            padding: 0 @padding-lg;
+
+            span {
+              color: @danger-color;
+            }
+
+            &:hover,
+            &:focus {
+              background-color: @component-background;
+              color: @panel-header-title-view-more-hover-color;
+              border: @border-default;
+              border-bottom: @border-default-transparent;
+            }
+          }
+
+          &.active>a {
+            background-color: @component-background;
+            color: @panel-content-header-tab-hover-color;
+            border: @border-default;
+            border-bottom: @border-default-transparent;
+
+            &::after {
+              content: none;
+            }
+
+            span {
+              color: @panel-content-header-tab-span-hover-color;
+            }
+          }
+
+          &:hover,
+          &:focus {
+            color: @panel-content-header-tab-hover-color;
+
+            span {
+              color: @panel-content-header-tab-span-hover-color;
+            }
+          }
+        }
+      }
+
+      .panel-nav-tabs-container {
+
+        .nav-tabs-prev,
+        .nav-tabs-next,
+        .nav-tabs-more {
+          top: @margin-2xs;
+          line-height: @panel-content-header-height - @margin-sm + 4;
+        }
+
+        .nav-tabs-next {
+          right: 25px;
+        }
+      }
+    }
+
+    .panel-nav-tabs-container {
+      position: relative;
+      width: 100%;
+      min-width: 145px;
+
+      .nav-tabs-prev,
+      .nav-tabs-next,
+      .nav-tabs-more {
+        position: absolute;
+        font-size: @font-size-sm;
+        top: 0;
+        line-height: inherit;
+        color: @text-color-primary;
+
+        :hover {
+          color: @text-color-primary;
+        }
+      }
+
+      .nav-tabs-prev {
+        left: 0;
+      }
+
+      .nav-tabs-next {
+        right: 0px;
+      }
+
+      .nav-tabs-more {
+        right: 0px;
+      }
+    }
+
+    .nav-tabs-box {
+      width: initial;
+      overflow: hidden;
+
+      .nav-tabs {
+        white-space: nowrap;
+        position: relative;
+        transition: transform .3s;
+        float: left;
+        display: inline-flex;
+        display: -webkit-inline-flex;
+        transition: transform .3s;
+
+        >li {
+          box-sizing: border-box;
+          display: inline-block;
+          list-style: none;
+          position: relative;
+          transition: all .3s cubic-bezier(.645, .045, .355, 1);
+        }
+      }
+    }
+  }
+}
+
+.popover {
+  &.tab-more-popover {
+    border-radius: 0;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+    border: 0;
+
+    .arrow {
+      display: none;
+    }
+
+    .popover-content {
+      padding: 0;
+
+      ul.nav-tabs-more-list {
+        max-height: 200px;
+        overflow: hidden;
+
+        li {
+          min-width: 100px;
+          max-width: 120px;
+          line-height: 40px;
+          text-align: center;
+          color: @text-color-dark;
+          font-size: @font-size-base;
+          padding: 0 @padding-xs;
+          cursor: pointer;
+
+          &:hover,
+          .active {
+            color: @text-color-primary;
+            background-color: @background-primary-lighter;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// .panel-body .panel-tabs li {
+//   float: left;
+//   height: 42px;
+//   padding: 0 5px;
+//   margin: 0 10px;
+//   line-height: 40px;
+//   font-size: @font-size-base;
+//   color: @text-color-dark;
+//   background: @component-background;
+//   border-bottom: @border-width-1 solid transparent;
+//   cursor: pointer;
+
+//   &.active {
+//     color: @text-color-primary;
+//     border-bottom: @border-width-1 solid @border-color-primary;
+//   }
+
+//   &:hover {
+//     color: @text-color-primary;
+//   }
+// }
+
+// .panel-body .panel-tab-content {
+//   display: none;
+//   padding: 0 15px;
+
+//   &.active {
+//     display: block;
+//   }
+
+//   .file-manager-view {
+//     padding-left: 0;
+//   }
+// }
+
+// .panel-body .panel-tab-header {
+//   height: 44px;
+//   padding: 0 15px;
+//   line-height: 44px;
+//   background: @background-light;
+//   position: relative;
+//   border: @border-default;
+//   z-index: 11; //比列表自定义图标高1
+
+
+
+
+//   .search-wrapper {
+//     position: relative;
+//     margin-top: 5px;
+//   }
+
+//   .panel-view-more a {
+//     color: @link-color;
+//     text-decoration: @link-decoration;
+
+//     &:hover {
+//       color: @link-hover-color;
+//     }
+//   }
+// }
+
+// .panel-body .panel-tab-header.has-panel-header {
+//   // margin-top: @margin-sm;
+//   padding-left: @border-width-1;
+//   background: @background-light;
+
+//   .nav-tabs {
+//     margin-top: @margin-sm;
+
+//     >li {
+//       >a {
+//         padding: @border-width-1 @border-width-1;
+//         background: @background-light;
+
+//         &:hover,
+//         &:focus {
+//           color: @text-color-primary;
+//         }
+//       }
+
+//       &.active>a {
+//         color: @text-color-primary;
+//         background: @component-background;
+
+//         &::after {
+//           content: none;
+//         }
+//       }
+//     }
+//   }
+// }

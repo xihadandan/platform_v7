@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="countOperateByCurrentUserQuery">
+        <![CDATA[
+		select count(t.uuid) as count
+		  from wf_task_operation t,
+		       (select t1.uuid           as uuid,
+		               t1.task_inst_uuid as task_inst_uuid,
+		               t1.task_id        as task_id,
+		               t1.flow_inst_uuid as flow_inst_uuid
+		          from wf_task_activity t1
+		         start with t1.task_inst_uuid = :parallelTaskInstUuid
+		        connect by prior t1.task_inst_uuid = t1.pre_task_inst_uuid) a,
+		       (select t1.uuid           as uuid,
+		               t1.task_inst_uuid as task_inst_uuid,
+		               t1.task_id        as task_id,
+		               t1.flow_inst_uuid as flow_inst_uuid
+		          from wf_task_activity t1
+		         start with t1.task_inst_uuid = :branchTaskInstUuid
+		        connect by prior t1.pre_task_inst_uuid = t1.task_inst_uuid) b
+		 where a.uuid = b.uuid
+		   and a.task_inst_uuid <> :parallelTaskInstUuid
+		   and t.task_inst_uuid = a.task_inst_uuid
+		   and t.flow_inst_uuid = a.flow_inst_uuid
+		   and t.assignee = :userId
+	]]>
+    </sql-query>
+</hibernate-mapping>

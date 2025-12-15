@@ -1,0 +1,188 @@
+// 属性搜索样式，用于:
+// - 表格组件 - 高级字段搜索
+.property_search_toolbar {
+  position: relative;
+  font-size: @font-size-base;
+  color: @text-color;
+
+  // 高级搜索 - 顶部筛选条件汇总行
+  .property_search_result {
+    position: relative;
+    min-height: 40px;
+    padding: 8px 0 2px 40px;
+
+    // 高级搜索 - 顶部筛选条件汇总行 - 左侧标题
+    .tit {
+      .absolute(8px false false 0);
+
+      line-height: @tag-line-height;
+    }
+
+    // 高级搜索 - 顶部筛选条件汇总行 - 右侧筛选条件汇总 (*标签样式*)
+    ul li {
+      position: relative;
+      margin-left: @margin-2xs;
+      margin-bottom: @margin-2xs;
+      padding: 0 @padding-2xl 0 @padding-3xs;
+      line-height: (@tag-line-height - 2 * @border-width-base);
+      border: @border-default-dark;
+      border-radius: @border-radius-base;
+      font-size: @tag-font-size;
+      color: @tag-default-color;
+      background: @tag-default-background;
+
+      .close-icon {
+        .absolute((-@border-width-base) 0 false false);
+        .square(@tag-line-height);
+
+        line-height: @tag-line-height;
+        border-top-right-radius: @border-radius-base;
+        border-bottom-right-radius: @border-radius-base;
+        text-align: center;
+        cursor: pointer;
+
+        i {
+          font-size: @font-size-sm;
+        }
+      }
+
+      &:hover {
+        border: @border-default-primary;
+
+        .close-icon {
+          color: @text-color-inverse;
+          background: @primary-color;
+        }
+      }
+    }
+  }
+
+  // 高级搜索 - 可筛选表格
+  .property_choose_list {
+    border: @border-default-light;
+
+    // 高级搜索 - 可筛选表格 - 筛选项
+    .property-choose-li {
+      position: relative;
+      padding: 0 200px;
+      min-height: 43px;
+      border-bottom: @border-default-light;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      // 高级搜索 - 可筛选表格 - 筛选项 - 标题
+      .property-name {
+        .absolute(0 false false 0);
+        .size(200px, 100%);
+
+        padding: 14px @padding-lg;
+        line-height: 1;
+        color: @text-color-dark;
+        background: @background-light;
+        text-align: right;
+      }
+
+      // 高级搜索 - 可筛选表格 - 筛选项 - 筛选属性
+      .property-item-wrap {
+        .property-item {
+          position: relative;
+          height: 26px;
+          margin: @margin-xs @margin-md;
+          padding: 0 @padding-xl 0 @padding-3xs;
+          line-height: 24px;
+          color: @text-color;
+          border: @border-default-transparent;
+          border-radius: @border-radius-base;
+          cursor: pointer;
+
+          .close-icon {
+            .square(24px);
+            .absolute(0 0 false false);
+
+            display: none;
+            line-height: 24px;
+            font-size: @font-size-sm;
+            text-align: center;
+            cursor: pointer;
+          }
+
+          &:hover {
+            color: @text-color-primary;
+          }
+
+          &.active {
+            border: @border-default-dark;
+            background: @background-primary-light;
+
+            .close-icon {
+              display: block;
+
+              &:hover {
+                color: @text-color-primary;
+              }
+            }
+          }
+        }
+
+        // 高级搜索 - 可筛选表格 - 筛选项(打开更多时)底部的按钮
+        .property-choose-multi-btns {
+          display: none;
+          text-align: center;
+
+          button {
+            width: 70px;
+            margin: @margin-sm;
+          }
+        }
+      }
+
+      // 高级搜索 - 可筛选表格 - 筛选项 - 多选按钮
+      .property-choose-btns {
+        .absolute(6px 15px false false);
+
+        .multi-btn {
+          .size(74px, 30px);
+
+          line-height: 30px;
+          color: @text-color-primary;
+          background: @component-background;
+          border: @border-default-primary;
+          border-radius: @border-width-base;
+          text-align: center;
+          cursor: pointer;
+        }
+      }
+
+      // 高级搜索 - 可筛选表格 - 筛选项(打开更多时)
+      &.open-multi {
+        background: @background-primary-light;
+
+        .property-choose-multi-btns {
+          display: block;
+        }
+      }
+    }
+  }
+
+  // 高级搜索 - 更多属性
+  .property_li_more {
+    position: relative;
+    top: -2px;
+    text-align: center;
+
+    span {
+      display: inline-block;
+      height: 30px;
+      padding: 0 ddd;
+      line-height: 30px;
+      font-size: @font-size-base;
+      color: @text-color-primary;
+      border: @border-default-dark;
+      border-top-color: @border-default-inverse;
+      background: @component-background;
+      cursor: pointer;
+    }
+  }
+}

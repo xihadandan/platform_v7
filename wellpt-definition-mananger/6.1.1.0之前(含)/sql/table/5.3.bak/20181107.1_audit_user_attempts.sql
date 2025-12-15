@@ -1,0 +1,3 @@
+CREATE UNIQUE INDEX "idx_ua_login_name"
+ON "AUDIT_USER_ATTEMPTS" ("LOGIN_NAME" ASC);
+

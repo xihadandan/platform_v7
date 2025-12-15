@@ -1,0 +1,81 @@
+/** 悬浮框组件 */
+
+// 悬浮框样式
+.ui-wSuspendedFrame .suspended-wrap {
+  position: fixed;
+  z-index: 100;
+  overflow: hidden;
+  top: @suspended-component-position-top;
+  transform: translateY(-50%);
+
+  .suspended-item {
+    width: @suspended-component-collapse-width;
+    color: @suspended-component-text-color;
+    background: @suspended-component-background;
+    height: @suspended-component-item-height;
+    transition: all @animation-duration-base;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &:not(:last-of-type) {
+      border-bottom: @suspended-component-item-divider;
+    }
+
+    &:hover {
+      background: @suspended-component-item-hover-background;
+    }
+
+    .icon-wrap {
+      .size(@suspended-component-collapse-width, @suspended-component-item-height);
+
+      line-height: @suspended-component-item-height;
+      text-align: center;
+      display: inline-block;
+
+      i {
+        font-size: @suspended-component-item-icon-size;
+      }
+    }
+
+    .text {
+      padding: 0 @padding-md;
+      font-size: @suspended-component-item-font-size;
+      line-height: @suspended-component-item-height;
+    }
+  }
+
+  //  *固定在页面左边*
+  &.suspended-style-left {
+    left: 0;
+    border-radius: 0 @suspended-component-border-radius @suspended-component-border-radius 0;
+
+    .suspended-item .icon-wrap,
+    .suspended-item .text {
+      float: left;
+    }
+
+    &:hover .suspended-item {
+      width: 100%;
+    }
+  }
+
+  //  *固定在页面右边*
+  &.suspended-style-right {
+    right: 0;
+    border-radius: @suspended-component-border-radius 0 0 @suspended-component-border-radius;
+
+    .suspended-item .icon-wrap,
+    .suspended-item .text {
+      float: right;
+    }
+
+    &:hover .suspended-item {
+      width: auto;
+    }
+  }
+}
+
+.ui-wSuspendedFrame .suspended-wrap + .nav-block-modal .modal-dialog {
+  width: 1068px !important;
+}

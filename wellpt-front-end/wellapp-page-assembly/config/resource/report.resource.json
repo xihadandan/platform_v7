@@ -1,0 +1,87 @@
+{
+  "js": {
+    "wBarChart": {
+      "path": "/js/ui/widget/jquery-ui-wBarChart",
+      "name": "柱状图组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "formBuilder", "dataStoreBase", "ViewDevelopmentBase", "echarts", "wChart"]
+    },
+    "widget_line_chart": {
+      "path": "/js/design/component/widget_line_chart",
+      "name": "定义折线图组件",
+      "dependencies": ["dependencyUIComponentModule", "formBuilder", "ui_chart_component"]
+    },
+    "wTableReport": {
+      "path": "/js/ui/widget/jquery-ui-wTableReport",
+      "name": "表格报表组件",
+      "dependencies": [
+        "dependencyJQueryUIWidgetModule",
+        "formBuilder",
+        "dataStoreBase",
+        "ViewDevelopmentBase",
+        "bootstrap-datetimepicker",
+        "moment"
+      ]
+    },
+    "wLineChart": {
+      "path": "/js/ui/widget/jquery-ui-wLineChart",
+      "name": "折线图组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "formBuilder", "dataStoreBase", "ViewDevelopmentBase", "echarts", "wChart"]
+    },
+    "ui_chart_component": {
+      "path": "/js/design/component/ui_chart_component",
+      "name": "基础图表组件定义",
+      "dependencies": ["dependencyUIComponentModule", "formBuilder"]
+    },
+    "wBareChart": {
+      "path": "/js/ui/widget/jquery-ui-wBareChart",
+      "name": "柱状图组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "formBuilder", "dataStoreBase", "ViewDevelopmentBase", "echarts", "wChart"]
+    },
+    "widget_pie_chart": {
+      "path": "/js/design/component/widget_pie_chart",
+      "name": "定义饼图组件",
+      "dependencies": ["dependencyUIComponentModule", "formBuilder", "ui_chart_component"]
+    },
+    "wChart": {
+      "path": "/js/ui/widget/jquery-ui-wChart",
+      "name": "图表组件基类",
+      "dependencies": ["dependencyUIComponentModule", "formBuilder", "echarts"]
+    },
+    "widget_table_report": {
+      "path": "/js/design/component/widget_table_report",
+      "name": "定义表格报表组件",
+      "dependencies": ["dependencyUIComponentModule", "formBuilder"]
+    },
+    "ChartWidgetDevelopment": {
+      "path": "/js/develop/ChartWidgetDevelopment",
+      "name": "平台基础_图表式组件_二开接口",
+      "dependencies": ["WidgetDevelopment"]
+    },
+    "TableReportWidgetDevelopment": {
+      "path": "/js/develop/TableReportWidgetDevelopment",
+      "name": "平台基础_表格式报表组件_二开接口",
+      "dependencies": ["WidgetDevelopment"]
+    },
+    "TableReportAdditionalJS": {
+      "path": "/js/develop/TableReportAdditionalJS",
+      "name": "平台基础_表格式报表组件_内置JS",
+      "dependencies": ["jQuery"]
+    },
+    "widget_bare_chart": {
+      "path": "/js/design/component/widget_bare_chart",
+      "name": "定义柱状图组件",
+      "dependencies": ["dependencyUIComponentModule", "formBuilder", "ui_chart_component"]
+    },
+    "widget_bar_chart": {
+      "path": "/js/design/component/widget_bar_chart",
+      "name": "定义柱状图组件",
+      "dependencies": ["dependencyUIComponentModule", "formBuilder", "ui_chart_component"]
+    },
+    "wPieChart": {
+      "path": "/js/ui/widget/jquery-ui-wPieChart",
+      "name": "饼图组件",
+      "dependencies": ["dependencyJQueryUIWidgetModule", "formBuilder", "dataStoreBase", "ViewDevelopmentBase", "echarts", "wChart"]
+    }
+  },
+  "css": {}
+}

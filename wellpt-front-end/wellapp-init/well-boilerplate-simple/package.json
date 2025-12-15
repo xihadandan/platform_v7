@@ -1,0 +1,31 @@
+{
+  "name": "well-boilerplate-simple",
+  "version": "2.0.3-rc",
+  "description": "wellsoft的web应用范例",
+  "scripts": {
+    "autod": "autod",
+    "lint": "eslint .",
+    "test": "npm run lint -- --fix && npm run test-boilerplate",
+    "ci": "npm run lint && npm run ci-boilerplate",
+    "test-boilerplate": "npm run build && npm run install-deps && cd dist && npm test",
+    "ci-boilerplate": "npm run build && npm run install-deps && cd dist && npm run ci",
+    "clean": "rm -rf boilerplate/.idea boilerplate/logs boilerplate/node_modules boilerplate/run",
+    "build": "npm run clean && egg-init dist --force --silent --template=./",
+    "install-deps": "cd dist && npm i autod-egg && ../node_modules/.bin/autod && npm i"
+  },
+  "author": "wellsoft",
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "egg-ci": "^1.11.0",
+    "well-init": "2.0.1-rc",
+    "eslint": "^5.13.0",
+    "eslint-config-egg": "^7.1.0",
+    "npminstall": "^3.20.2",
+    "webstorm-disable-index": "^1.2.0"
+  },
+  "ci": {
+    "version": "8"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,37 @@
+/*
+ * @(#)2016年6月4日 V1.0
+ * 
+ * Copyright 2016 WELL-SOFT, Inc. All rights reserved.
+ */
+package com.wellsoft.pt.webmail.facade.service;
+
+import java.util.List;
+
+import com.wellsoft.context.service.BaseService;
+import com.wellsoft.pt.mail.support.James3MailId;
+import com.wellsoft.pt.webmail.entity.WmMailUserEntity;
+
+/**
+ * Description: james3网络邮件客户端服务
+ *  
+ * @author zhulh
+ * @date 2016年6月4日
+ * @version 1.0
+ * 
+ * <pre>
+ * 修改记录:
+ * 修改后版本	修改人		修改日期			修改内容
+ * 2016年6月4日.1	zhulh		2016年6月4日		Create
+ * </pre>
+ *
+ */
+public interface James3WebmailClientService extends BaseService {
+
+	/**
+	 * 如何描述该方法
+	 * 
+	 * @param mailUser
+	 * @param value
+	 */
+	void fetchWebmail(WmMailUserEntity mailUser, List<James3MailId> james3MailIds) throws Exception;
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="departmentTreeQuery">
+        <![CDATA[
+		from Department dept where 1 = 1 and dept.isVisible='1'
+		<if isNotBlank(departmentUuids)>
+		and dept.uuid=:departmentUuids
+		</if>
+		<if tenantId != cisTenantId>
+			and tenantId = :tenantId
+		</if>
+		<if isNotBlank(name) || isNotBlank(code) || isNotBlank(principalLeaderNames) || isNotBlank(branchedLeaderNames) || isNotBlank(managerNames)>
+			and (1 = 2
+				<if isNotBlank(name)>
+					or lower(dept.name) like '%${name?lower_case}%'
+				</if>
+				<if isNotBlank(code)>
+					or lower(dept.code) like '%${code?lower_case}%'
+				</if>
+				<if isNotBlank(principalLeaderNames)>
+					or lower(dept.principalLeaderNames) like '%${principalLeaderNames?lower_case}%'
+				</if>
+				<if isNotBlank(branchedLeaderNames)>
+					or lower(dept.branchedLeaderNames) like '%${branchedLeaderNames?lower_case}%'
+				</if>
+				<if isNotBlank(managerNames)>
+					or lower(dept.managerNames) like '%${managerNames?lower_case}%'
+				</if>
+			)
+		</if>
+
+		order by code asc,name
+	]]>
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,97 @@
+.icon-bg-wrap {
+  font-size: 0;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  .currBg {
+    .square(34px);
+
+    display: inline-block;
+    padding: 4px;
+    border: @border-default-darker;
+    vertical-align: top;
+    cursor: pointer;
+
+    >div {
+      .square(100%);
+
+      // 默认颜色
+      background: #0089ff;
+    }
+  }
+
+  .bg-choose-list {
+    .absolute(0 false false 34px);
+
+    padding: 4px;
+    display: none;
+    width: 118px;
+    border: @border-default-dark;
+    font-size: 0px;
+    box-sizing: border-box;
+    background: @component-background;
+    z-index: 1;
+
+    li {
+      .square(24px);
+
+      display: inline-block;
+      line-height: 24px;
+      margin-bottom: 4px;
+      cursor: pointer;
+      border: @border-default-light;
+      text-align: center;
+      vertical-align: middle;
+
+      i {
+        display: none;
+        color: @text-color-inverse;
+      }
+
+      &.hasChoose {
+        background: @primary-color;
+
+        i {
+          display: inline-block;
+        }
+      }
+
+      &:not(:nth-of-type(4n)) {
+        margin-right: 4px;
+      }
+    }
+
+    .bg-choose-more {
+      color: @text-color;
+      font-size: @font-size-base;
+      text-align: right;
+
+      &:hover {
+        color: @text-color-primary;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .minicolors {
+    .minicolors-input {
+      display: none;
+      opacity: 0;
+    }
+
+    .minicolors-swatch {
+      opacity: 0;
+    }
+
+    .minicolors-panel {
+      display: block;
+      top: -34px;
+      left: 34px;
+    }
+  }
+
+  .show-more-color {
+    border-color: transparent;
+  }
+}

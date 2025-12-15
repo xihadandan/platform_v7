@@ -1,0 +1,38 @@
+{
+  "orgSelect": {
+    "placeholder": "请选择组织",
+    "searchOrgPlaceholder": "请输入关键字搜索",
+    "bizOrgLabel": "业务组织",
+    "selectAll": "全选",
+    "expand": "展开",
+    "collapse": "折叠",
+    "countPreviewUser": "成员 {count} 个",
+    "loading": "加载中",
+    "selectedLabel": "已选",
+    "dragToSort": "拖动排序",
+    "delete": "删除",
+    "modalTitle": "选择人员",
+    "clear": "清空",
+    "cancelText": "取消",
+    "okText": "确定",
+    "userView": "用户视图",
+    "treeNodeView": "树形视图",
+    "searchInputPlaceholder": "请输入用户姓名或者拼音搜索更多",
+    "unit": "个",
+    "message": {
+      "noMoreData": "无更多数据",
+      "searchNoResult": "查无数据",
+      "serverError": "组织服务异常",
+      "loadDataError": "组织数据加载失败"
+    },
+    "orgOption": {
+      "MyOrg": "我的组织",
+      "MyLeader": "我的领导",
+      "MyDept": "我的部门",
+      "MyUnderling": "我的下属",
+      "TaskUsers": "办理人",
+      "TaskDoneUsers": "已办人员",
+      "PublicGroup": "公共群组"
+    }
+  }
+}

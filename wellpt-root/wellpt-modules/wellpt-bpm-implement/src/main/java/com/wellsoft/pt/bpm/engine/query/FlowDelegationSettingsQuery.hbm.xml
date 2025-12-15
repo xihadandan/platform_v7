@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+    <sql-query name="getNotDeactiveByUserIds">
+        <![CDATA[
+        select *
+		from wf_flow_delegation_settings t
+		 where t.status != :status 
+		 and (t.consignor in ( :userIds) or t.trustee in( :userIds))
+	]]>
+    </sql-query>
+
+</hibernate-mapping>

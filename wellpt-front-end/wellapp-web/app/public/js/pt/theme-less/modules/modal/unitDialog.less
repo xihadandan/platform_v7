@@ -1,0 +1,54 @@
+@import '../../variables/variables.less';
+//组织选择框开始
+.ui-dialog{
+    padding: 0;
+    &.ui-widget.ui-widget-content{
+        border: none;
+    }
+    .ui-widget-header{
+        height: 42px;
+        line-height: 29px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        .ui-dialog-title{
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .ui-button,.ui-button:hover{
+            background: none;
+            border:0;
+        }
+    }
+    .ui-dialog-buttonpane {
+        text-align: center;
+        .ui-dialog-buttonset{
+            float: none;
+            button{
+                font-size: 14px;
+                padding:0 35px;
+                border: none;
+                border-radius: 3px;
+            }
+            button:first-child{
+                background: @primary;
+                color:@white;
+            }
+            button:first-child:hover{
+                background: @primary-hover;
+                color:@white;
+            }
+            button:last-child{
+                background: @default;
+                color:@white;
+            }
+            button:last-child:hover{
+                background: @default-hover;
+                color:@white;
+            }
+        }
+    }
+    .ui-resizable-handle{
+        display: none !important;
+    }
+}
+//组织选择框结束

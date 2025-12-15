@@ -1,0 +1,420 @@
+/** 简版视图 (新版 + 旧版) */
+
+.well-calendar {
+  margin: auto;
+  background: @background-lighter;
+}
+
+.ui-wMyCalendar .well-calendar {
+  /* 消除内边距 */
+  margin: -15px -10px;
+}
+
+.well-calendar .well-calendar-header {
+  position: relative;
+  width: 100%;
+  height: 64px;
+  padding: 12px 64px;
+  background: @component-background;
+  box-shadow: 0 @border-width-base 0 0 @border-color-base;
+}
+
+.well-calendar .well-calendar-header .well-calendar-icon {
+  display: inline-block;
+  padding: 0 4px;
+  cursor: pointer;
+}
+
+.well-calendar .well-calendar-header .well-calendar-icon i {
+  font-size: 10px;
+  color: @text-color-light;
+}
+
+.well-calendar .well-calendar-header .well-calendar-icon i:hover {
+  color: @text-color-primary;
+}
+
+.well-calendar .well-calendar-header .well-calendar-icon.well-calendar-next-month {
+  margin-left: 20px;
+}
+
+.well-calendar .well-calendar-header .well-calendar-cur-year-month {
+  display: inline-block;
+  width: 90px;
+  font-size: @font-size-lg;
+  color: @text-color-dark;
+  text-align: center;
+  margin-left: 20px;
+}
+
+.well-calendar .well-calendar-header .well-calendar-today {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 64px;
+  height: 64px;
+  padding: 8px;
+  text-align: center;
+}
+
+.well-calendar .well-calendar-header .well-calendar-today .well-calendar-date {
+  margin-bottom: 6px;
+  line-height: 1;
+  font-size: 26px;
+  color: @text-color-primary;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.well-calendar .well-calendar-header .well-calendar-today .well-calendar-week-day {
+  line-height: 1;
+  font-size: @font-size-base;
+  color: @text-color;
+}
+
+.well-calendar .well-calendar-header .well-calendar-date-switcher {
+  width: 100%;
+  height: 100%;
+  line-height: 40px;
+  border-left: @border-default;
+  border-right: @border-default;
+  text-align: center;
+}
+
+.well-calendar .well-calendar-header .well-calendar-add-schedule {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.well-calendar .well-calendar-header .well-calendar-add-schedule i {
+  line-height: 64px;
+  font-size: @font-size-xl;
+  color: @text-color-primary;
+}
+
+.well-calendar .well-calendar-header .well-calendar-add-schedule:hover i {
+  color: @primary-8;
+}
+
+.well-calendar .well-calendar-body {
+  height: calc((100% / 9) * 7);
+}
+
+.well-calendar .well-calendar-body .well-calendar-body-week {
+  display: table;
+  position: relative;
+  width: 100%;
+  font-size: @font-size-base;
+  color: @text-color;
+  background: @primary-1;
+}
+
+.well-calendar .well-calendar-body .well-calendar-body-week .well-calendar-body-day {
+  display: table-cell;
+  width: calc(100% / 7);
+  height: 30px;
+  vertical-align: middle;
+}
+
+.well-calendar .well-calendar-body .well-calendar-body-dates {
+  display: table;
+  width: 100%;
+  height: calc((100% / 7) * 6);
+  padding-top: 10px;
+}
+
+.well-calendar .well-calendar-body .well-calendar-body-dates .well-calendar-body-date {
+  float: left;
+  display: table-cell;
+  width: calc(100% / 7);
+  height: 40px;
+  font-size: @font-size-base;
+  color: @text-color;
+  text-align: center;
+  cursor: pointer;
+}
+
+.well-calendar .well-calendar-body .well-calendar-body-dates .well-calendar-date-prev,
+.well-calendar .well-calendar-body .well-calendar-body-dates .well-calendar-date-next {
+  color: #ccc;
+}
+
+.well-calendar .well-calendar-body .well-calendar-body-text {
+  text-align: center;
+}
+
+.well-calendar .well-calendar-content .well-calendar-content-header,
+.well-calendar .well-calendar-content .well-calendar-content-body {
+  position: relative;
+  width: 100%;
+  padding: 0 4px;
+  text-align: center;
+}
+
+.well-calendar .well-calendar-content .well-calendar-content-header {
+  position: relative;
+}
+
+.well-calendar .well-calendar-content .well-calendar-content-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: @primary-1;
+}
+
+.well-calendar .well-calendar-content .well-calendar-content-header tr {
+  position: relative;
+  height: 30px;
+  font-size: @font-size-base;
+  color: @text-color;
+}
+
+.well-calendar .well-calendar-content .well-calendar-content-body {
+  background: @background-light;
+}
+
+.well-calendar .well-calendar-content .well-calendar-content-body td {
+  height: 40px;
+  color: @text-color;
+  cursor: pointer;
+}
+
+.well-calendar .well-calendar-content .well-calendar-content-body td.disabled {
+  color: #ccc;
+}
+
+.well-calendar .well-calendar-content .well-calendar-content-body td .date,
+.well-calendar .well-calendar-body .well-calendar-body-date .well-calendar-body-text {
+  width: 24px;
+  height: 24px;
+  margin: auto;
+  line-height: 22px;
+  font-size: @font-size-base;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.well-calendar .well-calendar-content .well-calendar-content-body td:hover .date,
+.well-calendar .well-calendar-body .well-calendar-body-date:hover .well-calendar-body-text {
+  color: @text-color-primary;
+  /*border: 1px solid rgb(73, 142, 238, .15);*/
+  background: @primary-3;
+}
+
+.well-calendar .well-calendar-content .well-calendar-content-body td.current .date,
+.well-calendar .well-calendar-body .well-calendar-body-date.current .well-calendar-body-text {
+  color: @text-color-primary;
+  border: @border-default-primary;
+}
+
+.well-calendar .well-calendar-content .well-calendar-content-body td.active .date,
+.well-calendar .well-calendar-body .well-calendar-body-date.picked .well-calendar-body-text {
+  color: @text-color-inverse;
+  border: @border-default-primary;
+  background: @primary-color;
+}
+
+.well-calendar .well-calendar-content .well-calendar-content-body td .dot,
+.well-calendar .well-calendar-body .well-calendar-body-date .dot {
+  width: 6px;
+  height: 6px;
+  margin: 2px auto 0;
+  border-radius: 50%;
+  background: @success-color;
+}
+
+.well-calendar .well-calendar-footer {
+  width: 100%;
+  background: @component-background;
+  padding-top: 28px;
+  min-height: 100px;
+  max-height: 450px;
+  overflow: auto;
+}
+
+.well-calendar.calendar-view-agendaDay .well-calendar-footer {
+  padding-top: 0;
+}
+
+.well-calendar .well-calendar-footer ul {
+  position: relative;
+  padding: 0 0 1px;
+  max-height: 103px;
+  overflow: auto;
+}
+
+.well-calendar .well-calendar-footer ul li.viewEvent {
+  position: relative;
+  width: 100%;
+  height: 34px;
+  line-height: 34px;
+  padding-left: 20px;
+  box-shadow: 0 @border-width-base 0 0 @border-color-base;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.well-calendar .well-calendar-footer ul li.viewEvent:hover {
+  background: @primary-2;
+}
+
+.well-calendar .well-calendar-footer ul li.viewEvent::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: @success-color;
+}
+
+.well-calendar .well-calendar-footer ul li .time {
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  line-height: 34px;
+  color: @text-color-light;
+  vertical-align: top;
+}
+
+.well-calendar .well-calendar-footer ul li .text {
+  display: inline-block;
+  width: calc(100% - 60px);
+  height: 34px;
+  padding-left: 10px;
+  line-height: 34px;
+  color: @text-color;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.well-calendar .no-data {
+  padding: 15px;
+  font-size: @font-size-base;
+  color: #ccc;
+  text-align: center;
+}
+
+/*
+拓展视图样式
+*/
+.well-calendar .well-calendar-body {
+  position: relative;
+}
+
+.well-calendar-cur-year-month-week,
+.well-calendar-cur-year-month-date {
+  display: none;
+  width: auto;
+  font-size: @font-size-lg;
+  color: @text-color-dark;
+  text-align: center;
+}
+
+.well-calendar-cur-year-month-week {
+  margin-right: 20px;
+}
+
+.calendar-view-agendaDay .well-calendar-cur-year-month-date {
+  display: inline-block;
+}
+
+.calendar-view-agendaWeek .well-calendar-cur-year-month-week {
+  display: inline-block;
+}
+
+.calendar-view-agendaWeek .well-calendar-body .well-calendar-body-dates>.well-calendar-body-date {
+  display: none;
+}
+
+.calendar-view-agendaWeek .well-calendar-body .well-calendar-body-dates>.current-week {
+  display: table-cell;
+}
+
+/* 上一月、下一月、视图展开折叠按钮 */
+.well-calendar-date-switcher2 {
+  display: none;
+  width: 0px;
+  height: 0px;
+  color: @text-color-light;
+}
+
+.calendar-view-agendaWeek .well-calendar-date-switcher2,
+.calendar-view-month .well-calendar-date-switcher2 {
+  display: block;
+}
+
+.well-calendar-date-switcher2 .iconfont {
+  font-size: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.well-calendar-date-switcher2 .iconfont:hover {
+  color: @text-color-primary;
+}
+
+.well-calendar-date-switcher2 .next,
+.well-calendar-date-switcher2 .prev {
+  position: absolute;
+  width: 12px;
+  height: 28px;
+  line-height: 28px;
+  top: 50%;
+  background: @primary-2;
+}
+
+.well-calendar-date-switcher2 .next {
+  right: 0;
+  border-radius: 12px 0px 0px 12px;
+}
+
+.well-calendar-date-switcher2 .next .iconfont {
+  margin-left: 2px;
+}
+
+.well-calendar-date-switcher2 .prev {
+  left: 0;
+  border-radius: 0px 12px 12px 0px;
+}
+
+.well-calendar-date-switcher2 .prev .iconfont {
+  margin-left: -2px;
+}
+
+.well-calendar-date-switcher2 .toggle-view {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  top: calc(100% + 14px);
+  background-color: @gray-5;
+}
+
+.well-calendar-date-switcher2 .toggle-view .iconfont {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  width: 40px;
+  height: 12px;
+  left: calc(50% - 20px);
+  top: -6px;
+  background-color: @component-background;
+  z-index: 1;
+}
+
+.calendar-view-agendaDay .well-calendar-body {
+  display: none;
+}

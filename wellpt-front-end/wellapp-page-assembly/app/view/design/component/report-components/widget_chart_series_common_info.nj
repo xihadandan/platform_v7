@@ -1,0 +1,146 @@
+
+<fieldset>
+    <legend>数据项样式</legend>
+    <div class="form-group">
+        <label for="itemStyle_color" class="col-sm-2 control-label">图形颜色</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control w-configurer-option" height="34px" name="itemStyle_color"
+                   id="itemStyle_color">
+        </div>
+
+        <label for="itemStyle_borderColor" class="col-sm-2 control-label">图形边框颜色</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control w-configurer-option" height="34px" name="itemStyle_borderColor"
+                   id="itemStyle_borderColor">
+        </div>
+
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend>提示框定义</legend>
+    <div class="form-group">
+        <label for="tooltip_formatter" class="col-sm-2 control-label">提示格式化</label>
+        <div class="col-sm-10">
+            <select class="form-control w-configurer-option" name="tooltip_formatterType" id="tooltip_formatterType">
+                <option value="0">&nbsp;</option>
+                <option value="function">回调函数代码</option>
+                <option value="stringTemplate">字符串模板</option>
+            </select>
+            <textarea rows="6" class="form-control w-configurer-option" name="tooltip_formatter"
+                      id="tooltip_formatter"></textarea>
+            <div id="formatterFunctionDescription">
+                <a role="button" data-toggle="collapse" href="#collapseOneSerTooltip" aria-expanded="false" aria-controls="collapseOneSerTooltip" class="">
+                    查看回调函数代码说明
+                </a>
+                <div id="collapseOneSerTooltip" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">
+                    回调函数代码支持参数<code>params</code>格式如下：
+                    <pre>
+                     {
+                        componentType: 'series',
+                        // 系列类型
+                        seriesType: string,
+                        // 系列在传入的 option.series 中的 index
+                        seriesIndex: number,
+                        // 系列名称
+                        seriesName: string,
+                        // 数据名，类目名
+                        name: string,
+                        // 数据在传入的 data 数组中的 index
+                        dataIndex: number,
+                        // 传入的原始数据项
+                        data: Object,
+                        // 传入的数据值
+                        value: number|Array,
+                        // 数据图形的颜色
+                        color: string,
+                    }
+                </pre>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend>文本标签定义</legend>
+
+    <div class="form-group">
+        <label for="label_show" class="col-sm-2 control-label">展示文本标签</label>
+        <div class="col-sm-4 checkbox-inline">
+            <input type="checkbox" class="form-control w-configurer-option" height="34px" name="label_show"
+                   id="label_show" value="true">
+                   <label for="label_show"></label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="label_position" class="col-sm-2 control-label">文本标签位置</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control w-configurer-option" height="34px" name="label_position"
+                   id="label_position">
+        </div>
+        <label for="label_formatter" class="col-sm-2 control-label">文本格式化</label>
+        <div class="col-sm-4">
+                        <textarea class="form-control w-configurer-option" height="34px" name="label_formatter"
+                                  id="label_formatter"/>
+
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="label_align" class="col-sm-2 control-label">文字水平对齐方式</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control w-configurer-option" height="34px" name="label_align"
+                   id="label_align">
+        </div>
+        <label for="label_verticalAlign" class="col-sm-2 control-label">文字垂直对齐方式</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control w-configurer-option" height="34px" name="label_verticalAlign"
+                   id="label_verticalAlign">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="label_lineHeight" class="col-sm-2 control-label">行高</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control w-configurer-option" height="34px" name="label_lineHeight"
+                   id="label_lineHeight">
+        </div>
+        <label for="label_fontSize" class="col-sm-2 control-label">字体大小</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control w-configurer-option" height="34px" name="label_fontSize"
+                   id="label_fontSize">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="label_color" class="col-sm-2 control-label">字体颜色</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control w-configurer-option" height="34px" name="label_color"
+                   id="label_color">
+        </div>
+        <label for="label_fontStyle" class="col-sm-2 control-label">字体风格</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control w-configurer-option" height="34px" name="label_fontStyle"
+                   id="label_fontStyle">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="label_fontWeight" class="col-sm-2 control-label">字体粗细</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control w-configurer-option" height="34px" name="label_fontWeight"
+                   id="label_fontWeight">
+        </div>
+        <label for="label_fontFamily" class="col-sm-2 control-label">字体</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control w-configurer-option" height="34px" name="label_fontFamily"
+                   id="label_fontFamily">
+        </div>
+    </div>
+
+
+</fieldset>

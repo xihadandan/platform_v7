@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="queryUserOperationLogList">
+        <![CDATA[
+		SELECT
+		t.UUID,
+		t.module_name AS MODULE_NAME,
+		CASE t.data_def_type
+		WHEN 'WORKFLOW' THEN
+			'流程'
+		WHEN 'DYFORM' THEN
+			'表单'
+		ELSE
+			t.data_def_type
+		END AS DATA_DEF_TYPE,
+		 t.operation AS OPERATION,
+		 t.data_name AS DATA_NAME,
+		 t.data_def_name AS DATA_DEF_NAME,
+		 t.user_name AS USER_NAME,
+		 t.create_time AS CREATE_TIME,
+		 t.system_unit_id AS SYSTEM_UNIT_ID
+		FROM
+			LOG_BUSINESS_OPERATION t
+		WHERE
+			t.system_unit_id = :currentUserUnitId
+			AND   1 = 1
+			<if isNotBlank( whereSql )>
+			AND ${whereSql}
+			</if>
+
+			<if isNotBlank( orderStr )>
+			    ${orderStr}
+			 <else>
+			 ORDER BY
+			t.create_time DESC
+			</if>
+
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

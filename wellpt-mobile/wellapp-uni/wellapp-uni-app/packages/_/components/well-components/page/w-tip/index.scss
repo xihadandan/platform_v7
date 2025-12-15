@@ -1,0 +1,85 @@
+.w-tip {
+  /* #ifdef APP-PLUS */
+  ::v-deep
+ /* #endif */
+  .u-alert {
+    &.u-alert--info--light {
+      background-color: var(--w-info-color-2);
+      .u-icon__icon--info {
+        color: var(--w-info-color);
+      }
+    }
+    .u-alert__content__title {
+      color: var(--w-text-color-mobile) !important;
+    }
+  }
+
+  .w-tip-alert {
+    --w-tip-alert-icon-padding: 0px 12px 0px 0px;
+    --w-tip-alert-message-body-height: 32px;
+    display: flex;
+    margin: 8px 0px;
+    padding: 0 12px;
+    &.bordered {
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 4px;
+    }
+    > .icon-pane {
+      display: inline-flex;
+      padding: var(--w-tip-alert-icon-padding);
+      align-items: center;
+      > .tag {
+        min-width: 40px;
+
+        height: 24px;
+        line-height: 24px;
+        color: #fff;
+        text-align: center;
+        border-radius: 3px;
+        font-weight: bolder;
+      }
+    }
+    &.info {
+      background-color: #e6f7ff;
+    }
+    .message-container {
+      display: flex;
+      flex: 100%;
+      &.paused .announcement-list {
+        animation-play-state: paused;
+        animation: none;
+      }
+      .message-body {
+        width: 100%;
+        height: var(--w-tip-alert-message-body-height);
+        line-height: var(--w-tip-alert-message-body-height);
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+    .announcement-scroll {
+      width: 100%;
+      height: var(--w-tip-alert-message-body-height);
+      line-height: var(--w-tip-alert-message-body-height);
+      overflow: hidden;
+      position: relative;
+      /* 暂停动画状态 */
+
+      .announcement-list {
+        position: absolute;
+        width: 100%;
+        transition: transform 0.5s ease-in-out;
+        .announcement-item {
+          width: 100%;
+          height: 3var (--w-tip-alert-message-body-height);
+          line-height: var(--w-tip-alert-message-body-height);
+          white-space: nowrap;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

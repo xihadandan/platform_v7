@@ -1,0 +1,50 @@
+package com.wellsoft.pt.api.job;
+
+import com.wellsoft.context.config.Config;
+import com.wellsoft.context.util.ApplicationContextHolder;
+import com.wellsoft.pt.api.entity.ApiCommandEntity;
+import com.wellsoft.pt.api.service.ApiCommandService;
+import com.wellsoft.pt.security.util.IgnoreLoginUtils;
+import com.wellsoft.pt.task.job.Job;
+import com.wellsoft.pt.task.job.JobData;
+import org.quartz.JobExecutionContext;
+
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Description: api 重试失败的指令
+ *
+ * @author chenq
+ * @date 2018/11/5
+ *
+ * <pre>
+ * 修改记录:
+ * 修改后版本	    修改人		修改日期			修改内容
+ * 2018/11/5    chenq		2018/11/5		Create
+ * </pre>
+ */
+public class ApiRetryCommandJob extends Job {
+
+
+    @Override
+    protected void execute(JobExecutionContext jobExecutionContext, JobData jobData) {
+        ApiCommandService apiCommandService = ApplicationContextHolder.getBean(
+                ApiCommandService.class);
+        List<ApiCommandEntity> commandEntityList = apiCommandService.listByGreaterThanRetryTime(
+                new Date());
+        for (ApiCommandEntity commandEntity : commandEntityList) {
+            try {
+                IgnoreLoginUtils.login(Config.DEFAULT_TENANT, commandEntity.getCreator());
+                apiCommandService.retryCommand(commandEntity.getUuid());
+            } catch (Exception e) {
+                logger.error("重试失败的指令异常，指令uuid=[{}]", commandEntity.getUuid(), e);
+            } finally {
+                IgnoreLoginUtils.logout();
+            }
+
+        }
+
+
+    }
+}

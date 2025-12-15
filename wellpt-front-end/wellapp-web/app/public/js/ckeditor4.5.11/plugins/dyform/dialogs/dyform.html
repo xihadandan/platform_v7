@@ -1,0 +1,73 @@
+<div>
+	区块标题:<input id="formTitle" value="">
+</div>
+<script type="text/javascript">
+var dyform = {};
+
+/**
+ * 初始化属性窗口
+ */
+ dyform.initPropertyDialog = function (editor){
+	// $(".cke_reset_all"  ).removeClass("cke_reset_all");
+	this.editor = editor;  
+	
+	var focusedDom = editor.focusedDom;//当前editor被双击的对象(CKEDITOR.dom.node类) 
+	
+	var labelText = "";
+	
+	if(focusedDom != null && (typeof focusedDom) != "undefined"){ 
+		labelText =  focusedDom.getText() 
+	}
+	 
+	$("#formTitle").val(labelText);
+	
+};
+
+
+dyform.exitDialog = function(){
+	this.editor.focusedDom = null;
+	$("#formTitle").val("");
+}
+
+dyform.fillCkeditor = function(){
+	if(this.editor.focusedDom != null){   
+		this.editor.focusedDom.setText($("#formTitle").val());
+	}else{
+	  
+		html += "<table >";
+		html += "<tr>";
+		html += "<td class='title' colspan='2'>" +  $("#formTitle").val() + "</td>";
+		html += "</tr>"; 
+		html += "<tr>";
+		html += "<td width='110px;'>&nbsp;</td><td>&nbsp;</td>";
+		html += "</tr>"; 
+		html += "<tr>";
+		html += "<td width='110px;'>&nbsp;</td><td>&nbsp;</td>";
+		html += "</tr>"; 
+		html += "<tr>";
+		html += "<td width='110px;'>&nbsp;</td><td>&nbsp;</td>";
+		html += "</tr>"; 
+	
+		html += "</table>"; 
+		html += "<p>&nbsp;</p>";
+	 
+		html += "</div>";
+		var element = CKEDITOR.dom.element.createFromHtml( html );
+		
+		//this.editor.insertHtml(html);
+		this.editor.insertElement( element );
+	}
+	
+	
+	 	 
+
+	
+	
+	
+	
+}
+
+
+
+
+</script>

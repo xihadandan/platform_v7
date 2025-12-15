@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <sql-query name="businessTypeQuery">
+        <![CDATA[
+		from BusinessType type where 1=1
+		<if isNotBlank(name)>
+			and type.name like '%${name}%'
+		</if>
+		<if isNotBlank(tenantId)>
+			and type.unit.tenantId = :tenantId
+		</if>
+		<if isNotBlank(userId)>
+			and type.unitManagerUserId like '%${userId}%'
+		</if>
+		order by ${orderBy}
+	]]>
+    </sql-query>
+    <sql-query name="businessUnitTreeQuery">
+        <![CDATA[
+		from BusinessUnitTree o where 1=1
+		<if isNotBlank(name)>
+			and o.businessType.name like '%${name}%'
+		</if>
+		<if isNotBlank(tenantId)>
+			and o.unit.tenantId = :tenantId
+		</if>
+		<if isNotBlank(userId)>
+			and (o.businessManagerUserId like '%${userId}%')
+		</if>
+		order by ${orderBy}
+	]]>
+    </sql-query>
+</hibernate-mapping>

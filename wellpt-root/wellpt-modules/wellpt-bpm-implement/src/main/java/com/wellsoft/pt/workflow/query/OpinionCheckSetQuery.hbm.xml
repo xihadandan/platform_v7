@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <sql-query name="getOpinionCheckSets">
+        <![CDATA[
+		select *
+		from WF_OPINION_CHECK_SET
+		where FLOW_DEF_ID = :flowId
+		order by SCENE asc,CREATE_TIME asc
+	]]>
+    </sql-query>
+
+
+    <sql-query name="deleteByFlowId">
+        <![CDATA[
+		delete from WF_OPINION_CHECK_SET
+		where FLOW_DEF_ID = :flowId
+	]]>
+    </sql-query>
+
+
+    <sql-query name="isReferencedByOpinionRuleUuids">
+        <![CDATA[
+		select *
+		from WF_OPINION_CHECK_SET
+		where OPINION_RULE_UUID in(:opinionRuleUuids)
+		
+	]]>
+    </sql-query>
+
+
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+/* 浏览器加载进度条 */
+.pace {
+  height: @browser-pace-height;
+  pointer-events: none;
+  user-select: none;
+
+  .pace-progress {
+    .fixed(0 100% false false);
+    .size(100%, @browser-pace-height);
+
+    background: @browser-pace-background-color;
+    z-index: 2040;
+  }
+
+  .pace-activity {
+    background-image: none !important;
+  }
+
+  &.pace-inactive {
+    display: none;
+  }
+}
